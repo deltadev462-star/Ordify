@@ -9,6 +9,9 @@ body {
 }
 
 .dark body {
-  background-color: black;
+  background-color: #101010;
 }
- 
+
+::-webkit-scrollbar {
+  width: 0px;
+}

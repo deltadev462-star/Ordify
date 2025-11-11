@@ -1,73 +1,101 @@
-"use client"
+"use client";
 
-import { ChevronRight, type LucideIcon } from "lucide-react"
-
+import { ChevronRight, type LucideIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@/components/ui/collapsible"
+} from "@/components/ui/collapsible";
 import {
   SidebarGroup,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
 export function NavMain({
   items,
 }: {
   items: {
-    title: string
-    url: string
-    icon?: LucideIcon
-    isActive?: boolean
+    type: "link" | "collapsible";
+    title: string;
+    url: string;
+    icon?: LucideIcon;
+    isActive?: boolean;
     items?: {
-      title: string
-      url: string
-    }[]
-  }[]
+      title: string;
+      icons?: LucideIcon;
+      url: string;
+    }[];
+  }[];
 }) {
+  const { t } = useTranslation();
+
   return (
-    <SidebarGroup >
-      <SidebarGroupLabel>Platform</SidebarGroupLabel>
+    <SidebarGroup>
+      {/* <SidebarGroupLabel>Platform</SidebarGroupLabel> */}
+      <div className="mt-15"></div>
       <SidebarMenu>
-        {items.map((item) => (
-          <Collapsible
-            key={item.title}
-            asChild
-            defaultOpen={item.isActive}
-            className="group/collapsible"
-          >
-            <SidebarMenuItem>
-              <CollapsibleTrigger asChild>
-                <SidebarMenuButton className="hover:bg-gray-100 cursor-pointer" tooltip={item.title}>
+        {items.map((item) =>
+          item.type === "collapsible" ? (
+            <Collapsible
+              key={item.title}
+              asChild
+              defaultOpen={item.isActive}
+              className="group/collapsible"
+            >
+              <SidebarMenuItem>
+                <CollapsibleTrigger asChild>
+                  <SidebarMenuButton
+                    className="hover:bg-white/20 cursor-pointer"
+                    tooltip={item.title}
+                  >
+                    {item.icon && <item.icon />}
+                    <span>{t(item.title)}</span>
+                    <ChevronRight className="mr-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                  </SidebarMenuButton>
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                  <SidebarMenuSub>
+                    {item.items?.map((subItem) => (
+                      <SidebarMenuSubItem
+                        key={subItem.title}
+                        className="hover:bg-white/20 cursor-pointer rounded-md"
+                      >
+                        <SidebarMenuSubButton asChild>
+                          <a href={subItem.url}>
+                            {subItem.icons && <subItem.icons />}
+                            <span>{t(subItem.title)}</span>
+                          </a>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                    ))}
+                  </SidebarMenuSub>
+                </CollapsibleContent>
+              </SidebarMenuItem>
+            </Collapsible>
+          ) : (
+            <SidebarMenuItem key={item.title}>
+              <SidebarMenuButton asChild isActive={item.isActive}>
+                <a
+                  href={item.url}
+                  className="hover:bg-white/20 cursor-pointer rounded-md"
+                >
                   {item.icon && <item.icon />}
-                  <span>{item.title}</span>
-                  <ChevronRight className="ml-auto  transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
-                </SidebarMenuButton>
-              </CollapsibleTrigger>
-              <CollapsibleContent>
-                <SidebarMenuSub className="">
-                  {item.items?.map((subItem) => (
-                    <SidebarMenuSubItem className="hover:bg-red-300" key={subItem.title}>
-                      <SidebarMenuSubButton asChild>
-                        <a href={subItem.url}>
-                          <span>{subItem.title}</span>
-                        </a>
-                      </SidebarMenuSubButton>
-                    </SidebarMenuSubItem>
-                  ))}
-                </SidebarMenuSub>
-              </CollapsibleContent>
+                  <span>
+                     
+                    {t(item.title)}
+                  </span>
+                </a>
+              </SidebarMenuButton>
             </SidebarMenuItem>
-          </Collapsible>
-        ))}
+          )
+        )}
       </SidebarMenu>
     </SidebarGroup>
-  )
+  );
 }
