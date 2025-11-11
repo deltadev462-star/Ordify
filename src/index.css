@@ -3,6 +3,7 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+ 
 body {
   background-color: white;
   transition: background-color 0.3s ease;
@@ -14,4 +15,10 @@ body {
 
 ::-webkit-scrollbar {
   width: 0px;
+}
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
 }

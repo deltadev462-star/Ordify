@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { ChevronRight, type LucideIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import {
@@ -34,6 +35,27 @@ export function NavMain({
   }[];
 }) {
   const { t } = useTranslation();
+  const [activeItem, setActiveItem] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    const currentPath = window.location.pathname;
+    
+    const mainItem = items.find(item => item.url === currentPath);
+    if (mainItem) {
+      setActiveItem(mainItem.title);
+      return;
+    }
+     
+    for (const item of items) {
+      if (item.items) {
+        const subItem = item.items.find(sub => sub.url === currentPath);
+        if (subItem) {
+          setActiveItem(subItem.title);
+          return;
+        }
+      }
+    }
+  }, [items]);
 
   return (
     <SidebarGroup>
@@ -51,8 +73,10 @@ export function NavMain({
               <SidebarMenuItem>
                 <CollapsibleTrigger asChild>
                   <SidebarMenuButton
-                    className="hover:bg-white/20 cursor-pointer"
+                    isActive={activeItem === item.title}
+                    className="hover:bg-white/20 cursor-pointer text-lg data-[active=true]:py-5 data-[active=true]:text-white  data-[active=true]:bg-green-500"
                     tooltip={item.title}
+                    onClick={() => setActiveItem(item.title)}
                   >
                     {item.icon && <item.icon />}
                     <span>{t(item.title)}</span>
@@ -64,10 +88,17 @@ export function NavMain({
                     {item.items?.map((subItem) => (
                       <SidebarMenuSubItem
                         key={subItem.title}
-                        className="hover:bg-white/20 cursor-pointer rounded-md"
+                        className="hover:bg-white/20 text-[15px] py-1 cursor-pointer rounded-md"
                       >
-                        <SidebarMenuSubButton asChild>
-                          <a href={subItem.url}>
+                        <SidebarMenuSubButton
+                          asChild
+                          isActive={activeItem === subItem.title}
+                          className="data-[active=true]:bg-green-500   data-[active=true]:text-white text-[15px]"
+                        >
+                          <a
+                            href={subItem.url}
+                            onClick={() => setActiveItem(subItem.title)}
+                          >
                             {subItem.icons && <subItem.icons />}
                             <span>{t(subItem.title)}</span>
                           </a>
@@ -80,16 +111,14 @@ export function NavMain({
             </Collapsible>
           ) : (
             <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton asChild isActive={item.isActive}>
+              <SidebarMenuButton asChild isActive={activeItem === item.title}>
                 <a
                   href={item.url}
-                  className="hover:bg-white/20 cursor-pointer rounded-md"
+                  className="hover:bg-white/20 cursor-pointer  rounded-md data-[active=true]:bg-green-500 data-[active=true]:text-white"
+                  onClick={() => setActiveItem(item.title)}
                 >
                   {item.icon && <item.icon />}
-                  <span>
-                     
-                    {t(item.title)}
-                  </span>
+                  <span className="text-[15px]  py-5">{t(item.title)}</span>
                 </a>
               </SidebarMenuButton>
             </SidebarMenuItem>
