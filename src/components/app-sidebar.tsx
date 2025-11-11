@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
+ 
 import { NavUser } from "@/components/nav-user"
 import {
   Sidebar,
@@ -12,7 +12,8 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar"
 import { sidebarData, navItems } from "@/data/sidebar-data"
-
+ 
+ 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
    return (
      <Sidebar
@@ -22,11 +23,21 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
        {...props}
      >
        <SidebarHeader>
-         {/* <TeamSwitcher teams={data.teams} /> */}
+         {/* <div className="flex justify-center gap-5 items-center">
+           <LogOut />
+           <Button
+             variant="outline"
+             size="sm"
+             className="cursor-pointer "
+           >
+             <HatGlasses /> Watch
+           </Button>
+         </div> */}
+         
        </SidebarHeader>
        <SidebarContent>
          <NavMain items={navItems as any} />
-         <NavProjects projects={sidebarData.projects as any} />
+         {/* <NavProjects projects={sidebarData.projects as any} /> */}
        </SidebarContent>
        <SidebarFooter>
          <NavUser user={sidebarData.user} />
