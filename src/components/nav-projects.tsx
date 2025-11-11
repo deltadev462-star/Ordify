@@ -7,6 +7,7 @@ import {
   Trash2,
   type LucideIcon,
 } from "lucide-react"
+import { useTranslation } from "react-i18next";
 
 import {
   DropdownMenu,
@@ -35,17 +36,18 @@ export function NavProjects({
   }[]
 }) {
   const { isMobile } = useSidebar()
+  const { t } = useTranslation();
 
   return (
-    <SidebarGroup className="group-data-[collapsible=icon]:hidden">
+    <SidebarGroup>
       <SidebarGroupLabel>Projects</SidebarGroupLabel>
       <SidebarMenu>
         {projects.map((item) => (
           <SidebarMenuItem key={item.name}>
-            <SidebarMenuButton asChild>
+            <SidebarMenuButton asChild tooltip={t(item.name)}>
               <a href={item.url}>
                 <item.icon />
-                <span>{item.name}</span>
+                <span>{t(item.name)}</span>
               </a>
             </SidebarMenuButton>
             <DropdownMenu>
