@@ -106,34 +106,34 @@ export const sidebarData = {
         {
           title: "All Products",
           icons: Tags,
-          url: "/dashboard/",
+          url: "/dashboard/product",
         },
         {
           title: "Categories",
           icons: Blocks,
-          url: "#",
+          url: "/dashboard/categories",
         },
         {
           title: "Reviews",
           icons: Star,
-          url: "/blocked-numbers",
+          url: "/dashboard/reviews",
         },
         {
           title: "Product Feed",
           icons: MessageSquareDot,
-          url: "/blocked-otp-numbers",
+          url: "/dashboard/product-feed",
         },
         {
           title: "Easy Catalog",
           icons: Files,
-          url: "/blocked-otp-numbers",
+          url: "/dashboard/easy-catalog",
         },
       ],
     },
     {
       type: "link",
       title: "Funnels",
-      url: "/dashboard",
+      url: "/dashboard/funnels",
       icon: Filter,
     },
     {
