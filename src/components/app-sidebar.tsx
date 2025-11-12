@@ -40,6 +40,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
          {/* <NavProjects projects={sidebarData.projects as any} /> */}
        </SidebarContent>
        <SidebarFooter>
+        <div className="text-center text-[10px]">v2.3.66
+</div>
          <NavUser user={sidebarData.user} />
        </SidebarFooter>
        <SidebarRail />
