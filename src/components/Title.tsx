@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 interface TitleProps {
   title: string;
   Subtitle: string;
@@ -18,4 +20,4 @@ function Title({ title, Subtitle, className, classNamee }: TitleProps) {
   );
 }
 
-export default Title;
+export default memo(Title);
