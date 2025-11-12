@@ -76,22 +76,23 @@ export const sidebarData = {
         {
           title: "All Orders",
           icons: PackageOpen,
-          url: "/dashboard/",
+          url: "/dashboard/order",
         },
         {
-          title: "Missed Order",
+          title: "Missed Orders",
           icons: PackageSearch,
-          url: "#",
+          url: "/dashboard/missed-order",
+
         },
         {
           title: "Blocked Numbers",
           icons: ShoppingBasket,
-          url: "/blocked-numbers",
+          url: "/dashboard/blocked-number",
         },
         {
           title: "Blocked OTP Numbers",
           icons: PhoneOff,
-          url: "/blocked-otp-numbers",
+          url: "/dashboard/blocked-otp-numbers",
         },
       ],
     },
