@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import { Moon, Sun } from "lucide-react"
 import { flushSync } from "react-dom"
+import { useTranslation } from "react-i18next"
 
 import { cn } from "@/lib/utils"
 
@@ -16,6 +17,7 @@ export const AnimatedThemeToggler = ({
   duration = 400,
   ...props
 }: AnimatedThemeTogglerProps) => {
+  const { t } = useTranslation()
   const [isDark, setIsDark] = useState(() => {
     
     const savedTheme = localStorage.getItem("theme")
@@ -92,7 +94,7 @@ export const AnimatedThemeToggler = ({
       {...props}
     >
       {isDark ? <Sun /> : <Moon />}
-      <span className="sr-only">Toggle theme</span>
+      <span className="sr-only">{t("Toggle theme")}</span>
     </button>
   )
 }

@@ -2,7 +2,7 @@
 import { useTranslation } from "react-i18next";
 import { statsData } from "@/data/dashboard-data";
 
-function StatsCard({}) {
+function StatsCard() {
   const { t } = useTranslation();
 
   return (
