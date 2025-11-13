@@ -6,7 +6,7 @@ function CardSetup() {
   const { t } = useTranslation();
   const [completedTasks, setCompletedTasks] = useState([1, 2, 3]);
 
-  const toggleTask = (id: any) => {
+  const toggleTask = (id: number) => {
     if (completedTasks.includes(id)) {
       setCompletedTasks(completedTasks.filter((taskId) => taskId !== id));
     } else {

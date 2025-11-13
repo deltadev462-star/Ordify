@@ -1,25 +1,27 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
-import { lazy   } from "react";
-
-const Dashboard = lazy(() => import("./pages/dashbord/Dashbord"));
-const Products = lazy(() => import("./pages/dashbord/page/Products"));
-const History = lazy(() => import("./pages/dashbord/page/History"));
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { lazy } from "react";
+ 
+ 
+ const Dashboard = lazy(() => import("./pages/dashboard/Dashboard"));
+const Products = lazy(() => import("./pages/dashboard/page/Products"));
+const History = lazy(() => import("./pages/dashboard/page/History"));
 const Home = lazy(() => import("./pages/Home/Home"));
-const Order = lazy(() => import("./pages/dashbord/page/Order"));
-const MissedOrder = lazy(() => import("./pages/dashbord/page/MissedOrder"));
-const BlockedNumber = lazy(() => import("./pages/dashbord/page/BlockedNumber"));
+const Order = lazy(() => import("./pages/dashboard/page/Order"));
+const MissedOrder = lazy(() => import("./pages/dashboard/page/MissedOrder"));
+const BlockedNumber = lazy(() => import("./pages/dashboard/page/BlockedNumber"));
 const BlockedVerification = lazy(
-  () => import("./pages/dashbord/page/BlockedVerification")
+  () => import("./pages/dashboard/page/BlockedVerification")
 );
-const Categories = lazy(() => import("./pages/dashbord/page/Categories"));
-const Reviews = lazy(() => import("./pages/dashbord/page/Reviews"));
-const ProductFeed = lazy(() => import("./pages/dashbord/page/ProductFeed"));
-const EasyCatalog = lazy(() => import("./pages/dashbord/page/EasyCatalog"));
-const Funnels = lazy(() => import("./pages/dashbord/page/Funnels"));
+const Categories = lazy(() => import("./pages/dashboard/page/Categories"));
+const Reviews = lazy(() => import("./pages/dashboard/page/Reviews"));
+const ProductFeed = lazy(() => import("./pages/dashboard/page/ProductFeed"));
+const EasyCatalog = lazy(() => import("./pages/dashboard/page/EasyCatalog"));
+const Funnels = lazy(() => import("./pages/dashboard/page/Funnels"));
+ const Applications = lazy(() => import("./pages/dashboard/page/Applications"));
+const AffiliateMarketing = lazy(() => import("./pages/dashboard/page/AffiliateMarketing"));
+const Transactions = lazy(() => import("./pages/dashboard/page/Transactions"));
+const Wallet = lazy(() => import("./pages/dashboard/page/Wallet"));
+
 
 function AppContent() {
   return (
@@ -39,6 +41,13 @@ function AppContent() {
       <Route path="/dashboard/product-feed" element={<ProductFeed />} />
       <Route path="/dashboard/easy-catalog" element={<EasyCatalog />} />
       <Route path="/dashboard/funnels" element={<Funnels />} />
+      <Route path="/dashboard/applications" element={<Applications />} />
+      <Route
+        path="/dashboard/affiliate-marketing"
+        element={<AffiliateMarketing />}
+      />
+      <Route path="/dashboard/wallet" element={<Wallet />} />
+      <Route path="/dashboard/transactions" element={<Transactions />} />
       <Route path="/dashboard/history" element={<History />} />
     </Routes>
   );
@@ -46,11 +55,9 @@ function AppContent() {
 
 function App() {
   return (
-    
-      <Router>
-        <AppContent />
-      </Router>
-    
+    <Router>
+      <AppContent />
+    </Router>
   );
 }
 

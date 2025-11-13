@@ -11,6 +11,8 @@ import {
   Filter,
    GalleryVerticalEnd,
   HandCoins,
+   Highlighter,
+   LaptopMinimal,
    Megaphone,
   MessageSquareDot,
   Network,
@@ -26,6 +28,7 @@ import {
   ShoppingBasket,
   ShoppingCart,
   Star,
+  SunMoon,
   Tag,
   Tags,
   Target,
@@ -82,7 +85,6 @@ export const sidebarData = {
           title: "Missed Orders",
           icons: PackageSearch,
           url: "/dashboard/missed-order",
-
         },
         {
           title: "Blocked Numbers",
@@ -212,10 +214,25 @@ export const sidebarData = {
       type: "collapsible",
       isActive: false,
       items: [
-        { title: "Balance", icons: Wallet, url: "/dashboard" },
+        { title: "Balance", icons: Wallet, url: "/dashboard/wallet" },
         {
           title: "Transactions",
           icons: ArrowLeftRight,
+          url: "/dashboard/transactions",
+        },
+      ],
+    },
+    {
+      title: "Manage My Website",
+      url: "#",
+      icon: LaptopMinimal,
+      type: "collapsible",
+      isActive: false,
+      items: [
+        { title: "Themes", icons: SunMoon, url: "/dashboard" },
+        {
+          title: "Texts",
+          icons: Highlighter,
           url: "/marketing/conversion",
         },
       ],
@@ -223,7 +240,7 @@ export const sidebarData = {
     {
       type: "link",
       title: "App",
-      url: "/dashboard",
+      url: "/dashboard/applications",
       icon: Webhook,
     },
 
@@ -236,7 +253,7 @@ export const sidebarData = {
     {
       type: "link",
       title: "Affiliate Marketing",
-      url: "/dashboard",
+      url: "/dashboard/affiliate-marketing",
       icon: HandCoins,
     },
     {

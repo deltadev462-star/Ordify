@@ -81,17 +81,16 @@ export default function Dashboard() {
             </div>
             <StatsCard />
 
-            <div className="flex justify-between items-center">
+            <div className="md:flex flex-wrap justify-between items-center">
               <CardTotal />
-            <CardTotal />
+              <CardTotal />
             </div>
             <div className="flex justify-between items-center">
               <CardTotal />
-            
             </div>
-            <div className="flex justify-between items-center">
+            <div className="md:flex flex-wrap   justify-between items-center">
               <CardTotal />
-            <CardTotal />
+              <CardTotal />
             </div>
             <CardTotal />
             <CardTotal />
