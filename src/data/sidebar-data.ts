@@ -229,7 +229,7 @@ export const sidebarData = {
       type: "collapsible",
       isActive: false,
       items: [
-        { title: "Themes", icons: SunMoon, url: "/dashboard" },
+        { title: "Themes", icons: SunMoon, url: "/dashboard/themes" },
         {
           title: "Texts",
           icons: Highlighter,

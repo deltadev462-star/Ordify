@@ -1,8 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { lazy } from "react";
+import { lazy, Suspense } from "react";
+import { ThemeProvider } from "./context/ThemeContext";
  
  
- const Dashboard = lazy(() => import("./pages/dashboard/Dashboard"));
+const Dashboard = lazy(() => import("./pages/dashboard/Dashboard"));
 const Products = lazy(() => import("./pages/dashboard/page/Products"));
 const History = lazy(() => import("./pages/dashboard/page/History"));
 const Home = lazy(() => import("./pages/Home/Home"));
@@ -21,6 +22,7 @@ const Funnels = lazy(() => import("./pages/dashboard/page/Funnels"));
 const AffiliateMarketing = lazy(() => import("./pages/dashboard/page/AffiliateMarketing"));
 const Transactions = lazy(() => import("./pages/dashboard/page/Transactions"));
 const Wallet = lazy(() => import("./pages/dashboard/page/Wallet"));
+const Themes = lazy(() => import("./pages/dashboard/page/Themes"));
 
 
 function AppContent() {
@@ -42,6 +44,7 @@ function AppContent() {
       <Route path="/dashboard/easy-catalog" element={<EasyCatalog />} />
       <Route path="/dashboard/funnels" element={<Funnels />} />
       <Route path="/dashboard/applications" element={<Applications />} />
+      <Route path="/dashboard/themes" element={<Themes />} />
       <Route
         path="/dashboard/affiliate-marketing"
         element={<AffiliateMarketing />}
@@ -55,9 +58,17 @@ function AppContent() {
 
 function App() {
   return (
-    <Router>
-      <AppContent />
-    </Router>
+    <ThemeProvider defaultTheme="modern">
+      <Router>
+        <Suspense fallback={
+          <div className="flex items-center justify-center min-h-screen">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+          </div>
+        }>
+          <AppContent />
+        </Suspense>
+      </Router>
+    </ThemeProvider>
   );
 }
 

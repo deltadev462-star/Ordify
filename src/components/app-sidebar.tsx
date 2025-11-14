@@ -32,7 +32,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
      <Sidebar
        side="right"
        collapsible="icon"
-       className="bg-gray-50 dark:bg-[#101010] z-[999] border-gray-200  dark:border-gray-800 dark:text-gray-100"
+       className="bg-gray-50 dark:bg-[#101010] z-999 border-gray-200  dark:border-gray-800 dark:text-gray-100"
        {...props}
      >
        <SidebarHeader>

@@ -1,0 +1,328 @@
+/* Modern Theme Styles */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+/* Theme-specific CSS using CSS custom properties */
+.theme-modern {
+  /* Apply theme-specific styles */
+  font-family: var(--theme-font-family);
+}
+
+/* Modern Theme Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Modern Product Card Hover Effects */
+.theme-modern .product-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-modern .product-card:hover {
+  transform: translateY(-4px);
+}
+
+.theme-modern .product-card .product-image {
+  overflow: hidden;
+}
+
+.theme-modern .product-card:hover .product-image img {
+  transform: scale(1.05);
+}
+
+/* Modern Button Styles */
+.theme-modern .btn-modern {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.theme-modern .btn-modern::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: left 0.3s ease;
+}
+
+.theme-modern .btn-modern:hover::before {
+  left: 100%;
+}
+
+/* Modern Navigation Styles */
+.theme-modern .nav-link {
+  position: relative;
+}
+
+.theme-modern .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--theme-primary);
+  transition: width 0.3s ease;
+}
+
+.theme-modern .nav-link:hover::after {
+  width: 100%;
+}
+
+/* Modern Form Inputs */
+.theme-modern input[type="text"],
+.theme-modern input[type="email"],
+.theme-modern input[type="password"],
+.theme-modern textarea {
+  border: 1px solid var(--theme-border);
+  transition: all 0.3s ease;
+}
+
+.theme-modern input[type="text"]:focus,
+.theme-modern input[type="email"]:focus,
+.theme-modern input[type="password"]:focus,
+.theme-modern textarea:focus {
+  border-color: var(--theme-primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Modern Category Cards */
+.theme-modern .category-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-modern .category-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.theme-modern .category-card:hover::before {
+  opacity: 1;
+}
+
+/* Modern Hero Section */
+.theme-modern .hero-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-modern .hero-content {
+  animation: fadeIn 0.8s ease-out;
+}
+
+.theme-modern .hero-title {
+  animation: slideInFromLeft 0.8s ease-out 0.2s both;
+}
+
+.theme-modern .hero-description {
+  animation: slideInFromLeft 0.8s ease-out 0.4s both;
+}
+
+.theme-modern .hero-cta {
+  animation: scaleIn 0.8s ease-out 0.6s both;
+}
+
+/* Modern Loading Animations */
+.theme-modern .skeleton-loading {
+  background: linear-gradient(
+    90deg,
+    var(--theme-muted) 25%,
+    rgba(255, 255, 255, 0.5) 50%,
+    var(--theme-muted) 75%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Modern Newsletter Section */
+.theme-modern .newsletter-section {
+  background: linear-gradient(135deg, var(--theme-primary) 0%, var(--theme-secondary) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-modern .newsletter-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+/* Modern Footer */
+.theme-modern .footer {
+  background: linear-gradient(180deg, #111827 0%, #0f172a 100%);
+}
+
+/* Modern Dropdown Menus */
+.theme-modern .dropdown-menu {
+  animation: slideDown 0.2s ease-out;
+  transform-origin: top;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: scaleY(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+/* Modern Badge Animations */
+.theme-modern .badge-new,
+.theme-modern .badge-sale {
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Modern Scroll Effects */
+.theme-modern [data-aos="fade-up"] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.theme-modern [data-aos="fade-up"].aos-animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Modern Grid Layouts */
+.theme-modern .product-grid {
+  display: grid;
+  gap: var(--theme-spacing-base);
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+@media (min-width: 768px) {
+  .theme-modern .product-grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .theme-modern .product-grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .theme-modern .product-grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Modern Typography */
+.theme-modern h1,
+.theme-modern h2,
+.theme-modern h3,
+.theme-modern h4,
+.theme-modern h5,
+.theme-modern h6 {
+  font-family: var(--theme-heading-font-family);
+  font-weight: var(--theme-font-weight-bold);
+  line-height: 1.2;
+}
+
+/* Modern Utilities */
+.theme-modern .glass-effect {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.theme-modern .gradient-border {
+  position: relative;
+  background: var(--theme-background);
+  background-clip: padding-box;
+  border: 2px solid transparent;
+}
+
+.theme-modern .gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  margin: -2px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--theme-primary), var(--theme-secondary));
+}
