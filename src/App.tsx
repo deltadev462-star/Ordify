@@ -1,8 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { lazy } from "react";
+import Settings from "./pages/dashboard/page/Settings";
+import MarketingServices from "./pages/dashboard/page/MarketingServices";
+import ServiceGallery from "./pages/dashboard/page/ServiceGallery";
+import Shater from "./pages/dashboard/page/Shater";
  
- 
- const Dashboard = lazy(() => import("./pages/dashboard/Dashboard"));
+const Dashboard = lazy(() => import("./pages/dashboard/Dashboard"));
 const Products = lazy(() => import("./pages/dashboard/page/Products"));
 const History = lazy(() => import("./pages/dashboard/page/History"));
 const Home = lazy(() => import("./pages/Home/Home"));
@@ -21,7 +24,11 @@ const Funnels = lazy(() => import("./pages/dashboard/page/Funnels"));
 const AffiliateMarketing = lazy(() => import("./pages/dashboard/page/AffiliateMarketing"));
 const Transactions = lazy(() => import("./pages/dashboard/page/Transactions"));
 const Wallet = lazy(() => import("./pages/dashboard/page/Wallet"));
+const Template = lazy(() => import("./pages/dashboard/page/Template"));
+const EditTheme = lazy(() => import("./pages/dashboard/page/EditTheme"));
 
+
+ 
 
 function AppContent() {
   return (
@@ -48,6 +55,15 @@ function AppContent() {
       />
       <Route path="/dashboard/wallet" element={<Wallet />} />
       <Route path="/dashboard/transactions" element={<Transactions />} />
+      <Route path="/dashboard/template" element={<Template />} />
+
+      <Route path="/dashboard/shater" element={<Shater />} />
+      <Route path="/dashboard/service-gallery" element={<ServiceGallery />} />
+      <Route path="/dashboard/marketing-services" element={<MarketingServices />} />
+      <Route path="/dashboard/settings" element={<Settings />} />
+
+      <Route path="/dashboard/template/:id" element={<EditTheme />} />
+
       <Route path="/dashboard/history" element={<History />} />
     </Routes>
   );

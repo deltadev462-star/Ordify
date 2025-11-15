@@ -1,8 +1,9 @@
+ 
 import { AppSidebar } from "@/components/app-sidebar";
-
+import Header from "@/components/Header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
-import Header from "@/components/Header";
+ 
 
 function ProductFeed() {
   return (

@@ -118,7 +118,7 @@ export function NavMain({
                   onClick={() => setActiveItem(item.title)}
                 >
                   {item.icon && <item.icon />}
-                  <span className="text-[15px]  py-5">{t(item.title)}</span>
+                <span className="text-[15px]  py-5">{t(item.title)}</span>
                 </a>
               </SidebarMenuButton>
             </SidebarMenuItem>
