@@ -6,7 +6,7 @@ import { SidebarTrigger } from "./ui/sidebar";
 
 function Header() {
   return (
-    <header className="flex h-25 bg-gray-50 border-b border-gray-300 dark:bg-[#101010] dark:text-gray-100   shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
+    <header className="flex h-16 bg-gray-50 border-b border-gray-300 dark:border-gray-900  dark:bg-[#101010] dark:text-gray-100   shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
       <div className="flex items-center justify-between gap-2 px-4 w-full">
         <div className="flex items-center gap-2">
           <SidebarTrigger className="-ml-1" />

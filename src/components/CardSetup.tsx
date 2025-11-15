@@ -14,7 +14,7 @@ function CardSetup() {
     }
   };
   return (
-    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-7xl mt-5 mx-auto">
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4   mt-5  ">
       {settingsData.map((item) => {
         const Icon = item.icon;
         const isCompleted = completedTasks.includes(item.id);

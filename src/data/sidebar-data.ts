@@ -141,7 +141,7 @@ export const sidebarData = {
     {
       type: "link",
       title: "Shater Your Smart Shater",
-      url: "/dashboard",
+      url: "/dashboard/shater",
       icon: Blocks,
     },
     {
@@ -229,7 +229,7 @@ export const sidebarData = {
       type: "collapsible",
       isActive: false,
       items: [
-        { title: "Themes", icons: SunMoon, url: "/dashboard" },
+        { title: "Template", icons: SunMoon, url: "/dashboard/template" },
         {
           title: "Texts",
           icons: Highlighter,
@@ -247,7 +247,7 @@ export const sidebarData = {
     {
       type: "link",
       title: "Service gallery",
-      url: "/dashboard",
+      url: "/dashboard/service-gallery",
       icon: CircleDollarSign,
     },
     {
@@ -259,13 +259,13 @@ export const sidebarData = {
     {
       type: "link",
       title: "Marketing Services",
-      url: "/dashboard",
+      url: "/dashboard/marketing-services",
       icon: Tags,
     },
     {
       type: "link",
       title: "Settings",
-      url: "/dashboard",
+      url: "/dashboard/settings",
       icon: Settings,
     },
   ],
