@@ -301,10 +301,13 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
             {Header ? (
               <Header
                 logo={
-                  <span style={{
-                    fontFamily: typography.headingFontFamily,
-                    color: colors.primary
-                  }}>
+                  <span
+                    className="text-2xl font-bold bg-clip-text text-transparent"
+                    style={{
+                      fontFamily: typography.headingFontFamily,
+                      backgroundImage: `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})`
+                    }}
+                  >
                     Your Store
                   </span>
                 }
@@ -318,11 +321,12 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
             ) : (
               /* Fallback generic header */
               <header
-                className="sticky top-0 z-10 shadow-sm"
+                className="sticky top-0 z-10 backdrop-blur-md"
                 style={{
-                  backgroundColor: colors.background,
+                  background: `linear-gradient(to bottom, ${colors.background}ee, ${colors.background}dd)`,
                   borderBottom: `1px solid ${colors.border}`,
-                  height: layout.headerHeight
+                  height: layout.headerHeight,
+                  boxShadow: `0 2px 10px ${colors.primary}10`
                 }}
               >
                 <div
@@ -337,10 +341,10 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                       {mobileMenuOpen ? <X /> : <Menu />}
                     </button>
                     <h1
-                      className="text-2xl font-bold"
+                      className="text-2xl font-bold bg-clip-text text-transparent"
                       style={{
                         fontFamily: typography.headingFontFamily,
-                        color: colors.primary
+                        backgroundImage: `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})`
                       }}
                     >
                       Your Store
@@ -352,29 +356,48 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                       <a
                         key={item}
                         href="#"
-                        className="hover:opacity-80 transition-opacity"
+                        className="relative hover:opacity-90 transition-all duration-300 group"
                         style={{
                           fontSize: typography.fontSize.base,
-                          fontWeight: typography.fontWeight.medium
+                          fontWeight: typography.fontWeight.medium,
+                          color: colors.foreground
                         }}
                       >
                         {item}
+                        <span
+                          className="absolute -bottom-1 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full"
+                          style={{
+                            background: `linear-gradient(90deg, ${colors.primary}, ${colors.secondary})`
+                          }}
+                        />
                       </a>
                     ))}
                   </nav>
  
                   <div className="flex items-center gap-4">
-                    <button className="hover:opacity-80">
+                    <button
+                      className="hover:opacity-80 transition-all duration-300 hover:scale-110"
+                      style={{ color: colors.foreground }}
+                    >
                       <Search className="h-5 w-5" />
                     </button>
-                    <button className="hover:opacity-80">
+                    <button
+                      className="hover:opacity-80 transition-all duration-300 hover:scale-110"
+                      style={{ color: colors.foreground }}
+                    >
                       <Heart className="h-5 w-5" />
                     </button>
-                    <button className="hover:opacity-80 relative">
+                    <button
+                      className="hover:opacity-80 relative transition-all duration-300 hover:scale-110"
+                      style={{ color: colors.foreground }}
+                    >
                       <ShoppingBag className="h-5 w-5" />
                       <span
-                        className="absolute -top-2 -right-2 h-5 w-5 rounded-full flex items-center justify-center text-xs text-white"
-                        style={{ backgroundColor: colors.accent }}
+                        className="absolute -top-2 -right-2 h-5 w-5 rounded-full flex items-center justify-center text-xs text-white shadow-lg"
+                        style={{
+                          background: `linear-gradient(135deg, ${colors.accent}, ${colors.primary})`,
+                          boxShadow: `0 2px 8px ${colors.accent}40`
+                        }}
                       >
                         3
                       </span>
@@ -426,13 +449,22 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                         </p>
                         <Button
                           size="lg"
+                          className="relative overflow-hidden group transition-all duration-300 hover:scale-105 hover:shadow-xl"
                           style={{
-                            backgroundColor: colors.primary,
+                            background: `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})`,
                             color: colors.background,
-                            borderRadius: layout.borderRadius.md
+                            borderRadius: layout.borderRadius.md,
+                            boxShadow: `0 4px 15px ${colors.primary}40`,
+                            border: 'none'
                           }}
                         >
-                          Shop Now
+                          <span className="relative z-10">Shop Now</span>
+                          <div
+                            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                            style={{
+                              background: `linear-gradient(135deg, ${colors.secondary}, ${colors.primary})`
+                            }}
+                          />
                         </Button>
                       </div>
                     </div>

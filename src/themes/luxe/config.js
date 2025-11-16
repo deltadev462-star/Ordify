@@ -4,14 +4,18 @@ export default {
   description: "Premium, elegant design for high-end brands. Features video backgrounds, elegant typography, premium feel. Perfect for luxury fashion, jewelry, and high-end products.",
   
   colors: {
-    primary: "#d4af37", // Gold
-    secondary: "#2c2c2c", // Dark Gray
-    accent: "#8b0000", // Dark Red
+    primary: "#b8860b", // Goldenrod - Richer gold
+    secondary: "#1a1a1a", // Near black - More sophisticated
+    accent: "#a855f7", // Purple-500 - Luxurious purple
     background: "#ffffff",
-    foreground: "#1a1a1a", // Rich Black
-    muted: "#f7f7f7", // Off White
-    mutedForeground: "#666666", // Medium Gray
-    border: "#e0e0e0", // Light Gray
+    foreground: "#0a0a0a", // Very dark
+    muted: "#faf9f7", // Warm off-white
+    mutedForeground: "#525252", // Neutral-600
+    border: "#d4d4d4", // Neutral-300
+    success: "#059669", // Emerald-600
+    warning: "#d97706", // Amber-600
+    error: "#dc2626", // Red-600
+    info: "#2563eb", // Blue-600
   },
   
   typography: {
@@ -45,6 +49,8 @@ export default {
       base: "4px",
       md: "6px",
       lg: "8px",
+      xl: "12px",
+      "2xl": "16px",
       full: "9999px",
     },
     spacing: {
@@ -53,6 +59,13 @@ export default {
       base: "2.5rem",
       lg: "4rem",
       xl: "6rem",
+    },
+    shadow: {
+      sm: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+      base: "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
+      md: "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+      lg: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+      xl: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
     },
   },
   
@@ -91,4 +104,41 @@ export default {
     premiumEffects: true,
     smoothScrolling: true,
   },
+  
+  presets: {
+    colorSchemes: [
+      {
+        name: "Royal Gold",
+        colors: {
+          primary: "#d4af37", // Classic gold
+          secondary: "#2c2c2c",
+          accent: "#8b0000", // Dark red
+        }
+      },
+      {
+        name: "Midnight Luxe",
+        colors: {
+          primary: "#1e3a8a", // Blue-900
+          secondary: "#1e1b4b", // Indigo-950
+          accent: "#fbbf24", // Amber-400
+        }
+      },
+      {
+        name: "Rose Gold",
+        colors: {
+          primary: "#b76e79", // Rose gold
+          secondary: "#831843", // Rose-900
+          accent: "#fbbf24", // Amber-400
+        }
+      },
+      {
+        name: "Emerald Elite",
+        colors: {
+          primary: "#064e3b", // Emerald-900
+          secondary: "#14532d", // Green-900
+          accent: "#d4af37", // Gold
+        }
+      }
+    ]
+  }
 };

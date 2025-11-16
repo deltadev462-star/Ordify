@@ -2,15 +2,16 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { 
-  Search, 
-  ShoppingCart, 
-  User, 
-  Menu, 
-  Heart, 
+import {
+  Search,
+  ShoppingCart,
+  User,
+  Menu,
+  Heart,
   ChevronDown,
   X
 } from "lucide-react";
+import { useTheme } from "@/hooks/useTheme";
 
 interface NavigationItem {
   label: string;
@@ -82,6 +83,7 @@ export const ModernHeader = ({
   const [searchQuery, setSearchQuery] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const { colors, layout } = useTheme();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -97,7 +99,14 @@ export const ModernHeader = ({
   };
 
   return (
-    <header className={`sticky top-0 z-50 border-b bg-white/95 backdrop-blur-md ${className}`}>
+    <header
+      className={`sticky top-0 z-50 backdrop-blur-md ${className}`}
+      style={{
+        background: colors ? `linear-gradient(to bottom, ${colors.background}ee, ${colors.background}dd)` : 'white',
+        borderBottom: `1px solid ${colors?.border || '#e5e7eb'}`,
+        boxShadow: colors ? `0 2px 10px ${colors.primary}10` : undefined
+      }}
+    >
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between lg:h-20">
           {/* Mobile Menu */}
@@ -162,7 +171,16 @@ export const ModernHeader = ({
           <div className="flex-1 lg:flex-none">
             <a href="/" className="inline-flex items-center">
               {typeof logo === "string" ? (
-                <span className="text-2xl font-bold text-gray-900">{logo}</span>
+                <span
+                  className="text-2xl font-bold bg-clip-text text-transparent"
+                  style={{
+                    backgroundImage: colors ? `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})` : undefined,
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent'
+                  }}
+                >
+                  {logo}
+                </span>
               ) : (
                 logo
               )}
@@ -177,12 +195,19 @@ export const ModernHeader = ({
                   {item.children ? (
                     <>
                       <button
-                        className="flex items-center space-x-1 py-5 font-medium text-gray-700 transition-colors hover:text-gray-900"
+                        className="relative flex items-center space-x-1 py-5 font-medium transition-all duration-300 group"
+                        style={{ color: colors?.foreground || '#374151' }}
                         onMouseEnter={() => setOpenDropdown(item.label)}
                         onMouseLeave={() => setOpenDropdown(null)}
                       >
                         <span>{item.label}</span>
-                        <ChevronDown className="h-4 w-4" />
+                        <ChevronDown className="h-4 w-4 transition-transform group-hover:rotate-180" />
+                        <span
+                          className="absolute -bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full"
+                          style={{
+                            background: colors ? `linear-gradient(90deg, ${colors.primary}, ${colors.secondary})` : undefined
+                          }}
+                        />
                       </button>
                       {openDropdown === item.label && (
                         <div
@@ -213,9 +238,16 @@ export const ModernHeader = ({
                   ) : (
                     <a
                       href={item.href}
-                      className="py-5 font-medium text-gray-700 transition-colors hover:text-gray-900"
+                      className="relative py-5 font-medium transition-all duration-300 group"
+                      style={{ color: colors?.foreground || '#374151' }}
                     >
                       {item.label}
+                      <span
+                        className="absolute -bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full"
+                        style={{
+                          background: colors ? `linear-gradient(90deg, ${colors.primary}, ${colors.secondary})` : undefined
+                        }}
+                      />
                     </a>
                   )}
                 </li>
@@ -291,7 +323,13 @@ export const ModernHeader = ({
               >
                 <Heart className="h-5 w-5" />
                 {wishlistCount > 0 && (
-                  <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs font-semibold text-white">
+                  <span
+                    className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full text-xs font-semibold text-white shadow-lg"
+                    style={{
+                      background: colors ? `linear-gradient(135deg, ${colors.accent}, ${colors.primary})` : '#ef4444',
+                      boxShadow: colors ? `0 2px 8px ${colors.accent}40` : undefined
+                    }}
+                  >
                     {wishlistCount}
                   </span>
                 )}
@@ -307,7 +345,13 @@ export const ModernHeader = ({
             >
               <ShoppingCart className="h-5 w-5" />
               {cartItemCount > 0 && (
-                <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs font-semibold text-white">
+                <span
+                  className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full text-xs font-semibold text-white shadow-lg"
+                  style={{
+                    background: colors ? `linear-gradient(135deg, ${colors.accent}, ${colors.primary})` : undefined,
+                    boxShadow: colors ? `0 2px 8px ${colors.accent}40` : undefined
+                  }}
+                >
                   {cartItemCount}
                 </span>
               )}

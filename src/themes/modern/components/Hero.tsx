@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import { useTheme } from "@/hooks/useTheme";
 
 interface HeroSlide {
   id: string;
@@ -37,6 +38,7 @@ export const ModernHero = ({
 }: ModernHeroProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const { colors, layout } = useTheme();
 
   useEffect(() => {
     if (!autoPlay || slides.length <= 1) return;
@@ -137,26 +139,52 @@ export const ModernHero = ({
                     <div className="flex gap-4">
                       <Button
                         size="lg"
-                        className="group"
+                        className="group relative overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                        style={{
+                          background: colors ? `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})` : undefined,
+                          color: colors?.background,
+                          borderRadius: layout?.borderRadius.md,
+                          boxShadow: colors ? `0 4px 15px ${colors.primary}40` : undefined,
+                          border: 'none'
+                        }}
                         onClick={() => {
                           if (slide.ctaLink) {
                             window.location.href = slide.ctaLink;
                           }
                         }}
                       >
-                        {slide.ctaText}
-                        <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                        <span className="relative z-10 flex items-center">
+                          {slide.ctaText}
+                          <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                        </span>
+                        <div 
+                          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                          style={{
+                            background: colors ? `linear-gradient(135deg, ${colors.secondary}, ${colors.primary})` : undefined
+                          }}
+                        />
                       </Button>
                       <Button
                         variant="outline"
                         size="lg"
-                        className={`${
+                        className={`relative overflow-hidden group transition-all duration-300 hover:scale-105 ${
                           slide.textColor === "dark"
-                            ? "border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white"
-                            : "border-white text-white hover:bg-white hover:text-gray-900"
+                            ? "border-gray-900 text-gray-900"
+                            : "border-white text-white"
                         }`}
+                        style={{
+                          borderRadius: layout?.borderRadius.md,
+                        }}
                       >
-                        Shop Now
+                        <span className="relative z-10">Shop Now</span>
+                        <div 
+                          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                          style={{
+                            background: slide.textColor === "dark" 
+                              ? colors ? `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})` : undefined
+                              : 'rgba(255, 255, 255, 0.2)'
+                          }}
+                        />
                       </Button>
                     </div>
                   )}
@@ -172,14 +200,22 @@ export const ModernHero = ({
         <>
           <button
             onClick={handlePrevSlide}
-            className="absolute left-4 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/10 p-3 backdrop-blur-sm transition-all hover:bg-white/20 md:left-8"
+            className="absolute left-4 top-1/2 z-20 -translate-y-1/2 rounded-full p-3 backdrop-blur-sm transition-all hover:scale-110 md:left-8"
+            style={{
+              background: colors ? `linear-gradient(135deg, ${colors.primary}20, ${colors.secondary}20)` : 'rgba(255, 255, 255, 0.1)',
+              border: `1px solid ${colors?.primary}40`
+            }}
             aria-label="Previous slide"
           >
             <ChevronLeft className="h-6 w-6 text-white" />
           </button>
           <button
             onClick={handleNextSlide}
-            className="absolute right-4 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/10 p-3 backdrop-blur-sm transition-all hover:bg-white/20 md:right-8"
+            className="absolute right-4 top-1/2 z-20 -translate-y-1/2 rounded-full p-3 backdrop-blur-sm transition-all hover:scale-110 md:right-8"
+            style={{
+              background: colors ? `linear-gradient(135deg, ${colors.primary}20, ${colors.secondary}20)` : 'rgba(255, 255, 255, 0.1)',
+              border: `1px solid ${colors?.primary}40`
+            }}
             aria-label="Next slide"
           >
             <ChevronRight className="h-6 w-6 text-white" />
@@ -196,9 +232,14 @@ export const ModernHero = ({
               onClick={() => handleDotClick(index)}
               className={`h-2 transition-all ${
                 index === currentSlide
-                  ? "w-8 bg-white"
-                  : "w-2 bg-white/50 hover:bg-white/75"
+                  ? "w-8"
+                  : "w-2 hover:scale-125"
               } rounded-full`}
+              style={{
+                background: index === currentSlide 
+                  ? colors ? `linear-gradient(90deg, ${colors.primary}, ${colors.secondary})` : 'white'
+                  : 'rgba(255, 255, 255, 0.5)'
+              }}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}

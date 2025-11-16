@@ -4,14 +4,18 @@ export default {
   description: "Traditional ecommerce design with proven conversion patterns. Features sidebar filters, breadcrumbs, detailed product information, and customer reviews.",
   
   colors: {
-    primary: "#1e40af", // Blue-800
+    primary: "#2563eb", // Blue-600 - Brighter
     secondary: "#dc2626", // Red-600
-    accent: "#16a34a", // Green-600
+    accent: "#059669", // Emerald-600 - More vibrant
     background: "#ffffff",
     foreground: "#1f2937", // Gray-800
     muted: "#f9fafb", // Gray-50
     mutedForeground: "#6b7280", // Gray-500
     border: "#d1d5db", // Gray-300
+    success: "#16a34a", // Green-600
+    warning: "#ea580c", // Orange-600
+    error: "#dc2626", // Red-600
+    info: "#2563eb", // Blue-600
   },
   
   typography: {
@@ -45,6 +49,8 @@ export default {
       base: "0.25rem",
       md: "0.375rem",
       lg: "0.5rem",
+      xl: "0.75rem",
+      "2xl": "1rem",
       full: "9999px",
     },
     spacing: {
@@ -53,6 +59,13 @@ export default {
       base: "1rem",
       lg: "1.5rem",
       xl: "2rem",
+    },
+    shadow: {
+      sm: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+      base: "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
+      md: "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+      lg: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+      xl: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
     },
   },
   
@@ -94,4 +107,41 @@ export default {
     wishlist: true,
     compareProducts: true,
   },
+  
+  presets: {
+    colorSchemes: [
+      {
+        name: "Corporate Blue",
+        colors: {
+          primary: "#1e40af", // Blue-800
+          secondary: "#7c2d12", // Orange-900
+          accent: "#0891b2", // Cyan-600
+        }
+      },
+      {
+        name: "Trust Green",
+        colors: {
+          primary: "#166534", // Green-800
+          secondary: "#1e40af", // Blue-800
+          accent: "#ca8a04", // Yellow-600
+        }
+      },
+      {
+        name: "Professional Gray",
+        colors: {
+          primary: "#374151", // Gray-700
+          secondary: "#1f2937", // Gray-800
+          accent: "#dc2626", // Red-600
+        }
+      },
+      {
+        name: "Warm Earth",
+        colors: {
+          primary: "#92400e", // Amber-800
+          secondary: "#991b1b", // Red-800
+          accent: "#166534", // Green-800
+        }
+      }
+    ]
+  }
 };

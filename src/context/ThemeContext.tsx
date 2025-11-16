@@ -10,6 +10,10 @@ export interface ThemeColors {
   muted: string;
   mutedForeground: string;
   border: string;
+  success?: string;
+  warning?: string;
+  error?: string;
+  info?: string;
 }
 
 export interface ThemeTypography {
@@ -43,12 +47,21 @@ export interface ThemeLayout {
     base: string;
     md: string;
     lg: string;
+    xl?: string;
+    "2xl"?: string;
     full: string;
   };
   spacing: {
     xs: string;
     sm: string;
     base: string;
+    lg: string;
+    xl: string;
+  };
+  shadow?: {
+    sm: string;
+    base: string;
+    md: string;
     lg: string;
     xl: string;
   };
@@ -63,6 +76,16 @@ export interface ThemeConfig {
   layout: ThemeLayout;
   components?: Record<string, any>;
   features?: Record<string, boolean>;
+  presets?: {
+    colorSchemes?: Array<{
+      name: string;
+      colors: {
+        primary: string;
+        secondary: string;
+        accent: string;
+      };
+    }>;
+  };
 }
 
 export interface ThemeCustomizations {

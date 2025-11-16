@@ -4,14 +4,18 @@ export default {
   description: "Clean, minimal design focusing on products. Features full-screen images, subtle animations, lots of white space. Perfect for luxury goods, jewelry, art, and premium brands.",
   
   colors: {
-    primary: "#000000", // Black
-    secondary: "#666666", // Medium Gray
-    accent: "#c9302c", // Subtle Red
+    primary: "#18181b", // Zinc-900 - Sophisticated black
+    secondary: "#71717a", // Zinc-500 - Elegant gray
+    accent: "#ef4444", // Red-500 - Bold accent
     background: "#ffffff",
-    foreground: "#111111", // Near Black
-    muted: "#fafafa", // Very Light Gray
-    mutedForeground: "#888888", // Light Gray
-    border: "#e5e5e5", // Light Border
+    foreground: "#18181b", // Zinc-900
+    muted: "#fafafa", // Neutral-50
+    mutedForeground: "#71717a", // Zinc-500
+    border: "#e4e4e7", // Zinc-200
+    success: "#22c55e", // Green-500
+    warning: "#f59e0b", // Amber-500
+    error: "#ef4444", // Red-500
+    info: "#3b82f6", // Blue-500
   },
   
   typography: {
@@ -45,6 +49,8 @@ export default {
       base: "0px",
       md: "0px",
       lg: "0px",
+      xl: "0px",
+      "2xl": "0px",
       full: "9999px",
     },
     spacing: {
@@ -53,6 +59,13 @@ export default {
       base: "2rem",
       lg: "3rem",
       xl: "4rem",
+    },
+    shadow: {
+      sm: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+      base: "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
+      md: "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+      lg: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+      xl: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
     },
   },
   
@@ -91,4 +104,41 @@ export default {
     fadeOnScroll: true,
     minimalistNavigation: true,
   },
+  
+  presets: {
+    colorSchemes: [
+      {
+        name: "Pure Monochrome",
+        colors: {
+          primary: "#000000",
+          secondary: "#666666",
+          accent: "#000000",
+        }
+      },
+      {
+        name: "Soft Blush",
+        colors: {
+          primary: "#18181b",
+          secondary: "#71717a",
+          accent: "#fbbf24", // Amber-400
+        }
+      },
+      {
+        name: "Ocean Minimal",
+        colors: {
+          primary: "#0c4a6e", // Sky-900
+          secondary: "#0284c7", // Sky-600
+          accent: "#0ea5e9", // Sky-500
+        }
+      },
+      {
+        name: "Sage Green",
+        colors: {
+          primary: "#14532d", // Green-900
+          secondary: "#166534", // Green-800
+          accent: "#16a34a", // Green-600
+        }
+      }
+    ]
+  }
 };

@@ -1,161 +1,118 @@
-import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-
-interface HeroSlide {
-  id: string;
-  image: string;
-  title: string;
-  subtitle?: string;
-  ctaText?: string;
-  ctaLink?: string;
-}
+import { ArrowRight } from "lucide-react";
+import { useTheme } from "@/hooks/useTheme";
 
 interface ClassicHeroProps {
-  slides: HeroSlide[];
-  autoPlay?: boolean;
-  autoPlayInterval?: number;
+  slides: Array<{
+    id: string;
+    image: string;
+    title: string;
+    subtitle?: string;
+    description?: string;
+    ctaText?: string;
+    ctaLink?: string;
+  }>;
   height?: string;
   mobileHeight?: string;
   className?: string;
 }
 
 export const ClassicHero = ({
-  slides = [],
-  autoPlay = true,
-  autoPlayInterval = 4000,
+  slides,
   height = "400px",
   mobileHeight = "300px",
   className = "",
 }: ClassicHeroProps) => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  useEffect(() => {
-    if (!autoPlay || slides.length <= 1) return;
-
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, autoPlayInterval);
-
-    return () => clearInterval(interval);
-  }, [currentSlide, autoPlay, autoPlayInterval, slides.length]);
-
-  const goToSlide = (index: number) => {
-    setCurrentSlide(index);
-  };
-
-  const goToPrevious = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-  };
-
-  const goToNext = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
-  };
-
-  if (slides.length === 0) return null;
+  const { colors, layout } = useTheme();
+  
+  if (!slides || slides.length === 0) return null;
+  
+  const currentSlide = slides[0]; // Classic theme shows single hero
 
   return (
     <div 
       className={`relative overflow-hidden ${className}`}
       style={{ height }}
     >
-      {/* Slides */}
-      {slides.map((slide, index) => (
-        <div
-          key={slide.id}
-          className={`absolute inset-0 transition-opacity duration-500 ${
-            index === currentSlide ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          {/* Background Image */}
-          <img
-            src={slide.image}
-            alt={slide.title}
-            className="h-full w-full object-cover"
-          />
-          
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-black/30" />
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <img
+          src={currentSlide.image}
+          alt={currentSlide.title}
+          className="h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/30" />
+      </div>
 
-          {/* Content */}
-          <div className="absolute inset-0 flex items-center">
-            <div className="container mx-auto px-4">
-              <div className="max-w-2xl text-white">
-                {slide.subtitle && (
-                  <p className="mb-2 text-lg font-medium">
-                    {slide.subtitle}
-                  </p>
-                )}
-                <h1 className="mb-6 text-3xl font-bold md:text-4xl lg:text-5xl">
-                  {slide.title}
-                </h1>
-                {slide.ctaText && (
+      {/* Content */}
+      <div className="relative h-full">
+        <div className="container mx-auto h-full px-4">
+          <div className="flex h-full items-center">
+            <div className="max-w-2xl text-white">
+              {currentSlide.subtitle && (
+                <span className="mb-2 inline-block text-sm font-medium uppercase tracking-wider opacity-90">
+                  {currentSlide.subtitle}
+                </span>
+              )}
+              <h1 className="mb-4 text-3xl font-bold leading-tight md:text-4xl lg:text-5xl">
+                {currentSlide.title}
+              </h1>
+              {currentSlide.description && (
+                <p className="mb-6 text-lg opacity-90">
+                  {currentSlide.description}
+                </p>
+              )}
+              {currentSlide.ctaText && (
+                <div className="flex gap-4">
                   <Button
                     size="lg"
+                    className="group relative overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                    style={{
+                      background: colors ? `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})` : undefined,
+                      color: colors?.background,
+                      borderRadius: layout?.borderRadius.md,
+                      boxShadow: colors ? `0 4px 15px ${colors.primary}40` : undefined,
+                      border: 'none'
+                    }}
                     onClick={() => {
-                      if (slide.ctaLink) {
-                        window.location.href = slide.ctaLink;
+                      if (currentSlide.ctaLink) {
+                        window.location.href = currentSlide.ctaLink;
                       }
                     }}
-                    className="bg-white text-gray-900 hover:bg-gray-100"
                   >
-                    {slide.ctaText}
+                    <span className="relative z-10 flex items-center">
+                      {currentSlide.ctaText}
+                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </span>
+                    <div 
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style={{
+                        background: colors ? `linear-gradient(135deg, ${colors.secondary}, ${colors.primary})` : undefined
+                      }}
+                    />
                   </Button>
-                )}
-              </div>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="relative overflow-hidden group border-white text-white transition-all duration-300 hover:scale-105"
+                    style={{
+                      borderRadius: layout?.borderRadius.md,
+                    }}
+                  >
+                    <span className="relative z-10">Learn More</span>
+                    <div 
+                      className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style={{
+                        background: 'rgba(255, 255, 255, 0.2)'
+                      }}
+                    />
+                  </Button>
+                </div>
+              )}
             </div>
           </div>
         </div>
-      ))}
-
-      {/* Navigation Arrows */}
-      {slides.length > 1 && (
-        <>
-          <button
-            onClick={goToPrevious}
-            className="absolute left-4 top-1/2 -translate-y-1/2 rounded bg-white/80 p-2 shadow hover:bg-white"
-            aria-label="Previous slide"
-          >
-            <ChevronLeft className="h-5 w-5 text-gray-800" />
-          </button>
-          <button
-            onClick={goToNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 rounded bg-white/80 p-2 shadow hover:bg-white"
-            aria-label="Next slide"
-          >
-            <ChevronRight className="h-5 w-5 text-gray-800" />
-          </button>
-        </>
-      )}
-
-      {/* Dots */}
-      {slides.length > 1 && (
-        <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
-          {slides.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className={`h-2 w-2 rounded-full transition-all ${
-                index === currentSlide
-                  ? "w-6 bg-white"
-                  : "bg-white/60 hover:bg-white/80"
-              }`}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </div>
-      )}
-
-      {/* Mobile Styles */}
-      <style dangerouslySetInnerHTML={{
-        __html: `
-          @media (max-width: 768px) {
-            div[style*="height"] {
-              height: ${mobileHeight} !important;
-            }
-          }
-        `
-      }} />
+      </div>
     </div>
   );
 };

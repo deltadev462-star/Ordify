@@ -4,14 +4,18 @@ export default {
   description: "Clean, contemporary design for fashion & lifestyle brands. Features hero sliders, product grids with hover effects, mega menus, and quick view functionality.",
   
   colors: {
-    primary: "#2563eb", // Blue-600
-    secondary: "#7c3aed", // Violet-600
-    accent: "#f59e0b", // Amber-500
+    primary: "#6366f1", // Indigo-500 - More vibrant
+    secondary: "#ec4899", // Pink-500 - More energetic
+    accent: "#14b8a6", // Teal-500 - Fresh accent
     background: "#ffffff",
     foreground: "#0f172a", // Slate-900
-    muted: "#f1f5f9", // Slate-100
+    muted: "#f8fafc", // Slate-50 - Lighter
     mutedForeground: "#64748b", // Slate-500
     border: "#e2e8f0", // Slate-200
+    success: "#10b981", // Emerald-500
+    warning: "#f59e0b", // Amber-500
+    error: "#ef4444", // Red-500
+    info: "#3b82f6", // Blue-500
   },
   
   typography: {
@@ -45,6 +49,8 @@ export default {
       base: "0.25rem",
       md: "0.375rem",
       lg: "0.5rem",
+      xl: "0.75rem",
+      "2xl": "1rem",
       full: "9999px",
     },
     spacing: {
@@ -53,6 +59,13 @@ export default {
       base: "1.5rem",
       lg: "2rem",
       xl: "3rem",
+    },
+    shadow: {
+      sm: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+      base: "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
+      md: "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+      lg: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+      xl: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
     },
   },
   
@@ -83,4 +96,41 @@ export default {
     parallaxScrolling: true,
     searchAutocomplete: true,
   },
+  
+  presets: {
+    colorSchemes: [
+      {
+        name: "Ocean Breeze",
+        colors: {
+          primary: "#0891b2", // Cyan-600
+          secondary: "#7c3aed", // Violet-600
+          accent: "#10b981", // Emerald-500
+        }
+      },
+      {
+        name: "Sunset Glow",
+        colors: {
+          primary: "#f97316", // Orange-500
+          secondary: "#e11d48", // Rose-600
+          accent: "#fbbf24", // Amber-400
+        }
+      },
+      {
+        name: "Forest Mist",
+        colors: {
+          primary: "#059669", // Emerald-600
+          secondary: "#0d9488", // Teal-600
+          accent: "#84cc16", // Lime-500
+        }
+      },
+      {
+        name: "Royal Purple",
+        colors: {
+          primary: "#7c3aed", // Violet-600
+          secondary: "#a855f7", // Purple-500
+          accent: "#ec4899", // Pink-500
+        }
+      }
+    ]
+  }
 };

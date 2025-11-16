@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTheme } from "@/hooks/useTheme";
 import {
   Button,
@@ -8,9 +8,13 @@ import {
   CardHeader,
   CardTitle,
   Input,
-  Label
+  Label,
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger
 } from "@/components/ui";
-import { Palette, RotateCcw } from "lucide-react";
+import { Palette, RotateCcw, Check, Sparkles } from "lucide-react";
 
 interface ColorPickerProps {
   label: string;
@@ -20,6 +24,8 @@ interface ColorPickerProps {
 }
 
 const ColorPicker: React.FC<ColorPickerProps> = ({ label, value, onChange, description }) => {
+  const [isPickerOpen, setIsPickerOpen] = useState(false);
+  
   return (
     <div className="space-y-2">
       <Label htmlFor={label} className="text-sm font-medium">
@@ -35,7 +41,13 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ label, value, onChange, descr
             id={label}
             value={value}
             onChange={(e) => onChange(e.target.value)}
-            className="h-10 w-10 cursor-pointer overflow-hidden rounded-md border-2 p-0"
+            onFocus={() => setIsPickerOpen(true)}
+            onBlur={() => setIsPickerOpen(false)}
+            className="h-10 w-10 cursor-pointer overflow-hidden rounded-md border-2 p-0 transition-all hover:scale-110"
+            style={{ 
+              borderColor: isPickerOpen ? value : 'transparent',
+              boxShadow: isPickerOpen ? `0 0 0 3px ${value}20` : 'none'
+            }}
           />
         </div>
         <Input
@@ -50,8 +62,58 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ label, value, onChange, descr
   );
 };
 
+interface ColorPresetProps {
+  name: string;
+  colors: {
+    primary: string;
+    secondary: string;
+    accent: string;
+  };
+  onApply: () => void;
+  isActive?: boolean;
+}
+
+const ColorPreset: React.FC<ColorPresetProps> = ({ name, colors, onApply, isActive }) => {
+  return (
+    <button
+      onClick={onApply}
+      className={`group relative w-full rounded-lg border-2 p-4 text-left transition-all hover:shadow-md ${
+        isActive ? 'border-primary shadow-md' : 'border-gray-200 hover:border-gray-300'
+      }`}
+    >
+      {isActive && (
+        <div className="absolute -top-2 -right-2 rounded-full bg-primary p-1">
+          <Check className="h-3 w-3 text-white" />
+        </div>
+      )}
+      <div className="mb-3 flex items-center justify-between">
+        <span className="font-medium text-sm">{name}</span>
+        <Sparkles className="h-4 w-4 text-gray-400 group-hover:text-primary transition-colors" />
+      </div>
+      <div className="flex gap-2">
+        <div
+          className="h-8 w-8 rounded-full border border-gray-200"
+          style={{ backgroundColor: colors.primary }}
+          title="Primary"
+        />
+        <div
+          className="h-8 w-8 rounded-full border border-gray-200"
+          style={{ backgroundColor: colors.secondary }}
+          title="Secondary"
+        />
+        <div
+          className="h-8 w-8 rounded-full border border-gray-200"
+          style={{ backgroundColor: colors.accent }}
+          title="Accent"
+        />
+      </div>
+    </button>
+  );
+};
+
 export const ColorCustomizer: React.FC = () => {
-  const { colors, themeConfig, updateColor, resetCustomizations } = useTheme();
+  const { colors, themeConfig, updateColor, updateCustomizations, customizations } = useTheme();
+  const [activeTab, setActiveTab] = useState("custom");
 
   if (!colors || !themeConfig) return null;
 
@@ -99,9 +161,26 @@ export const ColorCustomizer: React.FC = () => {
   ];
 
   const handleResetColors = () => {
-    colorOptions.forEach(({ key }) => {
-      updateColor(key, themeConfig.colors[key as keyof typeof themeConfig.colors]);
+    updateCustomizations({
+      ...customizations,
+      colors: {}
     });
+  };
+
+  const applyPreset = (preset: any) => {
+    updateCustomizations({
+      ...customizations,
+      colors: {
+        ...customizations.colors,
+        ...preset.colors
+      }
+    });
+  };
+
+  const isPresetActive = (preset: any) => {
+    return preset.colors.primary === colors.primary &&
+           preset.colors.secondary === colors.secondary &&
+           preset.colors.accent === colors.accent;
   };
 
   return (
@@ -116,41 +195,64 @@ export const ColorCustomizer: React.FC = () => {
             Customize your store's color scheme to match your brand
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-6">
-          {/* Primary Colors */}
-          <div>
-            <h4 className="mb-4 text-sm font-semibold text-gray-900">Brand Colors</h4>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {colorOptions.slice(0, 3).map(({ key, label, description }) => (
-                <ColorPicker
-                  key={key}
-                  label={label}
-                  value={colors[key as keyof typeof colors]}
-                  onChange={(value) => updateColor(key, value)}
-                  description={description}
-                />
-              ))}
-            </div>
-          </div>
+        <CardContent>
+          <Tabs value={activeTab} onValueChange={setActiveTab}>
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="presets">Presets</TabsTrigger>
+              <TabsTrigger value="custom">Custom Colors</TabsTrigger>
+            </TabsList>
 
-          {/* Base Colors */}
-          <div>
-            <h4 className="mb-4 text-sm font-semibold text-gray-900">Base Colors</h4>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {colorOptions.slice(3).map(({ key, label, description }) => (
-                <ColorPicker
-                  key={key}
-                  label={label}
-                  value={colors[key as keyof typeof colors]}
-                  onChange={(value) => updateColor(key, value)}
-                  description={description}
-                />
-              ))}
-            </div>
-          </div>
+            <TabsContent value="presets" className="mt-6">
+              <div className="grid gap-4 sm:grid-cols-2">
+                {themeConfig.presets?.colorSchemes?.map((preset: any, index: number) => (
+                  <ColorPreset
+                    key={index}
+                    name={preset.name}
+                    colors={preset.colors}
+                    onApply={() => applyPreset(preset)}
+                    isActive={isPresetActive(preset)}
+                  />
+                ))}
+              </div>
+            </TabsContent>
+
+            <TabsContent value="custom" className="mt-6 space-y-6">
+              {/* Primary Colors */}
+              <div>
+                <h4 className="mb-4 text-sm font-semibold text-gray-900">Brand Colors</h4>
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {colorOptions.slice(0, 3).map(({ key, label, description }) => (
+                    <ColorPicker
+                      key={key}
+                      label={label}
+                      value={colors[key as keyof typeof colors] || '#000000'}
+                      onChange={(value) => updateColor(key, value)}
+                      description={description}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* Base Colors */}
+              <div>
+                <h4 className="mb-4 text-sm font-semibold text-gray-900">Base Colors</h4>
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {colorOptions.slice(3).map(({ key, label, description }) => (
+                    <ColorPicker
+                      key={key}
+                      label={label}
+                      value={colors[key as keyof typeof colors] || '#000000'}
+                      onChange={(value) => updateColor(key, value)}
+                      description={description}
+                    />
+                  ))}
+                </div>
+              </div>
+            </TabsContent>
+          </Tabs>
 
           {/* Quick Actions */}
-          <div className="flex justify-between border-t pt-4">
+          <div className="flex justify-between border-t pt-4 mt-6">
             <Button
               variant="outline"
               size="sm"
@@ -173,7 +275,7 @@ export const ColorCustomizer: React.FC = () => {
         </CardContent>
       </Card>
 
-      {/* Color Preview */}
+      {/* Live Color Preview */}
       <Card>
         <CardHeader>
           <CardTitle className="text-base">Live Preview</CardTitle>
@@ -188,7 +290,7 @@ export const ColorCustomizer: React.FC = () => {
               <p className="mb-2 text-sm font-medium">Buttons</p>
               <div className="flex flex-wrap gap-2">
                 <button
-                  className="px-4 py-2 text-sm font-medium rounded-md transition-colors"
+                  className="px-4 py-2 text-sm font-medium rounded-md transition-all hover:scale-105"
                   style={{
                     backgroundColor: colors.primary,
                     color: colors.background,
@@ -197,7 +299,7 @@ export const ColorCustomizer: React.FC = () => {
                   Primary Button
                 </button>
                 <button
-                  className="px-4 py-2 text-sm font-medium rounded-md transition-colors"
+                  className="px-4 py-2 text-sm font-medium rounded-md transition-all hover:scale-105"
                   style={{
                     backgroundColor: colors.secondary,
                     color: colors.background,
@@ -206,10 +308,11 @@ export const ColorCustomizer: React.FC = () => {
                   Secondary Button
                 </button>
                 <button
-                  className="px-4 py-2 text-sm font-medium rounded-md transition-colors border-2"
+                  className="px-4 py-2 text-sm font-medium rounded-md transition-all hover:scale-105 border-2"
                   style={{
                     borderColor: colors.primary,
                     color: colors.primary,
+                    backgroundColor: 'transparent'
                   }}
                 >
                   Outline Button
@@ -220,7 +323,7 @@ export const ColorCustomizer: React.FC = () => {
             {/* Text Preview */}
             <div>
               <p className="mb-2 text-sm font-medium">Typography</p>
-              <div className="p-4 rounded-lg" style={{ backgroundColor: colors.muted }}>
+              <div className="p-4 rounded-lg transition-colors" style={{ backgroundColor: colors.muted }}>
                 <h3 className="text-lg font-semibold mb-2" style={{ color: colors.foreground }}>
                   Heading Example
                 </h3>
@@ -237,7 +340,7 @@ export const ColorCustomizer: React.FC = () => {
             <div>
               <p className="mb-2 text-sm font-medium">Card Example</p>
               <div 
-                className="p-4 rounded-lg border"
+                className="p-4 rounded-lg border transition-all"
                 style={{ 
                   backgroundColor: colors.background,
                   borderColor: colors.border 
@@ -265,6 +368,24 @@ export const ColorCustomizer: React.FC = () => {
                     $99.99
                   </span>
                 </div>
+              </div>
+            </div>
+
+            {/* Color Swatches */}
+            <div>
+              <p className="mb-2 text-sm font-medium">Color Palette</p>
+              <div className="grid grid-cols-4 gap-2">
+                {Object.entries(colors).filter(([_, value]) => value).map(([key, value]) => (
+                  <div key={key} className="text-center">
+                    <div
+                      className="h-12 w-full rounded-md border border-gray-200 mb-1 transition-transform hover:scale-105"
+                      style={{ backgroundColor: value }}
+                    />
+                    <span className="text-xs text-gray-600 capitalize">
+                      {key.replace(/([A-Z])/g, ' $1').trim()}
+                    </span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
