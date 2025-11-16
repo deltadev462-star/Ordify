@@ -32,13 +32,13 @@ function Settings() {
             />
 
             <div className="text-white flex gap-4 items-start">
-              {/* 🔥 نرسل الـ active و setActive ل NavbarSetting */}
               <NavbarSetting active={active} setActive={setActive} />
 
               <div className="flex-1 p-10 rounded-2xl pt-4 border border-[#d6d6d6] dark:bg-[#101010] dark:border-[#424242] transition-all duration-200">
-                <h1 className="text-3xl font-bold mb-6">{t(active)}</h1>
+                <h1 className="text-3xl font-bold mb-6 text-black dark:text-white">
+                  {t(active)}
+                </h1>
 
-                {/* المحتوى حسب الاختيار */}
                 {active === "Store Settings" && (
                   <>
                     <p className="text-gray-300 mb-8">
@@ -49,11 +49,11 @@ function Settings() {
 
                     <div className="space-y-6 max-w-2xl">
                       <div className="flex flex-col">
-                        <label className="mb-2 text-gray-300">
+                        <label className="mb-2 text-gray-300 ">
                           {t("Store Language")}
                         </label>
 
-                        <select className="bg-[#1a1a1a] border border-gray-700 p-3 rounded-lg">
+                        <select className="dark:bg-[#1a1a1a] bg-gray-300 text-black dark:text-white border border-gray-700 p-3 rounded-lg">
                           <option>العربية</option>
                           <option>English</option>
                         </select>
@@ -66,7 +66,7 @@ function Settings() {
                         <input
                           type="text"
                           defaultValue="myshoping"
-                          className="bg-[#1a1a1a] border border-gray-700 p-3 rounded-lg"
+                          className="dark:bg-[#1a1a1a] bg-gray-300 text-black dark:text-white border border-gray-700 p-3 rounded-lg"
                         />
                       </div>
                     </div>
