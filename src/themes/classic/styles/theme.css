@@ -1,0 +1,399 @@
+/* Classic Theme Styles */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&family=Roboto:wght@300;400;500;600;700&display=swap');
+
+/* Classic Theme Base Styles */
+.theme-classic {
+  font-family: var(--theme-font-family);
+}
+
+/* Classic Typography */
+.theme-classic h1,
+.theme-classic h2,
+.theme-classic h3,
+.theme-classic h4,
+.theme-classic h5,
+.theme-classic h6 {
+  font-family: var(--theme-heading-font-family);
+  font-weight: var(--theme-font-weight-bold);
+  color: var(--theme-foreground);
+}
+
+/* Classic Layout */
+.theme-classic .container {
+  max-width: var(--theme-container-width);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Classic Breadcrumbs */
+.theme-classic .breadcrumbs {
+  font-size: 0.875rem;
+  color: var(--theme-muted-foreground);
+}
+
+.theme-classic .breadcrumbs a {
+  color: var(--theme-muted-foreground);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.theme-classic .breadcrumbs a:hover {
+  color: var(--theme-primary);
+  text-decoration: underline;
+}
+
+/* Classic Product Grid */
+.theme-classic .product-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.theme-classic .product-card {
+  border: 1px solid var(--theme-border);
+  background: var(--theme-background);
+  transition: all 0.2s ease;
+}
+
+.theme-classic .product-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: var(--theme-primary);
+}
+
+/* Classic Buttons */
+.theme-classic .btn {
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+}
+
+.theme-classic .btn-primary {
+  background-color: var(--theme-primary);
+  color: white;
+  border: 2px solid var(--theme-primary);
+}
+
+.theme-classic .btn-primary:hover {
+  background-color: transparent;
+  color: var(--theme-primary);
+}
+
+.theme-classic .btn-secondary {
+  background-color: transparent;
+  color: var(--theme-primary);
+  border: 2px solid var(--theme-primary);
+}
+
+.theme-classic .btn-secondary:hover {
+  background-color: var(--theme-primary);
+  color: white;
+}
+
+/* Classic Forms */
+.theme-classic input[type="text"],
+.theme-classic input[type="email"],
+.theme-classic input[type="password"],
+.theme-classic input[type="search"],
+.theme-classic textarea,
+.theme-classic select {
+  border: 1px solid var(--theme-border);
+  border-radius: var(--theme-border-radius-base);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  transition: border-color 0.2s;
+}
+
+.theme-classic input:focus,
+.theme-classic textarea:focus,
+.theme-classic select:focus {
+  outline: none;
+  border-color: var(--theme-primary);
+}
+
+/* Classic Header Styles */
+.theme-classic .header {
+  background: var(--theme-background);
+  border-bottom: 1px solid var(--theme-border);
+}
+
+.theme-classic .header-top {
+  background: var(--theme-muted);
+  font-size: 0.75rem;
+  color: var(--theme-muted-foreground);
+}
+
+.theme-classic .navigation {
+  background: var(--theme-muted);
+  border-top: 1px solid var(--theme-border);
+  border-bottom: 1px solid var(--theme-border);
+}
+
+.theme-classic .navigation a {
+  padding: 0.75rem 1rem;
+  font-weight: 500;
+  color: var(--theme-foreground);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.theme-classic .navigation a:hover {
+  background: var(--theme-background);
+  color: var(--theme-primary);
+}
+
+/* Classic Dropdown Menu */
+.theme-classic .dropdown-menu {
+  background: var(--theme-background);
+  border: 1px solid var(--theme-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.theme-classic .dropdown-menu a {
+  padding: 0.5rem 1rem;
+  color: var(--theme-foreground);
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.theme-classic .dropdown-menu a:hover {
+  background: var(--theme-muted);
+  color: var(--theme-primary);
+}
+
+/* Classic Sidebar */
+.theme-classic .sidebar {
+  background: var(--theme-background);
+  border: 1px solid var(--theme-border);
+  border-radius: var(--theme-border-radius-lg);
+}
+
+.theme-classic .sidebar-section {
+  padding: 1rem;
+  border-bottom: 1px solid var(--theme-border);
+}
+
+.theme-classic .sidebar-section:last-child {
+  border-bottom: none;
+}
+
+.theme-classic .sidebar-title {
+  font-family: var(--theme-heading-font-family);
+  font-weight: var(--theme-font-weight-semibold);
+  margin-bottom: 0.75rem;
+}
+
+/* Classic Filters */
+.theme-classic .filter-group {
+  margin-bottom: 1rem;
+}
+
+.theme-classic .filter-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.25rem 0;
+  font-size: 0.875rem;
+}
+
+.theme-classic .filter-label:hover {
+  color: var(--theme-primary);
+}
+
+/* Classic Pagination */
+.theme-classic .pagination {
+  display: flex;
+  gap: 0.25rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.theme-classic .pagination button {
+  min-width: 2.5rem;
+  padding: 0.5rem;
+  border: 1px solid var(--theme-border);
+  background: var(--theme-background);
+  color: var(--theme-foreground);
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.theme-classic .pagination button:hover:not(:disabled) {
+  background: var(--theme-primary);
+  color: white;
+  border-color: var(--theme-primary);
+}
+
+.theme-classic .pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.theme-classic .pagination button.active {
+  background: var(--theme-primary);
+  color: white;
+  border-color: var(--theme-primary);
+}
+
+/* Classic Footer */
+.theme-classic .footer {
+  background: var(--theme-muted);
+  border-top: 1px solid var(--theme-border);
+}
+
+.theme-classic .footer-section {
+  padding: 3rem 0;
+}
+
+.theme-classic .footer-section + .footer-section {
+  border-top: 1px solid var(--theme-border);
+}
+
+.theme-classic .footer-title {
+  font-family: var(--theme-heading-font-family);
+  font-weight: var(--theme-font-weight-semibold);
+  margin-bottom: 1rem;
+  color: var(--theme-foreground);
+}
+
+.theme-classic .footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.theme-classic .footer-links a {
+  color: var(--theme-muted-foreground);
+  text-decoration: none;
+  font-size: 0.875rem;
+  line-height: 1.75;
+  transition: color 0.2s;
+}
+
+.theme-classic .footer-links a:hover {
+  color: var(--theme-primary);
+  text-decoration: underline;
+}
+
+/* Classic Tables */
+.theme-classic table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--theme-border);
+}
+
+.theme-classic th {
+  background: var(--theme-muted);
+  font-weight: var(--theme-font-weight-semibold);
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 2px solid var(--theme-border);
+}
+
+.theme-classic td {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--theme-border);
+}
+
+.theme-classic tr:hover {
+  background: var(--theme-muted);
+}
+
+/* Classic Badges */
+.theme-classic .badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: var(--theme-font-weight-medium);
+  border-radius: var(--theme-border-radius-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.theme-classic .badge-sale {
+  background: var(--theme-secondary);
+  color: white;
+}
+
+.theme-classic .badge-new {
+  background: var(--theme-accent);
+  color: white;
+}
+
+/* Classic Reviews */
+.theme-classic .review-stars {
+  color: #fbbf24;
+  font-size: 0.875rem;
+}
+
+.theme-classic .review-item {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--theme-border);
+}
+
+.theme-classic .review-item:last-child {
+  border-bottom: none;
+}
+
+/* Classic Utilities */
+.theme-classic .text-muted {
+  color: var(--theme-muted-foreground);
+}
+
+.theme-classic .text-primary {
+  color: var(--theme-primary);
+}
+
+.theme-classic .text-success {
+  color: var(--theme-accent);
+}
+
+.theme-classic .text-danger {
+  color: var(--theme-secondary);
+}
+
+.theme-classic .border {
+  border: 1px solid var(--theme-border);
+}
+
+.theme-classic .shadow-sm {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.theme-classic .shadow {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Classic Animations - More subtle than modern */
+.theme-classic * {
+  transition-property: color, background-color, border-color, box-shadow;
+  transition-duration: 200ms;
+  transition-timing-function: ease-in-out;
+}
+
+/* Classic Loading State */
+.theme-classic .loading {
+  position: relative;
+  color: transparent;
+}
+
+.theme-classic .loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1rem;
+  height: 1rem;
+  margin: -0.5rem 0 0 -0.5rem;
+  border: 2px solid var(--theme-border);
+  border-top-color: var(--theme-primary);
+  border-radius: 50%;
+  animation: classic-spin 0.8s linear infinite;
+}
+
+@keyframes classic-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

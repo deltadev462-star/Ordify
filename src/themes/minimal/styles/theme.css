@@ -1,0 +1,396 @@
+/* Minimal Theme Styles */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@300;400;500;600;700&display=swap');
+
+/* Minimal Theme Base */
+.theme-minimal {
+  font-family: var(--theme-font-family);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Minimal Typography */
+.theme-minimal h1,
+.theme-minimal h2,
+.theme-minimal h3,
+.theme-minimal h4,
+.theme-minimal h5,
+.theme-minimal h6 {
+  font-family: var(--theme-heading-font-family);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.theme-minimal p {
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+/* Minimal Buttons */
+.theme-minimal button,
+.theme-minimal .btn {
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  transition: all 0.4s ease;
+}
+
+.theme-minimal .btn-primary {
+  background: var(--theme-primary);
+  color: white;
+  border: 1px solid var(--theme-primary);
+  padding: 0.75rem 2rem;
+}
+
+.theme-minimal .btn-primary:hover {
+  background: transparent;
+  color: var(--theme-primary);
+}
+
+.theme-minimal .btn-outline {
+  background: transparent;
+  color: var(--theme-primary);
+  border: 1px solid var(--theme-primary);
+  padding: 0.75rem 2rem;
+}
+
+.theme-minimal .btn-outline:hover {
+  background: var(--theme-primary);
+  color: white;
+}
+
+/* Minimal Links */
+.theme-minimal a {
+  color: var(--theme-foreground);
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.theme-minimal a:hover {
+  opacity: 0.6;
+}
+
+/* Minimal Product Cards */
+.theme-minimal .product-card {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  transition: opacity 0.4s ease;
+}
+
+.theme-minimal .product-card:hover {
+  opacity: 0.9;
+}
+
+.theme-minimal .product-card img {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.theme-minimal .product-card:hover img {
+  transform: scale(1.02);
+}
+
+/* Minimal Forms */
+.theme-minimal input[type="text"],
+.theme-minimal input[type="email"],
+.theme-minimal input[type="password"],
+.theme-minimal textarea {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--theme-border);
+  border-radius: 0;
+  padding: 0.5rem 0;
+  font-weight: 300;
+  transition: border-color 0.3s ease;
+}
+
+.theme-minimal input:focus,
+.theme-minimal textarea:focus {
+  outline: none;
+  border-color: var(--theme-primary);
+}
+
+.theme-minimal input::placeholder,
+.theme-minimal textarea::placeholder {
+  color: var(--theme-muted-foreground);
+  font-weight: 300;
+}
+
+/* Minimal Header */
+.theme-minimal .header {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.theme-minimal .header.transparent {
+  background: transparent;
+}
+
+.theme-minimal .header.scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Minimal Navigation */
+.theme-minimal .nav-link {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 400;
+  position: relative;
+}
+
+.theme-minimal .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.4s ease;
+}
+
+.theme-minimal .nav-link:hover::after {
+  width: 100%;
+}
+
+/* Minimal Hero */
+.theme-minimal .hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-minimal .hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.theme-minimal .hero-title {
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.theme-minimal .hero-subtitle {
+  font-size: 0.625rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+/* Minimal Animations */
+.theme-minimal [data-animate] {
+  opacity: 0;
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.theme-minimal [data-animate="fade-up"] {
+  transform: translateY(30px);
+}
+
+.theme-minimal [data-animate="fade-up"].in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.theme-minimal [data-animate="fade-in"] {
+  transform: none;
+}
+
+.theme-minimal [data-animate="fade-in"].in-view {
+  opacity: 1;
+}
+
+/* Minimal Scroll Indicator */
+.theme-minimal .scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.theme-minimal .scroll-line {
+  width: 1px;
+  height: 3rem;
+  background: var(--theme-muted-foreground);
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-minimal .scroll-line::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--theme-primary);
+  animation: scroll-line 2s ease-in-out infinite;
+}
+
+@keyframes scroll-line {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(200%);
+  }
+}
+
+/* Minimal Grid Spacing */
+.theme-minimal .grid-tight {
+  gap: 0.25rem;
+}
+
+.theme-minimal .grid-normal {
+  gap: 1.5rem;
+}
+
+.theme-minimal .grid-wide {
+  gap: 3rem;
+}
+
+@media (min-width: 1024px) {
+  .theme-minimal .grid-wide {
+    gap: 4rem;
+  }
+}
+
+/* Minimal Footer */
+.theme-minimal .footer {
+  border-top: 1px solid var(--theme-border);
+  padding: 3rem 0;
+}
+
+.theme-minimal .footer-link {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Minimal Loading States */
+.theme-minimal .loading {
+  position: relative;
+}
+
+.theme-minimal .loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 1px solid var(--theme-border);
+  border-top-color: var(--theme-primary);
+  border-radius: 50%;
+  animation: minimal-spin 0.8s linear infinite;
+}
+
+@keyframes minimal-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Minimal Utilities */
+.theme-minimal .text-xs {
+  font-size: 0.625rem;
+}
+
+.theme-minimal .text-sm {
+  font-size: 0.75rem;
+}
+
+.theme-minimal .uppercase {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.theme-minimal .tracking-wide {
+  letter-spacing: 0.05em;
+}
+
+.theme-minimal .tracking-wider {
+  letter-spacing: 0.1em;
+}
+
+.theme-minimal .tracking-widest {
+  letter-spacing: 0.2em;
+}
+
+.theme-minimal .font-light {
+  font-weight: 300;
+}
+
+.theme-minimal .font-normal {
+  font-weight: 400;
+}
+
+.theme-minimal .font-medium {
+  font-weight: 500;
+}
+
+/* Minimal Focus States */
+.theme-minimal *:focus {
+  outline: none;
+}
+
+.theme-minimal button:focus-visible,
+.theme-minimal a:focus-visible,
+.theme-minimal input:focus-visible {
+  outline: 1px solid var(--theme-primary);
+  outline-offset: 2px;
+}
+
+/* Minimal Selection */
+.theme-minimal ::selection {
+  background: var(--theme-primary);
+  color: white;
+}
+
+/* Minimal Scrollbar */
+.theme-minimal::-webkit-scrollbar {
+  width: 4px;
+}
+
+.theme-minimal::-webkit-scrollbar-track {
+  background: var(--theme-background);
+}
+
+.theme-minimal::-webkit-scrollbar-thumb {
+  background: var(--theme-border);
+}
+
+.theme-minimal::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-muted-foreground);
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+  .theme-minimal h1 {
+    font-size: 2rem;
+  }
+  
+  .theme-minimal h2 {
+    font-size: 1.5rem;
+  }
+  
+  .theme-minimal h3 {
+    font-size: 1.25rem;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .theme-minimal .no-print {
+    display: none !important;
+  }
+}

@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { lazy } from "react";
+import { lazy, Suspense } from "react";
+import { ThemeProvider } from "./context/ThemeContext";
 import Settings from "./pages/dashboard/page/Settings";
 import MarketingServices from "./pages/dashboard/page/MarketingServices";
 import ServiceGallery from "./pages/dashboard/page/ServiceGallery";
@@ -26,6 +27,7 @@ const Transactions = lazy(() => import("./pages/dashboard/page/Transactions"));
 const Wallet = lazy(() => import("./pages/dashboard/page/Wallet"));
 const Template = lazy(() => import("./pages/dashboard/page/Template"));
 const EditTheme = lazy(() => import("./pages/dashboard/page/EditTheme"));
+const Themes = lazy(() => import("./pages/dashboard/page/Themes"));
 
 
  
@@ -49,6 +51,7 @@ function AppContent() {
       <Route path="/dashboard/easy-catalog" element={<EasyCatalog />} />
       <Route path="/dashboard/funnels" element={<Funnels />} />
       <Route path="/dashboard/applications" element={<Applications />} />
+      <Route path="/dashboard/themes" element={<Themes />} />
       <Route
         path="/dashboard/affiliate-marketing"
         element={<AffiliateMarketing />}
@@ -71,9 +74,17 @@ function AppContent() {
 
 function App() {
   return (
-    <Router>
-      <AppContent />
-    </Router>
+    <ThemeProvider defaultTheme="modern">
+      <Router>
+        <Suspense fallback={
+          <div className="flex items-center justify-center min-h-screen">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+          </div>
+        }>
+          <AppContent />
+        </Suspense>
+      </Router>
+    </ThemeProvider>
   );
 }
 

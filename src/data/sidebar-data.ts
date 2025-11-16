@@ -230,6 +230,7 @@ export const sidebarData = {
       isActive: false,
       items: [
         { title: "Template", icons: SunMoon, url: "/dashboard/template" },
+        { title: "Themes", icons: SunMoon, url: "/dashboard/themes" },
         {
           title: "Texts",
           icons: Highlighter,
