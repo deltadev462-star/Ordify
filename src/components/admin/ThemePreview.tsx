@@ -1,22 +1,11 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { useTheme } from "@/hooks/useTheme";
 import { getThemeComponents } from "@/themes";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  ShoppingBag,
-  Star,
-  Heart,
-  Search,
-  Menu,
-  X,
-  ChevronRight,
-  Filter,
-  Grid,
-  List
-} from "lucide-react";
+import { ShoppingBag, Star, Heart, Search, Menu, X, ChevronRight, Filter, Grid, List } from "lucide-react";
 
 interface ThemePreviewProps {
   device?: "desktop" | "tablet" | "mobile";
@@ -285,7 +274,7 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
   };
 
   const { Header, Footer, Hero, ProductGrid } = themeComponents;
-
+ 
   return (
     <Card className={`overflow-hidden ${className}`}>
       <CardHeader>
@@ -357,7 +346,7 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                       Your Store
                     </h1>
                   </div>
-
+ 
                   <nav className="hidden lg:flex items-center gap-6">
                     {["Home", "Shop", "Categories", "About", "Contact"].map((item) => (
                       <a
@@ -373,7 +362,7 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                       </a>
                     ))}
                   </nav>
-
+ 
                   <div className="flex items-center gap-4">
                     <button className="hover:opacity-80">
                       <Search className="h-5 w-5" />
