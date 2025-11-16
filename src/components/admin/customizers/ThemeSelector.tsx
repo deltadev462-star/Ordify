@@ -64,14 +64,14 @@ export const ThemeSelector: React.FC = () => {
               </div>
 
               {/* Theme Preview */}
-              <div className="mb-3 aspect-video rounded-lg bg-gray-100 overflow-hidden">
+              {/* <div className="mb-3 aspect-video rounded-lg bg-gray-100 overflow-hidden">
                 <img
                   src={getImageSrc(theme)}
                   alt={`${theme.name} preview`}
                   className="h-full w-full object-cover"
                   onError={() => handleImageError(theme.id)}
                 />
-              </div>
+              </div> */}
 
               {/* Color Palette */}
               <div className="mb-3">

@@ -21,7 +21,7 @@ interface ClassicHeroProps {
 }
 
 export const ClassicHero = ({
-  slides,
+  slides = [],
   autoPlay = true,
   autoPlayInterval = 4000,
   height = "400px",
