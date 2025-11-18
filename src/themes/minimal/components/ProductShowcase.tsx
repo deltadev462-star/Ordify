@@ -20,7 +20,6 @@ interface MinimalProductShowcaseProps {
   columns?: 2 | 3 | 4;
   spacing?: "tight" | "normal" | "wide";
   showNavigation?: boolean;
-  autoScroll?: boolean;
   onAddToCart?: (productId: string) => void;
   onQuickView?: (productId: string) => void;
   onWishlist?: (productId: string) => void;
@@ -34,7 +33,6 @@ export const MinimalProductShowcase = ({
   columns = 3,
   spacing = "wide",
   showNavigation = false,
-  autoScroll = false,
   onAddToCart,
   onQuickView,
   onWishlist,

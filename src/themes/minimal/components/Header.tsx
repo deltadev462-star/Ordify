@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { 
-  ShoppingBag, 
-  Search, 
+import {
+  ShoppingBag,
+  Search,
   Menu,
   X
 } from "lucide-react";

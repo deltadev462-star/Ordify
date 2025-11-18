@@ -14,6 +14,19 @@ export interface ThemeColors {
   warning?: string;
   error?: string;
   info?: string;
+  // Dark mode colors
+  darkPrimary?: string;
+  darkSecondary?: string;
+  darkAccent?: string;
+  darkBackground?: string;
+  darkForeground?: string;
+  darkMuted?: string;
+  darkMutedForeground?: string;
+  darkBorder?: string;
+  darkSuccess?: string;
+  darkWarning?: string;
+  darkError?: string;
+  darkInfo?: string;
 }
 
 export interface ThemeTypography {
@@ -185,11 +198,17 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   // Apply theme CSS variables
   const applyThemeVariables = (config: ThemeConfig, customizations: ThemeCustomizations) => {
     const root = document.documentElement;
-    
+
     // Apply colors
     const colors = { ...config.colors, ...customizations.colors };
     Object.entries(colors).forEach(([key, value]) => {
-      root.style.setProperty(`--theme-${key}`, value);
+      if (key.startsWith('dark')) {
+        // Dark mode colors use dark: prefix in CSS
+        const cssKey = key.replace('dark', '').toLowerCase();
+        root.style.setProperty(`--theme-dark-${cssKey}`, value);
+      } else {
+        root.style.setProperty(`--theme-${key}`, value);
+      }
     });
     
     // Apply typography

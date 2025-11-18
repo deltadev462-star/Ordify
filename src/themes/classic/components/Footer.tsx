@@ -132,8 +132,6 @@ export const ClassicFooter = ({
     },
   ];
 
-  const paymentMethods = ["visa", "mastercard", "amex", "discover", "paypal"];
-
   return (
     <footer className={`bg-gray-50 ${className}`}>
       {/* Features */}

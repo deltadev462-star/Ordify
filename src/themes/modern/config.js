@@ -16,6 +16,19 @@ export default {
     warning: "#f59e0b", // Amber-500
     error: "#ef4444", // Red-500
     info: "#3b82f6", // Blue-500
+    // Dark mode colors
+    darkPrimary: "#818cf8", // Indigo-400 - Lighter for dark mode
+    darkSecondary: "#f472b6", // Pink-400 - Lighter for dark mode
+    darkAccent: "#2dd4bf", // Teal-400 - Lighter for dark mode
+    darkBackground: "#0f172a", // Slate-900 - Dark background
+    darkForeground: "#f1f5f9", // Slate-100 - Light text
+    darkMuted: "#1e293b", // Slate-800 - Dark muted
+    darkMutedForeground: "#94a3b8", // Slate-400 - Light muted text
+    darkBorder: "#334155", // Slate-700 - Dark border
+    darkSuccess: "#34d399", // Emerald-400 - Lighter for dark mode
+    darkWarning: "#fbbf24", // Amber-400 - Lighter for dark mode
+    darkError: "#f87171", // Red-400 - Lighter for dark mode
+    darkInfo: "#60a5fa", // Blue-400 - Lighter for dark mode
   },
   
   typography: {
