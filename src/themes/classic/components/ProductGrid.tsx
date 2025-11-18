@@ -1,13 +1,10 @@
 import { useState } from "react";
 import { ProductCard } from "@/themes/shared/components/ProductCard";
 import { Button } from "@/components/ui/button";
-import { Select } from "@/components/ui/select";
-import { 
-  ChevronDown,
+import {
   ChevronRight,
   Grid2X2,
-  List,
-  Filter
+  List
 } from "lucide-react";
 
 interface Product {

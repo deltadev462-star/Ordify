@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useTheme } from "@/hooks/useTheme";
 import { getThemeComponents } from "@/themes";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -165,6 +166,7 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
   device = "desktop",
   className = ""
 }) => {
+  const { t } = useTranslation();
   const { colors, typography, layout, currentTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
@@ -273,19 +275,21 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
     mobile: "375px"
   };
 
-  const { Header, Footer, Hero, ProductGrid } = themeComponents;
+  const { Header, Footer, ProductGrid } = themeComponents;
  
   return (
-    <Card className={`overflow-hidden ${className}`}>
+    <Card className={`overflow-hidden   ${className}`}>
       <CardHeader>
-        <CardTitle>Theme Preview - {currentTheme}</CardTitle>
+        <CardTitle>
+          {t("themePreview")} - {currentTheme}
+        </CardTitle>
       </CardHeader>
       <CardContent className="p-0">
         <div
           className="mx-auto overflow-auto"
           style={{
             maxWidth: deviceWidths[device],
-            maxHeight: "700px"
+            maxHeight: "700px",
           }}
         >
           <div
@@ -294,7 +298,7 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
             style={{
               backgroundColor: colors.background,
               color: colors.foreground,
-              fontFamily: typography.fontFamily
+              fontFamily: typography.fontFamily,
             }}
           >
             {/* Theme-specific Header or Fallback */}
@@ -305,18 +309,18 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                     className="text-2xl font-bold bg-clip-text text-transparent"
                     style={{
                       fontFamily: typography.headingFontFamily,
-                      backgroundImage: `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})`
+                      backgroundImage: `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})`,
                     }}
                   >
-                    Your Store
+                    {t("yourStore")}
                   </span>
                 }
                 cartItemCount={3}
                 wishlistCount={0}
-                onCartClick={() => console.log('Cart clicked')}
-                onAccountClick={() => console.log('Account clicked')}
-                onWishlistClick={() => console.log('Wishlist clicked')}
-                onSearch={(query: string) => console.log('Search:', query)}
+                onCartClick={() => console.log("Cart clicked")}
+                onAccountClick={() => console.log("Account clicked")}
+                onWishlistClick={() => console.log("Wishlist clicked")}
+                onSearch={(query: string) => console.log("Search:", query)}
               />
             ) : (
               /* Fallback generic header */
@@ -326,7 +330,7 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                   background: `linear-gradient(to bottom, ${colors.background}ee, ${colors.background}dd)`,
                   borderBottom: `1px solid ${colors.border}`,
                   height: layout.headerHeight,
-                  boxShadow: `0 2px 10px ${colors.primary}10`
+                  boxShadow: `0 2px 10px ${colors.primary}10`,
                 }}
               >
                 <div
@@ -344,36 +348,42 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                       className="text-2xl font-bold bg-clip-text text-transparent"
                       style={{
                         fontFamily: typography.headingFontFamily,
-                        backgroundImage: `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})`
+                        backgroundImage: `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})`,
                       }}
                     >
                       Your Store
                     </h1>
                   </div>
- 
+
                   <nav className="hidden lg:flex items-center gap-6">
-                    {["Home", "Shop", "Categories", "About", "Contact"].map((item) => (
+                    {[
+                      { key: "home", label: t("home") },
+                      { key: "shop", label: t("shop") },
+                      { key: "categories", label: t("categories") },
+                      { key: "about", label: t("about") },
+                      { key: "contact", label: t("contact") },
+                    ].map((item) => (
                       <a
-                        key={item}
+                        key={item.key}
                         href="#"
                         className="relative hover:opacity-90 transition-all duration-300 group"
                         style={{
                           fontSize: typography.fontSize.base,
                           fontWeight: typography.fontWeight.medium,
-                          color: colors.foreground
+                          color: colors.foreground,
                         }}
                       >
-                        {item}
+                        {item.label}
                         <span
                           className="absolute -bottom-1 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full"
                           style={{
-                            background: `linear-gradient(90deg, ${colors.primary}, ${colors.secondary})`
+                            background: `linear-gradient(90deg, ${colors.primary}, ${colors.secondary})`,
                           }}
                         />
                       </a>
                     ))}
                   </nav>
- 
+
                   <div className="flex items-center gap-4">
                     <button
                       className="hover:opacity-80 transition-all duration-300 hover:scale-110"
@@ -396,7 +406,7 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                         className="absolute -top-2 -right-2 h-5 w-5 rounded-full flex items-center justify-center text-xs text-white shadow-lg"
                         style={{
                           background: `linear-gradient(135deg, ${colors.accent}, ${colors.primary})`,
-                          boxShadow: `0 2px 8px ${colors.accent}40`
+                          boxShadow: `0 2px 8px ${colors.accent}40`,
                         }}
                       >
                         3
@@ -410,16 +420,20 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
             {/* Theme-specific Hero Section */}
             {(() => {
               // Render Hero based on current theme and loaded components
-              if (!currentTheme || !loadedTheme || currentTheme !== loadedTheme) {
+              if (
+                !currentTheme ||
+                !loadedTheme ||
+                currentTheme !== loadedTheme
+              ) {
                 return (
                   <div className="h-96 bg-gray-100 flex items-center justify-center">
-                    <p className="text-gray-500">Loading theme preview...</p>
+                    <p className="text-gray-500">{t("loadingThemePreview")}</p>
                   </div>
                 );
               }
 
               const HeroComponent = themeComponents.Hero;
-              
+
               if (!HeroComponent) {
                 // Fallback hero section when no component is found
                 return (
@@ -436,16 +450,16 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                           style={{
                             fontFamily: typography.headingFontFamily,
                             fontSize: typography.fontSize["3xl"],
-                            fontWeight: typography.fontWeight.bold
+                            fontWeight: typography.fontWeight.bold,
                           }}
                         >
-                          Summer Collection 2024
+                          {t("summerCollection2024")}
                         </h2>
                         <p
                           className="mb-6"
                           style={{ fontSize: typography.fontSize.lg }}
                         >
-                          Discover our latest arrivals and trending styles
+                          {t("discoverLatestArrivals")}
                         </p>
                         <Button
                           size="lg"
@@ -455,14 +469,14 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                             color: colors.background,
                             borderRadius: layout.borderRadius.md,
                             boxShadow: `0 4px 15px ${colors.primary}40`,
-                            border: 'none'
+                            border: "none",
                           }}
                         >
-                          <span className="relative z-10">Shop Now</span>
+                          <span className="relative z-10">{t("shopNow")}</span>
                           <div
                             className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                             style={{
-                              background: `linear-gradient(135deg, ${colors.secondary}, ${colors.primary})`
+                              background: `linear-gradient(135deg, ${colors.secondary}, ${colors.primary})`,
                             }}
                           />
                         </Button>
@@ -473,13 +487,14 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
               }
 
               // Render the Hero component with theme-specific props
-              const heroName = HeroComponent.name || HeroComponent.displayName || 'Anonymous';
+              const heroName =
+                HeroComponent.name || HeroComponent.displayName || "Anonymous";
               console.log(`Rendering ${heroName} for ${currentTheme} theme`);
-              
+
               try {
-                switch(currentTheme) {
-                  case 'modern':
-                  case 'classic':
+                switch (currentTheme) {
+                  case "modern":
+                  case "classic":
                     return (
                       <HeroComponent
                         key={`${currentTheme}-hero-${Date.now()}`}
@@ -492,7 +507,7 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                         mobileHeight="400px"
                       />
                     );
-                  case 'minimal':
+                  case "minimal":
                     return (
                       <HeroComponent
                         key={`${currentTheme}-hero-${Date.now()}`}
@@ -506,7 +521,7 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                         centered={true}
                       />
                     );
-                  case 'luxe':
+                  case "luxe":
                     return (
                       <HeroComponent
                         key={`${currentTheme}-hero-${Date.now()}`}
@@ -516,13 +531,15 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                         subtitle="New Arrivals"
                         description="Discover our latest arrivals and trending styles"
                         ctaText="Shop Now"
-                        onCtaClick={() => console.log('Hero button clicked')}
+                        onCtaClick={() => console.log("Hero button clicked")}
                         showScrollIndicator={false}
                         overlayOpacity={0.4}
                       />
                     );
                   default:
-                    console.warn(`Unknown theme: ${currentTheme}, using generic props`);
+                    console.warn(
+                      `Unknown theme: ${currentTheme}, using generic props`
+                    );
                     return (
                       <HeroComponent
                         key={`${currentTheme}-hero-${Date.now()}`}
@@ -530,12 +547,15 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                         subtitle="Discover our latest arrivals and trending styles"
                         buttonText="Shop Now"
                         backgroundImage="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&q=80"
-                        onButtonClick={() => console.log('Hero button clicked')}
+                        onButtonClick={() => console.log("Hero button clicked")}
                       />
                     );
                 }
               } catch (error) {
-                console.error(`Error rendering Hero for ${currentTheme}:`, error);
+                console.error(
+                  `Error rendering Hero for ${currentTheme}:`,
+                  error
+                );
                 return (
                   <div className="h-96 bg-red-50 flex items-center justify-center">
                     <p className="text-red-500">Error loading hero component</p>
@@ -545,19 +565,21 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
             })()}
 
             <Tabs defaultValue="products" className="w-full">
-              <div 
+              <div
                 className="mx-auto px-4 py-6"
                 style={{ maxWidth: layout.containerWidth }}
               >
                 <TabsList className="grid w-full max-w-md mx-auto grid-cols-2">
-                  <TabsTrigger value="products">Products</TabsTrigger>
-                  <TabsTrigger value="categories">Categories</TabsTrigger>
+                  <TabsTrigger value="products">{t("products")}</TabsTrigger>
+                  <TabsTrigger value="categories">
+                    {t("categories")}
+                  </TabsTrigger>
                 </TabsList>
               </div>
 
               {/* Products Tab */}
               <TabsContent value="products">
-                <div 
+                <div
                   className="mx-auto px-4 pb-8"
                   style={{ maxWidth: layout.containerWidth }}
                 >
@@ -566,10 +588,13 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                     <div className="flex items-center gap-4">
                       <Button variant="outline" size="sm">
                         <Filter className="h-4 w-4 mr-2" />
-                        Filters
+                        {t("filters")}
                       </Button>
-                      <span className="text-sm" style={{ color: colors.mutedForeground }}>
-                        Showing {mockProducts.length} products
+                      <span
+                        className="text-sm"
+                        style={{ color: colors.mutedForeground }}
+                      >
+                        {t("showingProducts", { count: mockProducts.length })}
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
@@ -595,54 +620,68 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                     <ProductGrid
                       products={mockProducts}
                       viewMode={viewMode}
-                      onProductClick={(id: number) => console.log('Product clicked:', id)}
+                      onProductClick={(id: number) =>
+                        console.log("Product clicked:", id)
+                      }
                     />
                   ) : (
                     /* Fallback product grid */
-                    <div className={`grid gap-6 ${viewMode === "grid" ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" : "grid-cols-1"}`}>
+                    <div
+                      className={`grid gap-6 ${
+                        viewMode === "grid"
+                          ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+                          : "grid-cols-1"
+                      }`}
+                    >
                       {mockProducts.map((product) => (
-                        <div 
+                        <div
                           key={product.id}
                           className="group cursor-pointer"
                           style={{
                             backgroundColor: colors.background,
                             borderRadius: layout.borderRadius.lg,
-                            border: `1px solid ${colors.border}`
+                            border: `1px solid ${colors.border}`,
                           }}
                         >
-                          <div className="relative overflow-hidden" style={{ borderRadius: layout.borderRadius.lg }}>
-                            <img 
+                          <div
+                            className="relative overflow-hidden"
+                            style={{ borderRadius: layout.borderRadius.lg }}
+                          >
+                            <img
                               src={product.image}
                               alt={product.name}
                               className="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300"
                             />
                             {product.badge && (
-                              <Badge 
+                              <Badge
                                 className="absolute top-2 left-2"
-                                style={{ 
-                                  backgroundColor: product.badge === "Sale" ? colors.accent : colors.primary,
-                                  color: colors.background
+                                style={{
+                                  backgroundColor:
+                                    product.badge === "Sale"
+                                      ? colors.accent
+                                      : colors.primary,
+                                  color: colors.background,
                                 }}
                               >
-                                {product.badge}
+                                {t(product.badge.toLowerCase())}
                               </Badge>
                             )}
-                            <button 
+                            <button
                               className="absolute top-2 right-2 p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-                              style={{ 
+                              style={{
                                 backgroundColor: colors.background,
-                                color: colors.foreground
+                                color: colors.foreground,
                               }}
                             >
                               <Heart className="h-4 w-4" />
                             </button>
                           </div>
                           <div className="p-4">
-                            <h3 
+                            <h3
                               className="mb-2"
-                              style={{ 
+                              style={{
                                 fontSize: typography.fontSize.base,
-                                fontWeight: typography.fontWeight.semibold
+                                fontWeight: typography.fontWeight.semibold,
                               }}
                             >
                               {product.name}
@@ -650,32 +689,36 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                             <div className="flex items-center gap-2 mb-2">
                               <div className="flex items-center">
                                 {[...Array(5)].map((_, i) => (
-                                  <Star 
+                                  <Star
                                     key={i}
-                                    className={`h-3 w-3 ${i < Math.floor(product.rating) ? "fill-current" : ""}`}
+                                    className={`h-3 w-3 ${
+                                      i < Math.floor(product.rating)
+                                        ? "fill-current"
+                                        : ""
+                                    }`}
                                     style={{ color: colors.accent }}
                                   />
                                 ))}
                               </div>
-                              <span 
+                              <span
                                 className="text-sm"
                                 style={{ color: colors.mutedForeground }}
                               >
-                                ({product.reviews})
+                                {t("reviews", { count: product.reviews })}
                               </span>
                             </div>
                             <div className="flex items-center gap-2">
-                              <span 
+                              <span
                                 className="text-xl"
-                                style={{ 
+                                style={{
                                   fontWeight: typography.fontWeight.bold,
-                                  color: colors.primary
+                                  color: colors.primary,
                                 }}
                               >
                                 ${product.price}
                               </span>
                               {product.originalPrice && (
-                                <span 
+                                <span
                                   className="text-sm line-through"
                                   style={{ color: colors.mutedForeground }}
                                 >
@@ -693,34 +736,32 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
 
               {/* Categories Tab */}
               <TabsContent value="categories">
-                <div 
+                <div
                   className="mx-auto px-4 pb-8"
                   style={{ maxWidth: layout.containerWidth }}
                 >
                   <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
                     {mockCategories.map((category) => (
-                      <div 
+                      <div
                         key={category.name}
                         className="group cursor-pointer relative overflow-hidden"
                         style={{
                           borderRadius: layout.borderRadius.lg,
-                          border: `1px solid ${colors.border}`
+                          border: `1px solid ${colors.border}`,
                         }}
                       >
-                        <img 
+                        <img
                           src={category.image}
                           alt={category.name}
                           className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
                         />
-                        <div 
-                          className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4"
-                        >
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-4">
                           <div className="text-white">
-                            <h3 
+                            <h3
                               className="text-xl mb-1"
-                              style={{ 
+                              style={{
                                 fontFamily: typography.headingFontFamily,
-                                fontWeight: typography.fontWeight.semibold
+                                fontWeight: typography.fontWeight.semibold,
                               }}
                             >
                               {category.name}
@@ -742,15 +783,19 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
             {Footer ? (
               <Footer
                 logo={
-                  <span style={{
-                    fontFamily: typography.headingFontFamily,
-                    fontSize: typography.fontSize["2xl"],
-                    color: colors.primary
-                  }}>
+                  <span
+                    style={{
+                      fontFamily: typography.headingFontFamily,
+                      fontSize: typography.fontSize["2xl"],
+                      color: colors.primary,
+                    }}
+                  >
                     Your Store
                   </span>
                 }
-                onSubscribe={(email: string) => console.log('Subscribe:', email)}
+                onSubscribe={(email: string) =>
+                  console.log("Subscribe:", email)
+                }
               />
             ) : (
               /* Fallback generic footer */
@@ -758,7 +803,7 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                 className="mt-16"
                 style={{
                   backgroundColor: colors.muted,
-                  borderTop: `1px solid ${colors.border}`
+                  borderTop: `1px solid ${colors.border}`,
                 }}
               >
                 <div
@@ -771,38 +816,46 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                         className="mb-4"
                         style={{
                           fontSize: typography.fontSize.lg,
-                          fontWeight: typography.fontWeight.semibold
+                          fontWeight: typography.fontWeight.semibold,
                         }}
                       >
-                        About Us
+                        {t("aboutUs")}
                       </h4>
                       <p
                         className="text-sm"
                         style={{ color: colors.mutedForeground }}
                       >
-                        Your trusted destination for premium products and exceptional service.
+                        {t("trustedDestination")}
                       </p>
                     </div>
-                    {["Customer Service", "Information", "Follow Us"].map((title) => (
-                      <div key={title}>
+                    {[
+                      { key: "customerService", label: t("customerService") },
+                      { key: "information", label: t("information") },
+                      { key: "followUs", label: t("followUs") },
+                    ].map((section) => (
+                      <div key={section.key}>
                         <h4
                           className="mb-4"
                           style={{
                             fontSize: typography.fontSize.lg,
-                            fontWeight: typography.fontWeight.semibold
+                            fontWeight: typography.fontWeight.semibold,
                           }}
                         >
-                          {title}
+                          {section.label}
                         </h4>
                         <ul className="space-y-2">
-                          {["Link 1", "Link 2", "Link 3"].map((link) => (
-                            <li key={link}>
+                          {[
+                            { key: "link1", label: t("link1") },
+                            { key: "link2", label: t("link2") },
+                            { key: "link3", label: t("link3") },
+                          ].map((link) => (
+                            <li key={link.key}>
                               <a
                                 href="#"
                                 className="text-sm hover:underline"
                                 style={{ color: colors.mutedForeground }}
                               >
-                                {link}
+                                {link.label}
                               </a>
                             </li>
                           ))}
@@ -814,10 +867,10 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                     className="mt-8 pt-8 text-center text-sm"
                     style={{
                       borderTop: `1px solid ${colors.border}`,
-                      color: colors.mutedForeground
+                      color: colors.mutedForeground,
                     }}
                   >
-                    © 2024 Your Store. All rights reserved.
+                    {t("copyright", { year: 2024, storeName: t("yourStore") })}
                   </div>
                 </div>
               </footer>

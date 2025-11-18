@@ -24,12 +24,11 @@ export const ThemeCustomizer: React.FC<ThemeCustomizerProps> = ({
   onReset,
   className = "",
 }) => {
-  const { 
-    currentTheme, 
-    themeConfig, 
-    customizations, 
+  const {
+    themeConfig,
+    customizations,
     resetCustomizations,
-    isLoading 
+    isLoading
   } = useTheme();
   
   const [activeTab, setActiveTab] = useState("theme");

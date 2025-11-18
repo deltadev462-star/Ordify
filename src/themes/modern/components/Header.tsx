@@ -83,7 +83,7 @@ export const ModernHeader = ({
   const [searchQuery, setSearchQuery] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const { colors, layout } = useTheme();
+  const { colors } = useTheme();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();

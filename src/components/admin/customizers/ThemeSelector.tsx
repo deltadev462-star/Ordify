@@ -1,39 +1,28 @@
-import React, { useState } from "react";
+import React from "react";
+import { useTranslation } from "react-i18next";
 import { useTheme } from "@/hooks/useTheme";
 import { getAllThemes } from "@/themes";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Check } from "lucide-react";
-import { generateFallbackImage } from "@/utils/theme-utils";
 import type { ThemeMetadata } from "@/types/theme.types";
 
 
 export const ThemeSelector: React.FC = () => {
+  const { t } = useTranslation();
   const { currentTheme, setTheme } = useTheme();
   const themes = getAllThemes();
-  const [imageErrors, setImageErrors] = useState<Set<string>>(new Set());
 
   const handleThemeSelect = (themeId: string) => {
     setTheme(themeId);
   };
 
-  const handleImageError = (themeId: string) => {
-    setImageErrors(prev => new Set(prev).add(themeId));
-  };
-
-  const getImageSrc = (theme: ThemeMetadata) => {
-    if (imageErrors.has(theme.id)) {
-      return generateFallbackImage(theme.name);
-    }
-    return theme.preview || generateFallbackImage(theme.name);
-  };
-
   return (
     <div className="space-y-4">
       <div>
-        <h3 className="text-lg font-semibold mb-2">Choose Theme</h3>
+        <h3 className="text-lg font-semibold mb-2">{t("Choose Theme")}</h3>
         <p className="text-sm text-gray-600 mb-4">
-          Select a theme that best fits your brand and target audience
+          {t("Select a theme that best fits your brand and target audience")}
         </p>
       </div>
 
@@ -76,7 +65,7 @@ export const ThemeSelector: React.FC = () => {
               {/* Color Palette */}
               <div className="mb-3">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xs font-medium text-gray-700">Colors:</span>
+                  <span className="text-xs font-medium text-gray-700">{t("Colors:")}</span>
                   <div className="flex gap-1">
                     <div
                       className="h-4 w-4 rounded-full border border-gray-300"
@@ -99,7 +88,7 @@ export const ThemeSelector: React.FC = () => {
 
               {/* Typography */}
               <div className="mb-3">
-                <span className="text-xs font-medium text-gray-700">Font:</span>
+                <span className="text-xs font-medium text-gray-700">{t("Font:")}</span>
                 <span className="ml-2 text-xs text-gray-600">
                   {theme.typography.fontFamily.split(',')[0].replace(/['"]/g, '')}
                 </span>
@@ -120,13 +109,13 @@ export const ThemeSelector: React.FC = () => {
                     ))}
                     {theme.features.length > 3 && (
                       <Badge variant="outline" className="text-xs">
-                        +{theme.features.length - 3} more
+                        +{theme.features.length - 3} {t("more")}
                       </Badge>
                     )}
                   </>
                 ) : (
                   Object.entries(theme.config?.features || {})
-                    .filter(([_, value]) => value === true)
+                    .filter(([, value]) => value === true)
                     .slice(0, 3)
                     .map(([feature]) => (
                       <Badge
@@ -147,7 +136,7 @@ export const ThemeSelector: React.FC = () => {
       {/* Current Selection Info */}
       <div className="rounded-lg bg-blue-50 p-4">
         <h4 className="font-semibold text-blue-900 mb-2">
-          Selected: {themes.find((t: ThemeMetadata) => t.id === currentTheme)?.name}
+          {t("Selected:")} {themes.find((t: ThemeMetadata) => t.id === currentTheme)?.name}
         </h4>
         <p className="text-sm text-blue-800">
           {themes.find((t: ThemeMetadata) => t.id === currentTheme)?.description}

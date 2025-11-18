@@ -47,7 +47,7 @@ const ProductPage: React.FC<ProductPageProps> = ({
   onWishlist,
   onShare,
 }) => {
-  const { currentTheme, components } = useTheme();
+  const { currentTheme } = useTheme();
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState("");

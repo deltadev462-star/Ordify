@@ -113,11 +113,11 @@ const ColorPreset: React.FC<ColorPresetProps> = ({ name, colors, onApply, isActi
 
 export const ColorCustomizer: React.FC = () => {
   const { colors, themeConfig, updateColor, updateCustomizations, customizations } = useTheme();
-  const [activeTab, setActiveTab] = useState("custom");
+  const [activeTab, setActiveTab] = useState("light");
 
   if (!colors || !themeConfig) return null;
 
-  const colorOptions = [
+  const lightColorOptions = [
     {
       key: "primary",
       label: "Primary Color",
@@ -160,6 +160,49 @@ export const ColorCustomizer: React.FC = () => {
     },
   ];
 
+  const darkColorOptions = [
+    {
+      key: "darkPrimary",
+      label: "Dark Primary Color",
+      description: "Main brand color for dark mode buttons and key elements",
+    },
+    {
+      key: "darkSecondary",
+      label: "Dark Secondary Color",
+      description: "Supporting color for dark mode secondary actions",
+    },
+    {
+      key: "darkAccent",
+      label: "Dark Accent Color",
+      description: "Highlight color for dark mode special elements",
+    },
+    {
+      key: "darkBackground",
+      label: "Dark Background",
+      description: "Main background color for dark mode",
+    },
+    {
+      key: "darkForeground",
+      label: "Dark Text Color",
+      description: "Default text color in dark mode",
+    },
+    {
+      key: "darkMuted",
+      label: "Dark Muted Background",
+      description: "Background for cards and sections in dark mode",
+    },
+    {
+      key: "darkMutedForeground",
+      label: "Dark Muted Text",
+      description: "Secondary text color in dark mode",
+    },
+    {
+      key: "darkBorder",
+      label: "Dark Border Color",
+      description: "Border color for inputs and cards in dark mode",
+    },
+  ];
+
   const handleResetColors = () => {
     updateCustomizations({
       ...customizations,
@@ -197,9 +240,10 @@ export const ColorCustomizer: React.FC = () => {
         </CardHeader>
         <CardContent>
           <Tabs value={activeTab} onValueChange={setActiveTab}>
-            <TabsList className="grid w-full grid-cols-2">
+            <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="presets">Presets</TabsTrigger>
-              <TabsTrigger value="custom">Custom Colors</TabsTrigger>
+              <TabsTrigger value="light">Light Mode</TabsTrigger>
+              <TabsTrigger value="dark">Dark Mode</TabsTrigger>
             </TabsList>
 
             <TabsContent value="presets" className="mt-6">
@@ -216,12 +260,12 @@ export const ColorCustomizer: React.FC = () => {
               </div>
             </TabsContent>
 
-            <TabsContent value="custom" className="mt-6 space-y-6">
+            <TabsContent value="light" className="mt-6 space-y-6">
               {/* Primary Colors */}
               <div>
                 <h4 className="mb-4 text-sm font-semibold text-gray-900">Brand Colors</h4>
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                  {colorOptions.slice(0, 3).map(({ key, label, description }) => (
+                  {lightColorOptions.slice(0, 3).map(({ key, label, description }) => (
                     <ColorPicker
                       key={key}
                       label={label}
@@ -237,7 +281,41 @@ export const ColorCustomizer: React.FC = () => {
               <div>
                 <h4 className="mb-4 text-sm font-semibold text-gray-900">Base Colors</h4>
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                  {colorOptions.slice(3).map(({ key, label, description }) => (
+                  {lightColorOptions.slice(3).map(({ key, label, description }) => (
+                    <ColorPicker
+                      key={key}
+                      label={label}
+                      value={colors[key as keyof typeof colors] || '#000000'}
+                      onChange={(value) => updateColor(key, value)}
+                      description={description}
+                    />
+                  ))}
+                </div>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="dark" className="mt-6 space-y-6">
+              {/* Dark Primary Colors */}
+              <div>
+                <h4 className="mb-4 text-sm font-semibold text-gray-900">Dark Brand Colors</h4>
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {darkColorOptions.slice(0, 3).map(({ key, label, description }) => (
+                    <ColorPicker
+                      key={key}
+                      label={label}
+                      value={colors[key as keyof typeof colors] || '#000000'}
+                      onChange={(value) => updateColor(key, value)}
+                      description={description}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* Dark Base Colors */}
+              <div>
+                <h4 className="mb-4 text-sm font-semibold text-gray-900">Dark Base Colors</h4>
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {darkColorOptions.slice(3).map(({ key, label, description }) => (
                     <ColorPicker
                       key={key}
                       label={label}

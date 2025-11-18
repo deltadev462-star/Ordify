@@ -2,16 +2,15 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { 
-  Search, 
-  ShoppingCart, 
-  User, 
-  Menu, 
+import {
+  Search,
+  ShoppingCart,
+  User,
+  Menu,
   Heart,
   Phone,
   Mail,
-  ChevronDown,
-  X
+  ChevronDown
 } from "lucide-react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { ProductCard } from "@/themes/shared/components/ProductCard";
 import { Button } from "@/components/ui/button";
-import { Select } from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Filter, Grid2X2, Grid3X3, LayoutGrid } from "lucide-react";

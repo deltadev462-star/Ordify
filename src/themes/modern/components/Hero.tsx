@@ -22,7 +22,6 @@ interface ModernHeroProps {
   showNavigation?: boolean;
   showDots?: boolean;
   height?: string;
-  mobileHeight?: string;
   className?: string;
 }
 
@@ -33,7 +32,6 @@ export const ModernHero = ({
   showNavigation = true,
   showDots = true,
   height = "600px",
-  mobileHeight = "400px",
   className = "",
 }: ModernHeroProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -87,8 +85,6 @@ export const ModernHero = ({
   };
 
   if (slides.length === 0) return null;
-
-  const currentSlideData = slides[currentSlide];
 
   return (
     <div 

@@ -13,14 +13,12 @@ interface ClassicHeroProps {
     ctaLink?: string;
   }>;
   height?: string;
-  mobileHeight?: string;
   className?: string;
 }
 
 export const ClassicHero = ({
   slides,
   height = "400px",
-  mobileHeight = "300px",
   className = "",
 }: ClassicHeroProps) => {
   const { colors, layout } = useTheme();

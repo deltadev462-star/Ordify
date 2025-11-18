@@ -1,12 +1,11 @@
 import { Newsletter } from "@/themes/shared/components/Newsletter";
-import { Button } from "@/components/ui/button";
-import { 
-  Facebook, 
-  Instagram, 
-  Twitter, 
-  Youtube, 
-  Mail, 
-  Phone, 
+import {
+  Facebook,
+  Instagram,
+  Twitter,
+  Youtube,
+  Mail,
+  Phone,
   MapPin,
   CreditCard,
   ShieldCheck,

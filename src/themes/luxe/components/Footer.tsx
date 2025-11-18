@@ -8,8 +8,7 @@ import {
   Phone,
   Mail,
   MapPin,
-  ArrowUpRight,
-  Camera
+  ArrowUpRight
 } from "lucide-react";
 
 interface FooterLink {
