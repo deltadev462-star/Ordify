@@ -1,10 +1,8 @@
-// Theme Registry - Central registry for all available themes
 import modern from './modern';
 import classic from './classic';
 import minimal from './minimal';
 import luxe from './luxe';
 
-// Define theme registry with all available themes
 const themes = {
   modern,
   classic,
@@ -12,23 +10,18 @@ const themes = {
   luxe,
 };
 
-// Export themes object for dynamic access
 export default themes;
 
-// Export individual themes for direct import if needed
 export { modern, classic, minimal, luxe };
 
-// Helper function to get theme by name
 export const getTheme = (themeName) => {
   return themes[themeName] || null;
 };
 
-// Helper function to get all theme names
 export const getThemeNames = () => {
   return Object.keys(themes);
 };
 
-// Helper function to get all themes with metadata
 export const getAllThemes = () => {
   return Object.entries(themes).map(([key, theme]) => ({
     id: key,
@@ -42,24 +35,20 @@ export const getAllThemes = () => {
   }));
 };
 
-// Helper function to validate if a theme exists
 export const isValidTheme = (themeName) => {
   return themeName in themes;
 };
 
-// Helper function to get theme configuration
 export const getThemeConfig = (themeName) => {
   const theme = getTheme(themeName);
   return theme ? theme.config : null;
 };
 
-// Helper function to get theme components
 export const getThemeComponents = (themeName) => {
   const theme = getTheme(themeName);
   return theme ? theme.components : null;
 };
 
-// Helper function to load theme styles dynamically
 export const loadThemeStyles = async (themeName) => {
   if (!isValidTheme(themeName)) {
     throw new Error(`Theme "${themeName}" not found`);
@@ -70,7 +59,6 @@ export const loadThemeStyles = async (themeName) => {
   return true;
 };
 
-// Helper function to get theme preview data for showcase
 export const getThemePreviewData = () => {
   return Object.entries(themes).map(([key, theme]) => ({
     id: key,

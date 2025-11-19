@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ProductCard } from "@/themes/shared/components/ProductCard";
 import { Button } from "@/components/ui/button";
 import {
@@ -29,17 +30,9 @@ interface ClassicProductGridProps {
   gridColumns?: 2 | 3 | 4;
   onAddToCart?: (productId: string) => void;
   onQuickView?: (productId: string) => void;
-  onWishlist?: (productId: string) => void;
+  onWishlist?: (item: { id: string; name: string; price: number; image: string; variant?: string }) => void;
   className?: string;
 }
-
-const sortOptions = [
-  { value: "position", label: "Position" },
-  { value: "name-asc", label: "Product Name: A to Z" },
-  { value: "name-desc", label: "Product Name: Z to A" },
-  { value: "price-asc", label: "Price: Low to High" },
-  { value: "price-desc", label: "Price: High to Low" },
-];
 
 export const ClassicProductGrid = ({
   products,
@@ -55,10 +48,19 @@ export const ClassicProductGrid = ({
   onWishlist,
   className = "",
 }: ClassicProductGridProps) => {
+  const { t } = useTranslation();
   const [currentView, setCurrentView] = useState(defaultView);
   const [sortBy, setSortBy] = useState("position");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
+
+  const sortOptions = [
+    { value: "position", label: t("Position") },
+    { value: "name-asc", label: t("Product Name: A to Z") },
+    { value: "name-desc", label: t("Product Name: Z to A") },
+    { value: "price-asc", label: t("Price: Low to High") },
+    { value: "price-desc", label: t("Price: High to Low") },
+  ];
 
   // Sort products
   const sortedProducts = [...products].sort((a, b) => {
@@ -97,17 +99,17 @@ export const ClassicProductGrid = ({
   };
 
   return (
-    <div className={`${className}`}>
+    <div className={`${className}  `}>
       {/* Breadcrumbs */}
       {showBreadcrumbs && (
-        <nav className="mb-4 flex items-center space-x-2 text-sm text-gray-600">
-          <a href="/" className="hover:text-gray-900">Home</a>
+        <nav className="mb-4 flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
+          <a href="/" className="hover:text-gray-900 dark:hover:text-gray-100">{t("Home")}</a>
           <ChevronRight className="h-4 w-4" />
-          <a href="/shop" className="hover:text-gray-900">Shop</a>
+          <a href="/shop" className="hover:text-gray-900 dark:hover:text-gray-100">{t("Shop")}</a>
           {title && (
             <>
               <ChevronRight className="h-4 w-4" />
-              <span className="text-gray-900">{title}</span>
+              <span className="text-gray-900 dark:text-gray-100">{title}</span>
             </>
           )}
         </nav>
@@ -115,29 +117,33 @@ export const ClassicProductGrid = ({
 
       {/* Title */}
       {title && (
-        <h1 className="mb-6 text-2xl font-serif text-gray-900">{title}</h1>
+        <h1 className="mb-6 text-2xl font-serif text-gray-900 dark:text-gray-100">{title}</h1>
       )}
 
       {/* Toolbar */}
-      <div className="mb-6 rounded border bg-gray-50 p-4">
+      <div className="mb-6 rounded border border-[#e0e0e0] dark:border-[#3a3a3a] bg-gray-50 dark:bg-[#2e2e2e] p-4">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           {/* Results Count */}
           {showResultsCount && (
-            <p className="text-sm text-gray-600">
-              Showing {(currentPage - 1) * itemsPerPage + 1} - {Math.min(currentPage * itemsPerPage, sortedProducts.length)} of {sortedProducts.length} results
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              {t("Showing ... results", {
+                start: (currentPage - 1) * itemsPerPage + 1,
+                end: Math.min(currentPage * itemsPerPage, sortedProducts.length),
+                total: sortedProducts.length
+              })}
             </p>
           )}
 
           <div className="flex items-center gap-4">
             {/* View Options */}
             {showViewOptions && (
-              <div className="flex items-center gap-1 rounded border bg-white">
+              <div className="flex items-center gap-1 rounded border border-[#e0e0e0] dark:border-[#3a3a3a] bg-white dark:bg-[#242424]">
                 <button
                   onClick={() => setCurrentView("grid")}
                   className={`p-2 ${
                     currentView === "grid"
-                      ? "bg-primary text-white"
-                      : "text-gray-600 hover:bg-gray-100"
+                      ? "bg-[#34495e] dark:bg-[#8b7355] text-white"
+                      : "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-[#2e2e2e]"
                   }`}
                   aria-label="Grid view"
                 >
@@ -147,8 +153,8 @@ export const ClassicProductGrid = ({
                   onClick={() => setCurrentView("list")}
                   className={`p-2 ${
                     currentView === "list"
-                      ? "bg-primary text-white"
-                      : "text-gray-600 hover:bg-gray-100"
+                      ? "bg-[#34495e] dark:bg-[#8b7355] text-white"
+                      : "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-[#2e2e2e]"
                   }`}
                   aria-label="List view"
                 >
@@ -160,11 +166,11 @@ export const ClassicProductGrid = ({
             {/* Sorting */}
             {showSorting && (
               <div className="flex items-center gap-2">
-                <span className="text-sm text-gray-600">Sort by:</span>
+                <span className="text-sm text-gray-600 dark:text-gray-400">{t("Sort by:")}</span>
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="rounded border bg-white px-3 py-1.5 text-sm focus:border-primary focus:outline-none"
+                  className="rounded border border-[#e0e0e0] dark:border-[#3a3a3a] bg-white dark:bg-[#242424] dark:text-gray-100 px-3 py-1.5 text-sm focus:border-[#34495e] dark:focus:border-[#8b7355] focus:outline-none"
                 >
                   {sortOptions.map((option) => (
                     <option key={option.value} value={option.value}>
@@ -197,24 +203,24 @@ export const ClassicProductGrid = ({
           {paginatedProducts.map((product) => (
             <div
               key={product.id}
-              className="flex gap-4 rounded-lg border bg-white p-4 hover:shadow-md"
+              className="flex gap-4 rounded-lg border border-[#e0e0e0] dark:border-[#3a3a3a] bg-white dark:bg-[#242424] p-4 hover:shadow-md dark:hover:shadow-lg"
             >
               <img
                 src={product.image}
                 alt={product.name}
-                className="h-32 w-32 object-cover"
+                className="h-32 w-32 object-cover rounded"
               />
               <div className="flex-1">
-                <h3 className="mb-1 font-semibold text-gray-900">{product.name}</h3>
+                <h3 className="mb-1 font-semibold text-gray-900 dark:text-gray-100">{product.name}</h3>
                 {product.category && (
-                  <p className="mb-2 text-sm text-gray-500">{product.category}</p>
+                  <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">{product.category}</p>
                 )}
                 <div className="mb-3 flex items-baseline gap-2">
-                  <span className="text-lg font-bold text-gray-900">
+                  <span className="text-lg font-bold text-gray-900 dark:text-gray-100">
                     ${product.price.toFixed(2)}
                   </span>
                   {product.originalPrice && (
-                    <span className="text-sm text-gray-500 line-through">
+                    <span className="text-sm text-gray-500 dark:text-gray-400 line-through">
                       ${product.originalPrice.toFixed(2)}
                     </span>
                   )}
@@ -225,14 +231,14 @@ export const ClassicProductGrid = ({
                     onClick={() => onAddToCart?.(product.id)}
                     disabled={!product.inStock}
                   >
-                    {product.inStock ? "Add to Cart" : "Out of Stock"}
+                    {product.inStock ? t("Add to Cart") : t("Out of Stock")}
                   </Button>
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={() => onQuickView?.(product.id)}
                   >
-                    Quick View
+                    {t("Quick View")}
                   </Button>
                 </div>
               </div>
@@ -252,7 +258,7 @@ export const ClassicProductGrid = ({
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
             >
-              Previous
+              {t("Previous")}
             </Button>
 
             {/* Page Numbers */}
@@ -265,11 +271,11 @@ export const ClassicProductGrid = ({
                 Math.abs(page - currentPage) <= 2;
 
               if (!showPage && page === currentPage - 3) {
-                return <span key={page} className="px-2">...</span>;
+                return <span key={page} className="px-2 text-gray-500 dark:text-gray-400">...</span>;
               }
 
               if (!showPage && page === currentPage + 3) {
-                return <span key={page} className="px-2">...</span>;
+                return <span key={page} className="px-2 text-gray-500 dark:text-gray-400">...</span>;
               }
 
               if (!showPage) return null;
@@ -294,7 +300,7 @@ export const ClassicProductGrid = ({
               onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
               disabled={currentPage === totalPages}
             >
-              Next
+              {t("Next")}
             </Button>
           </nav>
         </div>

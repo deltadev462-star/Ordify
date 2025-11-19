@@ -6,9 +6,11 @@ import Title from "@/components/Title";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useTranslation } from "react-i18next";
 
 function EditTheme() {
   const { id } = useParams<{ id: string }>();
+  const { t } = useTranslation();
   const [theme, setTheme] = useState({
     id: 0,
     title: "",
@@ -20,29 +22,29 @@ function EditTheme() {
    const themes = [
     {
       id: 1,
-      title: "Dark Mode",
-      description: "A sleek dark theme for comfortable night usage.",
+      title: t("darkMode"),
+      description: t("darkThemeDescription"),
       image: "/th (1).jpg",
       tryLink: "/try/dark",
     },
     {
       id: 2,
-      title: "Light Mode",
-      description: "Bright and clean theme for daylight.",
+      title: t("lightMode"),
+      description: t("lightThemeDescription"),
       image: "/th (2).jpg",
       tryLink: "/try/light",
     },
     {
-      id: 3, 
-      title: "Dark Mode",
-      description: "A sleek dark theme for comfortable night usage.",
+      id: 3,
+      title: t("darkMode"),
+      description: t("darkThemeDescription"),
       image: "/th (3).jpg",
       tryLink: "/try/dark",
     },
     {
       id: 4,
-      title: "Light Mode",
-      description: "Bright and clean theme for daylight.",
+      title: t("lightMode"),
+      description: t("lightThemeDescription"),
       image: "/th (4).jpg",
       tryLink: "/try/light",
     },
@@ -57,8 +59,7 @@ function EditTheme() {
 
   const handleSave = () => {
     // Mock save, in real app would call API
-    console.log("Saving theme:", theme);
-    alert("Theme saved!");
+    alert(t("themeSaved"));
   };
 
   return (
@@ -69,41 +70,41 @@ function EditTheme() {
           <Header />
           <div className="flex bg-white dark:bg-black/80 rounded-2xl m-1 flex-1 flex-col gap-4 p-4 pt-0">
             <Title
-              Subtitle="Edit the selected theme"
+              Subtitle={t("editSelectedTheme")}
               className=""
               classNamee=""
-              title={`Edit Theme ${id}`}
+              title={`${t("editTheme")} ${id}`}
             />
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium mb-1">Title</label>
+                <label className="block text-sm font-medium mb-1">{t("title")}</label>
                 <Input
                   value={theme.title}
                   onChange={(e) => setTheme({ ...theme, title: e.target.value })}
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1">Description</label>
+                <label className="block text-sm font-medium mb-1">{t("description")}</label>
                 <Input
                   value={theme.description}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTheme({ ...theme, description: e.target.value })}
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1">Image URL</label>
+                <label className="block text-sm font-medium mb-1">{t("imageUrl")}</label>
                 <Input
                   value={theme.image}
                   onChange={(e) => setTheme({ ...theme, image: e.target.value })}
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1">Try Link</label>
+                <label className="block text-sm font-medium mb-1">{t("tryLink")}</label>
                 <Input
                   value={theme.tryLink}
                   onChange={(e) => setTheme({ ...theme, tryLink: e.target.value })}
                 />
               </div>
-              <Button onClick={handleSave}>Save Changes</Button>
+              <Button onClick={handleSave}>{t("saveChanges")}</Button>
             </div>
           </div>
         </SidebarInset>

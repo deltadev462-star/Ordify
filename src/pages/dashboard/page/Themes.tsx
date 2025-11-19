@@ -26,8 +26,6 @@ const Themes = () => {
 
   const handleSaveTheme = () => {
     // In a real app, this would save to the backend
-    console.log("Saving theme settings...")
-    // Show success notification
     alert(t('themeSettingsSaved'))
   }
 
@@ -39,7 +37,7 @@ const Themes = () => {
           <Header />
 
           <div className="p-6">
-            <div className="flex items-center justify-between mb-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2  mb-6 ">
               <Title
                 title={t("themeCustomization")}
                 Subtitle={t("customizeStoreAppearance")}
@@ -48,8 +46,8 @@ const Themes = () => {
               />
 
               {/* View Controls */}
-              <div className="flex items-center  gap-2">
-                <div className="flex gap-1 bg-gray-100 rounded-lg p-1">
+              <div className="flex items-center md:mt-0 mt-5  ms-auto  gap-2">
+                <div className="flex gap-1  bg-gray-100 dark:bg-[#313131] dark:text-white rounded-lg p-1">
                   <Button
                     size="sm"
                     variant={activeView === "split" ? "default" : "ghost"}
@@ -79,12 +77,13 @@ const Themes = () => {
                 <Button
                   size="sm"
                   variant="outline"
+                  className="dark:border-gray-500 border-2"
                   onClick={() => setIsFullscreen(!isFullscreen)}
                 >
                   {isFullscreen ? (
-                    <Minimize2 className="h-4 w-4" />
+                    <Minimize2 className="h-4 w-4 dark:text-white" />
                   ) : (
-                    <Maximize2 className="h-4 w-4" />
+                    <Maximize2 className="h-4 w-4 dark:text-white" />
                   )}
                 </Button>
               </div>
@@ -92,13 +91,13 @@ const Themes = () => {
 
             {/* Main Content Area */}
             <div
-              className={`${
-                isFullscreen ? "fixed inset-0 z-50 bg-white p-6" : ""
+              className={` ${ 
+                isFullscreen ? " fixed inset-0 z-[999] bg-white dark:bg-[#101010] scroll-auto p-6" : ""
               }`}
             >
               {isFullscreen && (
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-2xl font-bold">
+                  <h2 className="text-2xl font-bold dark:text-white">
                     {t("themeCustomization")}
                   </h2>
                   <Button
@@ -106,7 +105,7 @@ const Themes = () => {
                     variant="outline"
                     onClick={() => setIsFullscreen(false)}
                   >
-                    <Minimize2 className="h-4 w-4 mr-2" />
+                    <Minimize2 className="h-4 w-4 mx-2 dark:text-white" />
                     {t("exitFullscreen")}
                   </Button>
                 </div>
@@ -125,8 +124,8 @@ const Themes = () => {
                   {/* Right: Live Preview & Info */}
                   <div className="space-y-6">
                     {/* Device Preview Controls */}
-                    <Card>
-                      <CardHeader className="pb-3">
+                    <Card className="border border-[#d6d6d6] dark:bg-[#101010] dark:border-[#424242] dark:text-white ">
+                      <CardHeader className="pb-3 ">
                         <div className="flex items-center justify-between">
                           <CardTitle className="text-base">
                             {t("livePreview")}
@@ -179,7 +178,7 @@ const Themes = () => {
                     </div>
 
                     {/* Quick Actions */}
-                    <Card className="">
+                    <Card className="border border-[#d6d6d6] dark:bg-[#101010] dark:border-[#424242] dark:text-white">
                       <CardHeader>
                         <CardTitle className="text-base">
                           {t("quickActions")}
@@ -264,7 +263,7 @@ const Themes = () => {
             {!isFullscreen && activeView !== "preview" && (
               <div className="mt-6 grid gap-6 md:grid-cols-3">
                 {/* Current Theme Status */}
-                <Card>
+                <Card className="border border-[#d6d6d6] dark:bg-[#101010] dark:border-[#424242] dark:text-white">
                   <CardHeader>
                     <CardTitle className="text-base">
                       {t("currentTheme")}
@@ -299,7 +298,7 @@ const Themes = () => {
                 </Card>
 
                 {/* Theme Features */}
-                <Card>
+                <Card className="border border-[#d6d6d6] dark:bg-[#101010] dark:border-[#424242] dark:text-white">
                   <CardHeader>
                     <CardTitle className="text-base">
                       {t("activeFeatures")}
@@ -330,7 +329,7 @@ const Themes = () => {
                 </Card>
 
                 {/* Help & Documentation */}
-                <Card>
+                <Card className="border border-[#d6d6d6] dark:bg-[#101010] dark:border-[#424242] dark:text-white">
                   <CardHeader>
                     <CardTitle className="text-base">{t("needHelp")}</CardTitle>
                   </CardHeader>

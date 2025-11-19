@@ -10,6 +10,7 @@ import {
   LayoutCustomizer
 } from "./customizers";
 import { Palette, Type, Layout, Eye, RotateCcw } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface ThemeCustomizerProps {
   onPreview?: () => void;
@@ -22,7 +23,7 @@ export const ThemeCustomizer: React.FC<ThemeCustomizerProps> = ({
   onPreview,
   onSave,
   onReset,
-  className = "",
+  className = "border border-[#d6d6d6] dark:bg-[#131313] dark:text-white/85 dark:border-[#424242]",
 }) => {
   const {
     themeConfig,
@@ -31,6 +32,7 @@ export const ThemeCustomizer: React.FC<ThemeCustomizerProps> = ({
     isLoading
   } = useTheme();
   
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState("theme");
 
   const handleReset = () => {
@@ -53,7 +55,7 @@ export const ThemeCustomizer: React.FC<ThemeCustomizerProps> = ({
         <CardContent className="flex items-center justify-center p-8">
           <div className="text-center">
             <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent mx-auto mb-4" />
-            <p className="text-sm text-gray-600">Loading theme customizer...</p>
+            <p className="text-sm text-gray-600">{t("Loading theme customizer...")}</p>
           </div>
         </CardContent>
       </Card>
@@ -65,31 +67,31 @@ export const ThemeCustomizer: React.FC<ThemeCustomizerProps> = ({
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Palette className="h-5 w-5" />
-          Theme Customizer
+          {t("Theme Customizer")}
         </CardTitle>
-        <p className="text-sm text-gray-600">
-          Customize your store's appearance and branding
+        <p className="text-sm text-gray-600 dark:text-white/70">
+          {t("Customize your store's appearance and branding")}
         </p>
       </CardHeader>
       
       <CardContent>
-        <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="theme" className="flex items-center gap-2">
+        <Tabs value={activeTab} onValueChange={setActiveTab}  >
+          <TabsList className="grid w-full grid-cols-4 dark:bg-[#292828] gap-2" >
+            <TabsTrigger value="theme" className="flex items-center gap-2 dark:bg-[#101010]">
               <Eye className="h-4 w-4" />
-              Theme
+              {t("Theme")}
             </TabsTrigger>
-            <TabsTrigger value="colors" className="flex items-center gap-2">
+            <TabsTrigger value="colors" className="flex items-center gap-2 dark:bg-[#101010]">
               <Palette className="h-4 w-4" />
-              Colors
+              {t("Colors")}
             </TabsTrigger>
-            <TabsTrigger value="typography" className="flex items-center gap-2">
+            <TabsTrigger value="typography" className="flex items-center gap-2 dark:bg-[#101010]">
               <Type className="h-4 w-4" />
-              Typography
+              {t("Typography")}
             </TabsTrigger>
-            <TabsTrigger value="layout" className="flex items-center gap-2">
+            <TabsTrigger value="layout" className="flex items-center gap-2 dark:bg-[#101010]">
               <Layout className="h-4 w-4" />
-              Layout
+              {t("Layout")}
             </TabsTrigger>
           </TabsList>
 
@@ -116,11 +118,11 @@ export const ThemeCustomizer: React.FC<ThemeCustomizerProps> = ({
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <Button onClick={handlePreview} variant="outline" className="flex-1">
             <Eye className="mr-2 h-4 w-4" />
-            Preview Changes
+            {t("Preview Changes")}
           </Button>
           
           <Button onClick={handleSave} className="flex-1">
-            Save Changes
+            {t("Save Changes")}
           </Button>
           
           <Button 
@@ -129,21 +131,21 @@ export const ThemeCustomizer: React.FC<ThemeCustomizerProps> = ({
             className="flex items-center gap-2"
           >
             <RotateCcw className="h-4 w-4" />
-            Reset
+            {t("Reset")}
           </Button>
         </div>
 
         {/* Current Theme Info */}
         {themeConfig && (
-          <div className="mt-6 rounded-lg bg-gray-50 p-4">
-            <h4 className="mb-2 font-semibold text-gray-900">Current Theme</h4>
+          <div className="mt-6 rounded-lg bg-gray-50 dark:bg-[#242424] p-4">
+            <h4 className="mb-2 font-semibold text-gray-900 dark:text-gray-400">{t("Current Theme")}</h4>
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div>
-                <span className="text-gray-600">Name:</span>
-                <span className="ml-2 font-medium">{themeConfig.name}</span>
+                <span className="text-gray-600 dark:text-white">{t("Name : ")}</span>
+                <span className="ml-2 font-medium"> {themeConfig.name}</span>
               </div>
               <div>
-                <span className="text-gray-600">Primary Color:</span>
+                <span className="text-gray-600 dark:text-white"> {t("Primary Color : ")}</span>
                 <div className="ml-2 inline-flex items-center gap-2">
                   <div 
                     className="h-4 w-4 rounded border"
@@ -155,15 +157,15 @@ export const ThemeCustomizer: React.FC<ThemeCustomizerProps> = ({
                 </div>
               </div>
               <div>
-                <span className="text-gray-600">Font Family:</span>
+                <span className="text-gray-600 dark:text-white"> {t("Font Family : ")}</span>
                 <span className="ml-2 font-medium">
                   {themeConfig.typography.fontFamily.split(',')[0].replace(/['"]/g, '')}
                 </span>
               </div>
               <div>
-                <span className="text-gray-600">Customizations:</span>
+                <span className="text-gray-600 dark:text-white"> {t("Customizations : ")}</span>
                 <span className="ml-2 font-medium">
-                  {Object.keys(customizations).length} active
+                  {Object.keys(customizations).length} {t("active")}
                 </span>
               </div>
             </div>

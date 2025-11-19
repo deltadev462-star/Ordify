@@ -1,6 +1,7 @@
 import React from "react";
 import { useTheme } from "@/hooks/useTheme";
 import { getThemeComponents } from "@/themes";
+import { useTranslation } from "react-i18next";
 
 interface HomePageProps {
   heroData?: {
@@ -61,6 +62,7 @@ const HomePage: React.FC<HomePageProps> = ({
   onWishlist,
 }) => {
   const { currentTheme, components: sharedComponents } = useTheme();
+  const { t } = useTranslation();
   
   // Get theme-specific components
   const themeComponents = getThemeComponents(currentTheme);
@@ -112,8 +114,8 @@ const HomePage: React.FC<HomePageProps> = ({
         return ModernProductGrid ? (
           <ModernProductGrid
             products={featuredProducts}
-            title="Featured Products"
-            description="Discover our handpicked selection"
+            title={t("featuredProducts")}
+            description={t("discoverHandpicked")}
             onAddToCart={onAddToCart}
             onQuickView={onQuickView}
             onWishlist={onWishlist}
@@ -125,7 +127,7 @@ const HomePage: React.FC<HomePageProps> = ({
         return ClassicProductGrid ? (
           <ClassicProductGrid
             products={featuredProducts}
-            title="Featured Products"
+            title={t("featuredProducts")}
             showBreadcrumbs={false}
             onAddToCart={onAddToCart}
             onQuickView={onQuickView}
@@ -138,8 +140,8 @@ const HomePage: React.FC<HomePageProps> = ({
         return MinimalProductShowcase ? (
           <MinimalProductShowcase
             products={featuredProducts}
-            title="Featured Products"
-            subtitle="CURATED SELECTION"
+            title={t("featuredProducts")}
+            subtitle={t("curatedSelection")}
             onAddToCart={onAddToCart}
             onQuickView={onQuickView}
             onWishlist={onWishlist}
@@ -151,8 +153,8 @@ const HomePage: React.FC<HomePageProps> = ({
         return LuxeProductCarousel ? (
           <LuxeProductCarousel
             products={featuredProducts}
-            title="Exclusive Collection"
-            subtitle="Handcrafted Excellence"
+            title={t("exclusiveCollection")}
+            subtitle={t("handcraftedExcellence")}
             onAddToCart={onAddToCart}
             onQuickView={onQuickView}
             onWishlist={onWishlist}
@@ -173,8 +175,8 @@ const HomePage: React.FC<HomePageProps> = ({
         return ModernFeaturedCollections ? (
           <ModernFeaturedCollections
             collections={collections}
-            title="Shop by Collection"
-            subtitle="Explore our curated collections"
+            title={t("shopByCollection")}
+            subtitle={t("exploreCollections")}
           />
         ) : null;
       
@@ -184,7 +186,7 @@ const HomePage: React.FC<HomePageProps> = ({
         return (
           <section className="py-12">
             <div className="container mx-auto px-4">
-              <h2 className="mb-8 text-center text-2xl font-bold">Shop by Category</h2>
+              <h2 className="mb-8 text-center text-2xl font-bold">{t("shopByCategory")}</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {collections.map((collection) => (
                   <CategoryCard
@@ -215,7 +217,7 @@ const HomePage: React.FC<HomePageProps> = ({
             <ModernAsymmetricCollections
               largeCollection={collections[0]}
               smallCollections={collections.slice(1, 3)}
-              title="Explore Our Collections"
+              title={t("exploreOurCollections")}
             />
           );
         }

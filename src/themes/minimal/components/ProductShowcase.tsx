@@ -22,7 +22,7 @@ interface MinimalProductShowcaseProps {
   showNavigation?: boolean;
   onAddToCart?: (productId: string) => void;
   onQuickView?: (productId: string) => void;
-  onWishlist?: (productId: string) => void;
+  onWishlist?: (item: { id: string; name: string; price: number; image: string; variant?: string }) => void;
   className?: string;
 }
 
@@ -228,7 +228,7 @@ interface MinimalProductGridProps {
   columns?: 2 | 3 | 4;
   onAddToCart?: (productId: string) => void;
   onQuickView?: (productId: string) => void;
-  onWishlist?: (productId: string) => void;
+  onWishlist?: (item: { id: string; name: string; price: number; image: string; variant?: string }) => void;
   className?: string;
 }
 

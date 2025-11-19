@@ -1,4 +1,3 @@
-// Export all minimal theme components
 export { MinimalHero } from './Hero';
 export { MinimalProductShowcase, MinimalProductGrid } from './ProductShowcase';
 export { MinimalCollectionBanner, MinimalCollectionGrid } from './CollectionBanner';

@@ -14,10 +14,9 @@ export default {
     border: "#e2e8f0", // Slate-200
     success: "#10b981", // Emerald-500
     warning: "#f59e0b", // Amber-500
-    error: "#ef4444", // Red-500
-    info: "#3b82f6", // Blue-500
-    // Dark mode colors
-    darkPrimary: "#818cf8", // Indigo-400 - Lighter for dark mode
+    error: "#ef4444",
+    info: "#3b82f6",
+    darkPrimary: "#818cf8",
     darkSecondary: "#f472b6", // Pink-400 - Lighter for dark mode
     darkAccent: "#2dd4bf", // Teal-400 - Lighter for dark mode
     darkBackground: "#0f172a", // Slate-900 - Dark background

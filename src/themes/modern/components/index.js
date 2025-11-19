@@ -1,4 +1,3 @@
-// Export all modern theme components
 export { ModernHero } from './Hero';
 export { ModernProductGrid } from './ProductGrid';
 export { 

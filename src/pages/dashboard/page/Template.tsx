@@ -4,48 +4,51 @@ import ThemeCard from "@/components/ThemeCard";
 import Title from "@/components/Title";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 function Template() {
+  const { t } = useTranslation();
+  
   const template = [
     {
       id: 1,
-      title: "Dark Mode",
-      description: "A sleek dark theme for comfortable night usage.",
+      title: t("darkMode"),
+      description: t("darkThemeDescription"),
       image: "/th (1).jpg",
       tryLink: "/try/dark",
     },
     {
       id: 2,
-      title: "Light Mode",
-      description: "Bright and clean theme for daylight.",
+      title: t("lightMode"),
+      description: t("lightThemeDescription"),
       image: "/th (2).jpg",
       tryLink: "/try/light",
     },
     {
       id: 3,
-      title: "Dark Mode",
-      description: "A sleek dark theme for comfortable night usage.",
+      title: t("darkMode"),
+      description: t("darkThemeDescription"),
       image: "/th (3).jpg",
       tryLink: "/try/dark",
     },
     {
       id: 4,
-      title: "Light Mode",
-      description: "Bright and clean theme for daylight.",
+      title: t("lightMode"),
+      description: t("lightThemeDescription"),
       image: "/th (4).jpg",
       tryLink: "/try/light",
     },
     {
       id: 5,
-      title: "Light Mode",
-      description: "Bright and clean theme for daylight.",
+      title: t("lightMode"),
+      description: t("lightThemeDescription"),
       image: "/th (5).jpg",
       tryLink: "/try/light",
     },
     {
       id: 6,
-      title: "Light Mode",
-      description: "Bright and clean theme for daylight.",
+      title: t("lightMode"),
+      description: t("lightThemeDescription"),
       image: "/th (6).jpg",
       tryLink: "/try/light",
     },
@@ -62,11 +65,10 @@ function Template() {
           <div className="flex bg-white dark:bg-black/80 rounded-2xl m-1   flex-1 flex-col gap-4 p-4 pt-0">
          <div className="mt-5">
              <Title
-              Subtitle="lorem
-            "
+              Subtitle={t("lightThemeDescription")}
               className=""
               classNamee=""
-              title="template"
+              title={t("template")}
             />
          </div>
             <div className="grid grid-cols-1  gap-5 lg:grid-cols-3">

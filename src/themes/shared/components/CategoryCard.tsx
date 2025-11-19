@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 interface CategoryCardProps {
   id: string;
@@ -23,6 +24,8 @@ export const CategoryCard = ({
   variant = "default",
   className = "",
 }: CategoryCardProps) => {
+  const { t } = useTranslation();
+  
   const handleClick = () => {
     onClick?.(id);
   };
@@ -48,7 +51,7 @@ export const CategoryCard = ({
           )}
           {productCount !== undefined && (
             <p className="mb-3 text-sm text-white/80">
-              {productCount} Products
+              {t("productsCount", { count: productCount })}
             </p>
           )}
           <Button
@@ -56,7 +59,7 @@ export const CategoryCard = ({
             size="sm"
             className="w-fit"
           >
-            Shop Now
+            {t("shopNow")}
             <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
         </CardContent>
@@ -80,7 +83,7 @@ export const CategoryCard = ({
         <CardContent className="p-4 text-center">
           <h3 className="mb-1 text-lg font-semibold">{name}</h3>
           {productCount !== undefined && (
-            <p className="text-sm text-gray-500">{productCount} items</p>
+            <p className="text-sm text-gray-500">{t("itemsCount", { count: productCount })}</p>
           )}
         </CardContent>
       </Card>
@@ -113,7 +116,7 @@ export const CategoryCard = ({
           <div className="h-px w-16 bg-white/50 transition-all group-hover:w-24" />
           {productCount !== undefined && (
             <p className="mt-4 text-xs uppercase tracking-widest text-white/80">
-              {productCount} Exclusive Items
+              {t("exclusiveItems", { count: productCount })}
             </p>
           )}
         </CardContent>
@@ -140,7 +143,7 @@ export const CategoryCard = ({
             <h3 className="mb-1 font-semibold text-gray-900">{name}</h3>
             {productCount !== undefined && (
               <p className="text-sm text-gray-500">
-                {productCount} products
+                {t("collectionProducts", { count: productCount })}
               </p>
             )}
           </div>

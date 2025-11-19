@@ -18,10 +18,8 @@ export function useSEO({
   twitterCard = 'summary_large_image'
 }: SEOProps) {
   useEffect(() => {
-    // Set title
     document.title = title;
 
-    // Set meta description
     const metaDesc = document.querySelector('meta[name="description"]') as HTMLMetaElement;
     if (metaDesc) {
       metaDesc.content = description;
@@ -32,13 +30,11 @@ export function useSEO({
       document.head.appendChild(newMeta);
     }
 
-    // Open Graph
     setMetaProperty('og:title', ogTitle || title);
     setMetaProperty('og:description', ogDescription || description);
     if (ogImage) setMetaProperty('og:image', ogImage);
     setMetaProperty('og:type', 'website');
 
-    // Twitter
     setMetaProperty('twitter:card', twitterCard);
     setMetaProperty('twitter:title', ogTitle || title);
     setMetaProperty('twitter:description', ogDescription || description);

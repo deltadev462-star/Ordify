@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button";
@@ -32,53 +33,9 @@ interface ClassicSidebarProps {
   className?: string;
 }
 
-const defaultFilters: FilterSection[] = [
-  {
-    title: "Price",
-    type: "price",
-    min: 0,
-    max: 1000,
-  },
-  {
-    title: "Brand",
-    type: "checkbox",
-    options: [
-      { label: "Nike", value: "nike", count: 125 },
-      { label: "Adidas", value: "adidas", count: 98 },
-      { label: "Puma", value: "puma", count: 76 },
-      { label: "New Balance", value: "new-balance", count: 54 },
-      { label: "Under Armour", value: "under-armour", count: 43 },
-    ],
-  },
-  {
-    title: "Size",
-    type: "size",
-    options: [
-      { label: "XS", value: "xs" },
-      { label: "S", value: "s" },
-      { label: "M", value: "m" },
-      { label: "L", value: "l" },
-      { label: "XL", value: "xl" },
-      { label: "XXL", value: "xxl" },
-    ],
-  },
-  {
-    title: "Color",
-    type: "color",
-    options: [
-      { label: "Black", value: "black" },
-      { label: "White", value: "white" },
-      { label: "Red", value: "red" },
-      { label: "Blue", value: "blue" },
-      { label: "Green", value: "green" },
-      { label: "Yellow", value: "yellow" },
-    ],
-  },
-];
-
 export const ClassicSidebar = ({
   categories = [],
-  filters = defaultFilters,
+  filters = [],
   selectedFilters = {
     categories: [],
     price: [0, 1000],
@@ -88,8 +45,55 @@ export const ClassicSidebar = ({
   showBestSellers = true,
   className = "",
 }: ClassicSidebarProps) => {
+  const { t } = useTranslation();
   const [expandedSections, setExpandedSections] = useState<string[]>([]);
   const [localFilters, setLocalFilters] = useState(selectedFilters);
+
+  const defaultFilters: FilterSection[] = [
+    {
+      title: t("Price"),
+      type: "price",
+      min: 0,
+      max: 1000,
+    },
+    {
+      title: t("Brand"),
+      type: "checkbox",
+      options: [
+        { label: "Nike", value: "nike", count: 125 },
+        { label: "Adidas", value: "adidas", count: 98 },
+        { label: "Puma", value: "puma", count: 76 },
+        { label: "New Balance", value: "new-balance", count: 54 },
+        { label: "Under Armour", value: "under-armour", count: 43 },
+      ],
+    },
+    {
+      title: t("Size"),
+      type: "size",
+      options: [
+        { label: "XS", value: "xs" },
+        { label: "S", value: "s" },
+        { label: "M", value: "m" },
+        { label: "L", value: "l" },
+        { label: "XL", value: "xl" },
+        { label: "XXL", value: "xxl" },
+      ],
+    },
+    {
+      title: t("Color"),
+      type: "color",
+      options: [
+        { label: t("Black"), value: "black" },
+        { label: t("White"), value: "white" },
+        { label: t("Red"), value: "red" },
+        { label: t("Blue"), value: "blue" },
+        { label: t("Green"), value: "green" },
+        { label: t("Yellow"), value: "yellow" },
+      ],
+    },
+  ];
+
+  const filtersToUse = filters.length > 0 ? filters : defaultFilters;
 
   const toggleSection = (title: string) => {
     setExpandedSections((prev) =>
@@ -148,7 +152,7 @@ export const ClassicSidebar = ({
       {/* Categories */}
       {categories.length > 0 && (
         <div className="rounded-lg border bg-white p-4">
-          <h3 className="mb-3 font-serif text-lg font-semibold">Categories</h3>
+          <h3 className="mb-3 font-serif text-lg font-semibold">{t("Categories")}</h3>
           <ul className="space-y-2">
             {categories.map((category) => (
               <li key={category.value}>
@@ -176,19 +180,19 @@ export const ClassicSidebar = ({
       {/* Filters */}
       <div className="rounded-lg border bg-white p-4">
         <div className="mb-3 flex items-center justify-between">
-          <h3 className="font-serif text-lg font-semibold">Filters</h3>
+          <h3 className="font-serif text-lg font-semibold">{t("Filters")}</h3>
           {hasActiveFilters() && (
             <button
               onClick={clearAllFilters}
               className="text-xs text-primary hover:underline"
             >
-              Clear All
+              {t("Clear All")}
             </button>
           )}
         </div>
 
         <div className="space-y-4">
-          {filters.map((filter) => (
+          {filtersToUse.map((filter) => (
             <div key={filter.title} className="border-b pb-4 last:border-b-0">
               <button
                 onClick={() => toggleSection(filter.title)}
@@ -328,7 +332,7 @@ export const ClassicSidebar = ({
       {/* Best Sellers */}
       {showBestSellers && (
         <div className="rounded-lg border bg-white p-4">
-          <h3 className="mb-3 font-serif text-lg font-semibold">Best Sellers</h3>
+          <h3 className="mb-3 font-serif text-lg font-semibold">{t("Best Sellers")}</h3>
           <div className="space-y-3">
             {[1, 2, 3].map((item) => (
               <div key={item} className="flex gap-3">
@@ -358,18 +362,18 @@ export const ClassicSidebar = ({
       {showNewsletter && (
         <div className="rounded-lg border bg-primary p-4 text-white">
           <h3 className="mb-2 font-serif text-lg font-semibold">
-            Newsletter Sign Up
+            {t("Newsletter Sign Up")}
           </h3>
           <p className="mb-3 text-sm">
-            Get exclusive offers and updates delivered to your inbox
+            {t("Get exclusive offers and updates delivered to your inbox")}
           </p>
           <input
             type="email"
-            placeholder="Enter your email"
+            placeholder={t("Enter your email")}
             className="mb-3 w-full rounded px-3 py-2 text-gray-900"
           />
           <Button variant="secondary" className="w-full">
-            Subscribe
+            {t("Subscribe")}
           </Button>
         </div>
       )}

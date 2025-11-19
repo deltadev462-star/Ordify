@@ -22,7 +22,7 @@ interface CollectionPageProps {
   }>;
   onAddToCart?: (productId: string) => void;
   onQuickView?: (productId: string) => void;
-  onWishlist?: (productId: string) => void;
+  onWishlist?: (item: { id: string; name: string; price: number; image: string; variant?: string }) => void;
 }
 
 const CollectionPage: React.FC<CollectionPageProps> = ({
