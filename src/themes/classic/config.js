@@ -7,7 +7,7 @@ export default {
     primary: "#2563eb", // Blue-600 - Brighter
     secondary: "#dc2626", // Red-600
     accent: "#059669", // Emerald-600 - More vibrant
-    background: "#ffffff",
+    // background: "#ffffff",
     foreground: "#1f2937", // Gray-800
     muted: "#f9fafb", // Gray-50
     mutedForeground: "#6b7280", // Gray-500
@@ -19,7 +19,7 @@ export default {
     darkPrimary: "#3b82f6",
     darkSecondary: "#ef4444", // Red-500 - Lighter for dark mode
     darkAccent: "#10b981", // Emerald-500 - Lighter for dark mode
-    darkBackground: "#111827", // Gray-900 - Dark background
+    darkBackground: "#101010", // Custom dark background
     darkForeground: "#f9fafb", // Gray-50 - Light text
     darkMuted: "#1f2937", // Gray-800 - Dark muted
     darkMutedForeground: "#9ca3af", // Gray-400 - Light muted text
