@@ -14,13 +14,13 @@
 /* Body dark mode styles */
 body.dark,
 body.dark .theme-classic {
-  background-color: #1a1a1a;
+  background-color: #101010;
   color: #f0f0f0;
 }
 
 /* Dark Mode Color Variables */
 .dark .theme-classic {
-  --theme-background: #1a1a1a;
+  --theme-background: #101010;
   --theme-foreground: #f0f0f0;
   --theme-card: #242424;
   --theme-card-foreground: #f0f0f0;
