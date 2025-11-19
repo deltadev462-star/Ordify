@@ -14,10 +14,9 @@ export default {
     border: "#e4e4e7", // Zinc-200
     success: "#22c55e", // Green-500
     warning: "#f59e0b", // Amber-500
-    error: "#ef4444", // Red-500
-    info: "#3b82f6", // Blue-500
-    // Dark mode colors
-    darkPrimary: "#fafafa", // Neutral-50 - Light for dark mode
+    error: "#ef4444",
+    info: "#3b82f6",
+    darkPrimary: "#fafafa",
     darkSecondary: "#a1a1aa", // Zinc-400 - Lighter gray
     darkAccent: "#f87171", // Red-400 - Lighter accent
     darkBackground: "#18181b", // Zinc-900 - Dark background

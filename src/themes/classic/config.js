@@ -14,10 +14,9 @@ export default {
     border: "#d1d5db", // Gray-300
     success: "#16a34a", // Green-600
     warning: "#ea580c", // Orange-600
-    error: "#dc2626", // Red-600
-    info: "#2563eb", // Blue-600
-    // Dark mode colors
-    darkPrimary: "#3b82f6", // Blue-500 - Lighter for dark mode
+    error: "#dc2626",
+    info: "#2563eb",
+    darkPrimary: "#3b82f6",
     darkSecondary: "#ef4444", // Red-500 - Lighter for dark mode
     darkAccent: "#10b981", // Emerald-500 - Lighter for dark mode
     darkBackground: "#111827", // Gray-900 - Dark background

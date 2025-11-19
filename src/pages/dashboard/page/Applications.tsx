@@ -76,9 +76,7 @@ function Applications() {
                       title={t("Google Analytics")}
                       plan={t("Free Plan")}
                       description={t("Monitor your traffic sources and analyze visitor behavior in real time.")}
-                      onAction={() =>
-                        console.log("Settings for Google Analytics")
-                      }
+                      onAction={() => {}}
                     />
 
                     <InstalledCard
@@ -88,7 +86,7 @@ function Applications() {
                       title={t("Meta Pixel")}
                       plan={t("Pro Plan")}
                       description={t("Integrate Meta Pixel to track conversions from your Facebook Ads.")}
-                      onAction={() => console.log("Settings for Meta Pixel")}
+                      onAction={() => {}}
                     />
                     <InstalledCard
                       icon={
@@ -97,7 +95,7 @@ function Applications() {
                       title={t("Meta Pixel")}
                       plan={t("Pro Plan")}
                       description={t("Integrate Meta Pixel to track conversions from your Facebook Ads.")}
-                      onAction={() => console.log("Settings for Meta Pixel")}
+                      onAction={() => {}}
                     />
                     <InstalledCard
                       icon={
@@ -106,7 +104,7 @@ function Applications() {
                       title={t("Meta Pixel")}
                       plan={t("Pro Plan")}
                       description={t("Integrate Meta Pixel to track conversions from your Facebook Ads.")}
-                      onAction={() => console.log("Settings for Meta Pixel")}
+                      onAction={() => {}}
                     />
                   </div>
                 )}

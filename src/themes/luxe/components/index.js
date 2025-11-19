@@ -1,4 +1,3 @@
-// Export all luxe theme components
 export { LuxeHero, LuxeSplitHero } from './Hero';
 export { LuxeProductCarousel, LuxeFeaturedProduct } from './ProductCarousel';
 export { 

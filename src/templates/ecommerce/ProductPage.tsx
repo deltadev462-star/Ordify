@@ -36,7 +36,7 @@ interface ProductPageProps {
     inStock?: boolean;
   }>;
   onAddToCart?: (productId: string, quantity: number, variant?: any) => void;
-  onWishlist?: (productId: string) => void;
+  onWishlist?: (item: { id: string; name: string; price: number; image: string; variant?: string }) => void;
   onShare?: (productId: string) => void;
 }
 
@@ -240,7 +240,13 @@ const ProductPage: React.FC<ProductPageProps> = ({
               </Button>
               <Button
                 variant="outline"
-                onClick={() => onWishlist?.(product.id)}
+                onClick={() => onWishlist?.({
+                  id: product.id,
+                  name: product.name,
+                  price: product.price,
+                  image: product.images[selectedImage],
+                  variant: selectedSize || selectedColor
+                })}
               >
                 <Heart className="h-4 w-4" />
               </Button>

@@ -1,4 +1,3 @@
-// Export all classic theme components
 export { ClassicHero } from './Hero';
 export { ClassicProductGrid } from './ProductGrid';
 export { ClassicSidebar } from './Sidebar';

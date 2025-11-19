@@ -14,10 +14,9 @@ export default {
     border: "#d4d4d4", // Neutral-300
     success: "#059669", // Emerald-600
     warning: "#d97706", // Amber-600
-    error: "#dc2626", // Red-600
-    info: "#2563eb", // Blue-600
-    // Dark mode colors
-    darkPrimary: "#fbbf24", // Amber-400 - Lighter gold for dark mode
+    error: "#dc2626",
+    info: "#2563eb",
+    darkPrimary: "#fbbf24",
     darkSecondary: "#f5f5f4", // Stone-100 - Light for dark mode
     darkAccent: "#c084fc", // Purple-400 - Lighter purple
     darkBackground: "#0a0a0a", // Very dark background

@@ -21,7 +21,6 @@ export default function LangSwitcher() {
     <div className="relative inline-block text-left">
       <button
         onClick={toggleDropdown}
-        // className="flex items-center gap-2 px-3 py-2 bg-white border rounded-md shadow-sm hover:bg-gray-50 transition"
       >
         <Languages className="" />
       </button>

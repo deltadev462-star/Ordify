@@ -2,6 +2,7 @@ import React from "react";
 import { useTheme } from "@/hooks/useTheme";
 import { Button } from "@/components/ui/button";
 import { Minus, Plus, X, ShoppingBag } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface CartItem {
   id: string;
@@ -39,6 +40,7 @@ const CartPage: React.FC<CartPageProps> = ({
   onContinueShopping,
 }) => {
   const { currentTheme } = useTheme();
+  const { t } = useTranslation();
 
   if (items.length === 0) {
     return (
@@ -47,13 +49,13 @@ const CartPage: React.FC<CartPageProps> = ({
           <div className="text-center">
             <ShoppingBag className="mx-auto mb-4 h-16 w-16 text-gray-400" />
             <h1 className="mb-4 text-2xl font-bold text-gray-900">
-              Your cart is empty
+              {t("yourCartIsEmpty")}
             </h1>
             <p className="mb-8 text-gray-600">
-              Looks like you haven't added anything to your cart yet.
+              {t("cartEmptyMessage")}
             </p>
             <Button onClick={onContinueShopping}>
-              Continue Shopping
+              {t("continueShoppingButton")}
             </Button>
           </div>
         </div>
@@ -66,14 +68,14 @@ const CartPage: React.FC<CartPageProps> = ({
       {/* Breadcrumbs */}
       <div className="container mx-auto px-4 py-4">
         <nav className="flex items-center space-x-2 text-sm text-gray-600">
-          <a href="/" className="hover:text-primary">Home</a>
+          <a href="/" className="hover:text-primary">{t("home")}</a>
           <span>/</span>
-          <span className="text-gray-900">Shopping Cart</span>
+          <span className="text-gray-900">{t("shoppingCart")}</span>
         </nav>
       </div>
 
       <div className="container mx-auto px-4 py-8">
-        <h1 className="mb-8 text-3xl font-bold text-gray-900">Shopping Cart</h1>
+        <h1 className="mb-8 text-3xl font-bold text-gray-900">{t("shoppingCart")}</h1>
 
         <div className="grid gap-8 lg:grid-cols-3">
           {/* Cart Items */}
@@ -95,9 +97,9 @@ const CartPage: React.FC<CartPageProps> = ({
                     
                     {item.variant && (
                       <div className="mt-1 text-sm text-gray-500">
-                        {item.variant.size && `Size: ${item.variant.size}`}
+                        {item.variant.size && `${t("size")}: ${item.variant.size}`}
                         {item.variant.size && item.variant.color && " • "}
-                        {item.variant.color && `Color: ${item.variant.color}`}
+                        {item.variant.color && `${t("color")}: ${item.variant.color}`}
                       </div>
                     )}
                     
@@ -139,7 +141,7 @@ const CartPage: React.FC<CartPageProps> = ({
             
             <div className="mt-6">
               <Button variant="outline" onClick={onContinueShopping}>
-                Continue Shopping
+                {t("continueShoppingButton")}
               </Button>
             </div>
           </div>
@@ -147,27 +149,27 @@ const CartPage: React.FC<CartPageProps> = ({
           {/* Order Summary */}
           <div className="lg:col-span-1">
             <div className="rounded-lg border bg-white p-6">
-              <h2 className="mb-4 text-xl font-semibold">Order Summary</h2>
+              <h2 className="mb-4 text-xl font-semibold">{t("orderSummary")}</h2>
               
               <div className="space-y-3">
                 <div className="flex justify-between">
-                  <span>Subtotal ({items.length} items)</span>
+                  <span>{t("subtotalItems", { count: items.length })}</span>
                   <span>${subtotal.toFixed(2)}</span>
                 </div>
                 
                 <div className="flex justify-between">
-                  <span>Shipping</span>
-                  <span>{shipping === 0 ? "Free" : `$${shipping.toFixed(2)}`}</span>
+                  <span>{t("shipping")}</span>
+                  <span>{shipping === 0 ? t("free") : `$${shipping.toFixed(2)}`}</span>
                 </div>
                 
                 <div className="flex justify-between">
-                  <span>Tax</span>
+                  <span>{t("tax")}</span>
                   <span>${tax.toFixed(2)}</span>
                 </div>
                 
                 <div className="border-t pt-3">
                   <div className="flex justify-between text-lg font-semibold">
-                    <span>Total</span>
+                    <span>{t("total")}</span>
                     <span>${total.toFixed(2)}</span>
                   </div>
                 </div>
@@ -177,12 +179,12 @@ const CartPage: React.FC<CartPageProps> = ({
                 className="mt-6 w-full"
                 onClick={onCheckout}
               >
-                Proceed to Checkout
+                {t("proceedToCheckout")}
               </Button>
               
               <div className="mt-4 text-center text-sm text-gray-500">
-                <p>Free shipping on orders over $50</p>
-                <p>30-day return policy</p>
+                <p>{t("freeShippingMessage")}</p>
+                <p>{t("returnPolicyMessage")}</p>
               </div>
             </div>
           </div>

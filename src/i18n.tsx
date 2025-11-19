@@ -9,7 +9,7 @@ import HttpApi from 'i18next-http-backend';
   .use(LanguageDetector)
   .use(HttpApi)
   .init({
-    debug: true, 
+    debug: false,
     fallbackLng: "en",
     detection: {
       order: [

@@ -1,4 +1,3 @@
-// Re-export all UI components from a central location
 export { Avatar, AvatarFallback, AvatarImage } from './avatar';
 export { Badge } from './badge';
 export { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from './breadcrumb';

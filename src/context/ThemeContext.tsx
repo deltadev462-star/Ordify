@@ -176,7 +176,6 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
         
         // If merchantId is provided, save to backend
         if (merchantId) {
-          // TODO: Save theme preference to backend API
           // await saveThemeToAPI(merchantId, currentTheme, customizations);
         }
       } catch (error) {
@@ -270,7 +269,6 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     
     // Save to backend if merchantId provided
     if (merchantId) {
-      // TODO: Save customizations to backend API
       // await saveThemeToAPI(merchantId, currentTheme, updatedCustomizations);
     }
   };

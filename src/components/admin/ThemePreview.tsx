@@ -63,68 +63,9 @@ const THEME_SPECIFIC_NAMES: Record<string, Record<string, string[]>> = {
   }
 };
 
-// Mock hero slides for modern theme
-const mockHeroSlides = [
-  {
-    id: "slide1",
-    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&q=80",
-    title: "Summer Collection 2024",
-    subtitle: "New Arrivals",
-    description: "Discover our latest arrivals and trending styles",
-    ctaText: "Shop Now",
-    ctaLink: "/collections/summer",
-    textPosition: "center" as const,
-    textColor: "light" as const
-  }
-];
+// Note: mockHeroSlides will be initialized in component since it needs translations
 
-// Mock data for preview
-const mockProducts = [
-  {
-    id: 1,
-    name: "Premium Leather Bag",
-    price: 299.99,
-    originalPrice: 399.99,
-    rating: 4.5,
-    reviews: 128,
-    image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&q=80",
-    badge: "Sale"
-  },
-  {
-    id: 2,
-    name: "Classic Watch",
-    price: 599.99,
-    rating: 5,
-    reviews: 89,
-    image: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=400&q=80",
-    badge: "New"
-  },
-  {
-    id: 3,
-    name: "Designer Sunglasses",
-    price: 199.99,
-    rating: 4.8,
-    reviews: 234,
-    image: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&q=80"
-  },
-  {
-    id: 4,
-    name: "Luxury Perfume",
-    price: 149.99,
-    originalPrice: 199.99,
-    rating: 4.7,
-    reviews: 156,
-    image: "https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&q=80",
-    badge: "Limited"
-  }
-];
-
-const mockCategories = [
-  { name: "Bags", count: 156, image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&q=80" },
-  { name: "Watches", count: 89, image: "https://images.unsplash.com/photo-1508057198894-247b23fe5ade?w=400&q=80" },
-  { name: "Sunglasses", count: 234, image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400&q=80" },
-  { name: "Perfumes", count: 167, image: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=400&q=80" }
-];
+// Note: mockProducts and mockCategories will be initialized in component since they need translations
 
 // Helper function to find component by type
 const findThemeComponent = (
@@ -139,7 +80,7 @@ const findThemeComponent = (
   if (exactNames) {
     for (const exactName of exactNames) {
       if (themeComponents[exactName]) {
-        console.log(`✓ Found exact ${componentType} component: ${exactName} for ${themeName}`);
+         
         return themeComponents[exactName];
       }
     }
@@ -153,14 +94,31 @@ const findThemeComponent = (
   for (const pattern of patterns) {
     const prefixedName = `${themePrefix}${pattern}`;
     if (themeComponents[prefixedName]) {
-      console.log(`✓ Found prefixed ${componentType} component: ${prefixedName} for ${themeName}`);
       return themeComponents[prefixedName];
     }
   }
 
-  console.warn(`✗ No ${componentType} component found for ${themeName} theme. Available components:`, Object.keys(themeComponents));
   return null;
 };
+
+// Cart item interface
+interface CartItem {
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+  quantity: number;
+  variant?: string;
+}
+
+// Wishlist item interface
+interface WishlistItem {
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+  variant?: string;
+}
 
 export const ThemePreview: React.FC<ThemePreviewProps> = ({
   device = "desktop",
@@ -170,6 +128,170 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
   const { colors, typography, layout, currentTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [wishlistItems, setWishlistItems] = useState<WishlistItem[]>([]);
+  
+  // Mock hero slides for modern theme
+  const mockHeroSlides = [
+    {
+      id: "slide1",
+      image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&q=80",
+      title: t("summerCollection2024"),
+      subtitle: t("newArrivals"),
+      description: t("discoverLatestArrivals"),
+      ctaText: t("shopNow"),
+      ctaLink: "/collections/summer",
+      textPosition: "center" as const,
+      textColor: "light" as const
+    }
+  ];
+
+  // Mock data for preview
+  const mockProducts = [
+    {
+      id: "1",
+      name: t("Premium Leather Bag"),
+      price: 299.99,
+      originalPrice: 399.99,
+      rating: 4.5,
+      reviewCount: 128,
+      image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&q=80",
+      category: "Bags & Accessories",
+      description: "Handcrafted genuine leather bag with premium finish. Perfect for business and casual occasions.",
+      features: ["100% Genuine Leather", "Handmade", "Water Resistant", "Multiple Compartments"],
+      badge: t("sale"),
+      inStock: true,
+      freeShipping: true,
+      fastDelivery: true,
+      warranty: "2 Year Warranty",
+      isBestseller: true
+    },
+    {
+      id: "2",
+      name: t("Classic Watch"),
+      price: 599.99,
+      rating: 5,
+      reviewCount: 89,
+      image: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=400&q=80",
+      category: "Watches",
+      description: "Swiss movement automatic watch with sapphire crystal glass and stainless steel case.",
+      features: ["Swiss Movement", "Sapphire Crystal", "Water Resistant 100m", "Automatic", "Date Display"],
+      badge: t("new"),
+      inStock: true,
+      freeShipping: true,
+      warranty: "5 Year Warranty",
+      isNew: true
+    },
+    {
+      id: "3",
+      name: t("Designer Sunglasses"),
+      price: 199.99,
+      rating: 4.8,
+      reviewCount: 234,
+      image: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&q=80",
+      category: "Eyewear",
+      description: "UV400 protection polarized sunglasses with titanium frame. Stylish and durable.",
+      features: ["UV400 Protection", "Polarized Lens", "Titanium Frame", "Anti-Glare"],
+      inStock: true,
+      freeShipping: false,
+      fastDelivery: true,
+      warranty: "1 Year Warranty"
+    },
+    {
+      id: "4",
+      name: t("Luxury Perfume"),
+      price: 149.99,
+      originalPrice: 199.99,
+      rating: 4.7,
+      reviewCount: 156,
+      image: "https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&q=80",
+      category: "Fragrances",
+      description: "Exclusive eau de parfum with notes of bergamot, jasmine, and sandalwood. Long-lasting fragrance.",
+      features: ["Eau de Parfum", "Long Lasting", "Natural Ingredients", "Gift Box Included"],
+      badge: t("limited"),
+      inStock: true,
+      freeShipping: true,
+      warranty: "Authentic Guarantee"
+    }
+  ];
+
+  // Cart functions
+  const handleAddToCart = (productId: string) => {
+    const product = mockProducts.find(p => p.id === productId);
+    if (!product) return;
+
+    setCartItems(prevItems => {
+      const existingItem = prevItems.find(item => item.id === productId);
+      if (existingItem) {
+        // Update quantity if item already in cart
+        return prevItems.map(item =>
+          item.id === productId
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      } else {
+        // Add new item to cart
+        return [...prevItems, {
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          image: product.image,
+          quantity: 1
+        }];
+      }
+    });
+  };
+
+  const handleQuantityChange = (itemId: string, newQuantity: number) => {
+    if (newQuantity < 1) return;
+    setCartItems(prevItems =>
+      prevItems.map(item =>
+        item.id === itemId
+          ? { ...item, quantity: newQuantity }
+          : item
+      )
+    );
+  };
+
+  const handleRemoveFromCart = (itemId: string) => {
+    setCartItems(prevItems => prevItems.filter(item => item.id !== itemId));
+  };
+
+  const handleCheckout = () => {
+    alert(t("Proceeding to checkout..."));
+  };
+
+  // Wishlist functions
+  const handleAddToWishlist = (item: { id: string; name: string; price: number; image: string; variant?: string }) => {
+    setWishlistItems(prevItems => {
+      const existingItem = prevItems.find(wishlistItem => wishlistItem.id === item.id);
+      if (existingItem) {
+        // Remove from wishlist if already exists
+        return prevItems.filter(wishlistItem => wishlistItem.id !== item.id);
+      } else {
+        // Add to wishlist
+        return [...prevItems, item];
+      }
+    });
+  };
+
+  const handleRemoveFromWishlist = (itemId: string) => {
+    setWishlistItems(prevItems => prevItems.filter(item => item.id !== itemId));
+  };
+
+  const handleMoveToCart = (item: WishlistItem) => {
+    // Add to cart
+    handleAddToCart(item.id);
+    // Remove from wishlist
+    handleRemoveFromWishlist(item.id);
+  };
+
+  const mockCategories = [
+    { name: t("Bags"), count: 156, image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&q=80" },
+    { name: t("Watches"), count: 89, image: "https://images.unsplash.com/photo-1508057198894-247b23fe5ade?w=400&q=80" },
+    { name: t("Sunglasses"), count: 234, image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400&q=80" },
+    { name: t("Perfumes"), count: 167, image: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=400&q=80" }
+  ];
   
   // State for all theme components
   const [themeComponents, setThemeComponents] = useState<{
@@ -194,8 +316,7 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
   // Load all theme components when theme changes
   useEffect(() => {
     if (currentTheme && currentTheme !== loadedTheme) {
-      console.log(`=== Loading theme: ${currentTheme} ===`);
-      
+       
       // Clear components first
       setThemeComponents({
         Header: null,
@@ -211,8 +332,6 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
         const components = getThemeComponents(currentTheme);
         
         if (components) {
-          console.log(`Available components for ${currentTheme}:`, Object.keys(components));
-          
           // Direct component mapping based on theme
           let heroComponent = null;
           
@@ -232,11 +351,6 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
               break;
           }
           
-          if (!heroComponent) {
-            console.error(`Failed to find Hero component for ${currentTheme}. Looking for:`,
-              THEME_SPECIFIC_NAMES[currentTheme]?.hero || 'Hero');
-          }
-          
           const loadedComponents = {
             Header: findThemeComponent(components, 'header', currentTheme),
             Footer: findThemeComponent(components, 'footer', currentTheme),
@@ -246,21 +360,10 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
             CategoryCard: findThemeComponent(components, 'categoryCard', currentTheme),
           };
 
-          // Verify Hero component
-          if (loadedComponents.Hero) {
-            const heroName = loadedComponents.Hero.name || loadedComponents.Hero.displayName;
-            const expectedName = THEME_SPECIFIC_NAMES[currentTheme]?.hero?.[0];
-            console.log(`✓ Loaded Hero for ${currentTheme}: ${heroName} (expected: ${expectedName})`);
-            
-            if (expectedName && heroName !== expectedName) {
-              console.warn(`⚠️ Hero mismatch! Got ${heroName} but expected ${expectedName}`);
-            }
-          }
 
           setThemeComponents(loadedComponents);
           setLoadedTheme(currentTheme);
         } else {
-          console.error(`No components found for theme: ${currentTheme}`);
           setLoadedTheme(null);
         }
       }, 50); // Small delay to ensure state is cleared
@@ -278,7 +381,7 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
   const { Header, Footer, ProductGrid } = themeComponents;
  
   return (
-    <Card className={`overflow-hidden   ${className}`}>
+    <Card className={`overflow-hidden   ${className} border border-[#d6d6d6] dark:bg-[#101010] dark:border-[#424242] dark:text-white`}>
       <CardHeader>
         <CardTitle>
           {t("themePreview")} - {currentTheme}
@@ -313,15 +416,23 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                     }}
                   >
                     {t("yourStore")}
-                  </span>
-                }
-                cartItemCount={3}
-                wishlistCount={0}
-                onCartClick={() => console.log("Cart clicked")}
-                onAccountClick={() => console.log("Account clicked")}
-                onWishlistClick={() => console.log("Wishlist clicked")}
-                onSearch={(query: string) => console.log("Search:", query)}
-              />
+                      </span>
+                    }
+                    cartItemCount={cartItems.reduce((total, item) => total + item.quantity, 0)}
+                    cartItems={cartItems}
+                    wishlistCount={wishlistItems.length}
+                    wishlistItems={wishlistItems}
+                    onCartClick={() => {}}
+                    onAccountClick={() => {}}
+                    onWishlistClick={() => {}}
+                    onAddToWishlist={handleAddToWishlist}
+                    onRemoveFromWishlist={handleRemoveFromWishlist}
+                    onMoveToCart={handleMoveToCart}
+                    onSearch={(_query: string) => {}}
+                    onQuantityChange={handleQuantityChange}
+                    onRemoveFromCart={handleRemoveFromCart}
+                    onCheckout={handleCheckout}
+                  />
             ) : (
               /* Fallback generic header */
               <header
@@ -351,7 +462,7 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                         backgroundImage: `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})`,
                       }}
                     >
-                      Your Store
+                      {t("yourStore")}
                     </h1>
                   </div>
 
@@ -440,7 +551,7 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                   <section className="relative h-96 bg-gray-100">
                     <img
                       src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&q=80"
-                      alt="Hero"
+                      alt={t("hero")}
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
@@ -487,10 +598,6 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
               }
 
               // Render the Hero component with theme-specific props
-              const heroName =
-                HeroComponent.name || HeroComponent.displayName || "Anonymous";
-              console.log(`Rendering ${heroName} for ${currentTheme} theme`);
-
               try {
                 switch (currentTheme) {
                   case "modern":
@@ -512,9 +619,9 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                       <HeroComponent
                         key={`${currentTheme}-hero-${Date.now()}`}
                         image="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&q=80"
-                        title="Summer Collection 2024"
-                        subtitle="Discover our latest arrivals and trending styles"
-                        ctaText="Shop Now"
+                        title={t("summerCollection2024")}
+                        subtitle={t("discoverLatestArrivals")}
+                        ctaText={t("shopNow")}
                         ctaLink="/collections/summer"
                         overlay={false}
                         fullHeight={false}
@@ -527,38 +634,31 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                         key={`${currentTheme}-hero-${Date.now()}`}
                         backgroundType="image"
                         backgroundSrc="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&q=80"
-                        title="Summer Collection 2024"
-                        subtitle="New Arrivals"
-                        description="Discover our latest arrivals and trending styles"
-                        ctaText="Shop Now"
-                        onCtaClick={() => console.log("Hero button clicked")}
+                        title={t("summerCollection2024")}
+                        subtitle={t("newArrivals")}
+                        description={t("discoverLatestArrivals")}
+                        ctaText={t("shopNow")}
+                        onCtaClick={() => {}}
                         showScrollIndicator={false}
                         overlayOpacity={0.4}
                       />
                     );
                   default:
-                    console.warn(
-                      `Unknown theme: ${currentTheme}, using generic props`
-                    );
                     return (
                       <HeroComponent
                         key={`${currentTheme}-hero-${Date.now()}`}
-                        title="Summer Collection 2024"
-                        subtitle="Discover our latest arrivals and trending styles"
-                        buttonText="Shop Now"
+                        title={t("summerCollection2024")}
+                        subtitle={t("discoverLatestArrivals")}
+                        buttonText={t("shopNow")}
                         backgroundImage="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&q=80"
-                        onButtonClick={() => console.log("Hero button clicked")}
+                        onButtonClick={() => {}}
                       />
                     );
                 }
               } catch (error) {
-                console.error(
-                  `Error rendering Hero for ${currentTheme}:`,
-                  error
-                );
                 return (
                   <div className="h-96 bg-red-50 flex items-center justify-center">
-                    <p className="text-red-500">Error loading hero component</p>
+                    <p className="text-red-500">{t("error")} {t("loading")} {t("hero")}</p>
                   </div>
                 );
               }
@@ -620,9 +720,9 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                     <ProductGrid
                       products={mockProducts}
                       viewMode={viewMode}
-                      onProductClick={(id: number) =>
-                        console.log("Product clicked:", id)
-                      }
+                      onAddToCart={handleAddToCart}
+                      onQuickView={(_id: string) => {}}
+                      onWishlist={handleAddToWishlist}
                     />
                   ) : (
                     /* Fallback product grid */
@@ -636,7 +736,7 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                       {mockProducts.map((product) => (
                         <div
                           key={product.id}
-                          className="group cursor-pointer"
+                          className="group cursor-pointer relative"
                           style={{
                             backgroundColor: colors.background,
                             borderRadius: layout.borderRadius.lg,
@@ -704,28 +804,43 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                                 className="text-sm"
                                 style={{ color: colors.mutedForeground }}
                               >
-                                {t("reviews", { count: product.reviews })}
+                                {t("reviews", { count: product.reviewCount })}
                               </span>
                             </div>
-                            <div className="flex items-center gap-2">
-                              <span
-                                className="text-xl"
-                                style={{
-                                  fontWeight: typography.fontWeight.bold,
-                                  color: colors.primary,
-                                }}
-                              >
-                                ${product.price}
-                              </span>
-                              {product.originalPrice && (
+                            <div className="flex items-center justify-between gap-2 mb-3">
+                              <div className="flex items-center gap-2">
                                 <span
-                                  className="text-sm line-through"
-                                  style={{ color: colors.mutedForeground }}
+                                  className="text-xl"
+                                  style={{
+                                    fontWeight: typography.fontWeight.bold,
+                                    color: colors.primary,
+                                  }}
                                 >
-                                  ${product.originalPrice}
+                                  ${product.price}
                                 </span>
-                              )}
+                                {product.originalPrice && (
+                                  <span
+                                    className="text-sm line-through"
+                                    style={{ color: colors.mutedForeground }}
+                                  >
+                                    ${product.originalPrice}
+                                  </span>
+                                )}
+                              </div>
                             </div>
+                            <Button
+                              size="sm"
+                              className="w-full"
+                              onClick={() => handleAddToCart(product.id)}
+                              style={{
+                                background: `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})`,
+                                color: colors.background,
+                                borderRadius: layout.borderRadius.md,
+                              }}
+                            >
+                              <ShoppingBag className="h-4 w-4 mr-2" />
+                              {t("addToCart")}
+                            </Button>
                           </div>
                         </div>
                       ))}
@@ -767,7 +882,7 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                               {category.name}
                             </h3>
                             <p className="text-sm opacity-90">
-                              {category.count} Products
+                              {t("productsCount", { count: category.count })}
                             </p>
                           </div>
                           <ChevronRight className="h-5 w-5 ml-auto text-white opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -790,12 +905,10 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                       color: colors.primary,
                     }}
                   >
-                    Your Store
+                    {t("yourStore")}
                   </span>
                 }
-                onSubscribe={(email: string) =>
-                  console.log("Subscribe:", email)
-                }
+                onSubscribe={(_email: string) => {}}
               />
             ) : (
               /* Fallback generic footer */
