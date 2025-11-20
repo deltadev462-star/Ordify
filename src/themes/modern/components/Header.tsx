@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import {
   Search,
   ShoppingCart,
@@ -9,9 +15,10 @@ import {
   Menu,
   Heart,
   ChevronDown,
-  X
+  X,
 } from "lucide-react";
 import { useTheme } from "@/hooks/useTheme";
+import { useTranslation } from "react-i18next";
 
 interface NavigationItem {
   label: string;
@@ -38,36 +45,9 @@ interface ModernHeaderProps {
   className?: string;
 }
 
-const defaultNavigation: NavigationItem[] = [
-  {
-    label: "Shop",
-    children: [
-      { label: "New Arrivals", href: "/shop/new", description: "Check out the latest products" },
-      { label: "Best Sellers", href: "/shop/best-sellers", description: "Our most popular items" },
-      { label: "Sale", href: "/shop/sale", description: "Great deals and discounts" },
-    ],
-  },
-  {
-    label: "Collections",
-    children: [
-      { label: "Summer Collection", href: "/collections/summer" },
-      { label: "Winter Collection", href: "/collections/winter" },
-      { label: "Limited Edition", href: "/collections/limited" },
-    ],
-  },
-  {
-    label: "About",
-    href: "/about",
-  },
-  {
-    label: "Contact",
-    href: "/contact",
-  },
-];
-
 export const ModernHeader = ({
   logo = "ORDIFY",
-  navigation = defaultNavigation,
+  navigation,
   cartItemCount = 0,
   wishlistCount = 0,
   showSearch = true,
@@ -79,11 +59,48 @@ export const ModernHeader = ({
   onSearch,
   className = "",
 }: ModernHeaderProps) => {
+  const { t } = useTranslation();
+  const { colors } = useTheme();
+
+  const defaultNavigation: NavigationItem[] = [
+    {
+      label: t("Shop"),
+      children: [
+        {
+          label: t("New Arrivals"),
+          href: "/shop/new",
+          description: t("Check out the latest products"),
+        },
+        {
+          label: t("Best Sellers"),
+          href: "/shop/best-sellers",
+          description: t("Our most popular items"),
+        },
+        {
+          label: t("Sale"),
+          href: "/shop/sale",
+          description: t("Great deals and discounts"),
+        },
+      ],
+    },
+    {
+      label: t("Collections"),
+      children: [
+        { label: t("Summer Collection"), href: "/collections/summer" },
+        { label: t("Winter Collection"), href: "/collections/winter" },
+        { label: t("Limited Edition"), href: "/collections/limited" },
+      ],
+    },
+    { label: t("About"), href: "/about" },
+    { label: t("Contact"), href: "/contact" },
+  ];
+
+  const nav = navigation || defaultNavigation;
+
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const { colors } = useTheme();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -102,9 +119,11 @@ export const ModernHeader = ({
     <header
       className={`sticky top-0 z-50 backdrop-blur-md ${className}`}
       style={{
-        background: colors ? `linear-gradient(to bottom, ${colors.background}ee, ${colors.background}dd)` : 'white',
-        borderBottom: `1px solid ${colors?.border || '#e5e7eb'}`,
-        boxShadow: colors ? `0 2px 10px ${colors.primary}10` : undefined
+        background: colors
+          ? `linear-gradient(to bottom, ${colors.background}ee, ${colors.background}dd)`
+          : "white",
+        borderBottom: `1px solid ${colors?.border || "#e5e7eb"}`,
+        boxShadow: colors ? `0 2px 10px ${colors.primary}10` : undefined,
       }}
     >
       <div className="container mx-auto px-4">
@@ -118,11 +137,11 @@ export const ModernHeader = ({
             </SheetTrigger>
             <SheetContent side="left" className="w-80">
               <SheetHeader>
-                <SheetTitle>Menu</SheetTitle>
+                <SheetTitle>{t("Menu")}</SheetTitle>
               </SheetHeader>
               <nav className="mt-6">
                 <ul className="space-y-4">
-                  {navigation.map((item) => (
+                  {nav.map((item) => (
                     <li key={item.label}>
                       {item.children ? (
                         <div>
@@ -131,10 +150,10 @@ export const ModernHeader = ({
                             onClick={() => handleDropdownToggle(item.label)}
                           >
                             {item.label}
-                            <ChevronDown 
+                            <ChevronDown
                               className={`h-4 w-4 transition-transform ${
                                 openDropdown === item.label ? "rotate-180" : ""
-                              }`} 
+                              }`}
                             />
                           </button>
                           {openDropdown === item.label && (
@@ -145,7 +164,14 @@ export const ModernHeader = ({
                                     href={child.href}
                                     className="block py-1.5 text-sm text-gray-600 hover:text-gray-900"
                                   >
-                                    {child.label}
+                                    <div className="font-medium">
+                                      {child.label}
+                                    </div>
+                                    {child.description && (
+                                      <p className="text-xs text-gray-500">
+                                        {child.description}
+                                      </p>
+                                    )}
                                   </a>
                                 </li>
                               ))}
@@ -153,10 +179,7 @@ export const ModernHeader = ({
                           )}
                         </div>
                       ) : (
-                        <a
-                          href={item.href}
-                          className="block py-2 font-medium"
-                        >
+                        <a href={item.href} className="block py-2 font-medium">
                           {item.label}
                         </a>
                       )}
@@ -174,9 +197,11 @@ export const ModernHeader = ({
                 <span
                   className="text-2xl font-bold bg-clip-text text-transparent"
                   style={{
-                    backgroundImage: colors ? `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})` : undefined,
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent'
+                    backgroundImage: colors
+                      ? `linear-gradient(135deg, ${colors.primary}, ${colors.secondary})`
+                      : undefined,
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
                   }}
                 >
                   {logo}
@@ -190,13 +215,13 @@ export const ModernHeader = ({
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex lg:flex-1 lg:justify-center">
             <ul className="flex items-center space-x-8">
-              {navigation.map((item) => (
+              {nav.map((item) => (
                 <li key={item.label} className="group relative">
                   {item.children ? (
                     <>
                       <button
                         className="relative flex items-center space-x-1 py-5 font-medium transition-all duration-300 group"
-                        style={{ color: colors?.foreground || '#374151' }}
+                        style={{ color: colors?.foreground || "#374151" }}
                         onMouseEnter={() => setOpenDropdown(item.label)}
                         onMouseLeave={() => setOpenDropdown(null)}
                       >
@@ -205,7 +230,9 @@ export const ModernHeader = ({
                         <span
                           className="absolute -bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full"
                           style={{
-                            background: colors ? `linear-gradient(90deg, ${colors.primary}, ${colors.secondary})` : undefined
+                            background: colors
+                              ? `linear-gradient(90deg, ${colors.primary}, ${colors.secondary})`
+                              : undefined,
                           }}
                         />
                       </button>
@@ -222,7 +249,9 @@ export const ModernHeader = ({
                                   href={child.href}
                                   className="block rounded px-3 py-2 hover:bg-gray-50"
                                 >
-                                  <div className="font-medium">{child.label}</div>
+                                  <div className="font-medium">
+                                    {child.label}
+                                  </div>
                                   {child.description && (
                                     <p className="text-sm text-gray-500">
                                       {child.description}
@@ -239,13 +268,15 @@ export const ModernHeader = ({
                     <a
                       href={item.href}
                       className="relative py-5 font-medium transition-all duration-300 group"
-                      style={{ color: colors?.foreground || '#374151' }}
+                      style={{ color: colors?.foreground || "#374151" }}
                     >
                       {item.label}
                       <span
                         className="absolute -bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full"
                         style={{
-                          background: colors ? `linear-gradient(90deg, ${colors.primary}, ${colors.secondary})` : undefined
+                          background: colors
+                            ? `linear-gradient(90deg, ${colors.primary}, ${colors.secondary})`
+                            : undefined,
                         }}
                       />
                     </a>
@@ -257,7 +288,6 @@ export const ModernHeader = ({
 
           {/* Actions */}
           <div className="flex items-center space-x-2">
-            {/* Search */}
             {showSearch && (
               <>
                 <Button
@@ -268,11 +298,12 @@ export const ModernHeader = ({
                 >
                   <Search className="h-5 w-5" />
                 </Button>
-
-                {/* Search Modal */}
                 {isSearchOpen && (
-                  <div className="fixed inset-0 z-50 bg-black/50" onClick={() => setIsSearchOpen(false)}>
-                    <div 
+                  <div
+                    className="fixed inset-0 z-50 bg-black/50"
+                    onClick={() => setIsSearchOpen(false)}
+                  >
+                    <div
                       className="bg-white p-4 shadow-lg"
                       onClick={(e) => e.stopPropagation()}
                     >
@@ -280,7 +311,7 @@ export const ModernHeader = ({
                         <form onSubmit={handleSearch} className="relative">
                           <Input
                             type="search"
-                            placeholder="Search products..."
+                            placeholder={t("Search products...")}
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             className="h-14 pr-12 text-lg"
@@ -300,8 +331,6 @@ export const ModernHeader = ({
                 )}
               </>
             )}
-
-            {/* Account */}
             {showAccount && (
               <Button
                 variant="ghost"
@@ -312,8 +341,6 @@ export const ModernHeader = ({
                 <User className="h-5 w-5" />
               </Button>
             )}
-
-            {/* Wishlist */}
             {showWishlist && (
               <Button
                 variant="ghost"
@@ -326,8 +353,12 @@ export const ModernHeader = ({
                   <span
                     className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full text-xs font-semibold text-white shadow-lg"
                     style={{
-                      background: colors ? `linear-gradient(135deg, ${colors.accent}, ${colors.primary})` : '#ef4444',
-                      boxShadow: colors ? `0 2px 8px ${colors.accent}40` : undefined
+                      background: colors
+                        ? `linear-gradient(135deg, ${colors.accent}, ${colors.primary})`
+                        : "#ef4444",
+                      boxShadow: colors
+                        ? `0 2px 8px ${colors.accent}40`
+                        : undefined,
                     }}
                   >
                     {wishlistCount}
@@ -335,8 +366,6 @@ export const ModernHeader = ({
                 )}
               </Button>
             )}
-
-            {/* Cart */}
             <Button
               variant="ghost"
               size="icon"
@@ -348,8 +377,12 @@ export const ModernHeader = ({
                 <span
                   className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full text-xs font-semibold text-white shadow-lg"
                   style={{
-                    background: colors ? `linear-gradient(135deg, ${colors.accent}, ${colors.primary})` : undefined,
-                    boxShadow: colors ? `0 2px 8px ${colors.accent}40` : undefined
+                    background: colors
+                      ? `linear-gradient(135deg, ${colors.accent}, ${colors.primary})`
+                      : undefined,
+                    boxShadow: colors
+                      ? `0 2px 8px ${colors.accent}40`
+                      : undefined,
                   }}
                 >
                   {cartItemCount}

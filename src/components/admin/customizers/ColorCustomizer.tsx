@@ -547,7 +547,7 @@ export const ColorCustomizer: React.FC = () => {
                         style={{ backgroundColor: value }}
                       />
                       <span className="text-xs text-gray-600 capitalize">
-                        {key.replace(/([A-Z])/g, " $1").trim()}
+                        {t(key.replace(/([A-Z])/g, " $1").trim())}
                       </span>
                     </div>
                   ))}

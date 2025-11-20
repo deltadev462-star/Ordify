@@ -7,7 +7,7 @@ export default {
     primary: "#6366f1", // Indigo-500 - More vibrant
     secondary: "#ec4899", // Pink-500 - More energetic
     accent: "#14b8a6", // Teal-500 - Fresh accent
-    background: "#ffffff",
+    // background: "#ffffff",
     foreground: "#0f172a", // Slate-900
     muted: "#f8fafc", // Slate-50 - Lighter
     mutedForeground: "#64748b", // Slate-500

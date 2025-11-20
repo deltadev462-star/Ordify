@@ -10,8 +10,9 @@ import {
   CreditCard,
   ShieldCheck,
   Truck,
-  RefreshCw
+  RefreshCw,
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface FooterLink {
   label: string;
@@ -44,50 +45,10 @@ interface ModernFooterProps {
   className?: string;
 }
 
-const defaultSections: FooterSection[] = [
-  {
-    title: "Shop",
-    links: [
-      { label: "New Arrivals", href: "/shop/new" },
-      { label: "Best Sellers", href: "/shop/best-sellers" },
-      { label: "Sale", href: "/shop/sale" },
-      { label: "All Products", href: "/shop" },
-    ],
-  },
-  {
-    title: "Customer Care",
-    links: [
-      { label: "Contact Us", href: "/contact" },
-      { label: "Shipping Info", href: "/shipping" },
-      { label: "Returns & Exchanges", href: "/returns" },
-      { label: "Size Guide", href: "/size-guide" },
-      { label: "FAQs", href: "/faqs" },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
-      { label: "About Us", href: "/about" },
-      { label: "Careers", href: "/careers" },
-      { label: "Press", href: "/press" },
-      { label: "Sustainability", href: "/sustainability" },
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      { label: "Terms of Service", href: "/terms" },
-      { label: "Privacy Policy", href: "/privacy" },
-      { label: "Cookie Policy", href: "/cookies" },
-      { label: "Accessibility", href: "/accessibility" },
-    ],
-  },
-];
-
 export const ModernFooter = ({
   logo = "ORDIFY",
-  description = "Your trusted partner in ecommerce. Providing quality products and exceptional service since 2024.",
-  sections = defaultSections,
+  description,
+  sections,
   showNewsletter = true,
   showPaymentIcons = true,
   showSocialLinks = true,
@@ -104,26 +65,70 @@ export const ModernFooter = ({
   },
   className = "",
 }: ModernFooterProps) => {
+  const { t } = useTranslation();
+
+  const defaultSections: FooterSection[] = [
+    {
+      title: t("Shop"),
+      links: [
+        { label: t("New Arrivals"), href: "/shop/new" },
+        { label: t("Best Sellers"), href: "/shop/best-sellers" },
+        { label: t("Sale"), href: "/shop/sale" },
+        { label: t("All Products"), href: "/shop" },
+      ],
+    },
+    {
+      title: t("Customer Care"),
+      links: [
+        { label: t("Contact Us"), href: "/contact" },
+        { label: t("Shipping Info"), href: "/shipping" },
+        { label: t("Returns & Exchanges"), href: "/returns" },
+        { label: t("Size Guide"), href: "/size-guide" },
+        { label: t("FAQs"), href: "/faqs" },
+      ],
+    },
+    {
+      title: t("Company"),
+      links: [
+        { label: t("About Us"), href: "/about" },
+        { label: t("Careers"), href: "/careers" },
+        { label: t("Press"), href: "/press" },
+        { label: t("Sustainability"), href: "/sustainability" },
+      ],
+    },
+    {
+      title: t("Legal"),
+      links: [
+        { label: t("Terms of Service"), href: "/terms" },
+        { label: t("Privacy Policy"), href: "/privacy" },
+        { label: t("Cookie Policy"), href: "/cookies" },
+        { label: t("Accessibility"), href: "/accessibility" },
+      ],
+    },
+  ];
+
+  const navSections = sections || defaultSections;
+
   const features = [
     {
       icon: <Truck className="h-5 w-5" />,
-      title: "Free Shipping",
-      description: "On orders over $50",
+      title: t("Free Shipping"),
+      description: t("On orders over $50"),
     },
     {
       icon: <RefreshCw className="h-5 w-5" />,
-      title: "Easy Returns",
-      description: "30-day return policy",
+      title: t("Easy Returns"),
+      description: t("30-day return policy"),
     },
     {
       icon: <ShieldCheck className="h-5 w-5" />,
-      title: "Secure Payment",
-      description: "100% secure checkout",
+      title: t("Secure Payment"),
+      description: t("100% secure checkout"),
     },
     {
       icon: <CreditCard className="h-5 w-5" />,
-      title: "Multiple Payment",
-      description: "Various payment methods",
+      title: t("Multiple Payment"),
+      description: t("Various payment methods"),
     },
   ];
 
@@ -160,8 +165,10 @@ export const ModernFooter = ({
           <div className="container mx-auto px-4 py-12">
             <Newsletter
               variant="modern"
-              title="Stay in the Loop"
-              description="Subscribe to get special offers, free giveaways, and new arrivals updates."
+              title={t("Stay in the Loop")}
+              description={t(
+                "Subscribe to get special offers, free giveaways, and new arrivals updates."
+              )}
               className="mx-auto max-w-2xl"
             />
           </div>
@@ -180,8 +187,13 @@ export const ModernFooter = ({
                 logo
               )}
             </div>
-            <p className="mb-6 text-sm text-gray-400">{description}</p>
-            
+            <p className="mb-6 text-sm text-gray-400">
+              {description ||
+                t(
+                  "Your trusted partner in ecommerce. Providing quality products and exceptional service since 2024."
+                )}
+            </p>
+
             {/* Social Links */}
             {showSocialLinks && socialLinks && (
               <div className="flex gap-2">
@@ -227,7 +239,7 @@ export const ModernFooter = ({
 
           {/* Links Sections */}
           <div className="grid gap-8 sm:grid-cols-2 lg:col-span-3 lg:grid-cols-4">
-            {sections.map((section) => (
+            {navSections.map((section) => (
               <div key={section.title}>
                 <h4 className="mb-4 font-semibold">{section.title}</h4>
                 <ul className="space-y-2">
@@ -248,7 +260,7 @@ export const ModernFooter = ({
 
           {/* Contact Column */}
           <div className="lg:col-span-1">
-            <h4 className="mb-4 font-semibold">Get in Touch</h4>
+            <h4 className="mb-4 font-semibold">{t("Get in Touch")}</h4>
             <ul className="space-y-3">
               {contactInfo.email && (
                 <li className="flex items-start gap-2">
@@ -287,30 +299,30 @@ export const ModernFooter = ({
 
       {/* Bottom Bar */}
       <div className="border-t border-gray-800 bg-gray-950/50">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-            <p className="text-sm text-gray-400">
-              © {new Date().getFullYear()} {typeof logo === "string" ? logo : "Ordify"}. All rights reserved.
-            </p>
-            
-            {/* Payment Methods */}
-            {showPaymentIcons && (
-              <div className="flex items-center gap-4">
-                <span className="text-sm text-gray-400">We accept:</span>
-                <div className="flex gap-2">
-                  {paymentMethods.map((method) => (
-                    <span
-                      key={method.name}
-                      className="flex h-8 w-12 items-center justify-center rounded bg-gray-800 text-sm"
-                      title={method.name}
-                    >
-                      {method.icon}
-                    </span>
-                  ))}
-                </div>
+        <div className="container mx-auto px-4 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-sm text-gray-400">
+            © {new Date().getFullYear()}{" "}
+            {typeof logo === "string" ? logo : "Ordify"}.{" "}
+            {t("All rights reserved.")}
+          </p>
+
+          {/* Payment Methods */}
+          {showPaymentIcons && (
+            <div className="flex items-center gap-4">
+              <span className="text-sm text-gray-400">{t("We accept:")}</span>
+              <div className="flex gap-2">
+                {paymentMethods.map((method) => (
+                  <span
+                    key={method.name}
+                    className="flex h-8 w-12 items-center justify-center rounded bg-gray-800 text-sm"
+                    title={method.name}
+                  >
+                    {method.icon}
+                  </span>
+                ))}
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </footer>
