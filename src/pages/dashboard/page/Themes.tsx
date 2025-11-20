@@ -91,8 +91,10 @@ const Themes = () => {
 
             {/* Main Content Area */}
             <div
-              className={` ${ 
-                isFullscreen ? " fixed inset-0 z-[999] bg-white dark:bg-[#101010] scroll-auto p-6" : ""
+              className={` ${
+                isFullscreen
+                  ? " fixed inset-0 z-[999] bg-white dark:bg-[#101010] scroll-auto p-6"
+                  : ""
               }`}
             >
               {isFullscreen && (
@@ -318,7 +320,7 @@ const Themes = () => {
                               >
                                 <div className="h-2 w-2 rounded-full bg-green-500" />
                                 <span className="text-sm capitalize">
-                                  {feature.replace(/([A-Z])/g, " $1").trim()}
+                                  {t(feature.replace(/([A-Z])/g, " $1").trim())}
                                 </span>
                               </div>
                             ))}

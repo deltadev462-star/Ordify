@@ -299,9 +299,9 @@
   "Primary Color:": "اللون الأساسي:",
   "Font Family:": "عائلة الخط:",
   "Customizations:": "التخصيصات:",
-   
+
   "Medium": "متوسط",
- 
+
   "Font Families": "عائلات الخطوط",
   "Choose fonts that reflect your brand personality": "اختر خطوطاً تعكس شخصية علامتك التجارية",
   "Body Font": "خط النص",
@@ -323,9 +323,9 @@
   "This is extra small text, used for captions and fine print.": "هذا نص صغير جداً، يُستخدم للتسميات التوضيحية والطباعة الدقيقة.",
   "Button Text Example": "مثال على نص الزر",
   "Reset Typography": "إعادة تعيين الخط",
-  
+
   "Custom Colors": "ألوان مخصصة",
- 
+
   "Home": "الرئيسية",
   "Shop": "المتجر",
   "New Arrivals": "الوافدون الجدد",
@@ -692,12 +692,142 @@
   "Spacing Scale": "مقياس المسافات",
   "Corner Radius": "نصف قطر الزوايا",
   "Reset Layout": "إعادة ضبط التخطيط",
-  
+
   "Compact": "مضغوط",
   "Tight spacing for content-rich layouts": "مسافات ضيقة للتخطيطات المحتوى الكثيف",
   "Comfortable": "مريح",
   "Balanced spacing for most use cases": "مسافات متوازنة لمعظم الحالات",
   "Spacious": "واسع",
-  "Generous spacing for luxury feel": "مسافات واسعة لإحساس بالفخامة"
+  "Generous spacing for luxury feel": "مسافات واسعة لإحساس بالفخامة",
+
+  "success": "نجاح",
+  "warning": "تحذير",
+  "info": "معلومة",
+  "lightPrimary": "أساسي فاتح",
+  "lightSecondary": "ثانوي فاتح",
+  "lightAccent": "تسليط الضوء فاتح",
+  "lightBackground": "خلفية فاتحة",
+  "lightForeground": "مقدمة فاتحة",
+  "lightMuted": "باهت فاتح",
+
+  "darkInfo": "معلومة داكنة",
+  "highlight": "تسليط الضوء",
+  "disabled": "معطل",
+  "link": "رابط",
+  "visited": "تمت الزيارة",
+  "hover": "تأشير",
+
+  "shadow": "ظل",
+  "surface": "سطح",
+  "card": "بطاقة",
+  "tooltip": "تلميح",
+
+  "Check out the latest products": "تحقق من أحدث المنتجات",
+  "Our most popular items": "أكثر المنتجات شعبية",
+  "Great deals and discounts": "عروض وخصومات رائعة",
+  "Collections": "المجموعات",
+  "Summer Collection": "مجموعة الصيف",
+  "Winter Collection": "مجموعة الشتاء",
+  "Limited Edition": "إصدار محدود",
+  "About": "عن المتجر",
+
+  "Search products...": "ابحث عن المنتجات...",
+
+  "Search": "ابحث",
+
+  "Customer Care": "خدمة العملاء",
+
+  "Returns & Exchanges": "المرتجعات والتبديل",
+  "Size Guide": "دليل المقاسات",
+  "Company": "الشركة",
+
+  "Sustainability": "الاستدامة",
+  "Legal": "القوانين",
+  "Terms of Service": "شروط الخدمة",
+
+  "On orders over $50": "على الطلبات التي تزيد عن 50$",
+  "Easy Returns": "إرجاع سهل",
+  "30-day return policy": "سياسة إرجاع خلال 30 يومًا",
+  "Secure Payment": "دفع آمن",
+  "100% secure checkout": "دفع آمن 100%",
+  "Multiple Payment": "طرق دفع متعددة",
+  "Various payment methods": "طرق دفع متنوعة",
+  "Stay in the Loop": "ابقَ على اطلاع",
+  "Subscribe to get special offers, free giveaways, and new arrivals updates.": "اشترك للحصول على عروض خاصة وهدايا مجانية وتحديثات المنتجات الجديدة.",
+  "Get in Touch": "تواصل معنا",
+  "All rights reserved.": "جميع الحقوق محفوظة.",
+  "We accept:": "نقبل الدفع عبر:",
+
+  "Animations": "الرسوم المتحركة",
+  "Mega Menu": "قائمة ضخمة",
+  "Product Hover": "تحويم المنتج",
+  "Parallax Scrolling": "التمرير البارالاكس",
+
+  "Stylish Classic Watch": "ساعة كلاسيكية مدرنة",
+
+  "Bags & Accessories": "حقائب وإكسسوارات",
+  "Eyewear": "نظارات",
+  "Fragrances": "عطور",
+  "Handcrafted genuine leather bag with premium finish. Perfect for business and casual occasions.": "حقيبة جلدية أصلية مصنوعة يدويًا مع تشطيب فاخر. مثالية للأعمال والمناسبات العادية.",
+  "Swiss movement automatic watch with sapphire crystal glass and stainless steel case.": "ساعة أوتوماتيكية بحركة سويسرية وزجاج كريستال ياقوتي وغطاء من الفولاذ المقاوم للصدأ.",
+  "UV400 protection polarized sunglasses with titanium frame. Stylish and durable.": "نظارات شمسية مستقطبة بحماية UV400 وإطار من التيتانيوم. أنيقة ومتينة.",
+  "Exclusive eau de parfum with notes of bergamot, jasmine, and sandalwood. Long-lasting fragrance.": "عطر فاخر مع نفحات البرغموت والياسمين وخشب الصندل. عطر طويل الأمد.",
+  "100% Genuine Leather": "جلد أصلي 100%",
+  "Handmade": "مصنوع يدويًا",
+  "Water Resistant": "مقاوم للماء",
+  "Multiple Compartments": "عدة جيوب",
+  "Swiss Movement": "حركة سويسرية",
+  "Sapphire Crystal": "زجاج ياقوتي",
+  "Water Resistant 100m": "مقاوم للماء 100م",
+  "Automatic": "أوتوماتيكي",
+  "Date Display": "عرض التاريخ",
+  "UV400 Protection": "حماية UV400",
+  "Polarized Lens": "عدسة مستقطبة",
+  "Titanium Frame": "إطار من التيتانيوم",
+  "Anti-Glare": "مضاد للوهج",
+  "Eau de Parfum": "عطر مركز",
+  "Long Lasting": "يدوم طويلًا",
+  "Natural Ingredients": "مكونات طبيعية",
+  "Gift Box Included": "يشمل علبة هدية",
+  "2 Year Warranty": "ضمان سنتين",
+  "5 Year Warranty": "ضمان خمس سنوات",
+  "1 Year Warranty": "ضمان سنة واحدة",
+  "Authentic Guarantee": "ضمان الأصالة",
+
+  "Signature Collection": "مجموعة التوقيع",
+  "Heritage": "التراث",
+  "Gift Guide": "دليل الهدايا",
+  "Client Services": "خدمات العملاء",
+  "Personal Shopping": "التسوق الشخصي",
+  "Virtual Appointments": "المواعيد الافتراضية",
+  "Size Guide": "دليل المقاسات",
+  "Care Instructions": "تعليمات العناية",
+  "Shipping & Returns": "الشحن والإرجاع",
+  "The Maison": "الدار",
+  "Our Story": "قصتنا",
+  "Craftsmanship": "الحرفية",
+
+  "Terms & Conditions": "الشروط والأحكام",
+
+  "Crafted for Excellence": "مصنوع من أجل التميز",
+  "+1 (800) LUXE-SHOP": "+1 (800) متجر لوكس",
+  "1 Avenue Montaigne, 75008 Paris, France": "1 شارع مونتين، 75008 باريس، فرنسا",
+  "All rights reserved.": "جميع الحقوق محفوظة.",
+  "Join Our Exclusive Circle": "انضم إلى دائرتنا الحصرية",
+  "Be the first to discover new collections and receive invitations to private events": "كن أول من يكتشف المجموعات الجديدة ويحصل على دعوات للفعاليات الخاصة",
+  "Enter your email address": "أدخل بريدك الإلكتروني",
+  "Subscribe": "اشترك",
+  "Available 24/7": "متاح على مدار الساعة",
+  "Concierge Service": "خدمة الكونسيرج",
+  "Response within 24 hours": "الرد خلال 24 ساعة",
+  "Flagship Store": "المتجر الرئيسي",
+  "Book an Appointment": "احجز موعدًا",
+  "Terms": "الشروط",
+  "Privacy": "الخصوصية",
+  "Language": "اللغة",
+  "Currency": "العملة",
+  "United States | English": "الولايات المتحدة | الإنجليزية",
+
+  "Information": "معلومات",
+  "Shipping": "الشحن"
 }
- 

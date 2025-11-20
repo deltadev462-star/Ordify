@@ -6,7 +6,18 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ShoppingBag, Star, Heart, Search, Menu, X, ChevronRight, Filter, Grid, List } from "lucide-react";
+import {
+  ShoppingBag,
+  Star,
+  Heart,
+  Search,
+  Menu,
+  X,
+  ChevronRight,
+  Filter,
+  Grid,
+  List,
+} from "lucide-react";
 
 interface ThemePreviewProps {
   device?: "desktop" | "tablet" | "mobile";
@@ -26,41 +37,46 @@ interface ThemeComponentMap {
 
 // Map of possible component names for each component type across all themes
 const COMPONENT_NAME_PATTERNS: ThemeComponentMap = {
-  header: ['Header', 'CenteredHeader'],
-  footer: ['Footer', 'TwoColumnFooter'],
-  hero: ['Hero', 'SplitHero'],
-  productGrid: ['ProductGrid', 'ProductShowcase', 'ProductCarousel'],
-  productCard: ['ProductCard', 'FeaturedProduct'],
-  categoryCard: ['CategoryCard', 'CollectionBanner', 'CollectionGrid'],
-  collectionBanner: ['FeaturedCollections', 'AsymmetricCollections', 'ScrollableCollections', 'CollectionBanner']
+  header: ["Header", "CenteredHeader"],
+  footer: ["Footer", "TwoColumnFooter"],
+  hero: ["Hero", "SplitHero"],
+  productGrid: ["ProductGrid", "ProductShowcase", "ProductCarousel"],
+  productCard: ["ProductCard", "FeaturedProduct"],
+  categoryCard: ["CategoryCard", "CollectionBanner", "CollectionGrid"],
+  collectionBanner: [
+    "FeaturedCollections",
+    "AsymmetricCollections",
+    "ScrollableCollections",
+    "CollectionBanner",
+  ],
 };
 
 // Theme-specific component name mappings - EXACT names as exported
 const THEME_SPECIFIC_NAMES: Record<string, Record<string, string[]>> = {
   modern: {
-    hero: ['ModernHero'],
-    productGrid: ['ModernProductGrid'],
-    header: ['ModernHeader'],
-    footer: ['ModernFooter']
+    hero: ["ModernHero"],
+    productGrid: ["ModernProductGrid"],
+    header: ["ModernHeader"],
+    footer: ["ModernFooter"],
   },
   classic: {
-    hero: ['ClassicHero'],
-    productGrid: ['ClassicProductGrid'],
-    header: ['ClassicHeader'],
-    footer: ['ClassicFooter']
+    hero: ["ClassicHero"],
+    productGrid: ["ClassicProductGrid"],
+    header: ["ClassicHeader"],
+    footer: ["ClassicFooter"],
   },
   minimal: {
-    hero: ['MinimalHero'],
-    productGrid: ['MinimalProductShowcase', 'MinimalProductGrid'],
-    header: ['MinimalHeader', 'MinimalCenteredHeader'],
-    footer: ['MinimalFooter', 'MinimalTwoColumnFooter']
+    hero: ["MinimalHero"],
+    productGrid: ["MinimalProductShowcase", "MinimalProductGrid"],
+    header: ["MinimalHeader", "MinimalCenteredHeader"],
+    footer: ["MinimalFooter", "MinimalTwoColumnFooter"],
   },
   luxe: {
-    hero: ['LuxeHero', 'LuxeSplitHero'],
-    productGrid: ['LuxeProductCarousel', 'LuxeFeaturedProduct'],
-    header: ['LuxeHeader'],
-    footer: ['LuxeFooter']
-  }
+    hero: ["LuxeHero", "LuxeSplitHero"],
+    productGrid: ["LuxeProductCarousel", "LuxeFeaturedProduct"],
+    header: ["LuxeHeader"],
+    footer: ["LuxeFooter"],
+  },
 };
 
 // Note: mockHeroSlides will be initialized in component since it needs translations
@@ -80,7 +96,6 @@ const findThemeComponent = (
   if (exactNames) {
     for (const exactName of exactNames) {
       if (themeComponents[exactName]) {
-         
         return themeComponents[exactName];
       }
     }
@@ -89,7 +104,7 @@ const findThemeComponent = (
   // Fallback to generic pattern matching if no exact match
   const themePrefix = themeName.charAt(0).toUpperCase() + themeName.slice(1);
   const patterns = COMPONENT_NAME_PATTERNS[componentType];
-  
+
   // Try with theme prefix
   for (const pattern of patterns) {
     const prefixedName = `${themePrefix}${pattern}`;
@@ -122,7 +137,7 @@ interface WishlistItem {
 
 export const ThemePreview: React.FC<ThemePreviewProps> = ({
   device = "desktop",
-  className = ""
+  className = "",
 }) => {
   const { t } = useTranslation();
   const { colors, typography, layout, currentTheme } = useTheme();
@@ -130,23 +145,25 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [wishlistItems, setWishlistItems] = useState<WishlistItem[]>([]);
-  
+
   // Mock hero slides for modern theme
   const mockHeroSlides = [
     {
       id: "slide1",
-      image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&q=80",
+      image:
+        "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&q=80",
       title: t("summerCollection2024"),
       subtitle: t("newArrivals"),
       description: t("discoverLatestArrivals"),
       ctaText: t("shopNow"),
       ctaLink: "/collections/summer",
       textPosition: "center" as const,
-      textColor: "light" as const
-    }
+      textColor: "light" as const,
+    },
   ];
 
   // Mock data for preview
+
   const mockProducts = [
     {
       id: "1",
@@ -155,16 +172,24 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
       originalPrice: 399.99,
       rating: 4.5,
       reviewCount: 128,
-      image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&q=80",
-      category: "Bags & Accessories",
-      description: "Handcrafted genuine leather bag with premium finish. Perfect for business and casual occasions.",
-      features: ["100% Genuine Leather", "Handmade", "Water Resistant", "Multiple Compartments"],
+      image:
+        "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&q=80",
+      category: t("Bags & Accessories"),
+      description: t(
+        "Handcrafted genuine leather bag with premium finish. Perfect for business and casual occasions."
+      ),
+      features: [
+        t("100% Genuine Leather"),
+        t("Handmade"),
+        t("Water Resistant"),
+        t("Multiple Compartments"),
+      ],
       badge: t("sale"),
       inStock: true,
       freeShipping: true,
       fastDelivery: true,
-      warranty: "2 Year Warranty",
-      isBestseller: true
+      warranty: t("2 Year Warranty"),
+      isBestseller: true,
     },
     {
       id: "2",
@@ -172,15 +197,24 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
       price: 599.99,
       rating: 5,
       reviewCount: 89,
-      image: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=400&q=80",
-      category: "Watches",
-      description: "Swiss movement automatic watch with sapphire crystal glass and stainless steel case.",
-      features: ["Swiss Movement", "Sapphire Crystal", "Water Resistant 100m", "Automatic", "Date Display"],
+      image:
+        "https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=400&q=80",
+      category: t("Watches"),
+      description: t(
+        "Swiss movement automatic watch with sapphire crystal glass and stainless steel case."
+      ),
+      features: [
+        t("Swiss Movement"),
+        t("Sapphire Crystal"),
+        t("Water Resistant 100m"),
+        t("Automatic"),
+        t("Date Display"),
+      ],
       badge: t("new"),
       inStock: true,
       freeShipping: true,
-      warranty: "5 Year Warranty",
-      isNew: true
+      warranty: t("5 Year Warranty"),
+      isNew: true,
     },
     {
       id: "3",
@@ -188,14 +222,22 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
       price: 199.99,
       rating: 4.8,
       reviewCount: 234,
-      image: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&q=80",
-      category: "Eyewear",
-      description: "UV400 protection polarized sunglasses with titanium frame. Stylish and durable.",
-      features: ["UV400 Protection", "Polarized Lens", "Titanium Frame", "Anti-Glare"],
+      image:
+        "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&q=80",
+      category: t("Eyewear"),
+      description: t(
+        "UV400 protection polarized sunglasses with titanium frame. Stylish and durable."
+      ),
+      features: [
+        t("UV400 Protection"),
+        t("Polarized Lens"),
+        t("Titanium Frame"),
+        t("Anti-Glare"),
+      ],
       inStock: true,
       freeShipping: false,
       fastDelivery: true,
-      warranty: "1 Year Warranty"
+      warranty: t("1 Year Warranty"),
     },
     {
       id: "4",
@@ -204,57 +246,66 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
       originalPrice: 199.99,
       rating: 4.7,
       reviewCount: 156,
-      image: "https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&q=80",
-      category: "Fragrances",
-      description: "Exclusive eau de parfum with notes of bergamot, jasmine, and sandalwood. Long-lasting fragrance.",
-      features: ["Eau de Parfum", "Long Lasting", "Natural Ingredients", "Gift Box Included"],
+      image:
+        "https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&q=80",
+      category: t("Fragrances"),
+      description: t(
+        "Exclusive eau de parfum with notes of bergamot, jasmine, and sandalwood. Long-lasting fragrance."
+      ),
+      features: [
+        t("Eau de Parfum"),
+        t("Long Lasting"),
+        t("Natural Ingredients"),
+        t("Gift Box Included"),
+      ],
       badge: t("limited"),
       inStock: true,
       freeShipping: true,
-      warranty: "Authentic Guarantee"
-    }
+      warranty: t("Authentic Guarantee"),
+    },
   ];
 
   // Cart functions
   const handleAddToCart = (productId: string) => {
-    const product = mockProducts.find(p => p.id === productId);
+    const product = mockProducts.find((p) => p.id === productId);
     if (!product) return;
 
-    setCartItems(prevItems => {
-      const existingItem = prevItems.find(item => item.id === productId);
+    setCartItems((prevItems) => {
+      const existingItem = prevItems.find((item) => item.id === productId);
       if (existingItem) {
         // Update quantity if item already in cart
-        return prevItems.map(item =>
+        return prevItems.map((item) =>
           item.id === productId
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
       } else {
         // Add new item to cart
-        return [...prevItems, {
-          id: product.id,
-          name: product.name,
-          price: product.price,
-          image: product.image,
-          quantity: 1
-        }];
+        return [
+          ...prevItems,
+          {
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            image: product.image,
+            quantity: 1,
+          },
+        ];
       }
     });
   };
 
   const handleQuantityChange = (itemId: string, newQuantity: number) => {
     if (newQuantity < 1) return;
-    setCartItems(prevItems =>
-      prevItems.map(item =>
-        item.id === itemId
-          ? { ...item, quantity: newQuantity }
-          : item
+    setCartItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === itemId ? { ...item, quantity: newQuantity } : item
       )
     );
   };
 
   const handleRemoveFromCart = (itemId: string) => {
-    setCartItems(prevItems => prevItems.filter(item => item.id !== itemId));
+    setCartItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
   };
 
   const handleCheckout = () => {
@@ -262,12 +313,20 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
   };
 
   // Wishlist functions
-  const handleAddToWishlist = (item: { id: string; name: string; price: number; image: string; variant?: string }) => {
-    setWishlistItems(prevItems => {
-      const existingItem = prevItems.find(wishlistItem => wishlistItem.id === item.id);
+  const handleAddToWishlist = (item: {
+    id: string;
+    name: string;
+    price: number;
+    image: string;
+    variant?: string;
+  }) => {
+    setWishlistItems((prevItems) => {
+      const existingItem = prevItems.find(
+        (wishlistItem) => wishlistItem.id === item.id
+      );
       if (existingItem) {
         // Remove from wishlist if already exists
-        return prevItems.filter(wishlistItem => wishlistItem.id !== item.id);
+        return prevItems.filter((wishlistItem) => wishlistItem.id !== item.id);
       } else {
         // Add to wishlist
         return [...prevItems, item];
@@ -276,7 +335,9 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
   };
 
   const handleRemoveFromWishlist = (itemId: string) => {
-    setWishlistItems(prevItems => prevItems.filter(item => item.id !== itemId));
+    setWishlistItems((prevItems) =>
+      prevItems.filter((item) => item.id !== itemId)
+    );
   };
 
   const handleMoveToCart = (item: WishlistItem) => {
@@ -287,12 +348,32 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
   };
 
   const mockCategories = [
-    { name: t("Bags"), count: 156, image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&q=80" },
-    { name: t("Watches"), count: 89, image: "https://images.unsplash.com/photo-1508057198894-247b23fe5ade?w=400&q=80" },
-    { name: t("Sunglasses"), count: 234, image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400&q=80" },
-    { name: t("Perfumes"), count: 167, image: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=400&q=80" }
+    {
+      name: t("Bags"),
+      count: 156,
+      image:
+        "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&q=80",
+    },
+    {
+      name: t("Watches"),
+      count: 89,
+      image:
+        "https://images.unsplash.com/photo-1508057198894-247b23fe5ade?w=400&q=80",
+    },
+    {
+      name: t("Sunglasses"),
+      count: 234,
+      image:
+        "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400&q=80",
+    },
+    {
+      name: t("Perfumes"),
+      count: 167,
+      image:
+        "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=400&q=80",
+    },
   ];
-  
+
   // State for all theme components
   const [themeComponents, setThemeComponents] = useState<{
     Header: React.ComponentType<any> | null;
@@ -307,16 +388,15 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
     Hero: null,
     ProductGrid: null,
     ProductCard: null,
-    CategoryCard: null
+    CategoryCard: null,
   });
-  
+
   // Track the current loaded theme to force re-render
   const [loadedTheme, setLoadedTheme] = useState<string | null>(null);
 
   // Load all theme components when theme changes
   useEffect(() => {
     if (currentTheme && currentTheme !== loadedTheme) {
-       
       // Clear components first
       setThemeComponents({
         Header: null,
@@ -324,42 +404,53 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
         Hero: null,
         ProductGrid: null,
         ProductCard: null,
-        CategoryCard: null
+        CategoryCard: null,
       });
-      
+
       // Small delay to ensure clean state
       setTimeout(() => {
         const components = getThemeComponents(currentTheme);
-        
+
         if (components) {
           // Direct component mapping based on theme
           let heroComponent = null;
-          
+
           // Explicitly check for the correct Hero component
-          switch(currentTheme) {
-            case 'modern':
+          switch (currentTheme) {
+            case "modern":
               heroComponent = components.ModernHero || components.Hero;
               break;
-            case 'classic':
+            case "classic":
               heroComponent = components.ClassicHero || components.Hero;
               break;
-            case 'minimal':
+            case "minimal":
               heroComponent = components.MinimalHero || components.Hero;
               break;
-            case 'luxe':
+            case "luxe":
               heroComponent = components.LuxeHero || components.Hero;
               break;
           }
-          
-          const loadedComponents = {
-            Header: findThemeComponent(components, 'header', currentTheme),
-            Footer: findThemeComponent(components, 'footer', currentTheme),
-            Hero: heroComponent,
-            ProductGrid: findThemeComponent(components, 'productGrid', currentTheme),
-            ProductCard: findThemeComponent(components, 'productCard', currentTheme),
-            CategoryCard: findThemeComponent(components, 'categoryCard', currentTheme),
-          };
 
+          const loadedComponents = {
+            Header: findThemeComponent(components, "header", currentTheme),
+            Footer: findThemeComponent(components, "footer", currentTheme),
+            Hero: heroComponent,
+            ProductGrid: findThemeComponent(
+              components,
+              "productGrid",
+              currentTheme
+            ),
+            ProductCard: findThemeComponent(
+              components,
+              "productCard",
+              currentTheme
+            ),
+            CategoryCard: findThemeComponent(
+              components,
+              "categoryCard",
+              currentTheme
+            ),
+          };
 
           setThemeComponents(loadedComponents);
           setLoadedTheme(currentTheme);
@@ -375,13 +466,15 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
   const deviceWidths = {
     desktop: "100%",
     tablet: "768px",
-    mobile: "375px"
+    mobile: "375px",
   };
 
   const { Header, Footer, ProductGrid } = themeComponents;
- 
+
   return (
-    <Card className={`overflow-hidden   ${className} border border-[#d6d6d6] dark:bg-[#101010] dark:border-[#424242] dark:text-white`}>
+    <Card
+      className={`overflow-hidden   ${className} border border-[#d6d6d6] dark:bg-[#101010] dark:border-[#424242] dark:text-white`}
+    >
       <CardHeader>
         <CardTitle>
           {t("themePreview")} - {currentTheme}
@@ -416,23 +509,26 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                     }}
                   >
                     {t("yourStore")}
-                      </span>
-                    }
-                    cartItemCount={cartItems.reduce((total, item) => total + item.quantity, 0)}
-                    cartItems={cartItems}
-                    wishlistCount={wishlistItems.length}
-                    wishlistItems={wishlistItems}
-                    onCartClick={() => {}}
-                    onAccountClick={() => {}}
-                    onWishlistClick={() => {}}
-                    onAddToWishlist={handleAddToWishlist}
-                    onRemoveFromWishlist={handleRemoveFromWishlist}
-                    onMoveToCart={handleMoveToCart}
-                    onSearch={(_query: string) => {}}
-                    onQuantityChange={handleQuantityChange}
-                    onRemoveFromCart={handleRemoveFromCart}
-                    onCheckout={handleCheckout}
-                  />
+                  </span>
+                }
+                cartItemCount={cartItems.reduce(
+                  (total, item) => total + item.quantity,
+                  0
+                )}
+                cartItems={cartItems}
+                wishlistCount={wishlistItems.length}
+                wishlistItems={wishlistItems}
+                onCartClick={() => {}}
+                onAccountClick={() => {}}
+                onWishlistClick={() => {}}
+                onAddToWishlist={handleAddToWishlist}
+                onRemoveFromWishlist={handleRemoveFromWishlist}
+                onMoveToCart={handleMoveToCart}
+                onSearch={(_query: string) => {}}
+                onQuantityChange={handleQuantityChange}
+                onRemoveFromCart={handleRemoveFromCart}
+                onCheckout={handleCheckout}
+              />
             ) : (
               /* Fallback generic header */
               <header
@@ -658,7 +754,9 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
               } catch (error) {
                 return (
                   <div className="h-96 bg-red-50 flex items-center justify-center">
-                    <p className="text-red-500">{t("error")} {t("loading")} {t("hero")}</p>
+                    <p className="text-red-500">
+                      {t("error")} {t("loading")} {t("hero")}
+                    </p>
                   </div>
                 );
               }
