@@ -12,9 +12,10 @@ import {
   Tabs,
   TabsContent,
   TabsList,
-  TabsTrigger
+  TabsTrigger,
 } from "@/components/ui";
 import { Palette, RotateCcw, Check, Sparkles } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface ColorPickerProps {
   label: string;
@@ -23,17 +24,20 @@ interface ColorPickerProps {
   description?: string;
 }
 
-const ColorPicker: React.FC<ColorPickerProps> = ({ label, value, onChange, description }) => {
+const ColorPicker: React.FC<ColorPickerProps> = ({
+  label,
+  value,
+  onChange,
+  description,
+}) => {
   const [isPickerOpen, setIsPickerOpen] = useState(false);
-  
+
   return (
     <div className="space-y-2">
       <Label htmlFor={label} className="text-sm font-medium">
         {label}
       </Label>
-      {description && (
-        <p className="text-xs text-gray-500">{description}</p>
-      )}
+      {description && <p className="text-xs text-gray-500">{description}</p>}
       <div className="flex items-center gap-2">
         <div className="relative">
           <Input
@@ -44,9 +48,9 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ label, value, onChange, descr
             onFocus={() => setIsPickerOpen(true)}
             onBlur={() => setIsPickerOpen(false)}
             className="h-10 w-10 cursor-pointer overflow-hidden rounded-md border-2 p-0 transition-all hover:scale-110"
-            style={{ 
-              borderColor: isPickerOpen ? value : 'transparent',
-              boxShadow: isPickerOpen ? `0 0 0 3px ${value}20` : 'none'
+            style={{
+              borderColor: isPickerOpen ? value : "transparent",
+              boxShadow: isPickerOpen ? `0 0 0 3px ${value}20` : "none",
             }}
           />
         </div>
@@ -73,12 +77,28 @@ interface ColorPresetProps {
   isActive?: boolean;
 }
 
-const ColorPreset: React.FC<ColorPresetProps> = ({ name, colors, onApply, isActive }) => {
+interface ColorScheme {
+  name: string;
+  colors: {
+    primary: string;
+    secondary: string;
+    accent: string;
+  };
+}
+
+const ColorPreset: React.FC<ColorPresetProps> = ({
+  name,
+  colors,
+  onApply,
+  isActive,
+}) => {
   return (
     <button
       onClick={onApply}
       className={`group relative w-full rounded-lg border-2 p-4 text-left transition-all hover:shadow-md ${
-        isActive ? 'border-primary shadow-md' : 'border-gray-200 hover:border-gray-300'
+        isActive
+          ? "border-primary shadow-md"
+          : "border-gray-200 hover:border-gray-300"
       }`}
     >
       {isActive && (
@@ -112,7 +132,14 @@ const ColorPreset: React.FC<ColorPresetProps> = ({ name, colors, onApply, isActi
 };
 
 export const ColorCustomizer: React.FC = () => {
-  const { colors, themeConfig, updateColor, updateCustomizations, customizations } = useTheme();
+  const { t } = useTranslation();
+  const {
+    colors,
+    themeConfig,
+    updateColor,
+    updateCustomizations,
+    customizations,
+  } = useTheme();
   const [activeTab, setActiveTab] = useState("light");
 
   if (!colors || !themeConfig) return null;
@@ -120,110 +147,114 @@ export const ColorCustomizer: React.FC = () => {
   const lightColorOptions = [
     {
       key: "primary",
-      label: "Primary Color",
-      description: "Main brand color used for buttons, links, and key UI elements",
+      label: t("Primary Color"),
+      description: t(
+        "Main brand color used for buttons, links, and key UI elements"
+      ),
     },
     {
       key: "secondary",
-      label: "Secondary Color",
-      description: "Supporting color for secondary actions and accents",
+      label: t("Secondary Color"),
+      description: t("Supporting color for secondary actions and accents"),
     },
     {
       key: "accent",
-      label: "Accent Color",
-      description: "Highlight color for special elements and notifications",
+      label: t("Accent Color"),
+      description: t("Highlight color for special elements and notifications"),
     },
     {
       key: "background",
-      label: "Background",
-      description: "Main background color for your store",
+      label: t("Background"),
+      description: t("Main background color for your store"),
     },
     {
       key: "foreground",
-      label: "Text Color",
-      description: "Default text color throughout the store",
+      label: t("Text Color"),
+      description: t("Default text color throughout the store"),
     },
     {
       key: "muted",
-      label: "Muted Background",
-      description: "Background for cards, sections, and subtle elements",
+      label: t("Muted Background"),
+      description: t("Background for cards, sections, and subtle elements"),
     },
     {
       key: "mutedForeground",
-      label: "Muted Text",
-      description: "Color for secondary text and labels",
+      label: t("Muted Text"),
+      description: t("Color for secondary text and labels"),
     },
     {
       key: "border",
-      label: "Border Color",
-      description: "Default border color for inputs, cards, and dividers",
+      label: t("Border Color"),
+      description: t("Default border color for inputs, cards, and dividers"),
     },
   ];
 
   const darkColorOptions = [
     {
       key: "darkPrimary",
-      label: "Dark Primary Color",
-      description: "Main brand color for dark mode buttons and key elements",
+      label: t("Dark Primary Color"),
+      description: t("Main brand color for dark mode buttons and key elements"),
     },
     {
       key: "darkSecondary",
-      label: "Dark Secondary Color",
-      description: "Supporting color for dark mode secondary actions",
+      label: t("Dark Secondary Color"),
+      description: t("Supporting color for dark mode secondary actions"),
     },
     {
       key: "darkAccent",
-      label: "Dark Accent Color",
-      description: "Highlight color for dark mode special elements",
+      label: t("Dark Accent Color"),
+      description: t("Highlight color for dark mode special elements"),
     },
     {
       key: "darkBackground",
-      label: "Dark Background",
-      description: "Main background color for dark mode",
+      label: t("Dark Background"),
+      description: t("Main background color for dark mode"),
     },
     {
       key: "darkForeground",
-      label: "Dark Text Color",
-      description: "Default text color in dark mode",
+      label: t("Dark Text Color"),
+      description: t("Default text color in dark mode"),
     },
     {
       key: "darkMuted",
-      label: "Dark Muted Background",
-      description: "Background for cards and sections in dark mode",
+      label: t("Dark Muted Background"),
+      description: t("Background for cards and sections in dark mode"),
     },
     {
       key: "darkMutedForeground",
-      label: "Dark Muted Text",
-      description: "Secondary text color in dark mode",
+      label: t("Dark Muted Text"),
+      description: t("Secondary text color in dark mode"),
     },
     {
       key: "darkBorder",
-      label: "Dark Border Color",
-      description: "Border color for inputs and cards in dark mode",
+      label: t("Dark Border Color"),
+      description: t("Border color for inputs and cards in dark mode"),
     },
   ];
 
   const handleResetColors = () => {
     updateCustomizations({
       ...customizations,
-      colors: {}
+      colors: {},
     });
   };
 
-  const applyPreset = (preset: any) => {
+  const applyPreset = (preset: ColorScheme) => {
     updateCustomizations({
       ...customizations,
       colors: {
         ...customizations.colors,
-        ...preset.colors
-      }
+        ...preset.colors,
+      },
     });
   };
 
-  const isPresetActive = (preset: any) => {
-    return preset.colors.primary === colors.primary &&
-           preset.colors.secondary === colors.secondary &&
-           preset.colors.accent === colors.accent;
+  const isPresetActive = (preset: ColorScheme): boolean => {
+    return (
+      preset.colors.primary === colors.primary &&
+      preset.colors.secondary === colors.secondary &&
+      preset.colors.accent === colors.accent
+    );
   };
 
   return (
@@ -232,23 +263,24 @@ export const ColorCustomizer: React.FC = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Palette className="h-5 w-5" />
-            Color Palette
+            {t("Color Palette")}
           </CardTitle>
           <CardDescription>
-            Customize your store's color scheme to match your brand
+            {t("Customize your store's color scheme to match your brand")}
           </CardDescription>
         </CardHeader>
+
         <CardContent>
           <Tabs value={activeTab} onValueChange={setActiveTab}>
             <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="presets">Presets</TabsTrigger>
-              <TabsTrigger value="light">Light Mode</TabsTrigger>
-              <TabsTrigger value="dark">Dark Mode</TabsTrigger>
+              <TabsTrigger value="presets">{t("Presets")}</TabsTrigger>
+              <TabsTrigger value="light">{t("Light Mode")}</TabsTrigger>
+              <TabsTrigger value="dark">{t("Dark Mode")}</TabsTrigger>
             </TabsList>
 
             <TabsContent value="presets" className="mt-6">
               <div className="grid gap-4 sm:grid-cols-2">
-                {themeConfig.presets?.colorSchemes?.map((preset: any, index: number) => (
+                {themeConfig.presets?.colorSchemes?.map((preset, index) => (
                   <ColorPreset
                     key={index}
                     name={preset.name}
@@ -260,76 +292,94 @@ export const ColorCustomizer: React.FC = () => {
               </div>
             </TabsContent>
 
+            {/* Light mode */}
             <TabsContent value="light" className="mt-6 space-y-6">
-              {/* Primary Colors */}
               <div>
-                <h4 className="mb-4 text-sm font-semibold text-gray-900">Brand Colors</h4>
+                <h4 className="mb-4 text-sm font-semibold text-gray-900">
+                  {t("Brand Colors")}
+                </h4>
+
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                  {lightColorOptions.slice(0, 3).map(({ key, label, description }) => (
-                    <ColorPicker
-                      key={key}
-                      label={label}
-                      value={colors[key as keyof typeof colors] || '#000000'}
-                      onChange={(value) => updateColor(key, value)}
-                      description={description}
-                    />
-                  ))}
+                  {lightColorOptions
+                    .slice(0, 3)
+                    .map(({ key, label, description }) => (
+                      <ColorPicker
+                        key={key}
+                        label={t(label)}
+                        value={colors[key as keyof typeof colors] || "#000000"}
+                        onChange={(value) => updateColor(key, value)}
+                        description={t(description)}
+                      />
+                    ))}
                 </div>
               </div>
 
-              {/* Base Colors */}
               <div>
-                <h4 className="mb-4 text-sm font-semibold text-gray-900">Base Colors</h4>
+                <h4 className="mb-4 text-sm font-semibold text-gray-900">
+                  {t("Base Colors")}
+                </h4>
+
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                  {lightColorOptions.slice(3).map(({ key, label, description }) => (
-                    <ColorPicker
-                      key={key}
-                      label={label}
-                      value={colors[key as keyof typeof colors] || '#000000'}
-                      onChange={(value) => updateColor(key, value)}
-                      description={description}
-                    />
-                  ))}
+                  {lightColorOptions
+                    .slice(3)
+                    .map(({ key, label, description }) => (
+                      <ColorPicker
+                        key={key}
+                        label={t(label)}
+                        value={colors[key as keyof typeof colors] || "#000000"}
+                        onChange={(value) => updateColor(key, value)}
+                        description={t(description)}
+                      />
+                    ))}
                 </div>
               </div>
             </TabsContent>
 
+            {/* Dark mode */}
             <TabsContent value="dark" className="mt-6 space-y-6">
-              {/* Dark Primary Colors */}
               <div>
-                <h4 className="mb-4 text-sm font-semibold text-gray-900">Dark Brand Colors</h4>
+                <h4 className="mb-4 text-sm font-semibold text-gray-900">
+                  {t("Dark Brand Colors")}
+                </h4>
+
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                  {darkColorOptions.slice(0, 3).map(({ key, label, description }) => (
-                    <ColorPicker
-                      key={key}
-                      label={label}
-                      value={colors[key as keyof typeof colors] || '#000000'}
-                      onChange={(value) => updateColor(key, value)}
-                      description={description}
-                    />
-                  ))}
+                  {darkColorOptions
+                    .slice(0, 3)
+                    .map(({ key, label, description }) => (
+                      <ColorPicker
+                        key={key}
+                        label={t(label)}
+                        value={colors[key as keyof typeof colors] || "#000000"}
+                        onChange={(value) => updateColor(key, value)}
+                        description={t(description)}
+                      />
+                    ))}
                 </div>
               </div>
 
-              {/* Dark Base Colors */}
               <div>
-                <h4 className="mb-4 text-sm font-semibold text-gray-900">Dark Base Colors</h4>
+                <h4 className="mb-4 text-sm font-semibold text-gray-900">
+                  {t("Dark Base Colors")}
+                </h4>
+
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                  {darkColorOptions.slice(3).map(({ key, label, description }) => (
-                    <ColorPicker
-                      key={key}
-                      label={label}
-                      value={colors[key as keyof typeof colors] || '#000000'}
-                      onChange={(value) => updateColor(key, value)}
-                      description={description}
-                    />
-                  ))}
+                  {darkColorOptions
+                    .slice(3)
+                    .map(({ key, label, description }) => (
+                      <ColorPicker
+                        key={key}
+                        label={t(label)}
+                        value={colors[key as keyof typeof colors] || "#000000"}
+                        onChange={(value) => updateColor(key, value)}
+                        description={t(description)}
+                      />
+                    ))}
                 </div>
               </div>
             </TabsContent>
           </Tabs>
 
-          {/* Quick Actions */}
+          {/* Footer Actions */}
           <div className="flex justify-between border-t pt-4 mt-6">
             <Button
               variant="outline"
@@ -338,34 +388,36 @@ export const ColorCustomizer: React.FC = () => {
               className="flex items-center gap-2"
             >
               <RotateCcw className="h-4 w-4" />
-              Reset Colors
+              {t("Reset Colors")}
             </Button>
-            
+
             <div className="flex gap-2">
               <Button variant="outline" size="sm">
-                Export Palette
+                {t("Export Palette")}
               </Button>
               <Button variant="outline" size="sm">
-                Import Palette
+                {t("Import Palette")}
               </Button>
             </div>
           </div>
         </CardContent>
       </Card>
 
-      {/* Live Color Preview */}
+      {/* Preview Section */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-base">Live Preview</CardTitle>
+          <CardTitle className="text-base">{t("Live Preview")}</CardTitle>
           <CardDescription className="text-sm">
-            See how your color choices look in context
+            {t("See how your color choices look in context")}
           </CardDescription>
         </CardHeader>
+
         <CardContent>
           <div className="space-y-4">
-            {/* Button Preview */}
+            {/* Buttons */}
             <div>
-              <p className="mb-2 text-sm font-medium">Buttons</p>
+              <p className="mb-2 text-sm font-medium">{t("Buttons")}</p>
+
               <div className="flex flex-wrap gap-2">
                 <button
                   className="px-4 py-2 text-sm font-medium rounded-md transition-all hover:scale-105"
@@ -374,8 +426,9 @@ export const ColorCustomizer: React.FC = () => {
                     color: colors.background,
                   }}
                 >
-                  Primary Button
+                  {t("Primary Button")}
                 </button>
+
                 <button
                   className="px-4 py-2 text-sm font-medium rounded-md transition-all hover:scale-105"
                   style={{
@@ -383,87 +436,121 @@ export const ColorCustomizer: React.FC = () => {
                     color: colors.background,
                   }}
                 >
-                  Secondary Button
+                  {t("Secondary Button")}
                 </button>
+
                 <button
                   className="px-4 py-2 text-sm font-medium rounded-md transition-all hover:scale-105 border-2"
                   style={{
                     borderColor: colors.primary,
                     color: colors.primary,
-                    backgroundColor: 'transparent'
+                    backgroundColor: "transparent",
                   }}
                 >
-                  Outline Button
+                  {t("Outline Button")}
                 </button>
               </div>
             </div>
 
-            {/* Text Preview */}
+            {/* Typography */}
             <div>
-              <p className="mb-2 text-sm font-medium">Typography</p>
-              <div className="p-4 rounded-lg transition-colors" style={{ backgroundColor: colors.muted }}>
-                <h3 className="text-lg font-semibold mb-2" style={{ color: colors.foreground }}>
-                  Heading Example
+              <p className="mb-2 text-sm font-medium">{t("Typography")}</p>
+
+              <div
+                className="p-4 rounded-lg"
+                style={{ backgroundColor: colors.muted }}
+              >
+                <h3
+                  className="text-lg font-semibold mb-2"
+                  style={{ color: colors.foreground }}
+                >
+                  {t("Heading Example")}
                 </h3>
+
                 <p className="mb-2" style={{ color: colors.foreground }}>
-                  This is regular body text using your foreground color.
+                  {t("This is regular body text using your foreground color.")}
                 </p>
-                <p className="text-sm" style={{ color: colors.mutedForeground }}>
-                  This is secondary text using your muted foreground color.
+
+                <p
+                  className="text-sm"
+                  style={{ color: colors.mutedForeground }}
+                >
+                  {t(
+                    "This is secondary text using your muted foreground color."
+                  )}
                 </p>
               </div>
             </div>
 
-            {/* Card Preview */}
+            {/* Card Example */}
             <div>
-              <p className="mb-2 text-sm font-medium">Card Example</p>
-              <div 
-                className="p-4 rounded-lg border transition-all"
-                style={{ 
+              <p className="mb-2 text-sm font-medium">{t("Card Example")}</p>
+
+              <div
+                className="p-4 rounded-lg border"
+                style={{
                   backgroundColor: colors.background,
-                  borderColor: colors.border 
+                  borderColor: colors.border,
                 }}
               >
                 <div className="flex items-center justify-between mb-2">
-                  <h4 className="font-semibold" style={{ color: colors.foreground }}>
-                    Product Card
+                  <h4
+                    className="font-semibold"
+                    style={{ color: colors.foreground }}
+                  >
+                    {t("Product Card")}
                   </h4>
-                  <span 
+
+                  <span
                     className="px-2 py-1 text-xs font-medium rounded"
-                    style={{ 
+                    style={{
                       backgroundColor: colors.accent,
-                      color: colors.background 
+                      color: colors.background,
                     }}
                   >
-                    New
+                    {t("New")}
                   </span>
                 </div>
-                <p className="text-sm" style={{ color: colors.mutedForeground }}>
-                  Example product description
+
+                <p
+                  className="text-sm"
+                  style={{ color: colors.mutedForeground }}
+                >
+                  {t("Example product description")}
                 </p>
-                <div className="mt-3 pt-3 border-t" style={{ borderColor: colors.border }}>
-                  <span className="text-lg font-semibold" style={{ color: colors.primary }}>
+
+                <div
+                  className="mt-3 pt-3 border-t"
+                  style={{ borderColor: colors.border }}
+                >
+                  <span
+                    className="text-lg font-semibold"
+                    style={{ color: colors.primary }}
+                  >
                     $99.99
                   </span>
                 </div>
               </div>
             </div>
 
-            {/* Color Swatches */}
+            {/* Swatches */}
             <div>
-              <p className="mb-2 text-sm font-medium">Color Palette</p>
+              <p className="mb-2 text-sm font-medium">{t("Color Palette")}</p>
+
               <div className="grid grid-cols-4 gap-2">
-                {Object.entries(colors).filter(([_, value]) => value).map(([key, value]) => (
-                  <div key={key} className="text-center">
-                    <div
-                      className="h-12 w-full rounded-md border border-gray-200 mb-1 transition-transform hover:scale-105"
-                      style={{ backgroundColor: value }}
-                    />
-                    <span className="text-xs text-gray-600 capitalize">
-                      {key.replace(/([A-Z])/g, ' $1').trim()}
-                    </span>
-                  </div>
-                ))}
+                {Object.entries(colors)
+                  .filter(([, value]) => value)
+                  .map(([key, value]) => (
+                    <div key={key} className="text-center">
+                      <div
+                        className="h-12 w-full rounded-md border border-gray-200 mb-1 hover:scale-105 transition-transform"
+                        style={{ backgroundColor: value }}
+                      />
+                      <span className="text-xs text-gray-600 capitalize">
+                        {key.replace(/([A-Z])/g, " $1").trim()}
+                      </span>
+                    </div>
+                  ))}
               </div>
             </div>
           </div>

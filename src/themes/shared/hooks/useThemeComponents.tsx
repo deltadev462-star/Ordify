@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useMemo } from "react";
 import { ProductCard } from "../components/ProductCard";
 import { CategoryCard } from "../components/CategoryCard";
@@ -13,7 +14,9 @@ export const useThemeComponents = (config: ThemeComponentsConfig = {}) => {
   const components = useMemo(() => {
     return {
       ProductCard: (props: any) => <ProductCard {...props} variant={variant} />,
-      CategoryCard: (props: any) => <CategoryCard {...props} variant={variant} />,
+      CategoryCard: (props: any) => (
+        <CategoryCard {...props} variant={variant} />
+      ),
       Newsletter: (props: any) => <Newsletter {...props} variant={variant} />,
     };
   }, [variant]);
@@ -23,12 +26,13 @@ export const useThemeComponents = (config: ThemeComponentsConfig = {}) => {
 
 // Hook for getting component variants based on theme
 export const useComponentVariant = (themeName: string) => {
-  const variantMap: Record<string, "default" | "minimal" | "modern" | "luxe"> = {
-    modern: "modern",
-    classic: "default",
-    minimal: "minimal",
-    luxe: "luxe",
-  };
+  const variantMap: Record<string, "default" | "minimal" | "modern" | "luxe"> =
+    {
+      modern: "modern",
+      classic: "default",
+      minimal: "minimal",
+      luxe: "luxe",
+    };
 
   return variantMap[themeName] || "default";
 };

@@ -35,8 +35,18 @@ interface ProductPageProps {
     rating?: number;
     inStock?: boolean;
   }>;
-  onAddToCart?: (productId: string, quantity: number, variant?: any) => void;
-  onWishlist?: (item: { id: string; name: string; price: number; image: string; variant?: string }) => void;
+  onAddToCart?: (
+    productId: string,
+    quantity: number,
+    variant?: { size?: string; color?: string }
+  ) => void;
+  onWishlist?: (item: {
+    id: string;
+    name: string;
+    price: number;
+    image: string;
+    variant?: string;
+  }) => void;
   onShare?: (productId: string) => void;
 }
 
@@ -47,7 +57,7 @@ const ProductPage: React.FC<ProductPageProps> = ({
   onWishlist,
   onShare,
 }) => {
-  const { currentTheme } = useTheme();
+  const { currentTheme, variant } = useTheme();
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState("");
@@ -61,7 +71,9 @@ const ProductPage: React.FC<ProductPageProps> = ({
   };
 
   const discount = product.originalPrice
-    ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
+    ? Math.round(
+        ((product.originalPrice - product.price) / product.originalPrice) * 100
+      )
     : 0;
 
   return (
@@ -69,11 +81,18 @@ const ProductPage: React.FC<ProductPageProps> = ({
       {/* Breadcrumbs */}
       <div className="container mx-auto px-4 py-4">
         <nav className="flex items-center space-x-2 text-sm text-gray-600">
-          <a href="/" className="hover:text-primary">Home</a>
+          <a href="/" className="hover:text-primary">
+            Home
+          </a>
           <span>/</span>
-          <a href="/shop" className="hover:text-primary">Shop</a>
+          <a href="/shop" className="hover:text-primary">
+            Shop
+          </a>
           <span>/</span>
-          <a href={`/category/${product.category}`} className="hover:text-primary">
+          <a
+            href={`/category/${product.category}`}
+            className="hover:text-primary"
+          >
             {product.category}
           </a>
           <span>/</span>
@@ -117,7 +136,9 @@ const ProductPage: React.FC<ProductPageProps> = ({
           {/* Product Info */}
           <div className="space-y-6">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">{product.name}</h1>
+              <h1 className="text-3xl font-bold text-gray-900">
+                {product.name}
+              </h1>
               <p className="mt-2 text-gray-600">{product.category}</p>
             </div>
 
@@ -240,20 +261,19 @@ const ProductPage: React.FC<ProductPageProps> = ({
               </Button>
               <Button
                 variant="outline"
-                onClick={() => onWishlist?.({
-                  id: product.id,
-                  name: product.name,
-                  price: product.price,
-                  image: product.images[selectedImage],
-                  variant: selectedSize || selectedColor
-                })}
+                onClick={() =>
+                  onWishlist?.({
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.images[selectedImage],
+                    variant: selectedSize || selectedColor,
+                  })
+                }
               >
                 <Heart className="h-4 w-4" />
               </Button>
-              <Button
-                variant="outline"
-                onClick={() => onShare?.(product.id)}
-              >
+              <Button variant="outline" onClick={() => onShare?.(product.id)}>
                 <Share2 className="h-4 w-4" />
               </Button>
             </div>
@@ -278,12 +298,14 @@ const ProductPage: React.FC<ProductPageProps> = ({
               <div>
                 <h3 className="mb-3 font-semibold">Specifications</h3>
                 <div className="space-y-2">
-                  {Object.entries(product.specifications).map(([key, value]) => (
-                    <div key={key} className="flex justify-between text-sm">
-                      <span className="text-gray-600">{key}:</span>
-                      <span className="font-medium">{value}</span>
-                    </div>
-                  ))}
+                  {Object.entries(product.specifications).map(
+                    ([key, value]) => (
+                      <div key={key} className="flex justify-between text-sm">
+                        <span className="text-gray-600">{key}:</span>
+                        <span className="font-medium">{value}</span>
+                      </div>
+                    )
+                  )}
                 </div>
               </div>
             )}
@@ -300,7 +322,7 @@ const ProductPage: React.FC<ProductPageProps> = ({
               <ProductCard
                 key={relatedProduct.id}
                 {...relatedProduct}
-                variant={currentTheme as any}
+                variant={variant}
                 onAddToCart={(id) => onAddToCart?.(id, 1)}
                 onWishlist={onWishlist}
               />

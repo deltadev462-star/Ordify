@@ -31,8 +31,14 @@ export const useTheme = () => {
     return {
       ...themeConfig.typography,
       ...customizations.typography,
-      fontSize: { ...themeConfig.typography.fontSize, ...customizations.typography?.fontSize },
-      fontWeight: { ...themeConfig.typography.fontWeight, ...customizations.typography?.fontWeight },
+      fontSize: {
+        ...themeConfig.typography.fontSize,
+        ...customizations.typography?.fontSize,
+      },
+      fontWeight: {
+        ...themeConfig.typography.fontWeight,
+        ...customizations.typography?.fontWeight,
+      },
     };
   }, [themeConfig, customizations.typography]);
 
@@ -42,8 +48,14 @@ export const useTheme = () => {
     return {
       ...themeConfig.layout,
       ...customizations.layout,
-      borderRadius: { ...themeConfig.layout.borderRadius, ...customizations.layout?.borderRadius },
-      spacing: { ...themeConfig.layout.spacing, ...customizations.layout?.spacing },
+      borderRadius: {
+        ...themeConfig.layout.borderRadius,
+        ...customizations.layout?.borderRadius,
+      },
+      spacing: {
+        ...themeConfig.layout.spacing,
+        ...customizations.layout?.spacing,
+      },
     };
   }, [themeConfig, customizations.layout]);
 
@@ -58,14 +70,14 @@ export const useTheme = () => {
   };
 
   // Helper function to update specific typography setting
-  const updateTypography = (key: string, value: any) => {
+  const updateTypography = (key: string, value: unknown) => {
     if (key.includes(".")) {
       const [parent, child] = key.split(".");
       updateCustomizations({
         typography: {
           ...customizations.typography,
           [parent]: {
-            ...(customizations.typography as any)?.[parent],
+            ...(customizations.typography as Record<string, any>)?.[parent],
             [child]: value,
           },
         },
@@ -81,14 +93,14 @@ export const useTheme = () => {
   };
 
   // Helper function to update specific layout setting
-  const updateLayout = (key: string, value: any) => {
+  const updateLayout = (key: string, value: unknown) => {
     if (key.includes(".")) {
       const [parent, child] = key.split(".");
       updateCustomizations({
         layout: {
           ...customizations.layout,
           [parent]: {
-            ...(customizations.layout as any)?.[parent],
+            ...(customizations.layout as Record<string, any>)?.[parent],
             [child]: value,
           },
         },
@@ -111,16 +123,16 @@ export const useTheme = () => {
     availableThemes,
     isLoading,
     error,
-    
+
     // Theme settings
     colors,
     typography,
     layout,
     variant,
-    
+
     // Theme components
     components,
-    
+
     // Theme actions
     setTheme,
     updateCustomizations,
@@ -134,123 +146,126 @@ export const useTheme = () => {
 // Hook for using theme-specific styles
 export const useThemeStyles = () => {
   const { colors, typography, layout, variant } = useTheme();
-  
-  const styles = useMemo(() => ({
-    // Container styles
-    container: {
-      maxWidth: layout?.containerWidth,
-      margin: "0 auto",
-      padding: `0 ${layout?.spacing.base}`,
-    },
-    
-    // Typography styles
-    heading1: {
-      fontFamily: typography?.headingFontFamily,
-      fontSize: typography?.fontSize["3xl"],
-      fontWeight: typography?.fontWeight.bold,
-      color: colors?.foreground,
-    },
-    heading2: {
-      fontFamily: typography?.headingFontFamily,
-      fontSize: typography?.fontSize["2xl"],
-      fontWeight: typography?.fontWeight.semibold,
-      color: colors?.foreground,
-    },
-    heading3: {
-      fontFamily: typography?.headingFontFamily,
-      fontSize: typography?.fontSize.xl,
-      fontWeight: typography?.fontWeight.semibold,
-      color: colors?.foreground,
-    },
-    body: {
-      fontFamily: typography?.fontFamily,
-      fontSize: typography?.fontSize.base,
-      fontWeight: typography?.fontWeight.normal,
-      color: colors?.foreground,
-    },
-    
-    // Button styles
-    button: {
-      primary: {
-        backgroundColor: colors?.primary,
-        color: colors?.background,
-        borderRadius: layout?.borderRadius.md,
-        padding: `${layout?.spacing.sm} ${layout?.spacing.base}`,
+
+  const styles = useMemo(
+    () => ({
+      // Container styles
+      container: {
+        maxWidth: layout?.containerWidth,
+        margin: "0 auto",
+        padding: `0 ${layout?.spacing.base}`,
       },
-      secondary: {
-        backgroundColor: colors?.secondary,
-        color: colors?.background,
-        borderRadius: layout?.borderRadius.md,
-        padding: `${layout?.spacing.sm} ${layout?.spacing.base}`,
+
+      // Typography styles
+      heading1: {
+        fontFamily: typography?.headingFontFamily,
+        fontSize: typography?.fontSize["3xl"],
+        fontWeight: typography?.fontWeight.bold,
+        color: colors?.foreground,
       },
-    },
-    
-    // Card styles
-    card: {
-      backgroundColor: colors?.background,
-      borderColor: colors?.border,
-      borderRadius: layout?.borderRadius.lg,
-      padding: layout?.spacing.base,
-    },
-    
-    // Input styles
-    input: {
-      backgroundColor: colors?.background,
-      borderColor: colors?.border,
-      borderRadius: layout?.borderRadius.base,
-      padding: `${layout?.spacing.xs} ${layout?.spacing.sm}`,
-      color: colors?.foreground,
-    },
-  }), [colors, typography, layout, variant]);
-  
+      heading2: {
+        fontFamily: typography?.headingFontFamily,
+        fontSize: typography?.fontSize["2xl"],
+        fontWeight: typography?.fontWeight.semibold,
+        color: colors?.foreground,
+      },
+      heading3: {
+        fontFamily: typography?.headingFontFamily,
+        fontSize: typography?.fontSize.xl,
+        fontWeight: typography?.fontWeight.semibold,
+        color: colors?.foreground,
+      },
+      body: {
+        fontFamily: typography?.fontFamily,
+        fontSize: typography?.fontSize.base,
+        fontWeight: typography?.fontWeight.normal,
+        color: colors?.foreground,
+      },
+
+      // Button styles
+      button: {
+        primary: {
+          backgroundColor: colors?.primary,
+          color: colors?.background,
+          borderRadius: layout?.borderRadius.md,
+          padding: `${layout?.spacing.sm} ${layout?.spacing.base}`,
+        },
+        secondary: {
+          backgroundColor: colors?.secondary,
+          color: colors?.background,
+          borderRadius: layout?.borderRadius.md,
+          padding: `${layout?.spacing.sm} ${layout?.spacing.base}`,
+        },
+      },
+
+      // Card styles
+      card: {
+        backgroundColor: colors?.background,
+        borderColor: colors?.border,
+        borderRadius: layout?.borderRadius.lg,
+        padding: layout?.spacing.base,
+      },
+
+      // Input styles
+      input: {
+        backgroundColor: colors?.background,
+        borderColor: colors?.border,
+        borderRadius: layout?.borderRadius.base,
+        padding: `${layout?.spacing.xs} ${layout?.spacing.sm}`,
+        color: colors?.foreground,
+      },
+    }),
+    [colors, typography, layout, variant]
+  );
+
   return styles;
 };
 
 // Hook for using theme CSS variables
 export const useThemeCSSVariables = () => {
   const { colors, typography, layout } = useTheme();
-  
+
   const cssVars = useMemo(() => {
     const vars: Record<string, string> = {};
-    
+
     // Colors
     if (colors) {
       Object.entries(colors).forEach(([key, value]) => {
         vars[`--theme-${key}`] = value;
       });
     }
-    
+
     // Typography
     if (typography) {
       vars["--theme-font-family"] = typography.fontFamily;
       vars["--theme-heading-font-family"] = typography.headingFontFamily;
-      
+
       Object.entries(typography.fontSize).forEach(([key, value]) => {
         vars[`--theme-font-size-${key}`] = value;
       });
-      
+
       Object.entries(typography.fontWeight).forEach(([key, value]) => {
         vars[`--theme-font-weight-${key}`] = String(value);
       });
     }
-    
+
     // Layout
     if (layout) {
       vars["--theme-container-width"] = layout.containerWidth;
       vars["--theme-sidebar-width"] = layout.sidebarWidth;
       vars["--theme-header-height"] = layout.headerHeight;
-      
+
       Object.entries(layout.borderRadius).forEach(([key, value]) => {
         vars[`--theme-border-radius-${key}`] = value;
       });
-      
+
       Object.entries(layout.spacing).forEach(([key, value]) => {
         vars[`--theme-spacing-${key}`] = value;
       });
     }
-    
+
     return vars;
   }, [colors, typography, layout]);
-  
+
   return cssVars;
 };

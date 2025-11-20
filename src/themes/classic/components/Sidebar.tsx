@@ -19,15 +19,17 @@ interface FilterSection {
   max?: number;
 }
 
+interface SelectedFilters {
+  categories: string[];
+  price: [number, number];
+  [key: string]: any;
+}
+
 interface ClassicSidebarProps {
   categories?: FilterOption[];
   filters?: FilterSection[];
-  selectedFilters?: {
-    categories: string[];
-    price: [number, number];
-    [key: string]: any;
-  };
-  onFilterChange?: (filters: any) => void;
+  selectedFilters?: SelectedFilters;
+  onFilterChange?: (filters: SelectedFilters) => void;
   showNewsletter?: boolean;
   showBestSellers?: boolean;
   className?: string;
@@ -47,7 +49,9 @@ export const ClassicSidebar = ({
 }: ClassicSidebarProps) => {
   const { t } = useTranslation();
   const [expandedSections, setExpandedSections] = useState<string[]>([]);
-  const [localFilters, setLocalFilters] = useState(selectedFilters);
+  const [localFilters, setLocalFilters] = useState<SelectedFilters>(
+    selectedFilters as SelectedFilters
+  );
 
   const defaultFilters: FilterSection[] = [
     {
@@ -97,22 +101,26 @@ export const ClassicSidebar = ({
 
   const toggleSection = (title: string) => {
     setExpandedSections((prev) =>
-      prev.includes(title)
-        ? prev.filter((t) => t !== title)
-        : [...prev, title]
+      prev.includes(title) ? prev.filter((t) => t !== title) : [...prev, title]
     );
   };
 
-  const handleCheckboxChange = (section: string, value: string, checked: boolean) => {
+  const handleCheckboxChange = (
+    section: string,
+    value: string,
+    checked: boolean
+  ) => {
     const newFilters = { ...localFilters };
     if (!newFilters[section]) newFilters[section] = [];
-    
+
+    const prev = (newFilters[section] as string[]) || [];
+
     if (checked) {
-      newFilters[section] = [...newFilters[section], value];
+      newFilters[section] = [...prev, value];
     } else {
-      newFilters[section] = newFilters[section].filter((v: string) => v !== value);
+      newFilters[section] = prev.filter((v) => v !== value);
     }
-    
+
     setLocalFilters(newFilters);
     onFilterChange?.(newFilters);
   };
@@ -152,7 +160,9 @@ export const ClassicSidebar = ({
       {/* Categories */}
       {categories.length > 0 && (
         <div className="rounded-lg border bg-white p-4">
-          <h3 className="mb-3 font-serif text-lg font-semibold">{t("Categories")}</h3>
+          <h3 className="mb-3 font-serif text-lg font-semibold">
+            {t("Categories")}
+          </h3>
           <ul className="space-y-2">
             {categories.map((category) => (
               <li key={category.value}>
@@ -161,14 +171,20 @@ export const ClassicSidebar = ({
                     <Checkbox
                       checked={localFilters.categories.includes(category.value)}
                       onCheckedChange={(checked: boolean) =>
-                        handleCheckboxChange("categories", category.value, checked)
+                        handleCheckboxChange(
+                          "categories",
+                          category.value,
+                          checked
+                        )
                       }
                       className="mr-2"
                     />
                     {category.label}
                   </span>
                   {category.count && (
-                    <span className="text-xs text-gray-500">({category.count})</span>
+                    <span className="text-xs text-gray-500">
+                      ({category.count})
+                    </span>
                   )}
                 </label>
               </li>
@@ -218,9 +234,9 @@ export const ClassicSidebar = ({
                           <span className="flex items-center">
                             <Checkbox
                               checked={
-                                localFilters[filter.title.toLowerCase()]?.includes(
-                                  option.value
-                                ) || false
+                                localFilters[
+                                  filter.title.toLowerCase()
+                                ]?.includes(option.value) || false
                               }
                               onCheckedChange={(checked: boolean) =>
                                 handleCheckboxChange(
@@ -267,7 +283,8 @@ export const ClassicSidebar = ({
                           key={option.value}
                           onClick={() => {
                             const isSelected =
-                              localFilters.size?.includes(option.value) || false;
+                              localFilters.size?.includes(option.value) ||
+                              false;
                             handleCheckboxChange(
                               "size",
                               option.value,
@@ -293,7 +310,8 @@ export const ClassicSidebar = ({
                           key={option.value}
                           onClick={() => {
                             const isSelected =
-                              localFilters.color?.includes(option.value) || false;
+                              localFilters.color?.includes(option.value) ||
+                              false;
                             handleCheckboxChange(
                               "color",
                               option.value,
@@ -332,7 +350,9 @@ export const ClassicSidebar = ({
       {/* Best Sellers */}
       {showBestSellers && (
         <div className="rounded-lg border bg-white p-4">
-          <h3 className="mb-3 font-serif text-lg font-semibold">{t("Best Sellers")}</h3>
+          <h3 className="mb-3 font-serif text-lg font-semibold">
+            {t("Best Sellers")}
+          </h3>
           <div className="space-y-3">
             {[1, 2, 3].map((item) => (
               <div key={item} className="flex gap-3">
