@@ -61,9 +61,9 @@ const HomePage: React.FC<HomePageProps> = ({
   onQuickView,
   onWishlist,
 }) => {
-  const { currentTheme, components: sharedComponents } = useTheme();
+  const { currentTheme, components: sharedComponents, variant } = useTheme();
   const { t } = useTranslation();
-  
+
   // Get theme-specific components
   const themeComponents = getThemeComponents(currentTheme);
   if (!themeComponents) return null;
@@ -73,12 +73,16 @@ const HomePage: React.FC<HomePageProps> = ({
     switch (currentTheme) {
       case "modern":
         const ModernHero = themeComponents.ModernHero;
-        return heroData?.slides && ModernHero ? <ModernHero slides={heroData.slides} /> : null;
-      
+        return heroData?.slides && ModernHero ? (
+          <ModernHero slides={heroData.slides} />
+        ) : null;
+
       case "classic":
         const ClassicHero = themeComponents.ClassicHero;
-        return heroData?.slides && ClassicHero ? <ClassicHero slides={heroData.slides} /> : null;
-      
+        return heroData?.slides && ClassicHero ? (
+          <ClassicHero slides={heroData.slides} />
+        ) : null;
+
       case "minimal":
         const MinimalHero = themeComponents.MinimalHero;
         return heroData?.backgroundSrc && MinimalHero ? (
@@ -88,7 +92,7 @@ const HomePage: React.FC<HomePageProps> = ({
             subtitle={heroData.subtitle}
           />
         ) : null;
-      
+
       case "luxe":
         const LuxeHero = themeComponents.LuxeHero;
         return heroData?.backgroundSrc && LuxeHero ? (
@@ -99,7 +103,7 @@ const HomePage: React.FC<HomePageProps> = ({
             subtitle={heroData.subtitle}
           />
         ) : null;
-      
+
       default:
         return null;
     }
@@ -121,7 +125,7 @@ const HomePage: React.FC<HomePageProps> = ({
             onWishlist={onWishlist}
           />
         ) : null;
-      
+
       case "classic":
         const ClassicProductGrid = themeComponents.ClassicProductGrid;
         return ClassicProductGrid ? (
@@ -134,7 +138,7 @@ const HomePage: React.FC<HomePageProps> = ({
             onWishlist={onWishlist}
           />
         ) : null;
-      
+
       case "minimal":
         const MinimalProductShowcase = themeComponents.MinimalProductShowcase;
         return MinimalProductShowcase ? (
@@ -147,7 +151,7 @@ const HomePage: React.FC<HomePageProps> = ({
             onWishlist={onWishlist}
           />
         ) : null;
-      
+
       case "luxe":
         const LuxeProductCarousel = themeComponents.LuxeProductCarousel;
         return LuxeProductCarousel ? (
@@ -160,7 +164,7 @@ const HomePage: React.FC<HomePageProps> = ({
             onWishlist={onWishlist}
           />
         ) : null;
-      
+
       default:
         return null;
     }
@@ -171,7 +175,8 @@ const HomePage: React.FC<HomePageProps> = ({
 
     switch (currentTheme) {
       case "modern":
-        const ModernFeaturedCollections = themeComponents.ModernFeaturedCollections;
+        const ModernFeaturedCollections =
+          themeComponents.ModernFeaturedCollections;
         return ModernFeaturedCollections ? (
           <ModernFeaturedCollections
             collections={collections}
@@ -179,14 +184,16 @@ const HomePage: React.FC<HomePageProps> = ({
             subtitle={t("exploreCollections")}
           />
         ) : null;
-      
+
       case "classic":
         // Classic theme uses shared CategoryCard
         const CategoryCard = sharedComponents.CategoryCard;
         return (
           <section className="py-12">
             <div className="container mx-auto px-4">
-              <h2 className="mb-8 text-center text-2xl font-bold">{t("shopByCategory")}</h2>
+              <h2 className="mb-8 text-center text-2xl font-bold">
+                {t("shopByCategory")}
+              </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {collections.map((collection) => (
                   <CategoryCard
@@ -199,19 +206,17 @@ const HomePage: React.FC<HomePageProps> = ({
             </div>
           </section>
         );
-      
+
       case "minimal":
         const MinimalCollectionGrid = themeComponents.MinimalCollectionGrid;
         return MinimalCollectionGrid ? (
-          <MinimalCollectionGrid
-            collections={collections}
-            columns={3}
-          />
+          <MinimalCollectionGrid collections={collections} columns={3} />
         ) : null;
-      
+
       case "luxe":
         // For luxe theme, use modern's asymmetric collections if available
-        const ModernAsymmetricCollections = getThemeComponents("modern")?.ModernAsymmetricCollections;
+        const ModernAsymmetricCollections =
+          getThemeComponents("modern")?.ModernAsymmetricCollections;
         if (ModernAsymmetricCollections && collections.length > 0) {
           return (
             <ModernAsymmetricCollections
@@ -222,7 +227,7 @@ const HomePage: React.FC<HomePageProps> = ({
           );
         }
         return null;
-      
+
       default:
         return null;
     }
@@ -239,14 +244,14 @@ const HomePage: React.FC<HomePageProps> = ({
     if (!showNewsletter) return null;
 
     const Newsletter = sharedComponents.Newsletter;
-    
+
     // Only show in footer for classic theme
     if (currentTheme === "classic") return null;
-    
+
     return (
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <Newsletter variant={currentTheme as any} />
+          <Newsletter variant={variant} />
         </div>
       </section>
     );

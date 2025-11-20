@@ -22,7 +22,13 @@ interface CollectionPageProps {
   }>;
   onAddToCart?: (productId: string) => void;
   onQuickView?: (productId: string) => void;
-  onWishlist?: (item: { id: string; name: string; price: number; image: string; variant?: string }) => void;
+  onWishlist?: (item: {
+    id: string;
+    name: string;
+    price: number;
+    image: string;
+    variant?: string;
+  }) => void;
 }
 
 const CollectionPage: React.FC<CollectionPageProps> = ({
@@ -32,16 +38,20 @@ const CollectionPage: React.FC<CollectionPageProps> = ({
   onQuickView,
   onWishlist,
 }) => {
-  const { currentTheme } = useTheme();
+  const { currentTheme, variant } = useTheme();
 
   return (
     <div className={`theme-${currentTheme} collection-page`}>
       {/* Breadcrumbs */}
       <div className="container mx-auto px-4 py-4">
         <nav className="flex items-center space-x-2 text-sm text-gray-600">
-          <a href="/" className="hover:text-primary">Home</a>
+          <a href="/" className="hover:text-primary">
+            Home
+          </a>
           <span>/</span>
-          <a href="/collections" className="hover:text-primary">Collections</a>
+          <a href="/collections" className="hover:text-primary">
+            Collections
+          </a>
           <span>/</span>
           <span className="text-gray-900">{collection.name}</span>
         </nav>
@@ -58,7 +68,7 @@ const CollectionPage: React.FC<CollectionPageProps> = ({
             />
           </div>
         )}
-        
+
         <div className="text-center">
           <h1 className="mb-4 text-3xl font-bold text-gray-900">
             {collection.name}
@@ -81,7 +91,7 @@ const CollectionPage: React.FC<CollectionPageProps> = ({
             <ProductCard
               key={product.id}
               {...product}
-              variant={currentTheme as any}
+              variant={variant}
               onAddToCart={onAddToCart}
               onQuickView={onQuickView}
               onWishlist={onWishlist}
