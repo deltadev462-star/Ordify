@@ -57,8 +57,18 @@ app.get('/health', (req, res) => {
   });
 });
 
-// API Routes
+
+
+
 const API_PREFIX = `/api/${process.env.API_VERSION || 'v1'}`;
+
+app.get(`${API_PREFIX}`, (req, res) => {
+  res.status(200).json({ 
+    message: 'Welcome to the Ordify ',
+  });
+});
+
+// API Routes
 
 app.use(`${API_PREFIX}/auth`, authRoutes);
 app.use(`${API_PREFIX}/users`, userRoutes);

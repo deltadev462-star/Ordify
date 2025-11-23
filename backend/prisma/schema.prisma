@@ -98,7 +98,6 @@ model Store {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   
-  @@index([slug])
   @@index([ownerId])
   @@map("stores")
 }
@@ -378,7 +377,6 @@ model Order {
   
   @@index([storeId])
   @@index([customerId])
-  @@index([orderNumber])
   @@map("orders")
 }
 
