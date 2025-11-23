@@ -29,7 +29,7 @@ function Shater() {
               className="text-3xl"
               classNamee=""
             />
-            <div className="bg-[#101010] dark:text-white text-black py-10 px-15  max-w-7xl mx-auto mt-10 rounded-3xl ">
+            <div className="dark:bg-[#101010] bg-gray-100  dark:text-white text-black   py-10 px-15  max-w-7xl mx-auto mt-10 rounded-3xl ">
               <div className="flex item center justify-between">
                 <div className="">
                   <img src="/fl (1).png" alt="" className="w-15" />
@@ -88,3 +88,4 @@ function Shater() {
 }
 
 export default Shater;
+

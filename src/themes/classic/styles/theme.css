@@ -36,7 +36,7 @@ body.dark .theme-classic {
   --theme-accent-foreground: #ffffff;
   --theme-destructive: #c73e3a;
   --theme-destructive-foreground: #ffffff;
-  --theme-border: #3a3a3a;
+  --theme-border: #424242;
   --theme-input: #3a3a3a;
   --theme-ring: #8b7355;
   --theme-chart-1: #8b7355;
@@ -64,7 +64,7 @@ body.dark .theme-classic {
   --theme-accent-foreground: #2c3e50;
   --theme-destructive: #e74c3c;
   --theme-destructive-foreground: #ffffff;
-  --theme-border: #e0e0e0;
+  --theme-border: #d6d6d6;
   --theme-input: #e0e0e0;
   --theme-ring: #34495e;
   --theme-chart-1: #34495e;

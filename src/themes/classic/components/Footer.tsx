@@ -141,7 +141,7 @@ export const ClassicFooter = ({
     <footer className={`bg-gray-50 dark:bg-[#1a1a1a] ${className}`}>
       {/* Features */}
       {showFeatures && (
-        <div className="border-b border-gray-200 dark:border-[#3a3a3a]">
+        <div className="border-b border-[#d6d6d6] dark:border-[#424242] dark:border-[#3a3a3a]">
           <div className="container mx-auto px-4 py-8">
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {features.map((feature, index) => (
@@ -162,7 +162,7 @@ export const ClassicFooter = ({
 
       {/* Newsletter */}
       {showNewsletter && (
-        <div className="bg-[#34495e] dark:bg-[#2e2e2e] text-white border-y border-gray-200 dark:border-[#3a3a3a]">
+        <div className="bg-[#34495e] dark:bg-[#2e2e2e] text-white border-y border-[#d6d6d6] dark:border-[#424242] dark:border-[#3a3a3a]">
           <div className="container mx-auto px-4 py-8">
             <div className="mx-auto max-w-4xl">
               <Newsletter
@@ -236,7 +236,7 @@ export const ClassicFooter = ({
         </div>
 
         {/* Social Links */}
-        <div className="mt-8 border-t border-gray-200 dark:border-[#3a3a3a] pt-8">
+        <div className="mt-8 border-t border-[#d6d6d6] dark:border-[#424242] dark:border-[#3a3a3a] pt-8">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
             <div className="flex items-center gap-4">
               <span className="text-sm text-gray-600 dark:text-gray-400">{t("Follow Us:")}</span>
@@ -294,7 +294,7 @@ export const ClassicFooter = ({
         </div>
 
         {/* Copyright */}
-        <div className="mt-6 border-t border-gray-200 dark:border-[#3a3a3a] pt-6 text-center text-sm text-gray-500 dark:text-gray-400">
+        <div className="mt-6 border-t border-[#d6d6d6] dark:border-[#424242] dark:border-[#3a3a3a] pt-6 text-center text-sm text-gray-500 dark:text-gray-400">
           <p>
             © {new Date().getFullYear()} {typeof logo === "string" ? logo : "Classic Store"}. {t("All Rights Reserved.")} |
             <a href="/sitemap" className="ml-1 hover:text-[#34495e] dark:hover:text-[#8b7355]">{t("Sitemap")}</a>

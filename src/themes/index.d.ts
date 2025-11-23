@@ -1,4 +1,5 @@
 import { ThemeConfig } from '@/context/ThemeContext';
+import { ComponentType } from 'react';
 
 export interface ThemeMetadata {
   id: string;
@@ -13,7 +14,7 @@ export interface ThemeMetadata {
 
 export interface Theme {
   config: ThemeConfig;
-  components: Record<string, any>;
+  components: Record<string, ComponentType<Record<string, unknown>>>;
   name: string;
   displayName: string;
   description: string;
@@ -35,7 +36,7 @@ export function getThemeNames(): string[];
 export function getAllThemes(): ThemeMetadata[];
 export function isValidTheme(themeName: string): boolean;
 export function getThemeConfig(themeName: string): ThemeConfig | null;
-export function getThemeComponents(themeName: string): Record<string, any> | null;
+export function getThemeComponents(themeName: string): Record<string, ComponentType<Record<string, unknown>>> | null;
 export function loadThemeStyles(themeName: string): Promise<boolean>;
 export function getThemePreviewData(): Array<{
   id: string;

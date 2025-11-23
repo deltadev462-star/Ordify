@@ -18,7 +18,7 @@ export default function PaymentCard({
       <h2 className="text-4xl font-bold text-gray-800 dark:text-white">${amount}</h2>
       <p className="text-gray-600 dark:text-gray-400">{bonusText}</p>
 
-      <hr className="border-gray-200" />
+      <hr className="border-[#d6d6d6] dark:border-[#424242]" />
 
       <ul className="space-y-3 text-gray-700 dark:text-gray-400 mt-4">
         {features.map((feature, i) => (
@@ -38,3 +38,4 @@ export default function PaymentCard({
     </div>
   );
 }
+

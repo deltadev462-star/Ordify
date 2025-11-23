@@ -36,3 +36,4 @@ export const useComponentVariant = (themeName: string) => {
 
   return variantMap[themeName] || "default";
 };
+

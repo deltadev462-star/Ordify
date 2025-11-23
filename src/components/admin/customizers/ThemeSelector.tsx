@@ -33,7 +33,7 @@ export const ThemeSelector: React.FC = () => {
             className={`cursor-pointer transition-all hover:shadow-md border border-[#d6d6d6] dark:bg-[#101010] dark:border-[#424242] ${
               currentTheme === theme.id
                 ? "ring-2 ring-primary border-primary"
-                : "border-gray-200"
+                : "border-[#d6d6d6] dark:border-[#424242]"
             }`}
             onClick={() => handleThemeSelect(theme.id)}
           >

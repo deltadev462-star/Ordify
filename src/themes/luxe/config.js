@@ -1,17 +1,17 @@
 export default {
   name: "Luxe Theme",
   slug: "luxe",
-  description: "Premium, elegant design for high-end brands. Features video backgrounds, elegant typography, premium feel. Perfect for luxury fashion, jewelry, and high-end products.",
+  description: "تصميم متميز وأنيق للعلامات التجارية الراقية. يتميز بخلفيات الفيديو، والطباعة الأنيقة، والشعور بالفخامة. مثالي للأزياء الفاخرة والمجوهرات والمنتجات الراقية.",
   
   colors: {
     primary: "#b8860b", // Goldenrod - Richer gold
     secondary: "#1a1a1a", // Near black - More sophisticated
     accent: "#a855f7", // Purple-500 - Luxurious purple
-    background: "#ffffff",
+    // background: "#ffffff",
     foreground: "#0a0a0a", // Very dark
     muted: "#faf9f7", // Warm off-white
     mutedForeground: "#525252", // Neutral-600
-    border: "#d4d4d4", // Neutral-300
+    border: "#d6d6d6", // Neutral-300
     success: "#059669", // Emerald-600
     warning: "#d97706", // Amber-600
     error: "#dc2626",
@@ -23,7 +23,7 @@ export default {
     darkForeground: "#faf9f7", // Warm off-white text
     darkMuted: "#1c1917", // Stone-900 - Dark muted
     darkMutedForeground: "#a8a29e", // Stone-400 - Light muted text
-    darkBorder: "#57534e", // Stone-600 - Dark border
+    darkBorder: "#424242", // Stone-600 - Dark border
     darkSuccess: "#10b981", // Emerald-500 - Lighter for dark mode
     darkWarning: "#f59e0b", // Amber-500 - Lighter for dark mode
     darkError: "#ef4444", // Red-500 - Lighter for dark mode

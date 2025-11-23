@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import type { ReactNode } from "react";
+import type { ReactNode, ComponentType } from "react";
 
 export interface ThemeColors {
   primary: string;
@@ -87,7 +87,7 @@ export interface ThemeConfig {
   colors: ThemeColors;
   typography: ThemeTypography;
   layout: ThemeLayout;
-  components?: Record<string, any>;
+  components?: Record<string, ComponentType<Record<string, unknown>>>;
   features?: Record<string, boolean>;
   presets?: {
     colorSchemes?: Array<{
@@ -192,7 +192,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     };
 
     loadTheme();
-  }, [currentTheme, merchantId, defaultTheme]);
+  }, [currentTheme, merchantId, defaultTheme, customizations]);
 
   // Apply theme CSS variables
   const applyThemeVariables = (config: ThemeConfig, customizations: ThemeCustomizations) => {
@@ -297,6 +297,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useThemeContext = (): ThemeContextType => {
   const context = useContext(ThemeContext);
   if (!context) {

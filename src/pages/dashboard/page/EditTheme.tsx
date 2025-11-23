@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { AppSidebar } from "@/components/app-sidebar";
 import Header from "@/components/Header";
 import Title from "@/components/Title";
@@ -19,43 +19,43 @@ function EditTheme() {
     tryLink: "",
   });
 
-   const themes = [
-    {
-      id: 1,
-      title: t("darkMode"),
-      description: t("darkThemeDescription"),
-      image: "/th (1).jpg",
-      tryLink: "/try/dark",
-    },
-    {
-      id: 2,
-      title: t("lightMode"),
-      description: t("lightThemeDescription"),
-      image: "/th (2).jpg",
-      tryLink: "/try/light",
-    },
-    {
-      id: 3,
-      title: t("darkMode"),
-      description: t("darkThemeDescription"),
-      image: "/th (3).jpg",
-      tryLink: "/try/dark",
-    },
-    {
-      id: 4,
-      title: t("lightMode"),
-      description: t("lightThemeDescription"),
-      image: "/th (4).jpg",
-      tryLink: "/try/light",
-    },
-  ];
+   const themes = useMemo(() => [
+     {
+       id: 1,
+       title: t("darkMode"),
+       description: t("darkThemeDescription"),
+       image: "/th (1).jpg",
+       tryLink: "/try/dark",
+     },
+     {
+       id: 2,
+       title: t("lightMode"),
+       description: t("lightThemeDescription"),
+       image: "/th (2).jpg",
+       tryLink: "/try/light",
+     },
+     {
+       id: 3,
+       title: t("darkMode"),
+       description: t("darkThemeDescription"),
+       image: "/th (3).jpg",
+       tryLink: "/try/dark",
+     },
+     {
+       id: 4,
+       title: t("lightMode"),
+       description: t("lightThemeDescription"),
+       image: "/th (4).jpg",
+       tryLink: "/try/light",
+     },
+   ], [t]);
 
   useEffect(() => {
     const foundTheme = themes.find((t) => t.id === parseInt(id || "0"));
     if (foundTheme) {
       setTheme(foundTheme);
     }
-  }, [id]);
+  }, [id, themes]);
 
   const handleSave = () => {
     // Mock save, in real app would call API

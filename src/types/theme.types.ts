@@ -1,4 +1,5 @@
 import type { ThemeConfig } from '@/context/ThemeContext';
+import type { ComponentType } from 'react';
 
 export interface ThemeMetadata {
   id: string;
@@ -13,7 +14,7 @@ export interface ThemeMetadata {
 
 export interface Theme {
   config: ThemeConfig;
-  components: Record<string, any>;
+  components: Record<string, ComponentType<Record<string, unknown>>>;
   name: string;
   displayName: string;
   description: string;

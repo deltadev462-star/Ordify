@@ -98,7 +98,7 @@ const ColorPreset: React.FC<ColorPresetProps> = ({
       className={`group relative w-full rounded-lg border-2 p-4 text-left transition-all hover:shadow-md ${
         isActive
           ? "border-primary shadow-md"
-          : "border-gray-200 hover:border-gray-300"
+          : "border-[#d6d6d6] dark:border-[#424242] hover:border-gray-300"
       }`}
     >
       {isActive && (
@@ -112,17 +112,17 @@ const ColorPreset: React.FC<ColorPresetProps> = ({
       </div>
       <div className="flex gap-2">
         <div
-          className="h-8 w-8 rounded-full border border-gray-200"
+          className="h-8 w-8 rounded-full border border-[#d6d6d6] dark:border-[#424242]"
           style={{ backgroundColor: colors.primary }}
           title="Primary"
         />
         <div
-          className="h-8 w-8 rounded-full border border-gray-200"
+          className="h-8 w-8 rounded-full border border-[#d6d6d6] dark:border-[#424242]"
           style={{ backgroundColor: colors.secondary }}
           title="Secondary"
         />
         <div
-          className="h-8 w-8 rounded-full border border-gray-200"
+          className="h-8 w-8 rounded-full border border-[#d6d6d6] dark:border-[#424242]"
           style={{ backgroundColor: colors.accent }}
           title="Accent"
         />
@@ -440,9 +440,9 @@ export const ColorCustomizer: React.FC = () => {
                 </button>
 
                 <button
-                  className="px-4 py-2 text-sm font-medium rounded-md transition-all hover:scale-105 border-2"
+                  className="px-4 py-2 text-sm font-medium rounded-md transition-all hover:scale-105 border-2   border-[#d6d6d6] dark:bg-[#101010] dark:border-[#424242]"
                   style={{
-                    borderColor: colors.primary,
+                    // borderColor: colors.primary,
                     color: colors.primary,
                     backgroundColor: "transparent",
                   }}
@@ -543,7 +543,7 @@ export const ColorCustomizer: React.FC = () => {
                   .map(([key, value]) => (
                     <div key={key} className="text-center">
                       <div
-                        className="h-12 w-full rounded-md border border-gray-200 mb-1 hover:scale-105 transition-transform"
+                        className="h-12 w-full rounded-md border  border-[#d6d6d6] dark:bg-[#101010] dark:border-[#424242] mb-1 hover:scale-105 transition-transform"
                         style={{ backgroundColor: value }}
                       />
                       <span className="text-xs text-gray-600 capitalize">
@@ -559,3 +559,4 @@ export const ColorCustomizer: React.FC = () => {
     </div>
   );
 };
+

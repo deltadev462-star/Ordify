@@ -48,7 +48,7 @@ function Applications() {
                     <li key={index}>
                       <button
                         onClick={() => setActiveTab(index)}
-                        className={`inline-flex items-center gap-2 px-1 py-3 cursor-pointer text-lg text-white/80 hover:text-primary-700 relative
+                        className={`inline-flex items-center gap-2 px-1 py-3 cursor-pointer text-lg text-gray-700 dark:text-white/80 hover:text-primary-700 relative
                   ${
                     activeTab === index
                       ? "text-primary-700 after:absolute after:left-0 border-b border-[#0abb45] after:bottom-0 after:h-0.5 after:w-full after:bg-primary-700"
@@ -70,7 +70,7 @@ function Applications() {
                     <InstalledCard
                       icon={
                         <svg
-                          className="w-6 h-6 text-blue-500" /* أي أيقونة */
+                          className="w-6 h-6 text-blue-500"  
                         />
                       }
                       title={t("Google Analytics")}
@@ -112,7 +112,7 @@ function Applications() {
                 {activeTab === 1 && (
                   <div>
                     <h2 className="text-lg font-semibold mb-2">{t("Preferences")}</h2>
-                    <p>{t("Change your account settings here.")}</p>
+                    <p className=" dark:text-white">{t("Change your account settings here.")}</p>
                   </div>
                 )}
               </div>
@@ -125,3 +125,4 @@ function Applications() {
 }
 
 export default Applications;
+

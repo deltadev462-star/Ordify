@@ -30,3 +30,4 @@ function Empty({ Name, className }: EmptyProps) {
 }
 
 export default Empty;
+

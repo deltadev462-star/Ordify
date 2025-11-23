@@ -1,7 +1,7 @@
 export default {
   name: "Minimal Theme",
   slug: "minimal",
-  description: "Clean, minimal design focusing on products. Features full-screen images, subtle animations, lots of white space. Perfect for luxury goods, jewelry, art, and premium brands.",
+  description: "تصميم نظيف وبسيط يركز على المنتجات. يتميز بصور ملء الشاشة، والرسوم المتحركة الدقيقة، ومساحة بيضاء كبيرة. مثالي للسلع الفاخرة والمجوهرات والفن والعلامات التجارية الممتازة.",
   
   colors: {
     primary: "#18181b", // Zinc-900 - Sophisticated black
@@ -11,7 +11,7 @@ export default {
     foreground: "#18181b", // Zinc-900
     muted: "#fafafa", // Neutral-50
     mutedForeground: "#71717a", // Zinc-500
-    border: "#e4e4e7", // Zinc-200
+    border: "#d6d6d6", // Zinc-200
     success: "#22c55e", // Green-500
     warning: "#f59e0b", // Amber-500
     error: "#ef4444",
@@ -23,7 +23,7 @@ export default {
     darkForeground: "#fafafa", // Neutral-50 - Light text
     darkMuted: "#27272a", // Zinc-800 - Dark muted
     darkMutedForeground: "#a1a1aa", // Zinc-400 - Light muted text
-    darkBorder: "#3f3f46", // Zinc-700 - Dark border
+    darkBorder: "#424242", // Zinc-700 - Dark border
     darkSuccess: "#4ade80", // Green-400 - Lighter for dark mode
     darkWarning: "#fbbf24", // Amber-400 - Lighter for dark mode
     darkError: "#f87171", // Red-400 - Lighter for dark mode

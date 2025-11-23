@@ -1,7 +1,7 @@
 export default {
   name: "Classic Theme",
   slug: "classic",
-  description: "Traditional ecommerce design with proven conversion patterns. Features sidebar filters, breadcrumbs, detailed product information, and customer reviews.",
+  description: "تصميم تجارة إلكترونية تقليدي مع أنماط تحويل مثبتة. يتميز بفلاتر الشريط الجانبي، ومسار التنقل، ومعلومات المنتج التفصيلية، وتقييمات العملاء.",
   
   colors: {
     primary: "#2563eb", // Blue-600 - Brighter
@@ -11,7 +11,7 @@ export default {
     foreground: "#1f2937", // Gray-800
     muted: "#f9fafb", // Gray-50
     mutedForeground: "#6b7280", // Gray-500
-    border: "#d1d5db", // Gray-300
+    border: "#d6d6d6", // Gray-300
     success: "#16a34a", // Green-600
     warning: "#ea580c", // Orange-600
     error: "#dc2626",
@@ -23,7 +23,7 @@ export default {
     darkForeground: "#f9fafb", // Gray-50 - Light text
     darkMuted: "#1f2937", // Gray-800 - Dark muted
     darkMutedForeground: "#9ca3af", // Gray-400 - Light muted text
-    darkBorder: "#374151", // Gray-700 - Dark border
+    darkBorder: "#424242", // Gray-700 - Dark border
     darkSuccess: "#22c55e", // Green-500 - Lighter for dark mode
     darkWarning: "#f97316", // Orange-500 - Lighter for dark mode
     darkError: "#ef4444", // Red-500 - Lighter for dark mode
