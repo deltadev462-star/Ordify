@@ -104,3 +104,4 @@ const CollectionPage: React.FC<CollectionPageProps> = ({
 };
 
 export default CollectionPage;
+

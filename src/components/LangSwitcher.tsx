@@ -26,7 +26,7 @@ export default function LangSwitcher() {
       </button>
 
       {open && (
-        <div className="absolute right-0 mt-2 w-15 overflow-hidden bg-white dark:bg-[#101010] border border-gray-200 dark:border-gray-800 rounded-md shadow-lg z-20">
+        <div className="absolute right-0 mt-2 w-15 overflow-hidden bg-white dark:bg-[#101010] border border-[#d6d6d6] dark:border-[#424242] dark:border-gray-800 rounded-md shadow-lg z-20">
           <button
             onClick={() => handleChangeLang("en")}
             className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 dark:hover:bg-[#333]"
@@ -45,3 +45,4 @@ export default function LangSwitcher() {
     </div>
   );
 }
+

@@ -335,3 +335,4 @@ const ProductPage: React.FC<ProductPageProps> = ({
 };
 
 export default ProductPage;
+

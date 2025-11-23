@@ -25,10 +25,10 @@ const Funnels = lazy(() => import("./pages/dashboard/page/Funnels"));
 const AffiliateMarketing = lazy(() => import("./pages/dashboard/page/AffiliateMarketing"));
 const Transactions = lazy(() => import("./pages/dashboard/page/Transactions"));
 const Wallet = lazy(() => import("./pages/dashboard/page/Wallet"));
-const Template = lazy(() => import("./pages/dashboard/page/Template"));
+// const Template = lazy(() => import("./pages/dashboard/page/Template"));
 const EditTheme = lazy(() => import("./pages/dashboard/page/EditTheme"));
 const Themes = lazy(() => import("./pages/dashboard/page/Themes"));
-
+const Text = lazy(() => import("./pages/dashboard/page/Text"));
 
  
 
@@ -52,13 +52,14 @@ function AppContent() {
       <Route path="/dashboard/funnels" element={<Funnels />} />
       <Route path="/dashboard/applications" element={<Applications />} />
       <Route path="/dashboard/themes" element={<Themes />} />
+      <Route path="/dashboard/text" element={<Text />} />
       <Route
         path="/dashboard/affiliate-marketing"
         element={<AffiliateMarketing />}
       />
       <Route path="/dashboard/wallet" element={<Wallet />} />
       <Route path="/dashboard/transactions" element={<Transactions />} />
-      <Route path="/dashboard/template" element={<Template />} />
+      {/* <Route path="/dashboard/template" element={<Template />} /> */}
 
       <Route path="/dashboard/shater" element={<Shater />} />
       <Route path="/dashboard/service-gallery" element={<ServiceGallery />} />
@@ -89,3 +90,4 @@ function App() {
 }
 
 export default App;
+

@@ -298,3 +298,4 @@ export const MinimalTwoColumnFooter = ({
     </footer>
   );
 };
+

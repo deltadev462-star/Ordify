@@ -5,6 +5,7 @@ import { Slider } from "@/components/ui/slider";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Filter, Grid2X2, Grid3X3, LayoutGrid } from "lucide-react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { useTranslation } from "react-i18next";
 
 interface Product {
   id: string;
@@ -31,22 +32,6 @@ interface ModernProductGridProps {
   className?: string;
 }
 
-const sortOptions = [
-  { value: "featured", label: "Featured" },
-  { value: "price-asc", label: "Price: Low to High" },
-  { value: "price-desc", label: "Price: High to Low" },
-  { value: "newest", label: "Newest First" },
-  { value: "rating", label: "Highest Rated" },
-];
-
-const mockCategories = [
-  "Electronics",
-  "Fashion",
-  "Home & Garden",
-  "Sports",
-  "Beauty",
-];
-
 export const ModernProductGrid = ({
   products,
   title,
@@ -60,12 +45,29 @@ export const ModernProductGrid = ({
   onWishlist,
   className = "",
 }: ModernProductGridProps) => {
+  const { t } = useTranslation();
   const [columns, setColumns] = useState(defaultColumns);
   const [sortBy, setSortBy] = useState("featured");
   const [priceRange, setPriceRange] = useState([0, 1000]);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [showInStockOnly, setShowInStockOnly] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+  const sortOptions = [
+    { value: "featured", label: t("featured") },
+    { value: "price-asc", label: t("priceAsc") },
+    { value: "price-desc", label: t("priceDesc") },
+    { value: "newest", label: t("newest") },
+    { value: "rating", label: t("highestRated") },
+  ];
+
+  const mockCategories = [
+    t("electronics"),
+    t("fashion"),
+    t("homeAndGarden"),
+    t("sports"),
+    t("beauty"),
+  ];
 
   // Filter products
   const filteredProducts = products.filter((product) => {
@@ -109,7 +111,7 @@ export const ModernProductGrid = ({
     <div className="space-y-6">
       {/* Categories */}
       <div>
-        <h3 className="mb-3 font-semibold">Categories</h3>
+        <h3 className="mb-3 font-semibold">{t("categories")}</h3>
         <div className="space-y-2">
           {mockCategories.map((category) => (
             <label key={category} className="flex items-center space-x-2">
@@ -131,7 +133,7 @@ export const ModernProductGrid = ({
 
       {/* Price Range */}
       <div>
-        <h3 className="mb-3 font-semibold">Price Range</h3>
+        <h3 className="mb-3 font-semibold">{t("priceRange")}</h3>
         <div className="space-y-3">
           <Slider
             value={priceRange}
@@ -155,7 +157,7 @@ export const ModernProductGrid = ({
             checked={showInStockOnly}
             onCheckedChange={(checked: boolean) => setShowInStockOnly(checked)}
           />
-          <span className="text-sm">Show In Stock Only</span>
+          <span className="text-sm">{t("showInStockOnly")}</span>
         </label>
       </div>
 
@@ -169,7 +171,7 @@ export const ModernProductGrid = ({
           setShowInStockOnly(false);
         }}
       >
-        Clear All Filters
+        {t("clearAllFilters")}
       </Button>
     </div>
   );
@@ -192,12 +194,12 @@ export const ModernProductGrid = ({
               <SheetTrigger asChild>
                 <Button variant="outline" className="lg:hidden">
                   <Filter className="mr-2 h-4 w-4" />
-                  Filters
+                  {t("filters")}
                 </Button>
               </SheetTrigger>
               <SheetContent side="left" className="w-80">
                 <SheetHeader>
-                  <SheetTitle>Filters</SheetTitle>
+                  <SheetTitle>{t("filters")}</SheetTitle>
                 </SheetHeader>
                 <div className="mt-6">
                   <FilterSidebar />
@@ -206,7 +208,7 @@ export const ModernProductGrid = ({
             </Sheet>
           )}
           <p className="text-sm text-gray-600">
-            {sortedProducts.length} products found
+            {t("productsFound", { count: sortedProducts.length })}
           </p>
         </div>
 
@@ -291,7 +293,7 @@ export const ModernProductGrid = ({
             </div>
           ) : (
             <div className="py-16 text-center">
-              <p className="text-lg text-gray-600">No products found matching your criteria.</p>
+              <p className="text-lg text-gray-600">{t("noProductsFound")}</p>
               <Button
                 variant="outline"
                 className="mt-4"
@@ -301,7 +303,7 @@ export const ModernProductGrid = ({
                   setShowInStockOnly(false);
                 }}
               >
-                Clear Filters
+                {t("clearFilters")}
               </Button>
             </div>
           )}
@@ -310,7 +312,7 @@ export const ModernProductGrid = ({
           {sortedProducts.length > 0 && (
             <div className="mt-12 text-center">
               <Button variant="outline" size="lg">
-                Load More Products
+                {t("loadMoreProducts")}
               </Button>
             </div>
           )}

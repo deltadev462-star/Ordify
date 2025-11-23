@@ -30,3 +30,4 @@ import HttpApi from 'i18next-http-backend';
   });
  
 export default i18n;
+

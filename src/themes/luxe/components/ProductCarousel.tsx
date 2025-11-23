@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { ProductCard } from "@/themes/shared/components/ProductCard";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -52,6 +52,14 @@ export const LuxeProductCarousel = ({
 
   const maxIndex = Math.max(0, products.length - productsPerView);
 
+  const handlePrevious = () => {
+    setCurrentIndex((prev) => Math.max(0, prev - 1));
+  };
+
+  const handleNext = useCallback(() => {
+    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+  }, [maxIndex]);
+
   useEffect(() => {
     if (autoPlay && !isHovered && products.length > productsPerView) {
       intervalRef.current = setInterval(() => {
@@ -64,15 +72,7 @@ export const LuxeProductCarousel = ({
         clearInterval(intervalRef.current);
       }
     };
-  }, [currentIndex, autoPlay, isHovered, products.length, productsPerView, autoPlayInterval]);
-
-  const handlePrevious = () => {
-    setCurrentIndex((prev) => Math.max(0, prev - 1));
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
-  };
+  }, [currentIndex, autoPlay, isHovered, products.length, productsPerView, autoPlayInterval, handleNext]);
 
   const handleDotClick = (index: number) => {
     setCurrentIndex(index * productsPerView);
@@ -121,14 +121,14 @@ export const LuxeProductCarousel = ({
           {/* Products */}
           <div className="overflow-hidden">
             <div 
-              className="flex transition-transform duration-700 ease-in-out"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 transition-transform duration-700 ease-in-out"
               style={{ transform: getTransform() }}
             >
               {products.map((product) => (
                 <div
                   key={product.id}
-                  className={`flex-shrink-0 px-3`}
-                  style={{ width: `${100 / productsPerView}%` }}
+                  className={`  px-3`}
+                  // style={{ width: `${100 / productsPerView}%` }}
                 >
                   <ProductCard
                     {...product}

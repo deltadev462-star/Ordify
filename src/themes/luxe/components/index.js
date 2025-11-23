@@ -5,5 +5,7 @@ export {
   LuxeHeritageTimeline, 
   LuxeCraftsmanship 
 } from './BrandStory';
+
 export { LuxeHeader } from './Header';
 export { LuxeFooter } from './Footer';
+

@@ -77,7 +77,7 @@ export const useTheme = () => {
         typography: {
           ...customizations.typography,
           [parent]: {
-            ...(customizations.typography as Record<string, any>)?.[parent],
+            ...(customizations.typography?.[parent as keyof typeof customizations.typography] as Record<string, unknown>),
             [child]: value,
           },
         },
@@ -100,7 +100,7 @@ export const useTheme = () => {
         layout: {
           ...customizations.layout,
           [parent]: {
-            ...(customizations.layout as Record<string, any>)?.[parent],
+            ...(customizations.layout?.[parent as keyof typeof customizations.layout] as Record<string, unknown>),
             [child]: value,
           },
         },
@@ -145,7 +145,7 @@ export const useTheme = () => {
 
 // Hook for using theme-specific styles
 export const useThemeStyles = () => {
-  const { colors, typography, layout, variant } = useTheme();
+  const { colors, typography, layout } = useTheme();
 
   const styles = useMemo(
     () => ({
@@ -215,7 +215,7 @@ export const useThemeStyles = () => {
         color: colors?.foreground,
       },
     }),
-    [colors, typography, layout, variant]
+    [colors, typography, layout]
   );
 
   return styles;
@@ -269,3 +269,4 @@ export const useThemeCSSVariables = () => {
 
   return cssVars;
 };
+

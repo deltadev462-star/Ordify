@@ -817,5 +817,25 @@
 
    
   "Information": "Information",
-  "Shipping": "Shipping"
+  "Shipping": "Shipping",
+  "featured": "Featured",
+  "priceAsc": "Price: Low to High",
+  "priceDesc": "Price: High to Low",
+  "newest": "Newest First",
+  "highestRated": "Highest Rated",
+  "electronics": "Electronics",
+  "fashion": "Fashion",
+  "homeAndGarden": "Home & Garden",
+  "sports": "Sports",
+  "beauty": "Beauty",
+  "categories": "Categories",
+  "priceRange": "Price Range",
+  "showInStockOnly": "Show In Stock Only",
+  "clearAllFilters": "Clear All Filters",
+  "filters": "Filters",
+  "productsFound": "{{count}} products found",
+  "noProductsFound": "No products found matching your criteria.",
+  "clearFilters": "Clear Filters",
+  "loadMoreProducts": "Load More Products",
+  "shopNow": "Shop Now"
 }

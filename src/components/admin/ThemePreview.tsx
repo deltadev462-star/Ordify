@@ -85,10 +85,10 @@ const THEME_SPECIFIC_NAMES: Record<string, Record<string, string[]>> = {
 
 // Helper function to find component by type
 const findThemeComponent = (
-  themeComponents: Record<string, any>,
+  themeComponents: Record<string, React.ComponentType<Record<string, unknown>>>,
   componentType: keyof ThemeComponentMap,
   themeName: string
-): React.ComponentType<any> | null => {
+): React.ComponentType<Record<string, unknown>> | null => {
   if (!themeComponents) return null;
 
   // First check theme-specific exact names
@@ -376,12 +376,12 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
 
   // State for all theme components
   const [themeComponents, setThemeComponents] = useState<{
-    Header: React.ComponentType<any> | null;
-    Footer: React.ComponentType<any> | null;
-    Hero: React.ComponentType<any> | null;
-    ProductGrid: React.ComponentType<any> | null;
-    ProductCard: React.ComponentType<any> | null;
-    CategoryCard: React.ComponentType<any> | null;
+    Header: React.ComponentType<Record<string, unknown>> | null;
+    Footer: React.ComponentType<Record<string, unknown>> | null;
+    Hero: React.ComponentType<Record<string, unknown>> | null;
+    ProductGrid: React.ComponentType<Record<string, unknown>> | null;
+    ProductCard: React.ComponentType<Record<string, unknown>> | null;
+    CategoryCard: React.ComponentType<Record<string, unknown>> | null;
   }>({
     Header: null,
     Footer: null,
@@ -473,7 +473,7 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
 
   return (
     <Card
-      className={`overflow-hidden   ${className} border border-[#d6d6d6] dark:bg-[#101010] dark:border-[#424242] dark:text-white`}
+      className={`overflow-hidden relative  ${className} border border-[#d6d6d6] dark:bg-[#101010] dark:border-[#424242] dark:text-white`}
     >
       <CardHeader>
         <CardTitle>
@@ -524,7 +524,7 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                 onAddToWishlist={handleAddToWishlist}
                 onRemoveFromWishlist={handleRemoveFromWishlist}
                 onMoveToCart={handleMoveToCart}
-                onSearch={(_query: string) => {}}
+                onSearch={() => {}}
                 onQuantityChange={handleQuantityChange}
                 onRemoveFromCart={handleRemoveFromCart}
                 onCheckout={handleCheckout}
@@ -751,10 +751,10 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                       />
                     );
                 }
-              } catch (error) {
+              } catch {
                 return (
-                  <div className="h-96 bg-red-50 flex items-center justify-center">
-                    <p className="text-red-500">
+                  <div className="h-96  flex items-center justify-center">
+                    <p className=" ">
                       {t("error")} {t("loading")} {t("hero")}
                     </p>
                   </div>
@@ -819,7 +819,7 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                       products={mockProducts}
                       viewMode={viewMode}
                       onAddToCart={handleAddToCart}
-                      onQuickView={(_id: string) => {}}
+                      onQuickView={() => {}}
                       onWishlist={handleAddToWishlist}
                     />
                   ) : (
@@ -1006,7 +1006,7 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
                     {t("yourStore")}
                   </span>
                 }
-                onSubscribe={(_email: string) => {}}
+                onSubscribe={() => {}}
               />
             ) : (
               /* Fallback generic footer */
@@ -1092,3 +1092,4 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
     </Card>
   );
 };
+

@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { useTheme } from "@/hooks/useTheme";
+import { useTranslation } from "react-i18next";
 
 interface HeroSlide {
   id: string;
@@ -34,9 +35,17 @@ export const ModernHero = ({
   height = "600px",
   className = "",
 }: ModernHeroProps) => {
+  const { t } = useTranslation();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const { colors, layout } = useTheme();
+
+  const handleNextSlide = useCallback(() => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+    setTimeout(() => setIsTransitioning(false), 500);
+  }, [isTransitioning, slides.length]);
 
   useEffect(() => {
     if (!autoPlay || slides.length <= 1) return;
@@ -46,14 +55,7 @@ export const ModernHero = ({
     }, autoPlayInterval);
 
     return () => clearInterval(interval);
-  }, [currentSlide, autoPlay, autoPlayInterval, slides.length]);
-
-  const handleNextSlide = () => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
-    setTimeout(() => setIsTransitioning(false), 500);
-  };
+  }, [currentSlide, autoPlay, autoPlayInterval, slides.length, handleNextSlide]);
 
   const handlePrevSlide = () => {
     if (isTransitioning) return;
@@ -172,7 +174,7 @@ export const ModernHero = ({
                           borderRadius: layout?.borderRadius.md,
                         }}
                       >
-                        <span className="relative z-10">Shop Now</span>
+                        <span className="relative z-10">{t("shopNow")}</span>
                         <div 
                           className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                           style={{

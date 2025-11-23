@@ -71,19 +71,21 @@ const HomePage: React.FC<HomePageProps> = ({
   // Get hero component based on current theme
   const getHeroComponent = () => {
     switch (currentTheme) {
-      case "modern":
+      case "modern": {
         const ModernHero = themeComponents.ModernHero;
         return heroData?.slides && ModernHero ? (
           <ModernHero slides={heroData.slides} />
         ) : null;
+      }
 
-      case "classic":
+      case "classic": {
         const ClassicHero = themeComponents.ClassicHero;
         return heroData?.slides && ClassicHero ? (
           <ClassicHero slides={heroData.slides} />
         ) : null;
+      }
 
-      case "minimal":
+      case "minimal": {
         const MinimalHero = themeComponents.MinimalHero;
         return heroData?.backgroundSrc && MinimalHero ? (
           <MinimalHero
@@ -92,8 +94,9 @@ const HomePage: React.FC<HomePageProps> = ({
             subtitle={heroData.subtitle}
           />
         ) : null;
+      }
 
-      case "luxe":
+      case "luxe": {
         const LuxeHero = themeComponents.LuxeHero;
         return heroData?.backgroundSrc && LuxeHero ? (
           <LuxeHero
@@ -103,6 +106,7 @@ const HomePage: React.FC<HomePageProps> = ({
             subtitle={heroData.subtitle}
           />
         ) : null;
+      }
 
       default:
         return null;
@@ -113,7 +117,7 @@ const HomePage: React.FC<HomePageProps> = ({
     if (featuredProducts.length === 0) return null;
 
     switch (currentTheme) {
-      case "modern":
+      case "modern": {
         const ModernProductGrid = themeComponents.ModernProductGrid;
         return ModernProductGrid ? (
           <ModernProductGrid
@@ -125,8 +129,9 @@ const HomePage: React.FC<HomePageProps> = ({
             onWishlist={onWishlist}
           />
         ) : null;
+      }
 
-      case "classic":
+      case "classic": {
         const ClassicProductGrid = themeComponents.ClassicProductGrid;
         return ClassicProductGrid ? (
           <ClassicProductGrid
@@ -138,8 +143,9 @@ const HomePage: React.FC<HomePageProps> = ({
             onWishlist={onWishlist}
           />
         ) : null;
+      }
 
-      case "minimal":
+      case "minimal": {
         const MinimalProductShowcase = themeComponents.MinimalProductShowcase;
         return MinimalProductShowcase ? (
           <MinimalProductShowcase
@@ -151,8 +157,9 @@ const HomePage: React.FC<HomePageProps> = ({
             onWishlist={onWishlist}
           />
         ) : null;
+      }
 
-      case "luxe":
+      case "luxe": {
         const LuxeProductCarousel = themeComponents.LuxeProductCarousel;
         return LuxeProductCarousel ? (
           <LuxeProductCarousel
@@ -164,6 +171,7 @@ const HomePage: React.FC<HomePageProps> = ({
             onWishlist={onWishlist}
           />
         ) : null;
+      }
 
       default:
         return null;
@@ -174,7 +182,7 @@ const HomePage: React.FC<HomePageProps> = ({
     if (collections.length === 0) return null;
 
     switch (currentTheme) {
-      case "modern":
+      case "modern": {
         const ModernFeaturedCollections =
           themeComponents.ModernFeaturedCollections;
         return ModernFeaturedCollections ? (
@@ -184,8 +192,9 @@ const HomePage: React.FC<HomePageProps> = ({
             subtitle={t("exploreCollections")}
           />
         ) : null;
+      }
 
-      case "classic":
+      case "classic": {
         // Classic theme uses shared CategoryCard
         const CategoryCard = sharedComponents.CategoryCard;
         return (
@@ -206,14 +215,16 @@ const HomePage: React.FC<HomePageProps> = ({
             </div>
           </section>
         );
+      }
 
-      case "minimal":
+      case "minimal": {
         const MinimalCollectionGrid = themeComponents.MinimalCollectionGrid;
         return MinimalCollectionGrid ? (
           <MinimalCollectionGrid collections={collections} columns={3} />
         ) : null;
+      }
 
-      case "luxe":
+      case "luxe": {
         // For luxe theme, use modern's asymmetric collections if available
         const ModernAsymmetricCollections =
           getThemeComponents("modern")?.ModernAsymmetricCollections;
@@ -227,6 +238,7 @@ const HomePage: React.FC<HomePageProps> = ({
           );
         }
         return null;
+      }
 
       default:
         return null;
@@ -278,3 +290,4 @@ const HomePage: React.FC<HomePageProps> = ({
 };
 
 export default HomePage;
+

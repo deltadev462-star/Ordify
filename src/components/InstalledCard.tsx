@@ -39,3 +39,4 @@ function InstalledCard({ icon, title, plan, description, onAction }: InstalledCa
 }
 
 export default InstalledCard;
+

@@ -120,13 +120,13 @@ export const LuxeFooter = ({
   }. ${t("All rights reserved.")}`;
 
   return (
-    <footer className={`bg-gray-900 text-gray-300 ${className}`}>
+    <footer className={`dark:bg-gray-900 text-gray-300 ${className}`}>
       {/* Newsletter Section */}
       {showNewsletter && (
-        <div className="border-b border-gray-800">
+        <div className="border-b border-[#d6d6d6] dark:border-[#424242] dark:border-gray-800">
           <div className="container mx-auto px-6 py-16">
             <div className="mx-auto max-w-2xl text-center">
-              <h3 className="mb-2 font-heading text-2xl font-light text-white">
+              <h3 className="mb-2 font-heading text-2xl font-light text-gray-700 dark:text-white">
                 {t("Join Our Exclusive Circle")}
               </h3>
               <p className="mb-8 font-light text-gray-400">
@@ -147,20 +147,20 @@ export const LuxeFooter = ({
 
       {/* Concierge Section */}
       {showConcierge && (
-        <div className="border-b border-gray-800 bg-gray-800/30">
+        <div className="border-b dark:border-gray-800 dark:bg-gray-800/30 border-[#d6d6d6] dark:border-[#424242] bg-gray-200/30">
           <div className="container mx-auto px-6 py-12">
             <div className="grid gap-8 text-center md:grid-cols-3 md:text-left">
-              <div className="flex flex-col items-center md:items-start">
+              <div className="flex flex-col items-center">
                 <Phone className="mb-3 h-6 w-6 text-primary" />
-                <h4 className="mb-2 font-heading text-lg font-light text-white">
+                <h4 className="mb-2 font-heading text-lg font-light  text-gray-700 dark:text-white">
                   {t("Personal Shopping")}
                 </h4>
                 <p className="mb-2 text-sm font-light">{contactInfo.phone}</p>
                 <p className="text-xs text-gray-500">{t("Available 24/7")}</p>
               </div>
-              <div className="flex flex-col items-center md:items-start">
+              <div className="flex flex-col items-center">
                 <Mail className="mb-3 h-6 w-6 text-primary" />
-                <h4 className="mb-2 font-heading text-lg font-light text-white">
+                <h4 className="mb-2 font-heading text-lg font-light  text-gray-700 dark:text-white">
                   {t("Concierge Service")}
                 </h4>
                 <a
@@ -173,9 +173,9 @@ export const LuxeFooter = ({
                   {t("Response within 24 hours")}
                 </p>
               </div>
-              <div className="flex flex-col items-center md:items-start">
+              <div className="flex flex-col items-center">
                 <MapPin className="mb-3 h-6 w-6 text-primary" />
-                <h4 className="mb-2 font-heading text-lg font-light text-white">
+                <h4 className="mb-2 font-heading text-lg font-light  text-gray-700 dark:text-white">
                   {t("Flagship Store")}
                 </h4>
                 <p className="mb-2 text-sm font-light">{contactInfo.address}</p>
@@ -322,3 +322,4 @@ export const LuxeFooter = ({
     </footer>
   );
 };
+

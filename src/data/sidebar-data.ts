@@ -229,12 +229,12 @@ export const sidebarData = {
       type: "collapsible",
       isActive: false,
       items: [
-        { title: "Template", icons: SunMoon, url: "/dashboard/template" },
+        // { title: "Template", icons: SunMoon, url: "/dashboard/template" },
         { title: "Themes", icons: SunMoon, url: "/dashboard/themes" },
         {
           title: "Texts",
           icons: Highlighter,
-          url: "/marketing/conversion",
+          url: "/dashboard/text",
         },
       ],
     },
@@ -273,3 +273,4 @@ export const sidebarData = {
 } as const;
 
 export const navItems = [...sidebarData.links];
+

@@ -35,27 +35,41 @@ export function NavMain({
   }[];
 }) {
   const { t } = useTranslation();
-  const [activeItem, setActiveItem] = React.useState<string | null>(null);
+  const [activeItem, setActiveItem] = React.useState<string | null>(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('activeSidebarItem');
+    }
+    return null;
+  });
 
   React.useEffect(() => {
-    const currentPath = window.location.pathname;
-    
-    const mainItem = items.find(item => item.url === currentPath);
-    if (mainItem) {
-      setActiveItem(mainItem.title);
-      return;
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('activeSidebarItem', activeItem || '');
     }
-     
-    for (const item of items) {
-      if (item.items) {
-        const subItem = item.items.find(sub => sub.url === currentPath);
-        if (subItem) {
-          setActiveItem(subItem.title);
-          return;
+  }, [activeItem]);
+
+  React.useEffect(() => {
+    // Only set active item based on path if no active item is persisted
+    if (!activeItem) {
+      const currentPath = window.location.pathname;
+
+      const mainItem = items.find(item => item.url === currentPath);
+      if (mainItem) {
+        setActiveItem(mainItem.title);
+        return;
+      }
+
+      for (const item of items) {
+        if (item.items) {
+          const subItem = item.items.find(sub => sub.url === currentPath);
+          if (subItem) {
+            setActiveItem(subItem.title);
+            return;
+          }
         }
       }
     }
-  }, [items]);
+  }, [items, activeItem]);
 
   return (
     <SidebarGroup>
@@ -67,7 +81,7 @@ export function NavMain({
             <Collapsible
               key={item.title}
               asChild
-              defaultOpen={item.isActive}
+              defaultOpen={item.isActive || item.items?.some(subItem => activeItem === subItem.title)}
               className="group/collapsible"
             >
               <SidebarMenuItem>
@@ -128,3 +142,4 @@ export function NavMain({
     </SidebarGroup>
   );
 }
+

@@ -21,3 +21,4 @@ function Title({ title, Subtitle, className, classNamee }: TitleProps) {
 }
 
 export default memo(Title);
+

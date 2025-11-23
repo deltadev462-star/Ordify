@@ -1,7 +1,7 @@
 export default {
   name: "Modern Theme",
   slug: "modern",
-  description: "Clean, contemporary design for fashion & lifestyle brands. Features hero sliders, product grids with hover effects, mega menus, and quick view functionality.",
+  description: "تصميم نظيف ومعاصر لماركات الموضة ونمط الحياة. يتميز بشرائح البطل، وشبكات المنتجات مع تأثيرات التحويم، والقوائم الضخمة، ووظيفة العرض السريع.",
   
   colors: {
     primary: "#6366f1", // Indigo-500 - More vibrant
@@ -11,7 +11,7 @@ export default {
     foreground: "#0f172a", // Slate-900
     muted: "#f8fafc", // Slate-50 - Lighter
     mutedForeground: "#64748b", // Slate-500
-    border: "#e2e8f0", // Slate-200
+    border: "#d6d6d6", // Slate-200
     success: "#10b981", // Emerald-500
     warning: "#f59e0b", // Amber-500
     error: "#ef4444",
@@ -23,7 +23,7 @@ export default {
     darkForeground: "#f1f5f9", // Slate-100 - Light text
     darkMuted: "#1e293b", // Slate-800 - Dark muted
     darkMutedForeground: "#94a3b8", // Slate-400 - Light muted text
-    darkBorder: "#334155", // Slate-700 - Dark border
+    darkBorder: "#424242", // Slate-700 - Dark border
     darkSuccess: "#34d399", // Emerald-400 - Lighter for dark mode
     darkWarning: "#fbbf24", // Amber-400 - Lighter for dark mode
     darkError: "#f87171", // Red-400 - Lighter for dark mode

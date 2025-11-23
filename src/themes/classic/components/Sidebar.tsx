@@ -22,7 +22,7 @@ interface FilterSection {
 interface SelectedFilters {
   categories: string[];
   price: [number, number];
-  [key: string]: any;
+  [key: string]: string[] | [number, number];
 }
 
 interface ClassicSidebarProps {
@@ -234,9 +234,9 @@ export const ClassicSidebar = ({
                           <span className="flex items-center">
                             <Checkbox
                               checked={
-                                localFilters[
+                                (localFilters[
                                   filter.title.toLowerCase()
-                                ]?.includes(option.value) || false
+                                ] as string[])?.includes(option.value) || false
                               }
                               onCheckedChange={(checked: boolean) =>
                                 handleCheckboxChange(
@@ -283,7 +283,7 @@ export const ClassicSidebar = ({
                           key={option.value}
                           onClick={() => {
                             const isSelected =
-                              localFilters.size?.includes(option.value) ||
+                              (localFilters.size as string[])?.includes(option.value) ||
                               false;
                             handleCheckboxChange(
                               "size",
@@ -292,7 +292,7 @@ export const ClassicSidebar = ({
                             );
                           }}
                           className={`rounded border px-3 py-1 text-sm transition-colors ${
-                            localFilters.size?.includes(option.value)
+                            (localFilters.size as string[])?.includes(option.value)
                               ? "border-primary bg-primary text-white"
                               : "border-gray-300 hover:border-primary"
                           }`}
@@ -310,7 +310,7 @@ export const ClassicSidebar = ({
                           key={option.value}
                           onClick={() => {
                             const isSelected =
-                              localFilters.color?.includes(option.value) ||
+                              (localFilters.color as string[])?.includes(option.value) ||
                               false;
                             handleCheckboxChange(
                               "color",
@@ -319,7 +319,7 @@ export const ClassicSidebar = ({
                             );
                           }}
                           className={`group relative h-8 w-8 rounded-full border-2 ${
-                            localFilters.color?.includes(option.value)
+                            (localFilters.color as string[])?.includes(option.value)
                               ? "border-primary"
                               : "border-gray-300"
                           }`}
@@ -333,7 +333,7 @@ export const ClassicSidebar = ({
                           }}
                           title={option.label}
                         >
-                          {localFilters.color?.includes(option.value) && (
+                          {(localFilters.color as string[])?.includes(option.value) && (
                             <X className="absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 text-white mix-blend-difference" />
                           )}
                         </button>
@@ -400,3 +400,4 @@ export const ClassicSidebar = ({
     </aside>
   );
 };
+

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -44,60 +45,10 @@ interface LuxeHeaderProps {
   className?: string;
 }
 
-const defaultNavigation: NavigationItem[] = [
-  {
-    label: "Collections",
-    children: [
-      {
-        label: "New Arrivals",
-        href: "/collections/new",
-        description: "Discover the latest",
-      },
-      {
-        label: "Signature Collection",
-        href: "/collections/signature",
-        description: "Timeless pieces",
-      },
-      {
-        label: "Limited Edition",
-        href: "/collections/limited",
-        description: "Exclusive designs",
-      },
-      {
-        label: "Heritage",
-        href: "/collections/heritage",
-        description: "Classic elegance",
-      },
-    ],
-  },
-  {
-    label: "Boutique",
-    children: [
-      {
-        label: "Women",
-        href: "/boutique/women",
-        description: "Sophisticated style",
-      },
-      { label: "Men", href: "/boutique/men", description: "Refined elegance" },
-      {
-        label: "Accessories",
-        href: "/boutique/accessories",
-        description: "Perfect details",
-      },
-      {
-        label: "Jewelry",
-        href: "/boutique/jewelry",
-        description: "Exquisite pieces",
-      },
-    ],
-  },
-  { label: "Maison", href: "/maison" },
-  { label: "Concierge", href: "/concierge" },
-];
 
 export const LuxeHeader = ({
   logo = "LUXE",
-  navigation = defaultNavigation,
+  navigation,
   cartItemCount = 0,
   wishlistCount = 0,
   transparent = true,
@@ -110,6 +61,61 @@ export const LuxeHeader = ({
   onSearch,
   className = "",
 }: LuxeHeaderProps) => {
+  const { t } = useTranslation();
+
+  const defaultNavigation: NavigationItem[] = [
+    {
+      label: "Collections",
+      children: [
+        {
+          label: "New Arrivals",
+          href: "/collections/new",
+          description: "Discover the latest",
+        },
+        {
+          label: "Signature Collection",
+          href: "/collections/signature",
+          description: "Timeless pieces",
+        },
+        {
+          label: "Limited Edition",
+          href: "/collections/limited",
+          description: "Exclusive designs",
+        },
+        {
+          label: "Heritage",
+          href: "/collections/heritage",
+          description: "Classic elegance",
+        },
+      ],
+    },
+    {
+      label: "Boutique",
+      children: [
+        {
+          label: "Women",
+          href: "/boutique/women",
+          description: "Sophisticated style",
+        },
+        { label: "Men", href: "/boutique/men", description: "Refined elegance" },
+        {
+          label: "Accessories",
+          href: "/boutique/accessories",
+          description: "Perfect details",
+        },
+        {
+          label: "Jewelry",
+          href: "/boutique/jewelry",
+          description: "Exquisite pieces",
+        },
+      ],
+    },
+    { label: "Maison", href: "/maison" },
+    { label: "Concierge", href: "/concierge" },
+  ];
+
+  const effectiveNavigation = navigation || defaultNavigation;
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -135,18 +141,18 @@ export const LuxeHeader = ({
   };
 
   const headerClasses = `
-    fixed top-0 left-0 right-0 z-50 transition-all duration-500
+   absolute z-50 transition-all duration-500  top-0 left-0 w-full flex items-center justify-between px-6 
     ${
       transparent && !isScrolled
-        ? "bg-transparent text-white"
-        : "bg-white text-gray-900 shadow-sm"
+        ? "bg-transparent text-white "
+        : "bg-white dark:bg-[#101010] dark:text-white text-gray-900 shadow-sm"
     }
     ${isScrolled ? "py-4" : "py-6"}
     ${className}
   `;
 
-  const linkColor = transparent && !isScrolled ? "text-white" : "text-gray-900";
-  const iconColor = transparent && !isScrolled ? "text-white" : "text-gray-900";
+  const linkColor = transparent && !isScrolled ? "dark:text-white text-gray-900" : "text-gray-900";
+  const iconColor = transparent && !isScrolled ? "dark:text-white text-gray-900" : "text-gray-900";
 
   return (
     <>
@@ -160,15 +166,15 @@ export const LuxeHeader = ({
                   <Menu className={`h-5 w-5 ${iconColor}`} />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="left" className="w-80 bg-white">
+              <SheetContent side="left" className="w-80 dark:bg-[#101010] bg-white">
                 <SheetHeader>
                   <SheetTitle className="font-heading text-2xl font-light">
-                    Menu
+                    {t("Menu")}
                   </SheetTitle>
                 </SheetHeader>
                 <nav className="mt-8">
                   <ul className="space-y-4">
-                    {navigation.map((item) => (
+                    {effectiveNavigation.map((item) => (
                       <li key={item.label}>
                         {item.children ? (
                           <div>
@@ -182,7 +188,7 @@ export const LuxeHeader = ({
                                 )
                               }
                             >
-                              {item.label}
+                              {t(item.label)}
                               <ChevronDown
                                 className={`h-4 w-4 transition-transform ${
                                   openDropdown === item.label
@@ -199,7 +205,7 @@ export const LuxeHeader = ({
                                       href={child.href}
                                       className="block py-1.5 text-sm text-gray-600 hover:text-primary"
                                     >
-                                      {child.label}
+                                      {t(child.label)}
                                     </a>
                                   </li>
                                 ))}
@@ -211,7 +217,7 @@ export const LuxeHeader = ({
                             href={item.href}
                             className="block py-2 font-light text-sm uppercase tracking-wider"
                           >
-                            {item.label}
+                            {t(item.label)}
                           </a>
                         )}
                       </li>
@@ -239,7 +245,7 @@ export const LuxeHeader = ({
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex lg:flex-1 lg:justify-center">
               <ul className="flex items-center space-x-8">
-                {navigation.map((item) => (
+                {effectiveNavigation.map((item) => (
                   <li key={item.label} className="group relative">
                     {item.children ? (
                       <>
@@ -248,7 +254,7 @@ export const LuxeHeader = ({
                           onMouseEnter={() => setOpenDropdown(item.label)}
                           onMouseLeave={() => setOpenDropdown(null)}
                         >
-                          <span>{item.label}</span>
+                          <span>{t(item.label)}</span>
                           <ChevronDown className="h-3 w-3" />
                         </button>
                         {openDropdown === item.label && (
@@ -265,11 +271,11 @@ export const LuxeHeader = ({
                                     className="block px-6 py-3 hover:bg-gray-50"
                                   >
                                     <div className="font-light text-sm uppercase tracking-wider text-gray-900">
-                                      {child.label}
+                                      {t(child.label)}
                                     </div>
                                     {child.description && (
                                       <p className="mt-1 text-xs text-gray-500 font-light">
-                                        {child.description}
+                                        {t(child.description)}
                                       </p>
                                     )}
                                   </a>
@@ -284,7 +290,7 @@ export const LuxeHeader = ({
                         href={item.href}
                         className={`py-2 font-light text-sm uppercase tracking-wider ${linkColor} transition-opacity hover:opacity-70`}
                       >
-                        {item.label}
+                        {t(item.label)}
                       </a>
                     )}
                   </li>
@@ -319,7 +325,7 @@ export const LuxeHeader = ({
                           <form onSubmit={handleSearch} className="relative">
                             <Input
                               type="search"
-                              placeholder="Search our collection..."
+                              placeholder={t("Search our collection...")}
                               value={searchQuery}
                               onChange={(e) => setSearchQuery(e.target.value)}
                               className="h-16 border-0 border-b-2 border-gray-300 pl-0 pr-12 text-xl font-light focus:border-primary focus:outline-none"
@@ -335,7 +341,7 @@ export const LuxeHeader = ({
                           </form>
                           <div className="mt-8 text-center">
                             <p className="text-sm text-gray-500 font-light uppercase tracking-wider">
-                              Popular Searches
+                              {t("Popular Searches")}
                             </p>
                             <div className="mt-4 flex flex-wrap justify-center gap-4">
                               {[
@@ -354,7 +360,7 @@ export const LuxeHeader = ({
                                   }}
                                   className="text-sm text-gray-600 hover:text-primary transition-colors"
                                 >
-                                  {term}
+                                  {t(term)}
                                 </button>
                               ))}
                             </div>
@@ -414,12 +420,8 @@ export const LuxeHeader = ({
         </div>
       </header>
 
-      {/* Spacer for fixed header */}
-      <div
-        className={`transition-all duration-500 ${
-          isScrolled ? "h-20" : "h-28"
-        }`}
-      />
+  
     </>
   );
 };
+
