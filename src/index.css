@@ -1,8 +1,352 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @custom-variant dark (&:where(.dark, .dark *));
+@theme {
+  /* Colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-glow: var(--primary-glow);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
 
+  /* Fonts */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Outfit', system-ui, -apple-system, sans-serif;
+
+  /* Border Radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+}
+
+/* Ordify Design System - Premium, Modern, Trustworthy */
+
+@layer base {
+  :root {
+    /* Base colors - Light mode */
+    --background: 210 20% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    /* Brand gradient colors - Indigo to Violet to Sky */
+    --primary: 239 84% 67%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 250 95% 76%;
+    
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 239 84% 67%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Ecommerce green accent */
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 239 84% 67%;
+
+    --radius: 0.75rem;
+
+    /* Gradient stops for animated background */
+    --gradient-from: 239 84% 67%;
+    --gradient-via: 280 90% 70%;
+    --gradient-to: 200 98% 65%;
+
+    /* Glass effect */
+    --glass-bg: 0 0% 100% / 0.7;
+    --glass-border: 0 0% 100% / 0.2;
+  }
+
+  .dark {
+    /* Base colors - Dark mode */
+    --background: 222 47% 5%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 8%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 8%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Brand gradient colors remain vibrant in dark mode */
+    --primary: 239 84% 67%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 250 95% 76%;
+
+    --secondary: 217 33% 18%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 18%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 239 84% 67%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Ecommerce green accent */
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 18%;
+    --input: 217 33% 18%;
+    --ring: 239 84% 67%;
+
+    /* Gradient stops for animated background */
+    --gradient-from: 239 84% 67%;
+    --gradient-via: 280 90% 70%;
+    --gradient-to: 200 98% 65%;
+
+    /* Glass effect */
+    --glass-bg: 222 47% 8% / 0.5;
+    --glass-border: 0 0% 100% / 0.1;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+    font-weight: 600;
+  }
+}
+
+@layer utilities {
+  /* Animated gradient background */
+  .animate-gradient {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--gradient-from)),
+      hsl(var(--gradient-via)),
+      hsl(var(--gradient-to))
+    );
+    background-size: 200% 200%;
+    animation: gradient-shift 22s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  /* Floating blob animations */
+  .animate-float-slow {
+    animation: float 20s ease-in-out infinite;
+  }
+
+  .animate-float-medium {
+    animation: float 15s ease-in-out infinite;
+  }
+
+  .animate-float-fast {
+    animation: float 25s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+    25% {
+      transform: translate(30px, -30px) scale(1.1) rotate(45deg);
+    }
+    50% {
+      transform: translate(-20px, -40px) scale(0.95) rotate(90deg);
+    }
+    75% {
+      transform: translate(-30px, 20px) scale(1.05) rotate(-45deg);
+    }
+  }
+
+  /* Enhanced pulse animation */
+  @keyframes ping {
+    75%, 100% {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+
+  .animate-ping {
+    animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+  /* Pulse animation for elements */
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 0.5;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.8;
+      transform: scale(1.05);
+    }
+  }
+
+  .animate-pulse {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* Card entrance animation */
+  .animate-fade-slide-up {
+    animation: fade-slide-up 0.5s ease-out;
+  }
+
+  @keyframes fade-slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Glassmorphism effect */
+  .glass {
+    background: hsl(var(--glass-bg));
+    backdrop-filter: blur(16px) saturate(150%);
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    border: 1px solid hsl(var(--glass-border));
+    box-shadow:
+      0 8px 32px 0 rgba(31, 38, 135, 0.15),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+
+  /* Enhanced glass effect for dark mode */
+  .dark .glass {
+    box-shadow:
+      0 8px 32px 0 rgba(0, 0, 0, 0.3),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  }
+
+  /* Button hover glow */
+  .glow-on-hover {
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .glow-on-hover:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 8px 24px -8px hsl(var(--primary) / 0.5),
+      0 0 0 2px hsl(var(--primary) / 0.1);
+  }
+
+  .glow-on-hover:active {
+    transform: translateY(0);
+    box-shadow:
+      0 4px 12px -4px hsl(var(--primary) / 0.3),
+      0 0 0 2px hsl(var(--primary) / 0.2);
+  }
+
+  /* Text gradient utilities */
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Input focus glow */
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: none;
+    box-shadow:
+      0 0 0 3px hsl(var(--primary) / 0.1),
+      0 4px 12px -4px hsl(var(--primary) / 0.2);
+  }
+
+  /* Smooth transitions for interactive elements */
+  button,
+  input,
+  textarea,
+  select,
+  a {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Enhanced gradient animation */
+  @keyframes gradient-flow {
+    0%, 100% {
+      background-position: 0% 50%;
+      filter: hue-rotate(0deg);
+    }
+    50% {
+      background-position: 100% 50%;
+      filter: hue-rotate(10deg);
+    }
+  }
+
+  .animate-gradient-flow {
+    background-size: 200% 200%;
+    animation: gradient-flow 10s ease infinite;
+  }
+
+  /* Respect prefers-reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-gradient,
+    .animate-float-slow,
+    .animate-float-medium,
+    .animate-float-fast {
+      animation: none;
+    }
+
+    .animate-fade-slide-up {
+      animation: simple-fade 0.3s ease-out;
+    }
+
+    @keyframes simple-fade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .glow-on-hover:hover {
+      transform: none;
+    }
+  }
+}
  
 body {
   background-color: white;
@@ -16,6 +360,7 @@ body {
 /* Theme transition animations */
 :root {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
 }
 
 /* Smooth color transitions for theme changes */
@@ -93,4 +438,8 @@ html {
   
   border-radius: 0px;
 }
+
+
+
+
 

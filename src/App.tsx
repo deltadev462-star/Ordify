@@ -6,6 +6,7 @@ import MarketingServices from "./pages/dashboard/page/MarketingServices";
 import ServiceGallery from "./pages/dashboard/page/ServiceGallery";
 import Shater from "./pages/dashboard/page/Shater";
 import DashBoardLayout from "./pages/dashboard/DashBoardLayout";
+import LoginPage from "./pages/login/LoginPage";
 
 const Dashboard = lazy(() => import("./pages/dashboard/Dashboard"));
 const Products = lazy(() => import("./pages/dashboard/page/Products"));
@@ -137,6 +138,10 @@ const router = createBrowserRouter([
     element: <History />,
   },
     ]
+  },
+  {
+    path: "/login",
+    element: <LoginPage />,
   },
 
  
