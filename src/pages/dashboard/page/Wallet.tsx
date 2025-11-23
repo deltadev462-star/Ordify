@@ -31,10 +31,7 @@ function Wallet() {
    ];
   return (
     <div dir="rtl">
-      <SidebarProvider>
-        <AppSidebar />
-        <SidebarInset>
-          <Header />
+    
 
           <div className="flex bg-white dark:bg-black/80 rounded-2xl m-1   flex-1 flex-col gap-4 p-4 pt-0">
             <NotActive />
@@ -159,8 +156,7 @@ function Wallet() {
 
            
           </div>
-        </SidebarInset>
-      </SidebarProvider>
+    
     </div>
   );
 }

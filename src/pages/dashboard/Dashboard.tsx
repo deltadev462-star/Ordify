@@ -17,11 +17,8 @@ export default function Dashboard() {
   const { t } = useTranslation();
   return (
     <div dir="rtl">
-      <SidebarProvider>
-        <AppSidebar />
-        <SidebarInset>
-          <Header />
-
+     
+        
           <div className="flex   bg-white dark:bg-black/90  flex-1 flex-col gap-4 p-4 pt-0">
             <div className="text-white text-4xl">
               <div className="border border-[#d6d6d6] dark:border-[#424242]  mt-5 rounded-xl p-6">
@@ -95,8 +92,7 @@ export default function Dashboard() {
             <CardTotal />
             <CardTotal />
           </div>
-        </SidebarInset>
-      </SidebarProvider>
+     
     </div>
   );
 }

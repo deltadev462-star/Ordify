@@ -17,6 +17,7 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
+import { Link } from "react-router-dom";
 
 export function NavMain({
   items,
@@ -109,13 +110,13 @@ export function NavMain({
                           isActive={activeItem === subItem.title}
                           className="data-[active=true]:bg-green-500   data-[active=true]:text-white text-[15px]"
                         >
-                          <a
-                            href={subItem.url}
+                          <Link
+                            to={subItem.url}
                             onClick={() => setActiveItem(subItem.title)}
                           >
                             {subItem.icons && <subItem.icons />}
                             <span>{t(subItem.title)}</span>
-                          </a>
+                          </Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                     ))}
@@ -126,14 +127,14 @@ export function NavMain({
           ) : (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton asChild isActive={activeItem === item.title}>
-                <a
-                  href={item.url}
+                <Link
+                  to={item.url}
                   className="hover:bg-white/20 cursor-pointer  rounded-md data-[active=true]:bg-green-500 data-[active=true]:text-white"
                   onClick={() => setActiveItem(item.title)}
                 >
                   {item.icon && <item.icon />}
                 <span className="text-[15px]  py-5">{t(item.title)}</span>
-                </a>
+                </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
           )

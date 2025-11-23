@@ -31,10 +31,7 @@ const Themes = () => {
 
   return (
     <div dir="rtl">
-      <SidebarProvider>
-        <AppSidebar />
-        <SidebarInset>
-          <Header />
+  
 
           <div className="p-6">
             <div className="grid grid-cols-1 lg:grid-cols-2  mb-6 ">
@@ -358,8 +355,7 @@ const Themes = () => {
               </div>
             )}
           </div>
-        </SidebarInset>
-      </SidebarProvider>
+  
     </div>
   );
 }

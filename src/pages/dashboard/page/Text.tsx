@@ -11,10 +11,7 @@ const Text = () => {
 
   return (
     <div dir="rtl">
-      <SidebarProvider>
-        <AppSidebar />
-        <SidebarInset>
-          <Header />
+    
 
           <div className="p-6">
             <Title
@@ -45,8 +42,7 @@ const Text = () => {
               </Card>
             </div>
           </div>
-        </SidebarInset>
-      </SidebarProvider>
+    
     </div>
   );
 }
