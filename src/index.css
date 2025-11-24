@@ -1,9 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
-@custom-variant dark (&:where(.dark, .dark *));
-@theme {
+:root {
   /* Colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -80,9 +78,9 @@
     --radius: 0.75rem;
 
     /* Gradient stops for animated background */
-    --gradient-from: 239 84% 67%;
-    --gradient-via: 280 90% 70%;
-    --gradient-to: 200 98% 65%;
+--gradient-from: 250 45% 6%;   /* Almost black with blue hint */
+--gradient-via: 270 40% 10%;   /* Dark purple-black */
+--gradient-to: 190 50% 20%;     /* Dark blue-green */
 
     /* Glass effect */
     --glass-bg: 0 0% 100% / 0.7;
@@ -136,21 +134,21 @@
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
+
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Outfit', system-ui, -apple-system, sans-serif;
     font-weight: 600;
   }
-}
+
 
 @layer utilities {
   /* Animated gradient background */
@@ -162,7 +160,7 @@
       hsl(var(--gradient-to))
     );
     background-size: 200% 200%;
-    animation: gradient-shift 22s ease infinite;
+    /* animation: gradient-shift 22s ease infinite; */
   }
 
   @keyframes gradient-shift {
