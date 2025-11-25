@@ -49,7 +49,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen w-full overflow-hidden relative flex items-center justify-center lg:justify-end">
+    <div className="min-h-screen w-full overflow-hidden relative flex items-center justify-center  ">
       {/* Animated linear background */}
       <div className="fixed inset-0 animate-gradient -z-10" />
 
@@ -61,28 +61,13 @@ const LoginPage = () => {
         }}
       />
 
-      {/* Enhanced floating elements */}
-      <div className="fixed inset-0 overflow-hidden -z-10 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-float-slow" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-primary-glow/20 rounded-full blur-3xl animate-float-medium" style={{ animationDelay: '-3s' }} />
-        <div className="absolute top-1/2 left-1/2 w-72 h-72 bg-accent/20 rounded-full blur-3xl animate-float-fast" style={{ animationDelay: '-6s' }} />
-        
-        {/* Additional animated particles */}
-        <div className="absolute top-10 left-10 w-2 h-2 bg-primary rounded-full animate-ping" />
-        <div className="absolute bottom-20 right-20 w-3 h-3 bg-accent rounded-full animate-ping" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/3 right-1/3 w-2 h-2 bg-primary-glow rounded-full animate-ping" style={{ animationDelay: '2s' }} />
-      </div>
 
-      {/* Grid pattern overlay */}
-      {/* <div
-        className="fixed inset-0 -z-10 opacity-[0.03]"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }}
-      /> */}
+   
+
+ 
 
       {/* Desktop: Brand panel (left side) */}
-      <div className="hidden lg:flex lg:flex-1 lg:flex-col lg:justify-center lg:px-16 lg:py-24">
+      <div className="hidden lg:flex lg:flex-1 lg:flex-col lg:justify-center lg:px-16 lg:py-24 ">
         <div className="max-w-md">
           {/* Enhanced Ordify wordmark */}
           <div className="mb-12 relative">
@@ -123,26 +108,23 @@ const LoginPage = () => {
       </div>
 
       {/* Enhanced Auth card with premium glassmorphism */}
-      <div className="w-full max-w-md mx-4 lg:mx-16 lg:mr-24">
+      <div className="w-full max-w-md mx-4 lg:mx-16 lg:mr-24 ">
         <div className="relative group">
-          {/* Multi-layer glow effect */}
-          <div className="absolute -inset-[3px] bg-gradient-to-r from-primary/30 via-primary-glow/30 to-accent/30 opacity-50 blur-2xl animate-pulse" />
-          <div className="absolute -inset-[1px] bg-gradient-to-tr from-white/10 to-white/5 rounded-3xl" />
+         
           
           {/* Premium glass card */}
           <div className="relative
-            bg-white/[0.02] dark:bg-black/[0.06]
+            bg-white/80 dark:bg-black/5
             backdrop-blur-3xl backdrop-saturate-[2]
             rounded-3xl p-8 sm:p-10
             shadow-[0_8px_32px_0_rgba(31,38,135,0.15)]
-            border border-white/[0.18] dark:border-white/[0.06]
+            border border-white/18 dark:border-white/6
             animate-fade-slide-up
-            before:absolute before:inset-0 before:rounded-3xl before:p-[1px]
-            before:bg-gradient-to-b before:from-white/20 before:to-transparent before:-z-10">
+           ">
             
             {/* Mobile: Ordify wordmark */}
             <div className="lg:hidden mb-8 text-center">
-              <h1 className="text-3xl font-display font-bold mb-2 bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
+              <h1 className="text-3xl font-display font-bold mb-2 bg-linear-to-r from-primary to-primary-glow bg-clip-text text-transparent">
                 Ordify
               </h1>
               <p className="text-muted-foreground text-sm">Build and grow your online store</p>
@@ -151,9 +133,9 @@ const LoginPage = () => {
             {/* Enhanced Heading with better glass effect */}
             <div className="text-center mb-8">
               <div className="relative inline-flex items-center justify-center w-16 h-16 mb-4">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/40 to-primary-glow/40 blur-xl animate-pulse" />
+                <div className="absolute inset-0 rounded-full bg-linear-to-r from-primary/40 to-primary-glow/40 blur-xl animate-pulse" />
                 <div className="relative flex items-center justify-center w-full h-full rounded-full
-                  bg-gradient-to-br from-white/10 to-white/5
+                  bg-linear-to-br from-white/10 to-white/5
                   backdrop-blur-xl border border-white/20 dark:border-white/10
                   shadow-lg shadow-primary/10">
                   <Lock className="w-8 h-8 text-primary drop-shadow-[0_0_8px_rgba(124,58,237,0.5)]" />
@@ -306,21 +288,19 @@ const LoginPage = () => {
                 type="submit"
                 disabled={isLoading}
                 className="relative w-full
-                  bg-gradient-to-r from-primary to-primary-glow
-                  text-white font-bold py-4 rounded-xl
-                  shadow-[0_4px_20px_0_rgba(124,58,237,0.35)]
-                  hover:shadow-[0_6px_30px_0_rgba(124,58,237,0.45)]
+                
+                   font-bold py-4 rounded-xl
+                
+               
                   focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2
                   disabled:opacity-50 disabled:cursor-not-allowed
                   transform transition-all duration-300 hover:scale-[1.02] hover:-translate-y-0.5
                   active:scale-[0.98]
-                  group overflow-hidden hover:bg-white/50 border-white/50 hover:text-black/80
-                  before:absolute before:inset-0 before:bg-white/20 before:opacity-0
+                  group overflow-hidden bg-white/50 border-white/50 text-black/80
+                 
                   hover:before:opacity-100 before:transition-opacity before:duration-300"
               >
-                {/* Button shine effect */}
-                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000
-                  bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" />
+            
                 
                 {isLoading ? (
                   <span className="flex items-center justify-center gap-2">
