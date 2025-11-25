@@ -6,6 +6,8 @@ import Header from "@/components/Header";
 
 import { Outlet } from "react-router-dom";
 
+import ChatWidget from "@/components/ChatWidget";
+
 const DashBoardLayout = () => {
   return (
    <div dir="rtl">
@@ -13,10 +15,11 @@ const DashBoardLayout = () => {
         <AppSidebar />
         <SidebarInset>
           <Header />
-        
+
          <Outlet/>
         </SidebarInset>
       </SidebarProvider>
+      <ChatWidget />
     </div>
   )
 }

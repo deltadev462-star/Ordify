@@ -48,6 +48,20 @@
   "Create Referral Links": "إنشاء روابط إحالة",
   "Minimum Order Value and Conditions": "الحد الأدنى لقيمة الطلب والشروط",
   "Downsell": "العرض المخفض",
+  "Configure your pixel settings for tracking": "قم بتكوين إعدادات البكسل للتتبع",
+  "Manage your conversion API settings": "إدارة إعدادات واجهة تحويل البيانات",
+  "Configure cross-selling options": "تكوين خيارات البيع المتقاطع",
+  "Manage your discount coupons": "إدارة كوبونات الخصم",
+  "Set up retargeting campaigns": "إعداد حملات إعادة الاستهداف",
+  "Integrate Google Tag Manager": "دمج مدير علامات جوجل",
+  "Manage WhatsApp marketing campaigns": "إدارة حملات التسويق عبر واتساب",
+  "Verify orders using TC service": "التحقق من الطلبات باستخدام خدمة TC",
+  "Monitor and analyze campaign performance": "مراقبة وتحليل أداء الحملة",
+  "Integrate with Google Merchant Center": "التكامل مع مركز تاجر جوجل",
+  "Configure sales popups for your store": "تكوين نوافذ المبيعات المنبثقة لمتجرك",
+  "Generate and manage referral links": "إنشاء وإدارة روابط الإحالة",
+  "Set minimum order requirements": "تحديد متطلبات الحد الأدنى للطلب",
+  "Configure downsell offers": "تكوين عروض البيع المخفض",
   "Funnels": "الوسوم",
   "Shater Your Smart Shater": "شارك تطبيقك الذكي",
   "Your Wallet": "المحفظة الخاصة بك",
@@ -868,5 +882,18 @@
   "noProductsFound": "لم يتم العثور على منتجات تطابق معاييرك.",
   "clearFilters": "مسح الفلاتر",
   "loadMoreProducts": "تحميل المزيد من المنتجات",
-  "shopNow": "تسوق الآن"
+  "shopNow": "تسوق الآن",
+
+  "chat": {
+    "greeting": "مرحباً، كيف يمكننا مساعدتك؟",
+    "received": "تم الاستلام ✅",
+    "conversation": "محادثة",
+    "helpCenter": "مركز المساعدة",
+    "haveQuestions": "لديك استفسارات؟ تواصل معنا",
+    "supportAvailable": "فريق الدعم متاح حالياً",
+    "microphone": "ميكروفون",
+    "emoji": "إيموجي",
+    "send": "إرسال",
+    "typeMessage": "اكتب رسالتك..."
+  }
 }
