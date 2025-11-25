@@ -1,8 +1,8 @@
-import { AppSidebar } from "@/components/app-sidebar";
+// import { AppSidebar } from "@/components/app-sidebar";
 
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+// import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
-import Header from "@/components/Header";
+// import Header from "@/components/Header";
 import NotActive from "@/components/NotActive";
 import Title from "@/components/Title";
 import { useTranslation } from "react-i18next";

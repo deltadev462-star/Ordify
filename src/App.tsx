@@ -35,6 +35,20 @@ const Wallet = lazy(() => import("./pages/dashboard/page/Wallet"));
 const EditTheme = lazy(() => import("./pages/dashboard/page/EditTheme"));
 const Themes = lazy(() => import("./pages/dashboard/page/Themes"));
 const Text = lazy(() => import("./pages/dashboard/page/Text"));
+const PixelSettings = lazy(() => import("./pages/dashboard/page/PixelSettings"));
+const ConversionAPI = lazy(() => import("./pages/dashboard/page/ConversionAPI"));
+const CrossSelling = lazy(() => import("./pages/dashboard/page/CrossSelling"));
+const Coupons = lazy(() => import("./pages/dashboard/page/Coupons"));
+const Retargeting = lazy(() => import("./pages/dashboard/page/Retargeting"));
+const GoogleTag = lazy(() => import("./pages/dashboard/page/GoogleTag"));
+const WhatsappMarketing = lazy(() => import("./pages/dashboard/page/WhatsappMarketing"));
+const VerifyOrders = lazy(() => import("./pages/dashboard/page/VerifyOrders"));
+const TrackCampaign = lazy(() => import("./pages/dashboard/page/TrackCampaign"));
+const GoogleMerchant = lazy(() => import("./pages/dashboard/page/GoogleMerchant"));
+const SalesPopup = lazy(() => import("./pages/dashboard/page/SalesPopup"));
+const ReferralLinks = lazy(() => import("./pages/dashboard/page/ReferralLinks"));
+const MinOrder = lazy(() => import("./pages/dashboard/page/MinOrder"));
+const Downsell = lazy(() => import("./pages/dashboard/page/Downsell"));
 
 const router = createBrowserRouter([
   {
@@ -140,6 +154,68 @@ const router = createBrowserRouter([
     ]
   },
   {
+    path: "/marketing",
+    element: <DashBoardLayout />,
+    children: [
+      {
+        path: "pixel",
+        element: <PixelSettings />,
+      },
+      {
+        path: "conversion",
+        element: <ConversionAPI />,
+      },
+      {
+        path: "cross",
+        element: <CrossSelling />,
+      },
+      {
+        path: "coupons",
+        element: <Coupons />,
+      },
+      {
+        path: "retargeting",
+        element: <Retargeting />,
+      },
+      {
+        path: "google-tag",
+        element: <GoogleTag />,
+      },
+      {
+        path: "whatsapp",
+        element: <WhatsappMarketing />,
+      },
+      {
+        path: "verify-orders",
+        element: <VerifyOrders />,
+      },
+      {
+        path: "track-campaign",
+        element: <TrackCampaign />,
+      },
+      {
+        path: "google-merchant",
+        element: <GoogleMerchant />,
+      },
+      {
+        path: "sales-popup",
+        element: <SalesPopup />,
+      },
+      {
+        path: "referral-links",
+        element: <ReferralLinks />,
+      },
+      {
+        path: "min-order",
+        element: <MinOrder />,
+      },
+      {
+        path: "downsell",
+        element: <Downsell />,
+      },
+    ],
+  },
+  {
     path: "/login",
     element: <LoginPage />,
   },
@@ -158,6 +234,7 @@ function App() {
         }
       >
         <RouterProvider router={router} />
+
       </Suspense>
     </ThemeProvider>
   );

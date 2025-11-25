@@ -48,6 +48,20 @@
   "Create Referral Links": "Create Referral Links",
   "Minimum Order Value and Conditions": "Minimum Order Value and Conditions",
   "Downsell": "Downsell",
+  "Configure your pixel settings for tracking": "Configure your pixel settings for tracking",
+  "Manage your conversion API settings": "Manage your conversion API settings",
+  "Configure cross-selling options": "Configure cross-selling options",
+  "Manage your discount coupons": "Manage your discount coupons",
+  "Set up retargeting campaigns": "Set up retargeting campaigns",
+  "Integrate Google Tag Manager": "Integrate Google Tag Manager",
+  "Manage WhatsApp marketing campaigns": "Manage WhatsApp marketing campaigns",
+  "Verify orders using TC service": "Verify orders using TC service",
+  "Monitor and analyze campaign performance": "Monitor and analyze campaign performance",
+  "Integrate with Google Merchant Center": "Integrate with Google Merchant Center",
+  "Configure sales popups for your store": "Configure sales popups for your store",
+  "Generate and manage referral links": "Generate and manage referral links",
+  "Set minimum order requirements": "Set minimum order requirements",
+  "Configure downsell offers": "Configure downsell offers",
   "Funnels": "Funnels",
   "Shater Your Smart Shater": "Shater Your Smart Shater",
   "Your Wallet": "Your Wallet",
@@ -837,5 +851,18 @@
   "noProductsFound": "No products found matching your criteria.",
   "clearFilters": "Clear Filters",
   "loadMoreProducts": "Load More Products",
-  "shopNow": "Shop Now"
+  "shopNow": "Shop Now",
+
+  "chat": {
+    "greeting": "Hello, how can we help you?",
+    "received": "Received ✅",
+    "conversation": "Conversation",
+    "helpCenter": "Help Center",
+    "haveQuestions": "Have questions? Contact us",
+    "supportAvailable": "Support team is currently available",
+    "microphone": "Microphone",
+    "emoji": "Emoji",
+    "send": "Send",
+    "typeMessage": "Type your message..."
+  }
 }
