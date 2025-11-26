@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import { Eye, EyeOff, Mail, Lock, Sparkles, ArrowRight } from 'lucide-react';
+import DotGrid from '../../components/DotGrid';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -49,25 +50,28 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen w-full overflow-hidden relative flex items-center justify-center  ">
-      {/* Animated linear background */}
-      <div className="fixed inset-0 animate-gradient -z-10" />
+    <div className="min-h-screen w-full overflow-hidden relative flex items-center justify-center">
+      {/* Animated DotGrid background */}
+      <div className="absolute inset-0" style={{ zIndex: 0 }}>
+        <DotGrid
+          dotSize={5}
+          gap={15}
+          baseColor="#5227FF"
+          activeColor="#8b5cf6"
+          proximity={120}
+          shockRadius={250}
+          shockStrength={5}
+          resistance={750}
+          returnDuration={1.5}
+          style={{ width: '100%', height: '100%' }}
+        />
+      </div>
 
-      {/* Noise texture overlay */}
-      <div
-        className="fixed inset-0 opacity-10 -z-10"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' /%3E%3C/svg%3E")`,
-        }}
-      />
-
-
-   
-
- 
+      {/* Background gradient overlay */}
+      <div className="absolute inset-0 bg-linear-to-br from-black/90  via-purple-900/90 to-black/90" style={{ zIndex: 1 }} />
 
       {/* Desktop: Brand panel (left side) */}
-      <div className="hidden lg:flex lg:flex-1 lg:flex-col lg:justify-center lg:px-16 lg:py-24 ">
+      <div className="hidden lg:flex lg:flex-1 lg:flex-col lg:justify-center lg:px-16 lg:py-24 relative" style={{ zIndex: 2 }}>
         <div className="max-w-md">
           {/* Enhanced Ordify wordmark */}
           <div className="mb-12 relative">
@@ -108,7 +112,7 @@ const LoginPage = () => {
       </div>
 
       {/* Enhanced Auth card with premium glassmorphism */}
-      <div className="w-full max-w-md mx-4 lg:mx-16 lg:mr-24 ">
+      <div className="w-full max-w-md mx-4 lg:mx-16 lg:mr-24 relative" style={{ zIndex: 2 }}>
         <div className="relative group">
          
           
@@ -380,7 +384,7 @@ const LoginPage = () => {
         </div>
 
         {/* Mobile: Enhanced Value props */}
-        <div className="lg:hidden mt-8 space-y-4 px-4">
+        <div className="lg:hidden mt-8 space-y-4 px-4 relative" style={{ zIndex: 2 }}>
           {[
             { icon: '🚀', title: 'Launch fast', color: 'from-primary to-primary-glow' },
             { icon: '📦', title: 'Manage products', color: 'from-primary-glow to-accent' },
