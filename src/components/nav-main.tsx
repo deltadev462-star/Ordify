@@ -126,7 +126,7 @@ export function NavMain({
             </Collapsible>
           ) : (
             <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton asChild isActive={activeItem === item.title}>
+              <SidebarMenuButton asChild isActive={activeItem === item.title} tooltip={item.title}>
                 <Link
                   to={item.url}
                   className="hover:bg-white/20 cursor-pointer  rounded-md data-[active=true]:bg-green-500 data-[active=true]:text-white"

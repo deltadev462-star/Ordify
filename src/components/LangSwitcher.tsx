@@ -1,10 +1,31 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Languages } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import i18n from "i18next";
+import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 
 export default function LangSwitcher() {
   const [open, setOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const toggleDropdown = () => setOpen(!open);
+
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    };
+
+    if (open) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [open]);
 
   const handleChangeLang = (newLang: string) => {
    
@@ -18,12 +39,19 @@ export default function LangSwitcher() {
   };
 
   return (
-    <div className="relative inline-block text-left">
-      <button
-        onClick={toggleDropdown}
-      >
-        <Languages className="" />
-      </button>
+    <div ref={dropdownRef} className="relative inline-block text-left">
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <button
+            onClick={toggleDropdown}
+          >
+            <Languages className="" />
+          </button>
+        </TooltipTrigger>
+        <TooltipContent>
+          {t('Change language')}
+        </TooltipContent>
+      </Tooltip>
 
       {open && (
         <div className="absolute right-0 mt-2 w-15 overflow-hidden bg-white dark:bg-[#101010] border border-[#d6d6d6] dark:border-[#424242] dark:border-gray-800 rounded-md shadow-lg z-20">

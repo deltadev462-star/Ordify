@@ -10,6 +10,7 @@ import LoginPage from "./pages/login/LoginPage";
 
 const Dashboard = lazy(() => import("./pages/dashboard/Dashboard"));
 const Products = lazy(() => import("./pages/dashboard/page/Products"));
+const ProductCreate = lazy(() => import("./pages/dashboard/page/ProductCreate"));
 const History = lazy(() => import("./pages/dashboard/page/History"));
 const Home = lazy(() => import("./pages/Home/Home"));
 const Order = lazy(() => import("./pages/dashboard/page/Order"));
@@ -82,6 +83,10 @@ const router = createBrowserRouter([
   {
     path: "product",
     element: <Products />,
+  },
+  {
+    path: "product/create",
+    element: <ProductCreate />,
   },
   {
     path: "categories",

@@ -1,8 +1,12 @@
 import { useState, type FormEvent } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Eye, EyeOff, Mail, Lock, Sparkles, ArrowRight } from 'lucide-react';
 import DotGrid from '../../components/DotGrid';
+import { AnimatedThemeToggler } from '../../components/ui/AnimatedThemeToggler';
+import LangSwitcher from '../../components/LangSwitcher';
 
 const LoginPage = () => {
+  const { t } = useTranslation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -23,14 +27,14 @@ const LoginPage = () => {
     // Validation
     const newErrors: { email?: string; password?: string } = {};
     if (!email) {
-      newErrors.email = 'Email is required';
+      newErrors.email = t('login.emailRequired');
     } else if (!validateEmail(email)) {
-      newErrors.email = 'Please enter a valid email';
+      newErrors.email = t('login.emailInvalid');
     }
     if (!password) {
-      newErrors.password = 'Password is required';
+      newErrors.password = t('login.passwordRequired');
     } else if (password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters';
+      newErrors.password = t('login.passwordMinLength');
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -50,7 +54,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen w-full overflow-hidden relative flex items-center justify-center">
+    <div className="h-screen w-full overflow-hidden relative flex items-center justify-center">
       {/* Animated DotGrid background */}
       <div className="absolute inset-0" style={{ zIndex: 0 }}>
         <DotGrid
@@ -70,6 +74,14 @@ const LoginPage = () => {
       {/* Background gradient overlay */}
       <div className="absolute inset-0 bg-linear-to-br from-black/90  via-purple-900/90 to-black/90" style={{ zIndex: 1 }} />
 
+      {/* Header Controls */}
+      <div className="absolute top-0 left-0 w-fit rounded-full right-0 h-12 flex justify-end items-center px-4 z-10 bg-black/20 dark:bg-black/40 backdrop-blur-sm">
+        <div className="flex gap-1">
+          <LangSwitcher />
+          <AnimatedThemeToggler className="p-1 w-8 h-8 rounded-lg bg-white/10 dark:bg-black/20 backdrop-blur-sm border border-white/20 dark:border-white/10 hover:bg-white/15 dark:hover:bg-black/30 transition-all duration-300 text-foreground dark:text-white" />
+        </div>
+      </div>
+
       {/* Desktop: Brand panel (left side) */}
       <div className="hidden lg:flex lg:flex-1 lg:flex-col lg:justify-center lg:px-16 lg:py-24 relative" style={{ zIndex: 2 }}>
         <div className="max-w-md">
@@ -82,16 +94,16 @@ const LoginPage = () => {
               <Sparkles className="inline-block w-8 h-8 ml-2 text-primary-glow animate-pulse" />
             </h1>
             <p className="text-white/80 text-lg font-light relative">
-              Build and grow your online store
+              {t('login.buildAndGrowStore')}
             </p>
           </div>
 
           {/* Enhanced value props */}
           <div className="space-y-7">
             {[
-              { icon: '🚀', title: 'Launch fast', desc: 'Get your store online in minutes, not days', color: 'from-primary to-primary-glow' },
-              { icon: '📦', title: 'Manage products', desc: 'Intuitive tools to organize your inventory', color: 'from-primary-glow to-accent' },
-              { icon: '📈', title: 'Grow sales', desc: 'Built-in marketing and analytics to scale', color: 'from-accent to-primary' },
+              { icon: '🚀', title: t('login.feature1Title'), desc: t('login.feature1Desc'), color: 'from-primary to-primary-glow' },
+              { icon: '📦', title: t('login.feature2Title'), desc: t('login.feature2Desc'), color: 'from-primary-glow to-accent' },
+              { icon: '📈', title: t('login.feature3Title'), desc: t('login.feature3Desc'), color: 'from-accent to-primary' },
             ].map((item, idx) => (
               <div key={idx} className="flex items-start gap-4 group cursor-pointer transform transition-all duration-300 hover:translate-x-2">
                 <div className="relative">
@@ -112,7 +124,7 @@ const LoginPage = () => {
       </div>
 
       {/* Enhanced Auth card with premium glassmorphism */}
-      <div className="w-full max-w-md mx-4 lg:mx-16 lg:mr-24 relative" style={{ zIndex: 2 }}>
+      <div className="w-full max-w-lg aspect-square mx-4  lg:mx-16 lg:mr-24 relative" style={{ zIndex: 2 }}>
         <div className="relative group">
          
           
@@ -120,7 +132,8 @@ const LoginPage = () => {
           <div className="relative
             bg-white/80 dark:bg-black/5
             backdrop-blur-3xl backdrop-saturate-[2]
-            rounded-3xl p-8 sm:p-10
+            rounded-3xl p-8 sm:p-10 w-full
+            bg-gradient-to-br from-white/10 to-white/5
             shadow-[0_8px_32px_0_rgba(31,38,135,0.15)]
             border border-white/18 dark:border-white/6
             animate-fade-slide-up
@@ -131,7 +144,7 @@ const LoginPage = () => {
               <h1 className="text-3xl font-display font-bold mb-2 bg-linear-to-r from-primary to-primary-glow bg-clip-text text-transparent">
                 Ordify
               </h1>
-              <p className="text-muted-foreground text-sm">Build and grow your online store</p>
+              <p className="text-muted-foreground text-sm">{t('login.buildAndGrowStore')}</p>
             </div>
 
             {/* Enhanced Heading with better glass effect */}
@@ -148,21 +161,21 @@ const LoginPage = () => {
               <h2 className="text-2xl font-display font-bold mb-2
                 text-slate-800 dark:text-white
                 drop-shadow-sm">
-                Welcome back
+                {t('login.welcomeBack')}
               </h2>
               <p className="text-slate-600 dark:text-slate-400 text-sm font-medium">
-                Sign in to manage your store
+                {t('login.signInToManageStore')}
               </p>
             </div>
 
             {/* Form */}
-            <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+            <form onSubmit={handleSubmit} className="space-y-6 " noValidate>
               {/* Enhanced Email field */}
               <div className="space-y-2">
                 <label htmlFor="email" className="block text-sm font-semibold mb-2 flex items-center gap-2
                   text-slate-700 dark:text-slate-200">
                   <Mail className={`w-4 h-4 transition-all ${isFocused.email ? 'text-primary scale-110' : 'text-slate-500 dark:text-slate-400'}`} />
-                  Email address
+                  {t('login.emailAddress')}
                 </label>
                 <div className="relative">
                   <input
@@ -184,7 +197,7 @@ const LoginPage = () => {
                       ${errors.email ? 'border-destructive shake-animation bg-destructive/5' : 'border-white/20 dark:border-white/10'}
                       ${isFocused.email ? 'shadow-lg shadow-primary/20 bg-white/15 dark:bg-black/30' : ''}
                       hover:bg-white/15 dark:hover:bg-black/25`}
-                    placeholder="you@example.com"
+                    placeholder={t('login.emailPlaceholder')}
                     aria-invalid={!!errors.email}
                     aria-describedby={errors.email ? 'email-error' : undefined}
                   />
@@ -209,7 +222,7 @@ const LoginPage = () => {
                 <label htmlFor="password" className=" text-sm font-semibold mb-2 flex items-center gap-2
                   text-slate-700 dark:text-slate-200">
                   <Lock className={`w-4 h-4 transition-all ${isFocused.password ? 'text-primary scale-110' : 'text-slate-500 dark:text-slate-400'}`} />
-                  Password
+                  {t('login.password')}
                 </label>
                 <div className="relative">
                   <input
@@ -231,7 +244,7 @@ const LoginPage = () => {
                       ${errors.password ? 'border-destructive shake-animation bg-destructive/5' : 'border-white/20 dark:border-white/10'}
                       ${isFocused.password ? 'shadow-lg shadow-primary/20 bg-white/15 dark:bg-black/30' : ''}
                       hover:bg-white/15 dark:hover:bg-black/25`}
-                    placeholder="••••••••"
+                    placeholder={t('login.passwordPlaceholder')}
                     aria-invalid={!!errors.password}
                     aria-describedby={errors.password ? 'password-error' : undefined}
                   />
@@ -244,7 +257,7 @@ const LoginPage = () => {
                       text-muted-foreground/60 dark:text-white/40
                       hover:text-foreground dark:hover:text-white
                       transition-all duration-200 p-1 hover:bg-white/10 rounded-lg"
-                    aria-label={showPassword ? 'Hide password' : 'Show password'}
+                    aria-label={showPassword ? t('login.hidePassword') : t('login.showPassword')}
                   >
                     {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                   </button>
@@ -273,7 +286,7 @@ const LoginPage = () => {
                       transition-transform duration-300 -z-10 blur-sm" />
                   </div>
                   <span className="text-foreground/90 dark:text-white/80 select-none group-hover:text-primary transition-colors">
-                    Remember me
+                    {t('login.rememberMe')}
                   </span>
                 </label>
                 <a
@@ -283,7 +296,7 @@ const LoginPage = () => {
                     focus-visible:ring-primary rounded px-1 transition-all duration-200
                     hover:underline hover:underline-offset-4 drop-shadow-sm"
                 >
-                  Forgot password?
+                  {t('login.forgotPassword')}
                 </a>
               </div>
 
@@ -312,11 +325,11 @@ const LoginPage = () => {
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                     </svg>
-                    Signing in...
+                    {t('login.signingIn')}
                   </span>
                 ) : (
                   <span className="flex items-center justify-center gap-2">
-                    Sign in
+                    {t('login.signIn')}
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </span>
                 )}
@@ -331,7 +344,7 @@ const LoginPage = () => {
                   <span className="bg-white/10 dark:bg-black/20 backdrop-blur-xl px-4 py-1.5 rounded-full
                     text-muted-foreground/80 dark:text-white/60
                     border border-white/20 dark:border-white/10">
-                    Or continue with
+                    {t('login.orContinueWith')}
                   </span>
                 </div>
               </div>
@@ -359,7 +372,7 @@ const LoginPage = () => {
                     <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
                     <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
                   </svg>
-                  <span className="text-sm font-medium relative z-10 text-foreground/90 dark:text-white/90">Google</span>
+                  <span className="text-sm font-medium relative z-10 text-foreground/90 dark:text-white/90">{t('login.google')}</span>
                 </button>
 
                
@@ -368,14 +381,14 @@ const LoginPage = () => {
 
             {/* Enhanced Sign up link with better colors */}
             <p className="text-center text-sm text-muted-foreground/80 dark:text-white/60 mt-8">
-              New to Ordify?{' '}
+              {t('login.newToOrdify')}{' '}
               <a
                 href="#signup"
                 className="relative text-primary/90 hover:text-primary font-semibold
                   focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-1
                   transition-colors duration-200 group drop-shadow-sm"
               >
-                Create your store
+                {t('login.createYourStore')}
                 <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-primary-glow
                   group-hover:w-full transition-all duration-300" />
               </a>
@@ -383,12 +396,12 @@ const LoginPage = () => {
           </div>
         </div>
 
-        {/* Mobile: Enhanced Value props */}
+      {/* Mobile: Enhanced Value props */}
         <div className="lg:hidden mt-8 space-y-4 px-4 relative" style={{ zIndex: 2 }}>
           {[
-            { icon: '🚀', title: 'Launch fast', color: 'from-primary to-primary-glow' },
-            { icon: '📦', title: 'Manage products', color: 'from-primary-glow to-accent' },
-            { icon: '📈', title: 'Grow sales', color: 'from-accent to-primary' },
+            { icon: '🚀', title: t('login.feature1Title'), color: 'from-primary to-primary-glow' },
+            { icon: '📦', title: t('login.feature2Title'), color: 'from-primary-glow to-accent' },
+            { icon: '📈', title: t('login.feature3Title'), color: 'from-accent to-primary' },
           ].map((item, idx) => (
             <div key={idx} className="flex items-center gap-3 text-white/90
               transform transition-all duration-300 hover:translate-x-2">

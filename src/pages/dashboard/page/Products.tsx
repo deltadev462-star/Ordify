@@ -1,4 +1,5 @@
 // Removed unused imports: AppSidebar, SidebarInset/SidebarProvider, Header
+import { useNavigate } from "react-router-dom";
 import NotActive from "@/components/NotActive";
 import Title from "@/components/Title";
 import { useTranslation } from "react-i18next";
@@ -9,6 +10,7 @@ import { useSEO } from "@/hooks/useSEO";
 
 function Products() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   useSEO({
     title: "Products - Ordify Dashboard",
@@ -43,7 +45,11 @@ function Products() {
             </Button>
           </div>
         </div>
-        <Empty className={" "} Name={t("Products").toLowerCase()} />
+        <Empty
+          className={" "}
+          Name={t("Products").toLowerCase()}
+          onCreate={() => navigate("/dashboard/product/create")}
+        />
       </div>
     </div>
   );

@@ -16,5 +16,6 @@ export { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupActio
 export { Skeleton } from './skeleton';
 export { Slider } from './slider';
 export { Tabs, TabsContent, TabsList, TabsTrigger } from './tabs';
+export { Textarea } from './textarea';
 export { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './tooltip';
 export { AnimatedThemeToggler } from './AnimatedThemeToggler';
