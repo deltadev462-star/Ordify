@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Eye, EyeOff, User, Mail, Lock, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { Link } from "react-router-dom";
 
 
 const SignupForm = () => {
@@ -119,7 +120,7 @@ const SignupForm = () => {
             placeholder="John Doe"
             value={formData.name}
             onChange={(e) => handleInputChange("name", e.target.value)}
-            className={`pl-11 input-glow ${errors.name ? "border-destructive" : ""}`}
+            className={`pl-11 input-glow ${errors.name ? "border-destructive" : ""} `}
           />
         </div>
         {errors.name && (
@@ -240,7 +241,7 @@ const SignupForm = () => {
       {/* Submit Button */}
       <Button
         type="submit"
-        className="w-full font-semibold"
+        className="w-full font-semibold "
         size="lg"
         disabled={isLoading}
       >
@@ -296,9 +297,9 @@ const SignupForm = () => {
       {/* Sign in link */}
       <p className="text-center text-sm text-muted-foreground mt-6">
         Already have an account?{" "}
-        <a href="#" className="text-primary font-medium hover:underline">
+        <Link to="/login" className="text-primary font-medium hover:underline">
           Sign in
-        </a>
+        </Link>
       </p>
     </form>
   );
