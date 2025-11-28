@@ -5,9 +5,10 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Eye, EyeOff, User, Mail, Lock, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
-
+import { useTranslation } from 'react-i18next';
 
 const SignupForm = () => {
+  const { t } = useTranslation();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -55,29 +56,29 @@ const SignupForm = () => {
     };
 
     if (!formData.name.trim()) {
-      newErrors.name = "Name is required";
+      newErrors.name = t('signup.nameRequired');
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = "Email is required";
+      newErrors.email = t('signup.emailRequired');
     } else if (!validateEmail(formData.email)) {
-      newErrors.email = "Please enter a valid email";
+      newErrors.email = t('signup.emailInvalid');
     }
 
     if (!formData.password) {
-      newErrors.password = "Password is required";
+      newErrors.password = t('signup.passwordRequired');
     } else if (!validatePassword(formData.password)) {
-      newErrors.password = "Password must be at least 8 characters";
+      newErrors.password = t('signup.passwordMinLength');
     }
 
     if (!formData.confirmPassword) {
-      newErrors.confirmPassword = "Please confirm your password";
+      newErrors.confirmPassword = t('signup.confirmPasswordRequired');
     } else if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = "Passwords do not match";
+      newErrors.confirmPassword = t('signup.passwordsDoNotMatch');
     }
 
     if (!acceptTerms) {
-      newErrors.terms = "You must accept the terms and conditions";
+      newErrors.terms = t('signup.termsRequired');
     }
 
     setErrors(newErrors);
@@ -93,15 +94,15 @@ const SignupForm = () => {
     
     setIsLoading(false);
     toast({
-      title: "Account created successfully!",
-      description: "Welcome to Ordify. Let's get started.",
+      title: t('signup.accountCreatedTitle'),
+      description: t('signup.accountCreatedDescription'),
     });
   };
 
   const handleGoogleSignup = () => {
     toast({
-      title: "Google Sign Up",
-      description: "Google authentication would be integrated here.",
+      title: t('signup.googleSignUpTitle'),
+      description: t('signup.googleSignUpDescription'),
     });
   };
 
@@ -110,14 +111,14 @@ const SignupForm = () => {
       {/* Name Field */}
       <div className="space-y-2">
         <label htmlFor="name" className="text-sm font-medium text-foreground">
-          Full Name
+          {t('signup.fullName')}
         </label>
         <div className="relative group">
           <User className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground transition-colors group-focus-within:text-primary" />
           <Input
             id="name"
             type="text"
-            placeholder="John Doe"
+            placeholder={t('signup.fullNamePlaceholder')}
             value={formData.name}
             onChange={(e) => handleInputChange("name", e.target.value)}
             className={`pl-11 input-glow ${errors.name ? "border-destructive" : ""} `}
@@ -131,14 +132,14 @@ const SignupForm = () => {
       {/* Email Field */}
       <div className="space-y-2">
         <label htmlFor="email" className="text-sm font-medium text-foreground">
-          Email Address
+          {t('signup.emailAddress')}
         </label>
         <div className="relative group">
           <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground transition-colors group-focus-within:text-primary" />
           <Input
             id="email"
             type="email"
-            placeholder="john@example.com"
+            placeholder={t('signup.emailPlaceholder')}
             value={formData.email}
             onChange={(e) => handleInputChange("email", e.target.value)}
             className={`pl-11 input-glow ${errors.email ? "border-destructive" : ""}`}
@@ -152,14 +153,14 @@ const SignupForm = () => {
       {/* Password Field */}
       <div className="space-y-2">
         <label htmlFor="password" className="text-sm font-medium text-foreground">
-          Password
+          {t('signup.password')}
         </label>
         <div className="relative group">
           <Lock className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground transition-colors group-focus-within:text-primary" />
           <Input
             id="password"
             type={showPassword ? "text" : "password"}
-            placeholder="••••••••"
+            placeholder={t('signup.passwordPlaceholder')}
             value={formData.password}
             onChange={(e) => handleInputChange("password", e.target.value)}
             className={`pl-11 pr-11 input-glow ${errors.password ? "border-destructive" : ""}`}
@@ -168,7 +169,7 @@ const SignupForm = () => {
             type="button"
             onClick={() => setShowPassword(!showPassword)}
             className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
-            aria-label={showPassword ? "Hide password" : "Show password"}
+            aria-label={showPassword ? t('signup.hidePassword') : t('signup.showPassword')}
           >
             {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
           </button>
@@ -181,14 +182,14 @@ const SignupForm = () => {
       {/* Confirm Password Field */}
       <div className="space-y-2">
         <label htmlFor="confirmPassword" className="text-sm font-medium text-foreground">
-          Confirm Password
+          {t('signup.confirmPassword')}
         </label>
         <div className="relative group">
           <Lock className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground transition-colors group-focus-within:text-primary" />
           <Input
             id="confirmPassword"
             type={showConfirmPassword ? "text" : "password"}
-            placeholder="••••••••"
+            placeholder={t('signup.confirmPasswordPlaceholder')}
             value={formData.confirmPassword}
             onChange={(e) => handleInputChange("confirmPassword", e.target.value)}
             className={`pl-11 pr-11 input-glow ${errors.confirmPassword ? "border-destructive" : ""}`}
@@ -197,7 +198,7 @@ const SignupForm = () => {
             type="button"
             onClick={() => setShowConfirmPassword(!showConfirmPassword)}
             className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
-            aria-label={showConfirmPassword ? "Hide password" : "Show password"}
+            aria-label={showConfirmPassword ? t('signup.hidePassword') : t('signup.showPassword')}
           >
             {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
           </button>
@@ -223,13 +224,13 @@ const SignupForm = () => {
             htmlFor="terms"
             className="text-sm text-muted-foreground leading-relaxed cursor-pointer"
           >
-            I agree to the{" "}
+            {t('signup.agreeToTerms')}{" "}
             <a href="#" className="text-primary hover:underline">
-              Terms of Service
+              {t('signup.termsOfService')}
             </a>{" "}
-            and{" "}
+            {t('signup.and')}{" "}
             <a href="#" className="text-primary hover:underline">
-              Privacy Policy
+              {t('signup.privacyPolicy')}
             </a>
           </label>
         </div>
@@ -248,10 +249,10 @@ const SignupForm = () => {
         {isLoading ? (
           <>
             <Loader2 className="animate-spin" />
-            Creating account...
+            {t('signup.creatingAccount')}
           </>
         ) : (
-          "Create Account"
+          t('signup.createAccountButton')
         )}
       </Button>
 
@@ -261,7 +262,7 @@ const SignupForm = () => {
           <div className="w-full border-t border-border"></div>
         </div>
         <div className="relative flex justify-center text-xs uppercase">
-          <span className="bg-card px-3 text-muted-foreground">Or continue with</span>
+          <span className="bg-card px-3 text-muted-foreground">{t('signup.orContinueWith')}</span>
         </div>
       </div>
 
@@ -291,14 +292,14 @@ const SignupForm = () => {
             fill="#EA4335"
           />
         </svg>
-        Continue with Google
+        {t('signup.continueWithGoogle')}
       </Button>
 
       {/* Sign in link */}
       <p className="text-center text-sm text-muted-foreground mt-6">
-        Already have an account?{" "}
+        {t('signup.alreadyHaveAccount')}{" "}
         <Link to="/login" className="text-primary font-medium hover:underline">
-          Sign in
+          {t('signup.signIn')}
         </Link>
       </p>
     </form>

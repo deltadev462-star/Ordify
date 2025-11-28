@@ -11,6 +11,13 @@ import HttpApi from 'i18next-http-backend';
   .init({
     debug: false,
     fallbackLng: "en",
+    lng: "en",
+    interpolation: {
+      escapeValue: false,
+    },
+    react: {
+      useSuspense: false,
+    },
     detection: {
       order: [
         "localStorage",
