@@ -1,9 +1,11 @@
-import { useState, type FormEvent } from 'react';
+import { useState, useEffect, type FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Eye, EyeOff, Mail, Lock, Sparkles, ArrowRight } from 'lucide-react';
+import Lottie from 'lottie-react';
 import DotGrid from '../../components/DotGrid';
 import { AnimatedThemeToggler } from '../../components/ui/AnimatedThemeToggler';
 import LangSwitcher from '../../components/LangSwitcher';
+import { Link } from 'react-router-dom';
 
 const LoginPage = () => {
   const { t } = useTranslation();
@@ -14,6 +16,40 @@ const LoginPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
   const [isFocused, setIsFocused] = useState({ email: false, password: false });
+  
+  // State for Lottie animations
+  const [lottieAnimations, setLottieAnimations] = useState<{
+    growSales: any;
+    manageProducts: any;
+    launchFast: any;
+  }>({
+    growSales: null,
+    manageProducts: null,
+    launchFast: null,
+  });
+
+  // Load Lottie animations
+  useEffect(() => {
+    const loadAnimations = async () => {
+      try {
+        const [growSales, manageProducts, launchFast] = await Promise.all([
+          fetch('/lottie/growSales.json').then(res => res.json()),
+          fetch('/lottie/manageProducts.json').then(res => res.json()),
+          fetch('/lottie/launchFast.json').then(res => res.json()),
+        ]);
+        
+        setLottieAnimations({
+          growSales,
+          manageProducts,
+          launchFast,
+        });
+      } catch (error) {
+        console.error('Failed to load Lottie animations:', error);
+      }
+    };
+
+    loadAnimations();
+  }, []);
 
   const validateEmail = (email: string) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -53,6 +89,27 @@ const LoginPage = () => {
     console.log(`Login with ${provider}`);
   };
 
+  const features = [
+    { 
+      animation: lottieAnimations.launchFast, 
+      title: t('login.feature1Title'), 
+      desc: t('login.feature1Desc'), 
+      color: 'from-primary to-primary-glow' 
+    },
+    { 
+      animation: lottieAnimations.manageProducts, 
+      title: t('login.feature2Title'), 
+      desc: t('login.feature2Desc'), 
+      color: 'from-primary-glow to-accent' 
+    },
+    { 
+      animation: lottieAnimations.growSales, 
+      title: t('login.feature3Title'), 
+      desc: t('login.feature3Desc'), 
+      color: 'from-accent to-primary' 
+    },
+  ];
+
   return (
     <div className="h-screen w-full overflow-hidden relative flex items-center justify-center">
       {/* Animated DotGrid background */}
@@ -62,7 +119,7 @@ const LoginPage = () => {
           gap={15}
           baseColor="#5227FF"
           activeColor="#8b5cf6"
-          proximity={120}
+          proximity={75}
           shockRadius={250}
           shockStrength={5}
           resistance={750}
@@ -71,8 +128,8 @@ const LoginPage = () => {
         />
       </div>
 
-      {/* Background gradient overlay */}
-      <div className="absolute inset-0 bg-linear-to-br from-black/90  via-purple-900/90 to-black/90" style={{ zIndex: 1 }} />
+      {/* Background linear overlay */}
+      <div className="absolute inset-0 bg-linear-to-br from-black/90  via-black/90 to-black/90" style={{ zIndex: 1 }} />
 
       {/* Header Controls */}
       <div className="absolute top-0 left-0 w-fit rounded-full right-0 h-12 flex justify-end items-center px-4 z-10 bg-black/20 dark:bg-black/40 backdrop-blur-sm">
@@ -87,9 +144,9 @@ const LoginPage = () => {
         <div className="max-w-md">
           {/* Enhanced Ordify wordmark */}
           <div className="mb-12 relative">
-            <div className="absolute -inset-1 bg-gradient-to-r from-primary to-primary-glow opacity-20 blur-2xl" />
+            <div className="absolute -inset-1 bg-linear-to-r from-primary to-primary-glow opacity-20 blur-2xl" />
             <h1 className="relative text-6xl font-display font-bold text-white mb-3 tracking-tight
-              bg-gradient-to-br from-white to-white/80 bg-clip-text">
+              bg-linear-to-br from-white to-white/80 bg-clip-text">
               Ordify
               <Sparkles className="inline-block w-8 h-8 ml-2 text-primary-glow animate-pulse" />
             </h1>
@@ -98,24 +155,30 @@ const LoginPage = () => {
             </p>
           </div>
 
-          {/* Enhanced value props */}
+          {/* Enhanced value props with Lottie animations */}
           <div className="space-y-7">
-            {[
-              { icon: '🚀', title: t('login.feature1Title'), desc: t('login.feature1Desc'), color: 'from-primary to-primary-glow' },
-              { icon: '📦', title: t('login.feature2Title'), desc: t('login.feature2Desc'), color: 'from-primary-glow to-accent' },
-              { icon: '📈', title: t('login.feature3Title'), desc: t('login.feature3Desc'), color: 'from-accent to-primary' },
-            ].map((item, idx) => (
+            {features.map((item, idx) => (
               <div key={idx} className="flex items-start gap-4 group cursor-pointer transform transition-all duration-300 hover:translate-x-2">
                 <div className="relative">
-                  <div className={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-20 blur-xl group-hover:opacity-40 transition-opacity`} />
-                  <div className="relative text-3xl transition-transform group-hover:scale-125 group-hover:rotate-6">
-                    {item.icon}
+                  <div className={`absolute inset-0 bg-linear-to-r ${item.color} opacity-20 blur-xl group-hover:opacity-40 transition-opacity`} />
+                  <div className="relative w-18 h-18 transition-transform group-hover:scale-110">
+                    {item.animation ? (
+                      <Lottie
+                        animationData={item.animation}
+                        loop={true}
+                        autoplay={true}
+                        className="w-full h-full"
+                      />
+                    ) : (
+                      // Fallback while loading
+                      <div className="w-full h-full rounded-lg bg-white/10 animate-pulse" />
+                    )}
                   </div>
                 </div>
                 <div className="flex-1">
                   <h3 className="text-white font-semibold text-lg mb-1 group-hover:text-primary-glow transition-colors">{item.title}</h3>
                   <p className="text-white/70 text-sm group-hover:text-white/90 transition-colors">{item.desc}</p>
-                  <div className="h-0.5 w-0 bg-gradient-to-r from-primary to-primary-glow group-hover:w-full transition-all duration-500 mt-2" />
+                  <div className="h-0.5 w-0 bg-linear-to-r from-primary to-primary-glow group-hover:w-full transition-all duration-500 mt-2" />
                 </div>
               </div>
             ))}
@@ -133,7 +196,7 @@ const LoginPage = () => {
             bg-white/80 dark:bg-black/5
             backdrop-blur-3xl backdrop-saturate-[2]
             rounded-3xl p-8 sm:p-10 w-full
-            bg-gradient-to-br from-white/10 to-white/5
+            bg-linear-to-br from-white/10 to-white/5
             shadow-[0_8px_32px_0_rgba(31,38,135,0.15)]
             border border-white/18 dark:border-white/6
             animate-fade-slide-up
@@ -364,7 +427,7 @@ const LoginPage = () => {
                     focus:outline-none focus-visible:ring-2 focus-visible:ring-primary
                     transition-all duration-300 group overflow-hidden"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#4285F4]/10 to-[#34A853]/10
+                  <div className="absolute inset-0 bg-linear-to-r from-[#4285F4]/10 to-[#34A853]/10
                     opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <svg className="w-5 h-5 relative z-10" viewBox="0 0 24 24">
                     <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -382,32 +445,40 @@ const LoginPage = () => {
             {/* Enhanced Sign up link with better colors */}
             <p className="text-center text-sm text-muted-foreground/80 dark:text-white/60 mt-8">
               {t('login.newToOrdify')}{' '}
-              <a
-                href="#signup"
+              <Link
+                to="/signup"
                 className="relative text-primary/90 hover:text-primary font-semibold
                   focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded px-1
                   transition-colors duration-200 group drop-shadow-sm"
               >
                 {t('login.createYourStore')}
-                <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-primary-glow
+                <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-linear-to-r from-primary to-primary-glow
                   group-hover:w-full transition-all duration-300" />
-              </a>
+              </Link>
             </p>
           </div>
         </div>
 
-      {/* Mobile: Enhanced Value props */}
+      {/* Mobile: Enhanced Value props with Lottie animations */}
         <div className="lg:hidden mt-8 space-y-4 px-4 relative" style={{ zIndex: 2 }}>
-          {[
-            { icon: '🚀', title: t('login.feature1Title'), color: 'from-primary to-primary-glow' },
-            { icon: '📦', title: t('login.feature2Title'), color: 'from-primary-glow to-accent' },
-            { icon: '📈', title: t('login.feature3Title'), color: 'from-accent to-primary' },
-          ].map((item, idx) => (
+          {features.map((item, idx) => (
             <div key={idx} className="flex items-center gap-3 text-white/90
               transform transition-all duration-300 hover:translate-x-2">
               <div className="relative">
-                <div className={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-20 blur-lg`} />
-                <span className="relative text-2xl">{item.icon}</span>
+                <div className={`absolute inset-0 bg-linear-to-r ${item.color} opacity-20 blur-lg`} />
+                <div className="relative w-10 h-10">
+                  {item.animation ? (
+                    <Lottie
+                      animationData={item.animation}
+                      loop={true}
+                      autoplay={true}
+                      className="w-full h-full"
+                    />
+                  ) : (
+                    // Fallback while loading
+                    <div className="w-full h-full rounded-lg bg-white/10 animate-pulse" />
+                  )}
+                </div>
               </div>
               <span className="font-medium">{item.title}</span>
             </div>
