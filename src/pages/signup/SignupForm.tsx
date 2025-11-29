@@ -121,7 +121,7 @@ const SignupForm = () => {
             placeholder={t('signup.fullNamePlaceholder')}
             value={formData.name}
             onChange={(e) => handleInputChange("name", e.target.value)}
-            className={`pl-11 input-glow ${errors.name ? "border-destructive" : ""} `}
+            className={`pl-11 input-glow  ${errors.name ? "border-destructive" : ""} `}
           />
         </div>
         {errors.name && (
@@ -208,36 +208,8 @@ const SignupForm = () => {
         )}
       </div>
 
-      {/* Terms Checkbox */}
-      <div className="space-y-2">
-        <div className="flex items-start gap-3">
-          <Checkbox
-            id="terms"
-            checked={acceptTerms}
-            onCheckedChange={(checked) => {
-              setAcceptTerms(checked as boolean);
-              setErrors((prev) => ({ ...prev, terms: "" }));
-            }}
-            className="mt-0.5"
-          />
-          <label
-            htmlFor="terms"
-            className="text-sm text-muted-foreground leading-relaxed cursor-pointer"
-          >
-            {t('signup.agreeToTerms')}{" "}
-            <a href="#" className="text-primary hover:underline">
-              {t('signup.termsOfService')}
-            </a>{" "}
-            {t('signup.and')}{" "}
-            <a href="#" className="text-primary hover:underline">
-              {t('signup.privacyPolicy')}
-            </a>
-          </label>
-        </div>
-        {errors.terms && (
-          <p className="text-xs text-destructive animate-fade-up">{errors.terms}</p>
-        )}
-      </div>
+    
+    
 
       {/* Submit Button */}
       <Button
