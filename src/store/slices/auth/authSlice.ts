@@ -1,6 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { loginRequestHandler } from './actions';
+import { loginRequestHandler, registerRequestHandler } from './actions';
 import type { AuthState } from '@/types/auth.types';
 
 
@@ -46,6 +46,7 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
    loginRequestHandler(builder)
+   registerRequestHandler(builder)
   },
 });
 

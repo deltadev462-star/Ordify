@@ -1,132 +1,179 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Eye, EyeOff, User, Mail, Lock, Loader2 } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
-import { Link } from "react-router-dom";
+import { Eye, EyeOff, User, Mail, Lock, Loader2, Phone } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { registerRequest } from "@/store/slices/auth/actions";
 
 const SignupForm = () => {
-  const { t } = useTranslation();
-  const { toast } = useToast();
-  const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { t, ready } = useTranslation();
+  const { loading, isAuthenticated, token, error: serverError } = useAppSelector((state) => state.auth);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [acceptTerms, setAcceptTerms] = useState(false);
-  
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+  const [serverErrorMessage, setServerErrorMessage] = useState<string>('');
+
+  // Redirect if already authenticated
+  useEffect(() => {
+    if (isAuthenticated && token) {
+      navigate('/dashboard');
+    }
+  }, [isAuthenticated, token, navigate]);
+
+  // Update server error message when error changes
+  useEffect(() => {
+    if (serverError) {
+      console.log({serverError})
+      setServerErrorMessage(serverError);
+    }
+  }, [serverError]);
+
+  // Yup validation schema
+  const validationSchema = Yup.object({
+    firstName: Yup.string()
+      .trim()
+      .required(t('signup.firstNameRequired'))
+      .min(2, t('signup.firstNameMinLength')),
+    lastName: Yup.string()
+      .trim()
+      .required(t('signup.lastNameRequired'))
+      .min(2, t('signup.lastNameMinLength')),
+    email: Yup.string()
+      .trim()
+      .required(t('signup.emailRequired'))
+      .email(t('signup.emailInvalid')),
+    phone: Yup.string()
+      .trim()
+      .required(t('signup.phoneRequired'))
+      .matches(/^\+?[1-9]\d{1,14}$/, t('signup.phoneInvalid')),
+    password: Yup.string()
+      .required(t('signup.passwordRequired'))
+      .min(8, t('signup.passwordMinLength')),
+    confirmPassword: Yup.string()
+      .required(t('signup.confirmPasswordRequired'))
+      .oneOf([Yup.ref('password')], t('signup.passwordsDoNotMatch')),
+    storeName: Yup.string()
+      .trim()
+      .optional(),
+    acceptTerms: Yup.boolean()
+      .oneOf([true], t('signup.termsRequired'))
   });
 
-  const [errors, setErrors] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    terms: "",
+  // Formik hook
+  const formik = useFormik({
+    initialValues: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      password: '',
+      confirmPassword: '',
+      storeName: '',
+      acceptTerms: false
+    },
+    validationSchema,
+    onSubmit: async (values, { setSubmitting }) => {
+      console.log("sdsdsdsdsd")
+      // Clear any previous server errors
+      setServerErrorMessage('');
+      
+      try {
+        const resultAction = await dispatch(registerRequest({
+          email: values.email,
+          password: values.password,
+          firstName: values.firstName,
+          lastName: values.lastName,
+          phone: values.phone,
+          storeName: values.storeName || undefined
+        }));
+        
+        if (registerRequest.fulfilled.match(resultAction)) {
+          // Clear server error on success
+          setServerErrorMessage('');
+          
+          // Navigation will be handled by the useEffect watching isAuthenticated
+        } else if (registerRequest.rejected.match(resultAction)) {
+          // Error is already set in the state via serverError
+        }
+      } catch (error) {
+        console.error('Registration error:', error);
+      } finally {
+        setSubmitting(false);
+      }
+    },
   });
-
-  const validateEmail = (email: string) => {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-  };
-
-  const validatePassword = (password: string) => {
-    return password.length >= 8;
-  };
-
-  const handleInputChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
-    setErrors((prev) => ({ ...prev, [field]: "" }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    const newErrors = {
-      name: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-      terms: "",
-    };
-
-    if (!formData.name.trim()) {
-      newErrors.name = t('signup.nameRequired');
-    }
-
-    if (!formData.email.trim()) {
-      newErrors.email = t('signup.emailRequired');
-    } else if (!validateEmail(formData.email)) {
-      newErrors.email = t('signup.emailInvalid');
-    }
-
-    if (!formData.password) {
-      newErrors.password = t('signup.passwordRequired');
-    } else if (!validatePassword(formData.password)) {
-      newErrors.password = t('signup.passwordMinLength');
-    }
-
-    if (!formData.confirmPassword) {
-      newErrors.confirmPassword = t('signup.confirmPasswordRequired');
-    } else if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = t('signup.passwordsDoNotMatch');
-    }
-
-    if (!acceptTerms) {
-      newErrors.terms = t('signup.termsRequired');
-    }
-
-    setErrors(newErrors);
-
-    if (Object.values(newErrors).some((error) => error)) {
-      return;
-    }
-
-    setIsLoading(true);
-    
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    
-    setIsLoading(false);
-    toast({
-      title: t('signup.accountCreatedTitle'),
-      description: t('signup.accountCreatedDescription'),
-    });
-  };
 
   const handleGoogleSignup = () => {
-    toast({
-      title: t('signup.googleSignUpTitle'),
-      description: t('signup.googleSignUpDescription'),
-    });
+    // For now, just show inline message instead of implementing Google auth
+    setServerErrorMessage("Google authentication would be integrated here.");
   };
 
+  // Show loading while translations are loading
+  if (!ready) {
+    return <div className="flex justify-center items-center h-96">
+      <Loader2 className="animate-spin w-8 h-8 text-primary" />
+    </div>;
+  }
+
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
-      {/* Name Field */}
-      <div className="space-y-2">
-        <label htmlFor="name" className="text-sm font-medium text-foreground">
-          {t('signup.fullName')}
-        </label>
-        <div className="relative group">
-          <User className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground transition-colors group-focus-within:text-primary" />
-          <Input
-            id="name"
-            type="text"
-            placeholder={t('signup.fullNamePlaceholder')}
-            value={formData.name}
-            onChange={(e) => handleInputChange("name", e.target.value)}
-            className={`pl-11 input-glow  ${errors.name ? "border-destructive" : ""} `}
-          />
+    <form onSubmit={formik.handleSubmit} className="space-y-5">
+      {/* Server Error Message */}
+      {serverErrorMessage && (
+        <div className="p-3 rounded-lg bg-destructive/10 border border-destructive/20 animate-fade-up">
+          <p className="text-sm text-destructive">{serverErrorMessage}</p>
         </div>
-        {errors.name && (
-          <p className="text-xs text-destructive animate-fade-up">{errors.name}</p>
-        )}
+      )}
+
+      <div className="grid grid-cols-2 gap-4">
+        {/* First Name Field */}
+        <div className="space-y-2">
+          <label htmlFor="firstName" className="text-sm font-medium text-foreground">
+            {t('signup.firstName')}
+          </label>
+          <div className="relative group">
+            <User className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground transition-colors group-focus-within:text-primary" />
+            <Input
+              id="firstName"
+              type="text"
+              placeholder={t('signup.firstNamePlaceholder')}
+              {...formik.getFieldProps('firstName')}
+              className={`pl-11 input-glow  ${
+                formik.touched.firstName && formik.errors.firstName ? "border-destructive" : ""
+              } `}
+            />
+          </div>
+          {formik.touched.firstName && formik.errors.firstName && (
+            <p className="text-xs text-destructive animate-fade-up">{formik.errors.firstName}</p>
+          )}
+        </div>
+
+        {/* Last Name Field */}
+        <div className="space-y-2">
+          <label htmlFor="lastName" className="text-sm font-medium text-foreground">
+            {t('signup.lastName')}
+          </label>
+          <div className="relative group">
+            <User className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground transition-colors group-focus-within:text-primary" />
+            <Input
+              id="lastName"
+              type="text"
+              placeholder={t('signup.lastNamePlaceholder')}
+              {...formik.getFieldProps('lastName')}
+              className={`pl-11 input-glow  ${
+                formik.touched.lastName && formik.errors.lastName ? "border-destructive" : ""
+              } `}
+            />
+          </div>
+          {formik.touched.lastName && formik.errors.lastName && (
+            <p className="text-xs text-destructive animate-fade-up">{formik.errors.lastName}</p>
+          )}
+        </div>
       </div>
 
       {/* Email Field */}
@@ -140,13 +187,36 @@ const SignupForm = () => {
             id="email"
             type="email"
             placeholder={t('signup.emailPlaceholder')}
-            value={formData.email}
-            onChange={(e) => handleInputChange("email", e.target.value)}
-            className={`pl-11 input-glow ${errors.email ? "border-destructive" : ""}`}
+            {...formik.getFieldProps('email')}
+            className={`pl-11 input-glow ${
+              formik.touched.email && formik.errors.email ? "border-destructive" : ""
+            }`}
           />
         </div>
-        {errors.email && (
-          <p className="text-xs text-destructive animate-fade-up">{errors.email}</p>
+        {formik.touched.email && formik.errors.email && (
+          <p className="text-xs text-destructive animate-fade-up">{formik.errors.email}</p>
+        )}
+      </div>
+
+      {/* Phone Field */}
+      <div className="space-y-2">
+        <label htmlFor="phone" className="text-sm font-medium text-foreground">
+          {t('signup.phone')}
+        </label>
+        <div className="relative group">
+          <Phone className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground transition-colors group-focus-within:text-primary" />
+          <Input
+            id="phone"
+            type="tel"
+            placeholder={t('signup.phonePlaceholder')}
+            {...formik.getFieldProps('phone')}
+            className={`pl-11 input-glow ${
+              formik.touched.phone && formik.errors.phone ? "border-destructive" : ""
+            }`}
+          />
+        </div>
+        {formik.touched.phone && formik.errors.phone && (
+          <p className="text-xs text-destructive animate-fade-up">{formik.errors.phone}</p>
         )}
       </div>
 
@@ -161,21 +231,23 @@ const SignupForm = () => {
             id="password"
             type={showPassword ? "text" : "password"}
             placeholder={t('signup.passwordPlaceholder')}
-            value={formData.password}
-            onChange={(e) => handleInputChange("password", e.target.value)}
-            className={`pl-11 pr-11 input-glow ${errors.password ? "border-destructive" : ""}`}
+            {...formik.getFieldProps('password')}
+            className={`pl-11 pr-11 input-glow ${
+              formik.touched.password && formik.errors.password ? "border-destructive" : ""
+            }`}
           />
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
             className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
             aria-label={showPassword ? t('signup.hidePassword') : t('signup.showPassword')}
+            tabIndex={-1}
           >
             {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
           </button>
         </div>
-        {errors.password && (
-          <p className="text-xs text-destructive animate-fade-up">{errors.password}</p>
+        {formik.touched.password && formik.errors.password && (
+          <p className="text-xs text-destructive animate-fade-up">{formik.errors.password}</p>
         )}
       </div>
 
@@ -190,37 +262,84 @@ const SignupForm = () => {
             id="confirmPassword"
             type={showConfirmPassword ? "text" : "password"}
             placeholder={t('signup.confirmPasswordPlaceholder')}
-            value={formData.confirmPassword}
-            onChange={(e) => handleInputChange("confirmPassword", e.target.value)}
-            className={`pl-11 pr-11 input-glow ${errors.confirmPassword ? "border-destructive" : ""}`}
+            {...formik.getFieldProps('confirmPassword')}
+            className={`pl-11 pr-11 input-glow ${
+              formik.touched.confirmPassword && formik.errors.confirmPassword ? "border-destructive" : ""
+            }`}
           />
           <button
             type="button"
             onClick={() => setShowConfirmPassword(!showConfirmPassword)}
             className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
             aria-label={showConfirmPassword ? t('signup.hidePassword') : t('signup.showPassword')}
+            tabIndex={-1}
           >
             {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
           </button>
         </div>
-        {errors.confirmPassword && (
-          <p className="text-xs text-destructive animate-fade-up">{errors.confirmPassword}</p>
+        {formik.touched.confirmPassword && formik.errors.confirmPassword && (
+          <p className="text-xs text-destructive animate-fade-up">{formik.errors.confirmPassword}</p>
         )}
       </div>
 
-    
-    
+      {/* Store Name Field (Optional) */}
+      <div className="space-y-2">
+        <label htmlFor="storeName" className="text-sm font-medium text-foreground">
+          {t('signup.storeName')} <span className="text-muted-foreground">{t('signup.optional')}</span>
+        </label>
+        <div className="relative group">
+          <Input
+            id="storeName"
+            type="text"
+            placeholder={t('signup.storeNamePlaceholder')}
+            {...formik.getFieldProps('storeName')}
+            className={`input-glow ${
+              formik.touched.storeName && formik.errors.storeName ? "border-destructive" : ""
+            }`}
+          />
+        </div>
+        {formik.touched.storeName && formik.errors.storeName && (
+          <p className="text-xs text-destructive animate-fade-up">{formik.errors.storeName}</p>
+        )}
+      </div>
+
+      {/* Terms and Conditions */}
+      <div className="space-y-2">
+        <div className="flex items-center gap-3">
+          <Checkbox
+            id="acceptTerms"
+            checked={formik.values.acceptTerms}
+            onCheckedChange={(checked: boolean) => formik.setFieldValue('acceptTerms', checked)}
+          />
+          <label
+            htmlFor="acceptTerms"
+            className="text-sm text-muted-foreground cursor-pointer"
+          >
+            {t('signup.agreeToTerms')}{" "}
+            <a href="#terms" className="text-primary hover:underline">
+              {t('signup.termsOfService')}
+            </a>{" "}
+            {t('signup.and')}{" "}
+            <a href="#privacy" className="text-primary hover:underline">
+              {t('signup.privacyPolicy')}
+            </a>
+          </label>
+        </div>
+        {formik.touched.acceptTerms && formik.errors.acceptTerms && (
+          <p className="text-xs text-destructive animate-fade-up">{formik.errors.acceptTerms}</p>
+        )}
+      </div>
 
       {/* Submit Button */}
       <Button
         type="submit"
-        className="w-full font-semibold "
+        className="w-full font-semibold"
         size="lg"
-        disabled={isLoading}
+        disabled={loading || formik.isSubmitting}
       >
-        {isLoading ? (
+        {(loading || formik.isSubmitting) ? (
           <>
-            <Loader2 className="animate-spin" />
+            <Loader2 className="animate-spin mr-2" />
             {t('signup.creatingAccount')}
           </>
         ) : (

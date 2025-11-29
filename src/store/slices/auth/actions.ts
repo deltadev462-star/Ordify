@@ -33,6 +33,49 @@ export const loginRequest = createAsyncThunk(
   }
 );
 
+export const registerRequest = createAsyncThunk(
+  'auth/register',
+  async (userData: {
+    email: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+    phone: string;
+    storeName?: string;
+  }, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(`${API_ENDPOINTS.register}`, userData);
+      const { success, data } = response.data;
+      
+      if (success) {
+        // Store token in localStorage
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        
+        // Set default authorization header
+        axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
+        
+        return {
+          user: data.user,
+          token: data.token,
+          store: data.store
+        };
+      }
+      
+      return rejectWithValue('Registration was not successful');
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.log({error});
+        const errorMessage = error.response?.data?.error ||
+                           error.response?.data?.message ||
+                           'Registration failed';
+        return rejectWithValue(errorMessage);
+      }
+      return rejectWithValue('An unexpected error occurred');
+    }
+  }
+);
+
 export const loginRequestHandler = (builder: ActionReducerMapBuilder<AuthState>) => {
     builder
         .addCase(loginRequest.pending, (state) => {
@@ -47,6 +90,28 @@ export const loginRequestHandler = (builder: ActionReducerMapBuilder<AuthState>)
             state.error = null;
         })
         .addCase(loginRequest.rejected, (state, action) => {
+            state.loading = false;
+            state.isAuthenticated = false;
+            state.error = action.payload as string;
+            state.user = null;
+            state.token = null;
+        });
+};
+
+export const registerRequestHandler = (builder: ActionReducerMapBuilder<AuthState>) => {
+    builder
+        .addCase(registerRequest.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+        })
+        .addCase(registerRequest.fulfilled, (state, action) => {
+            state.loading = false;
+            state.user = action.payload.user;
+            state.token = action.payload.token;
+            state.isAuthenticated = true;
+            state.error = null;
+        })
+        .addCase(registerRequest.rejected, (state, action) => {
             state.loading = false;
             state.isAuthenticated = false;
             state.error = action.payload as string;
