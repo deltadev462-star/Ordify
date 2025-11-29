@@ -1,95 +1,114 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Eye, EyeOff, Mail, Lock, Loader2, LogIn } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import Lottie from 'lottie-react';
 import BackgroundElements from "../signup/BackgroundElements";
 import { AnimatedThemeToggler } from '../../components/ui/AnimatedThemeToggler';
 import LangSwitcher from '../../components/LangSwitcher';
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { loginRequest } from "@/store/slices/auth/actions";
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 const LoginPage = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { loading, user, isAuthenticated, token, error: serverError } = useAppSelector((state) => state.auth);
   const { t } = useTranslation();
-  const { toast } = useToast();
-  const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [lottieAnimation, setLottieAnimation] = useState<any>(null);
-  
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
-
-  const [errors, setErrors] = useState({
-    email: "",
-    password: "",
-  });
+  const [serverErrorMessage, setServerErrorMessage] = useState<string>('');
 
   // Load Lottie animation
-  useState(() => {
+  useEffect(() => {
     fetch('/lottie/Live chatbot.json')
       .then(res => res.json())
       .then(data => setLottieAnimation(data))
       .catch(err => console.error('Failed to load Lottie animation:', err));
+  }, []);
+
+  // Redirect if already authenticated
+  useEffect(() => {
+    if (isAuthenticated && token) {
+      navigate('/');
+    }
+  }, [isAuthenticated, token, navigate]);
+
+  // Update server error message when error changes
+  useEffect(() => {
+    if (serverError) {
+  
+      setServerErrorMessage(serverError);
+    }
+  }, [serverError]);
+
+  // Yup validation schema
+  const validationSchema = Yup.object({
+    email: Yup.string()
+      .trim()
+      .required(t('login.emailRequired'))
+      .email(t('login.emailInvalid')),
+    password: Yup.string()
+      .required(t('login.passwordRequired'))
+      .min(6, t('login.passwordMinLength'))
   });
 
-  const validateEmail = (email: string) => {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-  };
+  // Formik hook
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema,
+    onSubmit: async (values, { setSubmitting }) => {
+      // Clear any previous server errors
+      setServerErrorMessage('');
+      try {
+        const resultAction = await dispatch(loginRequest({
+          email: values.email,
+          password: values.password
+        }));
+        
+        if (loginRequest.fulfilled.match(resultAction)) {
+          // Save to localStorage if remember me is checked
+          if (rememberMe) {
+            localStorage.setItem('rememberedEmail', values.email);
+          } else {
+            localStorage.removeItem('rememberedEmail');
+          }
+          
+          // Clear server error on success
+          setServerErrorMessage('');
+          
+          // Navigation will be handled by the useEffect watching isAuthenticated
+        } else if (loginRequest.rejected.match(resultAction)) {
+          // Error is already set in the state via serverError
+        }
+      } catch (error) {
+        console.error('Login error:', error);
+      } finally {
+        setSubmitting(false);
+      }
+    },
+  });
 
-  const handleInputChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
-    setErrors((prev) => ({ ...prev, [field]: "" }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    const newErrors = {
-      email: "",
-      password: "",
-    };
-
-    if (!formData.email.trim()) {
-      newErrors.email = t('login.emailRequired');
-    } else if (!validateEmail(formData.email)) {
-      newErrors.email = t('login.emailInvalid');
+  // Load remembered email on mount
+  useEffect(() => {
+    const rememberedEmail = localStorage.getItem('rememberedEmail');
+    if (rememberedEmail) {
+      formik.setFieldValue('email', rememberedEmail);
+      setRememberMe(true);
     }
-
-    if (!formData.password) {
-      newErrors.password = t('login.passwordRequired');
-    } else if (formData.password.length < 6) {
-      newErrors.password = t('login.passwordMinLength');
-    }
-
-    setErrors(newErrors);
-
-    if (Object.values(newErrors).some((error) => error)) {
-      return;
-    }
-
-    setIsLoading(true);
-    
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    
-    setIsLoading(false);
-    toast({
-      title: "Welcome back!",
-      description: "Successfully logged in to your account.",
-    });
-  };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleGoogleLogin = () => {
-    toast({
-      title: "Google Sign In",
-      description: "Google authentication would be integrated here.",
-    });
+    // For now, just show inline message instead of implementing Google auth
+    setServerErrorMessage("Google authentication would be integrated here.");
   };
 
   return (
@@ -130,7 +149,14 @@ const LoginPage = () => {
           className="glass-card rounded-2xl p-8 animate-scale-in"
           style={{ animationDelay: '0.2s' }}
         >
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form onSubmit={formik.handleSubmit} className="space-y-5">
+            {/* Server Error Message */}
+            {serverErrorMessage && (
+              <div className="p-3 rounded-lg bg-destructive/10 border border-destructive/20 animate-fade-up">
+                <p className="text-sm text-destructive">{serverErrorMessage}</p>
+              </div>
+            )}
+
             {/* Email Field */}
             <div className="space-y-2">
               <label htmlFor="email" className="text-sm font-medium text-foreground">
@@ -142,13 +168,14 @@ const LoginPage = () => {
                   id="email"
                   type="email"
                   placeholder={t('login.emailPlaceholder')}
-                  value={formData.email}
-                  onChange={(e) => handleInputChange("email", e.target.value)}
-                  className={`pl-11 input-glow ${errors.email ? "border-destructive" : ""}`}
+                  {...formik.getFieldProps('email')}
+                  className={`pl-11 input-glow ${
+                    formik.touched.email && formik.errors.email ? "border-destructive" : ""
+                  }`}
                 />
               </div>
-              {errors.email && (
-                <p className="text-xs text-destructive animate-fade-up">{errors.email}</p>
+              {formik.touched.email && formik.errors.email && (
+                <p className="text-xs text-destructive animate-fade-up">{formik.errors.email}</p>
               )}
             </div>
 
@@ -163,21 +190,23 @@ const LoginPage = () => {
                   id="password"
                   type={showPassword ? "text" : "password"}
                   placeholder={t('login.passwordPlaceholder')}
-                  value={formData.password}
-                  onChange={(e) => handleInputChange("password", e.target.value)}
-                  className={`pl-11 pr-11 input-glow ${errors.password ? "border-destructive" : ""}`}
+                  {...formik.getFieldProps('password')}
+                  className={`pl-11 pr-11 input-glow ${
+                    formik.touched.password && formik.errors.password ? "border-destructive" : ""
+                  }`}
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
                   aria-label={showPassword ? t('login.hidePassword') : t('login.showPassword')}
+                  tabIndex={-1}
                 >
                   {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>
               </div>
-              {errors.password && (
-                <p className="text-xs text-destructive animate-fade-up">{errors.password}</p>
+              {formik.touched.password && formik.errors.password && (
+                <p className="text-xs text-destructive animate-fade-up">{formik.errors.password}</p>
               )}
             </div>
 
@@ -209,11 +238,11 @@ const LoginPage = () => {
               type="submit"
               className="w-full font-semibold"
               size="lg"
-              disabled={isLoading}
+              disabled={loading || formik.isSubmitting}
             >
-              {isLoading ? (
+              {(loading || formik.isSubmitting) ? (
                 <>
-                  <Loader2 className="animate-spin" />
+                  <Loader2 className="animate-spin mr-2" />
                   {t('login.signingIn')}
                 </>
               ) : (

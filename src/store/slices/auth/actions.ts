@@ -1,20 +1,9 @@
 import { API_ENDPOINTS } from "@/store/config/api";
+import type { AuthState } from "@/types/auth.types";
 import { createAsyncThunk, type ActionReducerMapBuilder } from "@reduxjs/toolkit";
 import axios from "axios";
 
-interface User {
-  id: string;
-  username: string;
-  role: string;
-}
 
-interface AuthState {
-  user: User | null;
-  token: string | null;
-  isAuthenticated: boolean;
-  loading: boolean;
-  error: string | null;
-}
 
 export const loginRequest = createAsyncThunk(
   'auth/login',
@@ -36,7 +25,8 @@ export const loginRequest = createAsyncThunk(
       return rejectWithValue('Login was not successful');
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        return rejectWithValue(error.response?.data?.message || 'Login failed');
+        console.log({error})
+        return rejectWithValue(error.response?.data?.error || 'Login failed');
       }
       return rejectWithValue('An unexpected error occurred');
     }

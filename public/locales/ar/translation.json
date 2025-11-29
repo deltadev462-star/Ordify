@@ -915,7 +915,10 @@
     "feature3Title": "تنمية المبيعات",
     "feature3Desc": "تسويق وتحليلات مدمجة للتوسع",
     "newToOrdify": "جديد في أورديفي؟",
-    "createYourStore": "أنشئ متجرك"
+    "createYourStore": "أنشئ متجرك",
+    "error": "خطأ",
+    "successTitle": "مرحباً بعودتك!",
+    "successMessage": "تم تسجيل الدخول بنجاح إلى حسابك."
   },
   "digitalProductsNew": "المنتجات الرقمية الجديدة",
   "linkToExternalPlatform": "ربط المنتج بمنصة خارجية",

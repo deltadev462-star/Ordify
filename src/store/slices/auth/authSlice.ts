@@ -1,21 +1,10 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { loginRequestHandler } from './actions';
+import type { AuthState } from '@/types/auth.types';
 
 
-interface User {
-  id: string;
-  username: string;
-  role: string;
-}
 
-interface AuthState {
-  user: User | null;
-  token: string | null;
-  isAuthenticated: boolean;
-  loading: boolean;
-  error: string | null;
-}
 
 const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
 const user = typeof window !== 'undefined' && localStorage.getItem('user')

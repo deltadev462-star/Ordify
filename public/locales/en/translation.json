@@ -884,7 +884,10 @@
     "feature3Title": "Grow sales",
     "feature3Desc": "Built-in marketing and analytics to scale",
     "newToOrdify": "New to Ordify?",
-    "createYourStore": "Create your store"
+    "createYourStore": "Create your store",
+    "error": "Error",
+    "successTitle": "Welcome back!",
+    "successMessage": "Successfully logged in to your account."
   },
   "signup": {
     "createAccount": "Create your {{brand}} account",
