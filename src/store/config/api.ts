@@ -1,0 +1,9 @@
+
+const API_BASE_URL = import.meta.env.API_BASE_URL  || 'http://localhost:5000/api/v1';
+
+
+export const API_ENDPOINTS = {
+    login: `${API_BASE_URL}/auth/login`,
+    zones: `${API_BASE_URL}/master/zones`,
+    
+} as const;
