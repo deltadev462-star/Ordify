@@ -11,7 +11,7 @@ import HttpApi from 'i18next-http-backend';
   .init({
     debug: false,
     fallbackLng: "en",
-    lng: "en",
+    // Remove hardcoded lng to allow LanguageDetector to work
     interpolation: {
       escapeValue: false,
     },

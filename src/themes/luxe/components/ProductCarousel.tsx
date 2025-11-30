@@ -2,6 +2,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { ProductCard } from "@/themes/shared/components/ProductCard";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface Product {
   id: string;
@@ -45,6 +46,7 @@ export const LuxeProductCarousel = ({
   onWishlist,
   className = "",
 }: LuxeProductCarouselProps) => {
+  const { t } = useTranslation();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -105,7 +107,7 @@ export const LuxeProductCarousel = ({
               href={viewAllLink}
               className="inline-block text-sm font-light uppercase tracking-widest text-gray-600 hover:text-primary transition-colors"
             >
-              View All
+              {t("View All")}
               <span className="ml-2">→</span>
             </a>
           )}
@@ -209,6 +211,7 @@ export const LuxeFeaturedProduct = ({
   onAddToCart,
   className = "",
 }: LuxeFeaturedProductProps) => {
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -301,7 +304,7 @@ export const LuxeFeaturedProduct = ({
                 disabled={!product.inStock}
                 className="bg-primary px-8 py-4 text-sm font-light uppercase tracking-widest text-white hover:bg-primary/90"
               >
-                {product.inStock ? "Add to Cart" : "Out of Stock"}
+                {product.inStock ? t("Add to Cart") : t("Out of Stock")}
               </Button>
             </div>
           </div>
