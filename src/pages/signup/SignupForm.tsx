@@ -61,8 +61,7 @@ const SignupForm = () => {
     storeName: Yup.string()
       .trim()
       .optional(),
-    acceptTerms: Yup.boolean()
-      .oneOf([true], t('signup.termsRequired'))
+
   });
 
   // Formik hook
@@ -75,7 +74,7 @@ const SignupForm = () => {
       password: '',
       confirmPassword: '',
       storeName: '',
-      acceptTerms: false
+      
     },
     validationSchema,
     onSubmit: async (values, { setSubmitting }) => {
@@ -303,32 +302,7 @@ const SignupForm = () => {
         )}
       </div>
 
-      {/* Terms and Conditions */}
-      <div className="space-y-2">
-        <div className="flex items-center gap-3">
-          <Checkbox
-            id="acceptTerms"
-            checked={formik.values.acceptTerms}
-            onCheckedChange={(checked: boolean) => formik.setFieldValue('acceptTerms', checked)}
-          />
-          <label
-            htmlFor="acceptTerms"
-            className="text-sm text-muted-foreground cursor-pointer"
-          >
-            {t('signup.agreeToTerms')}{" "}
-            <a href="#terms" className="text-primary hover:underline">
-              {t('signup.termsOfService')}
-            </a>{" "}
-            {t('signup.and')}{" "}
-            <a href="#privacy" className="text-primary hover:underline">
-              {t('signup.privacyPolicy')}
-            </a>
-          </label>
-        </div>
-        {formik.touched.acceptTerms && formik.errors.acceptTerms && (
-          <p className="text-xs text-destructive animate-fade-up">{formik.errors.acceptTerms}</p>
-        )}
-      </div>
+    
 
       {/* Submit Button */}
       <Button

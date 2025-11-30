@@ -973,5 +973,16 @@
     "emoji": "Emoji",
     "send": "Send",
     "typeMessage": "Type your message..."
+  },
+  "404": {
+    "title": "Page Not Found",
+    "description": "Oops! The page you are looking for does not exist. It might have been moved or deleted.",
+    "goHome": "Go to Home",
+    "goDashboard": "Go to Dashboard",
+    "helpfulLinks": "Here are some helpful links:",
+    "products": "Products",
+    "orders": "Orders",
+    "settings": "Settings",
+    "login": "Login"
   }
 }

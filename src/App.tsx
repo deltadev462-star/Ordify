@@ -8,6 +8,7 @@ import Shater from "./pages/dashboard/page/Shater";
 import DashBoardLayout from "./pages/dashboard/DashBoardLayout";
 import LoginPage from "./pages/login/LoginPage";
 import RegisterPage from "./pages/signup/RegisterPage";
+import NotFound from "./pages/NotFound";
 
 const Dashboard = lazy(() => import("./pages/dashboard/Dashboard"));
 const Products = lazy(() => import("./pages/dashboard/page/Products"));
@@ -229,8 +230,10 @@ const router = createBrowserRouter([
     path: "/signup",
     element: <RegisterPage />,
   },
-
- 
+  {
+    path: "*",
+    element: <NotFound />,
+  },
 ]);
 
 function App() {
