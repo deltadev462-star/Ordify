@@ -4,45 +4,49 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Eye, EyeOff, Mail, Lock, Loader2, LogIn } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import { useTranslation } from 'react-i18next';
-import Lottie from 'lottie-react';
+import { useTranslation } from "react-i18next";
+import Lottie from "lottie-react";
 import BackgroundElements from "../signup/BackgroundElements";
-import { AnimatedThemeToggler } from '../../components/ui/AnimatedThemeToggler';
-import LangSwitcher from '../../components/LangSwitcher';
+import { AnimatedThemeToggler } from "../../components/ui/AnimatedThemeToggler";
+import LangSwitcher from "../../components/LangSwitcher";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { loginRequest } from "@/store/slices/auth/actions";
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 const LoginPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { loading, user, isAuthenticated, token, error: serverError } = useAppSelector((state) => state.auth);
+  const {
+    loading,
+    isAuthenticated,
+    token,
+    error: serverError,
+  } = useAppSelector((state) => state.auth);
   const { t } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [lottieAnimation, setLottieAnimation] = useState<any>(null);
-  const [serverErrorMessage, setServerErrorMessage] = useState<string>('');
+  const [serverErrorMessage, setServerErrorMessage] = useState<string>("");
 
   // Load Lottie animation
   useEffect(() => {
-    fetch('/lottie/Live chatbot.json')
-      .then(res => res.json())
-      .then(data => setLottieAnimation(data))
-      .catch(err => console.error('Failed to load Lottie animation:', err));
+    fetch("/lottie/Live chatbot.json")
+      .then((res) => res.json())
+      .then((data) => setLottieAnimation(data))
+      .catch((err) => console.error("Failed to load Lottie animation:", err));
   }, []);
 
   // Redirect if already authenticated
   useEffect(() => {
     if (isAuthenticated && token) {
-      navigate('/');
+      navigate("/");
     }
   }, [isAuthenticated, token, navigate]);
 
   // Update server error message when error changes
   useEffect(() => {
     if (serverError) {
-  
       setServerErrorMessage(serverError);
     }
   }, [serverError]);
@@ -51,46 +55,48 @@ const LoginPage = () => {
   const validationSchema = Yup.object({
     email: Yup.string()
       .trim()
-      .required(t('login.emailRequired'))
-      .email(t('login.emailInvalid')),
+      .required(t("login.emailRequired"))
+      .email(t("login.emailInvalid")),
     password: Yup.string()
-      .required(t('login.passwordRequired'))
-      .min(6, t('login.passwordMinLength'))
+      .required(t("login.passwordRequired"))
+      .min(6, t("login.passwordMinLength")),
   });
 
   // Formik hook
   const formik = useFormik({
     initialValues: {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     },
     validationSchema,
     onSubmit: async (values, { setSubmitting }) => {
       // Clear any previous server errors
-      setServerErrorMessage('');
+      setServerErrorMessage("");
       try {
-        const resultAction = await dispatch(loginRequest({
-          email: values.email,
-          password: values.password
-        }));
-        
+        const resultAction = await dispatch(
+          loginRequest({
+            email: values.email,
+            password: values.password,
+          })
+        );
+
         if (loginRequest.fulfilled.match(resultAction)) {
           // Save to localStorage if remember me is checked
           if (rememberMe) {
-            localStorage.setItem('rememberedEmail', values.email);
+            localStorage.setItem("rememberedEmail", values.email);
           } else {
-            localStorage.removeItem('rememberedEmail');
+            localStorage.removeItem("rememberedEmail");
           }
-          
+
           // Clear server error on success
-          setServerErrorMessage('');
-          
+          setServerErrorMessage("");
+
           // Navigation will be handled by the useEffect watching isAuthenticated
         } else if (loginRequest.rejected.match(resultAction)) {
           // Error is already set in the state via serverError
         }
       } catch (error) {
-        console.error('Login error:', error);
+        console.error("Login error:", error);
       } finally {
         setSubmitting(false);
       }
@@ -99,9 +105,9 @@ const LoginPage = () => {
 
   // Load remembered email on mount
   useEffect(() => {
-    const rememberedEmail = localStorage.getItem('rememberedEmail');
+    const rememberedEmail = localStorage.getItem("rememberedEmail");
     if (rememberedEmail) {
-      formik.setFieldValue('email', rememberedEmail);
+      formik.setFieldValue("email", rememberedEmail);
       setRememberMe(true);
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -120,10 +126,13 @@ const LoginPage = () => {
         <LangSwitcher />
         <AnimatedThemeToggler className="p-1 w-8 h-8 rounded-lg bg-white/10 dark:bg-black/20 backdrop-blur-sm border border-white/20 dark:border-white/10 hover:bg-white/15 dark:hover:bg-black/30 transition-all duration-300 text-foreground dark:text-white" />
       </div>
-      
+
       <div className="w-full max-w-md relative z-10">
         {/* Logo and Header */}
-        <div className="text-center mb-8 animate-fade-up" style={{ animationDelay: '0.1s' }}>
+        <div
+          className="text-center mb-8 animate-fade-up"
+          style={{ animationDelay: "0.1s" }}
+        >
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-primary/10 mb-6 gradient-border">
             {lottieAnimation ? (
               <Lottie
@@ -137,17 +146,18 @@ const LoginPage = () => {
             )}
           </div>
           <h1 className="text-3xl font-bold text-foreground mb-2">
-            {t('login.welcomeBack')} <span className="gradient-text">Ordify</span>
+            {t("login.welcomeBack")}{" "}
+            <span className="gradient-text">Ordify</span>
           </h1>
           <p className="text-muted-foreground">
-            {t('login.signInToManageStore')}
+            {t("login.signInToManageStore")}
           </p>
         </div>
 
         {/* Glass Card Form */}
-        <div 
+        <div
           className="glass-card rounded-2xl p-8 animate-scale-in"
-          style={{ animationDelay: '0.2s' }}
+          style={{ animationDelay: "0.2s" }}
         >
           <form onSubmit={formik.handleSubmit} className="space-y-5">
             {/* Server Error Message */}
@@ -159,54 +169,76 @@ const LoginPage = () => {
 
             {/* Email Field */}
             <div className="space-y-2">
-              <label htmlFor="email" className="text-sm font-medium text-foreground">
-                {t('login.emailAddress')}
+              <label
+                htmlFor="email"
+                className="text-sm font-medium text-foreground"
+              >
+                {t("login.emailAddress")}
               </label>
               <div className="relative group">
                 <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground transition-colors group-focus-within:text-primary" />
                 <Input
                   id="email"
                   type="email"
-                  placeholder={t('login.emailPlaceholder')}
-                  {...formik.getFieldProps('email')}
+                  placeholder={t("login.emailPlaceholder")}
+                  {...formik.getFieldProps("email")}
                   className={`pl-11 input-glow ${
-                    formik.touched.email && formik.errors.email ? "border-destructive" : ""
+                    formik.touched.email && formik.errors.email
+                      ? "border-destructive"
+                      : ""
                   }`}
                 />
               </div>
               {formik.touched.email && formik.errors.email && (
-                <p className="text-xs text-destructive animate-fade-up">{formik.errors.email}</p>
+                <p className="text-xs text-destructive animate-fade-up">
+                  {formik.errors.email}
+                </p>
               )}
             </div>
 
             {/* Password Field */}
             <div className="space-y-2">
-              <label htmlFor="password" className="text-sm font-medium text-foreground">
-                {t('login.password')}
+              <label
+                htmlFor="password"
+                className="text-sm font-medium text-foreground"
+              >
+                {t("login.password")}
               </label>
               <div className="relative group">
                 <Lock className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground transition-colors group-focus-within:text-primary" />
                 <Input
                   id="password"
                   type={showPassword ? "text" : "password"}
-                  placeholder={t('login.passwordPlaceholder')}
-                  {...formik.getFieldProps('password')}
+                  placeholder={t("login.passwordPlaceholder")}
+                  {...formik.getFieldProps("password")}
                   className={`pl-11 pr-11 input-glow ${
-                    formik.touched.password && formik.errors.password ? "border-destructive" : ""
+                    formik.touched.password && formik.errors.password
+                      ? "border-destructive"
+                      : ""
                   }`}
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
-                  aria-label={showPassword ? t('login.hidePassword') : t('login.showPassword')}
+                  aria-label={
+                    showPassword
+                      ? t("login.hidePassword")
+                      : t("login.showPassword")
+                  }
                   tabIndex={-1}
                 >
-                  {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  {showPassword ? (
+                    <EyeOff className="h-4 w-4" />
+                  ) : (
+                    <Eye className="h-4 w-4" />
+                  )}
                 </button>
               </div>
               {formik.touched.password && formik.errors.password && (
-                <p className="text-xs text-destructive animate-fade-up">{formik.errors.password}</p>
+                <p className="text-xs text-destructive animate-fade-up">
+                  {formik.errors.password}
+                </p>
               )}
             </div>
 
@@ -216,20 +248,22 @@ const LoginPage = () => {
                 <Checkbox
                   id="remember"
                   checked={rememberMe}
-                  onCheckedChange={(checked) => setRememberMe(checked as boolean)}
+                  onCheckedChange={(checked) =>
+                    setRememberMe(checked as boolean)
+                  }
                 />
                 <label
                   htmlFor="remember"
                   className="text-sm text-muted-foreground cursor-pointer"
                 >
-                  {t('login.rememberMe')}
+                  {t("login.rememberMe")}
                 </label>
               </div>
               <a
                 href="#forgot"
                 className="text-sm text-primary hover:underline"
               >
-                {t('login.forgotPassword')}
+                {t("login.forgotPassword")}
               </a>
             </div>
 
@@ -240,13 +274,13 @@ const LoginPage = () => {
               size="lg"
               disabled={loading || formik.isSubmitting}
             >
-              {(loading || formik.isSubmitting) ? (
+              {loading || formik.isSubmitting ? (
                 <>
                   <Loader2 className="animate-spin mr-2" />
-                  {t('login.signingIn')}
+                  {t("login.signingIn")}
                 </>
               ) : (
-                t('login.signIn')
+                t("login.signIn")
               )}
             </Button>
 
@@ -256,7 +290,9 @@ const LoginPage = () => {
                 <div className="w-full border-t border-border"></div>
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-card px-3 text-muted-foreground">{t('login.orContinueWith')}</span>
+                <span className="bg-card px-3 text-muted-foreground">
+                  {t("login.orContinueWith")}
+                </span>
               </div>
             </div>
 
@@ -286,21 +322,27 @@ const LoginPage = () => {
                   fill="#EA4335"
                 />
               </svg>
-              {t('login.google')}
+              {t("login.google")}
             </Button>
           </form>
 
           {/* Sign up link */}
           <p className="text-center text-sm text-muted-foreground mt-6">
-            {t('login.newToOrdify')}{" "}
-            <Link to="/signup" className="text-primary font-medium hover:underline">
-              {t('login.createYourStore')}
+            {t("login.newToOrdify")}{" "}
+            <Link
+              to="/signup"
+              className="text-primary font-medium hover:underline"
+            >
+              {t("login.createYourStore")}
             </Link>
           </p>
         </div>
 
         {/* Footer with features */}
-        <div className="mt-8 grid grid-cols-3 gap-4 text-center animate-fade-up" style={{ animationDelay: '0.3s' }}>
+        <div
+          className="mt-8 grid grid-cols-3 gap-4 text-center animate-fade-up"
+          style={{ animationDelay: "0.3s" }}
+        >
           <div className="space-y-1">
             <p className="text-2xl font-bold text-foreground">50k+</p>
             <p className="text-xs text-muted-foreground">Active Merchants</p>

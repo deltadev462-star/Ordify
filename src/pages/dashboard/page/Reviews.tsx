@@ -5,9 +5,15 @@ import { useTranslation } from "react-i18next";
 import Empty from "@/components/Empty";
 import { Button } from "@/components/ui/button";
 import { SquarePlay } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 function Reviews() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const handleCreate = () => {
+    navigate("/dashboard/reviews/create");
+  };
 
   return (
     <div dir="rtl">
@@ -27,7 +33,7 @@ function Reviews() {
           </div>
         </div>
 
-        <Empty className={" "} Name={t("Reviews").toLowerCase()} />
+        <Empty className={" "} Name={t("Reviews").toLowerCase()} onCreate={handleCreate} />
       </div>
     </div>
   );
