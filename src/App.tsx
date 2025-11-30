@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { ThemeProvider } from "./context/ThemeContext";
+import { TooltipProvider } from "./components/ui/tooltip";
 import Settings from "./pages/dashboard/page/Settings";
 import MarketingServices from "./pages/dashboard/page/MarketingServices";
 import ServiceGallery from "./pages/dashboard/page/ServiceGallery";
@@ -9,6 +10,7 @@ import DashBoardLayout from "./pages/dashboard/DashBoardLayout";
 import LoginPage from "./pages/login/LoginPage";
 import RegisterPage from "./pages/signup/RegisterPage";
 import NotFound from "./pages/NotFound";
+import ProfilePage from "./pages/profile/ProfilePage";
 
 const Dashboard = lazy(() => import("./pages/dashboard/Dashboard"));
 const Products = lazy(() => import("./pages/dashboard/page/Products"));
@@ -67,6 +69,10 @@ const router = createBrowserRouter([
         index:true,
         element:<Dashboard/>
       },
+       {
+    path: "profile",
+    element: <ProfilePage />,
+  },
        {
     path: "order",
     element: <Order />,
@@ -235,6 +241,7 @@ const router = createBrowserRouter([
     path: "/signup",
     element: <RegisterPage />,
   },
+ 
   {
     path: "*",
     element: <NotFound />,
@@ -244,16 +251,18 @@ const router = createBrowserRouter([
 function App() {
   return (
     <ThemeProvider defaultTheme="modern">
-      <Suspense
-        fallback={
-          <div className="flex items-center justify-center min-h-screen">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-          </div>
-        }
-      >
-        <RouterProvider router={router} />
+      <TooltipProvider>
+        <Suspense
+          fallback={
+            <div className="flex items-center justify-center min-h-screen">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+            </div>
+          }
+        >
+          <RouterProvider router={router} />
 
-      </Suspense>
+        </Suspense>
+      </TooltipProvider>
     </ThemeProvider>
   );
 }
