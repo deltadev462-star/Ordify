@@ -794,7 +794,30 @@ html {
   border-radius: 0px;
 }
 
+/* Sidebar custom styles */
+.sidebar-menu-item {
+  transition: all 200ms ease-in-out;
+}
 
+.sidebar-menu-item:hover {
+  background-color: hsl(var(--primary) / 0.1);
+}
+
+[data-sidebar-collapsed="true"] .sidebar-menu-item:hover {
+  background-color: hsl(var(--primary) / 0.15);
+}
+
+/* Override for active state */
+[data-active="true"] {
+  background-color: hsl(var(--primary)) !important;
+  color: white !important;
+  box-shadow: 0 10px 15px -3px hsl(var(--primary) / 0.25);
+}
+
+/* Custom hover effect for sidebar links */
+.sidebar-link-hover:hover {
+  background-color: hsl(var(--primary) / 0.1) !important;
+}
 
 
 

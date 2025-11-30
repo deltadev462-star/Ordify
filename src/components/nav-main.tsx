@@ -89,7 +89,14 @@ export function NavMain({
                 <CollapsibleTrigger asChild>
                   <SidebarMenuButton
                     isActive={activeItem === item.title}
-                    className="hover:bg-white/20 cursor-pointer text-lg data-[active=true]:py-5 data-[active=true]:text-white  data-[active=true]:bg-green-500"
+                    style={{
+                      ...(activeItem === item.title ? {
+                        backgroundColor: 'hsl(var(--primary))',
+                        color: 'white',
+                        boxShadow: '0 10px 15px -3px hsl(var(--primary) / 0.25)',
+                      } : {})
+                    }}
+                    className="sidebar-link-hover cursor-pointer text-lg py-2 transition-all duration-200 rounded-md"
                     tooltip={item.title}
                     onClick={() => setActiveItem(item.title)}
                   >
@@ -103,12 +110,19 @@ export function NavMain({
                     {item.items?.map((subItem) => (
                       <SidebarMenuSubItem
                         key={subItem.title}
-                        className="hover:bg-white/20 text-[15px] py-1 cursor-pointer rounded-md"
+                        className="sidebar-link-hover text-[15px] py-1 cursor-pointer rounded-md transition-all duration-200"
                       >
                         <SidebarMenuSubButton
                           asChild
                           isActive={activeItem === subItem.title}
-                          className="data-[active=true]:bg-green-500   data-[active=true]:text-white text-[15px]"
+                          style={{
+                            ...(activeItem === subItem.title ? {
+                              backgroundColor: 'hsl(var(--primary))',
+                              color: 'white',
+                              boxShadow: '0 4px 6px -1px hsl(var(--primary) / 0.20)',
+                            } : {})
+                          }}
+                          className="text-[15px] transition-all duration-200 rounded-md"
                         >
                           <Link
                             to={subItem.url}
@@ -129,7 +143,14 @@ export function NavMain({
               <SidebarMenuButton asChild isActive={activeItem === item.title} tooltip={item.title}>
                 <Link
                   to={item.url}
-                  className="hover:bg-white/20 cursor-pointer  rounded-md data-[active=true]:bg-green-500 data-[active=true]:text-white"
+                  style={{
+                    ...(activeItem === item.title ? {
+                      backgroundColor: 'hsl(var(--primary))',
+                      color: 'white',
+                      boxShadow: '0 10px 15px -3px hsl(var(--primary) / 0.25)',
+                    } : {})
+                  }}
+                  className="sidebar-link-hover cursor-pointer rounded-md transition-all duration-200 py-2 block px-3"
                   onClick={() => setActiveItem(item.title)}
                 >
                   {item.icon && <item.icon />}
