@@ -76,6 +76,86 @@ export const registerRequest = createAsyncThunk(
   }
 );
 
+export const getUserProfile = createAsyncThunk(
+  'auth/getUserProfile',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(`${API_ENDPOINTS.getProfile}`);
+      const { success, data } = response.data;
+      
+      if (success) {
+        // Update user in localStorage
+        localStorage.setItem('user', JSON.stringify(data.user));
+        
+        return { user: data.user };
+      }
+      
+      return rejectWithValue('Failed to fetch user profile');
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.log({error});
+        return rejectWithValue(error.response?.data?.error || 'Failed to fetch profile');
+      }
+      return rejectWithValue('An unexpected error occurred');
+    }
+  }
+);
+
+export const updateProfile = createAsyncThunk(
+  'auth/updateProfile',
+  async (profileData: {
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    phone?: string;
+  }, { rejectWithValue }) => {
+    try {
+      const response = await axios.put(`${API_ENDPOINTS.updateProfile}`, profileData);
+      const { success, data } = response.data;
+      
+      if (success) {
+        // Update user in localStorage
+        localStorage.setItem('user', JSON.stringify(data.user));
+        
+        return { user: data.user };
+      }
+      
+      return rejectWithValue('Failed to update profile');
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.log({error});
+        return rejectWithValue(error.response?.data?.error || 'Failed to update profile');
+      }
+      return rejectWithValue('An unexpected error occurred');
+    }
+  }
+);
+
+export const updatePassword = createAsyncThunk(
+  'auth/updatePassword',
+  async (passwordData: {
+    currentPassword: string;
+    newPassword: string;
+  }, { rejectWithValue }) => {
+    try {
+      const response = await axios.put(`${API_ENDPOINTS.updatePassword}`, passwordData);
+      const { success } = response.data;
+      
+      if (success) {
+        return { message: 'Password updated successfully' };
+      }
+      
+      return rejectWithValue('Failed to update password');
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.log({error});
+        return rejectWithValue(error.response?.data?.error || 'Failed to update password');
+      }
+      return rejectWithValue('An unexpected error occurred');
+    }
+  }
+);
+
 export const loginRequestHandler = (builder: ActionReducerMapBuilder<AuthState>) => {
     builder
         .addCase(loginRequest.pending, (state) => {
@@ -117,5 +197,55 @@ export const registerRequestHandler = (builder: ActionReducerMapBuilder<AuthStat
             state.error = action.payload as string;
             state.user = null;
             state.token = null;
+        });
+};
+
+export const updateProfileHandler = (builder: ActionReducerMapBuilder<AuthState>) => {
+    builder
+        .addCase(updateProfile.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+        })
+        .addCase(updateProfile.fulfilled, (state, action) => {
+            state.loading = false;
+            state.user = action.payload.user;
+            state.error = null;
+        })
+        .addCase(updateProfile.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.payload as string;
+        });
+};
+
+export const updatePasswordHandler = (builder: ActionReducerMapBuilder<AuthState>) => {
+    builder
+        .addCase(updatePassword.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+        })
+        .addCase(updatePassword.fulfilled, (state) => {
+            state.loading = false;
+            state.error = null;
+        })
+        .addCase(updatePassword.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.payload as string;
+        });
+};
+
+export const getUserProfileHandler = (builder: ActionReducerMapBuilder<AuthState>) => {
+    builder
+        .addCase(getUserProfile.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+        })
+        .addCase(getUserProfile.fulfilled, (state, action) => {
+            state.loading = false;
+            state.user = action.payload.user;
+            state.error = null;
+        })
+        .addCase(getUserProfile.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.payload as string;
         });
 };
