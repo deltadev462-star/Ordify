@@ -5,7 +5,7 @@ export const makeStore = () => {
 
   return configureStore({
     reducer: {
-      auth:authReducer
+      auth:authReducer,
     },
   devTools: import.meta.env.DEV, // Disable in production
   })

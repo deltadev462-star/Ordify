@@ -41,6 +41,14 @@ const Wallet = lazy(() => import("./pages/dashboard/page/Wallet"));
 const EditTheme = lazy(() => import("./pages/dashboard/page/EditTheme"));
 const Themes = lazy(() => import("./pages/dashboard/page/Themes"));
 const Text = lazy(() => import("./pages/dashboard/page/Text"));
+
+// New main navigation pages
+const OrdersPage = lazy(() => import("./pages/dashboard/orders/OrdersPage"));
+const ListingPage = lazy(() => import("./pages/dashboard/listing/ListingPage"));
+const MarketingPage = lazy(() => import("./pages/dashboard/marketing/MarketingPage"));
+const WalletPage = lazy(() => import("./pages/dashboard/wallet/WalletPage"));
+const WebsitePage = lazy(() => import("./pages/dashboard/website/WebsitePage"));
+
 const PixelSettings = lazy(() => import("./pages/dashboard/page/PixelSettings"));
 const ConversionAPI = lazy(() => import("./pages/dashboard/page/ConversionAPI"));
 const CrossSelling = lazy(() => import("./pages/dashboard/page/CrossSelling"));
@@ -73,7 +81,29 @@ const router = createBrowserRouter([
     path: "profile",
     element: <ProfilePage />,
   },
-       {
+  // Main navigation pages
+  {
+    path: "orders",
+    element: <OrdersPage />,
+  },
+  {
+    path: "listing",
+    element: <ListingPage />,
+  },
+  {
+    path: "marketing",
+    element: <MarketingPage />,
+  },
+  {
+    path: "wallet",
+    element: <WalletPage />,
+  },
+  {
+    path: "website",
+    element: <WebsitePage />,
+  },
+  // Sub-pages
+   {
     path: "order",
     element: <Order />,
   },
@@ -136,10 +166,6 @@ const router = createBrowserRouter([
   {
     path: "affiliate-marketing",
     element: <AffiliateMarketing />,
-  },
-  {
-    path: "wallet",
-    element: <Wallet />,
   },
   {
     path: "transactions",

@@ -15,16 +15,10 @@ import { sidebarData, navItems } from "@/data/sidebar-data";
 import type { LucideIcon } from "lucide-react";
 
 type NavItem = {
-  type: "link" | "collapsible";
+  type: "link";
   title: string;
   url: string;
   icon?: LucideIcon;
-  isActive?: boolean;
-  items?: {
-    title: string;
-    icons?: LucideIcon;
-    url: string;
-  }[];
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {

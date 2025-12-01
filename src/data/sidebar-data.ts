@@ -70,67 +70,16 @@ export const sidebarData = {
       icon: ChartLine,
     },
     {
-      type: "collapsible",
+      type: "link",
       title: "Orders",
-      url: "#",
+      url: "/dashboard/orders",
       icon: Package,
-      isActive: true,
-      items: [
-        {
-          title: "All Orders",
-          icons: PackageOpen,
-          url: "/dashboard/order",
-        },
-        {
-          title: "Missed Orders",
-          icons: PackageSearch,
-          url: "/dashboard/missed-order",
-        },
-        {
-          title: "Blocked Numbers",
-          icons: ShoppingBasket,
-          url: "/dashboard/blocked-number",
-        },
-        {
-          title: "Blocked OTP Numbers",
-          icons: PhoneOff,
-          url: "/dashboard/blocked-otp-numbers",
-        },
-      ],
     },
     {
-      type: "collapsible",
-      title: "Products",
-      url: "#",
+      type: "link",
+      title: "Listing",
+      url: "/dashboard/listing",
       icon: Tag,
-      isActive: true,
-      items: [
-        {
-          title: "All Products",
-          icons: Tags,
-          url: "/dashboard/product",
-        },
-        {
-          title: "Categories",
-          icons: Blocks,
-          url: "/dashboard/categories",
-        },
-        {
-          title: "Reviews",
-          icons: Star,
-          url: "/dashboard/reviews",
-        },
-        {
-          title: "Product Feed",
-          icons: MessageSquareDot,
-          url: "/dashboard/product-feed",
-        },
-        {
-          title: "Easy Catalog",
-          icons: Files,
-          url: "/dashboard/easy-catalog",
-        },
-      ],
     },
     {
       type: "link",
@@ -145,98 +94,22 @@ export const sidebarData = {
       icon: Blocks,
     },
     {
+      type: "link",
       title: "Marketing Tools",
-      url: "#",
+      url: "/dashboard/marketing",
       icon: Megaphone,
-      type: "collapsible",
-      isActive: false,
-      items: [
-        { title: "Pixel Settings", icons: Share2, url: "/marketing/pixel" },
-        {
-          title: "Conversion API",
-          icons: Network,
-          url: "/marketing/conversion",
-        },
-        {
-          title: "CROSS SELLING",
-          icons: ShoppingCart,
-          url: "/marketing/cross",
-        },
-        {
-          title: "Coupons",
-          icons: CornerLeftUpIcon,
-          url: "/marketing/coupons",
-        },
-        { title: "Retargeting", icons: Target, url: "/marketing/retargeting" },
-        {
-          title: "Connect with Google Tag",
-          icons: Rss,
-          url: "/marketing/google-tag",
-        },
-        {
-          title: "Whatsapp Marketing",
-          icons: Rss,
-          url: "/marketing/whatsapp",
-        },
-        {
-          title: "Verify your orders with Tc",
-          icons: Settings,
-          url: "/marketing/verify-orders",
-        },
-        {
-          title: "Track campaign results",
-          icons: Target,
-          url: "/marketing/track-campaign",
-        },
-        {
-          title: "Google Merchant",
-          icons: Rss,
-          url: "/marketing/google-merchant",
-        },
-        { title: "Sales Popup", icons: Popcorn, url: "/marketing/sales-popup" },
-        {
-          title: "Create Referral Links",
-          icons: Users,
-          url: "/marketing/referral-links",
-        },
-        {
-          title: "Minimum Order Value and Conditions",
-          icons: ShoppingBag,
-          url: "/marketing/min-order",
-        },
-        { title: "Downsell", icons: DownloadCloud, url: "/marketing/downsell" },
-      ],
     },
     {
+      type: "link",
       title: "Your Wallet",
-      url: "#",
+      url: "/dashboard/wallet",
       icon: Wallet,
-      type: "collapsible",
-      isActive: false,
-      items: [
-        { title: "Balance", icons: Wallet, url: "/dashboard/wallet" },
-        {
-          title: "Transactions",
-          icons: ArrowLeftRight,
-          url: "/dashboard/transactions",
-        },
-      ],
     },
     {
+      type: "link",
       title: "Manage My Website",
-      url: "#",
+      url: "/dashboard/website",
       icon: LaptopMinimal,
-      type: "collapsible",
-      isActive: false,
-      items: [
-        // { title: "Template", icons: SunMoon, url: "/dashboard/template" },
-        { title: "Themes", icons: SunMoon, url: "/dashboard/themes" },
-        {
-          title: "Texts",
-          icons: Highlighter,
-          url: "/dashboard/text",
-        },
-      ],
     },
     {
       type: "link",
@@ -273,4 +146,110 @@ export const sidebarData = {
 } as const;
 
 export const navItems = [...sidebarData.links];
+
+// Sub-navigation data for each main section
+export const subNavigationData = {
+  orders: {
+    title: "Orders Management",
+    description: "Manage all your orders and customer interactions",
+    items: [
+      {
+        title: "All Orders",
+        icon: PackageOpen,
+        url: "/dashboard/order",
+        description: "View and manage all customer orders"
+      },
+      {
+        title: "Missed Orders",
+        icon: PackageSearch,
+        url: "/dashboard/missed-order",
+        description: "Track orders that were not completed"
+      },
+      {
+        title: "Blocked Numbers",
+        icon: ShoppingBasket,
+        url: "/dashboard/blocked-number",
+        description: "Manage blocked customer numbers"
+      },
+      {
+        title: "Blocked OTP Numbers",
+        icon: PhoneOff,
+        url: "/dashboard/blocked-otp-numbers",
+        description: "Manage OTP blocked numbers"
+      },
+    ]
+  },
+  listing: {
+    title: "Product Listing",
+    description: "Manage your products, categories and reviews",
+    items: [
+      {
+        title: "Products",
+        icon: Tags,
+        url: "/dashboard/product",
+        description: "Add and manage your products"
+      },
+      {
+        title: "Categories",
+        icon: Blocks,
+        url: "/dashboard/categories",
+        description: "Organize products into categories"
+      },
+      {
+        title: "Reviews",
+        icon: Star,
+        url: "/dashboard/reviews",
+        description: "Manage customer reviews and ratings"
+      },
+      {
+        title: "Product Feed",
+        icon: MessageSquareDot,
+        url: "/dashboard/product-feed",
+        description: "Manage product feed for marketing"
+      },
+      {
+        title: "Easy Catalog",
+        icon: Files,
+        url: "/dashboard/easy-catalog",
+        description: "Create and manage product catalogs"
+      },
+    ]
+  },
+  marketing: {
+    title: "Marketing Tools",
+    description: "Boost your sales with powerful marketing tools",
+    items: [
+      { title: "Pixel Settings", icon: Share2, url: "/marketing/pixel", description: "Configure tracking pixels" },
+      { title: "Conversion API", icon: Network, url: "/marketing/conversion", description: "Set up conversion tracking" },
+      { title: "CROSS SELLING", icon: ShoppingCart, url: "/marketing/cross", description: "Increase sales with cross-selling" },
+      { title: "Coupons", icon: CornerLeftUpIcon, url: "/marketing/coupons", description: "Create discount coupons" },
+      { title: "Retargeting", icon: Target, url: "/marketing/retargeting", description: "Re-engage your customers" },
+      { title: "Connect with Google Tag", icon: Rss, url: "/marketing/google-tag", description: "Integrate Google Tag Manager" },
+      { title: "Whatsapp Marketing", icon: Rss, url: "/marketing/whatsapp", description: "Reach customers on WhatsApp" },
+      { title: "Verify your orders with Tc", icon: Settings, url: "/marketing/verify-orders", description: "Order verification system" },
+      { title: "Track campaign results", icon: Target, url: "/marketing/track-campaign", description: "Monitor campaign performance" },
+      { title: "Google Merchant", icon: Rss, url: "/marketing/google-merchant", description: "Google Merchant integration" },
+      { title: "Sales Popup", icon: Popcorn, url: "/marketing/sales-popup", description: "Show sales notifications" },
+      { title: "Create Referral Links", icon: Users, url: "/marketing/referral-links", description: "Build referral programs" },
+      { title: "Minimum Order Value", icon: ShoppingBag, url: "/marketing/min-order", description: "Set order requirements" },
+      { title: "Downsell", icon: DownloadCloud, url: "/marketing/downsell", description: "Convert with downsell offers" },
+    ]
+  },
+  wallet: {
+    title: "Your Wallet",
+    description: "Manage your finances and transactions",
+    items: [
+      { title: "Balance", icon: Wallet, url: "/dashboard/wallet", description: "View your current balance" },
+      { title: "Transactions", icon: ArrowLeftRight, url: "/dashboard/transactions", description: "View transaction history" },
+    ]
+  },
+  website: {
+    title: "Manage My Website",
+    description: "Customize your website appearance and content",
+    items: [
+      { title: "Themes", icon: SunMoon, url: "/dashboard/themes", description: "Choose and customize themes" },
+      { title: "Texts", icon: Highlighter, url: "/dashboard/text", description: "Edit website text content" },
+    ]
+  }
+};
 

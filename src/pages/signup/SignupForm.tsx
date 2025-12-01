@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Eye, EyeOff, User, Mail, Lock, Loader2, Phone } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
