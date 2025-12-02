@@ -65,7 +65,7 @@ export const sidebarData = {
   links: [
     {
       type: "link",
-      title: "Dashboard",
+      title: "Home",
       url: "/dashboard",
       icon: ChartLine,
     },
@@ -103,12 +103,6 @@ export const sidebarData = {
       title: "Listing",
       url: "/dashboard/listing",
       icon: Tag,
-    },
-    {
-      type: "link",
-      title: "Funnels",
-      url: "/dashboard/funnels",
-      icon: Filter,
     },
     {
       type: "link",

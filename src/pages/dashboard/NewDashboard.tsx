@@ -25,9 +25,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import CardSetup from "@/components/CardSetup";
 import Title from "@/components/Title";
-import NotActive from "@/components/NotActive";
 
-export default function Dashboard() {
+export default function NewDashboard() {
   const { t } = useTranslation();
   const [setupProgress, setSetupProgress] = useState(30);
   
@@ -96,7 +95,6 @@ export default function Dashboard() {
       icon: Eye,
       change: 15.3,
       trend: 'up' as const,
-      changeType: 'increase' as const,
       iconColor: 'text-indigo-600 dark:text-indigo-400',
       iconBgColor: 'bg-indigo-50 dark:bg-indigo-950/30',
       period: t("Last 30 days")
@@ -107,7 +105,6 @@ export default function Dashboard() {
       icon: ShoppingCart,
       change: 9.2,
       trend: 'up' as const,
-      changeType: 'increase' as const,
       iconColor: 'text-pink-600 dark:text-pink-400',
       iconBgColor: 'bg-pink-50 dark:bg-pink-950/30',
       period: t("Last 30 days")
@@ -118,7 +115,6 @@ export default function Dashboard() {
       icon: BarChart3,
       change: -2.4,
       trend: 'down' as const,
-      changeType: 'decrease' as const,
       iconColor: 'text-cyan-600 dark:text-cyan-400',
       iconBgColor: 'bg-cyan-50 dark:bg-cyan-950/30',
       period: t("EGP"),
@@ -130,7 +126,6 @@ export default function Dashboard() {
       icon: Clock,
       change: 0,
       trend: 'stable' as const,
-      changeType: 'neutral' as const,
       iconColor: 'text-yellow-600 dark:text-yellow-400',
       iconBgColor: 'bg-yellow-50 dark:bg-yellow-950/30',
       period: t("Needs action")
@@ -283,7 +278,7 @@ export default function Dashboard() {
               title={metric.title}
               value={metric.value}
               change={metric.change}
-              changeType={metric.changeType}
+              changeType={metric.change > 0 ? 'increase' : metric.change < 0 ? 'decrease' : 'neutral'}
               icon={metric.icon}
               iconColor={metric.iconColor}
               iconBgColor={metric.iconBgColor}
@@ -346,9 +341,6 @@ export default function Dashboard() {
           </div>
         </CardContent>
       </Card>
-
-      {/* Notification Banner if needed */}
-      <NotActive />
     </div>
   );
 }
