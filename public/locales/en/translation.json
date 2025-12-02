@@ -1,5 +1,4 @@
 {
-   
   "Dashboard": "Dashboard",
   "Profile": "Profile",
   "Playground": "Playground",
@@ -68,7 +67,7 @@
   "Your Orders": "Your Orders",
   "App": "App",
   "Balance": "Balance",
-"Website": "Website",
+  "Website": "Website",
   "Wallet": "Wallet",
   "Transactions": "Transactions",
   "Service gallery": "Service gallery",
@@ -121,6 +120,42 @@
   "You can delete or add the blocked numbers from making a purchase from the store": "You can delete or add the blocked numbers from making a purchase from the store",
   "You can delete or add the blocked numbers from using the OTP verification code": "You can delete or add the blocked numbers from using the OTP verification code",
   "No {{name}} yet": "No {{name}} yet",
+  "Track and recover abandoned carts from customers who didn't complete their purchase": "Track and recover abandoned carts from customers who didn't complete their purchase",
+  "Export": "Export",
+  "Bulk Message": "Bulk Message",
+  "Pending": "Pending",
+  "Contacted": "Contacted",
+  "Recovered": "Recovered",
+  "Lost": "Lost",
+  "Total Value": "Total Value",
+  "Recovery Rate": "Recovery Rate",
+  "Search by name, phone, or ID...": "Search by name, phone, or ID...",
+  "Filter by status": "Filter by status",
+  "Date range": "Date range",
+  "This Year": "This Year",
+  "Urgent": "Urgent",
+  "High Value": "High Value",
+  "Order ID": "Order ID",
+  "Cart Value": "Cart Value",
+  "Abandoned Time": "Abandoned Time",
+  "Source": "Source",
+  "Recovery": "Recovery",
+  "Quick Actions": "Quick Actions",
+  "Call Customer": "Call Customer",
+  "Send WhatsApp": "Send WhatsApp",
+  "Send Email": "Send Email",
+  "Create Order": "Create Order",
+  "Mark as Lost": "Mark as Lost",
+  "No missed orders found": "No missed orders found",
+  "Showing": "Showing",
+  "to": "to",
+  "of": "of",
+  "results": "results",
+  "EGP": "EGP",
+  "attempts": "attempts",
+  "Call": "Call",
+  "WhatsApp": "WhatsApp",
+  "View Details": "View Details",
   "? Do you want to add one": "? Do you want to add one",
   "+ Create": "+ Create",
   "Blocked OTP Verification": "Blocked OTP Verification",
@@ -833,7 +868,6 @@
 
   "United States | English": "United States | English",
 
-   
   "Information": "Information",
   "Shipping": "Shipping",
   "featured": "Featured",
@@ -962,6 +996,62 @@
   "landingPageDesc": "Create and customize landing page.",
   "multiplePropertiesDesc": "Configure multiple product properties.",
   "advancedSettingsDesc": "Advanced product configuration options.",
+  "Dashboard Overview": "Dashboard Overview",
+  "Monitor your store's performance and manage operations": "Monitor your store's performance and manage operations",
+  "Select range": "Select range",
+  "View Reports": "View Reports",
+  "In Progress": "In Progress",
+  "5 of 10 tasks completed": "5 of 10 tasks completed",
+  "View all tasks": "View all tasks",
+  "Performance Metrics": "Performance Metrics",
+  "Key indicators of your store's health": "Key indicators of your store's health",
+  "vs last period": "vs last period",
+  "Recent Activity": "Recent Activity",
+  "View All": "View All",
+  "New Order": "New Order",
+  "Ahmed Mohamed placed an order": "Ahmed Mohamed placed an order",
+  "5 minutes ago": "5 minutes ago",
+  "Payment Received": "Payment Received",
+  "EGP 2,345 from Order #2024000": "EGP 2,345 from Order #2024000",
+  "12 minutes ago": "12 minutes ago",
+  "Order Cancelled": "Order Cancelled",
+  "Order #2023999 was cancelled": "Order #2023999 was cancelled",
+  "1 hour ago": "1 hour ago",
+  "New Customer": "New Customer",
+  "Sara Ahmed registered": "Sara Ahmed registered",
+  "2 hours ago": "2 hours ago",
+  "Payment Pending": "Payment Pending",
+  "Awaiting payment for Order #2023998": "Awaiting payment for Order #2023998",
+  "3 hours ago": "3 hours ago",
+  "Get started with these recommended actions": "Get started with these recommended actions",
+  "Add New Product": "Add New Product",
+  "View Customers": "View Customers",
+  "Analytics Report": "Analytics Report",
+  "Boost Sales": "Boost Sales",
+  "PRO": "PRO",
+  "Live": "Live",
+  "View All Stats": "View All Stats",
+  "Actions": "Actions",
+  "Export Data": "Export Data",
+  "Set Alert": "Set Alert",
+  "Revenue Overview": "Revenue Overview",
+  "Total revenue this month": "Total revenue this month",
+  "Customers": "Customers",
+  "Avg Order": "Avg Order",
+  "Goal": "Goal",
+  "Target": "Target",
+  "vs last month": "vs last month",
+  "This Week": "This Week",
+  "This Month": "This Month",
+  "This Quarter": "This Quarter",
+  "Today": "Today",
+  "Store Visits": "Store Visits",
+  "Cart Additions": "Cart Additions",
+  "Average Order Value": "Average Order Value",
+  "Pending Orders": "Pending Orders",
+  "Last 30 days": "Last 30 days",
+  "Needs action": "Needs action",
+  "Progress": "Progress",
   "chat": {
     "greeting": "Hello, how can we help you?",
     "received": "Received ✅",
@@ -1047,14 +1137,14 @@
   "Delete Image": "Delete Image",
   "No image uploaded": "No image uploaded",
   "No additional images uploaded": "No additional images uploaded",
-  
+
   "Brands": "Brands",
   "Nike": "Nike",
   "Adidas": "Adidas",
   "Puma": "Puma",
   "New Balance": "New Balance",
   "Under Armour": "Under Armour",
-  
+
   "Sizes": "Sizes",
   "XS": "XS",
   "S": "S",
@@ -1062,7 +1152,7 @@
   "L": "L",
   "XL": "XL",
   "XXL": "XXL",
-  
+
   "Colors": "Colors",
   "Black": "Black",
   "White": "White",
@@ -1070,7 +1160,7 @@
   "Blue": "Blue",
   "Green": "Green",
   "Yellow": "Yellow",
-  
+
   "View All": "View All",
   "Clear All": "Clear All",
   "Price": "Price",
@@ -1100,61 +1190,61 @@
   "Timeless pieces": "Timeless pieces",
   "Exclusive designs": "Exclusive designs",
   "Classic elegance": "Classic elegance",
-  
+
   "Compact": "Compact",
   "Tight spacing for content-rich layouts": "Tight spacing for content-rich layouts",
   "Comfortable": "Comfortable",
   "Balanced spacing for most use cases": "Balanced spacing for most use cases",
   "Spacious": "Spacious",
   "Generous spacing for luxury feel": "Generous spacing for luxury feel",
-  
+
   "Stylish Classic Watch": "Stylish Classic Watch",
   "Save": "Save",
-  
+
   "default": "Default",
   "minimal": "Minimal",
   "modern": "Modern",
   "luxe": "Luxe",
   "overlay": "Overlay",
-  
+
   "grid": "Grid",
   "list": "List",
   "Grid view": "Grid view",
   "List view": "List view",
-  
+
   "Previous": "Previous",
   "Next": "Next",
   "Previous products": "Previous products",
   "Next products": "Next products",
   "Go to slide": "Go to slide",
-  
+
   "wide": "Wide",
   "normal": "Normal",
   "tight": "Tight",
-  
+
   "square": "Square",
   "landscape": "Landscape",
   "portrait": "Portrait",
-  
+
   "image": "Image",
   "video": "Video",
-  
+
   "left": "Left",
   "center": "Center",
   "right": "Right",
-  
+
   "light": "Light",
   "dark": "Dark",
-  
+
   "Hero image": "Hero image",
   "Hero background": "Hero background",
   "Hero left": "Hero left",
   "Hero right": "Hero right",
   "Brand story": "Brand story",
   "Craftsmanship": "Craftsmanship",
-  
+
   "USA": "USA",
-  
+
   "featured": "Featured",
   "position": "Position",
   "name-asc": "Name Ascending",
@@ -1163,18 +1253,18 @@
   "price-desc": "Price High to Low",
   "rating": "Rating",
   "newest": "Newest",
-  
+
   "checkbox": "Checkbox",
   "price": "Price",
-  
+
   "View Collection": "View Collection",
-  
+
   "Visa": "Visa",
   "Mastercard": "Mastercard",
   "PayPal": "PayPal",
   "Apple Pay": "Apple Pay",
   "Google Pay": "Google Pay",
-  
+
   "Create": "Create",
   "Create Feed": "Create Feed",
   "Create New Review": "Create New Review",
@@ -1334,7 +1424,7 @@
   "Change language": "Change language",
   "Log out": "Log out",
   "Add team": "Add team",
-  
+
   "2 columns": "2 columns",
   "3 columns": "3 columns",
   "4 columns": "4 columns",
@@ -1347,7 +1437,7 @@
   "Menu": "Menu",
   "breadcrumb": "breadcrumb",
   "Toggle Sidebar": "Toggle Sidebar",
-  
+
   "Stock Settings": "Stock Settings",
   "Stock Quantity": "Stock Quantity",
   "The quantity of the product in stock. If the quantity is 0, the product will be out of stock.": "The quantity of the product in stock. If the quantity is 0, the product will be out of stock.",
@@ -1356,7 +1446,7 @@
   "If you activate this option, the quantity of the product will decrease with each purchase.": "If you activate this option, the quantity of the product will decrease with each purchase.",
   "Disable When Out of Stock": "Disable When Out of Stock",
   "If you activate this option, the product will be disabled when the quantity is 0.": "If you activate this option, the product will be disabled when the quantity is 0.",
-  
+
   "Cloaking Feature": "Cloaking Feature",
   "Use AI and data analysis to hide product from bots and show facebook, tiktok and snapchat another landing page to escape from ban for some forbidden products": "Use AI and data analysis to hide product from bots and show facebook, tiktok and snapchat another landing page to escape from ban for some forbidden products",
   "You must subscribe to the cloaking app": "You must subscribe to the cloaking app",

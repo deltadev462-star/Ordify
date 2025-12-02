@@ -18,6 +18,7 @@ const ProductCreate = lazy(() => import("./pages/dashboard/page/ProductCreate"))
 const History = lazy(() => import("./pages/dashboard/page/History"));
 const Home = lazy(() => import("./pages/Home/Home"));
 const Order = lazy(() => import("./pages/dashboard/page/Order"));
+const AllOrders = lazy(() => import("./pages/dashboard/page/AllOrders"));
 const MissedOrder = lazy(() => import("./pages/dashboard/page/MissedOrder"));
 const BlockedNumber = lazy(
   () => import("./pages/dashboard/page/BlockedNumber")
@@ -106,6 +107,10 @@ const router = createBrowserRouter([
    {
     path: "order",
     element: <Order />,
+  },
+  {
+    path: "all-orders",
+    element: <AllOrders />,
   },
   {
     path: "missed-order",

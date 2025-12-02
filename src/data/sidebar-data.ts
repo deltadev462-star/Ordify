@@ -74,6 +74,29 @@ export const sidebarData = {
       title: "Orders",
       url: "/dashboard/orders",
       icon: Package,
+      isActive: true,
+      items: [
+        {
+          title: "All Orders",
+          icons: PackageOpen,
+          url: "/dashboard/all-orders",
+        },
+        {
+          title: "Missed Orders",
+          icons: PackageSearch,
+          url: "/dashboard/missed-order",
+        },
+        {
+          title: "Blocked Numbers",
+          icons: ShoppingBasket,
+          url: "/dashboard/blocked-number",
+        },
+        {
+          title: "Blocked OTP Numbers",
+          icons: PhoneOff,
+          url: "/dashboard/blocked-otp-numbers",
+        },
+      ],
     },
     {
       type: "link",
