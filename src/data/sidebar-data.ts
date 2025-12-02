@@ -79,7 +79,7 @@ export const sidebarData = {
         {
           title: "All Orders",
           icons: PackageOpen,
-          url: "/dashboard/order",
+          url: "/dashboard/all-orders",
         },
         {
           title: "Missed Orders",
