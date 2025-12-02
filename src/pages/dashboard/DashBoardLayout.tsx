@@ -1,22 +1,17 @@
 import { AppSidebar } from "@/components/app-sidebar";
-
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-
 import Header from "@/components/Header";
-
 import { Outlet } from "react-router-dom";
-
 import ChatWidget from "@/components/ChatWidget";
 
 const DashBoardLayout = () => {
   return (
-   <div dir="rtl">
+    <div dir="rtl">
       <SidebarProvider>
         <AppSidebar />
         <SidebarInset>
           <Header />
-
-         <Outlet/>
+          <Outlet/>
         </SidebarInset>
       </SidebarProvider>
       <ChatWidget />

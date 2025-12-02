@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { ThemeProvider } from "./context/ThemeContext";
+import { TooltipProvider } from "./components/ui/tooltip";
 import Settings from "./pages/dashboard/page/Settings";
 import MarketingServices from "./pages/dashboard/page/MarketingServices";
 import ServiceGallery from "./pages/dashboard/page/ServiceGallery";
@@ -9,6 +10,7 @@ import DashBoardLayout from "./pages/dashboard/DashBoardLayout";
 import LoginPage from "./pages/login/LoginPage";
 import RegisterPage from "./pages/signup/RegisterPage";
 import NotFound from "./pages/NotFound";
+import ProfilePage from "./pages/profile/ProfilePage";
 
 const Dashboard = lazy(() => import("./pages/dashboard/Dashboard"));
 const Products = lazy(() => import("./pages/dashboard/page/Products"));
@@ -40,6 +42,14 @@ const Wallet = lazy(() => import("./pages/dashboard/page/Wallet"));
 const EditTheme = lazy(() => import("./pages/dashboard/page/EditTheme"));
 const Themes = lazy(() => import("./pages/dashboard/page/Themes"));
 const Text = lazy(() => import("./pages/dashboard/page/Text"));
+
+// New main navigation pages
+const OrdersPage = lazy(() => import("./pages/dashboard/orders/OrdersPage"));
+const ListingPage = lazy(() => import("./pages/dashboard/listing/ListingPage"));
+const MarketingPage = lazy(() => import("./pages/dashboard/marketing/MarketingPage"));
+const WalletPage = lazy(() => import("./pages/dashboard/wallet/WalletPage"));
+const WebsitePage = lazy(() => import("./pages/dashboard/website/WebsitePage"));
+
 const PixelSettings = lazy(() => import("./pages/dashboard/page/PixelSettings"));
 const ConversionAPI = lazy(() => import("./pages/dashboard/page/ConversionAPI"));
 const CrossSelling = lazy(() => import("./pages/dashboard/page/CrossSelling"));
@@ -69,6 +79,32 @@ const router = createBrowserRouter([
         element:<Dashboard/>
       },
        {
+    path: "profile",
+    element: <ProfilePage />,
+  },
+  // Main navigation pages
+  {
+    path: "orders",
+    element: <OrdersPage />,
+  },
+  {
+    path: "listing",
+    element: <ListingPage />,
+  },
+  {
+    path: "marketing",
+    element: <MarketingPage />,
+  },
+  {
+    path: "wallet",
+    element: <WalletPage />,
+  },
+  {
+    path: "website",
+    element: <WebsitePage />,
+  },
+  // Sub-pages
+   {
     path: "order",
     element: <Order />,
   },
@@ -135,10 +171,6 @@ const router = createBrowserRouter([
   {
     path: "affiliate-marketing",
     element: <AffiliateMarketing />,
-  },
-  {
-    path: "wallet",
-    element: <Wallet />,
   },
   {
     path: "transactions",
@@ -240,6 +272,7 @@ const router = createBrowserRouter([
     path: "/signup",
     element: <RegisterPage />,
   },
+ 
   {
     path: "*",
     element: <NotFound />,
@@ -249,16 +282,18 @@ const router = createBrowserRouter([
 function App() {
   return (
     <ThemeProvider defaultTheme="modern">
-      <Suspense
-        fallback={
-          <div className="flex items-center justify-center min-h-screen">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-          </div>
-        }
-      >
-        <RouterProvider router={router} />
+      <TooltipProvider>
+        <Suspense
+          fallback={
+            <div className="flex items-center justify-center min-h-screen">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+            </div>
+          }
+        >
+          <RouterProvider router={router} />
 
-      </Suspense>
+        </Suspense>
+      </TooltipProvider>
     </ThemeProvider>
   );
 }
