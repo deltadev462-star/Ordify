@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ChevronDown, ChevronRight, Menu } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import {
@@ -33,6 +33,7 @@ interface DashboardSidebarProps {
 export function DashboardSidebar({ activeNavId, side = "left" }: DashboardSidebarProps) {
   const { t } = useTranslation();
   const location = useLocation();
+  const navigate = useNavigate();
   const { open, isMobile } = useSidebar();
   const isOpen = open;
   const [expandedItems, setExpandedItems] = useState<string[]>([activeNavId || ""]);
@@ -49,6 +50,15 @@ export function DashboardSidebar({ activeNavId, side = "left" }: DashboardSideba
     return location.pathname === url || location.pathname.startsWith(url + "/");
   };
 
+  const handleItemClick = (item: NavigationItem, e: React.MouseEvent) => {
+    // When sidebar is collapsed and item has children, navigate to first child
+    if (!isOpen && item.children && item.children.length > 0) {
+      e.preventDefault();
+      e.stopPropagation();
+      navigate(item.children[0].url);
+    }
+  };
+
   return (
     <Sidebar
       collapsible={isMobile ? "offcanvas" : "icon"}
@@ -58,14 +68,17 @@ export function DashboardSidebar({ activeNavId, side = "left" }: DashboardSideba
     >
       {/* Sidebar Header - Store Info */}
       <SidebarHeader className="border-b border-gray-200 dark:border-gray-700">
-        <div className="flex items-center gap-3 px-3 py-4">
+        <div className={cn(
+          "flex items-center gap-3 px-3 py-4",
+          !isOpen && "justify-center"
+        )}>
           <div className={cn(
             "flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white transition-all duration-200 flex-shrink-0",
-            isOpen ? "h-10 w-10" : "h-4 w-4"
+            isOpen ? "h-10 w-10" : "h-8 w-8"
           )}>
             <newSidebarData.currentStore.logo className={cn(
               "transition-all duration-200",
-              isOpen ? "h-6 w-6" : "h-4 w-4"
+              isOpen ? "h-6 w-6" : "h-5 w-5"
             )} />
           </div>
           {isOpen && (
@@ -91,19 +104,25 @@ export function DashboardSidebar({ activeNavId, side = "left" }: DashboardSideba
                     <CollapsibleTrigger asChild>
                       <SidebarMenuButton
                         tooltip={item.title}
+                        onClick={(e) => handleItemClick(item, e)}
                         className={cn(
-                          "w-full justify-between hover:bg-gray-100 dark:hover:bg-gray-800",
+                          "w-full hover:bg-gray-100 dark:hover:bg-gray-800",
+                          isOpen ? "justify-between" : "justify-center",
                           activeNavId === item.id && "bg-primary/10 text-primary dark:bg-gray-800 dark:text-blue-400"
                         )}
                       >
-                        <div className="flex items-center gap-2">
+                        <div className={cn(
+                          "flex items-center gap-2",
+                          !isOpen && "justify-center"
+                        )}>
                           <item.icon className={cn(
                             "transition-all duration-200 flex-shrink-0",
                             isOpen ? "h-4 w-4" : "h-6 w-6"
                           )} />
-                          <span>{t(item.title)}</span>
+                          {isOpen && <span>{t(item.title)}</span>}
                         </div>
-                        <div className="flex items-center gap-2">
+                        {isOpen && (
+                          <div className="flex items-center gap-2">
                           {item.badge && (
                             <Badge
                               variant={
@@ -125,7 +144,8 @@ export function DashboardSidebar({ activeNavId, side = "left" }: DashboardSideba
                           ) : (
                             <ChevronRight className="h-4 w-4" />
                           )}
-                        </div>
+                          </div>
+                        )}
                       </SidebarMenuButton>
                     </CollapsibleTrigger>
                     <CollapsibleContent>
@@ -142,11 +162,11 @@ export function DashboardSidebar({ activeNavId, side = "left" }: DashboardSideba
                               <Link to={subItem.url}>
                                 <span className="flex items-center gap-2 w-full">
                                   {subItem.icon && <subItem.icon className={cn(
-                                    "transition-all duration-200 flex-shrink-0",
+                                    "transition-all duration-200 shrink-0 m-auto",
                                     isOpen ? "h-3.5 w-3.5" : "h-6 w-6"
                                   )} />}
-                                  <span className="flex-1">{t(subItem.title)}</span>
-                                  {subItem.badge && (
+                                  {isOpen && <span className="flex-1">{t(subItem.title)}</span>}
+                                  {isOpen && subItem.badge && (
                                     <Badge
                                       variant={
                                         subItem.badge.variant === "warning"
@@ -175,17 +195,21 @@ export function DashboardSidebar({ activeNavId, side = "left" }: DashboardSideba
                     asChild
                     tooltip={item.title}
                     className={cn(
+                      isOpen ? "justify-start" : "justify-center",
                       isActiveRoute(item.url) &&
                         "bg-primary/10 text-primary dark:bg-gray-800 dark:text-blue-400"
                     )}
                   >
-                    <Link to={item.url} className="flex items-center gap-2">
+                    <Link to={item.url} className={cn(
+                      "flex items-center gap-2",
+                      !isOpen && "justify-center"
+                    )}>
                       <item.icon className={cn(
                         "transition-all duration-200 flex-shrink-0",
                         isOpen ? "h-4 w-4" : "h-6 w-6"
                       )} />
-                      <span>{t(item.title)}</span>
-                      {item.badge && (
+                      {isOpen && <span>{t(item.title)}</span>}
+                      {isOpen && item.badge && (
                         <Badge
                           variant={
                             item.badge.variant === "warning"
@@ -218,15 +242,18 @@ export function DashboardSidebar({ activeNavId, side = "left" }: DashboardSideba
                     key={action.url}
                     variant="ghost"
                     size="sm"
-                    className="w-full justify-start"
+                    className={cn(
+                      "w-full",
+                      isOpen ? "justify-start" : "justify-center p-2"
+                    )}
                     asChild
                   >
                     <Link to={action.url}>
                       <action.icon className={cn(
-                        "mr-2 transition-all duration-200 flex-shrink-0",
-                        isOpen ? "h-4 w-4" : "h-6 w-6"
+                        "transition-all duration-200 flex-shrink-0",
+                        isOpen ? "h-4 w-4 mr-2" : "h-5 w-5"
                       )} />
-                      {t(action.title)}
+                      {isOpen && t(action.title)}
                     </Link>
                   </Button>
                 ))}
@@ -238,29 +265,33 @@ export function DashboardSidebar({ activeNavId, side = "left" }: DashboardSideba
 
       {/* Sidebar Footer - Help Links */}
       <SidebarFooter className="border-t border-gray-200 dark:border-gray-700">
-        {isOpen && (
-          <div className="px-3 py-2">
-            <div className="space-y-1">
-              {newSidebarData.helpLinks.map((link) => (
-                <Button
-                  key={link.url}
-                  variant="ghost"
-                  size="sm"
-                  className="w-full justify-start text-xs"
-                  asChild
-                >
-                  <Link to={link.url}>
-                    <link.icon className={cn(
-                      "mr-2 transition-all duration-200 flex-shrink-0",
-                      isOpen ? "h-3.5 w-3.5" : "h-6 w-6"
-                    )} />
-                    {t(link.title)}
-                  </Link>
-                </Button>
-              ))}
-            </div>
+        <div className={cn(
+          "px-3 py-2",
+          !isOpen && "px-1"
+        )}>
+          <div className="space-y-1">
+            {newSidebarData.helpLinks.map((link) => (
+              <Button
+                key={link.url}
+                variant="ghost"
+                size="sm"
+                className={cn(
+                  "w-full text-xs",
+                  isOpen ? "justify-start" : "justify-center p-2"
+                )}
+                asChild
+              >
+                <Link to={link.url}>
+                  <link.icon className={cn(
+                    "transition-all duration-200 flex-shrink-0",
+                    isOpen ? "h-3.5 w-3.5 mr-2" : "h-4 w-4"
+                  )} />
+                  {isOpen && t(link.title)}
+                </Link>
+              </Button>
+            ))}
           </div>
-        )}
+        </div>
       </SidebarFooter>
     </Sidebar>
   );

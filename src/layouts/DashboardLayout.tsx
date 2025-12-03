@@ -50,7 +50,7 @@ function DashboardContent() {
       {/* Main Content Area */}
       <div
         className={cn(
-          "flex flex-col transition-all duration-300",
+          "flex flex-col transition-all duration-300 ",
           // Desktop margins based on actual sidebar state
           !isMobile && open && i18n.language !== 'ar' && "lg:mr-[18rem]",
           !isMobile && !open && i18n.language !== 'ar' && "lg:mr-[3.2rem]",
@@ -68,9 +68,9 @@ function DashboardContent() {
 
         {/* Page Content */}
         <main className="flex-1 p-4 sm:p-6 lg:p-8">
-          <div className="mx-auto ">
+        
             <Outlet />
-          </div>
+         
         </main>
       </div>
 
