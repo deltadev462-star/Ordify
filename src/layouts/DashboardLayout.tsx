@@ -34,28 +34,14 @@ function DashboardContent() {
   };
 
   return (
-    <div 
-      className={cn(
-        "min-h-screen bg-gray-50 dark:bg-gray-900",
-        i18n.language === 'ar' ? 'rtl' : 'ltr'
-      )}
-      dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}
-    >
-      {/* Sidebar - shown on both desktop and mobile */}
-      <DashboardSidebar
-        activeNavId={activeNavId}
-        side={'right'}
-      />
-
-      {/* Main Content Area */}
+    <div className="relative min-h-screen bg-gray-50 dark:bg-gray-900">
+      {/* Main Content Area - takes full width with right margin for sidebar */}
       <div
         className={cn(
-          "flex flex-col transition-all duration-300 ",
-          // Desktop margins based on actual sidebar state
-          !isMobile && open && i18n.language !== 'ar' && "lg:mr-[18rem]",
-          !isMobile && !open && i18n.language !== 'ar' && "lg:mr-[3.2rem]",
-          !isMobile && open && i18n.language === 'ar' && "lg:mr-[18rem]",
-          !isMobile && !open && i18n.language === 'ar' && "lg:mr-[4.5rem]",
+          "w-full flex flex-col transition-all duration-300",
+          // Desktop margins - sidebar is always on the right
+          !isMobile && open && "lg:pr-[18rem]",
+          !isMobile && !open && "lg:pr-[4rem]",
           // No margins on mobile since sidebar will overlay
         )}
       >
@@ -73,6 +59,12 @@ function DashboardContent() {
          
         </main>
       </div>
+
+      {/* Sidebar - positioned absolutely on the right */}
+      <DashboardSidebar
+        activeNavId={activeNavId}
+        side={'right'}
+      />
 
       {/* Mobile sidebar overlay background */}
       {isMobile && openMobile && (

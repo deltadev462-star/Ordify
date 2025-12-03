@@ -61,7 +61,7 @@ export function DashboardSidebar({ activeNavId, side = "left" }: DashboardSideba
 
   return (
     <Sidebar
-      collapsible={isMobile ? "offcanvas" : "icon"}
+      collapsible="offcanvas"
       side={side}
       data-sidebar
       data-sidebar-mobile={isMobile ? "true" : undefined}
