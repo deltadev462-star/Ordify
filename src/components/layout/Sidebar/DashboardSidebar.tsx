@@ -61,11 +61,11 @@ export function DashboardSidebar({ activeNavId, side = "left" }: DashboardSideba
         <div className="flex items-center gap-3 px-3 py-4">
           <div className={cn(
             "flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white transition-all duration-200 flex-shrink-0",
-            isOpen ? "h-10 w-10" : "h-10 w-10"
+            isOpen ? "h-10 w-10" : "h-4 w-4"
           )}>
             <newSidebarData.currentStore.logo className={cn(
               "transition-all duration-200",
-              isOpen ? "h-6 w-6" : "h-6 w-6"
+              isOpen ? "h-6 w-6" : "h-4 w-4"
             )} />
           </div>
           {isOpen && (

@@ -52,8 +52,8 @@ function DashboardContent() {
         className={cn(
           "flex flex-col transition-all duration-300",
           // Desktop margins based on actual sidebar state
-          !isMobile && open && i18n.language !== 'ar' && "lg:ml-[18rem]",
-          !isMobile && !open && i18n.language !== 'ar' && "lg:ml-[4.5rem]",
+          !isMobile && open && i18n.language !== 'ar' && "lg:mr-[18rem]",
+          !isMobile && !open && i18n.language !== 'ar' && "lg:mr-[3.2rem]",
           !isMobile && open && i18n.language === 'ar' && "lg:mr-[18rem]",
           !isMobile && !open && i18n.language === 'ar' && "lg:mr-[4.5rem]",
           // No margins on mobile since sidebar will overlay

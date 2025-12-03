@@ -40,56 +40,11 @@ export function DashboardHeader({ breadcrumbs, onMenuClick, showMenuButton = tru
   };
 
   return (
-    <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b border-gray-200 bg-white px-4 dark:border-gray-700 dark:bg-gray-900 sm:px-6 lg:px-8">
-      <div className="flex flex-1 items-center gap-4">
-        {/* Menu Button */}
-        {showMenuButton && (
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={onMenuClick}
-            data-menu-button
-          >
-            <Menu className="h-5 w-5" />
-            <span className="sr-only">{t("Toggle Sidebar")}</span>
-          </Button>
-        )}
-
-        {/* Breadcrumbs */}
-        {breadcrumbs && breadcrumbs.length > 0 && (
-          <Breadcrumb className="hidden md:flex">
-            <BreadcrumbList>
-              {breadcrumbs.map((crumb, index) => (
-                <BreadcrumbItem key={crumb.url}>
-                  {index === breadcrumbs.length - 1 ? (
-                    <BreadcrumbPage>{t(crumb.title)}</BreadcrumbPage>
-                  ) : (
-                    <>
-                      <BreadcrumbLink asChild>
-                        <Link to={crumb.url}>{t(crumb.title)}</Link>
-                      </BreadcrumbLink>
-                      <BreadcrumbSeparator />
-                    </>
-                  )}
-                </BreadcrumbItem>
-              ))}
-            </BreadcrumbList>
-          </Breadcrumb>
-        )}
-
-        {/* Search Bar - Desktop */}
-        <div className="hidden md:flex relative flex-1 max-w-md">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
-          <Input
-            type="search"
-            placeholder={t("Search products, orders, customers...")}
-            className="pl-9 pr-4 h-9"
-          />
-        </div>
-      </div>
+    <header dir="ltr"  className="sticky top-0 z-10 flex h-16 items-center justify-between   gap-4 border-b border-gray-200 bg-white px-4 dark:border-gray-700 dark:bg-gray-900 sm:px-6 lg:px-8">
+     
 
       {/* Right side actions */}
-      <div className="flex items-center gap-2">
+      <div className="flex   gap-2">
         {/* Search Button - Mobile */}
         <Button variant="ghost" size="icon" className="md:hidden">
           <Search className="h-5 w-5" />
@@ -190,7 +145,22 @@ export function DashboardHeader({ breadcrumbs, onMenuClick, showMenuButton = tru
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
+
+      
       </div>
+           {/* Menu Button */}
+        {showMenuButton && (
+          <Button
+        
+            variant="ghost"
+            size="icon"
+            onClick={onMenuClick}
+            data-menu-button
+          >
+            <Menu className="h-5 w-5" />
+            <span className="sr-only">{t("Toggle Sidebar")}</span>
+          </Button>
+        )}
     </header>
   );
 }
