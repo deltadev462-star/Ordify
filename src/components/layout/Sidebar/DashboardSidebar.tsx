@@ -89,7 +89,7 @@ export function DashboardSidebar({ activeNavId, side = "left", isMobile = false 
                         tooltip={item.title}
                         className={cn(
                           "w-full justify-between hover:bg-gray-100 dark:hover:bg-gray-800",
-                          activeNavId === item.id && "bg-gray-100 dark:bg-gray-800"
+                          activeNavId === item.id && "bg-primary/10 text-primary dark:bg-gray-800 dark:text-blue-400"
                         )}
                       >
                         <div className="flex items-center gap-2">
@@ -129,7 +129,7 @@ export function DashboardSidebar({ activeNavId, side = "left", isMobile = false 
                               asChild
                               className={cn(
                                 isActiveRoute(subItem.url) &&
-                                  "bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400"
+                                  "bg-primary/10 text-primary dark:bg-gray-800 dark:text-blue-400"
                               )}
                             >
                               <Link to={subItem.url}>
@@ -166,7 +166,7 @@ export function DashboardSidebar({ activeNavId, side = "left", isMobile = false 
                     tooltip={item.title}
                     className={cn(
                       isActiveRoute(item.url) &&
-                        "bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400"
+                        "bg-primary/10 text-primary dark:bg-gray-800 dark:text-blue-400"
                     )}
                   >
                     <Link to={item.url}>

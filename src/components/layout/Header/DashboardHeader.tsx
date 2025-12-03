@@ -1,4 +1,4 @@
-import { Bell, Menu, Search, User, LogOut, Settings, Globe } from "lucide-react";
+import { Bell, Menu, Search, User, LogOut, Settings, Globe, Moon, Sun } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
@@ -15,6 +15,7 @@ import { Badge } from "@/components/ui/badge";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
+import { useDarkMode } from "@/hooks/useDarkMode";
 
 interface DashboardHeaderProps {
   breadcrumbs: { title: string; url: string }[];
@@ -25,6 +26,7 @@ interface DashboardHeaderProps {
 export function DashboardHeader({ breadcrumbs, onMenuClick, showMenuButton = true }: DashboardHeaderProps) {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
 
   const handleLanguageSwitch = () => {
     const newLang = i18n.language === 'ar' ? 'en' : 'ar';
@@ -40,18 +42,7 @@ export function DashboardHeader({ breadcrumbs, onMenuClick, showMenuButton = tru
   return (
     <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b border-gray-200 bg-white px-4 dark:border-gray-700 dark:bg-gray-900 sm:px-6 lg:px-8">
       <div className="flex flex-1 items-center gap-4">
-        {/* Menu Button - Shows on screens < 1024px */}
-        {showMenuButton && (
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={onMenuClick}
-            className="lg:flex"
-          >
-            <Menu className="h-5 w-5" />
-            <span className="sr-only">Toggle menu</span>
-          </Button>
-        )}
+      
 
         {/* Breadcrumbs - Hidden on mobile */}
         <div className="hidden lg:block">
@@ -94,6 +85,16 @@ export function DashboardHeader({ breadcrumbs, onMenuClick, showMenuButton = tru
         <Button variant="ghost" size="icon" className="md:hidden">
           <Search className="h-5 w-5" />
           <span className="sr-only">Search</span>
+        </Button>
+
+        {/* Dark Mode Toggle */}
+        <Button variant="ghost" size="icon" onClick={toggleDarkMode}>
+          {isDarkMode ? (
+            <Sun className="h-5 w-5" />
+          ) : (
+            <Moon className="h-5 w-5" />
+          )}
+          <span className="sr-only">Toggle dark mode</span>
         </Button>
 
         {/* Language Switcher */}

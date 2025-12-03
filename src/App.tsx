@@ -1,7 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { ThemeProvider } from "./context/ThemeContext";
 import { TooltipProvider } from "./components/ui/tooltip";
+import { useDarkMode } from "./hooks/useDarkMode";
 import DashboardLayout from "./layouts/DashboardLayout"; // New layout
 import LoginPage from "./pages/login/LoginPage";
 import RegisterPage from "./pages/signup/RegisterPage";
@@ -443,6 +444,19 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  // Initialize dark mode
+  useEffect(() => {
+    const savedMode = localStorage.getItem("darkMode");
+    if (savedMode === "true") {
+      document.documentElement.classList.add("dark");
+    } else if (savedMode === null) {
+      // Check system preference
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        document.documentElement.classList.add("dark");
+      }
+    }
+  }, []);
+
   return (
     <ThemeProvider defaultTheme="modern">
       <TooltipProvider>
