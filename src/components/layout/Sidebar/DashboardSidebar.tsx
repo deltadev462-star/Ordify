@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ChevronDown, ChevronRight, Menu } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -26,12 +26,14 @@ interface DashboardSidebarProps {
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
   activeNavId?: string | null;
+  side?: "left" | "right";
+  isMobile?: boolean;
 }
 
-export function DashboardSidebar({ activeNavId }: DashboardSidebarProps) {
+export function DashboardSidebar({ activeNavId, side = "left", isMobile = false }: DashboardSidebarProps) {
   const { t } = useTranslation();
   const location = useLocation();
-  const { open } = useSidebar();
+  const { open, setOpenMobile } = useSidebar();
   const isOpen = open;
   const [expandedItems, setExpandedItems] = useState<string[]>([activeNavId || ""]);
 
@@ -47,8 +49,15 @@ export function DashboardSidebar({ activeNavId }: DashboardSidebarProps) {
     return location.pathname === url || location.pathname.startsWith(url + "/");
   };
 
+  // Handle mobile sheet open state
+  React.useEffect(() => {
+    if (isMobile) {
+      setOpenMobile(open ?? false);
+    }
+  }, [open, isMobile, setOpenMobile]);
+
   return (
-    <Sidebar collapsible="icon">
+    <Sidebar collapsible={isMobile ? "offcanvas" : "icon"} side={side}>
       {/* Sidebar Header - Store Info */}
       <SidebarHeader className="border-b border-gray-200 dark:border-gray-700">
         <div className="flex items-center gap-3 px-3 py-4">

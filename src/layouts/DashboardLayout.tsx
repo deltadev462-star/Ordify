@@ -23,7 +23,7 @@ export default function DashboardLayout() {
     setActiveNavId(activeId);
   }, [location.pathname]);
 
-  // Handle mobile sidebar state
+  // Handle mobile/tablet sidebar state
   useEffect(() => {
     if (isMobile) {
       setSidebarOpen(false);
@@ -50,26 +50,30 @@ export default function DashboardLayout() {
             open={sidebarOpen}
             onOpenChange={setSidebarOpen}
             activeNavId={activeNavId}
+            side={'right'}
           />
         )}
 
         {/* Main Content Area */}
-        <div 
+        <div
           className={cn(
             "flex flex-col transition-all duration-300",
-            !isMobile && sidebarOpen ? "lg:ml-64" : "lg:ml-16"
+            !isMobile && sidebarOpen && i18n.language !== 'ar' && "lg:mr-[18rem]",
+            !isMobile && !sidebarOpen && i18n.language !== 'ar' && "lg:mr-[3rem]",
+            !isMobile && sidebarOpen && i18n.language === 'ar' && "lg:mr-[18rem]",
+            !isMobile && !sidebarOpen && i18n.language === 'ar' && "lg:mr-[3rem]"
           )}
         >
           {/* Header */}
           <DashboardHeader
             breadcrumbs={breadcrumbs}
             onMenuClick={() => setSidebarOpen(!sidebarOpen)}
-            showMenuButton={!isMobile}
+            showMenuButton={true}
           />
 
           {/* Page Content */}
           <main className="flex-1 p-4 sm:p-6 lg:p-8 pb-20 lg:pb-8">
-            <div className="mx-auto max-w-7xl">
+            <div className="mx-auto ">
               <Outlet />
             </div>
           </main>

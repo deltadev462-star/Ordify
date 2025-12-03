@@ -29,8 +29,7 @@ export function DashboardHeader({ breadcrumbs, onMenuClick, showMenuButton = tru
   const handleLanguageSwitch = () => {
     const newLang = i18n.language === 'ar' ? 'en' : 'ar';
     i18n.changeLanguage(newLang);
-    // Force page refresh to apply RTL changes
-    window.location.reload();
+    // RTL changes will be applied automatically via the dir attribute in DashboardLayout
   };
 
   const handleLogout = () => {
@@ -41,13 +40,13 @@ export function DashboardHeader({ breadcrumbs, onMenuClick, showMenuButton = tru
   return (
     <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b border-gray-200 bg-white px-4 dark:border-gray-700 dark:bg-gray-900 sm:px-6 lg:px-8">
       <div className="flex flex-1 items-center gap-4">
-        {/* Mobile Menu Button */}
+        {/* Menu Button - Shows on screens < 1024px */}
         {showMenuButton && (
           <Button
             variant="ghost"
             size="icon"
             onClick={onMenuClick}
-            className="lg:hidden"
+            className="lg:flex"
           >
             <Menu className="h-5 w-5" />
             <span className="sr-only">Toggle menu</span>

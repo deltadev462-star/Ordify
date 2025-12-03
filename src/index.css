@@ -43,6 +43,11 @@
   --radius-sm: 0.5rem;
   --radius-md: 0.75rem;
   --radius-lg: 1rem;
+  
+  /* Sidebar widths */
+  --sidebar-width: 18rem;
+  --sidebar-width-mobile: 18rem;
+  --sidebar-width-icon: 3rem;
 }
 
 /* Ordify Design System - Premium, Modern, Trustworthy */
