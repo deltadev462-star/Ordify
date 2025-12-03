@@ -30,10 +30,10 @@ interface DashboardSidebarProps {
   isMobile?: boolean;
 }
 
-export function DashboardSidebar({ activeNavId, side = "left", isMobile = false }: DashboardSidebarProps) {
+export function DashboardSidebar({ activeNavId, side = "left" }: DashboardSidebarProps) {
   const { t } = useTranslation();
   const location = useLocation();
-  const { open, setOpenMobile } = useSidebar();
+  const { open, isMobile } = useSidebar();
   const isOpen = open;
   const [expandedItems, setExpandedItems] = useState<string[]>([activeNavId || ""]);
 
@@ -49,20 +49,24 @@ export function DashboardSidebar({ activeNavId, side = "left", isMobile = false 
     return location.pathname === url || location.pathname.startsWith(url + "/");
   };
 
-  // Handle mobile sheet open state
-  React.useEffect(() => {
-    if (isMobile) {
-      setOpenMobile(open ?? false);
-    }
-  }, [open, isMobile, setOpenMobile]);
-
   return (
-    <Sidebar collapsible={isMobile ? "offcanvas" : "icon"} side={side}>
+    <Sidebar
+      collapsible={isMobile ? "offcanvas" : "icon"}
+      side={side}
+      data-sidebar
+      data-sidebar-mobile={isMobile ? "true" : undefined}
+    >
       {/* Sidebar Header - Store Info */}
       <SidebarHeader className="border-b border-gray-200 dark:border-gray-700">
         <div className="flex items-center gap-3 px-3 py-4">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white">
-            <newSidebarData.currentStore.logo className="h-6 w-6" />
+          <div className={cn(
+            "flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white transition-all duration-200 flex-shrink-0",
+            isOpen ? "h-10 w-10" : "h-10 w-10"
+          )}>
+            <newSidebarData.currentStore.logo className={cn(
+              "transition-all duration-200",
+              isOpen ? "h-6 w-6" : "h-6 w-6"
+            )} />
           </div>
           {isOpen && (
             <div className="flex flex-col">
@@ -93,7 +97,10 @@ export function DashboardSidebar({ activeNavId, side = "left", isMobile = false 
                         )}
                       >
                         <div className="flex items-center gap-2">
-                          <item.icon className="h-4 w-4" />
+                          <item.icon className={cn(
+                            "transition-all duration-200 flex-shrink-0",
+                            isOpen ? "h-4 w-4" : "h-6 w-6"
+                          )} />
                           <span>{t(item.title)}</span>
                         </div>
                         <div className="flex items-center gap-2">
@@ -134,7 +141,10 @@ export function DashboardSidebar({ activeNavId, side = "left", isMobile = false 
                             >
                               <Link to={subItem.url}>
                                 <span className="flex items-center gap-2 w-full">
-                                  {subItem.icon && <subItem.icon className="h-3.5 w-3.5" />}
+                                  {subItem.icon && <subItem.icon className={cn(
+                                    "transition-all duration-200 flex-shrink-0",
+                                    isOpen ? "h-3.5 w-3.5" : "h-6 w-6"
+                                  )} />}
                                   <span className="flex-1">{t(subItem.title)}</span>
                                   {subItem.badge && (
                                     <Badge
@@ -169,8 +179,11 @@ export function DashboardSidebar({ activeNavId, side = "left", isMobile = false 
                         "bg-primary/10 text-primary dark:bg-gray-800 dark:text-blue-400"
                     )}
                   >
-                    <Link to={item.url}>
-                      <item.icon className="h-4 w-4" />
+                    <Link to={item.url} className="flex items-center gap-2">
+                      <item.icon className={cn(
+                        "transition-all duration-200 flex-shrink-0",
+                        isOpen ? "h-4 w-4" : "h-6 w-6"
+                      )} />
                       <span>{t(item.title)}</span>
                       {item.badge && (
                         <Badge
@@ -209,7 +222,10 @@ export function DashboardSidebar({ activeNavId, side = "left", isMobile = false 
                     asChild
                   >
                     <Link to={action.url}>
-                      <action.icon className="mr-2 h-4 w-4" />
+                      <action.icon className={cn(
+                        "mr-2 transition-all duration-200 flex-shrink-0",
+                        isOpen ? "h-4 w-4" : "h-6 w-6"
+                      )} />
                       {t(action.title)}
                     </Link>
                   </Button>
@@ -234,7 +250,10 @@ export function DashboardSidebar({ activeNavId, side = "left", isMobile = false 
                   asChild
                 >
                   <Link to={link.url}>
-                    <link.icon className="mr-2 h-3.5 w-3.5" />
+                    <link.icon className={cn(
+                      "mr-2 transition-all duration-200 flex-shrink-0",
+                      isOpen ? "h-3.5 w-3.5" : "h-6 w-6"
+                    )} />
                     {t(link.title)}
                   </Link>
                 </Button>
