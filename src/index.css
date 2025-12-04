@@ -584,9 +584,9 @@
   .text-background {
     color: hsl(var(--background));
   }
-  .text-card {
+  /* .text-card {
     color: hsl(var(--card));
-  }
+  } */
   .text-card-foreground {
     color: hsl(var(--card-foreground));
   }
