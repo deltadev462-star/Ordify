@@ -34,46 +34,74 @@ function DashboardContent() {
   };
 
   return (
-    <div className="relative min-h-screen bg-gray-50 dark:bg-gray-900">
-      {/* Main Content Area - takes full width with right margin for sidebar */}
-      <div
-        className={cn(
-          "w-full flex flex-col transition-all duration-300",
-          // Desktop margins - sidebar is always on the right
-          !isMobile && open && "lg:pr-[18rem]",
-          !isMobile && !open && "lg:pr-[4rem]",
-          // No margins on mobile since sidebar will overlay
-        )}
-      >
-        {/* Header */}
-        <DashboardHeader
-          breadcrumbs={breadcrumbs}
-          onMenuClick={handleMenuClick}
-          showMenuButton={true}
-        />
+    // <div className="relative min-h-screen  dark:bg-gray-900 grid grid-cols-1 lg:grid-cols-[1fr_auto] ">
+  
+    //   <div
+    //     className={cn(
+    //       "w-full transition-all duration-300 bg-red-300",
 
-        {/* Page Content */}
-        <main className="flex-1 p-4 sm:p-6 lg:p-8">
+    //     )}
+    //   >
+    //     {/* Header */}
+    //     <DashboardHeader
+    //       breadcrumbs={breadcrumbs}
+    //       onMenuClick={handleMenuClick}
+    //       showMenuButton={true}
+    //     />
+
+    //     {/* Page Content */}
+    //     <main className="flex-1 p-4 sm:p-6 lg:p-8">
         
-            <Outlet />
+    //         <Outlet />
+         
+    //     </main>
+    //   </div>
+
+
+    //   <DashboardSidebar
+    //     activeNavId={activeNavId}
+    //     side={'right'}
+    //   />
+
+
+    //   {isMobile && openMobile && (
+    //     <div
+    //       className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+    //       onClick={() => setOpenMobile(false)}
+    //       aria-hidden="true"
+    //     />
+    //   )}
+    // </div>
+    <div className="flex  w-full relative min-h-screen  dark:bg-gray-900">
+      <div className="   grow ">
+      
+         {/* Header */}
+        <DashboardHeader
+           breadcrumbs={breadcrumbs}
+           onMenuClick={handleMenuClick}
+           showMenuButton={true}
+        />
+        {/* Page Content */}
+           <main dir={i18n.dir()} className="flex-1 p-4 sm:p-6 lg:p-8 ">
+        
+         <Outlet />
          
         </main>
       </div>
-
-      {/* Sidebar - positioned absolutely on the right */}
-      <DashboardSidebar
+    
+      <div className="  ">
+          <DashboardSidebar
         activeNavId={activeNavId}
-        side={'right'}
-      />
-
-      {/* Mobile sidebar overlay background */}
-      {isMobile && openMobile && (
-        <div
-          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
-          onClick={() => setOpenMobile(false)}
-          aria-hidden="true"
-        />
-      )}
+         side={'right'}
+    />
+      </div>
+           {isMobile && openMobile && (
+         <div
+           className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+           onClick={() => setOpenMobile(false)}
+           aria-hidden="true"
+         />
+       )}
     </div>
   );
 }

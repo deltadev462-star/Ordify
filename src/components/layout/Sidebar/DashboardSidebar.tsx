@@ -21,6 +21,7 @@ import { Badge } from "@/components/ui/badge";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { newSidebarData, type NavigationItem } from "@/data/new-sidebar-data";
 import { cn } from "@/lib/utils";
+import i18n from "@/i18n";
 
 interface DashboardSidebarProps {
   open?: boolean;
@@ -61,7 +62,8 @@ export function DashboardSidebar({ activeNavId, side = "left" }: DashboardSideba
 
   return (
     <Sidebar
-      collapsible="offcanvas"
+    dir={i18n.dir()}
+      collapsible={isMobile ? "offcanvas" : "icon"}
       side={side}
       data-sidebar
       data-sidebar-mobile={isMobile ? "true" : undefined}
@@ -73,7 +75,7 @@ export function DashboardSidebar({ activeNavId, side = "left" }: DashboardSideba
           !isOpen && "justify-center"
         )}>
           <div className={cn(
-            "flex items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white transition-all duration-200 flex-shrink-0",
+            "flex items-center justify-center rounded-lg bg-linear-to-r from-blue-600 to-purple-600 text-white transition-all duration-200 flex-shrink-0",
             isOpen ? "h-10 w-10" : "h-8 w-8"
           )}>
             <newSidebarData.currentStore.logo className={cn(
