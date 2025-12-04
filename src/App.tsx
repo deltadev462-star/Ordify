@@ -37,7 +37,6 @@ const AffiliateMarketing = lazy(
   () => import("./pages/dashboard/page/AffiliateMarketing")
 );
 const Transactions = lazy(() => import("./pages/dashboard/page/Transactions"));
-const Wallet = lazy(() => import("./pages/dashboard/page/Wallet"));
 // const Template = lazy(() => import("./pages/dashboard/page/Template"));
 const EditTheme = lazy(() => import("./pages/dashboard/page/EditTheme"));
 const Themes = lazy(() => import("./pages/dashboard/page/Themes"));
