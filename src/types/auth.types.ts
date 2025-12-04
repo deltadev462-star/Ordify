@@ -1,9 +1,13 @@
 export interface User {
-  id: string,
-            email: string,
-            firstName: string,
-            lastName: string,
-            role: string
+  id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  role: string;
+  phone?: string | null;
+  avatar?: string | null;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
  export interface AuthState {
