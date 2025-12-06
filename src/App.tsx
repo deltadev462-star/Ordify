@@ -26,6 +26,7 @@ const BlockedVerification = lazy(() => import("./pages/dashboard/page/BlockedVer
 const Products = lazy(() => import("./pages/dashboard/page/Products"));
 const ProductCreate = lazy(() => import("./pages/dashboard/page/ProductCreate"));
 const Categories = lazy(() => import("./pages/dashboard/page/Categories"));
+const CategoryCreate = lazy(() => import("./pages/dashboard/page/CategoryCreate"));
 const Reviews = lazy(() => import("./pages/dashboard/page/Reviews"));
 const ReviewCreate = lazy(() => import("./pages/dashboard/page/ReviewCreate"));
 const ProductFeed = lazy(() => import("./pages/dashboard/page/ProductFeed"));
@@ -152,6 +153,10 @@ const router = createBrowserRouter([
           {
             path: "categories",
             element: <Categories />,
+          },
+          {
+            path: "categories/new",
+            element: <CategoryCreate />,
           },
           {
             path: "collections",
