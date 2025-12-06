@@ -395,8 +395,8 @@ function AllOrders() {
   };
 
   return (
-    <div dir="rtl">
-      <div className="flex rounded-2xl m-1 flex-1 flex-col gap-6 p-6">
+  
+      <div className="flex rounded-2xl m-0 flex-1 flex-col gap-6 p-4 ">
         {/* Header */}
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
           <Title
@@ -1214,7 +1214,7 @@ function AllOrders() {
           </Dialog>
         )}
       </div>
-    </div>
+   
   );
 }
 

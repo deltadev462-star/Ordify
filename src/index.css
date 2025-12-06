@@ -43,6 +43,11 @@
   --radius-sm: 0.5rem;
   --radius-md: 0.75rem;
   --radius-lg: 1rem;
+  
+  /* Sidebar widths */
+  --sidebar-width: 18rem;
+  --sidebar-width-mobile: 18rem;
+  --sidebar-width-icon: 4.5rem;
 }
 
 /* Ordify Design System - Premium, Modern, Trustworthy */
@@ -579,9 +584,9 @@
   .text-background {
     color: hsl(var(--background));
   }
-  .text-card {
+  /* .text-card {
     color: hsl(var(--card));
-  }
+  } */
   .text-card-foreground {
     color: hsl(var(--card-foreground));
   }

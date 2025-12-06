@@ -19,7 +19,7 @@ function Shater() {
             <Title
               title={t("Shater Your Smart Shater")}
               Subtitle={t(
-                "Design and optimize your sales funnels"
+                "Manage and share your smart applications"
               )}
               className="text-3xl"
               classNamee=""
