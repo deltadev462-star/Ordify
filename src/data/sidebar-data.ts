@@ -6,6 +6,7 @@ import {
   CircleDollarSign,
   Command,
   CornerLeftUpIcon,
+  Crown,
   DownloadCloud,
   Files,
   Filter,
@@ -109,6 +110,12 @@ export const sidebarData = {
       title: "Shater Your Smart Shater",
       url: "/dashboard/shater",
       icon: Blocks,
+    },
+    {
+      type: "link",
+      title: "Agent Store",
+      url: "/dashboard/agent-store",
+      icon: Crown,
     },
     {
       type: "link",

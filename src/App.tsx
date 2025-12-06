@@ -71,6 +71,10 @@ const ServiceGallery = lazy(() => import("./pages/dashboard/page/ServiceGallery"
 const Shater = lazy(() => import("./pages/dashboard/page/Shater"));
 const History = lazy(() => import("./pages/dashboard/page/History"));
 
+// Agent Store pages
+const AgentStorePage = lazy(() => import("./pages/dashboard/agent-store/AgentStorePage"));
+const AgentChatPage = lazy(() => import("./pages/dashboard/agent-chat/AgentChatPage"));
+
 // Existing main navigation pages that might exist
 const OrdersPage = lazy(() => import("./pages/dashboard/orders/OrdersPage"));
 const ListingPage = lazy(() => import("./pages/dashboard/listing/ListingPage"));
@@ -421,6 +425,16 @@ const router = createBrowserRouter([
             element: <Transactions />, // Temporary: will create FinancialReports component
           },
         ],
+      },
+      
+      // Agent Store Routes
+      {
+        path: "agent-store",
+        element: <AgentStorePage />,
+      },
+      {
+        path: "agent-chat/:agentId",
+        element: <AgentChatPage />,
       },
       
       // Legacy routes for backward compatibility

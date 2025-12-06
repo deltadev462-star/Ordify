@@ -18,7 +18,8 @@ import {
   Book,
   Play,
   HelpCircle,
-  Store
+  Store,
+  Crown
 } from "lucide-react";
 
 // Navigation item interface
@@ -176,6 +177,14 @@ export const newSidebarData = {
           url: '/dashboard/customers/loyalty'
         }
       ]
+    },
+    {
+      id: 'agent-store',
+      title: 'Agent Store',
+      url: '/dashboard/agent-store',
+      icon: Crown,
+      badge: { value: 'VIP', variant: 'warning' as const },
+      isActive: false
     },
     {
       id: 'marketing',
