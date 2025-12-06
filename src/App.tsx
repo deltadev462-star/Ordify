@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { ThemeProvider } from "./context/ThemeContext";
 import { TooltipProvider } from "./components/ui/tooltip";
+import { useRTL } from "./hooks/useRTL";
 import Settings from "./pages/dashboard/page/Settings";
 import MarketingServices from "./pages/dashboard/page/MarketingServices";
 import ServiceGallery from "./pages/dashboard/page/ServiceGallery";
@@ -279,6 +280,8 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  useRTL(); // Initialize RTL support
+  
   return (
     <ThemeProvider defaultTheme="modern">
       <TooltipProvider>

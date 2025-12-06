@@ -134,7 +134,7 @@ const ProfilePage = () => {
         if (updateProfile.fulfilled.match(resultAction)) {
           setSuccessMessage(t("profile.profileUpdatedSuccess"));
           toast({
-            title: t("success"),
+            title: t("profile.success"),
             description: t("profile.profileUpdatedDescription"),
             variant: "default",
           });
@@ -142,7 +142,7 @@ const ProfilePage = () => {
           dispatch(getUserProfile());
         } else if (updateProfile.rejected.match(resultAction)) {
           toast({
-            title: t("error"),
+            title: t("profile.error"),
             description: resultAction.payload as string,
             variant: "destructive",
           });
@@ -171,7 +171,7 @@ const ProfilePage = () => {
         if (updatePassword.fulfilled.match(resultAction)) {
           setSuccessMessage(t("profile.passwordUpdatedSuccess"));
           toast({
-            title: t("success"),
+            title: t("profile.success"),
             description: t("profile.passwordUpdatedDescription"),
             variant: "default",
           });
@@ -182,7 +182,7 @@ const ProfilePage = () => {
           setShowConfirmPassword(false);
         } else if (updatePassword.rejected.match(resultAction)) {
           toast({
-            title: t("error"),
+            title: t("profile.error"),
             description: resultAction.payload as string,
             variant: "destructive",
           });

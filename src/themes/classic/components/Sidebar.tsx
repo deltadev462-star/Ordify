@@ -362,7 +362,7 @@ export const ClassicSidebar = ({
                   className="h-16 w-16 object-cover"
                 />
                 <div>
-                  <h4 className="text-sm font-medium">Product Name {item}</h4>
+                  <h4 className="text-sm font-medium">{t("Product Name")} {item}</h4>
                   <p className="text-sm text-gray-600">$49.99</p>
                   <div className="flex">
                     {[...Array(5)].map((_, i) => (

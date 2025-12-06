@@ -172,41 +172,41 @@ export default function Dashboard() {
     {
       id: '1',
       type: 'order',
-      title: 'New Order #2024001',
-      description: 'Ahmed Mohamed placed an order',
-      time: '5 minutes ago',
+      title: t("dashboard.newOrder", { orderNumber: "#2024001" }),
+      description: t("dashboard.placedOrderDescription", { name: "Ahmed Mohamed" }),
+      time: t("dashboard.minutesAgo", { count: 5 }),
       status: 'success'
     },
     {
       id: '2',
       type: 'payment',
-      title: 'Payment Received',
-      description: 'EGP 2,345 from Order #2024000',
-      time: '12 minutes ago',
+      title: t("dashboard.paymentReceived"),
+      description: t("dashboard.paymentDescription", { amount: "2,345", currency: "EGP", orderNumber: "#2024000" }),
+      time: t("dashboard.minutesAgo", { count: 12 }),
       status: 'success'
     },
     {
       id: '3',
       type: 'order',
-      title: 'Order Cancelled',
-      description: 'Order #2023999 was cancelled',
-      time: '1 hour ago',
+      title: t("dashboard.orderCancelled"),
+      description: t("dashboard.orderCancelledDescription", { orderNumber: "#2023999" }),
+      time: t("dashboard.hoursAgo", { count: 1 }),
       status: 'failed'
     },
     {
       id: '4',
       type: 'user',
-      title: 'New Customer',
-      description: 'Sara Ahmed registered',
-      time: '2 hours ago',
+      title: t("dashboard.newCustomer"),
+      description: t("dashboard.customerRegisteredDescription", { name: "Sara Ahmed" }),
+      time: t("dashboard.hoursAgo", { count: 2 }),
       status: 'success'
     },
     {
       id: '5',
       type: 'payment',
-      title: 'Payment Pending',
-      description: 'Awaiting payment for Order #2023998',
-      time: '3 hours ago',
+      title: t("dashboard.paymentPending"),
+      description: t("dashboard.paymentPendingDescription", { orderNumber: "#2023998" }),
+      time: t("dashboard.hoursAgo", { count: 3 }),
       status: 'pending'
     }
   ];

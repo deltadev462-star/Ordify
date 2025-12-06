@@ -250,7 +250,7 @@ function Header() {
                     className="text-xs hover:bg-gray-100 dark:hover:bg-gray-700/50 font-medium"
                   >
                     <Check className="w-3.5 h-3.5 mr-1.5" />
-                    Mark all read
+                    {t("Mark all read")}
                   </Button>
                 </div>
               )}
@@ -261,8 +261,8 @@ function Header() {
                     <div className="w-16 h-16 rounded-full bg-gray-100 dark:bg-[#101010] flex items-center justify-center mb-4">
                       <BellRing className="w-8 h-8 text-gray-400 dark:text-gray-600" />
                     </div>
-                    <p className="text-sm font-medium text-gray-900 dark:text-gray-100">No notifications yet</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">We'll notify you when something arrives!</p>
+                    <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{t("No notifications yet")}</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{t("We'll notify you when something arrives!")}</p>
                   </div>
                 ) : (
                   <div className="space-y-2 sm:space-y-3">
@@ -304,7 +304,7 @@ function Header() {
                                   </p>
                                   {!notification.read && (
                                     <Badge className="h-4 sm:h-5 px-1.5 sm:px-2 text-[10px] sm:text-xs bg-amber-500 text-white hover:bg-amber-600 border-0">
-                                      New
+                                      {t("New")}
                                     </Badge>
                                   )}
                                 </div>
