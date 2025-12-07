@@ -2,8 +2,12 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { lazy, Suspense, useEffect } from "react";
 import { ThemeProvider } from "./context/ThemeContext";
 import { TooltipProvider } from "./components/ui/tooltip";
-import { useDarkMode } from "./hooks/useDarkMode";
-import DashboardLayout from "./layouts/DashboardLayout"; // New layout
+import { useRTL } from "./hooks/useRTL";
+import Settings from "./pages/dashboard/page/Settings";
+import MarketingServices from "./pages/dashboard/page/MarketingServices";
+import ServiceGallery from "./pages/dashboard/page/ServiceGallery";
+import Shater from "./pages/dashboard/page/Shater";
+import DashBoardLayout from "./pages/dashboard/DashBoardLayout";
 import LoginPage from "./pages/login/LoginPage";
 import RegisterPage from "./pages/signup/RegisterPage";
 import NotFound from "./pages/NotFound";
@@ -463,19 +467,8 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  // Initialize dark mode
-  useEffect(() => {
-    const savedMode = localStorage.getItem("darkMode");
-    if (savedMode === "true") {
-      document.documentElement.classList.add("dark");
-    } else if (savedMode === null) {
-      // Check system preference
-      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        document.documentElement.classList.add("dark");
-      }
-    }
-  }, []);
-
+  useRTL(); // Initialize RTL support
+  
   return (
     <ThemeProvider defaultTheme="modern">
       <TooltipProvider>

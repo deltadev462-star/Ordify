@@ -37,7 +37,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         {/* <NavProjects projects={sidebarData.projects} /> */}
       </SidebarContent>
       <SidebarFooter>
-        <div className="text-center text-[10px]">v2.3.66</div>
+        <div className="text-center text-[10px]">v{import.meta.env.VITE_APP_VERSION || "2.3.66"}</div>
         <NavUser user={sidebarData.user} />
       </SidebarFooter>
       <SidebarRail />

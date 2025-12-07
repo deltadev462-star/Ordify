@@ -113,13 +113,13 @@ function AllOrders() {
     {
       id: "ORD001",
       orderNumber: "#2024001",
-      customerName: "أحمد محمد علي",
+      customerName: "Ahmed Mohamed Ali",
       customerPhone: "+201234567890",
       customerEmail: "ahmed@example.com",
-      customerAddress: "15 شارع النصر، مدينة نصر، القاهرة",
+      customerAddress: "15 El Nasr St, Nasr City, Cairo",
       products: [
-        { id: "P1", name: "ساعة ذكية Pro Max", quantity: 1, price: 2500 },
-        { id: "P2", name: "سماعة بلوتوث", quantity: 2, price: 450 },
+        { id: "P1", name: "Smart Watch Pro Max", quantity: 1, price: 2500 },
+        { id: "P2", name: "Bluetooth Headphone", quantity: 2, price: 450 },
       ],
       totalAmount: 3450,
       shippingCost: 50,
@@ -138,13 +138,13 @@ function AllOrders() {
     {
       id: "ORD002",
       orderNumber: "#2024002",
-      customerName: "فاطمة السيد",
+      customerName: "Fatma El Sayed",
       customerPhone: "+201098765432",
       customerEmail: "fatma@example.com",
-      customerAddress: "22 شارع الجامعة، الدقي، الجيزة",
+      customerAddress: "22 University St, Dokki, Giza",
       products: [
-        { id: "P3", name: "لابتوب Gaming Elite", quantity: 1, price: 25000 },
-        { id: "P4", name: "ماوس لاسلكي", quantity: 1, price: 350 },
+        { id: "P3", name: "Gaming Elite Laptop", quantity: 1, price: 25000 },
+        { id: "P4", name: "Wireless Mouse", quantity: 1, price: 350 },
       ],
       totalAmount: 25550,
       shippingCost: 100,
@@ -158,17 +158,17 @@ function AllOrders() {
       trackingNumber: "TRK987654321",
       source: "app",
       priority: "high",
-      notes: "عميل VIP - التعامل بحرص",
+      notes: "VIP Customer - Handle with care",
     },
     {
       id: "ORD003",
       orderNumber: "#2024003",
-      customerName: "محمد إبراهيم",
+      customerName: "Mohamed Ibrahim",
       customerPhone: "+201122334455",
       customerEmail: "mohammed@example.com",
-      customerAddress: "8 شارع الملك فيصل، الهرم",
+      customerAddress: "8 King Faisal St, Haram",
       products: [
-        { id: "P5", name: "هاتف ذكي Ultra", quantity: 1, price: 15000 },
+        { id: "P5", name: "Ultra Smart Phone", quantity: 1, price: 15000 },
       ],
       totalAmount: 15050,
       shippingCost: 50,
@@ -181,18 +181,18 @@ function AllOrders() {
       estimatedDelivery: "2024-01-15",
       source: "social",
       priority: "urgent",
-      notes: "طلب عاجل - العميل يحتاجه للسفر",
+      notes: "Urgent order - Customer needs it for travel",
     },
     {
       id: "ORD004",
       orderNumber: "#2024004",
-      customerName: "سارة أحمد",
+      customerName: "Sara Ahmed",
       customerPhone: "+201555666777",
       customerEmail: "sara@example.com",
-      customerAddress: "30 شارع التحرير، وسط البلد",
+      customerAddress: "30 Tahrir St, Downtown",
       products: [
-        { id: "P6", name: "كاميرا احترافية", quantity: 1, price: 18000 },
-        { id: "P7", name: "عدسة تصوير", quantity: 2, price: 5000 },
+        { id: "P6", name: "Professional Camera", quantity: 1, price: 18000 },
+        { id: "P7", name: "Camera Lens", quantity: 2, price: 5000 },
       ],
       totalAmount: 28200,
       shippingCost: 150,
@@ -209,12 +209,12 @@ function AllOrders() {
     {
       id: "ORD005",
       orderNumber: "#2024005",
-      customerName: "عمر حسن",
+      customerName: "Omar Hassan",
       customerPhone: "+201999888777",
       customerEmail: "omar@example.com",
-      customerAddress: "45 شارع المعادي، المعادي",
+      customerAddress: "45 Maadi St, Maadi",
       products: [
-        { id: "P8", name: "شاشة 4K", quantity: 1, price: 8000 },
+        { id: "P8", name: "4K Screen", quantity: 1, price: 8000 },
       ],
       totalAmount: 8050,
       shippingCost: 50,
@@ -227,17 +227,17 @@ function AllOrders() {
       estimatedDelivery: "2024-01-13",
       source: "phone",
       priority: "normal",
-      notes: "بطاقة الدفع مرفوضة",
+      notes: "Payment card declined",
     },
     {
       id: "ORD006",
       orderNumber: "#2024006",
-      customerName: "نور الدين",
+      customerName: "Nour El Din",
       customerPhone: "+201777666555",
       customerEmail: "nour@example.com",
-      customerAddress: "12 شارع الثورة، الإسكندرية",
+      customerAddress: "12 Revolution St, Alexandria",
       products: [
-        { id: "P9", name: "تابلت Pro", quantity: 2, price: 6000 },
+        { id: "P9", name: "Pro Tablet", quantity: 2, price: 6000 },
       ],
       totalAmount: 12100,
       shippingCost: 100,
@@ -251,7 +251,7 @@ function AllOrders() {
       actualDelivery: "2024-01-11",
       source: "app",
       priority: "normal",
-      notes: "المنتج لا يطابق المواصفات",
+      notes: "Product does not match specifications",
     },
   ]);
 
@@ -308,33 +308,33 @@ function AllOrders() {
 
   const getStatusBadge = (status: string) => {
     const statusConfig = {
-      pending: { 
-        label: "في الانتظار", 
+      pending: {
+        label: t("orderStatus.pending"),
         color: "bg-yellow-500/10 text-yellow-600 hover:bg-yellow-500/20",
         icon: <Clock className="h-3 w-3" />
       },
-      processing: { 
-        label: "قيد المعالجة", 
+      processing: {
+        label: t("orderStatus.processing"),
         color: "bg-blue-500/10 text-blue-600 hover:bg-blue-500/20",
         icon: <Package className="h-3 w-3" />
       },
-      shipped: { 
-        label: "تم الشحن", 
+      shipped: {
+        label: t("orderStatus.shipped"),
         color: "bg-purple-500/10 text-purple-600 hover:bg-purple-500/20",
         icon: <Truck className="h-3 w-3" />
       },
-      delivered: { 
-        label: "تم التسليم", 
+      delivered: {
+        label: t("orderStatus.delivered"),
         color: "bg-green-500/10 text-green-600 hover:bg-green-500/20",
         icon: <CheckCircle2 className="h-3 w-3" />
       },
-      cancelled: { 
-        label: "ملغي", 
+      cancelled: {
+        label: t("orderStatus.cancelled"),
         color: "bg-red-500/10 text-red-600 hover:bg-red-500/20",
         icon: <XCircle className="h-3 w-3" />
       },
-      returned: { 
-        label: "مرتجع", 
+      returned: {
+        label: t("orderStatus.returned"),
         color: "bg-orange-500/10 text-orange-600 hover:bg-orange-500/20",
         icon: <PackageX className="h-3 w-3" />
       },
@@ -350,10 +350,10 @@ function AllOrders() {
 
   const getPaymentBadge = (status: string, method: string) => {
     const statusConfig = {
-      paid: { label: "مدفوع", color: "bg-green-500/10 text-green-600" },
-      pending: { label: "في الانتظار", color: "bg-yellow-500/10 text-yellow-600" },
-      failed: { label: "فشل", color: "bg-red-500/10 text-red-600" },
-      refunded: { label: "مسترد", color: "bg-gray-500/10 text-gray-600" },
+      paid: { label: t("paymentStatus.paid"), color: "bg-green-500/10 text-green-600" },
+      pending: { label: t("paymentStatus.pending"), color: "bg-yellow-500/10 text-yellow-600" },
+      failed: { label: t("paymentStatus.failed"), color: "bg-red-500/10 text-red-600" },
+      refunded: { label: t("paymentStatus.refunded"), color: "bg-gray-500/10 text-gray-600" },
     };
     const config = statusConfig[status as keyof typeof statusConfig];
     return (
@@ -368,10 +368,10 @@ function AllOrders() {
 
   const getSourceBadge = (source: string) => {
     const sourceConfig = {
-      website: { label: "الموقع", color: "text-blue-600 bg-blue-50 dark:bg-blue-950/50" },
-      app: { label: "التطبيق", color: "text-purple-600 bg-purple-50 dark:bg-purple-950/50" },
-      phone: { label: "الهاتف", color: "text-green-600 bg-green-50 dark:bg-green-950/50" },
-      social: { label: "السوشيال", color: "text-pink-600 bg-pink-50 dark:bg-pink-950/50" },
+      website: { label: t("orderSource.website"), color: "text-blue-600 bg-blue-50 dark:bg-blue-950/50" },
+      app: { label: t("orderSource.app"), color: "text-purple-600 bg-purple-50 dark:bg-purple-950/50" },
+      phone: { label: t("orderSource.phone"), color: "text-green-600 bg-green-50 dark:bg-green-950/50" },
+      social: { label: t("orderSource.social"), color: "text-pink-600 bg-pink-50 dark:bg-pink-950/50" },
     };
     const config = sourceConfig[source as keyof typeof sourceConfig] || { 
       label: source, 
@@ -448,7 +448,7 @@ function AllOrders() {
                     {stats.total}
                   </p>
                   <p className="text-xs text-blue-600/70 dark:text-blue-400/70">
-                    +12% من الشهر الماضي
+                    +12% {t("fromLastMonth")}
                   </p>
                 </div>
                 <ShoppingBag className="h-8 w-8 text-blue-500" />
@@ -467,7 +467,7 @@ function AllOrders() {
                     {stats.pending}
                   </p>
                   <p className="text-xs text-yellow-600/70 dark:text-yellow-400/70">
-                    يحتاج معالجة
+                    {t("needsProcessing")}
                   </p>
                 </div>
                 <Clock className="h-8 w-8 text-yellow-500" />
@@ -486,7 +486,7 @@ function AllOrders() {
                     {stats.shipped}
                   </p>
                   <p className="text-xs text-purple-600/70 dark:text-purple-400/70">
-                    في الطريق
+                    {t("onTheWay")}
                   </p>
                 </div>
                 <Truck className="h-8 w-8 text-purple-500" />
@@ -505,7 +505,7 @@ function AllOrders() {
                     {stats.delivered}
                   </p>
                   <p className="text-xs text-green-600/70 dark:text-green-400/70">
-                    تم بنجاح
+                    {t("completedSuccessfully")}
                   </p>
                 </div>
                 <CheckCircle2 className="h-8 w-8 text-green-500" />

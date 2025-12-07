@@ -31,31 +31,32 @@ function NavbarSetting({
 }) {
   const { t } = useTranslation();
   const menu = [
-    { title: "Store Settings", icon: Settings },
-    { title: "Domain Settings", icon: Globe },
-    { title: "Store Info and Policies", icon: FileText },
-    { title: "Add Header Code", icon: Code },
-    { title: "SEO Settings", icon: Search },
-    { title: "Payment Gateways", icon: CreditCard },
-    { title: "Pixel Settings", icon: Camera },
-    { title: "Google Tag Settings", icon: Tags },
+    { title: t("Store Settings"), icon: Settings, key: "Store Settings" },
+    { title: t("Domain Settings"), icon: Globe, key: "Domain Settings" },
+    { title: t("Store Info and Policies"), icon: FileText, key: "Store Info and Policies" },
+    { title: t("Add Header Code"), icon: Code, key: "Add Header Code" },
+    { title: t("SEO Settings"), icon: Search, key: "SEO Settings" },
+    { title: t("Payment Gateways"), icon: CreditCard, key: "Payment Gateways" },
+    { title: t("Pixel Settings"), icon: Camera, key: "Pixel Settings" },
+    { title: t("Google Tag Settings"), icon: Tags, key: "Google Tag Settings" },
     {
-      title: "Digital products delivery settings",
+      title: t("Digital products delivery settings"),
       icon: Package,
-      badge: "New",
+      badge: t("New"),
+      key: "Digital products delivery settings",
     },
-    { title: "Order Notifications", icon: Bell },
-    { title: "Pages", icon: FileText },
-    { title: "Theme Settings", icon: Paintbrush },
-    { title: "Edit Main Page", icon: Home },
-    { title: "Purchase Form", icon: ClipboardList },
-    { title: "Shipping Settings", icon: Truck },
-    { title: "Edit Thank You Page", icon: NotebookPen },
-    { title: "Social Links", icon: Instagram },
-    { title: "Store Link", icon: Link },
-    { title: "Manage Moderators", icon: Users },
-    { title: "Public API", icon: Code2 },
-    { title: "Login Sessions", icon: LogIn },
+    { title: t("Notifications"), icon: Bell, key: "Order Notifications" },
+    { title: t("Pages"), icon: FileText, key: "Pages" },
+    { title: t("Theme Settings"), icon: Paintbrush, key: "Theme Settings" },
+    { title: t("Edit Main Page"), icon: Home, key: "Edit Main Page" },
+    { title: t("Purchase Form"), icon: ClipboardList, key: "Purchase Form" },
+    { title: t("Shipping Settings"), icon: Truck, key: "Shipping Settings" },
+    { title: t("Edit Thank You Page"), icon: NotebookPen, key: "Edit Thank You Page" },
+    { title: t("Social Links"), icon: Instagram, key: "Social Links" },
+    { title: t("Store Link"), icon: Link, key: "Store Link" },
+    { title: t("Manage Moderators"), icon: Users, key: "Manage Moderators" },
+    { title: t("Public API"), icon: Code2, key: "Public API" },
+    { title: t("Login Sessions"), icon: LogIn, key: "Login Sessions" },
   ];
 
   return (
@@ -63,12 +64,12 @@ function NavbarSetting({
       <ul className="space-y-2">
         {menu.map((item, i) => {
           const Icon = item.icon;
-          const isActive = active === item.title;
+          const isActive = active === item.key;
 
           return (
             <li
               key={i}
-              onClick={() => setActive(item.title)}
+              onClick={() => setActive(item.key)}
               className={`flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer text-black dark:text-white
                 ${
                   isActive
@@ -78,10 +79,10 @@ function NavbarSetting({
               `}
             >
               <Icon size={18} />
-              {t(item.title)}
+              {item.title}
               {item.badge && (
                 <span className="ml-auto text-xs bg-green-600 text-black dark:text-white rounded-full px-2 py-1">
-                  {t(item.badge)}
+                  {item.badge}
                 </span>
               )}
             </li>

@@ -75,6 +75,7 @@ interface ColorPresetProps {
   };
   onApply: () => void;
   isActive?: boolean;
+  t: (key: string) => string;
 }
 
 interface ColorScheme {
@@ -91,6 +92,7 @@ const ColorPreset: React.FC<ColorPresetProps> = ({
   colors,
   onApply,
   isActive,
+  t,
 }) => {
   return (
     <button
@@ -114,17 +116,17 @@ const ColorPreset: React.FC<ColorPresetProps> = ({
         <div
           className="h-8 w-8 rounded-full border border-[#d6d6d6] dark:border-[#424242]"
           style={{ backgroundColor: colors.primary }}
-          title="Primary"
+          title={t("Primary")}
         />
         <div
           className="h-8 w-8 rounded-full border border-[#d6d6d6] dark:border-[#424242]"
           style={{ backgroundColor: colors.secondary }}
-          title="Secondary"
+          title={t("Secondary")}
         />
         <div
           className="h-8 w-8 rounded-full border border-[#d6d6d6] dark:border-[#424242]"
           style={{ backgroundColor: colors.accent }}
-          title="Accent"
+          title={t("Accent")}
         />
       </div>
     </button>
@@ -287,6 +289,7 @@ export const ColorCustomizer: React.FC = () => {
                     colors={preset.colors}
                     onApply={() => applyPreset(preset)}
                     isActive={isPresetActive(preset)}
+                    t={t}
                   />
                 ))}
               </div>
