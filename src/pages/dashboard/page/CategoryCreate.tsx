@@ -124,36 +124,34 @@ function CategoryCreate() {
   };
 
   return (
-    <div dir="rtl" className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="sticky top-0 z-10 bg-white dark:bg-black/80 border-b border-border backdrop-blur-xl">
-        <div className="flex items-center justify-between px-6 py-4">
-          <div className="flex items-center gap-4">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => navigate(-1)}
-              className="rounded-xl hover:bg-primary/10"
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </Button>
-            <div>
-              <h1 className="text-2xl font-bold text-foreground">
-                {t("Create New Category")}
-              </h1>
-              <p className="text-sm text-muted-foreground">
-                {t("Add a new category to organize your products")}
-              </p>
-            </div>
+    <div className="container max-w-4xl mx-auto">
+      {/* Page Header */}
+      <div className="mb-8">
+        <div className="flex items-center gap-4 mb-4">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => navigate(-1)}
+            className="rounded-xl hover:bg-primary/10"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </Button>
+          <div>
+            <h1 className="text-2xl font-bold text-foreground">
+              {t("Create New Category")}
+            </h1>
+            <p className="text-sm text-muted-foreground">
+              {t("Add a new category to organize your products")}
+            </p>
           </div>
         </div>
       </div>
 
       {/* Form Content */}
-      <div className="container max-w-4xl mx-auto p-6">
+      <div className="space-y-8">
         <form onSubmit={handleSubmit} className="space-y-8">
           {/* Basic Information Card */}
-          <div className="bg-card rounded-2xl p-6 shadow-sm border border-border">
+          <div className=" rounded-2xl p-6 shadow-sm border border-border">
             <h2 className="text-lg font-semibold mb-6 text-card-foreground">
               {t("Basic Information")}
             </h2>
@@ -222,7 +220,7 @@ function CategoryCreate() {
           </div>
 
           {/* Image Upload Card */}
-          <div className="bg-card rounded-2xl p-6 shadow-sm border border-border">
+          <div className=" rounded-2xl p-6 shadow-sm border border-border">
             <h2 className="text-lg font-semibold mb-6 text-card-foreground">
               {t("Category Image")}
             </h2>
@@ -271,7 +269,7 @@ function CategoryCreate() {
           </div>
 
           {/* Settings Card */}
-          <div className="bg-card rounded-2xl p-6 shadow-sm border border-border">
+          <div className=" rounded-2xl p-6 shadow-sm border border-border">
             <h2 className="text-lg font-semibold mb-6 text-card-foreground">
               {t("Settings")}
             </h2>
@@ -290,10 +288,10 @@ function CategoryCreate() {
                 <Switch
                   id="isActive"
                   checked={formData.isActive}
-                  onCheckedChange={(checked) => 
+                  onCheckedChange={(checked) =>
                     setFormData(prev => ({ ...prev, isActive: checked }))
                   }
-                  className="data-[state=checked]:bg-primary"
+                  className="data-[state=checked]:bg-green-500 dark:data-[state=checked]:bg-green-600 data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700"
                 />
               </div>
 
