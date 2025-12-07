@@ -1,11 +1,13 @@
 import {
-  ColumnDef,
   flexRender,
   getCoreRowModel,
   useReactTable,
   getPaginationRowModel,
   getSortedRowModel,
   getFilteredRowModel,
+} from "@tanstack/react-table";
+import type {
+  ColumnDef,
   ColumnFiltersState,
   SortingState,
 } from "@tanstack/react-table";
@@ -21,8 +23,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Search } from "lucide-react";
 import { useState } from "react";
-import { cn } from "@/lib/utils";
-
+ 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];

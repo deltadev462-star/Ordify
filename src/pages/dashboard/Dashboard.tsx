@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+ 
 import {
   DollarSign,
   ShoppingCart,
   Users,
   Target,
-  TrendingUp,
-  Package,
+  
   Eye,
   BarChart3,
   Clock,
@@ -210,7 +209,7 @@ export default function Dashboard() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Page Header */}
       <div>
         <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
@@ -241,7 +240,7 @@ export default function Dashboard() {
       </div>
 
       {/* Second Row - Store Setup and Quick Actions */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="">
         {/* Store Setup Guide */}
         <div className="lg:col-span-2">
           <Card className="border-0 shadow-sm overflow-hidden bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">

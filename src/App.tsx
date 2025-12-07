@@ -1,12 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense } from "react";
 import { ThemeProvider } from "./context/ThemeContext";
 import { TooltipProvider } from "./components/ui/tooltip";
 import { useRTL } from "./hooks/useRTL";
-import Settings from "./pages/dashboard/page/Settings";
-import MarketingServices from "./pages/dashboard/page/MarketingServices";
-import ServiceGallery from "./pages/dashboard/page/ServiceGallery";
-import Shater from "./pages/dashboard/page/Shater";
 import DashBoardLayout from "./pages/dashboard/DashBoardLayout";
 import LoginPage from "./pages/login/LoginPage";
 import RegisterPage from "./pages/signup/RegisterPage";
@@ -32,7 +28,6 @@ const ProductCreate = lazy(() => import("./pages/dashboard/page/ProductCreate"))
 const Categories = lazy(() => import("./pages/dashboard/page/Categories"));
 const CategoryCreate = lazy(() => import("./pages/dashboard/page/CategoryCreate"));
 const Reviews = lazy(() => import("./pages/dashboard/page/Reviews"));
-const ReviewCreate = lazy(() => import("./pages/dashboard/page/ReviewCreate"));
 const ProductFeed = lazy(() => import("./pages/dashboard/page/ProductFeed"));
 const EasyCatalog = lazy(() => import("./pages/dashboard/page/EasyCatalog"));
 
@@ -80,10 +75,6 @@ const AgentStorePage = lazy(() => import("./pages/dashboard/agent-store/AgentSto
 const AgentChatPage = lazy(() => import("./pages/dashboard/agent-chat/AgentChatPage"));
 
 // Existing main navigation pages that might exist
-const OrdersPage = lazy(() => import("./pages/dashboard/orders/OrdersPage"));
-const ListingPage = lazy(() => import("./pages/dashboard/listing/ListingPage"));
-const WalletPage = lazy(() => import("./pages/dashboard/wallet/WalletPage"));
-const WebsitePage = lazy(() => import("./pages/dashboard/website/WebsitePage"));
 
 const router = createBrowserRouter([
   {
@@ -100,7 +91,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout />,
+    element: <DashBoardLayout />,
     children: [
       {
         index: true,

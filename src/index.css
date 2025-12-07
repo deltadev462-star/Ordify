@@ -823,7 +823,6 @@ html {
 .sidebar-link-hover:hover {
   background-color: hsl(var(--primary) / 0.1) !important;
 }
-}
 
 /* RTL Support */
 @layer utilities {
