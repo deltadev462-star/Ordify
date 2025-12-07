@@ -6,6 +6,7 @@ import {
   CircleDollarSign,
   Command,
   CornerLeftUpIcon,
+  Crown,
   DownloadCloud,
   Files,
   Filter,
@@ -65,7 +66,7 @@ export const sidebarData = {
   links: [
     {
       type: "link",
-      title: "Dashboard",
+      title: "Home",
       url: "/dashboard",
       icon: ChartLine,
     },
@@ -106,15 +107,15 @@ export const sidebarData = {
     },
     {
       type: "link",
-      title: "Funnels",
-      url: "/dashboard/funnels",
-      icon: Filter,
-    },
-    {
-      type: "link",
       title: "Shater Your Smart Shater",
       url: "/dashboard/shater",
       icon: Blocks,
+    },
+    {
+      type: "link",
+      title: "Agent Store",
+      url: "/dashboard/agent-store",
+      icon: Crown,
     },
     {
       type: "link",
