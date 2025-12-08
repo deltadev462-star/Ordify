@@ -137,7 +137,7 @@ const login = expressAsyncHandler(async (req, res) => {
         lastName: user.lastName,
         role: user.role
       },
-      stores: user.stores,
+      store: user.stores[0],
       token,
       refreshToken
     }
