@@ -1,13 +1,11 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+ 
 import {
   DollarSign,
   ShoppingCart,
   Users,
   Target,
-  TrendingUp,
-  Package,
   Eye,
   BarChart3,
   Clock,
@@ -141,41 +139,43 @@ export default function Dashboard() {
     {
       id: '1',
       type: 'order',
-      title: t('New Order #2024001'),
-      description: t('Ahmed Mohamed placed an order'),
-      time: t('5 minutes ago'),
+ 
+      title: t("dashboard.newOrder", { orderNumber: "#2024001" }),
+      description: t("dashboard.placedOrderDescription", { name: "Ahmed Mohamed" }),
+      time: t("dashboard.minutesAgo", { count: 5 }),
+ 
       status: 'success'
     },
     {
       id: '2',
       type: 'payment',
-      title: t('Payment Received'),
-      description: t('EGP 2,345 from Order #2024000'),
-      time: t('12 minutes ago'),
+      title: t("dashboard.paymentReceived"),
+      description: t("dashboard.paymentDescription", { amount: "2,345", currency: "EGP", orderNumber: "#2024000" }),
+      time: t("dashboard.minutesAgo", { count: 12 }),
       status: 'success'
     },
     {
       id: '3',
       type: 'order',
-      title: t('Order Cancelled'),
-      description: t('Order #2023999 was cancelled'),
-      time: t('1 hour ago'),
+      title: t("dashboard.orderCancelled"),
+      description: t("dashboard.orderCancelledDescription", { orderNumber: "#2023999" }),
+      time: t("dashboard.hoursAgo", { count: 1 }),
       status: 'failed'
     },
     {
       id: '4',
       type: 'user',
-      title: t('New Customer'),
-      description: t('Sara Ahmed registered'),
-      time: t('2 hours ago'),
+      title: t("dashboard.newCustomer"),
+      description: t("dashboard.customerRegisteredDescription", { name: "Sara Ahmed" }),
+      time: t("dashboard.hoursAgo", { count: 2 }),
       status: 'success'
     },
     {
       id: '5',
       type: 'payment',
-      title: t('Payment Pending'),
-      description: t('Awaiting payment for Order #2023998'),
-      time: t('3 hours ago'),
+      title: t("dashboard.paymentPending"),
+      description: t("dashboard.paymentPendingDescription", { orderNumber: "#2023998" }),
+      time: t("dashboard.hoursAgo", { count: 3 }),
       status: 'pending'
     }
   ];
@@ -241,7 +241,7 @@ export default function Dashboard() {
       </div>
 
       {/* Second Row - Store Setup and Quick Actions */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Store Setup Guide */}
         <div className="lg:col-span-2">
           <Card className="border-0 shadow-sm overflow-hidden bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">

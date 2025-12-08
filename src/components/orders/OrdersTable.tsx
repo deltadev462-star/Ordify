@@ -1,4 +1,4 @@
-import { useState } from "react";
+ 
 import { useTranslation } from "react-i18next";
 import { SimpleDataTable, type Column } from "@/components/shared/DataTable/SimpleDataTable";
 import { Badge } from "@/components/ui/badge";
@@ -56,7 +56,7 @@ export function OrdersTable({ orders, onViewOrder, onUpdateStatus }: OrdersTable
       key: 'orderNumber',
       header: t('Order Number'),
       sortable: true,
-      render: (value, row) => (
+      render: (value) => (
         <div className="font-medium">#{value}</div>
       ),
     },
@@ -84,7 +84,7 @@ export function OrdersTable({ orders, onViewOrder, onUpdateStatus }: OrdersTable
       key: 'total',
       header: t('Total'),
       sortable: true,
-      render: (value) => (
+      render: (value: number) => (
         <div className="font-medium">{t('EGP')} {value.toLocaleString()}</div>
       ),
     },
@@ -92,7 +92,7 @@ export function OrdersTable({ orders, onViewOrder, onUpdateStatus }: OrdersTable
       key: 'status',
       header: t('Status'),
       sortable: true,
-      render: (value) => (
+      render: (value: Order['status']) => (
         <Badge className={cn("capitalize", getStatusColor(value))}>
           {t(value)}
         </Badge>
@@ -101,7 +101,7 @@ export function OrdersTable({ orders, onViewOrder, onUpdateStatus }: OrdersTable
     {
       key: 'paymentMethod',
       header: t('Payment'),
-      render: (value) => (
+      render: (value: string) => (
         <div className="text-sm">{t(value)}</div>
       ),
     },
@@ -109,7 +109,7 @@ export function OrdersTable({ orders, onViewOrder, onUpdateStatus }: OrdersTable
       key: 'createdAt',
       header: t('Date'),
       sortable: true,
-      render: (value) => (
+      render: (value: string) => (
         <div className="text-sm">
           {new Date(value).toLocaleDateString()}
           <div className="text-xs text-muted-foreground">

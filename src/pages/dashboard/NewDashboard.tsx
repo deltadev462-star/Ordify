@@ -1,13 +1,10 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
 import {
   DollarSign,
   ShoppingCart,
   Users,
   Target,
-  TrendingUp,
-  Package,
   Eye,
   BarChart3,
   Clock,

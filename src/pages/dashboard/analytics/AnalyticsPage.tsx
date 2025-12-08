@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { BarChart3, TrendingUp, Users, ShoppingCart, Target, PieChart } from "lucide-react";
+import { BarChart3, Users, ShoppingCart, Target, PieChart } from "lucide-react";
 import { MetricCard } from "@/components/dashboard/widgets/MetricCard";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";

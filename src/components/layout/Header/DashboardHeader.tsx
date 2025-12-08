@@ -10,11 +10,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
+ 
 import { Badge } from "@/components/ui/badge";
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
+ 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { cn } from "@/lib/utils";
+ 
 import { useDarkMode } from "@/hooks/useDarkMode";
 
 interface DashboardHeaderProps {
@@ -23,15 +23,32 @@ interface DashboardHeaderProps {
   showMenuButton?: boolean;
 }
 
-export function DashboardHeader({ breadcrumbs, onMenuClick, showMenuButton = true }: DashboardHeaderProps) {
+export function DashboardHeader({   onMenuClick, showMenuButton = true }: DashboardHeaderProps) {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const { isDarkMode, toggleDarkMode } = useDarkMode();
 
   const handleLanguageSwitch = () => {
+    console.log("Language switch clicked!");
+    console.log("Current language:", i18n.language);
+    
     const newLang = i18n.language === 'ar' ? 'en' : 'ar';
-    i18n.changeLanguage(newLang);
-    // RTL changes will be applied automatically via the dir attribute in DashboardLayout
+    console.log("Switching to:", newLang);
+    
+    i18n.changeLanguage(newLang).then(() => {
+      console.log("Language changed to:", newLang);
+      
+      // Update document direction
+      const newDir = newLang === "ar" ? "rtl" : "ltr";
+      document.documentElement.dir = newDir;
+      document.documentElement.lang = newLang;
+      
+      // Save to localStorage
+      localStorage.setItem("i18nextLng", newLang);
+      localStorage.setItem("documentDir", newDir);
+    }).catch((error) => {
+      console.error("Error changing language:", error);
+    });
   };
 
   const handleLogout = () => {

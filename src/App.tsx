@@ -1,9 +1,10 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense } from "react";
 import { ThemeProvider } from "./context/ThemeContext";
 import { TooltipProvider } from "./components/ui/tooltip";
-import { useDarkMode } from "./hooks/useDarkMode";
-import DashboardLayout from "./layouts/DashboardLayout"; // New layout
+import { useRTL } from "./hooks/useRTL";
+import DashboardLayout from "./layouts/DashboardLayout";
+ 
 import LoginPage from "./pages/login/LoginPage";
 import RegisterPage from "./pages/signup/RegisterPage";
 import NotFound from "./pages/NotFound";
@@ -17,7 +18,9 @@ const Dashboard = lazy(() => import("./pages/dashboard/Dashboard"));
 
 // Orders Management - using existing components
 const AllOrders = lazy(() => import("./pages/dashboard/page/AllOrders"));
-const Order = lazy(() => import("./pages/dashboard/page/Order"));
+ 
+const ProcessingOrdersPage = lazy(() => import("./pages/dashboard/orders/ProcessingOrdersPage"));
+const CompletedOrdersPage = lazy(() => import("./pages/dashboard/orders/CompletedOrdersPage"));
 const MissedOrder = lazy(() => import("./pages/dashboard/page/MissedOrder"));
 const BlockedNumber = lazy(() => import("./pages/dashboard/page/BlockedNumber"));
 const BlockedVerification = lazy(() => import("./pages/dashboard/page/BlockedVerification"));
@@ -28,7 +31,6 @@ const ProductCreate = lazy(() => import("./pages/dashboard/page/ProductCreate"))
 const Categories = lazy(() => import("./pages/dashboard/page/Categories"));
 const CategoryCreate = lazy(() => import("./pages/dashboard/page/CategoryCreate"));
 const Reviews = lazy(() => import("./pages/dashboard/page/Reviews"));
-const ReviewCreate = lazy(() => import("./pages/dashboard/page/ReviewCreate"));
 const ProductFeed = lazy(() => import("./pages/dashboard/page/ProductFeed"));
 const EasyCatalog = lazy(() => import("./pages/dashboard/page/EasyCatalog"));
 
@@ -75,11 +77,13 @@ const History = lazy(() => import("./pages/dashboard/page/History"));
 const AgentStorePage = lazy(() => import("./pages/dashboard/agent-store/AgentStorePage"));
 const AgentChatPage = lazy(() => import("./pages/dashboard/agent-chat/AgentChatPage"));
 
+// Import customer related pages
+const CustomersPage = lazy(() => import("./pages/dashboard/customers/CustomersPage"));
+const CustomerSegmentsPage = lazy(() => import("./pages/dashboard/customers/CustomerSegmentsPage"));
+const CustomerCommunicationPage = lazy(() => import("./pages/dashboard/customers/CustomerCommunicationPage"));
+const LoyaltyProgramPage = lazy(() => import("./pages/dashboard/customers/LoyaltyProgramPage"));
+
 // Existing main navigation pages that might exist
-const OrdersPage = lazy(() => import("./pages/dashboard/orders/OrdersPage"));
-const ListingPage = lazy(() => import("./pages/dashboard/listing/ListingPage"));
-const WalletPage = lazy(() => import("./pages/dashboard/wallet/WalletPage"));
-const WebsitePage = lazy(() => import("./pages/dashboard/website/WebsitePage"));
 
 const router = createBrowserRouter([
   {
@@ -121,11 +125,11 @@ const router = createBrowserRouter([
           },
           {
             path: "processing",
-            element: <Order />, // Temporary: will create ProcessingOrders component
+            element: <ProcessingOrdersPage />,
           },
           {
             path: "completed",
-            element: <Order />, // Temporary: will create CompletedOrders component
+            element: <CompletedOrdersPage />,
           },
           {
             path: "issues",
@@ -187,19 +191,19 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <Dashboard />, // Temporary: will create Customers component
+            element: <CustomersPage />,
           },
           {
             path: "segments",
-            element: <Dashboard />, // Temporary: will create CustomerSegments component
+            element: <CustomerSegmentsPage />,
           },
           {
             path: "messages",
-            element: <Dashboard />, // Temporary: will create CustomerMessages component
+            element: <CustomerCommunicationPage />,
           },
           {
             path: "loyalty",
-            element: <Dashboard />, // Temporary: will create LoyaltyProgram component
+            element: <LoyaltyProgramPage />,
           },
         ],
       },
@@ -463,19 +467,8 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  // Initialize dark mode
-  useEffect(() => {
-    const savedMode = localStorage.getItem("darkMode");
-    if (savedMode === "true") {
-      document.documentElement.classList.add("dark");
-    } else if (savedMode === null) {
-      // Check system preference
-      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        document.documentElement.classList.add("dark");
-      }
-    }
-  }, []);
-
+  useRTL(); // Initialize RTL support
+  
   return (
     <ThemeProvider defaultTheme="modern">
       <TooltipProvider>

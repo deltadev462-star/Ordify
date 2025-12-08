@@ -9,23 +9,18 @@ import { Separator } from "@/components/ui/separator";
 import { FloatingLabelInput, FloatingLabelTextarea } from "@/components/ui/floating-label-input";
 import { RichTextEditor } from "@/components/ui/rich-text-editor";
 import { MultiSelect } from "@/components/ui/multi-select";
-import { 
-  Package, 
-  DollarSign, 
-  Image as ImageIcon, 
-  Settings, 
+import {
+  Package,
+  DollarSign,
+  Image as ImageIcon,
+  Settings,
   Save,
   ChevronDown,
   ChevronRight,
-  Tag,
   Globe,
   Zap,
-  Shield,
-  Eye,
-  Clock,
   Truck,
-  Star,
-  Users
+  Star
 } from "lucide-react";
 
 // Import image upload components
@@ -89,7 +84,6 @@ function ProductCreate() {
   // Form state - Essential Information
   const [productName, setProductName] = useState("");
   const [productLink, setProductLink] = useState("");
-  const [sku, setSku] = useState("");
   const [metaDescription, setMetaDescription] = useState("");
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [productDescription, setProductDescription] = useState("");
@@ -115,9 +109,6 @@ function ProductCreate() {
   const [angaznyIntegration, setAngaznyIntegration] = useState(false);
   const [externalPlatformCode, setExternalPlatformCode] = useState("");
   const [externalPlatformLink, setExternalPlatformLink] = useState("");
-  
-  // Custom Pixel
-  const [pixelItems, setPixelItems] = useState<{id: string, pixelId: string, pixelType: string}[]>([]);
   
   // Advanced Settings
   const [skipCart, setSkipCart] = useState(false);
@@ -156,7 +147,6 @@ function ProductCreate() {
     console.log({
       productName,
       productLink,
-      sku,
       metaDescription,
       price,
       salePrice,

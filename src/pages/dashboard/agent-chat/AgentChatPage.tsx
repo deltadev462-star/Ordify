@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { getAgentById } from "@/data/agents-data";
 import type { Agent } from "@/data/agents-data";
-import { ArrowLeft, Send, Volume2, MoreVertical, Trash2, Download } from "lucide-react";
+import { ArrowLeft, Send, Volume2, MoreVertical, Trash2 } from "lucide-react";
 
 interface ChatMessage {
   id: string;

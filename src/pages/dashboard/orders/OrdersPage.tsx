@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { Package, TrendingUp, Clock, CheckCircle, XCircle, AlertCircle } from "lucide-react";
+import { Package, Clock, CheckCircle, XCircle, AlertCircle } from "lucide-react";
 import { MetricCard } from "@/components/dashboard/widgets/MetricCard";
 import { OrdersTable, type Order } from "@/components/orders/OrdersTable";
 import { OrderFilters, type OrderFilters as OrderFiltersType } from "@/components/orders/OrderFilters";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 
 export default function OrdersPage() {

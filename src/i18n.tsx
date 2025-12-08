@@ -1,17 +1,19 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
- 
 import LanguageDetector from "i18next-browser-languagedetector";
 import HttpApi from 'i18next-http-backend';
 
- i18n
-  .use(initReactI18next)
-  .use(LanguageDetector)
+// Get saved language or default to 'en'
+const savedLanguage = localStorage.getItem("i18nextLng") || "en";
+
+i18n
   .use(HttpApi)
+  .use(LanguageDetector)
+  .use(initReactI18next)
   .init({
-    debug: false,
+    debug: true, // Enable debug to see what's happening
+    lng: savedLanguage, // Set initial language
     fallbackLng: "en",
-    // Remove hardcoded lng to allow LanguageDetector to work
     interpolation: {
       escapeValue: false,
     },
@@ -19,22 +21,22 @@ import HttpApi from 'i18next-http-backend';
       useSuspense: false,
     },
     detection: {
-      order: [
-        "localStorage",
-        "htmlTag",
-        "cookie",
-        "sessionStorage",
-        "navigator",
-        "path",
-        "subdomain",
-        "hash",
-      ],
+      order: ["localStorage", "navigator"],
       caches: ["localStorage"],
     },
     backend: {
       loadPath: '/locales/{{lng}}/translation.json',
+      crossDomain: true,
     },
   });
- 
-export default i18n;
 
+// Set initial direction
+if (savedLanguage === "ar") {
+  document.documentElement.dir = "rtl";
+  document.documentElement.lang = "ar";
+} else {
+  document.documentElement.dir = "ltr";
+  document.documentElement.lang = "en";
+}
+
+export default i18n;

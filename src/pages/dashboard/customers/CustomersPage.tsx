@@ -8,7 +8,6 @@ import {
   TrendingUp,
   Search,
   Mail,
-  Phone,
   ShoppingBag,
 } from "lucide-react";
 
@@ -213,7 +212,7 @@ export default function CustomersPage() {
           <div className="flex flex-col gap-4">
             {/* Tabs + Search */}
             <div className="flex flex-col-reverse gap-3 lg:flex-row lg:items-center lg:justify-between">
-              <Tabs value={activeTab} onValueChange={(v: any) => setActiveTab(v)}>
+              <Tabs value={activeTab} onValueChange={(v: "all" | "active" | "inactive" | "blocked") => setActiveTab(v)}>
                 <TabsList className="grid grid-cols-4 w-full lg:w-auto">
                   <TabsTrigger value="all" className="gap-2">
                     {t("All")}

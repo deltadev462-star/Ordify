@@ -120,9 +120,9 @@ export function OrderFilters({
             </SelectContent>
           </Select>
 
-          <DropdownMenu>
+          <DropdownMenu >
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="gap-2">
+              <Button variant="outline" className="gap-2 border-gray-200 dark:border-gray-700">
                 <Calendar className="h-4 w-4" />
                 {t("Date Range")}
               </Button>
@@ -144,7 +144,7 @@ export function OrderFilters({
             size="icon"
             onClick={() => setShowFilters(!showFilters)}
             className={cn(
-              "relative",
+              "relative border-gray-200 dark:border-gray-700",
               activeFiltersCount > 0 && "border-blue-500"
             )}
           >
@@ -174,13 +174,13 @@ export function OrderFilters({
 
         <div className="flex items-center gap-2">
           {onExport && (
-            <Button variant="outline" onClick={onExport} className="gap-2">
+            <Button variant="outline" onClick={onExport} className="gap-2 border-gray-200 dark:border-gray-700">
               <Download className="h-4 w-4" />
               {t("Export")}
             </Button>
           )}
           {onCreateOrder && (
-            <Button onClick={onCreateOrder} className="gap-2">
+            <Button onClick={onCreateOrder} className="gap-2 ">
               <Plus className="h-4 w-4" />
               {t("Create Order")}
             </Button>
@@ -189,7 +189,7 @@ export function OrderFilters({
       </div>
 
       {showFilters && (
-        <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 space-y-4">
+        <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 space-y-4 border-gray-200 dark:border-gray-700">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <label className="text-sm font-medium">{t("Minimum Amount")}</label>
