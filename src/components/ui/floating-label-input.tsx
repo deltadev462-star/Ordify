@@ -47,11 +47,12 @@ export const FloatingLabelInput = React.forwardRef<
           onChange={handleChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          placeholder=""
+          placeholder={props.placeholder || ""}
           className={cn(
             "peer w-full px-4 py-3 bg-white dark:bg-gray-900/50 border-2 rounded-lg",
             "transition-all duration-200 ease-in-out outline-none",
             "focus:border-green-500 dark:focus:border-green-400",
+            "text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500",
             error ? "border-red-500" : "border-gray-300 dark:border-gray-700",
             Icon && "pr-12",
             className
@@ -121,11 +122,12 @@ export const FloatingLabelTextarea = React.forwardRef<
           onChange={handleChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          placeholder=""
+          placeholder={props.placeholder || ""}
           className={cn(
             "peer w-full px-4 py-3 bg-white dark:bg-gray-900/50 border-2 rounded-lg",
             "transition-all duration-200 ease-in-out outline-none resize-none",
             "focus:border-green-500 dark:focus:border-green-400",
+            "text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500",
             error ? "border-red-500" : "border-gray-300 dark:border-gray-700",
             className
           )}

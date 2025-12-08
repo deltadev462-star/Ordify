@@ -6,6 +6,8 @@ export interface User {
   role: string;
   phone?: string | null;
   avatar?: string | null;
+  storeId?: string;
+  storeName?: string;
   createdAt?: string;
   updatedAt?: string;
 }
