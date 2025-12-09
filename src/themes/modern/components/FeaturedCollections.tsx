@@ -1,8 +1,6 @@
 import { CategoryCard } from "@/themes/shared/components/CategoryCard";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { useTranslation } from "react-i18next";
-
 interface Collection {
   id: string;
   name: string;
@@ -30,11 +28,9 @@ export const ModernFeaturedCollections = ({
   onCollectionClick,
   className = "",
 }: ModernFeaturedCollectionsProps) => {
-  const { t } = useTranslation();
-  
   // Use default values from translations if not provided
-  const displayTitle = title || t("featuredCollections");
-  const displaySubtitle = subtitle || t("discoverCuratedCollections");
+  const displayTitle = title || "Featured Collections";
+  const displaySubtitle = subtitle || "Discover Curated Collections";
   const getGridColumns = () => {
     switch (columns) {
       case 2:
@@ -94,7 +90,7 @@ export const ModernFeaturedCollections = ({
                 window.location.href = viewAllLink;
               }}
             >
-              {t("viewAllCollections")}
+              {"View All Collections"}
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
           </div>
@@ -120,8 +116,7 @@ export const ModernAsymmetricCollections = ({
   onCollectionClick,
   className = "",
 }: ModernAsymmetricCollectionsProps) => {
-  const { t } = useTranslation();
-  const displayTitle = title || t("shopByCategory");
+  const displayTitle = title || "Shop By Category";
   return (
     <section className={`py-16 ${className}`}>
       <div className="container mx-auto px-4">
@@ -178,8 +173,7 @@ export const ModernScrollableCollections = ({
   onCollectionClick,
   className = "",
 }: ModernScrollableCollectionsProps) => {
-  const { t } = useTranslation();
-  const displayTitle = title || t("trendingCategories");
+  const displayTitle = title || "Trending Categories";
   return (
     <section className={`overflow-hidden py-16 ${className}`}>
       {title && (

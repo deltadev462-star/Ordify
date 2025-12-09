@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { ChevronDown, ChevronRight, Menu } from "lucide-react";
+import { ChevronDown, ChevronRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import {
   Sidebar,
@@ -21,7 +21,6 @@ import { Badge } from "@/components/ui/badge";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { newSidebarData, type NavigationItem } from "@/data/new-sidebar-data";
 import { cn } from "@/lib/utils";
-import i18n from "@/i18n";
 
 interface DashboardSidebarProps {
   open?: boolean;
@@ -31,11 +30,11 @@ interface DashboardSidebarProps {
   isMobile?: boolean;
 }
 
-export function DashboardSidebar({ activeNavId, side = "left" }: DashboardSidebarProps) {
-  const { t } = useTranslation();
+export function DashboardSidebar({ activeNavId, side = "right" }: DashboardSidebarProps) {
   const location = useLocation();
   const navigate = useNavigate();
   const { open, isMobile } = useSidebar();
+  const { t } = useTranslation();
   const isOpen = open;
   const [expandedItems, setExpandedItems] = useState<string[]>([activeNavId || ""]);
 
@@ -62,7 +61,7 @@ export function DashboardSidebar({ activeNavId, side = "left" }: DashboardSideba
 
   return (
     <Sidebar
-    dir={i18n.dir()}
+      dir="ltr"
       collapsible={isMobile ? "offcanvas" : "icon"}
       side={side}
       data-sidebar
@@ -236,7 +235,7 @@ export function DashboardSidebar({ activeNavId, side = "left" }: DashboardSideba
           {isOpen && (
             <div className="px-3 py-4">
               <h3 className="mb-2 px-2 text-xs font-semibold text-gray-500 dark:text-gray-400">
-                {t("Quick Actions")}
+                {t('dashboard.quickActions')}
               </h3>
               <div className="space-y-1">
                 {newSidebarData.quickActions.map((action) => (

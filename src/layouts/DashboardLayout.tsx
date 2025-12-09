@@ -1,16 +1,13 @@
 import { useState, useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import { SidebarProvider, useSidebar } from "@/components/ui/sidebar";
 import { DashboardSidebar } from "@/components/layout/Sidebar/DashboardSidebar";
 import { DashboardHeader } from "@/components/layout/Header/DashboardHeader";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { findActiveNavItem, getBreadcrumbs } from "@/data/new-sidebar-data";
 import { newSidebarData } from "@/data/new-sidebar-data";
-import { cn } from "@/lib/utils";
 
 function DashboardContent() {
-  const { i18n } = useTranslation();
   const location = useLocation();
   const { open, setOpen, openMobile, setOpenMobile, isMobile } = useSidebar();
   const [activeNavId, setActiveNavId] = useState<string | null>(null);
@@ -72,8 +69,8 @@ function DashboardContent() {
     //     />
     //   )}
     // </div>
-    <div className="flex  w-full relative min-h-screen  dark:bg-gray-900">
-      <div className="   grow ">
+    <div className="flex flex-row w-full relative min-h-screen dark:bg-gray-900" dir="ltr">
+      <div className="flex-1 order-1">
       
          {/* Header */}
         <DashboardHeader
@@ -82,18 +79,16 @@ function DashboardContent() {
            showMenuButton={true}
         />
         {/* Page Content */}
-           <main dir={i18n.dir()} className="flex-1 p-4 sm:p-6 lg:p-8 ">
-        
-         <Outlet />
-         
+        <main className="flex-1 p-4 sm:p-6 lg:p-8">
+          <Outlet />
         </main>
       </div>
     
-      <div className="  ">
-          <DashboardSidebar
-        activeNavId={activeNavId}
-         side={'right'}
-    />
+      <div className="order-2">
+        <DashboardSidebar
+          activeNavId={activeNavId}
+          side={'right'}
+        />
       </div>
            {isMobile && openMobile && (
          <div
@@ -107,7 +102,6 @@ function DashboardContent() {
 }
 
 export default function DashboardLayout() {
-  const location = useLocation();
   const isMobile = useIsMobile();
   
   return (

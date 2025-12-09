@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import {
   FileText,
   Plus,
@@ -60,7 +59,6 @@ interface PageTemplate {
 }
 
 function PagesManagementSection() {
-  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedTemplate, setSelectedTemplate] = useState('blank');
   const [showCreateForm, setShowCreateForm] = useState(false);
@@ -154,7 +152,7 @@ function PagesManagementSection() {
       slug: 'new-page',
       status: 'draft',
       template: selectedTemplate,
-      lastModified: new Date().toISOString().split('T')[0],
+      lastModified: new Date().toISOString().split("T")[0],
       author: 'Admin',
       views: 0
     };
@@ -181,7 +179,7 @@ function PagesManagementSection() {
       title: `${page.title} (Copy)`,
       slug: `${page.slug}-copy`,
       status: 'draft',
-      lastModified: new Date().toISOString().split('T')[0],
+      lastModified: new Date().toISOString().split("T")[0],
       views: 0
     };
     setPages([newPage, ...pages]);
@@ -196,9 +194,9 @@ function PagesManagementSection() {
     <div className="space-y-6">
       <Alert variant="info">
         <AlertIcon variant="info" />
-        <AlertTitle>{t("pagesManagement.title")}</AlertTitle>
+        <AlertTitle>{"Title"}</AlertTitle>
         <AlertDescription>
-          {t("pagesManagement.description")}
+          {"Description"}
         </AlertDescription>
       </Alert>
 
@@ -206,7 +204,7 @@ function PagesManagementSection() {
         <div className="relative flex-1 max-w-sm">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input
-            placeholder={t("pagesManagement.searchPages")}
+            placeholder={"Search Pages"}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-9"
@@ -218,7 +216,7 @@ function PagesManagementSection() {
           className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white"
         >
           <Plus className="w-4 h-4 mr-2" />
-          {t("pagesManagement.createNewPage")}
+          {"Create New Page"}
         </Button>
       </div>
 
@@ -230,9 +228,9 @@ function PagesManagementSection() {
                 <FileText className="w-6 h-6 text-white" />
               </div>
               <div>
-                <CardTitle className="text-xl">{t("pagesManagement.createNewPage")}</CardTitle>
+                <CardTitle className="text-xl">{"Create New Page"}</CardTitle>
                 <CardDescription className="text-white/80">
-                  {t("pagesManagement.chooseTemplate")}
+                  {"Choose Template"}
                 </CardDescription>
               </div>
             </div>
@@ -240,15 +238,15 @@ function PagesManagementSection() {
           <CardContent className="p-6 space-y-6">
             <div className="grid gap-4">
               <div>
-                <Label>{t("pagesManagement.pageTitle")}</Label>
+                <Label>{"Page Title"}</Label>
                 <Input
-                  placeholder={t("pagesManagement.enterPageTitle")}
+                  placeholder={"Enter Page Title"}
                   className="mt-1"
                 />
               </div>
               
               <div>
-                <Label>{t("pagesManagement.urlSlug")}</Label>
+                <Label>{"Url Slug"}</Label>
                 <div className="flex items-center gap-2 mt-1">
                   <span className="text-sm text-muted-foreground">yourstore.com/</span>
                   <Input 
@@ -259,7 +257,7 @@ function PagesManagementSection() {
               </div>
 
               <div>
-                <Label className="mb-3 block">{t("pagesManagement.selectTemplate")}</Label>
+                <Label className="mb-3 block">{"Select Template"}</Label>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                   {pageTemplates.map((template) => {
                     const Icon = template.icon;
@@ -281,10 +279,10 @@ function PagesManagementSection() {
                           isSelected ? "text-primary" : "text-gray-600 dark:text-gray-400"
                         )} />
                         <p className="font-medium text-sm text-gray-800 dark:text-gray-200">
-                          {t(template.name)}
+                          {template.name}
                         </p>
                         <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
-                          {t(template.description)}
+                          {template.description}
                         </p>
                       </button>
                     );
@@ -298,13 +296,13 @@ function PagesManagementSection() {
                 variant="outline"
                 onClick={() => setShowCreateForm(false)}
               >
-                {t("cancel")}
+                {"Cancel"}
               </Button>
               <Button
                 onClick={handleCreatePage}
                 className="bg-gradient-to-r from-primary to-primary/80"
               >
-                {t("pagesManagement.createPage")}
+                {"Create Page"}
               </Button>
             </div>
           </CardContent>
@@ -314,13 +312,13 @@ function PagesManagementSection() {
       <Tabs defaultValue="all" className="w-full">
         <TabsList className="grid w-full max-w-md grid-cols-3 mb-6">
           <TabsTrigger value="all">
-            {t("pagesManagement.allPages")} ({pages.length})
+            {"All Pages"} ({pages.length})
           </TabsTrigger>
           <TabsTrigger value="published">
-            {t("pagesManagement.published")} ({pages.filter(p => p.status === 'published').length})
+            {"Published"} ({pages.filter(p => p.status === 'published').length})
           </TabsTrigger>
           <TabsTrigger value="drafts">
-            {t("pagesManagement.drafts")} ({pages.filter(p => p.status === 'draft').length})
+            {"Drafts"} ({pages.filter(p => p.status === 'draft').length})
           </TabsTrigger>
         </TabsList>
 
@@ -330,7 +328,7 @@ function PagesManagementSection() {
               <CardContent className="flex flex-col items-center justify-center py-12">
                 <FileText className="w-12 h-12 text-gray-400 dark:text-gray-600 mb-3" />
                 <p className="text-gray-600 dark:text-gray-400">
-                  {t("pagesManagement.noPagesFound")}
+                  {"No Pages Found"}
                 </p>
               </CardContent>
             </Card>
@@ -375,7 +373,7 @@ function PagesManagementSection() {
                                     : ""
                                 )}
                               >
-                                {t(page.status)}
+                                {page.status}
                               </Badge>
                             </div>
                             
@@ -387,7 +385,7 @@ function PagesManagementSection() {
                             <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-500 mt-2">
                               <span className="flex items-center gap-1">
                                 <Calendar className="w-4 h-4" />
-                                {t("pagesManagement.modified")}: {page.lastModified}
+                                {"Modified"}: {page.lastModified}
                               </span>
                               <span className="flex items-center gap-1">
                                 <User className="w-4 h-4" />
@@ -396,7 +394,7 @@ function PagesManagementSection() {
                               {page.status === 'published' && (
                                 <span className="flex items-center gap-1">
                                   <Eye className="w-4 h-4" />
-                                  {page.views} {t("pagesManagement.views")}
+                                  {page.views} {"Views"}
                                 </span>
                               )}
                             </div>
@@ -409,7 +407,7 @@ function PagesManagementSection() {
                           variant="ghost"
                           size="sm"
                           onClick={() => handleStatusToggle(page.id)}
-                          title={page.status === 'published' ? t("pagesManagement.unpublish") : t("pagesManagement.publish")}
+                          title={page.status === 'published' ? "Unpublish" : "Publish"}
                         >
                           {page.status === 'published' ? (
                             <EyeOff className="w-4 h-4" />
@@ -427,24 +425,24 @@ function PagesManagementSection() {
                           <DropdownMenuContent align="end">
                             <DropdownMenuItem className="gap-2">
                               <Edit className="w-4 h-4" />
-                              {t("pagesManagement.editPage")}
+                              {"Edit Page"}
                             </DropdownMenuItem>
                             <DropdownMenuItem
                               className="gap-2"
                               onClick={() => handleDuplicatePage(page)}
                             >
                               <Copy className="w-4 h-4" />
-                              {t("pagesManagement.duplicate")}
+                              {"Duplicate"}
                             </DropdownMenuItem>
                             {page.status === 'published' && (
                               <DropdownMenuItem className="gap-2">
                                 <Eye className="w-4 h-4" />
-                                {t("pagesManagement.viewPage")}
+                                {"View Page"}
                               </DropdownMenuItem>
                             )}
                             <DropdownMenuItem className="gap-2">
                               <Settings className="w-4 h-4" />
-                              {t("pagesManagement.seoSettings")}
+                              {"Seo Settings"}
                             </DropdownMenuItem>
                             <DropdownMenuSeparator />
                             <DropdownMenuItem 
@@ -452,7 +450,7 @@ function PagesManagementSection() {
                               onClick={() => handleDeletePage(page.id)}
                             >
                               <Trash2 className="w-4 h-4" />
-                              {t("delete")}
+                              {"Delete"}
                             </DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>
@@ -489,7 +487,7 @@ function PagesManagementSection() {
                         <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-500 mt-2">
                           <span className="flex items-center gap-1">
                             <Eye className="w-4 h-4" />
-                            {page.views} {t("pagesManagement.views")}
+                            {page.views} {"Views"}
                           </span>
                         </div>
                       </div>
@@ -556,13 +554,13 @@ function PagesManagementSection() {
             </div>
             <div className="flex-1">
               <h4 className="font-semibold text-gray-800 dark:text-gray-100 mb-1">
-                {t("pagesManagement.customCode")}
+                {"Custom Code"}
               </h4>
               <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-                {t("pagesManagement.customCodeDescription")}
+                {"Custom Code Description"}
               </p>
               <Button variant="outline" size="sm">
-                {t("pagesManagement.configureCustomCode")}
+                {"Configure Custom Code"}
               </Button>
             </div>
           </div>

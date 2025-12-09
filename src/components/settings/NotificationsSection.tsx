@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Bell, Mail, MessageSquare, ShoppingCart, Package, Users } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -10,8 +9,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 function NotificationsSection() {
-  const { t } = useTranslation();
-
   type Channel = 'email' | 'push' | 'sms';
   type NotificationType = 'orders' | 'marketing' | 'security' | 'updates';
   type Frequency = 'immediate' | 'hourly' | 'daily' | 'weekly';
@@ -79,14 +76,14 @@ function NotificationsSection() {
               <Bell className="h-6 w-6" />
             </div>
             <div>
-              <CardTitle className="text-xl">{t('notifications.title')}</CardTitle>
+              <CardTitle className="text-xl">{"Title"}</CardTitle>
               <CardDescription className="text-gray-100 mt-1">
-                {t('notifications.description')}
+                {"Description"}
               </CardDescription>
             </div>
           </div>
           <Badge variant="secondary" className="bg-white/20 text-white border-0">
-            {t('notifications.customizable')}
+            {"Customizable"}
           </Badge>
         </div>
       </CardHeader>
@@ -97,13 +94,13 @@ function NotificationsSection() {
               value="channels" 
               className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-700"
             >
-              {t('notifications.tabs.channels')}
+              {"Channels"}
             </TabsTrigger>
             <TabsTrigger 
               value="preferences" 
               className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-700"
             >
-              {t('notifications.tabs.preferences')}
+              {"Preferences"}
             </TabsTrigger>
           </TabsList>
 
@@ -114,7 +111,7 @@ function NotificationsSection() {
                 <div className="flex items-center gap-3 mb-4">
                   <Mail className="h-5 w-5 text-purple-600 dark:text-purple-400" />
                   <h3 className="font-semibold text-gray-900 dark:text-gray-100">
-                    {t('notifications.channels.email')}
+                    {"Email"}
                   </h3>
                 </div>
                 <div className="space-y-4">
@@ -122,7 +119,7 @@ function NotificationsSection() {
                     <div className="flex items-center gap-3">
                       <ShoppingCart className="h-4 w-4 text-gray-500" />
                       <Label className="text-gray-700 dark:text-gray-300 font-normal">
-                        {t('Order Updates')}
+                        {"Order  Updates"}
                       </Label>
                     </div>
                     <Switch
@@ -135,7 +132,7 @@ function NotificationsSection() {
                     <div className="flex items-center gap-3">
                       <MessageSquare className="h-4 w-4 text-gray-500" />
                       <Label className="text-gray-700 dark:text-gray-300 font-normal">
-                        {t('notifications.types.marketingPromotions')}
+                        {"Marketing Promotions"}
                       </Label>
                     </div>
                     <Switch
@@ -148,7 +145,7 @@ function NotificationsSection() {
                     <div className="flex items-center gap-3">
                       <Bell className="h-4 w-4 text-gray-500" />
                       <Label className="text-gray-700 dark:text-gray-300 font-normal">
-                        {t('notifications.types.securityAlerts')}
+                        {"Security Alerts"}
                       </Label>
                     </div>
                     <Switch
@@ -161,7 +158,7 @@ function NotificationsSection() {
                     <div className="flex items-center gap-3">
                       <Package className="h-4 w-4 text-gray-500" />
                       <Label className="text-gray-700 dark:text-gray-300 font-normal">
-                        {t('notifications.types.productUpdates')}
+                        {"Product Updates"}
                       </Label>
                     </div>
                     <Switch
@@ -178,7 +175,7 @@ function NotificationsSection() {
                 <div className="flex items-center gap-3 mb-4">
                   <Bell className="h-5 w-5 text-purple-600 dark:text-purple-400" />
                   <h3 className="font-semibold text-gray-900 dark:text-gray-100">
-                    {t('notifications.channels.push')}
+                    {"Push"}
                   </h3>
                 </div>
                 <div className="space-y-4">
@@ -186,7 +183,7 @@ function NotificationsSection() {
                     <div className="flex items-center gap-3">
                       <ShoppingCart className="h-4 w-4 text-gray-500" />
                       <Label className="text-gray-700 dark:text-gray-300 font-normal">
-                        {t('notifications.types.orderUpdates')}
+                        {"Order Updates"}
                       </Label>
                     </div>
                     <Switch
@@ -199,7 +196,7 @@ function NotificationsSection() {
                     <div className="flex items-center gap-3">
                       <MessageSquare className="h-4 w-4 text-gray-500" />
                       <Label className="text-gray-700 dark:text-gray-300 font-normal">
-                        {t('Marketing & Promotions')}
+                        {"Marketing &  Promotions"}
                       </Label>
                     </div>
                     <Switch
@@ -212,7 +209,7 @@ function NotificationsSection() {
                     <div className="flex items-center gap-3">
                       <Bell className="h-4 w-4 text-gray-500" />
                       <Label className="text-gray-700 dark:text-gray-300 font-normal">
-                        {t('Security Alerts')}
+                        {"Security  Alerts"}
                       </Label>
                     </div>
                     <Switch
@@ -225,7 +222,7 @@ function NotificationsSection() {
                     <div className="flex items-center gap-3">
                       <Package className="h-4 w-4 text-gray-500" />
                       <Label className="text-gray-700 dark:text-gray-300 font-normal">
-                        {t('Product Updates')}
+                        {"Product  Updates"}
                       </Label>
                     </div>
                     <Switch
@@ -242,7 +239,7 @@ function NotificationsSection() {
                 <div className="flex items-center gap-3 mb-4">
                   <MessageSquare className="h-5 w-5 text-purple-600 dark:text-purple-400" />
                   <h3 className="font-semibold text-gray-900 dark:text-gray-100">
-                    {t('notifications.channels.sms')}
+                    {"Sms"}
                   </h3>
                 </div>
                 <div className="space-y-4">
@@ -250,7 +247,7 @@ function NotificationsSection() {
                     <div className="flex items-center gap-3">
                       <ShoppingCart className="h-4 w-4 text-gray-500" />
                       <Label className="text-gray-700 dark:text-gray-300 font-normal">
-                        {t('Order Updates')}
+                        {"Order  Updates"}
                       </Label>
                     </div>
                     <Switch
@@ -263,7 +260,7 @@ function NotificationsSection() {
                     <div className="flex items-center gap-3">
                       <Bell className="h-4 w-4 text-gray-500" />
                       <Label className="text-gray-700 dark:text-gray-300 font-normal">
-                        {t('Security Alerts')}
+                        {"Security  Alerts"}
                       </Label>
                     </div>
                     <Switch
@@ -281,17 +278,17 @@ function NotificationsSection() {
             <div className="space-y-6">
               <div>
                 <Label className="text-gray-700 dark:text-gray-300 font-medium mb-4 block">
-                  {t('notifications.frequency.label')}
+                  {"Label"}
                 </Label>
                 <Select value={notifications.frequency} onValueChange={handleFrequencyChange}>
                   <SelectTrigger className="border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200">
-                    <SelectValue placeholder={t('notifications.frequency.selectPlaceholder')} />
+                    <SelectValue placeholder={"Select Placeholder"} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="immediate">{t('notifications.frequency.immediate')}</SelectItem>
-                    <SelectItem value="hourly">{t('notifications.frequency.hourly')}</SelectItem>
-                    <SelectItem value="daily">{t('notifications.frequency.daily')}</SelectItem>
-                    <SelectItem value="weekly">{t('notifications.frequency.weekly')}</SelectItem>
+                    <SelectItem value="immediate">{"Immediate"}</SelectItem>
+                    <SelectItem value="hourly">{"Hourly"}</SelectItem>
+                    <SelectItem value="daily">{"Daily"}</SelectItem>
+                    <SelectItem value="weekly">{"Weekly"}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -301,10 +298,10 @@ function NotificationsSection() {
                   <Users className="h-5 w-5 text-amber-600 dark:text-amber-400" />
                   <div>
                     <h4 className="font-medium text-amber-900 dark:text-amber-100">
-                      {t('notifications.doNotDisturb.title')}
+                      {"Title"}
                     </h4>
                     <p className="text-sm text-amber-700 dark:text-amber-300 mt-1">
-                      {t('notifications.doNotDisturb.description')}
+                      {"Description"}
                     </p>
                   </div>
                 </div>
@@ -318,13 +315,13 @@ function NotificationsSection() {
             variant="outline" 
             className="border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300"
           >
-            {t('notifications.actions.cancel')}
+            {"Cancel"}
           </Button>
           <Button 
             onClick={handleSave}
             className="bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white"
           >
-            {t('notifications.actions.savePreferences')}
+            {"Save Preferences"}
           </Button>
         </div>
       </CardContent>

@@ -14,12 +14,12 @@ export const loginRequest = createAsyncThunk(
       if (success) {
         // Store token in localStorage
         localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user));
+        localStorage.setItem('user', JSON.stringify({...data.user,storeId:data.store.id}));
         
         // Set default authorization header
         axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
         
-        return { user: data.user, token: data.token };
+        return { user: {...data.user,storeId:data.store.id}, token: data.token };
       }
       
       return rejectWithValue('Login was not successful');

@@ -1,7 +1,5 @@
 import { MoveRight, PenLine } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-
 interface ThemeCardProps {
   title: string;
   description: string;
@@ -20,7 +18,6 @@ function TemplateCard({
   selected = true,
   onSelectChange,
 }: ThemeCardProps) {
-  const { t } = useTranslation();
   return (
     <div className="group relative rounded-2xl  border border-[#d6d6d6]   dark:border-[#424242] transition-all duration-200">
       <img
@@ -56,7 +53,7 @@ function TemplateCard({
       >
         <span className="flex items-center space-x-2">
           
-          <span className="">{t("Try")}</span> <MoveRight size={20} />
+          <span className="">{"Try"}</span> <MoveRight size={20} />
         </span>
       </Link>
       <Link
@@ -72,7 +69,7 @@ function TemplateCard({
       >
         <span className="flex items-center space-x-2">
           
-          <PenLine size={20} /> <span className="">{t("Edit")}</span>{" "}
+          <PenLine size={20} /> <span className="">{"Edit"}</span>{" "}
         </span>
       </Link>
     </div>

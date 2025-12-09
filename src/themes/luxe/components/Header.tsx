@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -61,8 +60,6 @@ export const LuxeHeader = ({
   onSearch,
   className = "",
 }: LuxeHeaderProps) => {
-  const { t } = useTranslation();
-
   const defaultNavigation: NavigationItem[] = [
     {
       label: "Collections",
@@ -169,7 +166,7 @@ export const LuxeHeader = ({
               <SheetContent side="left" className="w-80 dark:bg-[#101010] bg-white">
                 <SheetHeader>
                   <SheetTitle className="font-heading text-2xl font-light">
-                    {t("Menu")}
+                    {"Menu"}
                   </SheetTitle>
                 </SheetHeader>
                 <nav className="mt-8">
@@ -188,7 +185,7 @@ export const LuxeHeader = ({
                                 )
                               }
                             >
-                              {t(item.label)}
+                              {item.label}
                               <ChevronDown
                                 className={`h-4 w-4 transition-transform ${
                                   openDropdown === item.label
@@ -205,7 +202,7 @@ export const LuxeHeader = ({
                                       href={child.href}
                                       className="block py-1.5 text-sm text-gray-600 hover:text-primary"
                                     >
-                                      {t(child.label)}
+                                      {child.label}
                                     </a>
                                   </li>
                                 ))}
@@ -217,7 +214,7 @@ export const LuxeHeader = ({
                             href={item.href}
                             className="block py-2 font-light text-sm uppercase tracking-wider"
                           >
-                            {t(item.label)}
+                            {item.label}
                           </a>
                         )}
                       </li>
@@ -254,7 +251,7 @@ export const LuxeHeader = ({
                           onMouseEnter={() => setOpenDropdown(item.label)}
                           onMouseLeave={() => setOpenDropdown(null)}
                         >
-                          <span>{t(item.label)}</span>
+                          <span>{item.label}</span>
                           <ChevronDown className="h-3 w-3" />
                         </button>
                         {openDropdown === item.label && (
@@ -271,11 +268,11 @@ export const LuxeHeader = ({
                                     className="block px-6 py-3 hover:bg-gray-50"
                                   >
                                     <div className="font-light text-sm uppercase tracking-wider text-gray-900">
-                                      {t(child.label)}
+                                      {child.label}
                                     </div>
                                     {child.description && (
                                       <p className="mt-1 text-xs text-gray-500 font-light">
-                                        {t(child.description)}
+                                        {child.description}
                                       </p>
                                     )}
                                   </a>
@@ -290,7 +287,7 @@ export const LuxeHeader = ({
                         href={item.href}
                         className={`py-2 font-light text-sm uppercase tracking-wider ${linkColor} transition-opacity hover:opacity-70`}
                       >
-                        {t(item.label)}
+                        {item.label}
                       </a>
                     )}
                   </li>
@@ -325,7 +322,7 @@ export const LuxeHeader = ({
                           <form onSubmit={handleSearch} className="relative">
                             <Input
                               type="search"
-                              placeholder={t("Search our collection...")}
+                              placeholder={""}
                               value={searchQuery}
                               onChange={(e) => setSearchQuery(e.target.value)}
                               className="h-16 border-0 border-b-2 border-gray-300 pl-0 pr-12 text-xl font-light focus:border-primary focus:outline-none"
@@ -341,7 +338,7 @@ export const LuxeHeader = ({
                           </form>
                           <div className="mt-8 text-center">
                             <p className="text-sm text-gray-500 font-light uppercase tracking-wider">
-                              {t("Popular Searches")}
+                              {"Popular  Searches"}
                             </p>
                             <div className="mt-4 flex flex-wrap justify-center gap-4">
                               {[
@@ -360,7 +357,7 @@ export const LuxeHeader = ({
                                   }}
                                   className="text-sm text-gray-600 hover:text-primary transition-colors"
                                 >
-                                  {t(term)}
+                                  {term}
                                 </button>
                               ))}
                             </div>

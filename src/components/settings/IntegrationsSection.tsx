@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Plug, Package, Mail, MessageSquare, BarChart3, Link, CheckCircle, XCircle } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -12,8 +11,6 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import type { LucideIcon } from 'lucide-react';
 
 function IntegrationsSection() {
-  const { t } = useTranslation();
-
   type Category = 'Analytics' | 'Email Marketing' | 'Advertising' | 'Communication' | 'Operations';
   type Status = 'connected' | 'disconnected';
 
@@ -38,8 +35,8 @@ function IntegrationsSection() {
       category: 'Analytics',
       icon: BarChart3,
       status: 'connected',
-      description: t('integrations.googleAnalytics.description'),
-      lastSync: t('integrations.lastSync.twoHours'),
+      description: "Description",
+      lastSync: "Two Hours",
       config: { trackingId: 'UA-123456789-1' }
     },
     {
@@ -48,8 +45,8 @@ function IntegrationsSection() {
       category: 'Email Marketing',
       icon: Mail,
       status: 'connected',
-      description: t('integrations.mailchimp.description'),
-      lastSync: t('integrations.lastSync.thirtyMinutes'),
+      description: "Description",
+      lastSync: "Thirty Minutes",
       config: { apiKey: '****-us14' }
     },
     {
@@ -58,7 +55,7 @@ function IntegrationsSection() {
       category: 'Advertising',
       icon: BarChart3,
       status: 'disconnected',
-      description: t('integrations.facebookPixel.description'),
+      description: "Description",
       lastSync: null,
       config: {}
     },
@@ -68,7 +65,7 @@ function IntegrationsSection() {
       category: 'Communication',
       icon: MessageSquare,
       status: 'disconnected',
-      description: t('integrations.whatsapp.description'),
+      description: "Description",
       lastSync: null,
       config: {}
     },
@@ -78,8 +75,8 @@ function IntegrationsSection() {
       category: 'Operations',
       icon: Package,
       status: 'connected',
-      description: t('integrations.inventory.description'),
-      lastSync: t('integrations.lastSync.oneHour'),
+      description: "Description",
+      lastSync: "One Hour",
       config: { webhookUrl: 'https://api.inventory.com/webhook' }
     }
   ]);
@@ -135,14 +132,14 @@ function IntegrationsSection() {
       return (
         <Badge className="bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400 border-0">
           <CheckCircle className="h-3 w-3 mr-1" />
-          {t('integrations.status.connected')}
+          {"Connected"}
         </Badge>
       );
     }
     return (
       <Badge variant="secondary" className="bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400 border-0">
         <XCircle className="h-3 w-3 mr-1" />
-        {t('integrations.status.disconnected')}
+        {"Disconnected"}
       </Badge>
     );
   };
@@ -167,14 +164,14 @@ function IntegrationsSection() {
               <Plug className="h-6 w-6" />
             </div>
             <div>
-              <CardTitle className="text-xl">{t('integrations.title')}</CardTitle>
+              <CardTitle className="text-xl">{"Title"}</CardTitle>
               <CardDescription className="text-gray-100 mt-1">
-                {t('integrations.description')}
+                {"Description"}
               </CardDescription>
             </div>
           </div>
           <Badge variant="secondary" className="bg-white/20 text-white border-0">
-            {t('integrations.optional')}
+            {"Optional"}
           </Badge>
         </div>
       </CardHeader>
@@ -182,24 +179,24 @@ function IntegrationsSection() {
         <Alert className="border-violet-200 bg-violet-50 dark:bg-violet-900/20 dark:border-violet-800">
           <Plug className="h-4 w-4 text-violet-600 dark:text-violet-400" />
           <AlertDescription className="text-violet-800 dark:text-violet-200">
-            {t('integrations.alert')}
+            {"Alert"}
           </AlertDescription>
         </Alert>
 
         {/* Integrations List */}
         <div className="space-y-4">
           <h3 className="font-semibold text-gray-900 dark:text-gray-100">
-            {t('integrations.availableIntegrations')}
+            {"Available Integrations"}
           </h3>
           <div className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
             <Table>
               <TableHeader className="bg-gray-50 dark:bg-gray-800/50">
                 <TableRow>
-                  <TableHead className="text-gray-700 dark:text-gray-300">{t('integrations.table.service')}</TableHead>
-                  <TableHead className="text-gray-700 dark:text-gray-300">{t('integrations.table.category')}</TableHead>
-                  <TableHead className="text-gray-700 dark:text-gray-300">{t('integrations.table.status')}</TableHead>
-                  <TableHead className="text-gray-700 dark:text-gray-300">{t('integrations.table.lastSync')}</TableHead>
-                  <TableHead className="text-gray-700 dark:text-gray-300 text-right">{t('integrations.table.actions')}</TableHead>
+                  <TableHead className="text-gray-700 dark:text-gray-300">{"Service"}</TableHead>
+                  <TableHead className="text-gray-700 dark:text-gray-300">{"Category"}</TableHead>
+                  <TableHead className="text-gray-700 dark:text-gray-300">{"Status"}</TableHead>
+                  <TableHead className="text-gray-700 dark:text-gray-300">{"Last Sync"}</TableHead>
+                  <TableHead className="text-gray-700 dark:text-gray-300 text-right">{"Actions"}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -224,7 +221,7 @@ function IntegrationsSection() {
                       </TableCell>
                       <TableCell>
                         <Badge variant="outline" className={`border-0 ${getCategoryColor(integration.category)}`}>
-                          {t(`integrations.categories.${integration.category.toLowerCase().replace(' ', '')}`)}
+                          {"Categories ${integration Category To Lower Case() Replace(' ', '')}"}
                         </Badge>
                       </TableCell>
                       <TableCell>{getStatusBadge(integration.status)}</TableCell>
@@ -240,7 +237,7 @@ function IntegrationsSection() {
                               onClick={() => handleConnect(integration)}
                               className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
                             >
-                              {t('integrations.actions.configure')}
+                              {"Configure"}
                             </Button>
                             <Button
                               size="sm"
@@ -248,7 +245,7 @@ function IntegrationsSection() {
                               onClick={() => handleDisconnect(integration.id)}
                               className="text-red-600 hover:text-red-700 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-900/20"
                             >
-                              {t('integrations.actions.disconnect')}
+                              {"Disconnect"}
                             </Button>
                           </div>
                         ) : (
@@ -258,7 +255,7 @@ function IntegrationsSection() {
                             className="bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white"
                           >
                             <Link className="h-4 w-4 mr-1" />
-                            {t('integrations.actions.connect')}
+                            {"Connect"}
                           </Button>
                         )}
                       </TableCell>
@@ -277,7 +274,7 @@ function IntegrationsSection() {
               {integrations.filter(i => i.status === 'connected').length}
             </div>
             <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-              {t('integrations.stats.active')}
+              {"Active"}
             </div>
           </div>
           <div className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
@@ -285,7 +282,7 @@ function IntegrationsSection() {
               {integrations.filter(i => i.status === 'connected' && i.category === 'Analytics').length}
             </div>
             <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-              {t('integrations.stats.analytics')}
+              {"Analytics"}
             </div>
           </div>
           <div className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
@@ -293,7 +290,7 @@ function IntegrationsSection() {
               {integrations.length - integrations.filter(i => i.status === 'connected').length}
             </div>
             <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-              {t('integrations.stats.available')}
+              {"Available"}
             </div>
           </div>
         </div>
@@ -303,17 +300,17 @@ function IntegrationsSection() {
           <DialogContent className="bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-800">
             <DialogHeader>
               <DialogTitle className="text-gray-900 dark:text-gray-100">
-                {t('integrations.dialog.title', { name: selectedIntegration?.name })}
+                {"Title"}
               </DialogTitle>
               <DialogDescription className="text-gray-600 dark:text-gray-400">
-                {t('integrations.dialog.description')}
+                {"Description"}
               </DialogDescription>
             </DialogHeader>
             <div className="space-y-4 py-4">
               {selectedIntegration?.name === 'Google Analytics' && (
                 <div>
                   <Label className="text-gray-700 dark:text-gray-300">
-                    {t('integrations.fields.trackingId')}
+                    {"Tracking Id"}
                   </Label>
                   <Input
                     value={configData.trackingId}
@@ -326,12 +323,12 @@ function IntegrationsSection() {
               {(selectedIntegration?.name === 'Mailchimp' || selectedIntegration?.name === 'Facebook Pixel') && (
                 <div>
                   <Label className="text-gray-700 dark:text-gray-300">
-                    {t('integrations.fields.apiKey')}
+                    {"Api Key"}
                   </Label>
                   <Input
                     value={configData.apiKey}
                     onChange={(e) => setConfigData({...configData, apiKey: e.target.value})}
-                    placeholder={t('integrations.fields.apiKeyPlaceholder')}
+                    placeholder={"Api Key Placeholder"}
                     className="border-gray-300 dark:border-gray-700 dark:bg-gray-800"
                   />
                 </div>
@@ -340,7 +337,7 @@ function IntegrationsSection() {
                 <>
                   <div>
                     <Label className="text-gray-700 dark:text-gray-300">
-                      {t('integrations.fields.phoneNumber')}
+                      {"Phone Number"}
                     </Label>
                     <Input
                       value={configData.apiKey}
@@ -351,13 +348,13 @@ function IntegrationsSection() {
                   </div>
                   <div>
                     <Label className="text-gray-700 dark:text-gray-300">
-                      {t('integrations.fields.apiToken')}
+                      {"Api Token"}
                     </Label>
                     <Input
                       type="password"
                       value={configData.secretKey}
                       onChange={(e) => setConfigData({...configData, secretKey: e.target.value})}
-                      placeholder={t('integrations.fields.apiTokenPlaceholder')}
+                      placeholder={"Api Token Placeholder"}
                       className="border-gray-300 dark:border-gray-700 dark:bg-gray-800"
                     />
                   </div>
@@ -366,7 +363,7 @@ function IntegrationsSection() {
               {selectedIntegration?.name === 'Inventory Management' && (
                 <div>
                   <Label className="text-gray-700 dark:text-gray-300">
-                    {t('integrations.fields.webhookUrl')}
+                    {"Webhook Url"}
                   </Label>
                   <Input
                     value={configData.webhookUrl}
@@ -378,7 +375,7 @@ function IntegrationsSection() {
               )}
               <Alert className="border-blue-200 bg-blue-50 dark:bg-blue-900/20 dark:border-blue-800">
                 <AlertDescription className="text-blue-800 dark:text-blue-200 text-sm">
-                  {t('integrations.dialog.securityNote')}
+                  {"Security Note"}
                 </AlertDescription>
               </Alert>
             </div>
@@ -388,13 +385,13 @@ function IntegrationsSection() {
                 onClick={() => setShowConfigDialog(false)}
                 className="border-gray-300 dark:border-gray-700"
               >
-                {t('integrations.actions.cancel')}
+                {"Cancel"}
               </Button>
               <Button 
                 onClick={handleSaveConfig}
                 className="bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white"
               >
-                {t('integrations.actions.saveConfiguration')}
+                {"Save Configuration"}
               </Button>
             </DialogFooter>
           </DialogContent>

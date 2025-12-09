@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -244,16 +243,14 @@ const categories = [
 ];
 
 function Applications() {
-  const { t, i18n } = useTranslation();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [hoveredAppId, setHoveredAppId] = useState<string | null>(null);
-  const isRTL = i18n.language === 'ar';
 
   const stats = [
     {
-      title: t("Total Apps"),
+      title: "Total  Apps",
       value: apps.length,
       icon: Package,
       color: "from-blue-600 to-cyan-600",
@@ -261,7 +258,7 @@ function Applications() {
       shadowColor: "shadow-blue-200 dark:shadow-blue-900/30"
     },
     {
-      title: t("Installed Apps"),
+      title: "Installed  Apps",
       value: apps.filter(app => app.installed).length,
       icon: CheckCircle,
       color: "from-green-600 to-emerald-600",
@@ -269,7 +266,7 @@ function Applications() {
       shadowColor: "shadow-green-200 dark:shadow-green-900/30"
     },
     {
-      title: t("Premium Apps"),
+      title: "Premium  Apps",
       value: apps.filter(app => app.premium).length,
       icon: Sparkles,
       color: "from-purple-600 to-pink-600",
@@ -277,7 +274,7 @@ function Applications() {
       shadowColor: "shadow-purple-200 dark:shadow-purple-900/30"
     },
     {
-      title: t("App Categories"),
+      title: "App  Categories",
       value: categories.length - 1,
       icon: Grid3x3,
       color: "from-orange-600 to-red-600",
@@ -297,7 +294,7 @@ function Applications() {
   const availableApps = filteredApps.filter(app => !app.installed);
 
   return (
-    <div className={cn("min-h-screen  ", isRTL && "rtl")}>
+    <div className={cn("min-h-screen  ")}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-8">
         {/* Enhanced Modern Header Section */}
         <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary/20 via-primary/10 to-transparent p-8 lg:p-10 backdrop-blur-xl shadow-2xl">
@@ -318,18 +315,18 @@ function Applications() {
               <div className="flex items-center gap-3">
                 <Badge className="bg-gradient-to-r from-green-500 to-emerald-600 text-white border-0 px-4 py-1.5 shadow-lg">
                   <Sparkles className="h-3.5 w-3.5 mr-1.5" />
-                  {t("App Store")}
+                  {"App  Store"}
                 </Badge>
                 <Badge variant="outline" className="backdrop-blur-sm bg-white/10 dark:bg-black/10">
-                  {apps.length} {t("Apps")}
+                  {apps.length} {"Apps"}
                 </Badge>
               </div>
             </div>
             <h1 className="text-5xl lg:text-6xl font-black bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 dark:from-white dark:via-gray-200 dark:to-gray-400 bg-clip-text text-transparent">
-              {t("Apps")}
+              {"Apps"}
             </h1>
             <p className="text-lg lg:text-xl text-muted-foreground mt-4 max-w-3xl leading-relaxed">
-              {t("Here you will find apps that you may need to improve your store, increase sales, or perform specific functions that your store needs.")}
+              {"Here you will find apps that you may need to improve your store"}
             </p>
           </div>
         </div>
@@ -398,9 +395,9 @@ function Applications() {
           <CardHeader className="p-4 sm:p-6 pb-3 sm:pb-4">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4">
               <div>
-                <CardTitle className="text-xl sm:text-2xl font-bold">{t("Browse Apps")}</CardTitle>
+                <CardTitle className="text-xl sm:text-2xl font-bold">{"Browse  Apps"}</CardTitle>
                 <CardDescription className="mt-0.5 sm:mt-1 text-xs sm:text-sm">
-                  {t("Discover and install apps to enhance your store")}
+                  {"Discover and install apps to enhance your store"}
                 </CardDescription>
               </div>
               <div className="flex items-center gap-1 sm:gap-2 bg-gray-100 dark:bg-gray-800 p-0.5 sm:p-1 rounded-lg sm:rounded-xl">
@@ -436,7 +433,7 @@ function Applications() {
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-primary/10 rounded-lg sm:rounded-xl blur-xl opacity-0 group-focus-within:opacity-100 transition-opacity duration-500" />
                 <Search className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 h-4 sm:h-5 w-4 sm:w-5 text-muted-foreground transition-colors group-focus-within:text-primary" />
                 <Input
-                  placeholder={t("Search apps...")}
+                  placeholder={""}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="pl-10 sm:pl-12 h-10 sm:h-12 text-sm sm:text-base border-0 bg-gray-100 dark:bg-gray-800 focus:ring-2 focus:ring-primary/30 transition-all duration-300"
@@ -460,7 +457,7 @@ function Applications() {
                       )}
                     >
                       <Icon className="h-3.5 sm:h-4 w-3.5 sm:w-4" />
-                      <span className="whitespace-nowrap">{t(category.name)}</span>
+                      <span className="whitespace-nowrap">{category.name}</span>
                     </Button>
                   );
                 })}
@@ -471,16 +468,16 @@ function Applications() {
               <TabsList className="w-full h-11 sm:h-14 p-0.5 sm:p-1 bg-gray-100 dark:bg-gray-800">
                 <TabsTrigger value="installed" className="flex-1 data-[state=active]:shadow-md sm:data-[state=active]:shadow-lg transition-all duration-300 text-xs sm:text-sm gap-1 sm:gap-2">
                   <CheckCircle className="h-3.5 sm:h-4 w-3.5 sm:w-4" />
-                  <span className="hidden sm:inline">{t("Installed Apps")}</span>
-                  <span className="sm:hidden">{t("Installed")}</span>
+                  <span className="hidden sm:inline">{"Installed  Apps"}</span>
+                  <span className="sm:hidden">{"Installed"}</span>
                   <Badge variant="secondary" className="ml-1 sm:ml-2 px-1.5 sm:px-2 py-0 sm:py-0.5 text-xs">
                     {installedApps.length}
                   </Badge>
                 </TabsTrigger>
                 <TabsTrigger value="available" className="flex-1 data-[state=active]:shadow-md sm:data-[state=active]:shadow-lg transition-all duration-300 text-xs sm:text-sm gap-1 sm:gap-2">
                   <Plus className="h-3.5 sm:h-4 w-3.5 sm:w-4" />
-                  <span className="hidden sm:inline">{t("Available Apps")}</span>
-                  <span className="sm:hidden">{t("Available")}</span>
+                  <span className="hidden sm:inline">{"Available  Apps"}</span>
+                  <span className="sm:hidden">{"Available"}</span>
                   <Badge variant="secondary" className="ml-1 sm:ml-2 px-1.5 sm:px-2 py-0 sm:py-0.5 text-xs">
                     {availableApps.length}
                   </Badge>
@@ -493,7 +490,7 @@ function Applications() {
                     <div className="p-3 sm:p-4 rounded-full bg-gray-100 dark:bg-gray-800 w-fit mx-auto mb-3 sm:mb-4">
                       <Package className="h-8 sm:h-10 lg:h-12 w-8 sm:w-10 lg:w-12 text-muted-foreground" />
                     </div>
-                    <p className="text-muted-foreground text-sm sm:text-base lg:text-lg">{t("No installed apps in this category")}</p>
+                    <p className="text-muted-foreground text-sm sm:text-base lg:text-lg">{"No installed apps in this category"}</p>
                   </div>
                 ) : (
                   <div className={cn(
@@ -520,7 +517,7 @@ function Applications() {
                     <div className="p-3 sm:p-4 rounded-full bg-gray-100 dark:bg-gray-800 w-fit mx-auto mb-3 sm:mb-4">
                       <Package className="h-8 sm:h-10 lg:h-12 w-8 sm:w-10 lg:w-12 text-muted-foreground" />
                     </div>
-                    <p className="text-muted-foreground text-sm sm:text-base lg:text-lg">{t("No available apps in this category")}</p>
+                    <p className="text-muted-foreground text-sm sm:text-base lg:text-lg">{"No available apps in this category"}</p>
                   </div>
                 ) : (
                   <div className={cn(
@@ -556,7 +553,6 @@ interface AppCardProps {
 }
 
 function AppCard({ app, viewMode, hoveredAppId, setHoveredAppId }: AppCardProps) {
-  const { t } = useTranslation();
   const isHovered = hoveredAppId === app.id;
 
   if (viewMode === "list") {
@@ -587,17 +583,17 @@ function AppCard({ app, viewMode, hoveredAppId, setHoveredAppId }: AppCardProps)
                   {app.premium && (
                     <Badge className="bg-gradient-to-r from-amber-500 to-orange-500 text-white border-0 shadow-lg animate-pulse">
                       <Sparkles className="h-3.5 w-3.5 mr-1" />
-                      {t("Premium")}
+                      {"Premium"}
                     </Badge>
                   )}
                   {app.installed && (
                     <Badge className="bg-gradient-to-r from-green-100 to-emerald-100 text-green-700 dark:from-green-900/30 dark:to-emerald-900/30 dark:text-green-400 border-green-300 dark:border-green-800">
                       <CheckCircle className="h-3.5 w-3.5 mr-1" />
-                      {t("Installed")}
+                      {"Installed"}
                     </Badge>
                   )}
                 </div>
-                <p className="text-base text-muted-foreground mb-3 line-clamp-2">{t(app.description)}</p>
+                <p className="text-base text-muted-foreground mb-3 line-clamp-2">{app.description}</p>
                 <div className="flex items-center gap-6 text-sm">
                   <div className="flex items-center gap-1.5">
                     {[...Array(5)].map((_, i) => (
@@ -614,7 +610,7 @@ function AppCard({ app, viewMode, hoveredAppId, setHoveredAppId }: AppCardProps)
                   </div>
                   <span className="text-muted-foreground flex items-center gap-1">
                     <Download className="h-3.5 w-3.5" />
-                    {app.installs} {t("installs")}
+                    {app.installs} {"Installs"}
                   </span>
                 </div>
               </div>
@@ -631,17 +627,17 @@ function AppCard({ app, viewMode, hoveredAppId, setHoveredAppId }: AppCardProps)
                 {app.installed ? (
                   <>
                     <Settings className="h-4 w-4" />
-                    {t("Configure")}
+                    {"Configure"}
                   </>
                 ) : (
                   <>
                     <Download className="h-4 w-4" />
-                    {t("Install")}
+                    {"Install"}
                   </>
                 )}
               </Button>
               <Button variant="ghost" size="sm" className="group/btn">
-                {t("Learn More")}
+                {"Learn  More"}
                 <ChevronRight className="h-4 w-4 ml-1 transition-transform group-hover/btn:translate-x-1" />
               </Button>
             </div>
@@ -697,13 +693,13 @@ function AppCard({ app, viewMode, hoveredAppId, setHoveredAppId }: AppCardProps)
                   isHovered && "scale-110 animate-pulse"
                 )}>
                   <Sparkles className="h-3.5 w-3.5 mr-1" />
-                  {t("Premium")}
+                  {"Premium"}
                 </Badge>
               )}
               {app.installed && (
                 <Badge className="bg-gradient-to-r from-green-100 to-emerald-100 text-green-700 dark:from-green-900/30 dark:to-emerald-900/30 dark:text-green-400 border-green-300 dark:border-green-800">
                   <CheckCircle className="h-3.5 w-3.5 mr-1" />
-                  {t("Installed")}
+                  {"Installed"}
                 </Badge>
               )}
             </div>
@@ -717,7 +713,7 @@ function AppCard({ app, viewMode, hoveredAppId, setHoveredAppId }: AppCardProps)
               "line-clamp-2 transition-all duration-300",
               isHovered && "line-clamp-3"
             )}>
-              {t(app.description)}
+              {app.description}
             </CardDescription>
           </div>
         </CardHeader>
@@ -751,7 +747,7 @@ function AppCard({ app, viewMode, hoveredAppId, setHoveredAppId }: AppCardProps)
             "space-y-2 overflow-hidden transition-all duration-500",
             isHovered ? "max-h-20 opacity-100" : "max-h-0 opacity-0"
           )}>
-            <p className="text-xs font-semibold text-muted-foreground">{t("Key Features")}:</p>
+            <p className="text-xs font-semibold text-muted-foreground">{"Key  Features"}:</p>
             <div className="flex flex-wrap gap-1">
               {app.features.slice(0, 3).map((feature, index) => (
                 <Badge
@@ -760,12 +756,12 @@ function AppCard({ app, viewMode, hoveredAppId, setHoveredAppId }: AppCardProps)
                   className="text-xs backdrop-blur-sm bg-white/50 dark:bg-gray-800/50"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  {t(feature)}
+                  {feature}
                 </Badge>
               ))}
               {app.features.length > 3 && (
                 <Badge variant="secondary" className="text-xs backdrop-blur-sm bg-white/50 dark:bg-gray-800/50">
-                  +{app.features.length - 3} {t("more")}
+                  +{app.features.length - 3} {"More"}
                 </Badge>
               )}
             </div>
@@ -789,12 +785,12 @@ function AppCard({ app, viewMode, hoveredAppId, setHoveredAppId }: AppCardProps)
               {app.installed ? (
                 <>
                   <Settings className="h-4 w-4" />
-                  {t("Configure")}
+                  {"Configure"}
                 </>
               ) : (
                 <>
                   <Download className="h-4 w-4" />
-                  {t("Install Now")}
+                  {"Install  Now"}
                 </>
               )}
             </span>

@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useTranslation } from "react-i18next";
 import { MessageCircle, X, Send, Minimize2 } from "lucide-react";
 import { getAgentById } from "@/data/agents-data";
 import type { Agent } from "@/data/agents-data";
@@ -15,10 +14,7 @@ interface ChatWidgetProps {
   defaultAgentId?: string;
 }
 
-export const ChatWidget: React.FC<ChatWidgetProps> = ({
-  defaultAgentId = "sales",
-}) => {
-  const { t } = useTranslation();
+export const ChatWidget: React.FC<ChatWidgetProps> = ({ defaultAgentId = "sales" }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [message, setMessage] = useState("");
@@ -30,64 +26,52 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({
   useEffect(() => {
     const agentData = getAgentById(defaultAgentId);
     setAgent(agentData);
+  }, [defaultAgentId]);
 
-    // Add welcome message when chat opens
-    if (agentData && messages.length === 0 && isOpen) {
+  // Add welcome message when chat opens
+  useEffect(() => {
+    if (isOpen && messages.length === 0) {
       const welcomeMessage: ChatMessage = {
         id: Date.now().toString(),
-        text: t("agentChat.welcomeMessage", {
-          agentName: t(`agents.${agentData.id}.name`, {
-            defaultValue: agentData.name,
-          }),
-          description: t(`agents.${agentData.id}.description`, {
-            defaultValue: agentData.description.toLowerCase(),
-          }),
-        }),
+        text: "Hi! How can I help you today?",
         sender: "agent",
         timestamp: new Date(),
       };
       setMessages([welcomeMessage]);
     }
-  }, [defaultAgentId, isOpen]);
+  }, [isOpen, messages.length]);
 
   // Auto-scroll to bottom
   useEffect(() => {
     if (chatContainerRef.current) {
-      chatContainerRef.current.scrollTop =
-        chatContainerRef.current.scrollHeight;
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
     }
   }, [messages]);
 
-  // Handle sending message
   const handleSendMessage = () => {
-    if (message.trim() && agent) {
-      const newMessage: ChatMessage = {
-        id: Date.now().toString(),
-        text: message,
-        sender: "user",
+    if (!message.trim()) return;
+
+    const newMessage: ChatMessage = {
+      id: Date.now().toString(),
+      text: message,
+      sender: "user",
+      timestamp: new Date(),
+    };
+
+    setMessages((prev) => [...prev, newMessage]);
+
+    // Simulate agent response
+    setTimeout(() => {
+      const agentMessage: ChatMessage = {
+        id: (Date.now() + 1).toString(),
+        text: "Thanks for your message! Our team will get back to you shortly.",
+        sender: "agent",
         timestamp: new Date(),
       };
+      setMessages((prev) => [...prev, agentMessage]);
+    }, 1500);
 
-      setMessages((prev) => [...prev, newMessage]);
-
-      // Simulate agent response
-      setTimeout(() => {
-        const agentMessage: ChatMessage = {
-          id: (Date.now() + 1).toString(),
-          text: t("agentChat.response", {
-            message: message,
-            agentName: t(`agents.${agent.id}.name`, {
-              defaultValue: agent.name,
-            }),
-          }),
-          sender: "agent",
-          timestamp: new Date(),
-        };
-        setMessages((prev) => [...prev, agentMessage]);
-      }, 1500);
-
-      setMessage("");
-    }
+    setMessage("");
   };
 
   return (
@@ -117,21 +101,13 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({
             onClick={() => setIsMinimized(!isMinimized)}
           >
             <div className="flex items-center gap-3">
-              {agent && (
-                <>
-                  <span className="text-2xl">{agent.icon}</span>
-                  <div>
-                    <h3 className="font-semibold text-sm">
-                      {t(`agents.${agent.id}.name`, {
-                        defaultValue: agent.name,
-                      })}
-                    </h3>
-                    <p className="text-xs opacity-90">
-                      {t("agentChat.online")}
-                    </p>
-                  </div>
-                </>
-              )}
+              <>
+                <span className="text-2xl">{agent?.icon}</span>
+                <div>
+                  <h3 className="font-semibold text-sm">Support Agent</h3>
+                  <p className="text-xs opacity-90">Online</p>
+                </div>
+              </>
             </div>
             <div className="flex items-center gap-1">
               <button
@@ -162,19 +138,12 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({
           {!isMinimized && (
             <>
               {/* Messages */}
-              <div
-                ref={chatContainerRef}
-                className="h-80 overflow-y-auto p-4 bg-transparent"
-              >
+              <div ref={chatContainerRef} className="h-80 overflow-y-auto p-4 bg-transparent">
                 {messages.length === 0 ? (
                   <div className="flex flex-col items-center justify-center h-full text-center">
                     <span className="text-4xl mb-2">{agent?.icon}</span>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                      {t("agentChat.startConversation", {
-                        agentName: t(`agents.${agent?.id}.name`, {
-                          defaultValue: agent?.name,
-                        }),
-                      })}
+                      Start a conversation with our team.
                     </p>
                   </div>
                 ) : (
@@ -182,11 +151,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({
                     {messages.map((msg) => (
                       <div
                         key={msg.id}
-                        className={`flex ${
-                          msg.sender === "user"
-                            ? "justify-end"
-                            : "justify-start"
-                        }`}
+                        className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
                       >
                         {msg.sender === "agent" && (
                           <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center mr-2 flex-shrink-0 shadow-sm">
@@ -203,15 +168,10 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({
                           <p className="text-sm">{msg.text}</p>
                           <span
                             className={`text-xs mt-1 block ${
-                              msg.sender === "user"
-                                ? "text-white/80"
-                                : "text-gray-500 dark:text-gray-400"
+                              msg.sender === "user" ? "text-white/80" : "text-gray-500 dark:text-gray-400"
                             }`}
                           >
-                            {msg.timestamp.toLocaleTimeString([], {
-                              hour: "2-digit",
-                              minute: "2-digit",
-                            })}
+                            {msg.timestamp.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
                           </span>
                         </div>
                       </div>
@@ -226,14 +186,10 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({
                   <input
                     type="text"
                     className="flex-1 px-4 py-2.5 text-sm border-0 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
-                    placeholder={t("agentChat.inputPlaceholder", {
-                      agentName: t(`agents.${agent?.id}.name`, {
-                        defaultValue: agent?.name,
-                      }),
-                    })}
+                    placeholder="Type your message..."
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
+                    onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
                   />
                   <button
                     onClick={handleSendMessage}

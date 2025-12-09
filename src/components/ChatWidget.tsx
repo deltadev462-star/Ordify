@@ -1,13 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { MessageCircle, X, Send, Mic, Smile } from "lucide-react";
  
 export default function ChatWidget() {
-  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([
-    { id: 1, from: "bot", text: t("chat.greeting") },
+    { id: 1, from: "bot", text: "Greeting" },
   ]);
   const endRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -31,7 +29,7 @@ export default function ChatWidget() {
     setTimeout(() => {
       setMessages((m) => [
         ...m,
-        { id: Date.now() + 1, from: "bot", text: t("chat.received") },
+        { id: Date.now() + 1, from: "bot", text: "Received" },
       ]);
     }, 600);
   };
@@ -55,10 +53,10 @@ export default function ChatWidget() {
           <div className="bg-gradient-to-r from-sky-500 to-blue-600 text-white">
             <div className="px-4 pt-3 flex gap-2">
                <button className="px-3 py-1 rounded-full bg-white/20 backdrop-blur text-white text-sm">
-                 {t("chat.conversation")}
+                 {"Conversation"}
                </button>
                <button className="px-3 py-1 rounded-full hover:bg-white/15 text-white/90 text-sm">
-                 {t("chat.helpCenter")}
+                 {"Help Center"}
                </button>
              </div>
 
@@ -79,10 +77,10 @@ export default function ChatWidget() {
               </div>
 
               <div className="mt-2 text-sm">
-                {t("chat.haveQuestions")}
+                {"Have Questions"}
                 <div className="text-white/80 text-xs mt-1 flex items-center gap-1">
                   <span className="inline-block w-2 h-2 bg-green-400 rounded-full" />{" "}
-                  {t("chat.supportAvailable")}
+                  {"Support Available"}
                 </div>
               </div>
             </div>
@@ -117,13 +115,13 @@ export default function ChatWidget() {
             <div className="flex items-end gap-2">
               <button
                 className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-600 text-gray-600 dark:text-gray-300"
-                title={t("chat.microphone")}
+                title={"Microphone"}
               >
                 <Mic className="w-5 h-5" />
               </button>
               <button
                 className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-600 text-gray-600 dark:text-gray-300"
-                title={t("chat.emoji")}
+                title={"Emoji"}
               >
                 <Smile className="w-5 h-5" />
               </button>
@@ -134,14 +132,14 @@ export default function ChatWidget() {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={onKey}
                 rows={1}
-                placeholder={t("chat.typeMessage")}
+                placeholder={"Type Message"}
                 className="flex-1 resize-none max-h-24 px-3 py-2 rounded-xl border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500/40"
               />
 
               <button
                 onClick={send}
                 className="p-2 rounded-xl bg-blue-600 text-white hover:bg-blue-700 active:scale-95 transition"
-                title={t("chat.send")}
+                title={"Send"}
               >
                 <Send className="w-5 h-5" />
               </button>

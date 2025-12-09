@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { 
   Palette, 
   Layout, 
@@ -44,7 +43,6 @@ interface ThemePreset {
 }
 
 function ThemeSettingsSection() {
-  const { t } = useTranslation();
   const [activeDevice, setActiveDevice] = useState<'desktop' | 'tablet' | 'mobile'>('desktop');
   const [showPreview, setShowPreview] = useState(true);
   const [customCSS, setCustomCSS] = useState('');
@@ -70,7 +68,7 @@ function ThemeSettingsSection() {
   const themePresets: ThemePreset[] = [
     {
       id: 'modern',
-      name: t('themeSettings.presets.modern'),
+      name: "Modern",
       primary: '#6366f1',
       secondary: '#8b5cf6',
       background: '#ffffff',
@@ -81,7 +79,7 @@ function ThemeSettingsSection() {
     },
     {
       id: 'classic',
-      name: t('themeSettings.presets.classic'),
+      name: "Classic",
       primary: '#3b82f6',
       secondary: '#1e40af',
       background: '#ffffff',
@@ -92,7 +90,7 @@ function ThemeSettingsSection() {
     },
     {
       id: 'dark',
-      name: t('themeSettings.presets.darkMode'),
+      name: "Dark Mode",
       primary: '#8b5cf6',
       secondary: '#7c3aed',
       background: '#0f172a',
@@ -103,7 +101,7 @@ function ThemeSettingsSection() {
     },
     {
       id: 'minimal',
-      name: t('themeSettings.presets.minimal'),
+      name: "Minimal",
       primary: '#000000',
       secondary: '#374151',
       background: '#ffffff',
@@ -114,7 +112,7 @@ function ThemeSettingsSection() {
     },
     {
       id: 'nature',
-      name: t('themeSettings.presets.nature'),
+      name: "Nature",
       primary: '#059669',
       secondary: '#047857',
       background: '#ecfdf5',
@@ -126,12 +124,12 @@ function ThemeSettingsSection() {
   ];
 
   const fontFamilies = [
-    { value: 'Inter', name: t('themeSettings.fonts.inter') },
-    { value: 'Arial', name: t('themeSettings.fonts.arial') },
-    { value: 'Georgia', name: t('themeSettings.fonts.georgia') },
-    { value: 'Roboto', name: t('themeSettings.fonts.roboto') },
-    { value: 'Poppins', name: t('themeSettings.fonts.poppins') },
-    { value: 'Montserrat', name: t('themeSettings.fonts.montserrat') }
+    { value: 'Inter', name: "Inter" },
+    { value: 'Arial', name: "Arial" },
+    { value: 'Georgia', name: "Georgia" },
+    { value: 'Roboto', name: "Roboto" },
+    { value: 'Poppins', name: "Poppins" },
+    { value: 'Montserrat', name: "Montserrat" }
   ];
 
   const handlePresetChange = (presetId: string) => {
@@ -166,7 +164,7 @@ function ThemeSettingsSection() {
     const themeData = JSON.stringify(themeSettings, null, 2);
     const blob = new Blob([themeData], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
+    const a = document.createElement("a");
     a.href = url;
     a.download = 'theme-settings.json';
     a.click();
@@ -176,9 +174,9 @@ function ThemeSettingsSection() {
     <div className="space-y-6">
       <Alert variant="info">
         <AlertIcon variant="info" />
-        <AlertTitle>{t("themeSettings.title")}</AlertTitle>
+        <AlertTitle>{"Title"}</AlertTitle>
         <AlertDescription>
-          {t("themeSettings.description")}
+          {"Description"}
         </AlertDescription>
       </Alert>
 
@@ -212,7 +210,7 @@ function ThemeSettingsSection() {
             checked={showPreview}
             onCheckedChange={setShowPreview}
           />
-          <Label className="text-sm">{t("themeSettings.livePreview")}</Label>
+          <Label className="text-sm">{"Live Preview"}</Label>
         </div>
       </div>
 
@@ -220,19 +218,19 @@ function ThemeSettingsSection() {
         <TabsList className="grid w-full max-w-lg grid-cols-2 sm:grid-cols-4 mb-6">
           <TabsTrigger value="colors" className="flex items-center gap-2">
             <Palette className="w-4 h-4" />
-            {t("themeSettings.tabs.colors")}
+            {"Colors"}
           </TabsTrigger>
           <TabsTrigger value="typography" className="flex items-center gap-2">
             <Type className="w-4 h-4" />
-            {t("themeSettings.tabs.typography")}
+            {"Typography"}
           </TabsTrigger>
           <TabsTrigger value="layout" className="flex items-center gap-2">
             <Layout className="w-4 h-4" />
-            {t("themeSettings.tabs.layout")}
+            {"Layout"}
           </TabsTrigger>
           <TabsTrigger value="advanced" className="flex items-center gap-2">
             <Code2 className="w-4 h-4" />
-            {t("themeSettings.tabs.advanced")}
+            {"Advanced"}
           </TabsTrigger>
         </TabsList>
 
@@ -245,9 +243,9 @@ function ThemeSettingsSection() {
                   <Brush className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <CardTitle className="text-xl">{t("themeSettings.colors.presetsTitle")}</CardTitle>
+                  <CardTitle className="text-xl">{"Presets Title"}</CardTitle>
                   <CardDescription className="text-white/80">
-                    {t("themeSettings.colors.presetsDescription")}
+                    {"Presets Description"}
                   </CardDescription>
                 </div>
               </div>
@@ -295,7 +293,7 @@ function ThemeSettingsSection() {
                             <Sun className="w-4 h-4 text-gray-500" />
                           )}
                           <span className="text-xs text-gray-500">
-                            {t(preset.type === 'dark' ? 'themeSettings.colors.dark' : 'themeSettings.colors.light')}
+                            {preset.type === 'dark' ? 'themeSettings.colors.dark' : 'themeSettings.colors.light'}
                           </span>
                         </div>
                       </div>
@@ -317,16 +315,16 @@ function ThemeSettingsSection() {
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Palette className="w-5 h-5 text-primary" />
-                {t("themeSettings.colors.customizationTitle")}
+                {"Customization Title"}
               </CardTitle>
               <CardDescription>
-                {t("themeSettings.colors.customizationDescription")}
+                {"Customization Description"}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <Label className="mb-2">{t("themeSettings.colors.primary")}</Label>
+                  <Label className="mb-2">{"Primary"}</Label>
                   <div className="flex gap-2">
                     <Input
                       type="color"
@@ -343,7 +341,7 @@ function ThemeSettingsSection() {
                 </div>
                 
                 <div>
-                  <Label className="mb-2">{t("themeSettings.colors.secondary")}</Label>
+                  <Label className="mb-2">{"Secondary"}</Label>
                   <div className="flex gap-2">
                     <Input
                       type="color"
@@ -360,7 +358,7 @@ function ThemeSettingsSection() {
                 </div>
                 
                 <div>
-                  <Label className="mb-2">{t("themeSettings.colors.accent")}</Label>
+                  <Label className="mb-2">{"Accent"}</Label>
                   <div className="flex gap-2">
                     <Input
                       type="color"
@@ -377,7 +375,7 @@ function ThemeSettingsSection() {
                 </div>
                 
                 <div>
-                  <Label className="mb-2">{t("themeSettings.colors.background")}</Label>
+                  <Label className="mb-2">{"Background"}</Label>
                   <div className="flex gap-2">
                     <Input
                       type="color"
@@ -396,7 +394,7 @@ function ThemeSettingsSection() {
 
               <div className="pt-4 border-t">
                 <Label className="mb-2 flex items-center gap-2">
-                  {t("themeSettings.colors.scheme")}
+                  {"Scheme"}
                 </Label>
                 <Select 
                   value={themeSettings.colorScheme}
@@ -411,19 +409,19 @@ function ThemeSettingsSection() {
                     <SelectItem value="light">
                       <span className="flex items-center gap-2">
                         <Sun className="w-4 h-4" />
-                        {t("themeSettings.colors.lightMode")}
+                        {"Light Mode"}
                       </span>
                     </SelectItem>
                     <SelectItem value="dark">
                       <span className="flex items-center gap-2">
                         <Moon className="w-4 h-4" />
-                        {t("themeSettings.colors.darkMode")}
+                        {"Dark Mode"}
                       </span>
                     </SelectItem>
                     <SelectItem value="system">
                       <span className="flex items-center gap-2">
                         <Monitor className="w-4 h-4" />
-                        {t("themeSettings.colors.systemDefault")}
+                        {"System Default"}
                       </span>
                     </SelectItem>
                   </SelectContent>
@@ -438,15 +436,15 @@ function ThemeSettingsSection() {
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Type className="w-5 h-5 text-primary" />
-                {t("themeSettings.typography.title")}
+                {"Title"}
               </CardTitle>
               <CardDescription>
-                {t("themeSettings.typography.description")}
+                {"Description"}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div>
-                <Label className="mb-2">{t("themeSettings.typography.fontFamily")}</Label>
+                <Label className="mb-2">{"Font Family"}</Label>
                 <Select 
                   value={themeSettings.fontFamily}
                   onValueChange={(value) => setThemeSettings(prev => ({ ...prev, fontFamily: value }))}
@@ -467,7 +465,7 @@ function ThemeSettingsSection() {
               </div>
 
               <div>
-                <Label className="mb-2">{t("themeSettings.typography.fontSize")}</Label>
+                <Label className="mb-2">{"Font Size"}</Label>
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-600">{themeSettings.fontSize}px</span>
@@ -477,21 +475,21 @@ function ThemeSettingsSection() {
                         variant="outline"
                         onClick={() => setThemeSettings(prev => ({ ...prev, fontSize: 14 }))}
                       >
-                        {t("themeSettings.typography.small")}
+                        {"Small"}
                       </Button>
                       <Button
                         size="sm"
                         variant="outline"
                         onClick={() => setThemeSettings(prev => ({ ...prev, fontSize: 16 }))}
                       >
-                        {t("themeSettings.typography.medium")}
+                        {"Medium"}
                       </Button>
                       <Button
                         size="sm"
                         variant="outline"
                         onClick={() => setThemeSettings(prev => ({ ...prev, fontSize: 18 }))}
                       >
-                        {t("themeSettings.typography.large")}
+                        {"Large"}
                       </Button>
                     </div>
                   </div>
@@ -507,22 +505,22 @@ function ThemeSettingsSection() {
               </div>
 
               <div className="pt-4 border-t">
-                <h4 className="font-medium mb-3">{t("themeSettings.typography.preview")}</h4>
+                <h4 className="font-medium mb-3">{"Preview"}</h4>
                 <div 
                   className="p-4 bg-gray-50 dark:bg-gray-900 rounded-lg space-y-2"
                   style={{ fontFamily: themeSettings.fontFamily, fontSize: `${themeSettings.fontSize}px` }}
                 >
                   <h1 className="text-3xl font-bold" style={{ color: themeSettings.primaryColor }}>
-                    {t("themeSettings.typography.headingExample")}
+                    {"Heading Example"}
                   </h1>
                   <h2 className="text-xl font-semibold" style={{ color: themeSettings.secondaryColor }}>
-                    {t("themeSettings.typography.subheadingExample")}
+                    {"Subheading Example"}
                   </h2>
                   <p>
-                    {t("themeSettings.typography.bodyExample")}
+                    {"Body Example"}
                   </p>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    {t("themeSettings.typography.smallExample")}
+                    {"Small Example"}
                   </p>
                 </div>
               </div>
@@ -535,15 +533,15 @@ function ThemeSettingsSection() {
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Layout className="w-5 h-5 text-primary" />
-                {t("themeSettings.layout.title")}
+                {"Title"}
               </CardTitle>
               <CardDescription>
-                {t("themeSettings.layout.description")}
+                {"Description"}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div>
-                <Label className="mb-2">{t("themeSettings.layout.borderRadius")}</Label>
+                <Label className="mb-2">{"Border Radius"}</Label>
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-gray-600">{themeSettings.borderRadius}px</span>
@@ -553,21 +551,21 @@ function ThemeSettingsSection() {
                         variant="outline"
                         onClick={() => setThemeSettings(prev => ({ ...prev, borderRadius: 0 }))}
                       >
-                        {t("themeSettings.layout.square")}
+                        {"Square"}
                       </Button>
                       <Button
                         size="sm"
                         variant="outline"
                         onClick={() => setThemeSettings(prev => ({ ...prev, borderRadius: 8 }))}
                       >
-                        {t("themeSettings.layout.rounded")}
+                        {"Rounded"}
                       </Button>
                       <Button
                         size="sm"
                         variant="outline"
                         onClick={() => setThemeSettings(prev => ({ ...prev, borderRadius: 16 }))}
                       >
-                        {t("themeSettings.layout.pill")}
+                        {"Pill"}
                       </Button>
                     </div>
                   </div>
@@ -583,7 +581,7 @@ function ThemeSettingsSection() {
               </div>
 
               <div>
-                <Label className="mb-2">{t("themeSettings.layout.headerStyle")}</Label>
+                <Label className="mb-2">{"Header Style"}</Label>
                 <Select 
                   value={themeSettings.headerStyle}
                   onValueChange={(value) => setThemeSettings(prev => ({ ...prev, headerStyle: value }))}
@@ -592,15 +590,15 @@ function ThemeSettingsSection() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="fixed">{t("themeSettings.layout.fixedHeader")}</SelectItem>
-                    <SelectItem value="sticky">{t("themeSettings.layout.stickyHeader")}</SelectItem>
-                    <SelectItem value="static">{t("themeSettings.layout.staticHeader")}</SelectItem>
+                    <SelectItem value="fixed">{"Fixed Header"}</SelectItem>
+                    <SelectItem value="sticky">{"Sticky Header"}</SelectItem>
+                    <SelectItem value="static">{"Static Header"}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
               <div>
-                <Label className="mb-2">{t("themeSettings.layout.sidebarStyle")}</Label>
+                <Label className="mb-2">{"Sidebar Style"}</Label>
                 <Select 
                   value={themeSettings.sidebarStyle}
                   onValueChange={(value) => setThemeSettings(prev => ({ ...prev, sidebarStyle: value }))}
@@ -609,18 +607,18 @@ function ThemeSettingsSection() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="fixed">{t("themeSettings.layout.fixedSidebar")}</SelectItem>
-                    <SelectItem value="collapsible">{t("themeSettings.layout.collapsibleSidebar")}</SelectItem>
-                    <SelectItem value="hidden">{t("themeSettings.layout.hiddenSidebar")}</SelectItem>
+                    <SelectItem value="fixed">{"Fixed Sidebar"}</SelectItem>
+                    <SelectItem value="collapsible">{"Collapsible Sidebar"}</SelectItem>
+                    <SelectItem value="hidden">{"Hidden Sidebar"}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
               <div className="flex items-center justify-between pt-4 border-t">
                 <div>
-                  <p className="font-medium">{t("themeSettings.layout.enableAnimations")}</p>
+                  <p className="font-medium">{"Enable Animations"}</p>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    {t("themeSettings.layout.animationsDescription")}
+                    {"Animations Description"}
                   </p>
                 </div>
                 <Switch
@@ -634,7 +632,7 @@ function ThemeSettingsSection() {
           {/* Preview Example */}
           <Card className="border-0 shadow-lg overflow-hidden">
             <CardHeader>
-              <CardTitle className="text-lg">{t("themeSettings.layout.preview")}</CardTitle>
+              <CardTitle className="text-lg">{"Preview"}</CardTitle>
             </CardHeader>
             <CardContent className="p-0">
               <div 
@@ -678,19 +676,19 @@ function ThemeSettingsSection() {
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Code2 className="w-5 h-5 text-primary" />
-                {t("themeSettings.advanced.customCSS")}
+                {"Custom C S S"}
               </CardTitle>
               <CardDescription>
-                {t("themeSettings.advanced.customCSSDescription")}
+                {"Custom C S S Description"}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <Label className="mb-2">{t("themeSettings.advanced.customCSSCode")}</Label>
+                <Label className="mb-2">{"Custom C S S Code"}</Label>
                 <textarea
                   value={customCSS}
                   onChange={(e) => setCustomCSS(e.target.value)}
-                  placeholder={t("themeSettings.advanced.cssPlaceholder")}
+                  placeholder={"Css Placeholder"}
                   className="w-full h-48 px-3 py-2 text-sm font-mono bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-primary/50"
                 />
               </div>
@@ -698,7 +696,7 @@ function ThemeSettingsSection() {
               <Alert>
                 <Settings className="h-4 w-4" />
                 <AlertDescription>
-                  {t("themeSettings.advanced.cssWarning")}
+                  {"Css Warning"}
                 </AlertDescription>
               </Alert>
             </CardContent>
@@ -708,7 +706,7 @@ function ThemeSettingsSection() {
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Settings className="w-5 h-5 text-primary" />
-                {t("themeSettings.advanced.themeActions")}
+                {"Theme Actions"}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -719,7 +717,7 @@ function ThemeSettingsSection() {
                   className="gap-2"
                 >
                   <RotateCcw className="w-4 h-4" />
-                  {t("themeSettings.advanced.resetDefaults")}
+                  {"Reset Defaults"}
                 </Button>
                 
                 <Button
@@ -728,7 +726,7 @@ function ThemeSettingsSection() {
                   className="gap-2"
                 >
                   <Download className="w-4 h-4" />
-                  {t("themeSettings.advanced.exportTheme")}
+                  {"Export Theme"}
                 </Button>
                 
                 <Button
@@ -736,14 +734,14 @@ function ThemeSettingsSection() {
                   className="gap-2"
                 >
                   <Upload className="w-4 h-4" />
-                  {t("themeSettings.advanced.importTheme")}
+                  {"Import Theme"}
                 </Button>
               </div>
 
               <div className="pt-4 border-t">
                 <div className="flex items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
-                  <Badge variant="secondary">{t("themeSettings.advanced.version")} 2.0</Badge>
-                  <span>{t("themeSettings.advanced.lastSaved")}: {new Date().toLocaleString()}</span>
+                  <Badge variant="secondary">{"Version"} 2.0</Badge>
+                  <span>{"Last Saved"}: {new Date().toLocaleString()}</span>
                 </div>
               </div>
             </CardContent>
@@ -755,16 +753,16 @@ function ThemeSettingsSection() {
       <div className="flex justify-between items-center pt-6 border-t">
         <Button variant="ghost" className="gap-2">
           <Eye className="w-4 h-4" />
-          {t("themeSettings.actions.preview")}
+          {"Preview"}
         </Button>
         
         <div className="flex gap-3">
           <Button variant="outline">
-            {t("themeSettings.actions.cancel")}
+            {"Cancel"}
           </Button>
           <Button className="gap-2 bg-gradient-to-r from-primary to-primary/80">
             <Save className="w-4 h-4" />
-            {t("themeSettings.actions.save")}
+            {"Save"}
           </Button>
         </div>
       </div>

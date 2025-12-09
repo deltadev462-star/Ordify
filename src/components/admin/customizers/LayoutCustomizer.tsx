@@ -21,8 +21,6 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useTranslation } from "react-i18next";
-
 interface LayoutPreset {
   name: string;
   description: string;
@@ -41,7 +39,6 @@ interface LayoutPreset {
 }
 
 export const LayoutCustomizer: React.FC = () => {
-  const { t } = useTranslation();
   const { layout, themeConfig, updateCustomizations, customizations } =
     useTheme();
   const [activeTab, setActiveTab] = useState("container");
@@ -52,8 +49,8 @@ export const LayoutCustomizer: React.FC = () => {
   if (!layout || !themeConfig) return null;
   const layoutPresets: LayoutPreset[] = [
     {
-      name: t("Compact"),
-      description: t("Tight spacing for content-rich layouts"),
+      name: "Compact",
+      description: "Tight spacing for content-rich layouts",
       icon: <Grid className="h-4 w-4" />,
       settings: {
         containerWidth: "1024px",
@@ -68,8 +65,8 @@ export const LayoutCustomizer: React.FC = () => {
       },
     },
     {
-      name: t("Comfortable"),
-      description: t("Balanced spacing for most use cases"),
+      name: "Comfortable",
+      description: "Balanced spacing for most use cases",
       icon: <Monitor className="h-4 w-4" />,
       settings: {
         containerWidth: "1280px",
@@ -84,8 +81,8 @@ export const LayoutCustomizer: React.FC = () => {
       },
     },
     {
-      name: t("Spacious"),
-      description: t("Generous spacing for luxury feel"),
+      name: "Spacious",
+      description: "Generous spacing for luxury feel",
       icon: <Maximize2 className="h-4 w-4" />,
       settings: {
         containerWidth: "1440px",
@@ -134,10 +131,10 @@ export const LayoutCustomizer: React.FC = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Layout className="h-5 w-5" />
-            {t("Layout Templates")}
+            {"Layout  Templates"}
           </CardTitle>
           <CardDescription>
-            {t("Quick presets for common layout configurations")}
+            {"Quick presets for common layout configurations"}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -150,9 +147,9 @@ export const LayoutCustomizer: React.FC = () => {
               >
                 <div className="mb-2 flex items-center gap-2">
                   {preset.icon}
-                  <span className="font-medium">{t(preset.name)}</span>
+                  <span className="font-medium">{preset.name}</span>
                 </div>
-                <p className="text-sm text-gray-600">{t(preset.description)}</p>
+                <p className="text-sm text-gray-600">{preset.description}</p>
               </button>
             ))}
           </div>
@@ -162,17 +159,17 @@ export const LayoutCustomizer: React.FC = () => {
       {/* Detailed Settings */}
       <Card>
         <CardHeader>
-          <CardTitle>{t("Layout Settings")}</CardTitle>
+          <CardTitle>{"Layout  Settings"}</CardTitle>
           <CardDescription>
-            {t("Fine-tune your store's layout and spacing")}
+            {"Fine-tune your store's layout and spacing"}
           </CardDescription>
         </CardHeader>
         <CardContent>
           <Tabs value={activeTab} onValueChange={setActiveTab}>
             <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="container">{t("Container")}</TabsTrigger>
-              <TabsTrigger value="spacing">{t("Spacing")}</TabsTrigger>
-              <TabsTrigger value="corners">{t("Corners")}</TabsTrigger>
+              <TabsTrigger value="container">{"Container"}</TabsTrigger>
+              <TabsTrigger value="spacing">{"Spacing"}</TabsTrigger>
+              <TabsTrigger value="corners">{"Corners"}</TabsTrigger>
             </TabsList>
 
             {/* Container Settings */}
@@ -180,24 +177,24 @@ export const LayoutCustomizer: React.FC = () => {
               <div className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="container-width">
-                    {t("Container Width")}
+                    {"Container  Width"}
                   </Label>
                   <p className="text-xs text-gray-500">
-                    {t("Maximum width of content area")}
+                    {"Maximum width of content area"}
                   </p>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="sidebar-width">{t("Sidebar Width")}</Label>
+                  <Label htmlFor="sidebar-width">{"Sidebar  Width"}</Label>
                   <p className="text-xs text-gray-500">
-                    {t("Width of navigation sidebar")}
+                    {"Width of navigation sidebar"}
                   </p>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="header-height">{t("Header Height")}</Label>
+                  <Label htmlFor="header-height">{"Header  Height"}</Label>
                   <p className="text-xs text-gray-500">
-                    {t("Height of the main header")}
+                    {"Height of the main header"}
                   </p>
                 </div>
               </div>
@@ -209,16 +206,16 @@ export const LayoutCustomizer: React.FC = () => {
                 <div key={key} className="space-y-2">
                   <Label htmlFor={`spacing-${key}`} className="capitalize">
                     {key === "xs"
-                      ? t("Extra Small")
+                      ? "Extra  Small"
                       : key === "sm"
-                      ? t("Small")
+                      ? "Small"
                       : key === "base"
-                      ? t("Base")
+                      ? "Base"
                       : key === "lg"
-                      ? t("Large")
+                      ? "Large"
                       : key === "xl"
-                      ? t("Extra Large")
-                      : t(key)}
+                      ? "Extra  Large"
+                      : key}
                   </Label>
                 </div>
               ))}
@@ -233,18 +230,18 @@ export const LayoutCustomizer: React.FC = () => {
                     <div key={key} className="space-y-2">
                       <Label htmlFor={`radius-${key}`} className="capitalize">
                         {key === "sm"
-                          ? t("Small")
+                          ? "Small"
                           : key === "base"
-                          ? t("Base")
+                          ? "Base"
                           : key === "md"
-                          ? t("Medium")
+                          ? "Medium"
                           : key === "lg"
-                          ? t("Large")
+                          ? "Large"
                           : key === "xl"
-                          ? t("Extra Large")
+                          ? "Extra  Large"
                           : key === "2xl"
-                          ? t("2X Large")
-                          : t(key)}
+                          ? "2 X  Large"
+                          : key}
                       </Label>
                     </div>
                   )
@@ -257,9 +254,9 @@ export const LayoutCustomizer: React.FC = () => {
       {/* Visual Layout Preview */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-base">{t("Layout Preview")}</CardTitle>
+          <CardTitle className="text-base">{"Layout  Preview"}</CardTitle>
           <CardDescription className="text-sm">
-            {t("Visual representation of your layout settings")}
+            {"Visual representation of your layout settings"}
           </CardDescription>
           <div className="flex gap-2 mt-2">
             <Button
@@ -287,9 +284,9 @@ export const LayoutCustomizer: React.FC = () => {
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            <p className="mb-2 text-sm font-medium">{t("Container Layout")}</p>
-            <p className="mb-2 text-sm font-medium">{t("Spacing Scale")}</p>
-            <p className="mb-2 text-sm font-medium">{t("Corner Radius")}</p>
+            <p className="mb-2 text-sm font-medium">{"Container  Layout"}</p>
+            <p className="mb-2 text-sm font-medium">{"Spacing  Scale"}</p>
+            <p className="mb-2 text-sm font-medium">{"Corner  Radius"}</p>
           </div>
         </CardContent>
       </Card>
@@ -301,7 +298,7 @@ export const LayoutCustomizer: React.FC = () => {
           onClick={handleResetLayout}
         >
           <RotateCcw className="h-4 w-4" />
-          {t("Reset Layout")}
+          {"Reset  Layout"}
         </Button>
       </div>
     </div>

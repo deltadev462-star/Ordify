@@ -1,17 +1,17 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { Package, TrendingUp, Clock, CheckCircle, XCircle, AlertCircle } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { Package, Clock, CheckCircle, XCircle, AlertCircle } from "lucide-react";
 import { MetricCard } from "@/components/dashboard/widgets/MetricCard";
 import { OrdersTable, type Order } from "@/components/orders/OrdersTable";
 import { OrderFilters, type OrderFilters as OrderFiltersType } from "@/components/orders/OrderFilters";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 
 export default function OrdersPage() {
-  const { t } = useTranslation();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [filters, setFilters] = useState<OrderFiltersType>({});
   const [activeTab, setActiveTab] = useState("all");
 
@@ -97,7 +97,7 @@ export default function OrdersPage() {
   // Order statistics
   const orderStats = [
     {
-      title: t("Total Orders"),
+      title: t('orders.totalOrders'),
       value: "342",
       change: 8.2,
       changeType: 'increase' as const,
@@ -105,10 +105,10 @@ export default function OrdersPage() {
       iconColor: 'text-blue-600 dark:text-blue-400',
       iconBgColor: 'bg-blue-50 dark:bg-blue-950/30',
       trend: 'up' as const,
-      period: t("vs last month")
+      period: t('common.vsLastMonth')
     },
     {
-      title: t("Pending Orders"),
+      title: t('orders.pendingOrders'),
       value: "23",
       change: -5.1,
       changeType: 'decrease' as const,
@@ -116,10 +116,10 @@ export default function OrdersPage() {
       iconColor: 'text-yellow-600 dark:text-yellow-400',
       iconBgColor: 'bg-yellow-50 dark:bg-yellow-950/30',
       trend: 'down' as const,
-      period: t("vs last week")
+      period: t('common.vsLastWeek')
     },
     {
-      title: t("Completed Orders"),
+      title: t('orders.completedOrders'),
       value: "285",
       change: 12.3,
       changeType: 'increase' as const,
@@ -127,10 +127,10 @@ export default function OrdersPage() {
       iconColor: 'text-green-600 dark:text-green-400',
       iconBgColor: 'bg-green-50 dark:bg-green-950/30',
       trend: 'up' as const,
-      period: t("vs last month")
+      period: t('common.vsLastMonth')
     },
     {
-      title: t("Cancelled Orders"),
+      title: t('orders.cancelledOrders'),
       value: "12",
       change: 2.5,
       changeType: 'increase' as const,
@@ -138,7 +138,7 @@ export default function OrdersPage() {
       iconColor: 'text-red-600 dark:text-red-400',
       iconBgColor: 'bg-red-50 dark:bg-red-950/30',
       trend: 'up' as const,
-      period: t("vs last month")
+      period: t('common.vsLastMonth')
     }
   ];
 
@@ -201,9 +201,9 @@ export default function OrdersPage() {
     <div className="space-y-6">
       {/* Page Header */}
       <div>
-        <h1 className="text-2xl font-bold">{t("Orders Management")}</h1>
+        <h1 className="text-2xl font-bold">{t('orders.title')}</h1>
         <p className="text-muted-foreground mt-1">
-          {t("Track and manage all customer orders in one place")}
+          {t('orders.subtitle')}
         </p>
       </div>
 
@@ -231,37 +231,37 @@ export default function OrdersPage() {
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
             <TabsList className="grid w-full grid-cols-6 lg:w-auto lg:inline-grid">
               <TabsTrigger value="all" className="gap-2">
-                {t("All")}
+                {t('orders.statusAll')}
                 <Badge variant="secondary" className="ml-1 h-5 px-1">
                   {tabCounts.all}
                 </Badge>
               </TabsTrigger>
               <TabsTrigger value="pending" className="gap-2">
-                {t("Pending")}
+                {t('orders.statusPending')}
                 <Badge variant="secondary" className="ml-1 h-5 px-1 bg-yellow-100 text-yellow-800">
                   {tabCounts.pending}
                 </Badge>
               </TabsTrigger>
               <TabsTrigger value="processing" className="gap-2">
-                {t("Processing")}
+                {t('orders.statusProcessing')}
                 <Badge variant="secondary" className="ml-1 h-5 px-1 bg-blue-100 text-blue-800">
                   {tabCounts.processing}
                 </Badge>
               </TabsTrigger>
               <TabsTrigger value="shipped" className="gap-2">
-                {t("Shipped")}
+                {t('orders.statusShipped')}
                 <Badge variant="secondary" className="ml-1 h-5 px-1 bg-purple-100 text-purple-800">
                   {tabCounts.shipped}
                 </Badge>
               </TabsTrigger>
               <TabsTrigger value="delivered" className="gap-2">
-                {t("Delivered")}
+                {t('orders.statusDelivered')}
                 <Badge variant="secondary" className="ml-1 h-5 px-1 bg-green-100 text-green-800">
                   {tabCounts.delivered}
                 </Badge>
               </TabsTrigger>
               <TabsTrigger value="cancelled" className="gap-2">
-                {t("Cancelled")}
+                {t('orders.statusCancelled')}
                 <Badge variant="secondary" className="ml-1 h-5 px-1 bg-gray-100 text-gray-800">
                   {tabCounts.cancelled}
                 </Badge>
@@ -293,9 +293,9 @@ export default function OrdersPage() {
           <div className="flex items-start gap-4">
             <AlertCircle className="h-5 w-5 text-blue-600 dark:text-blue-400 mt-0.5" />
             <div className="flex-1">
-              <h3 className="font-semibold text-sm mb-1">{t("Pro Tip")}</h3>
+              <h3 className="font-semibold text-sm mb-1">{t('common.proTip')}</h3>
               <p className="text-sm text-muted-foreground">
-                {t("Use keyboard shortcuts for faster navigation. Press '/' to search orders, 'n' to create a new order, and 'e' to export data.")}
+                {t('orders.tipKeyboardShortcuts')}
               </p>
             </div>
           </div>

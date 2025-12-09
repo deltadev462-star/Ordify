@@ -7,8 +7,6 @@ import {
   Trash2,
   type LucideIcon,
 } from "lucide-react"
-import { useTranslation } from "react-i18next";
-
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -36,25 +34,23 @@ export function NavProjects({
   }[]
 }) {
   const { isMobile } = useSidebar()
-  const { t } = useTranslation();
-
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>{t("Projects")}</SidebarGroupLabel>
+      <SidebarGroupLabel>{"Projects"}</SidebarGroupLabel>
       <SidebarMenu>
         {projects.map((item) => (
           <SidebarMenuItem key={item.name}>
-            <SidebarMenuButton asChild tooltip={t(item.name)}>
+            <SidebarMenuButton asChild tooltip={item.name}>
               <a href={item.url}>
                 <item.icon />
-                <span>{t(item.name)}</span>
+                <span>{item.name}</span>
               </a>
             </SidebarMenuButton>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuAction showOnHover>
                   <MoreHorizontal />
-                  <span className="sr-only">{t("More")}</span>
+                  <span className="sr-only">{"More"}</span>
                 </SidebarMenuAction>
               </DropdownMenuTrigger>
               <DropdownMenuContent
@@ -64,16 +60,16 @@ export function NavProjects({
               >
                 <DropdownMenuItem>
                   <Folder className="text-muted-foreground" />
-                  <span>{t("View Project")}</span>
+                  <span>{"View  Project"}</span>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <Forward className="text-muted-foreground" />
-                  <span>{t("Share Project")}</span>
+                  <span>{"Share  Project"}</span>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
                   <Trash2 className="text-muted-foreground" />
-                  <span>{t("Delete Project")}</span>
+                  <span>{"Delete  Project"}</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -82,7 +78,7 @@ export function NavProjects({
         <SidebarMenuItem>
           <SidebarMenuButton className="text-sidebar-foreground/70">
             <MoreHorizontal className="text-sidebar-foreground/70" />
-            <span>{t("More")}</span>
+            <span>{"More"}</span>
           </SidebarMenuButton>
         </SidebarMenuItem>
       </SidebarMenu>

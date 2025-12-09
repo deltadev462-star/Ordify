@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
+ 
 import { SimpleDataTable, type Column } from "@/components/shared/DataTable/SimpleDataTable";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -37,8 +36,6 @@ interface OrdersTableProps {
 }
 
 export function OrdersTable({ orders, onViewOrder, onUpdateStatus }: OrdersTableProps) {
-  const { t } = useTranslation();
-
   const getStatusColor = (status: Order['status']) => {
     const colors = {
       pending: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400',
@@ -54,15 +51,15 @@ export function OrdersTable({ orders, onViewOrder, onUpdateStatus }: OrdersTable
   const columns: Column<Order>[] = [
     {
       key: 'orderNumber',
-      header: t('Order Number'),
+      header: "Order  Number",
       sortable: true,
-      render: (value, row) => (
+      render: (value) => (
         <div className="font-medium">#{value}</div>
       ),
     },
     {
       key: 'customer.name',
-      header: t('Customer'),
+      header: "Customer",
       sortable: true,
       render: (value, row) => (
         <div>
@@ -73,7 +70,7 @@ export function OrdersTable({ orders, onViewOrder, onUpdateStatus }: OrdersTable
     },
     {
       key: 'items',
-      header: t('Items'),
+      header: "Items",
       sortable: true,
       className: 'text-center',
       render: (value) => (
@@ -82,34 +79,34 @@ export function OrdersTable({ orders, onViewOrder, onUpdateStatus }: OrdersTable
     },
     {
       key: 'total',
-      header: t('Total'),
+      header: "Total",
       sortable: true,
-      render: (value) => (
-        <div className="font-medium">{t('EGP')} {value.toLocaleString()}</div>
+      render: (value: number) => (
+        <div className="font-medium">{"E G P"} {value.toLocaleString()}</div>
       ),
     },
     {
       key: 'status',
-      header: t('Status'),
+      header: "Status",
       sortable: true,
-      render: (value) => (
+      render: (value: Order['status']) => (
         <Badge className={cn("capitalize", getStatusColor(value))}>
-          {t(value)}
+          {value}
         </Badge>
       ),
     },
     {
       key: 'paymentMethod',
-      header: t('Payment'),
-      render: (value) => (
-        <div className="text-sm">{t(value)}</div>
+      header: "Payment",
+      render: (value: string) => (
+        <div className="text-sm">{value}</div>
       ),
     },
     {
       key: 'createdAt',
-      header: t('Date'),
+      header: "Date",
       sortable: true,
-      render: (value) => (
+      render: (value: string) => (
         <div className="text-sm">
           {new Date(value).toLocaleDateString()}
           <div className="text-xs text-muted-foreground">
@@ -137,19 +134,19 @@ export function OrdersTable({ orders, onViewOrder, onUpdateStatus }: OrdersTable
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuLabel>{t("Actions")}</DropdownMenuLabel>
+              <DropdownMenuLabel>{"Actions"}</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={() => onViewOrder?.(row)}>
                 <Eye className="mr-2 h-4 w-4" />
-                {t("View Details")}
+                {"View  Details"}
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Printer className="mr-2 h-4 w-4" />
-                {t("Print Invoice")}
+                {"Print  Invoice"}
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Download className="mr-2 h-4 w-4" />
-                {t("Download PDF")}
+                {"Download  P D F"}
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               {row.status === 'pending' && (
@@ -157,7 +154,7 @@ export function OrdersTable({ orders, onViewOrder, onUpdateStatus }: OrdersTable
                   onClick={() => onUpdateStatus?.(row.id, 'processing')}
                   className="text-blue-600"
                 >
-                  {t("Mark as Processing")}
+                  {"Mark as  Processing"}
                 </DropdownMenuItem>
               )}
               {row.status === 'processing' && (
@@ -165,7 +162,7 @@ export function OrdersTable({ orders, onViewOrder, onUpdateStatus }: OrdersTable
                   onClick={() => onUpdateStatus?.(row.id, 'shipped')}
                   className="text-purple-600"
                 >
-                  {t("Mark as Shipped")}
+                  {"Mark as  Shipped"}
                 </DropdownMenuItem>
               )}
               {row.status === 'shipped' && (
@@ -173,7 +170,7 @@ export function OrdersTable({ orders, onViewOrder, onUpdateStatus }: OrdersTable
                   onClick={() => onUpdateStatus?.(row.id, 'delivered')}
                   className="text-green-600"
                 >
-                  {t("Mark as Delivered")}
+                  {"Mark as  Delivered"}
                 </DropdownMenuItem>
               )}
               {['pending', 'processing'].includes(row.status) && (
@@ -181,7 +178,7 @@ export function OrdersTable({ orders, onViewOrder, onUpdateStatus }: OrdersTable
                   onClick={() => onUpdateStatus?.(row.id, 'cancelled')}
                   className="text-red-600"
                 >
-                  {t("Cancel Order")}
+                  {"Cancel  Order"}
                 </DropdownMenuItem>
               )}
             </DropdownMenuContent>
@@ -196,7 +193,7 @@ export function OrdersTable({ orders, onViewOrder, onUpdateStatus }: OrdersTable
       data={orders}
       columns={columns}
       searchKey="orderNumber"
-      searchPlaceholder={t("Search by order number...")}
+      searchPlaceholder={""}
       pageSize={10}
     />
   );

@@ -1,6 +1,4 @@
 import { BellRing, RotateCcw, User, LogOut, ChevronRight, Check, Clock, ShoppingBag, AlertCircle, MessageSquare, Settings } from "lucide-react";
-import { useTranslation } from "react-i18next";
-import LangSwitcher from "./LangSwitcher";
 import { AnimatedThemeToggler } from "./ui/AnimatedThemeToggler";
 import { Separator } from "./ui/separator";
 import { SidebarTrigger } from "./ui/sidebar";
@@ -33,7 +31,6 @@ interface Notification {
 }
 
 function Header() {
-  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { user } = useAppSelector((state) => state.auth);
@@ -126,8 +123,8 @@ function Header() {
 
   // Get full name
   const getUserFullName = () => {
-    if (!user) return t("User");
-    return `${user.firstName || ""} ${user.lastName || ""}`.trim() || t("User");
+    if (!user) return "User";
+    return `${user.firstName || ""} ${user.lastName || ""}`.trim() || "User";
   };
   return (
     <header className="flex h-16 bg-gray-50 border-b border-gray-300 dark:border-gray-900  dark:bg-[#101010] dark:text-gray-100   shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
@@ -148,17 +145,7 @@ function Header() {
               </div>
             </TooltipTrigger>
             <TooltipContent>
-              {t("Toggle theme")}
-            </TooltipContent>
-          </Tooltip>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div>
-                <LangSwitcher />
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>
-              {t("Change language")}
+              {"Toggle theme"}
             </TooltipContent>
           </Tooltip>
           
@@ -191,7 +178,7 @@ function Header() {
               <DropdownMenuItem asChild>
                 <Link to="/dashboard/profile" className="flex items-center cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800">
                   <User className="mr-2 h-4 w-4" />
-                  <span>{t("Profile")}</span>
+                  <span>{"Profile"}</span>
                   <ChevronRight className="ml-auto h-4 w-4 opacity-50" />
                 </Link>
               </DropdownMenuItem>
@@ -201,7 +188,7 @@ function Header() {
                 className="text-red-600 hover:text-red-600 dark:text-red-400 dark:hover:text-red-400 cursor-pointer focus:text-red-600 dark:focus:text-red-400"
               >
                 <LogOut className="mr-2 h-4 w-4" />
-                <span>{t("Logout")}</span>
+                <span>{"Logout"}</span>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -213,7 +200,7 @@ function Header() {
               </button>
             </TooltipTrigger>
             <TooltipContent>
-              {t("Refresh")}
+              {"Refresh"}
             </TooltipContent>
           </Tooltip>
           
@@ -250,7 +237,7 @@ function Header() {
                     className="text-xs hover:bg-gray-100 dark:hover:bg-gray-700/50 font-medium"
                   >
                     <Check className="w-3.5 h-3.5 mr-1.5" />
-                    {t("Mark all read")}
+                    {"Mark all read"}
                   </Button>
                 </div>
               )}
@@ -261,8 +248,8 @@ function Header() {
                     <div className="w-16 h-16 rounded-full bg-gray-100 dark:bg-[#101010] flex items-center justify-center mb-4">
                       <BellRing className="w-8 h-8 text-gray-400 dark:text-gray-600" />
                     </div>
-                    <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{t("No notifications yet")}</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{t("We'll notify you when something arrives!")}</p>
+                    <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{"No notifications yet"}</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{"We'll notify you when something arrives!"}</p>
                   </div>
                 ) : (
                   <div className="space-y-2 sm:space-y-3">
@@ -287,7 +274,7 @@ function Header() {
                             <Avatar className="h-10 w-10 sm:h-12 sm:w-12 ring-2 ring-white dark:ring-[#0a0a0a] shadow-sm">
                               <AvatarImage src={notification.avatar} alt={notification.name} />
                               <AvatarFallback className="bg-gradient-to-br from-gray-400 to-gray-600 text-white font-medium text-xs sm:text-sm">
-                                {notification.name.split(' ').map(n => n[0]).join('').toUpperCase()}
+                                {notification.name.split(" ").map(n => n[0]).join('').toUpperCase()}
                               </AvatarFallback>
                             </Avatar>
                             <div className={`absolute -bottom-1 -right-1 w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center ${IconData.color} shadow-sm ring-2 ring-white dark:ring-[#0a0a0a]`}>
@@ -304,7 +291,7 @@ function Header() {
                                   </p>
                                   {!notification.read && (
                                     <Badge className="h-4 sm:h-5 px-1.5 sm:px-2 text-[10px] sm:text-xs bg-amber-500 text-white hover:bg-amber-600 border-0">
-                                      {t("New")}
+                                      {"New"}
                                     </Badge>
                                   )}
                                 </div>

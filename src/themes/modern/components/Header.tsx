@@ -18,8 +18,6 @@ import {
   X,
 } from "lucide-react";
 import { useTheme } from "@/hooks/useTheme";
-import { useTranslation } from "react-i18next";
-
 interface NavigationItem {
   label: string;
   href?: string;
@@ -59,40 +57,39 @@ export const ModernHeader = ({
   onSearch,
   className = "",
 }: ModernHeaderProps) => {
-  const { t } = useTranslation();
   const { colors } = useTheme();
 
   const defaultNavigation: NavigationItem[] = [
     {
-      label: t("Shop"),
+      label: "Shop",
       children: [
         {
-          label: t("New Arrivals"),
+          label: "New  Arrivals",
           href: "/shop/new",
-          description: t("Check out the latest products"),
+          description: "Check out the latest products",
         },
         {
-          label: t("Best Sellers"),
+          label: "Best  Sellers",
           href: "/shop/best-sellers",
-          description: t("Our most popular items"),
+          description: "Our most popular items",
         },
         {
-          label: t("Sale"),
+          label: "Sale",
           href: "/shop/sale",
-          description: t("Great deals and discounts"),
+          description: "Great deals and discounts",
         },
       ],
     },
     {
-      label: t("Collections"),
+      label: "Collections",
       children: [
-        { label: t("Summer Collection"), href: "/collections/summer" },
-        { label: t("Winter Collection"), href: "/collections/winter" },
-        { label: t("Limited Edition"), href: "/collections/limited" },
+        { label: "Summer  Collection", href: "/collections/summer" },
+        { label: "Winter  Collection", href: "/collections/winter" },
+        { label: "Limited  Edition", href: "/collections/limited" },
       ],
     },
-    { label: t("About"), href: "/about" },
-    { label: t("Contact"), href: "/contact" },
+    { label: "About", href: "/about" },
+    { label: "Contact", href: "/contact" },
   ];
 
   const nav = navigation || defaultNavigation;
@@ -137,7 +134,7 @@ export const ModernHeader = ({
             </SheetTrigger>
             <SheetContent side="left" className="w-80">
               <SheetHeader>
-                <SheetTitle>{t("Menu")}</SheetTitle>
+                <SheetTitle>{"Menu"}</SheetTitle>
               </SheetHeader>
               <nav className="mt-6">
                 <ul className="space-y-4">
@@ -311,7 +308,7 @@ export const ModernHeader = ({
                         <form onSubmit={handleSearch} className="relative">
                           <Input
                             type="search"
-                            placeholder={t("Search products...")}
+                            placeholder={""}
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             className="h-14 pr-12 text-lg"

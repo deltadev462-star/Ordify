@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import { type LucideIcon } from "lucide-react";
-import { useTranslation } from "react-i18next";
 import {
   SidebarGroup,
   SidebarMenu,
@@ -21,7 +20,6 @@ export function NavMain({
     icon?: LucideIcon;
   }[];
 }) {
-  const { t } = useTranslation();
   const [activeItem, setActiveItem] = React.useState<string | null>(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('activeSidebarItem');
@@ -68,7 +66,7 @@ export function NavMain({
                 onClick={() => setActiveItem(item.title)}
               >
                 {item.icon && <item.icon />}
-                <span className="text-[15px] py-5">{t(item.title)}</span>
+                <span className="text-[15px] py-5">{item.title}</span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>

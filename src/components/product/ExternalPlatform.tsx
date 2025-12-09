@@ -1,4 +1,3 @@
-import { useTranslation } from "react-i18next";
 import { FloatingLabelInput } from "@/components/ui/floating-label-input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
@@ -27,13 +26,11 @@ function ExternalPlatform({
   setExternalPlatformLink,
   handleSave
 }: ExternalPlatformProps) {
-  const { t } = useTranslation();
-
   return (
     <div className="mt-4 space-y-6">
       {/* External Platform Integration Section */}
       <div className="bg-gray-100 dark:bg-[#080808] rounded-lg p-6 space-y-6">
-        <h2 className="text-xl font-semibold mb-4">{t("linkToExternalPlatform")}</h2>
+        <h2 className="text-xl font-semibold mb-4">{"Link To External Platform"}</h2>
         
         {/* Platform Integrations */}
         <div className="space-y-4">
@@ -49,7 +46,7 @@ function ExternalPlatform({
               htmlFor="taager-integration"
               className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
             >
-              {t("Activate the integration with Taager company")}
+              {"Activate the integration with  Taager company"}
             </label>
           </div>
           
@@ -65,7 +62,7 @@ function ExternalPlatform({
               htmlFor="angazny-integration"
               className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
             >
-              {t("Activate the integration with Angazny company")}
+              {"Activate the integration with  Angazny company"}
             </label>
           </div>
         </div>
@@ -73,19 +70,19 @@ function ExternalPlatform({
         {/* Product Code Input */}
         <div className="space-y-4">
           <FloatingLabelInput
-            label={t("Product code in the external platform")}
+            label={"Product code in the external platform"}
             value={externalPlatformCode}
             onChange={(e) => setExternalPlatformCode(e.target.value)}
-            placeholder={t("Enter product code...")}
+            placeholder={""}
             icon={Hash}
           />
           
           {/* External Platform Link */}
           <FloatingLabelInput
-            label={t("Link the product to an external platform")}
+            label={"Link the product to an external platform"}
             value={externalPlatformLink}
             onChange={(e) => setExternalPlatformLink(e.target.value)}
-            placeholder={t("Enter external platform link...")}
+            placeholder={""}
             icon={Link2}
           />
         </div>
@@ -98,7 +95,7 @@ function ExternalPlatform({
           className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg flex items-center gap-2"
         >
           <Save className="w-5 h-5" />
-          {t("Save")}
+          {"Save"}
         </Button>
       </div>
     </div>

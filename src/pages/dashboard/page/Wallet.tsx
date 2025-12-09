@@ -1,5 +1,4 @@
 import NotActive from "@/components/NotActive";
-import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import {
   Wallet2,
@@ -23,12 +22,11 @@ import { Progress } from "@/components/ui/progress";
 import { cn } from "@/lib/utils";
 
 function Wallet() {
-  const { t } = useTranslation();
   const features = [
-    { text: t("Lifetime Balance"), icon: Clock },
-    { text: t("Only 4 cents deducted per order"), icon: DollarSign },
-    { text: t("Your store will remain activated for life"), icon: Shield },
-    { text: t("No expiration date for the balance"), icon: Sparkles },
+    { text: "Lifetime  Balance", icon: Clock },
+    { text: "Only 4 cents deducted per order", icon: DollarSign },
+    { text: "Your store will remain activated for life", icon: Shield },
+    { text: "No expiration date for the balance", icon: Sparkles },
   ];
   
   const [activeTab, setActiveTab] = useState(0);
@@ -36,35 +34,35 @@ function Wallet() {
   
   const tabs = [
     {
-      title: t("Popular Plans"),
+      title: "Popular  Plans",
       icon: <Star className="h-5 w-5" />,
-      description: t("Most chosen by merchants")
+      description: "Most chosen by merchants"
     },
     {
-      title: t("All Plans"),
+      title: "All  Plans",
       icon: <CreditCard className="h-5 w-5" />,
-      description: t("Browse all available options")
+      description: "Browse all available options"
     },
   ];
 
   const paymentPlans = {
     popular: [
-      { amount: 20, bonus: 25, badge: t("Most Popular"), color: "from-blue-500 to-purple-600" },
-      { amount: 50, bonus: 65, badge: t("Best Value"), color: "from-purple-500 to-pink-600" },
-      { amount: 100, bonus: 135, badge: t("Pro Choice"), color: "from-orange-500 to-red-600" },
+      { amount: 20, bonus: 25, badge: "Most  Popular", color: "from-blue-500 to-purple-600" },
+      { amount: 50, bonus: 65, badge: "Best  Value", color: "from-purple-500 to-pink-600" },
+      { amount: 100, bonus: 135, badge: "Pro  Choice", color: "from-orange-500 to-red-600" },
     ],
     all: [
-      { amount: 10, bonus: 12, badge: t("Starter"), color: "from-green-500 to-emerald-600" },
-      { amount: 25, bonus: 32, badge: t("Basic"), color: "from-cyan-500 to-blue-600" },
-      { amount: 200, bonus: 280, badge: t("Enterprise"), color: "from-indigo-500 to-purple-600" },
-      { amount: 500, bonus: 750, badge: t("Ultimate"), color: "from-yellow-500 to-orange-600" },
+      { amount: 10, bonus: 12, badge: "Starter", color: "from-green-500 to-emerald-600" },
+      { amount: 25, bonus: 32, badge: "Basic", color: "from-cyan-500 to-blue-600" },
+      { amount: 200, bonus: 280, badge: "Enterprise", color: "from-indigo-500 to-purple-600" },
+      { amount: 500, bonus: 750, badge: "Ultimate", color: "from-yellow-500 to-orange-600" },
     ]
   };
 
   const stats = [
-    { label: t("Total Orders"), value: "1,234", trend: "+12%", isUp: true },
-    { label: t("Avg. Daily Cost"), value: "$4.94", trend: "-8%", isUp: false },
-    { label: t("Days Remaining"), value: "∞", trend: t("Lifetime"), isUp: true },
+    { label: "Total  Orders", value: "1,234", trend: "+12%", isUp: true },
+    { label: "Daily  Cost", value: "$4.94", trend: "-8%", isUp: false },
+    { label: "Days  Remaining", value: "∞", trend: "Lifetime", isUp: true },
   ];
 
   return (
@@ -83,14 +81,14 @@ function Wallet() {
               </div>
               <Badge className="bg-gradient-to-r from-green-500 to-emerald-600 text-white border-0 px-3 py-1">
                 <Zap className="h-3 w-3 mr-1" />
-                {t("Active")}
+                {"Active"}
               </Badge>
             </div>
             <h1 className="text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
-              {t("Wallet")}
+              {"Wallet"}
             </h1>
             <p className="text-lg text-muted-foreground mt-3 max-w-2xl">
-              {t("This page displays your balance, due amount, and allows you to top up your wallet.")}
+              {"This page displays your balance"}
             </p>
           </div>
         </div>
@@ -103,13 +101,13 @@ function Wallet() {
             <CardHeader className="relative pb-3">
               <CardTitle className="text-lg font-medium text-white/90 flex items-center gap-2">
                 <Wallet2 className="h-5 w-5" />
-                {t("Your Current Balance")}
+                {"Your  Current  Balance"}
               </CardTitle>
             </CardHeader>
             <CardContent className="relative space-y-6">
               <div>
                 <p className="text-5xl font-bold">$0.000</p>
-                <p className="text-sm text-white/70 mt-1">{t("Available for use")}</p>
+                <p className="text-sm text-white/70 mt-1">{"Available for use"}</p>
               </div>
               
               {/* Mini Stats */}
@@ -137,17 +135,17 @@ function Wallet() {
             <CardHeader className="relative pb-3">
               <CardTitle className="text-lg font-medium text-white/90 flex items-center gap-2">
                 <Activity className="h-5 w-5" />
-                {t("Due Amount")}
+                {"Due  Amount"}
               </CardTitle>
             </CardHeader>
             <CardContent className="relative space-y-4">
               <div>
                 <p className="text-4xl font-bold">$0.00</p>
-                <p className="text-sm text-white/70 mt-1">{t("No pending dues")}</p>
+                <p className="text-sm text-white/70 mt-1">{"No pending dues"}</p>
               </div>
               <div className="flex items-center gap-2 pt-2">
                 <Info className="h-4 w-4 text-white/70" />
-                <p className="text-xs text-white/70">{t("Updated real-time")}</p>
+                <p className="text-xs text-white/70">{"Updated real-time"}</p>
               </div>
             </CardContent>
           </Card>
@@ -161,9 +159,9 @@ function Wallet() {
                 <Info className="h-5 w-5" />
               </div>
               <div className="space-y-2">
-                <h3 className="font-semibold text-lg">{t("How it works")}</h3>
+                <h3 className="font-semibold text-lg">{"How it works"}</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  {t("Your current balance is the available amount in your account, and $0.04 is deducted for each order. If the balance runs out, the outstanding amount (debt) increases with each new order...")}
+                  {"Your current balance is the available amount in your account"}
                 </p>
               </div>
             </div>
@@ -173,7 +171,7 @@ function Wallet() {
         {/* Payment Plans Section */}
         <div className="space-y-6">
           <h2 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
-            {t("Select Payment Method")}
+            {"Select  Payment  Method"}
           </h2>
           
           {/* Modern Tabs */}
@@ -222,7 +220,7 @@ function Wallet() {
                 gradient={plan.color}
                 isSelected={selectedAmount === plan.amount}
                 onSelect={() => setSelectedAmount(plan.amount)}
-                buttonText={t("Charge Your Wallet")}
+                buttonText={"Charge  Your  Wallet"}
                 popular={index === 1}
               />
             ))}
@@ -237,7 +235,7 @@ function Wallet() {
                 gradient={plan.color}
                 isSelected={selectedAmount === plan.amount}
                 onSelect={() => setSelectedAmount(plan.amount)}
-                buttonText={t("Charge Your Wallet")}
+                buttonText={"Charge  Your  Wallet"}
               />
             ))}
           </div>
@@ -269,7 +267,6 @@ function ModernPaymentCard({
   buttonText: string;
   popular?: boolean;
 }) {
-  const { t } = useTranslation();
   const savings = totalAmount - amount;
   const savingsPercentage = Math.round((savings / amount) * 100);
   
@@ -312,15 +309,15 @@ function ModernPaymentCard({
         <CardHeader className="relative pb-2">
           <div className="space-y-4">
             <div>
-              <p className="text-sm text-muted-foreground">{t("Pay only")}</p>
+              <p className="text-sm text-muted-foreground">{"Pay only"}</p>
               <p className="text-4xl font-bold">${amount}</p>
             </div>
             
             <div className="flex items-center gap-2">
-              <p className="text-sm text-muted-foreground">{t("Get")}</p>
+              <p className="text-sm text-muted-foreground">{"Get"}</p>
               <p className="text-2xl font-semibold text-primary">${totalAmount}</p>
               <Badge variant="secondary" className="bg-green-100 text-green-700 dark:bg-green-900/20 dark:text-green-400">
-                {t("Save")} {savingsPercentage}%
+                {"Save"} {savingsPercentage}%
               </Badge>
             </div>
             

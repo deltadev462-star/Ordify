@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import { getAgentById } from "@/data/agents-data";
 import type { Agent } from "@/data/agents-data";
-import { ArrowLeft, Send, Volume2, MoreVertical, Trash2, Download } from "lucide-react";
+import { ArrowLeft, Send, Volume2, MoreVertical, Trash2 } from "lucide-react";
 
 interface ChatMessage {
   id: string;
@@ -23,7 +22,6 @@ interface ChatSession {
 const AgentChatPage: React.FC = () => {
   const { agentId } = useParams<{ agentId: string }>();
   const navigate = useNavigate();
-  const { t, i18n } = useTranslation();
   const chatContainerRef = useRef<HTMLDivElement>(null);
   
   const [agent, setAgent] = useState<Agent | undefined>();
@@ -49,10 +47,7 @@ const AgentChatPage: React.FC = () => {
       if (agentData && chatSessions[0].messages.length === 0) {
         const welcomeMessage: ChatMessage = {
           id: Date.now().toString(),
-          text: t('agentChat.welcomeMessage', {
-            agentName: t(`agents.${agentData.id}.name`, { defaultValue: agentData.name }),
-            description: t(`agents.${agentData.id}.description`, { defaultValue: agentData.description.toLowerCase() })
-          }),
+          text: `Hi, I'm ${agentData.name}. I'm here to help with ${agentData.description.toLowerCase()}.`,
           sender: 'agent',
           timestamp: new Date()
         };
@@ -104,10 +99,7 @@ const AgentChatPage: React.FC = () => {
         if (agent) {
           const agentMessage: ChatMessage = {
             id: (Date.now() + 1).toString(),
-            text: t('agentChat.response', {
-              message: message,
-              agentName: t(`agents.${agent.id}.name`, { defaultValue: agent.name })
-            }),
+            text: `I understand you're asking about "${message}". As ${agent.name}, I'm here to help with that.`,
             sender: 'agent',
             timestamp: new Date()
           };
@@ -134,15 +126,12 @@ const AgentChatPage: React.FC = () => {
   const createNewSession = () => {
     const newSession: ChatSession = {
       id: `session-${Date.now()}`,
-      title: t('agentChat.chatTitle', { number: chatSessions.length + 1 }),
-      lastMessage: t('agentChat.newChatStarted'),
+      title: "Chat Title",
+      lastMessage: "New Chat Started",
       timestamp: new Date(),
       messages: agent ? [{
         id: Date.now().toString(),
-        text: t('agentChat.welcomeMessage', {
-          agentName: t(`agents.${agent.id}.name`, { defaultValue: agent.name }),
-          description: t(`agents.${agent.id}.description`, { defaultValue: agent.description.toLowerCase() })
-        }),
+        text: `Hi, I'm ${agent.name}. I'm here to help with ${agent.description.toLowerCase()}.`,
         sender: 'agent',
         timestamp: new Date()
       }] : []
@@ -167,13 +156,13 @@ const AgentChatPage: React.FC = () => {
       <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-            {t('agentChat.notFound')}
+            {"Not Found"}
           </h2>
           <button
             onClick={() => navigate('/dashboard/agent-store')}
             className="px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-medium transition-colors duration-200"
           >
-            {t('agentChat.backToStore')}
+            {"Back To Store"}
           </button>
         </div>
       </div>
@@ -181,18 +170,18 @@ const AgentChatPage: React.FC = () => {
   }
 
   return (
-    <div className="flex h-screen bg-gray-50 dark:bg-gray-900" dir={i18n.dir()}>
+    <div className="flex h-screen bg-gray-50 dark:bg-gray-900">
       {/* Sidebar - Chat History */}
       <div className="w-80 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col">
         <div className="p-4 border-b border-gray-200 dark:border-gray-700">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-            {t('agentChat.chatHistory')}
+            {"Chat History"}
           </h3>
           <button
             className="mt-3 w-full px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-medium transition-colors duration-200"
             onClick={createNewSession}
           >
-            {t('agentChat.newChat')}
+            {"New Chat"}
           </button>
         </div>
         
@@ -257,9 +246,9 @@ const AgentChatPage: React.FC = () => {
                 </div>
                 <div>
                   <h2 className="text-xl font-bold">
-                    {t(`agents.${agent.id}.name`, { defaultValue: agent.name })}
+                    {agent.name}
                   </h2>
-                  <p className="text-sm opacity-90">{t('agentChat.online')}</p>
+                  <p className="text-sm opacity-90">{"Online"}</p>
                 </div>
               </div>
             </div>
@@ -275,12 +264,10 @@ const AgentChatPage: React.FC = () => {
             <div className="flex flex-col items-center justify-center h-full text-center">
               <span className="text-6xl mb-4">{agent.icon}</span>
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                {t('agentChat.startConversation', {
-                  agentName: t(`agents.${agent.id}.name`, { defaultValue: agent.name })
-                })}
+                Start a conversation with {agent.name}
               </h3>
               <p className="text-gray-600 dark:text-gray-400 max-w-md">
-                {t(`agents.${agent.id}.description`, { defaultValue: agent.description })}
+                {agent.description}
               </p>
             </div>
           ) : (
@@ -316,9 +303,7 @@ const AgentChatPage: React.FC = () => {
             <input
               type="text"
               className="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 dark:bg-gray-700 dark:text-white"
-              placeholder={t('agentChat.inputPlaceholder', {
-                agentName: t(`agents.${agent.id}.name`, { defaultValue: agent.name })
-              })}
+              placeholder={`Ask ${agent.name} anything...`}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}

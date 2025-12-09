@@ -94,7 +94,8 @@ export function SimpleDataTable<T extends Record<string, any>>({
   };
 
   const getValue = (obj: any, path: string): any => {
-    return path.split('.').reduce((acc, part) => acc && acc[part], obj);
+    if (!path) return undefined;
+    return path.split('.').reduce((acc: any, part: string) => (acc == null ? undefined : acc[part]), obj);
   };
 
   const renderCellValue = (row: T, column: Column<T>) => {

@@ -1,6 +1,5 @@
 import NotActive from "@/components/NotActive";
 import Title from "@/components/Title";
-import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import {
@@ -16,15 +15,13 @@ import {
 } from "lucide-react";
 
 function MarketingServices() {
-  const { t } = useTranslation();
-
   return (
-    <div dir="rtl">
+    <div>
       <div className="flex bg-white dark:bg-black/80 rounded-2xl m-1 flex-1 flex-col gap-6 p-6 pt-0">
         <NotActive />
         <Title
-          title={t("Marketing Services")}
-          Subtitle={t("Connect with top-tier marketing professionals")}
+          title={"Marketing  Services"}
+          Subtitle={"Connect with top-tier marketing professionals"}
           className="text-3xl"
           classNamee=""
         />
@@ -38,7 +35,7 @@ function MarketingServices() {
               <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-primary/10 dark:bg-primary/20 border border-primary/20">
                 <Sparkles className="w-5 h-5 text-primary animate-pulse" />
                 <span className="text-sm font-semibold gradient-text">
-                  {t("Official Partnership")}
+                  {"Official  Partnership"}
                 </span>
                 <Sparkles className="w-5 h-5 text-primary animate-pulse" />
               </div>
@@ -47,19 +44,19 @@ function MarketingServices() {
             {/* Main Title */}
             <div className="text-center max-w-3xl mx-auto mb-10">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
-                {t("Ordify")} <span className="gradient-text">{t("×")}</span> {t("Top Media Buyers")}
+                {"Ordify"} <span className="gradient-text">{"×"}</span> {"Top  Media  Buyers"}
               </h2>
               <p className="text-muted-foreground text-lg leading-relaxed">
-                {t("Connect your store with verified marketing professionals. Track real results and grow your business with confidence.")}
+                {""}
               </p>
             </div>
 
             {/* Stats Row */}
             <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto mb-10">
               {[
-                { icon: Users, value: "500+", label: t("Verified Marketers") },
-                { icon: TrendingUp, value: "10K+", label: t("Successful Campaigns") },
-                { icon: Award, value: "98%", label: t("Satisfaction Rate") }
+                { icon: Users, value: "500+", label: "Verified  Marketers" },
+                { icon: TrendingUp, value: "10K+", label: "Successful  Campaigns" },
+                { icon: Award, value: "98%", label: "Satisfaction  Rate" }
               ].map((stat, index) => (
                 <div
                   key={index}
@@ -83,23 +80,23 @@ function MarketingServices() {
                       <BriefcaseBusiness className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
                     </div>
                     <div className="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-medium">
-                      {t("For Business")}
+                      {"For  Business"}
                     </div>
                   </div>
                   <CardTitle className="text-xl text-foreground">
-                    {t("Find Expert Marketers")}
+                    {"Find  Expert  Marketers"}
                   </CardTitle>
                   <CardDescription className="text-muted-foreground">
-                    {t("Connect with verified professionals who deliver results")}
+                    {"Connect with verified professionals who deliver results"}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="relative space-y-4">
                   <ul className="space-y-3">
                     {[
-                      t("Access verified marketing experts"),
-                      t("View documented order achievements"),
-                      t("Direct communication with marketers"),
-                      t("Performance-based selection")
+                      "Access verified marketing experts",
+                      "View documented order achievements",
+                      "Direct communication with marketers",
+                      "Performance-based selection"
                     ].map((feature, index) => (
                       <li key={index} className="flex items-start gap-3 text-sm text-muted-foreground">
                         <CheckCircle2 className="w-4 h-4 mt-0.5 text-emerald-500 flex-shrink-0" />
@@ -109,7 +106,7 @@ function MarketingServices() {
                   </ul>
                   <Button className="w-full mt-6 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all duration-300 group/btn">
                     <BriefcaseBusiness className="w-4 h-4 mr-2" />
-                    {t("Post a Job")}
+                    {"Post a  Job"}
                     <ArrowRight className="w-4 h-4 mr-2 group-hover/btn:translate-x-1 transition-transform" />
                   </Button>
                 </CardContent>
@@ -124,23 +121,23 @@ function MarketingServices() {
                       <Search className="w-6 h-6 text-violet-600 dark:text-violet-400" />
                     </div>
                     <div className="px-3 py-1 rounded-full bg-violet-500/10 text-violet-600 dark:text-violet-400 text-xs font-medium">
-                      {t("For Marketers")}
+                      {"For  Marketers"}
                     </div>
                   </div>
                   <CardTitle className="text-xl text-foreground">
-                    {t("Discover New Projects")}
+                    {"Discover  New  Projects"}
                   </CardTitle>
                   <CardDescription className="text-muted-foreground">
-                    {t("Browse opportunities and grow your portfolio")}
+                    {"Browse opportunities and grow your portfolio"}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="relative space-y-4">
                   <ul className="space-y-3">
                     {[
-                      t("Free account creation"),
-                      t("Link your EasyOrders stores"),
-                      t("Showcase documented results"),
-                      t("No commissions or fees")
+                      "Free account creation",
+                      "Link your  Easy Orders stores",
+                      "Showcase documented results",
+                      "No commissions or fees"
                     ].map((feature, index) => (
                       <li key={index} className="flex items-start gap-3 text-sm text-muted-foreground">
                         <CheckCircle2 className="w-4 h-4 mt-0.5 text-violet-500 flex-shrink-0" />
@@ -150,7 +147,7 @@ function MarketingServices() {
                   </ul>
                   <Button className="w-full mt-6 bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all duration-300 group/btn">
                     <Search className="w-4 h-4 mr-2" />
-                    {t("Browse Jobs")}
+                    {"Browse  Jobs"}
                     <ArrowRight className="w-4 h-4 mr-2 group-hover/btn:translate-x-1 transition-transform" />
                   </Button>
                 </CardContent>
@@ -161,7 +158,7 @@ function MarketingServices() {
             <div className="flex justify-center mt-10">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted/50 text-muted-foreground text-sm">
                 <Shield className="w-4 h-4 text-primary" />
-                {t("All marketers are verified and documented")}
+                {"All marketers are verified and documented"}
               </div>
             </div>
           </div>

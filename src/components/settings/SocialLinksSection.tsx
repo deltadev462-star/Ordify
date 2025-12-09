@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Instagram, Facebook, Twitter, MessageCircle, Share2, Plus, ExternalLink, AlertCircle } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { Label } from "@/components/ui/label";
@@ -17,7 +16,6 @@ interface SocialLink {
 }
 
 function SocialLinksSection() {
-  const { t } = useTranslation();
   const [socialLinks, setSocialLinks] = useState<SocialLink[]>([
     {
       id: "1",
@@ -75,13 +73,13 @@ function SocialLinksSection() {
                 <Instagram className="w-8 h-8 text-violet-600 dark:text-violet-400" />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-gray-800 dark:text-gray-100">{t('socialLinks.title')}</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">{t('socialLinks.description')}</p>
+                <h3 className="text-lg font-bold text-gray-800 dark:text-gray-100">{"Title"}</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">{"Description"}</p>
               </div>
             </div>
             <div className="flex items-center gap-2">
               <div className="px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-sm font-medium">
-                {socialLinks.filter(l => l.enabled).length} {t('socialLinks.active')}
+                {socialLinks.filter(l => l.enabled).length} {"Active"}
               </div>
             </div>
           </div>
@@ -92,7 +90,7 @@ function SocialLinksSection() {
       <div className="space-y-4">
         <h4 className="text-sm font-semibold text-gray-800 dark:text-gray-100 flex items-center gap-2">
           <Share2 className="w-4 h-4 text-primary" />
-          {t('socialLinks.linksTitle')}
+          {"Links Title"}
         </h4>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -122,7 +120,7 @@ function SocialLinksSection() {
                           {link.platform}
                         </h5>
                         <p className="text-xs text-gray-600 dark:text-gray-400">
-                          {link.enabled ? t('socialLinks.status.connected') : t('socialLinks.status.notConnected')}
+                          {link.enabled ? "Connected" : "Not Connected"}
                         </p>
                       </div>
                     </div>
@@ -137,7 +135,7 @@ function SocialLinksSection() {
                   {link.enabled && (
                     <div className="animate-in slide-in-from-top-2">
                       <Label className="text-xs text-gray-600 dark:text-gray-400 mb-1 block">
-                        {t('socialLinks.urlLabel', { platform: link.platform })}
+                        {"Url Label"}
                       </Label>
                       <div className="relative">
                         <Input
@@ -173,7 +171,7 @@ function SocialLinksSection() {
           className="w-full border-dashed border-gray-300 dark:border-gray-600 hover:border-primary/50 dark:hover:border-primary/30 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-all"
         >
           <Plus className="w-4 h-4 mr-2" />
-          {t('socialLinks.addCustomLink')}
+          {"Add Custom Link"}
         </Button>
       </div>
 
@@ -182,11 +180,11 @@ function SocialLinksSection() {
         <div className="flex items-start gap-3">
           <AlertCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5" />
           <div className="space-y-1">
-            <h5 className="text-sm font-medium text-blue-800 dark:text-blue-300">{t('socialLinks.tips.title')}</h5>
+            <h5 className="text-sm font-medium text-blue-800 dark:text-blue-300">{"Title"}</h5>
             <ul className="text-xs text-blue-700 dark:text-blue-400 space-y-1">
-              <li>• {t('socialLinks.tips.useOfficial')}</li>
-              <li>• {t('socialLinks.tips.keepActive')}</li>
-              <li>• {t('socialLinks.tips.appearsInFooter')}</li>
+              <li>• {"Use Official"}</li>
+              <li>• {"Keep Active"}</li>
+              <li>• {"Appears In Footer"}</li>
             </ul>
           </div>
         </div>
@@ -197,7 +195,7 @@ function SocialLinksSection() {
           onClick={handleSave}
           className="bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white"
         >
-          {t('socialLinks.saveButton')}
+          {"Save Button"}
         </Button>
       </div>
     </div>

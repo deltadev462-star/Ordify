@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Calculator, FileText, Globe, MapPin, Percent, Plus, Edit, Trash2 } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -14,7 +13,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 
 function TaxSettingsSection() {
-  const { t } = useTranslation();
   const [showAddRate, setShowAddRate] = useState(false);
   const [editingRate, setEditingRate] = useState<number | null>(null);
 
@@ -157,14 +155,14 @@ function TaxSettingsSection() {
               <Calculator className="h-6 w-6" />
             </div>
             <div>
-              <CardTitle className="text-xl">{t('tax.title')}</CardTitle>
+              <CardTitle className="text-xl">{"Title"}</CardTitle>
               <CardDescription className="text-gray-100 mt-1">
-                {t('tax.description')}
+                {"Description"}
               </CardDescription>
             </div>
           </div>
           <Badge variant="secondary" className="bg-white/20 text-white border-0">
-            {t('tax.badge.required')}
+            {"Required"}
           </Badge>
         </div>
       </CardHeader>
@@ -175,13 +173,13 @@ function TaxSettingsSection() {
               value="rates" 
               className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-700"
             >
-              {t('tax.tabs.rates')}
+              {"Rates"}
             </TabsTrigger>
             <TabsTrigger
               value="options"
               className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-700"
             >
-              {t('tax.tabs.options')}
+              {"Options"}
             </TabsTrigger>
           </TabsList>
 
@@ -189,14 +187,14 @@ function TaxSettingsSection() {
             <Alert className="border-blue-200 bg-blue-50 dark:bg-blue-900/20 dark:border-blue-800">
               <FileText className="h-4 w-4 text-blue-600 dark:text-blue-400" />
               <AlertDescription className="text-blue-800 dark:text-blue-200">
-                {t('tax.alerts.ratesInfo')}
+                {"Rates Info"}
               </AlertDescription>
             </Alert>
 
             <div>
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
                 <h3 className="font-semibold text-gray-900 dark:text-gray-100">
-                  {t('tax.headers.taxRates')}
+                  {"Tax Rates"}
                 </h3>
                 <Dialog open={showAddRate} onOpenChange={(open) => { setShowAddRate(open); if (!open) { setEditingRate(null); setNewRate({ country: '', state: '', zip: '*', city: '*', rate: '', name: '', priority: '1', compound: false, shipping: true, class: 'Standard' }); } }}>
                   <DialogTrigger asChild>
@@ -205,94 +203,94 @@ function TaxSettingsSection() {
                       className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white"
                     >
                       <Plus className="h-4 w-4 mr-1" />
-                      {t('tax.buttons.addRate')}
+                      {"Add Rate"}
                     </Button>
                   </DialogTrigger>
                   <DialogContent className="bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-800 max-w-2xl">
                     <DialogHeader>
                       <DialogTitle className="text-gray-900 dark:text-gray-100">
-                        {t('tax.dialog.addRate.title')}
+                        {"Title"}
                       </DialogTitle>
                       <DialogDescription className="text-gray-600 dark:text-gray-400">
-                        {t('tax.dialog.addRate.description')}
+                        {"Description"}
                       </DialogDescription>
                     </DialogHeader>
                     <div className="space-y-4 py-4">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                           <Label className="text-gray-700 dark:text-gray-300">
-                            {t('tax.fields.country')}
+                            {"Country"}
                           </Label>
                           <Select
                             value={newRate.country}
                             onValueChange={(value) => setNewRate({...newRate, country: value})}
                           >
                             <SelectTrigger className="border-gray-300 dark:border-gray-700 dark:bg-gray-800">
-                              <SelectValue placeholder={t('tax.placeholders.selectCountry')} />
+                              <SelectValue placeholder={"Select Country"} />
                             </SelectTrigger>
                             <SelectContent>
-                              <SelectItem value="United States">{t('tax.countries.unitedStates')}</SelectItem>
-                              <SelectItem value="Canada">{t('tax.countries.canada')}</SelectItem>
-                              <SelectItem value="United Kingdom">{t('tax.countries.unitedKingdom')}</SelectItem>
-                              <SelectItem value="Germany">{t('tax.countries.germany')}</SelectItem>
-                              <SelectItem value="France">{t('tax.countries.france')}</SelectItem>
+                              <SelectItem value="United States">{"United States"}</SelectItem>
+                              <SelectItem value="Canada">{"Canada"}</SelectItem>
+                              <SelectItem value="United Kingdom">{"United Kingdom"}</SelectItem>
+                              <SelectItem value="Germany">{"Germany"}</SelectItem>
+                              <SelectItem value="France">{"France"}</SelectItem>
                             </SelectContent>
                           </Select>
                         </div>
                         <div>
                           <Label className="text-gray-700 dark:text-gray-300">
-                            {t('tax.fields.stateProvince')}
+                            {"State Province"}
                           </Label>
                           <Input
                             value={newRate.state}
                             onChange={(e) => setNewRate({...newRate, state: e.target.value})}
-                            placeholder={t('tax.placeholders.allStates')}
+                            placeholder={"All States"}
                             className="border-gray-300 dark:border-gray-700 dark:bg-gray-800"
                           />
                         </div>
                         <div>
                           <Label className="text-gray-700 dark:text-gray-300">
-                            {t('tax.fields.zipPostalCode')}
+                            {"Zip Postal Code"}
                           </Label>
                           <Input
                             value={newRate.zip}
                             onChange={(e) => setNewRate({...newRate, zip: e.target.value})}
-                            placeholder={t('tax.placeholders.allZips')}
+                            placeholder={"All Zips"}
                             className="border-gray-300 dark:border-gray-700 dark:bg-gray-800"
                           />
                         </div>
                         <div>
                           <Label className="text-gray-700 dark:text-gray-300">
-                            {t('tax.fields.city')}
+                            {"City"}
                           </Label>
                           <Input
                             value={newRate.city}
                             onChange={(e) => setNewRate({...newRate, city: e.target.value})}
-                            placeholder={t('tax.placeholders.allCities')}
+                            placeholder={"All Cities"}
                             className="border-gray-300 dark:border-gray-700 dark:bg-gray-800"
                           />
                         </div>
                         <div>
                           <Label className="text-gray-700 dark:text-gray-300">
-                            {t('tax.fields.taxRate')}
+                            {"Tax Rate"}
                           </Label>
                           <Input
                             type="number"
                             step="0.001"
                             value={newRate.rate}
                             onChange={(e) => setNewRate({...newRate, rate: e.target.value})}
-                            placeholder={t('tax.placeholders.rateExample')}
+                            placeholder={"Rate Example"}
                             className="border-gray-300 dark:border-gray-700 dark:bg-gray-800"
                           />
                         </div>
                         <div>
                           <Label className="text-gray-700 dark:text-gray-300">
-                            {t('tax.fields.taxName')}
+                            {"Tax Name"}
                           </Label>
                           <Input
                             value={newRate.name}
                             onChange={(e) => setNewRate({...newRate, name: e.target.value})}
-                            placeholder={t('tax.placeholders.taxNameExample')}
+                            placeholder={"Tax Name Example"}
                             className="border-gray-300 dark:border-gray-700 dark:bg-gray-800"
                           />
                         </div>
@@ -300,9 +298,9 @@ function TaxSettingsSection() {
                       <div className="space-y-4 pt-4 border-t border-gray-200 dark:border-gray-700">
                         <div className="flex items-center justify-between">
                           <Label className="text-gray-700 dark:text-gray-300 font-normal">
-                            {t('tax.fields.compound')}
+                            {"Compound"}
                             <span className="text-sm text-gray-500 dark:text-gray-400 block">
-                              {t('tax.descriptions.compound')}
+                              {"Compound"}
                             </span>
                           </Label>
                           <Switch
@@ -313,9 +311,9 @@ function TaxSettingsSection() {
                         </div>
                         <div className="flex items-center justify-between">
                           <Label className="text-gray-700 dark:text-gray-300 font-normal">
-                            {t('tax.fields.applyToShipping')}
+                            {"Apply To Shipping"}
                             <span className="text-sm text-gray-500 dark:text-gray-400 block">
-                              {t('tax.descriptions.applyToShipping')}
+                              {"Apply To Shipping"}
                             </span>
                           </Label>
                           <Switch
@@ -332,13 +330,13 @@ function TaxSettingsSection() {
                         onClick={() => setShowAddRate(false)}
                         className="border-gray-300 dark:border-gray-700"
                       >
-                        {t('tax.buttons.cancel')}
+                        {"Cancel"}
                       </Button>
                       <Button
                         onClick={handleAddRate}
                         className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white"
                       >
-                        {t('tax.buttons.addRate')}
+                        {"Add Rate"}
                       </Button>
                     </DialogFooter>
                   </DialogContent>
@@ -349,11 +347,11 @@ function TaxSettingsSection() {
                 <Table>
                   <TableHeader className="bg-gray-50 dark:bg-gray-800/50">
                     <TableRow>
-                      <TableHead className="text-gray-700 dark:text-gray-300">{t('tax.table.location')}</TableHead>
-                      <TableHead className="text-gray-700 dark:text-gray-300">{t('tax.table.taxName')}</TableHead>
-                      <TableHead className="text-gray-700 dark:text-gray-300">{t('tax.table.rate')}</TableHead>
-                      <TableHead className="text-gray-700 dark:text-gray-300">{t('tax.table.properties')}</TableHead>
-                      <TableHead className="text-gray-700 dark:text-gray-300 text-right">{t('tax.table.actions')}</TableHead>
+                      <TableHead className="text-gray-700 dark:text-gray-300">{"Location"}</TableHead>
+                      <TableHead className="text-gray-700 dark:text-gray-300">{"Tax Name"}</TableHead>
+                      <TableHead className="text-gray-700 dark:text-gray-300">{"Rate"}</TableHead>
+                      <TableHead className="text-gray-700 dark:text-gray-300">{"Properties"}</TableHead>
+                      <TableHead className="text-gray-700 dark:text-gray-300 text-right">{"Actions"}</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -387,12 +385,12 @@ function TaxSettingsSection() {
                           <div className="flex gap-2">
                             {rate.compound && (
                               <Badge className="bg-purple-100 text-purple-800 dark:bg-purple-900/20 dark:text-purple-400 border-0">
-                                {t('tax.badges.compound')}
+                                {"Compound"}
                               </Badge>
                             )}
                             {rate.shipping && (
                               <Badge className="bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400 border-0">
-                                {t('tax.badges.shipping')}
+                                {"Shipping"}
                               </Badge>
                             )}
                           </div>
@@ -430,10 +428,10 @@ function TaxSettingsSection() {
               <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
                 <div>
                   <Label className="text-gray-700 dark:text-gray-300 font-normal">
-                    {t('tax.options.enableTaxes')}
+                    {"Enable Taxes"}
                   </Label>
                   <p className="text-sm text-gray-500 dark:text-gray-400">
-                    {t('tax.options.enableTaxesDescription')}
+                    {"Enable Taxes Description"}
                   </p>
                 </div>
                 <Switch
@@ -446,10 +444,10 @@ function TaxSettingsSection() {
               <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
                 <div>
                   <Label className="text-gray-700 dark:text-gray-300 font-normal">
-                    {t('tax.options.pricesIncludeTax')}
+                    {"Prices Include Tax"}
                   </Label>
                   <p className="text-sm text-gray-500 dark:text-gray-400">
-                    {t('tax.options.pricesIncludeTaxDescription')}
+                    {"Prices Include Tax Description"}
                   </p>
                 </div>
                 <Switch
@@ -462,10 +460,10 @@ function TaxSettingsSection() {
               <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
                 <div>
                   <Label className="text-gray-700 dark:text-gray-300 font-normal">
-                    {t('tax.options.displayPricesWithTax')}
+                    {"Display Prices With Tax"}
                   </Label>
                   <p className="text-sm text-gray-500 dark:text-gray-400">
-                    {t('tax.options.displayPricesWithTaxDescription')}
+                    {"Display Prices With Tax Description"}
                   </p>
                 </div>
                 <Switch
@@ -478,10 +476,10 @@ function TaxSettingsSection() {
               <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
                 <div>
                   <Label className="text-gray-700 dark:text-gray-300 font-normal">
-                    {t('tax.options.roundAtSubtotal')}
+                    {"Round At Subtotal"}
                   </Label>
                   <p className="text-sm text-gray-500 dark:text-gray-400">
-                    {t('tax.options.roundAtSubtotalDescription')}
+                    {"Round At Subtotal Description"}
                   </p>
                 </div>
                 <Switch
@@ -497,10 +495,10 @@ function TaxSettingsSection() {
                 <Globe className="h-5 w-5 text-amber-600 dark:text-amber-400 mt-0.5" />
                 <div>
                   <h4 className="font-medium text-amber-900 dark:text-amber-100">
-                    {t('tax.compliance.title')}
+                    {"Title"}
                   </h4>
                   <p className="text-sm text-amber-700 dark:text-amber-300 mt-1">
-                    {t('tax.compliance.description')}
+                    {"Description"}
                   </p>
                 </div>
               </div>
@@ -513,13 +511,13 @@ function TaxSettingsSection() {
             variant="outline" 
             className="border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300"
           >
-            {t('tax.buttons.cancel')}
+            {"Cancel"}
           </Button>
           <Button
             onClick={handleSave}
             className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white"
           >
-            {t('tax.buttons.saveSettings')}
+            {"Save Settings"}
           </Button>
         </div>
       </CardContent>

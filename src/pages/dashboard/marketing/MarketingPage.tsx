@@ -1,5 +1,4 @@
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -24,30 +23,29 @@ import {
 function MarketingPage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { t } = useTranslation();
   const marketingNav = subNavigationData.marketing;
 
   // Group marketing tools by category for better organization
   const categories = {
-    [t('marketingTools.trackingAnalytics')]: {
+    ["Tracking Analytics"]: {
       items: ['Pixel Settings', 'Conversion API', 'Track campaign results', 'Connect with Google Tag'],
       icon: Activity,
       gradient: 'from-blue-500 to-cyan-500',
       bgGradient: 'from-blue-50 to-cyan-50 dark:from-blue-950/20 dark:to-cyan-950/20'
     },
-    [t('marketingTools.salesOptimization')]: {
+    ["Sales Optimization"]: {
       items: ['CROSS SELLING', 'Downsell', 'Sales Popup', 'Minimum Order Value and Conditions'],
       icon: TrendingUp,
       gradient: 'from-purple-500 to-pink-500',
       bgGradient: 'from-purple-50 to-pink-50 dark:from-purple-950/20 dark:to-pink-950/20'
     },
-    [t('marketingTools.customerEngagement')]: {
+    ["Customer Engagement"]: {
       items: ['Coupons', 'Retargeting', 'Whatsapp Marketing', 'Create Referral Links'],
       icon: Users,
       gradient: 'from-green-500 to-emerald-500',
       bgGradient: 'from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/20'
     },
-    [t('marketingTools.integrations')]: {
+    ["Integrations"]: {
       items: ['Google Merchant', 'Verify your orders with Tc'],
       icon: Settings,
       gradient: 'from-orange-500 to-red-500',
@@ -57,36 +55,36 @@ function MarketingPage() {
 
   const performanceMetrics = [
     {
-      title: t('marketingTools.activeCampaigns'),
+      title: "Active Campaigns",
       value: "12",
-      subtitle: t('marketingTools.startingSoon', { count: 3 }),
+      subtitle: "Starting Soon",
       icon: Target,
       trend: 'up',
       change: '+15%',
       color: 'from-blue-500 to-blue-600'
     },
     {
-      title: t('marketingTools.conversionRate'),
+      title: "Conversion Rate",
       value: "3.4%",
-      subtitle: t('marketingTools.fromLastMonth', { value: '+0.8%' }),
+      subtitle: "From Last Month",
       icon: Percent,
       trend: 'up',
       change: '+0.8%',
       color: 'from-green-500 to-green-600'
     },
     {
-      title: t('marketingTools.activeCoupons'),
+      title: "Active Coupons",
       value: "28",
-      subtitle: t('marketingTools.redemptionsToday', { count: 156 }),
+      subtitle: "Redemptions Today",
       icon: ShoppingBag,
       trend: 'neutral',
       change: '156',
       color: 'from-purple-500 to-purple-600'
     },
     {
-      title: t('marketingTools.roi'),
+      title: "Roi",
       value: "245%",
-      subtitle: t('marketingTools.aboveTarget'),
+      subtitle: "Above Target",
       icon: DollarSign,
       trend: 'up',
       change: 'Above target',
@@ -116,10 +114,10 @@ function MarketingPage() {
               </Badge>
             </div>
             <h1 className="text-4xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
-              {t('Marketing Tools')}
+              {"Marketing  Tools"}
             </h1>
             <p className="text-muted-foreground mt-3 text-lg max-w-2xl">
-              {t('marketingTools.description')}
+              {"Description"}
             </p>
           </div>
         </div>
@@ -190,7 +188,7 @@ function MarketingPage() {
                 <div>
                   <h2 className="text-2xl font-bold">{category}</h2>
                   <Badge variant="secondary" className="mt-1">
-                    {categoryData.items.length} {t('marketingTools.tools')}
+                    {categoryData.items.length} {"Tools"}
                   </Badge>
                 </div>
               </div>
@@ -230,17 +228,17 @@ function MarketingPage() {
                             </div>
                             {isActive && (
                               <Badge className="bg-green-100 text-green-700 dark:bg-green-900/20 dark:text-green-400 border-0">
-                                {t('marketingTools.active')}
+                                {"Active"}
                               </Badge>
                             )}
                           </div>
                           
                           <div>
                             <CardTitle className="text-lg font-semibold group-hover:text-primary transition-colors">
-                              {t(item.title) || item.title}
+                              {item.title || item.title}
                             </CardTitle>
                             <CardDescription className="mt-2 text-sm line-clamp-2">
-                              {t(item.description) || item.description}
+                              {item.description || item.description}
                             </CardDescription>
                           </div>
                         </CardHeader>
@@ -249,7 +247,7 @@ function MarketingPage() {
                           {isActive && (
                             <div className="mb-3 space-y-2">
                               <div className="flex justify-between text-sm">
-                                <span className="text-muted-foreground">{t('marketingTools.performance')}</span>
+                                <span className="text-muted-foreground">{"Performance"}</span>
                                 <span className="font-medium">85%</span>
                               </div>
                               <Progress value={85} className="h-2" />
@@ -267,7 +265,7 @@ function MarketingPage() {
                               navigate(item.url);
                             }}
                           >
-                            {isActive ? t('marketingTools.manage') : t('marketingTools.configure')}
+                            {isActive ? "Manage" : "Configure"}
                             <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                           </Button>
                         </CardContent>
@@ -285,19 +283,19 @@ function MarketingPage() {
             <div className="flex items-center justify-between flex-wrap gap-4">
               <div className="flex items-center gap-3">
                 <BarChart3 className="h-5 w-5 text-primary" />
-                <span className="font-semibold">{t('marketingTools.overallPerformance')}</span>
+                <span className="font-semibold">{"Overall Performance"}</span>
               </div>
               <div className="flex items-center gap-6 text-sm">
                 <div className="flex items-center gap-2">
                   <div className="h-3 w-3 rounded-full bg-green-500" />
-                  <span>{t('marketingTools.toolsActive', { count: 5 })}</span>
+                  <span>{"Tools Active"}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="h-3 w-3 rounded-full bg-gray-300" />
-                  <span>{t('marketingTools.toolsInactive', { count: 9 })}</span>
+                  <span>{"Tools Inactive"}</span>
                 </div>
                 <Button variant="outline" size="sm" onClick={() => navigate('/dashboard/marketing/analytics')}>
-                  {t('marketingTools.viewAnalytics')}
+                  {"View Analytics"}
                   <ArrowRight className="ml-2 h-3 w-3" />
                 </Button>
               </div>

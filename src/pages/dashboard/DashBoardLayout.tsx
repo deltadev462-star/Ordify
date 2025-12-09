@@ -6,7 +6,7 @@ import ChatWidget from "@/components/ChatWidget";
 
 const DashBoardLayout = () => {
   return (
-    <div dir="rtl">
+    <div>
       <SidebarProvider>
         <AppSidebar />
         <SidebarInset>

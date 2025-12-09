@@ -24,7 +24,7 @@ export function useSEO({
     if (metaDesc) {
       metaDesc.content = description;
     } else {
-      const newMeta = document.createElement('meta');
+      const newMeta = document.createElement("meta");
       newMeta.name = 'description';
       newMeta.content = description;
       document.head.appendChild(newMeta);
@@ -48,9 +48,10 @@ function setMetaProperty(property: string, content: string) {
   if (meta) {
     meta.content = content;
   } else {
-    meta = document.createElement('meta');
+    meta = document.createElement("meta");
     meta.setAttribute('property', property);
     meta.content = content;
     document.head.appendChild(meta);
   }
 }
+

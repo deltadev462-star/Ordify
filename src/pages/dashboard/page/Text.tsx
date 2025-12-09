@@ -2,17 +2,13 @@
 import Title from "@/components/Title";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useTranslation } from "react-i18next";
-
 const Text = () => {
-  const { t } = useTranslation();
-
   return (
-    <div dir="rtl">
+    <div>
       <div className="p-6">
         <Title
-          title={t("manage Texts")}
-          Subtitle={t("customize Website Texts")}
+          title={"Manage  Texts"}
+          Subtitle={"Customize  Website  Texts"}
           className=""
           classNamee=""
         />
@@ -20,15 +16,15 @@ const Text = () => {
         <div className="mt-6">
           <Card className="border border-[#d6d6d6] dark:bg-[#101010] dark:border-[#424242] dark:text-white">
             <CardHeader>
-              <CardTitle className="text-base">{t("websiteTexts")}</CardTitle>
+              <CardTitle className="text-base">{"Website Texts"}</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                {t("manageWebsiteContentTexts")}
+                {"Manage Website Content Texts"}
               </p>
               {/* Add text management components here */}
               <div className="mt-4">
-                <Button variant="outline">{t("editTexts")}</Button>
+                <Button variant="outline">{"Edit Texts"}</Button>
               </div>
             </CardContent>
           </Card>

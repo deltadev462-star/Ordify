@@ -27,8 +27,8 @@ import Title from "@/components/Title";
 import NotActive from "@/components/NotActive";
 
 export default function Dashboard() {
-  const { t } = useTranslation();
   const [setupProgress, setSetupProgress] = useState(30);
+  const { t } = useTranslation();
   
   // Animate progress on mount
   useEffect(() => {
@@ -39,58 +39,58 @@ export default function Dashboard() {
   // Sample data - replace with real API calls
   const mainMetrics = [
     {
-      title: t("Total Revenue"),
+      title: t('dashboard.totalSales'),
       value: "125,430",
       change: 12.5,
       changeType: 'increase' as const,
       icon: DollarSign,
       iconColor: 'text-emerald-600 dark:text-emerald-400',
       iconBgColor: 'bg-emerald-50 dark:bg-emerald-950/30',
-      subValue: t("EGP"),
+      subValue: "EGP",
       trend: 'up' as const,
-      period: t("vs last month")
+      period: t('dashboard.vsLastMonth')
     },
     {
-      title: t("Total Orders"),
+      title: t('dashboard.totalOrders'),
       value: "342",
       change: 8.2,
       changeType: 'increase' as const,
       icon: ShoppingCart,
       iconColor: 'text-blue-600 dark:text-blue-400',
       iconBgColor: 'bg-blue-50 dark:bg-blue-950/30',
-      subValue: t("This month"),
+      subValue: t('dashboard.thisMonth'),
       trend: 'up' as const,
-      period: t("vs last month")
+      period: t('dashboard.vsLastMonth')
     },
     {
-      title: t("Active Customers"),
+      title: t('dashboard.totalCustomers'),
       value: "1,234",
       change: 3.1,
       changeType: 'increase' as const,
       icon: Users,
       iconColor: 'text-purple-600 dark:text-purple-400',
       iconBgColor: 'bg-purple-50 dark:bg-purple-950/30',
-      subValue: t("Total users"),
+      subValue: t('customers.title'),
       trend: 'up' as const,
-      period: t("vs last month")
+      period: t('dashboard.vsLastMonth')
     },
     {
-      title: t("Conversion Rate"),
+      title: t('dashboard.conversionRate'),
       value: "4.3%",
       change: 0.8,
       changeType: 'decrease' as const,
       icon: Target,
       iconColor: 'text-orange-600 dark:text-orange-400',
       iconBgColor: 'bg-orange-50 dark:bg-orange-950/30',
-      subValue: t("Average"),
+      subValue: "Average",
       trend: 'down' as const,
-      period: t("vs last month")
+      period: t('dashboard.vsLastMonth')
     }
   ];
 
   const performanceMetrics = [
     {
-      title: t("Store Visits"),
+      title: t('dashboard.storeVisits'),
       value: "18,423",
       icon: Eye,
       change: 15.3,
@@ -98,10 +98,10 @@ export default function Dashboard() {
       changeType: 'increase' as const,
       iconColor: 'text-indigo-600 dark:text-indigo-400',
       iconBgColor: 'bg-indigo-50 dark:bg-indigo-950/30',
-      period: t("Last 30 days")
+      period: t('dashboard.last30Days')
     },
     {
-      title: t("Cart Additions"),
+      title: t('dashboard.cartAdditions'),
       value: "892",
       icon: ShoppingCart,
       change: 9.2,
@@ -109,10 +109,10 @@ export default function Dashboard() {
       changeType: 'increase' as const,
       iconColor: 'text-pink-600 dark:text-pink-400',
       iconBgColor: 'bg-pink-50 dark:bg-pink-950/30',
-      period: t("Last 30 days")
+      period: t('dashboard.last30Days')
     },
     {
-      title: t("Average Order Value"),
+      title: t('dashboard.averageOrderValue'),
       value: "367",
       icon: BarChart3,
       change: -2.4,
@@ -120,11 +120,11 @@ export default function Dashboard() {
       changeType: 'decrease' as const,
       iconColor: 'text-cyan-600 dark:text-cyan-400',
       iconBgColor: 'bg-cyan-50 dark:bg-cyan-950/30',
-      period: t("EGP"),
-      subValue: t("EGP")
+      period: "EGP",
+      subValue: "EGP"
     },
     {
-      title: t("Pending Orders"),
+      title: t('dashboard.pendingOrders'),
       value: "23",
       icon: Clock,
       change: 0,
@@ -132,7 +132,7 @@ export default function Dashboard() {
       changeType: 'neutral' as const,
       iconColor: 'text-yellow-600 dark:text-yellow-400',
       iconBgColor: 'bg-yellow-50 dark:bg-yellow-950/30',
-      period: t("Needs action")
+      period: t('dashboard.needsAction')
     }
   ];
 
@@ -140,41 +140,41 @@ export default function Dashboard() {
     {
       id: '1',
       type: 'order',
-      title: t("dashboard.newOrder", { orderNumber: "#2024001" }),
-      description: t("dashboard.placedOrderDescription", { name: "Ahmed Mohamed" }),
-      time: t("dashboard.minutesAgo", { count: 5 }),
+      title: `${t('dashboard.newOrder')} #2024001`,
+      description: "Ahmed Mohamed placed an order",
+      time: "5 minutes ago",
       status: 'success'
     },
     {
       id: '2',
       type: 'payment',
-      title: t("dashboard.paymentReceived"),
-      description: t("dashboard.paymentDescription", { amount: "2,345", currency: "EGP", orderNumber: "#2024000" }),
-      time: t("dashboard.minutesAgo", { count: 12 }),
+      title: t('dashboard.paymentReceived'),
+      description: "EGP 2,345 from Order #2024000",
+      time: "12 minutes ago",
       status: 'success'
     },
     {
       id: '3',
       type: 'order',
-      title: t("dashboard.orderCancelled"),
-      description: t("dashboard.orderCancelledDescription", { orderNumber: "#2023999" }),
-      time: t("dashboard.hoursAgo", { count: 1 }),
+      title: t('dashboard.orderCancelled'),
+      description: "Order #2023999 was cancelled",
+      time: "1 hour ago",
       status: 'failed'
     },
     {
       id: '4',
       type: 'user',
-      title: t("dashboard.newCustomer"),
-      description: t("dashboard.customerRegisteredDescription", { name: "Sara Ahmed" }),
-      time: t("dashboard.hoursAgo", { count: 2 }),
+      title: t('dashboard.newCustomer'),
+      description: "Sara Ahmed registered",
+      time: "2 hours ago",
       status: 'success'
     },
     {
       id: '5',
       type: 'payment',
-      title: t("dashboard.paymentPending"),
-      description: t("dashboard.paymentPendingDescription", { orderNumber: "#2023998" }),
-      time: t("dashboard.hoursAgo", { count: 3 }),
+      title: t('dashboard.paymentPending'),
+      description: "Awaiting payment for Order #2023998",
+      time: "3 hours ago",
       status: 'pending'
     }
   ];
@@ -182,29 +182,29 @@ export default function Dashboard() {
   const healthItems: HealthItem[] = [
     {
       id: '1',
-      title: t('Complete store setup'),
+      title: t('dashboard.completeStoreSetup'),
       status: 'warning',
-      message: t('Add your business information and tax settings'),
+      message: t('dashboard.addBusinessInfo'),
       action: {
-        label: t('Complete Setup'),
+        label: t('dashboard.completeSetup'),
         url: '/dashboard/settings'
       }
     },
     {
       id: '2',
-      title: t('Add more products'),
+      title: t('dashboard.addMoreProducts'),
       status: 'warning',
-      message: t('You have less than 10 products. Add more to increase sales'),
+      message: t('dashboard.lessThan10Products'),
       action: {
-        label: t('Add Products'),
+        label: t('products.addProduct'),
         url: '/dashboard/products/new'
       }
     },
     {
       id: '3',
-      title: t('SEO optimization'),
+      title: t('dashboard.seoOptimization'),
       status: 'good',
-      message: t('Your store SEO is properly configured'),
+      message: t('dashboard.seoConfigured'),
     }
   ];
 
@@ -213,10 +213,10 @@ export default function Dashboard() {
       {/* Page Header */}
       <div>
         <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
-          {t("Dashboard Overview")}
+          {t('dashboard.title')}
         </h1>
         <p className="text-muted-foreground mt-1">
-          {t("Welcome back! Here's what's happening with your store today.")}
+          {t('dashboard.welcomeBack')}
         </p>
       </div>
 
@@ -240,7 +240,7 @@ export default function Dashboard() {
       </div>
 
       {/* Second Row - Store Setup and Quick Actions */}
-      <div className="">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Store Setup Guide */}
         <div className="lg:col-span-2">
           <Card className="border-0 shadow-sm overflow-hidden bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
@@ -248,12 +248,12 @@ export default function Dashboard() {
               <div className="flex justify-between items-start">
                 <Title
                   className="text-xl font-bold"
-                  title={t("Complete Your Store Setup")}
-                  Subtitle={t("Follow these steps to maximize your store's potential")}
+                  title={t('dashboard.completeSetup')}
+                  Subtitle={t('dashboard.followSteps')}
                   classNamee="text-sm text-muted-foreground"
                 />
                 <Badge variant="secondary" className="bg-gradient-to-r from-blue-500/10 to-purple-500/10">
-                  {t("Setup Guide")}
+                  {t('dashboard.setupGuide')}
                 </Badge>
               </div>
             </CardHeader>
@@ -270,8 +270,8 @@ export default function Dashboard() {
       {/* Performance Metrics */}
       <div>
         <Title
-          title={t("Performance Metrics")}
-          Subtitle={t("Key indicators of your store's health")}
+          title={t('dashboard.performanceMetrics')}
+          Subtitle={t('dashboard.keyIndicators')}
           className="text-xl font-bold mb-4"
           classNamee="text-sm text-muted-foreground"
         />
@@ -321,20 +321,20 @@ export default function Dashboard() {
               <div className="flex items-center gap-3 mb-3">
                 <Award className="h-8 w-8 text-yellow-300" />
                 <h3 className="text-2xl font-bold">
-                  {t("Your guide to growing your business")}
+                  {t('dashboard.learningResources')}
                 </h3>
               </div>
               <p className="text-white/90 mb-6 max-w-2xl">
-                {t("Learn how to use Ordify effectively and increase your sales through our comprehensive resources and community support.")}
+                {t('dashboard.learnOrdify')}
               </p>
               <div className="flex flex-wrap gap-3">
                 <Button className="bg-white text-indigo-600 hover:bg-gray-100 font-semibold shadow-lg">
                   <Send className="h-4 w-4 mr-2" />
-                  {t("Join Telegram Community")}
+                  {t('dashboard.joinTelegram')}
                 </Button>
                 <Button className="bg-red-500 hover:bg-red-600 text-white font-semibold shadow-lg">
                   <SquarePlay className="h-4 w-4 mr-2" />
-                  {t("Watch Video Tutorials")}
+                  {t('dashboard.watchTutorials')}
                 </Button>
               </div>
             </div>

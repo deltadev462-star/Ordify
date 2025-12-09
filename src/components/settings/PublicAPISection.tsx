@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import {
   Key,
   Eye,
@@ -61,7 +60,6 @@ interface Webhook {
 }
 
 function PublicAPISection() {
-  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState('keys');
   const [showKey, setShowKey] = useState<string | null>(null);
   const [showSecret, setShowSecret] = useState<string | null>(null);
@@ -88,7 +86,7 @@ function PublicAPISection() {
   const [apiKeys, setApiKeys] = useState<APIKey[]>([
     {
       id: '1',
-      name: t('publicAPI.keys.productionKey'),
+      name: "Production Key",
       key: 'sk_live_4242424242424242424242',
       created: '2024-01-15',
       lastUsed: '2024-12-06',
@@ -98,7 +96,7 @@ function PublicAPISection() {
     },
     {
       id: '2',
-      name: t('publicAPI.keys.testKey'),
+      name: "Test Key",
       key: 'sk_test_8484848484848484848484',
       created: '2024-02-20',
       lastUsed: '2024-12-05',
@@ -124,51 +122,51 @@ function PublicAPISection() {
     {
       method: 'GET',
       path: '/orders',
-      description: t('publicAPI.endpoints.listOrders'),
+      description: "List Orders",
       auth: true
     },
     {
       method: 'GET',
       path: '/orders/:id',
-      description: t('publicAPI.endpoints.getOrder'),
+      description: "Get Order",
       auth: true
     },
     {
       method: 'POST',
       path: '/orders',
-      description: t('publicAPI.endpoints.createOrder'),
+      description: "Create Order",
       auth: true
     },
     {
       method: 'GET',
       path: '/products',
-      description: t('publicAPI.endpoints.listProducts'),
+      description: "List Products",
       auth: false
     },
     {
       method: 'GET',
       path: '/products/:id',
-      description: t('publicAPI.endpoints.getProduct'),
+      description: "Get Product",
       auth: false
     },
     {
       method: 'GET',
       path: '/customers',
-      description: t('publicAPI.endpoints.listCustomers'),
+      description: "List Customers",
       auth: true
     }
   ];
 
   const webhookEvents = [
-    { value: 'order.created', label: t('publicAPI.webhooks.events.orderCreated') },
-    { value: 'order.updated', label: t('publicAPI.webhooks.events.orderUpdated') },
-    { value: 'order.cancelled', label: t('publicAPI.webhooks.events.orderCancelled') },
-    { value: 'order.fulfilled', label: t('publicAPI.webhooks.events.orderFulfilled') },
-    { value: 'customer.created', label: t('publicAPI.webhooks.events.customerCreated') },
-    { value: 'customer.updated', label: t('publicAPI.webhooks.events.customerUpdated') },
-    { value: 'product.created', label: t('publicAPI.webhooks.events.productCreated') },
-    { value: 'product.updated', label: t('publicAPI.webhooks.events.productUpdated') },
-    { value: 'product.deleted', label: t('publicAPI.webhooks.events.productDeleted') }
+    { value: 'order.created', label: "Order Created" },
+    { value: 'order.updated', label: "Order Updated" },
+    { value: 'order.cancelled', label: "Order Cancelled" },
+    { value: 'order.fulfilled', label: "Order Fulfilled" },
+    { value: 'customer.created', label: "Customer Created" },
+    { value: 'customer.updated', label: "Customer Updated" },
+    { value: 'product.created', label: "Product Created" },
+    { value: 'product.updated', label: "Product Updated" },
+    { value: 'product.deleted', label: "Product Deleted" }
   ];
 
   const generateApiKey = () => {
@@ -182,9 +180,9 @@ function PublicAPISection() {
   const addApiKey = () => {
     const newKey: APIKey = {
       id: Date.now().toString(),
-      name: t('publicAPI.keys.newKey'),
+      name: "New Key",
       key: generateApiKey(),
-      created: new Date().toISOString().split('T')[0],
+      created: new Date().toISOString().split("T")[0],
       lastUsed: '-',
       permissions: ['read:orders', 'read:products'],
       rateLimit: 100,
@@ -239,9 +237,9 @@ function PublicAPISection() {
     <div className="space-y-6">
       <Alert variant="info">
         <AlertIcon variant="info" />
-        <AlertTitle>{t("publicAPI.title")}</AlertTitle>
+        <AlertTitle>{"Title"}</AlertTitle>
         <AlertDescription>
-          {t("publicAPI.description")}
+          {"Description"}
         </AlertDescription>
       </Alert>
 
@@ -249,27 +247,27 @@ function PublicAPISection() {
         <TabsList className="grid w-full max-w-3xl grid-cols-6 mb-6">
           <TabsTrigger value="keys" className="flex items-center gap-2">
             <Key className="w-4 h-4" />
-            {t("publicAPI.tabs.apiKeys")}
+            {"Api Keys"}
           </TabsTrigger>
           <TabsTrigger value="endpoints" className="flex items-center gap-2">
             <Terminal className="w-4 h-4" />
-            {t("publicAPI.tabs.endpoints")}
+            {"Endpoints"}
           </TabsTrigger>
           <TabsTrigger value="webhooks" className="flex items-center gap-2">
             <Webhook className="w-4 h-4" />
-            {t("publicAPI.tabs.webhooks")}
+            {"Webhooks"}
           </TabsTrigger>
           <TabsTrigger value="settings" className="flex items-center gap-2">
             <Shield className="w-4 h-4" />
-            {t("publicAPI.tabs.settings")}
+            {"Settings"}
           </TabsTrigger>
           <TabsTrigger value="analytics" className="flex items-center gap-2">
             <Activity className="w-4 h-4" />
-            {t("publicAPI.tabs.analytics")}
+            {"Analytics"}
           </TabsTrigger>
           <TabsTrigger value="docs" className="flex items-center gap-2">
             <Book className="w-4 h-4" />
-            {t("publicAPI.tabs.docs")}
+            {"Docs"}
           </TabsTrigger>
         </TabsList>
 
@@ -282,9 +280,9 @@ function PublicAPISection() {
                     <Key className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <CardTitle className="text-xl">{t("publicAPI.keys.title")}</CardTitle>
+                    <CardTitle className="text-xl">{"Title"}</CardTitle>
                     <CardDescription className="text-white/80">
-                      {t("publicAPI.keys.description")}
+                      {"Description"}
                     </CardDescription>
                   </div>
                 </div>
@@ -294,7 +292,7 @@ function PublicAPISection() {
                   onClick={addApiKey}
                 >
                   <Plus className="w-4 h-4 mr-2" />
-                  {t("publicAPI.keys.newKeyButton")}
+                  {"New Key Button"}
                 </Button>
               </div>
             </CardHeader>
@@ -304,14 +302,14 @@ function PublicAPISection() {
                   <div className="p-4 rounded-2xl bg-gray-100 dark:bg-gray-800 inline-block mb-4">
                     <Key className="w-8 h-8 text-gray-400" />
                   </div>
-                  <p className="text-gray-600 dark:text-gray-400">{t("publicAPI.keys.noKeys")}</p>
+                  <p className="text-gray-600 dark:text-gray-400">{"No Keys"}</p>
                   <Button
                     variant="outline"
                     className="mt-4"
                     onClick={addApiKey}
                   >
                     <Plus className="w-4 h-4 mr-2" />
-                    {t("publicAPI.keys.createFirstKey")}
+                    {"Create First Key"}
                   </Button>
                 </div>
               ) : (
@@ -334,11 +332,11 @@ function PublicAPISection() {
                             </h4>
                             {apiKey.active ? (
                               <Badge variant="default" className="text-xs">
-                                {t("publicAPI.keys.active")}
+                                {"Active"}
                               </Badge>
                             ) : (
                               <Badge variant="secondary" className="text-xs">
-                                {t("publicAPI.keys.inactive")}
+                                {"Inactive"}
                               </Badge>
                             )}
                           </div>
@@ -387,21 +385,21 @@ function PublicAPISection() {
 
                       <div className="grid grid-cols-3 gap-4 text-sm">
                         <div>
-                          <p className="text-gray-500 dark:text-gray-400">{t("publicAPI.keys.created")}</p>
+                          <p className="text-gray-500 dark:text-gray-400">{"Created"}</p>
                           <p className="font-medium">{apiKey.created}</p>
                         </div>
                         <div>
-                          <p className="text-gray-500 dark:text-gray-400">{t("publicAPI.keys.lastUsed")}</p>
+                          <p className="text-gray-500 dark:text-gray-400">{"Last Used"}</p>
                           <p className="font-medium">{apiKey.lastUsed}</p>
                         </div>
                         <div>
-                          <p className="text-gray-500 dark:text-gray-400">{t("publicAPI.keys.rateLimit")}</p>
+                          <p className="text-gray-500 dark:text-gray-400">{"Rate Limit"}</p>
                           <p className="font-medium">{apiKey.rateLimit}/hour</p>
                         </div>
                       </div>
 
                       <div className="mt-3 pt-3 border-t">
-                        <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">{t("publicAPI.keys.permissions")}</p>
+                        <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">{"Permissions"}</p>
                         <div className="flex flex-wrap gap-2">
                           {apiKey.permissions.map((perm) => (
                             <Badge key={perm} variant="outline" className="text-xs">
@@ -418,7 +416,7 @@ function PublicAPISection() {
               <Alert>
                 <Info className="h-4 w-4" />
                 <AlertDescription>
-                  {t("publicAPI.keys.securityWarning")}
+                  {"Security Warning"}
                 </AlertDescription>
               </Alert>
             </CardContent>
@@ -430,10 +428,10 @@ function PublicAPISection() {
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Terminal className="w-5 h-5 text-primary" />
-                {t("publicAPI.endpoints.title")}
+                {"Title"}
               </CardTitle>
               <CardDescription>
-                {t("publicAPI.endpoints.description")}
+                {"Description"}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -446,7 +444,7 @@ function PublicAPISection() {
                 </div>
                 <Button variant="outline" size="sm" className="gap-2">
                   <ExternalLink className="w-4 h-4" />
-                  {t("publicAPI.endpoints.openPlayground")}
+                  {"Open Playground"}
                 </Button>
               </div>
 
@@ -469,7 +467,7 @@ function PublicAPISection() {
                       {endpoint.auth && (
                         <Badge variant="outline" className="text-xs gap-1">
                           <Lock className="w-3 h-3" />
-                          {t("publicAPI.endpoints.authRequired")}
+                          {"Auth Required"}
                         </Badge>
                       )}
                       <Button variant="ghost" size="sm">
@@ -481,7 +479,7 @@ function PublicAPISection() {
               </div>
 
               <div className="pt-4 border-t">
-                <h4 className="font-medium mb-3">{t("publicAPI.endpoints.exampleRequest")}</h4>
+                <h4 className="font-medium mb-3">{"Example Request"}</h4>
                 <div className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
                   <pre className="text-sm">
 {`curl -X GET \\
@@ -493,7 +491,7 @@ function PublicAPISection() {
               </div>
 
               <div className="pt-4">
-                <h4 className="font-medium mb-3">{t("publicAPI.endpoints.exampleResponse")}</h4>
+                <h4 className="font-medium mb-3">{"Example Response"}</h4>
                 <div className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto">
                   <pre className="text-sm">
 {`{
@@ -528,9 +526,9 @@ function PublicAPISection() {
                     <Zap className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <CardTitle className="text-xl">{t("publicAPI.webhooks.title")}</CardTitle>
+                    <CardTitle className="text-xl">{"Title"}</CardTitle>
                     <CardDescription className="text-white/80">
-                      {t("publicAPI.webhooks.description")}
+                      {"Description"}
                     </CardDescription>
                   </div>
                 </div>
@@ -540,7 +538,7 @@ function PublicAPISection() {
                   onClick={addWebhook}
                 >
                   <Plus className="w-4 h-4 mr-2" />
-                  {t("publicAPI.webhooks.addWebhook")}
+                  {"Add Webhook"}
                 </Button>
               </div>
             </CardHeader>
@@ -562,7 +560,7 @@ function PublicAPISection() {
                         />
                         
                         <div className="flex items-center gap-2 mb-3">
-                          <Label className="text-sm">{t("publicAPI.webhooks.secret")}</Label>
+                          <Label className="text-sm">{"Secret"}</Label>
                           <div className="flex items-center gap-2 flex-1">
                             <code className="text-sm bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded font-mono">
                               {showSecret === webhook.id ? webhook.secret : '••••••••••••••••••••••••'}
@@ -589,7 +587,7 @@ function PublicAPISection() {
                         </div>
 
                         <div>
-                          <Label className="text-sm mb-2">{t("publicAPI.webhooks.eventsLabel")}</Label>
+                          <Label className="text-sm mb-2">{"Events Label"}</Label>
                           <Select
                             value=""
                             onValueChange={(value) => {
@@ -603,7 +601,7 @@ function PublicAPISection() {
                             }}
                           >
                             <SelectTrigger className="w-full">
-                              <SelectValue placeholder={t("publicAPI.webhooks.selectEvents")} />
+                              <SelectValue placeholder={"Select Events"} />
                             </SelectTrigger>
                             <SelectContent>
                               {webhookEvents.map((event) => (
@@ -665,11 +663,11 @@ function PublicAPISection() {
                     {webhook.lastTriggered && (
                       <div className="flex items-center justify-between pt-3 border-t text-sm">
                         <span className="text-gray-500">
-                          {t("publicAPI.webhooks.lastTriggered")} {webhook.lastTriggered}
+                          {"Last Triggered"} {webhook.lastTriggered}
                         </span>
                         {webhook.failureCount > 0 && (
                           <Badge variant="destructive" className="text-xs">
-                            {webhook.failureCount} {t("publicAPI.webhooks.failures")}
+                            {webhook.failureCount} {"Failures"}
                           </Badge>
                         )}
                       </div>
@@ -683,14 +681,14 @@ function PublicAPISection() {
                   <div className="p-4 rounded-2xl bg-gray-100 dark:bg-gray-800 inline-block mb-4">
                     <Zap className="w-8 h-8 text-gray-400" />
                   </div>
-                  <p className="text-gray-600 dark:text-gray-400">{t("publicAPI.webhooks.noWebhooks")}</p>
+                  <p className="text-gray-600 dark:text-gray-400">{"No Webhooks"}</p>
                 </div>
               )}
 
               <Alert>
                 <Info className="h-4 w-4" />
                 <AlertDescription>
-                  {t("publicAPI.webhooks.info")}
+                  {"Info"}
                 </AlertDescription>
               </Alert>
             </CardContent>
@@ -702,18 +700,18 @@ function PublicAPISection() {
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Shield className="w-5 h-5 text-primary" />
-                {t("publicAPI.settings.securityTitle")}
+                {"Security Title"}
               </CardTitle>
               <CardDescription>
-                {t("publicAPI.settings.securityDescription")}
+                {"Security Description"}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium">{t("publicAPI.settings.apiAccess")}</p>
+                  <p className="font-medium">{"Api Access"}</p>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    {t("publicAPI.settings.apiAccessDescription")}
+                    {"Api Access Description"}
                   </p>
                 </div>
                 <Switch
@@ -725,11 +723,11 @@ function PublicAPISection() {
               </div>
 
               <div className="space-y-4 pt-4 border-t">
-                <h4 className="font-medium">{t("publicAPI.settings.rateLimiting")}</h4>
+                <h4 className="font-medium">{"Rate Limiting"}</h4>
                 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <Label className="mb-2">{t("publicAPI.settings.globalRateLimit")}</Label>
+                    <Label className="mb-2">{"Global Rate Limit"}</Label>
                     <Input
                       type="number"
                       value={apiSettings.globalRateLimit}
@@ -740,7 +738,7 @@ function PublicAPISection() {
                     />
                   </div>
                   <div>
-                    <Label className="mb-2">{t("publicAPI.settings.timePeriod")}</Label>
+                    <Label className="mb-2">{"Time Period"}</Label>
                     <Select
                       value={apiSettings.rateLimitPeriod}
                       onValueChange={(value) => 
@@ -751,9 +749,9 @@ function PublicAPISection() {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="minute">{t("publicAPI.settings.perMinute")}</SelectItem>
-                        <SelectItem value="hour">{t("publicAPI.settings.perHour")}</SelectItem>
-                        <SelectItem value="day">{t("publicAPI.settings.perDay")}</SelectItem>
+                        <SelectItem value="minute">{"Per Minute"}</SelectItem>
+                        <SelectItem value="hour">{"Per Hour"}</SelectItem>
+                        <SelectItem value="day">{"Per Day"}</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -761,13 +759,13 @@ function PublicAPISection() {
               </div>
 
               <div className="space-y-4 pt-4 border-t">
-                <h4 className="font-medium">{t("publicAPI.settings.corsSettings")}</h4>
+                <h4 className="font-medium">{"Cors Settings"}</h4>
                 
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="font-medium">{t("publicAPI.settings.enableCORS")}</p>
+                    <p className="font-medium">{"Enable C O R S"}</p>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                      {t("publicAPI.settings.enableCORSDescription")}
+                      {"Enable C O R S Description"}
                     </p>
                   </div>
                   <Switch
@@ -780,7 +778,7 @@ function PublicAPISection() {
 
                 {apiSettings.enableCORS && (
                   <div>
-                    <Label className="mb-2">{t("publicAPI.settings.allowedOrigins")}</Label>
+                    <Label className="mb-2">{"Allowed Origins"}</Label>
                     <Input
                       value={apiSettings.allowedOrigins}
                       onChange={(e) => setApiSettings(prev => ({ 
@@ -790,20 +788,20 @@ function PublicAPISection() {
                       placeholder="* or https://example.com"
                     />
                     <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                      {t("publicAPI.settings.originsHint")}
+                      {"Origins Hint"}
                     </p>
                   </div>
                 )}
               </div>
 
               <div className="space-y-4 pt-4 border-t">
-                <h4 className="font-medium">{t("publicAPI.settings.ipWhitelist")}</h4>
+                <h4 className="font-medium">{"Ip Whitelist"}</h4>
                 
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="font-medium">{t("publicAPI.settings.enableIPWhitelist")}</p>
+                    <p className="font-medium">{"Enable I P Whitelist"}</p>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                      {t("publicAPI.settings.enableIPWhitelistDescription")}
+                      {"Enable I P Whitelist Description"}
                     </p>
                   </div>
                   <Switch
@@ -816,14 +814,14 @@ function PublicAPISection() {
 
                 {apiSettings.enableIPWhitelist && (
                   <div>
-                    <Label className="mb-2">{t("publicAPI.settings.whitelistedIPs")}</Label>
+                    <Label className="mb-2">{"Whitelisted I Ps"}</Label>
                     <Textarea
                       placeholder="192.168.1.1&#10;10.0.0.0/24"
                       className="font-mono"
                       rows={4}
                     />
                     <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                      {t("publicAPI.settings.ipHint")}
+                      {"Ip Hint"}
                     </p>
                   </div>
                 )}
@@ -835,12 +833,12 @@ function PublicAPISection() {
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Database className="w-5 h-5 text-primary" />
-                {t("publicAPI.settings.responseSettings")}
+                {"Response Settings"}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <Label className="mb-2">{t("publicAPI.settings.responseFormat")}</Label>
+                <Label className="mb-2">{"Response Format"}</Label>
                 <Select
                   value={apiSettings.responseFormat}
                   onValueChange={(value) => 
@@ -851,15 +849,15 @@ function PublicAPISection() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="json">{t("publicAPI.settings.json")}</SelectItem>
-                    <SelectItem value="xml">{t("publicAPI.settings.xml")}</SelectItem>
-                    <SelectItem value="csv">{t("publicAPI.settings.csv")}</SelectItem>
+                    <SelectItem value="json">{"Json"}</SelectItem>
+                    <SelectItem value="xml">{"Xml"}</SelectItem>
+                    <SelectItem value="csv">{"Csv"}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
               <div>
-                <Label className="mb-2">{t("publicAPI.settings.apiVersion")}</Label>
+                <Label className="mb-2">{"Api Version"}</Label>
                 <Input
                   value={apiSettings.version}
                   onChange={(e) => setApiSettings(prev => ({ 
@@ -878,10 +876,10 @@ function PublicAPISection() {
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Activity className="w-5 h-5 text-primary" />
-                {t("publicAPI.analytics.title")}
+                {"Title"}
               </CardTitle>
               <CardDescription>
-                {t("publicAPI.analytics.description")}
+                {"Description"}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -889,7 +887,7 @@ function PublicAPISection() {
                 <Card>
                   <CardContent className="p-4">
                     <div className="flex items-center justify-between">
-                      <p className="text-sm text-gray-600 dark:text-gray-400">{t("publicAPI.analytics.totalRequests")}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">{"Total Requests"}</p>
                       <Activity className="w-4 h-4 text-gray-400" />
                     </div>
                     <p className="text-2xl font-bold mt-2">42,853</p>
@@ -900,7 +898,7 @@ function PublicAPISection() {
                 <Card>
                   <CardContent className="p-4">
                     <div className="flex items-center justify-between">
-                      <p className="text-sm text-gray-600 dark:text-gray-400">{t("publicAPI.analytics.activeKeys")}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">{"Active Keys"}</p>
                       <Key className="w-4 h-4 text-gray-400" />
                     </div>
                     <p className="text-2xl font-bold mt-2">12</p>
@@ -911,7 +909,7 @@ function PublicAPISection() {
                 <Card>
                   <CardContent className="p-4">
                     <div className="flex items-center justify-between">
-                      <p className="text-sm text-gray-600 dark:text-gray-400">{t("publicAPI.analytics.errorRate")}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">{"Error Rate"}</p>
                       <AlertCircle className="w-4 h-4 text-gray-400" />
                     </div>
                     <p className="text-2xl font-bold mt-2">0.3%</p>
@@ -922,7 +920,7 @@ function PublicAPISection() {
                 <Card>
                   <CardContent className="p-4">
                     <div className="flex items-center justify-between">
-                      <p className="text-sm text-gray-600 dark:text-gray-400">{t("publicAPI.analytics.avgResponse")}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">{"Avg Response"}</p>
                       <Clock className="w-4 h-4 text-gray-400" />
                     </div>
                     <p className="text-2xl font-bold mt-2">142ms</p>
@@ -932,7 +930,7 @@ function PublicAPISection() {
               </div>
 
               <div className="pt-4">
-                <h4 className="font-medium mb-3">{t("publicAPI.analytics.topEndpoints")}</h4>
+                <h4 className="font-medium mb-3">{"Top Endpoints"}</h4>
                 <div className="space-y-3">
                   {[
                     { endpoint: 'GET /products', calls: 15420, percentage: 36 },
@@ -952,7 +950,7 @@ function PublicAPISection() {
               </div>
 
               <div className="pt-4">
-                <h4 className="font-medium mb-3">{t("publicAPI.analytics.recentActivity")}</h4>
+                <h4 className="font-medium mb-3">{"Recent Activity"}</h4>
                 <div className="space-y-2">
                   {[
                     { time: '2 min ago', key: 'sk_live_424...', endpoint: 'GET /products', status: 200 },
@@ -988,9 +986,9 @@ function PublicAPISection() {
                   <Book className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <CardTitle className="text-xl">{t("publicAPI.docs.title")}</CardTitle>
+                  <CardTitle className="text-xl">{"Title"}</CardTitle>
                   <CardDescription className="text-white/80">
-                    {t("publicAPI.docs.description")}
+                    {"Description"}
                   </CardDescription>
                 </div>
               </div>
@@ -1004,9 +1002,9 @@ function PublicAPISection() {
                         <Zap className="w-5 h-5 text-primary" />
                       </div>
                       <div>
-                        <h4 className="font-medium">{t("publicAPI.docs.gettingStarted")}</h4>
+                        <h4 className="font-medium">{"Getting Started"}</h4>
                         <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                          {t("publicAPI.docs.gettingStartedDescription")}
+                          {"Getting Started Description"}
                         </p>
                       </div>
                     </div>
@@ -1020,9 +1018,9 @@ function PublicAPISection() {
                         <Terminal className="w-5 h-5 text-primary" />
                       </div>
                       <div>
-                        <h4 className="font-medium">{t("publicAPI.docs.apiReference")}</h4>
+                        <h4 className="font-medium">{"Api Reference"}</h4>
                         <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                          {t("publicAPI.docs.apiReferenceDescription")}
+                          {"Api Reference Description"}
                         </p>
                       </div>
                     </div>
@@ -1036,9 +1034,9 @@ function PublicAPISection() {
                         <FileJson className="w-5 h-5 text-primary" />
                       </div>
                       <div>
-                        <h4 className="font-medium">{t("publicAPI.docs.codeExamples")}</h4>
+                        <h4 className="font-medium">{"Code Examples"}</h4>
                         <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                          {t("publicAPI.docs.codeExamplesDescription")}
+                          {"Code Examples Description"}
                         </p>
                       </div>
                     </div>
@@ -1052,9 +1050,9 @@ function PublicAPISection() {
                         <Download className="w-5 h-5 text-primary" />
                       </div>
                       <div>
-                        <h4 className="font-medium">{t("publicAPI.docs.sdks")}</h4>
+                        <h4 className="font-medium">{"Sdks"}</h4>
                         <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                          {t("publicAPI.docs.sdksDescription")}
+                          {"Sdks Description"}
                         </p>
                       </div>
                     </div>
@@ -1063,18 +1061,18 @@ function PublicAPISection() {
               </div>
 
               <div className="pt-4 border-t">
-                <h4 className="font-medium mb-3">{t("publicAPI.docs.quickLinks")}</h4>
+                <h4 className="font-medium mb-3">{"Quick Links"}</h4>
                 <div className="space-y-2">
                   <Button variant="outline" className="w-full justify-between">
-                    <span>{t("publicAPI.docs.downloadOpenAPI")}</span>
+                    <span>{"Download Open A P I"}</span>
                     <Download className="w-4 h-4" />
                   </Button>
                   <Button variant="outline" className="w-full justify-between">
-                    <span>{t("publicAPI.docs.importPostman")}</span>
+                    <span>{"Import Postman"}</span>
                     <Upload className="w-4 h-4" />
                   </Button>
                   <Button variant="outline" className="w-full justify-between">
-                    <span>{t("publicAPI.docs.viewChangelog")}</span>
+                    <span>{"View Changelog"}</span>
                     <ExternalLink className="w-4 h-4" />
                   </Button>
                 </div>
@@ -1083,7 +1081,7 @@ function PublicAPISection() {
               <Alert>
                 <Info className="h-4 w-4" />
                 <AlertDescription>
-                  {t("publicAPI.docs.helpText")}
+                  {"Help Text"}
                 </AlertDescription>
               </Alert>
             </CardContent>
@@ -1093,11 +1091,11 @@ function PublicAPISection() {
 
       <div className="flex justify-end gap-3">
         <Button variant="outline">
-          {t("publicAPI.actions.cancel")}
+          {"Cancel"}
         </Button>
         <Button className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70">
           <Save className="w-4 h-4 mr-2" />
-          {t("publicAPI.actions.save")}
+          {"Save"}
         </Button>
       </div>
     </div>

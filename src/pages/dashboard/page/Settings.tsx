@@ -1,6 +1,6 @@
 import Title from "@/components/Title";
-import { useTranslation } from "react-i18next";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import {
@@ -63,38 +63,38 @@ import EditThankYouPageSection from "@/components/settings/EditThankYouPageSecti
 import PublicAPISection from "@/components/settings/PublicAPISection";
 
 function Settings() {
-  const { t } = useTranslation();
-  const [active, setActive] = useState(t("settings.menu.storeSettings"));
+  const [active, setActive] = useState("storeSettings");
   const [isSaving, setIsSaving] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
+  const { t } = useTranslation();
 
   const menu = [
-    { title: t("settings.menu.storeSettings"), key: "storeSettings", icon: SettingsIcon, category: "general" },
-    { title: t("settings.menu.securitySettings"), key: "securitySettings", icon: Shield, category: "security" },
-    { title: t("settings.menu.notifications"), key: "notifications", icon: Bell, category: "notifications" },
-    { title: t("settings.menu.sidebarSettings"), key: "sidebarSettings", icon: Layout, category: "general", badge: t("settings.badge.new") },
-    { title: t("settings.menu.domainSettings"), key: "domainSettings", icon: Globe, category: "general" },
-    { title: t("settings.menu.storeInfoPolicies"), key: "storeInfoPolicies", icon: FileText, category: "general" },
-    { title: t("settings.menu.addHeaderCode"), key: "addHeaderCode", icon: Code, category: "advanced" },
-    { title: t("settings.menu.seoSettings"), key: "seoSettings", icon: Search, category: "marketing" },
-    { title: t("settings.menu.paymentGateways"), key: "paymentGateways", icon: CreditCard, category: "payments" },
-    { title: t("settings.menu.shippingSettings"), key: "shippingSettings", icon: Truck, category: "shipping" },
-    { title: t("settings.menu.taxSettings"), key: "taxSettings", icon: Tags, category: "shipping" },
-    { title: t("settings.menu.integrations"), key: "integrations", icon: Package, category: "advanced" },
-    { title: t("settings.menu.advancedSettings"), key: "advancedSettings", icon: Code2, category: "advanced" },
-    { title: t("settings.menu.pixelSettings"), key: "pixelSettings", icon: Camera, category: "marketing" },
-    { title: t("settings.menu.googleTagSettings"), key: "googleTagSettings", icon: Tags, category: "marketing" },
-    { title: t("settings.menu.digitalProductsDelivery"), key: "digitalProductsDelivery", icon: Package, badge: t("settings.badge.new"), category: "products" },
-    { title: t("settings.menu.pages"), key: "pages", icon: FileText, category: "content" },
-    { title: t("settings.menu.themeSettings"), key: "themeSettings", icon: Paintbrush, category: "appearance" },
-    { title: t("settings.menu.editMainPage"), key: "editMainPage", icon: Home, category: "content" },
-    { title: t("settings.menu.purchaseForm"), key: "purchaseForm", icon: ClipboardList, category: "checkout" },
-    { title: t("settings.menu.editThankYouPage"), key: "editThankYouPage", icon: NotebookPen, category: "content" },
-    { title: t("settings.menu.socialLinks"), key: "socialLinks", icon: Instagram, category: "social" },
-    { title: t("settings.menu.storeLink"), key: "storeLink", icon: Link, category: "general" },
-    { title: t("settings.menu.manageModerators"), key: "manageModerators", icon: Users, category: "team" },
-    { title: t("settings.menu.publicAPI"), key: "publicAPI", icon: Code2, category: "advanced" },
-    { title: t("settings.menu.loginSessions"), key: "loginSessions", icon: LogIn, category: "security" },
+    { titleKey: "settings.store", key: "storeSettings", icon: SettingsIcon, category: "general" },
+    { titleKey: "settings.security", key: "securitySettings", icon: Shield, category: "security" },
+    { titleKey: "settings.notifications", key: "notifications", icon: Bell, category: "notifications" },
+    { titleKey: "settings.sidebar", key: "sidebarSettings", icon: Layout, category: "general", badge: "New" },
+    { titleKey: "settings.domainSettings", key: "domainSettings", icon: Globe, category: "general" },
+    { titleKey: "settings.storeInfoPolicies", key: "storeInfoPolicies", icon: FileText, category: "general" },
+    { titleKey: "settings.addHeaderCode", key: "addHeaderCode", icon: Code, category: "advanced" },
+    { titleKey: "settings.seo", key: "seoSettings", icon: Search, category: "marketing" },
+    { titleKey: "settings.payment", key: "paymentGateways", icon: CreditCard, category: "payments" },
+    { titleKey: "settings.shipping", key: "shippingSettings", icon: Truck, category: "shipping" },
+    { titleKey: "settings.taxes", key: "taxSettings", icon: Tags, category: "shipping" },
+    { titleKey: "settings.integrations", key: "integrations", icon: Package, category: "advanced" },
+    { titleKey: "settings.advancedSettings", key: "advancedSettings", icon: Code2, category: "advanced" },
+    { titleKey: "settings.pixelSettings", key: "pixelSettings", icon: Camera, category: "marketing" },
+    { titleKey: "settings.googleTagSettings", key: "googleTagSettings", icon: Tags, category: "marketing" },
+    { titleKey: "settings.digitalProductsDelivery", key: "digitalProductsDelivery", icon: Package, badge: "New", category: "products" },
+    { titleKey: "settings.pages", key: "pages", icon: FileText, category: "content" },
+    { titleKey: "settings.theme", key: "themeSettings", icon: Paintbrush, category: "appearance" },
+    { titleKey: "settings.editMainPage", key: "editMainPage", icon: Home, category: "content" },
+    { titleKey: "settings.purchaseForm", key: "purchaseForm", icon: ClipboardList, category: "checkout" },
+    { titleKey: "settings.editThankYouPage", key: "editThankYouPage", icon: NotebookPen, category: "content" },
+    { titleKey: "settings.socialLinks", key: "socialLinks", icon: Instagram, category: "social" },
+    { titleKey: "settings.storeLink", key: "storeLink", icon: Link, category: "general" },
+    { titleKey: "settings.moderators", key: "manageModerators", icon: Users, category: "team" },
+    { titleKey: "settings.publicAPI", key: "publicAPI", icon: Code2, category: "advanced" },
+    { titleKey: "settings.loginSessions", key: "loginSessions", icon: LogIn, category: "security" },
   ];
 
   const handleSave = async () => {
@@ -110,7 +110,7 @@ function Settings() {
   };
 
   const renderContent = () => {
-    const activeItem = menu.find(item => item.title === active);
+    const activeItem = menu.find(item => item.key === active);
     const activeKey = activeItem?.key;
     
     switch (activeKey) {
@@ -164,9 +164,9 @@ function Settings() {
             <div className="p-4 rounded-2xl bg-primary/10 mb-4">
               <Bell className="w-8 h-8 text-primary" />
             </div>
-            <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-2">{t("settings.orderNotifications.title")}</h3>
+            <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-2">{t('settings.notifications')}</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 max-w-md">
-              {t("settings.orderNotifications.description")}
+              {t('settings.descriptions.notifications')}
             </p>
           </div>
         );
@@ -176,9 +176,9 @@ function Settings() {
             <div className="p-4 rounded-2xl bg-muted/50 mb-4">
               <SettingsIcon className="w-8 h-8 text-gray-400 dark:text-gray-500" />
             </div>
-            <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-2">{active}</h3>
+            <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-2">{t(activeItem?.titleKey || active)}</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 max-w-md">
-              {t("settings.comingSoon")}
+              {t('common.comingSoon', 'Coming Soon')}
             </p>
           </div>
         );
@@ -186,7 +186,7 @@ function Settings() {
   };
 
   const shouldShowSaveButton = () => {
-    const activeItem = menu.find(item => item.title === active);
+    const activeItem = menu.find(item => item.key === active);
     const keysWithSave = [
       "storeSettings",
       "securitySettings",
@@ -215,11 +215,11 @@ function Settings() {
   };
 
   return (
-    <div dir="rtl">
+    <div>
       <div className="flex bg-white dark:bg-black/80 rounded-2xl m-1 flex-1 flex-col gap-4 md:gap-6 p-4 md:p-6 pt-0">
         <Title
-          title={t("settings.title")}
-          Subtitle={t("settings.subtitle")}
+          title={t('settings.title')}
+          Subtitle={t('settings.general')}
           className="text-2xl md:text-3xl"
           classNamee=""
         />
@@ -230,12 +230,12 @@ function Settings() {
             <SelectTrigger className="w-full bg-gray-50 dark:bg-gray-900/50 border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800/50 transition-colors">
               <div className="flex items-center gap-2">
                 {(() => {
-                  const activeItem = menu.find(m => m.title === active);
+                  const activeItem = menu.find(m => m.key === active);
                   const Icon = activeItem?.icon || SettingsIcon;
                   return (
                     <>
                       <Icon className="w-5 h-5 text-primary" />
-                      <SelectValue placeholder={t("settings.selectSetting")} />
+                      <SelectValue placeholder={t('settings.selectSetting', 'Select Setting')} />
                     </>
                   );
                 })()}
@@ -245,10 +245,10 @@ function Settings() {
               {menu.map((item) => {
                 const Icon = item.icon;
                 return (
-                  <SelectItem key={item.title} value={item.title} className="py-3">
+                  <SelectItem key={item.key} value={item.key} className="py-3">
                     <div className="flex items-center gap-3 w-full">
                       <Icon className="w-5 h-5 text-muted-foreground" />
-                      <span className="flex-1">{item.title}</span>
+                      <span className="flex-1">{t(item.titleKey)}</span>
                       {item.badge && (
                         <span className="text-xs px-2 py-0.5 rounded-full font-medium bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
                           {item.badge}
@@ -270,12 +270,12 @@ function Settings() {
                 <div className="space-y-1 max-h-[calc(100vh-250px)] overflow-y-auto pr-1 scrollbar-thin">
                   {menu.map((item, i) => {
                     const Icon = item.icon;
-                    const isActive = active === item.title;
+                    const isActive = active === item.key;
 
                     return (
                       <button
                         key={i}
-                        onClick={() => setActive(item.title)}
+                        onClick={() => setActive(item.key)}
                         className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl cursor-pointer transition-all duration-200
                           ${
                             isActive
@@ -285,7 +285,7 @@ function Settings() {
                         `}
                       >
                         <Icon className={`w-5 h-5 ${isActive ? "text-primary dark:text-white" : "text-gray-500 dark:text-gray-400"}`} />
-                        <span className="text-sm font-medium flex-1 text-right">{item.title}</span>
+                        <span className="text-sm font-medium flex-1 text-right">{t(item.titleKey)}</span>
                         {item.badge && (
                           <span className={`text-xs px-2 py-0.5 rounded-full font-medium
                             ${isActive
@@ -313,17 +313,17 @@ function Settings() {
                   <div className="flex-1">
                     <CardTitle className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-100 flex items-center gap-3">
                       {(() => {
-                        const activeItem = menu.find(m => m.title === active);
+                        const activeItem = menu.find(m => m.key === active);
                         const Icon = activeItem?.icon || SettingsIcon;
                         return <Icon className="w-6 h-6 text-primary dark:text-primary" />;
                       })()}
-                      {active}
+                      {t(menu.find(m => m.key === active)?.titleKey || active)}
                     </CardTitle>
                     <CardDescription className="mt-1 text-gray-600 dark:text-gray-400">
                       {(() => {
-                        const activeItem = menu.find(item => item.title === active);
+                        const activeItem = menu.find(item => item.key === active);
                         const descriptionKey = `settings.descriptions.${activeItem?.key}`;
-                        return t(descriptionKey);
+                        return t(descriptionKey, '');
                       })()}
                     </CardDescription>
                   </div>
@@ -341,17 +341,17 @@ function Settings() {
                       {isSaving ? (
                         <>
                           <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2" />
-                          {t("settings.actions.saving")}
+                          {t('common.saving', 'Saving')}
                         </>
                       ) : saveSuccess ? (
                         <>
                           <CheckCircle2 className="w-4 h-4 mr-2" />
-                          {t("settings.actions.saved")}
+                          {t('common.saved', 'Saved')}
                         </>
                       ) : (
                         <>
                           <Save className="w-4 h-4 mr-2" />
-                          {t("settings.actions.saveChanges")}
+                          {t('settings.saveChanges', 'Save Changes')}
                         </>
                       )}
                     </Button>

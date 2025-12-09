@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -40,32 +39,31 @@ export function ProductFilters({
   viewMode,
   onViewModeChange,
 }: ProductFiltersProps) {
-  const { t } = useTranslation();
   const [showFilters, setShowFilters] = useState(false);
 
   const statusOptions = [
-    { value: 'all', label: t('All Status') },
-    { value: 'active', label: t('Active') },
-    { value: 'draft', label: t('Draft') },
-    { value: 'archived', label: t('Archived') },
+    { value: 'all', label: "All  Status" },
+    { value: 'active', label: "Active" },
+    { value: 'draft', label: "Draft" },
+    { value: 'archived', label: "Archived" },
   ];
 
   const categoryOptions = [
-    { value: 'all', label: t('All Categories') },
-    { value: 'electronics', label: t('Electronics') },
-    { value: 'clothing', label: t('Clothing') },
-    { value: 'food', label: t('Food & Beverages') },
-    { value: 'home', label: t('Home & Garden') },
-    { value: 'beauty', label: t('Beauty & Health') },
-    { value: 'sports', label: t('Sports & Outdoors') },
-    { value: 'toys', label: t('Toys & Games') },
+    { value: 'all', label: "All  Categories" },
+    { value: 'electronics', label: "Electronics" },
+    { value: 'clothing', label: "Clothing" },
+    { value: 'food', label: "Food &  Beverages" },
+    { value: 'home', label: "Home &  Garden" },
+    { value: 'beauty', label: "Beauty &  Health" },
+    { value: 'sports', label: "Sports &  Outdoors" },
+    { value: 'toys', label: "Toys &  Games" },
   ];
 
   const stockOptions = [
-    { value: 'all', label: t('All Stock Levels') },
-    { value: 'in-stock', label: t('In Stock') },
-    { value: 'low-stock', label: t('Low Stock') },
-    { value: 'out-of-stock', label: t('Out of Stock') },
+    { value: 'all', label: "All  Stock  Levels" },
+    { value: 'in-stock', label: "In  Stock" },
+    { value: 'low-stock', label: "Low  Stock" },
+    { value: 'out-of-stock', label: "Out of  Stock" },
   ];
 
   const activeFiltersCount = Object.values(filters).filter(
@@ -90,7 +88,7 @@ export function ProductFilters({
             }
           >
             <SelectTrigger className="w-[140px]">
-              <SelectValue placeholder={t("Status")} />
+              <SelectValue placeholder={"Status"} />
             </SelectTrigger>
             <SelectContent>
               {statusOptions.map((option) => (
@@ -111,7 +109,7 @@ export function ProductFilters({
             }
           >
             <SelectTrigger className="w-[160px]">
-              <SelectValue placeholder={t("Category")} />
+              <SelectValue placeholder={"Category"} />
             </SelectTrigger>
             <SelectContent>
               {categoryOptions.map((option) => (
@@ -132,7 +130,7 @@ export function ProductFilters({
             }
           >
             <SelectTrigger className="w-[160px]">
-              <SelectValue placeholder={t("Stock")} />
+              <SelectValue placeholder={"Stock"} />
             </SelectTrigger>
             <SelectContent>
               {stockOptions.map((option) => (
@@ -171,7 +169,7 @@ export function ProductFilters({
               className="gap-1"
             >
               <X className="h-3 w-3" />
-              {t("Clear filters")}
+              {"Clear filters"}
             </Button>
           )}
         </div>
@@ -200,13 +198,13 @@ export function ProductFilters({
           {onExport && (
             <Button variant="outline" onClick={onExport} className="gap-2">
               <Download className="h-4 w-4" />
-              <span className="hidden sm:inline">{t("Export")}</span>
+              <span className="hidden sm:inline">{"Export"}</span>
             </Button>
           )}
           {onCreateProduct && (
             <Button onClick={onCreateProduct} className="gap-2">
               <Plus className="h-4 w-4" />
-              <span className="hidden sm:inline">{t("Add Product")}</span>
+              <span className="hidden sm:inline">{"Add  Product"}</span>
             </Button>
           )}
         </div>
@@ -216,10 +214,10 @@ export function ProductFilters({
         <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <label className="text-sm font-medium">{t("Min Price")}</label>
+              <label className="text-sm font-medium">{"Min  Price"}</label>
               <Input
                 type="number"
-                placeholder={t("Minimum price")}
+                placeholder={"Minimum price"}
                 value={filters.priceRange?.min || ''}
                 onChange={(e) =>
                   onFiltersChange({
@@ -233,10 +231,10 @@ export function ProductFilters({
               />
             </div>
             <div className="space-y-2">
-              <label className="text-sm font-medium">{t("Max Price")}</label>
+              <label className="text-sm font-medium">{"Max  Price"}</label>
               <Input
                 type="number"
-                placeholder={t("Maximum price")}
+                placeholder={"Maximum price"}
                 value={filters.priceRange?.max || ''}
                 onChange={(e) =>
                   onFiltersChange({

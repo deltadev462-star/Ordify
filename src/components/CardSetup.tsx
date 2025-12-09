@@ -1,9 +1,7 @@
 import   { useState } from "react";
 import { Check, Square, SquarePlay } from "lucide-react";
-import { useTranslation } from "react-i18next";
 import { settingsData } from "@/data/dashboard-data";
 function CardSetup() {
-  const { t } = useTranslation();
   const [completedTasks, setCompletedTasks] = useState([1, 2, 3]);
 
   const toggleTask = (id: number) => {
@@ -35,10 +33,10 @@ function CardSetup() {
                 </div>
                 <div className="flex-1">
                   <h3 className="text-black dark:text-white font-medium  text-[13px] mb-1">
-                    {t(item.title)}
+                    {item.title}
                   </h3>
                   <p className="text-gray-400 text-[11px]">
-                    {t(item.description)}
+                    {item.description}
                   </p>
                 </div>
               </div>
@@ -55,7 +53,7 @@ function CardSetup() {
 
             <div className="flex items-center justify-between pe-3 px-2">
               <a href="#" className="text-[#0abb45] text-[10px]  underline">
-                {t(item.link)}
+                {item.link}
               </a>
               <button>
                 <SquarePlay size={16} className="text-gray-400 " />

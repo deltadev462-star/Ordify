@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import {
   Users,
   UserPlus,
@@ -8,7 +8,6 @@ import {
   TrendingUp,
   Search,
   Mail,
-  Phone,
   ShoppingBag,
 } from "lucide-react";
 
@@ -22,8 +21,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 
 export default function CustomersPage() {
-  const { t } = useTranslation();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const [activeTab, setActiveTab] = useState<"all" | "active" | "inactive" | "blocked">("all");
   const [searchTerm, setSearchTerm] = useState("");
@@ -91,7 +90,7 @@ export default function CustomersPage() {
   // Stats widgets (example)
   const stats = [
     {
-      title: t("Total Customers"),
+      title: t('customers.totalCustomers'),
       value: counts.total.toString(),
       change: 6.3,
       changeType: "increase" as const,
@@ -99,10 +98,10 @@ export default function CustomersPage() {
       iconColor: "text-blue-600 dark:text-blue-400",
       iconBgColor: "bg-blue-50 dark:bg-blue-950/30",
       trend: "up" as const,
-      period: t("vs last month"),
+      period: t('common.vsLastMonth'),
     },
     {
-      title: t("Active"),
+      title: t('customers.active'),
       value: counts.active.toString(),
       change: 3.1,
       changeType: "increase" as const,
@@ -110,10 +109,10 @@ export default function CustomersPage() {
       iconColor: "text-green-600 dark:text-green-400",
       iconBgColor: "bg-green-50 dark:bg-green-950/30",
       trend: "up" as const,
-      period: t("currently active"),
+      period: t('customers.currentlyActive'),
     },
     {
-      title: t("Inactive"),
+      title: t('customers.inactive'),
       value: counts.inactive.toString(),
       change: -1.2,
       changeType: "decrease" as const,
@@ -121,10 +120,10 @@ export default function CustomersPage() {
       iconColor: "text-yellow-600 dark:text-yellow-400",
       iconBgColor: "bg-yellow-50 dark:bg-yellow-950/30",
       trend: "down" as const,
-      period: t("need re-engagement"),
+      period: t('customers.needReEngagement'),
     },
     {
-      title: t("Blocked"),
+      title: t('customers.blocked'),
       value: counts.blocked.toString(),
       change: 0,
       changeType: "neutral" as const,
@@ -132,7 +131,7 @@ export default function CustomersPage() {
       iconColor: "text-red-600 dark:text-red-400",
       iconBgColor: "bg-red-50 dark:bg-red-950/30",
       trend: "stable" as const,
-      period: t("risk"),
+      period: t('customers.risk'),
     },
   ];
 
@@ -172,19 +171,19 @@ export default function CustomersPage() {
       {/* Header */}
       <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold">{t("Customers")}</h1>
+          <h1 className="text-2xl font-bold">{t('customers.title')}</h1>
           <p className="text-muted-foreground mt-1">
-            {t("Manage your customer base, segments and communications")}
+            {t('customers.subtitle')}
           </p>
         </div>
         <div className="flex gap-2">
           <Button variant="outline" onClick={() => navigate("/dashboard/orders")} className="gap-2">
             <ShoppingBag className="h-4 w-4" />
-            {t("View Orders")}
+            {t('customers.viewOrders')}
           </Button>
           <Button onClick={() => navigate("/dashboard/customers/new")} className="gap-2">
             <UserPlus className="h-4 w-4" />
-            {t("Add Customer")}
+            {t('customers.addCustomer')}
           </Button>
         </div>
       </div>
@@ -213,22 +212,22 @@ export default function CustomersPage() {
           <div className="flex flex-col gap-4">
             {/* Tabs + Search */}
             <div className="flex flex-col-reverse gap-3 lg:flex-row lg:items-center lg:justify-between">
-              <Tabs value={activeTab} onValueChange={(v: any) => setActiveTab(v)}>
+              <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as "all" | "active" | "inactive" | "blocked")}>
                 <TabsList className="grid grid-cols-4 w-full lg:w-auto">
                   <TabsTrigger value="all" className="gap-2">
-                    {t("All")}
+                    {t('customers.all')}
                     <Badge variant="secondary" className="ml-1 h-5 px-1">{counts.total}</Badge>
                   </TabsTrigger>
                   <TabsTrigger value="active" className="gap-2">
-                    {t("Active")}
+                    {t('customers.active')}
                     <Badge variant="secondary" className="ml-1 h-5 px-1 bg-green-100 text-green-800">{counts.active}</Badge>
                   </TabsTrigger>
                   <TabsTrigger value="inactive" className="gap-2">
-                    {t("Inactive")}
+                    {t('customers.inactive')}
                     <Badge variant="secondary" className="ml-1 h-5 px-1 bg-yellow-100 text-yellow-800">{counts.inactive}</Badge>
                   </TabsTrigger>
                   <TabsTrigger value="blocked" className="gap-2">
-                    {t("Blocked")}
+                    {t('customers.blocked')}
                     <Badge variant="secondary" className="ml-1 h-5 px-1 bg-red-100 text-red-800">{counts.blocked}</Badge>
                   </TabsTrigger>
                 </TabsList>
@@ -241,7 +240,7 @@ export default function CustomersPage() {
               <div className="relative max-w-md">
                 <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
                 <Input
-                  placeholder={t("Search by name, email or phone")}
+                  placeholder={t('customers.searchPlaceholder')}
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-10"

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { 
   Heart, 
   FileText, 
@@ -58,13 +57,12 @@ interface ContentBlock {
 }
 
 function EditThankYouPageSection() {
-  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState('general');
   const [previewMode, setPreviewMode] = useState(false);
   
   const [pageSettings, setPageSettings] = useState({
-    title: t('thankYouPage.defaults.title'),
-    subtitle: t('thankYouPage.defaults.subtitle'),
+    title: "Title",
+    subtitle: "Subtitle",
     showOrderNumber: true,
     showOrderDetails: true,
     showCustomerInfo: true,
@@ -89,7 +87,7 @@ function EditThankYouPageSection() {
       id: 'order_confirmation',
       type: 'text',
       content: {
-        text: t('thankYouPage.defaults.confirmationText'),
+        text: "Confirmation Text",
         alignment: 'center',
         fontSize: 'medium'
       },
@@ -110,7 +108,7 @@ function EditThankYouPageSection() {
       type: 'social',
       content: {
         platforms: ['facebook', 'twitter', 'whatsapp'],
-        message: t('thankYouPage.defaults.shareMessage')
+        message: "Share Message"
       },
       order: 3,
       visible: false
@@ -119,7 +117,7 @@ function EditThankYouPageSection() {
       id: 'related_products',
       type: 'products',
       content: {
-        title: t('thankYouPage.defaults.relatedProductsTitle'),
+        title: "Related Products Title",
         count: 4,
         category: 'related'
       },
@@ -131,7 +129,7 @@ function EditThankYouPageSection() {
   const [emailSettings, setEmailSettings] = useState({
     sendConfirmationEmail: true,
     emailTemplate: 'default',
-    customSubject: t('thankYouPage.email.defaultSubject'),
+    customSubject: "Default Subject",
     includeInvoice: true,
     includeTrackingInfo: true,
     ccAdmin: true
@@ -169,13 +167,13 @@ function EditThankYouPageSection() {
       case 'image':
         return { url: '', alt: '', alignment: 'center' };
       case 'button':
-        return { text: t('thankYouPage.defaults.buttonText'), url: '', style: 'primary' };
+        return { text: "Button Text", url: '', style: 'primary' };
       case 'divider':
         return { style: 'solid', color: '#e5e7eb' };
       case 'social':
         return { platforms: ['facebook', 'twitter'], message: '' };
       case 'products':
-        return { title: t('thankYouPage.defaults.recommendedProducts'), count: 3 };
+        return { title: "Recommended Products", count: 3 };
       default:
         return {};
     }
@@ -198,14 +196,14 @@ function EditThankYouPageSection() {
 
   const getBlockTitle = (type: ContentBlock['type']) => {
     switch (type) {
-      case 'text': return t('thankYouPage.blocks.text');
-      case 'image': return t('thankYouPage.blocks.image');
-      case 'button': return t('thankYouPage.blocks.button');
-      case 'divider': return t('thankYouPage.blocks.divider');
-      case 'social': return t('thankYouPage.blocks.social');
-      case 'products': return t('thankYouPage.blocks.products');
-      case 'custom': return t('thankYouPage.blocks.custom');
-      default: return t('thankYouPage.blocks.default');
+      case 'text': return "Text";
+      case 'image': return "Image";
+      case 'button': return "Button";
+      case 'divider': return "Divider";
+      case 'social': return "Social";
+      case 'products': return "Products";
+      case 'custom': return "Custom";
+      default: return "Default";
     }
   };
 
@@ -213,9 +211,9 @@ function EditThankYouPageSection() {
     <div className="space-y-6">
       <Alert variant="info">
         <AlertIcon variant="info" />
-        <AlertTitle>{t("thankYouPage.title")}</AlertTitle>
+        <AlertTitle>{"Title"}</AlertTitle>
         <AlertDescription>
-          {t("thankYouPage.description")}
+          {"Description"}
         </AlertDescription>
       </Alert>
 
@@ -225,7 +223,7 @@ function EditThankYouPageSection() {
             checked={previewMode}
             onCheckedChange={setPreviewMode}
           />
-          <Label className="text-sm">{t("thankYouPage.previewMode")}</Label>
+          <Label className="text-sm">{"Preview Mode"}</Label>
         </div>
         
         <Button
@@ -233,7 +231,7 @@ function EditThankYouPageSection() {
           className="gap-2"
         >
           <RefreshCw className="w-4 h-4" />
-          {t("thankYouPage.resetToDefault")}
+          {"Reset To Default"}
         </Button>
       </div>
 
@@ -241,23 +239,23 @@ function EditThankYouPageSection() {
         <TabsList className="grid w-full max-w-2xl grid-cols-5 mb-6">
           <TabsTrigger value="general" className="flex items-center gap-2">
             <FileText className="w-4 h-4" />
-            {t("thankYouPage.tabs.general")}
+            {"General"}
           </TabsTrigger>
           <TabsTrigger value="content" className="flex items-center gap-2">
             <Package className="w-4 h-4" />
-            {t("thankYouPage.tabs.content")}
+            {"Content"}
           </TabsTrigger>
           <TabsTrigger value="email" className="flex items-center gap-2">
             <Mail className="w-4 h-4" />
-            {t("thankYouPage.tabs.email")}
+            {"Email"}
           </TabsTrigger>
           <TabsTrigger value="style" className="flex items-center gap-2">
             <Palette className="w-4 h-4" />
-            {t("thankYouPage.tabs.style")}
+            {"Style"}
           </TabsTrigger>
           <TabsTrigger value="advanced" className="flex items-center gap-2">
             <Code className="w-4 h-4" />
-            {t("thankYouPage.tabs.advanced")}
+            {"Advanced"}
           </TabsTrigger>
         </TabsList>
 
@@ -266,42 +264,42 @@ function EditThankYouPageSection() {
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Heart className="w-5 h-5 text-primary" />
-                {t("thankYouPage.general.pageSettings")}
+                {"Page Settings"}
               </CardTitle>
               <CardDescription>
-                {t("thankYouPage.general.pageSettingsDescription")}
+                {"Page Settings Description"}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-4">
                 <div>
-                  <Label className="mb-2">{t("thankYouPage.general.pageTitle")}</Label>
+                  <Label className="mb-2">{"Page Title"}</Label>
                   <Input
                     value={pageSettings.title}
                     onChange={(e) => setPageSettings(prev => ({ ...prev, title: e.target.value }))}
-                    placeholder={t("thankYouPage.placeholders.pageTitle")}
+                    placeholder={"Page Title"}
                   />
                 </div>
                 
                 <div>
-                  <Label className="mb-2">{t("thankYouPage.general.subtitle")}</Label>
+                  <Label className="mb-2">{"Subtitle"}</Label>
                   <Input
                     value={pageSettings.subtitle}
                     onChange={(e) => setPageSettings(prev => ({ ...prev, subtitle: e.target.value }))}
-                    placeholder={t("thankYouPage.placeholders.subtitle")}
+                    placeholder={"Subtitle"}
                   />
                 </div>
               </div>
 
               <div className="space-y-4 pt-4 border-t">
-                <h4 className="font-medium">{t("thankYouPage.general.displayOptions")}</h4>
+                <h4 className="font-medium">{"Display Options"}</h4>
                 
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-medium">{t("thankYouPage.general.orderNumber")}</p>
+                      <p className="font-medium">{"Order Number"}</p>
                       <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {t("thankYouPage.general.orderNumberDescription")}
+                        {"Order Number Description"}
                       </p>
                     </div>
                     <Switch
@@ -314,9 +312,9 @@ function EditThankYouPageSection() {
 
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-medium">{t("thankYouPage.general.orderDetails")}</p>
+                      <p className="font-medium">{"Order Details"}</p>
                       <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {t("thankYouPage.general.orderDetailsDescription")}
+                        {"Order Details Description"}
                       </p>
                     </div>
                     <Switch
@@ -329,9 +327,9 @@ function EditThankYouPageSection() {
 
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-medium">{t("thankYouPage.general.customerInfo")}</p>
+                      <p className="font-medium">{"Customer Info"}</p>
                       <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {t("thankYouPage.general.customerInfoDescription")}
+                        {"Customer Info Description"}
                       </p>
                     </div>
                     <Switch
@@ -344,9 +342,9 @@ function EditThankYouPageSection() {
 
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-medium">{t("thankYouPage.general.shippingInfo")}</p>
+                      <p className="font-medium">{"Shipping Info"}</p>
                       <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {t("thankYouPage.general.shippingInfoDescription")}
+                        {"Shipping Info Description"}
                       </p>
                     </div>
                     <Switch
@@ -359,9 +357,9 @@ function EditThankYouPageSection() {
 
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-medium">{t("thankYouPage.general.estimatedDelivery")}</p>
+                      <p className="font-medium">{"Estimated Delivery"}</p>
                       <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {t("thankYouPage.general.estimatedDeliveryDescription")}
+                        {"Estimated Delivery Description"}
                       </p>
                     </div>
                     <Switch
@@ -375,14 +373,14 @@ function EditThankYouPageSection() {
               </div>
 
               <div className="space-y-4 pt-4 border-t">
-                <h4 className="font-medium">{t("thankYouPage.general.pageFeatures")}</h4>
+                <h4 className="font-medium">{"Page Features"}</h4>
                 
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-medium">{t("thankYouPage.general.confettiAnimation")}</p>
+                      <p className="font-medium">{"Confetti Animation"}</p>
                       <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {t("thankYouPage.general.confettiAnimationDescription")}
+                        {"Confetti Animation Description"}
                       </p>
                     </div>
                     <Switch
@@ -395,9 +393,9 @@ function EditThankYouPageSection() {
 
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-medium">{t("thankYouPage.general.successSound")}</p>
+                      <p className="font-medium">{"Success Sound"}</p>
                       <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {t("thankYouPage.general.successSoundDescription")}
+                        {"Success Sound Description"}
                       </p>
                     </div>
                     <Switch
@@ -410,9 +408,9 @@ function EditThankYouPageSection() {
 
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="font-medium">{t("thankYouPage.general.socialSharing")}</p>
+                      <p className="font-medium">{"Social Sharing"}</p>
                       <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {t("thankYouPage.general.socialSharingDescription")}
+                        {"Social Sharing Description"}
                       </p>
                     </div>
                     <Switch
@@ -426,13 +424,13 @@ function EditThankYouPageSection() {
               </div>
 
               <div className="space-y-4 pt-4 border-t">
-                <h4 className="font-medium">{t("thankYouPage.general.redirectSettings")}</h4>
+                <h4 className="font-medium">{"Redirect Settings"}</h4>
                 
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="font-medium">{t("thankYouPage.general.autoRedirect")}</p>
+                    <p className="font-medium">{"Auto Redirect"}</p>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                      {t("thankYouPage.general.autoRedirectDescription")}
+                      {"Auto Redirect Description"}
                     </p>
                   </div>
                   <Switch
@@ -446,7 +444,7 @@ function EditThankYouPageSection() {
                 {pageSettings.redirectEnabled && (
                   <div className="space-y-4 pl-4 border-l-2 border-gray-200 dark:border-gray-700">
                     <div>
-                      <Label className="mb-2">{t("thankYouPage.general.redirectUrl")}</Label>
+                      <Label className="mb-2">{"Redirect Url"}</Label>
                       <Input
                         value={pageSettings.redirectUrl}
                         onChange={(e) => setPageSettings(prev => ({ ...prev, redirectUrl: e.target.value }))}
@@ -455,7 +453,7 @@ function EditThankYouPageSection() {
                     </div>
                     
                     <div>
-                      <Label className="mb-2">{t("thankYouPage.general.redirectDelay")}</Label>
+                      <Label className="mb-2">{"Redirect Delay"}</Label>
                       <div className="flex items-center gap-4">
                         <Slider
                           value={[pageSettings.redirectDelay]}
@@ -485,9 +483,9 @@ function EditThankYouPageSection() {
                   <Package className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <CardTitle className="text-xl">{t("thankYouPage.content.title")}</CardTitle>
+                  <CardTitle className="text-xl">{"Title"}</CardTitle>
                   <CardDescription className="text-white/80">
-                    {t("thankYouPage.content.description")}
+                    {"Description"}
                   </CardDescription>
                 </div>
               </div>
@@ -553,7 +551,7 @@ function EditThankYouPageSection() {
                                     updatedBlocks[index].content.text = e.target.value;
                                     setContentBlocks(updatedBlocks);
                                   }}
-                                  placeholder={t("thankYouPage.placeholders.enterText")}
+                                  placeholder={"Enter Text"}
                                   className="min-h-[80px]"
                                 />
                                 <Select
@@ -568,9 +566,9 @@ function EditThankYouPageSection() {
                                     <SelectValue />
                                   </SelectTrigger>
                                   <SelectContent>
-                                    <SelectItem value="left">{t("thankYouPage.alignment.left")}</SelectItem>
-                                    <SelectItem value="center">{t("thankYouPage.alignment.center")}</SelectItem>
-                                    <SelectItem value="right">{t("thankYouPage.alignment.right")}</SelectItem>
+                                    <SelectItem value="left">{"Left"}</SelectItem>
+                                    <SelectItem value="center">{"Center"}</SelectItem>
+                                    <SelectItem value="right">{"Right"}</SelectItem>
                                   </SelectContent>
                                 </Select>
                               </div>
@@ -585,10 +583,10 @@ function EditThankYouPageSection() {
                                     updatedBlocks[index].content.title = e.target.value;
                                     setContentBlocks(updatedBlocks);
                                   }}
-                                  placeholder={t("thankYouPage.placeholders.sectionTitle")}
+                                  placeholder={"Section Title"}
                                 />
                                 <div className="flex items-center gap-2">
-                                  <Label>{t("thankYouPage.content.numberOfProducts")}</Label>
+                                  <Label>{"Number Of Products"}</Label>
                                   <Select
                                     value={String(block.content.count ?? 3)}
                                     onValueChange={(value) => {
@@ -648,7 +646,7 @@ function EditThankYouPageSection() {
                   className="gap-2"
                 >
                   <FileText className="w-4 h-4" />
-                  {t("thankYouPage.content.addText")}
+                  {"Add Text"}
                 </Button>
                 <Button
                   variant="outline"
@@ -657,7 +655,7 @@ function EditThankYouPageSection() {
                   className="gap-2"
                 >
                   <Image className="w-4 h-4" />
-                  {t("thankYouPage.content.addImage")}
+                  {"Add Image"}
                 </Button>
                 <Button
                   variant="outline"
@@ -666,7 +664,7 @@ function EditThankYouPageSection() {
                   className="gap-2"
                 >
                   <ExternalLink className="w-4 h-4" />
-                  {t("thankYouPage.content.addButton")}
+                  {"Add Button"}
                 </Button>
                 <Button
                   variant="outline"
@@ -675,7 +673,7 @@ function EditThankYouPageSection() {
                   className="gap-2"
                 >
                   <ShoppingBag className="w-4 h-4" />
-                  {t("thankYouPage.content.addProducts")}
+                  {"Add Products"}
                 </Button>
                 <Button
                   variant="outline"
@@ -684,7 +682,7 @@ function EditThankYouPageSection() {
                   className="gap-2"
                 >
                   <Share2 className="w-4 h-4" />
-                  {t("thankYouPage.content.addSocial")}
+                  {"Add Social"}
                 </Button>
               </div>
             </CardContent>
@@ -696,18 +694,18 @@ function EditThankYouPageSection() {
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Mail className="w-5 h-5 text-primary" />
-                {t("thankYouPage.email.title")}
+                {"Title"}
               </CardTitle>
               <CardDescription>
-                {t("thankYouPage.email.description")}
+                {"Description"}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium">{t("thankYouPage.email.sendEmail")}</p>
+                  <p className="font-medium">{"Send Email"}</p>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    {t("thankYouPage.email.sendEmailDescription")}
+                    {"Send Email Description"}
                   </p>
                 </div>
                 <Switch
@@ -721,19 +719,19 @@ function EditThankYouPageSection() {
               {emailSettings.sendConfirmationEmail && (
                 <div className="space-y-4 pt-4 border-t">
                   <div>
-                    <Label className="mb-2">{t("thankYouPage.email.emailSubject")}</Label>
+                    <Label className="mb-2">{"Email Subject"}</Label>
                     <Input
                       value={emailSettings.customSubject}
                       onChange={(e) => setEmailSettings(prev => ({ ...prev, customSubject: e.target.value }))}
-                      placeholder={t("thankYouPage.email.subjectPlaceholder")}
+                      placeholder={"Subject Placeholder"}
                     />
                     <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                      {t("thankYouPage.email.availableVariables")}
+                      {"Available Variables"}
                     </p>
                   </div>
 
                   <div>
-                    <Label className="mb-2">{t("thankYouPage.email.emailTemplate")}</Label>
+                    <Label className="mb-2">{"Email Template"}</Label>
                     <Select
                       value={emailSettings.emailTemplate}
                       onValueChange={(value) => 
@@ -744,16 +742,16 @@ function EditThankYouPageSection() {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="default">{t("thankYouPage.email.templates.default")}</SelectItem>
-                        <SelectItem value="minimal">{t("thankYouPage.email.templates.minimal")}</SelectItem>
-                        <SelectItem value="detailed">{t("thankYouPage.email.templates.detailed")}</SelectItem>
-                        <SelectItem value="custom">{t("thankYouPage.email.templates.custom")}</SelectItem>
+                        <SelectItem value="default">{"Default"}</SelectItem>
+                        <SelectItem value="minimal">{"Minimal"}</SelectItem>
+                        <SelectItem value="detailed">{"Detailed"}</SelectItem>
+                        <SelectItem value="custom">{"Custom"}</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
 
                   <div className="space-y-3">
-                    <Label>{t("thankYouPage.email.includes")}</Label>
+                    <Label>{"Includes"}</Label>
                     
                     <div className="space-y-2">
                       <div className="flex items-center gap-2">
@@ -765,7 +763,7 @@ function EditThankYouPageSection() {
                           }
                         />
                         <Label htmlFor="include-invoice" className="font-normal cursor-pointer">
-                          {t("thankYouPage.email.attachInvoice")}
+                          {"Attach Invoice"}
                         </Label>
                       </div>
 
@@ -778,7 +776,7 @@ function EditThankYouPageSection() {
                           }
                         />
                         <Label htmlFor="include-tracking" className="font-normal cursor-pointer">
-                          {t("thankYouPage.email.includeTracking")}
+                          {"Include Tracking"}
                         </Label>
                       </div>
 
@@ -791,7 +789,7 @@ function EditThankYouPageSection() {
                           }
                         />
                         <Label htmlFor="cc-admin" className="font-normal cursor-pointer">
-                          {t("thankYouPage.email.sendToAdmin")}
+                          {"Send To Admin"}
                         </Label>
                       </div>
                     </div>
@@ -800,7 +798,7 @@ function EditThankYouPageSection() {
                   <Alert>
                     <MessageSquare className="h-4 w-4" />
                     <AlertDescription>
-                      {t("thankYouPage.email.testEmailInfo")}
+                      {"Test Email Info"}
                     </AlertDescription>
                   </Alert>
                 </div>
@@ -814,16 +812,16 @@ function EditThankYouPageSection() {
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Palette className="w-5 h-5 text-primary" />
-                {t("thankYouPage.style.title")}
+                {"Title"}
               </CardTitle>
               <CardDescription>
-                {t("thankYouPage.style.description")}
+                {"Description"}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <Label className="mb-2">{t("thankYouPage.style.backgroundColor")}</Label>
+                  <Label className="mb-2">{"Background Color"}</Label>
                   <div className="flex gap-2">
                     <Input
                       type="color"
@@ -840,7 +838,7 @@ function EditThankYouPageSection() {
                 </div>
 
                 <div>
-                  <Label className="mb-2">{t("thankYouPage.style.textColor")}</Label>
+                  <Label className="mb-2">{"Text Color"}</Label>
                   <div className="flex gap-2">
                     <Input
                       type="color"
@@ -857,7 +855,7 @@ function EditThankYouPageSection() {
                 </div>
 
                 <div>
-                  <Label className="mb-2">{t("thankYouPage.style.accentColor")}</Label>
+                  <Label className="mb-2">{"Accent Color"}</Label>
                   <div className="flex gap-2">
                     <Input
                       type="color"
@@ -875,7 +873,7 @@ function EditThankYouPageSection() {
               </div>
 
               <div className="pt-4 border-t">
-                <h4 className="font-medium mb-3">{t("thankYouPage.style.quickThemes")}</h4>
+                <h4 className="font-medium mb-3">{"Quick Themes"}</h4>
                 <div className="grid grid-cols-3 gap-3">
                   <Button
                     variant="outline"
@@ -892,7 +890,7 @@ function EditThankYouPageSection() {
                       <div className="w-4 h-4 bg-black rounded" />
                       <div className="w-4 h-4 bg-emerald-500 rounded" />
                     </div>
-                    <span className="text-xs">{t("thankYouPage.style.themes.light")}</span>
+                    <span className="text-xs">{"Light"}</span>
                   </Button>
 
                   <Button
@@ -910,7 +908,7 @@ function EditThankYouPageSection() {
                       <div className="w-4 h-4 bg-gray-100 rounded" />
                       <div className="w-4 h-4 bg-purple-500 rounded" />
                     </div>
-                    <span className="text-xs">{t("thankYouPage.style.themes.dark")}</span>
+                    <span className="text-xs">{"Dark"}</span>
                   </Button>
 
                   <Button
@@ -928,7 +926,7 @@ function EditThankYouPageSection() {
                       <div className="w-4 h-4 bg-amber-900 rounded" />
                       <div className="w-4 h-4 bg-amber-500 rounded" />
                     </div>
-                    <span className="text-xs">{t("thankYouPage.style.themes.warm")}</span>
+                    <span className="text-xs">{"Warm"}</span>
                   </Button>
                 </div>
               </div>
@@ -939,7 +937,7 @@ function EditThankYouPageSection() {
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Eye className="w-5 h-5 text-primary" />
-                {t("thankYouPage.style.preview")}
+                {"Preview"}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -959,7 +957,7 @@ function EditThankYouPageSection() {
                   
                   {pageSettings.showOrderNumber && (
                     <div className="py-4">
-                      <p className="text-sm opacity-60">{t("thankYouPage.general.orderNumber")}</p>
+                      <p className="text-sm opacity-60">{"Order Number"}</p>
                       <p className="text-xl font-semibold">#ORD-123456</p>
                     </div>
                   )}
@@ -971,7 +969,7 @@ function EditThankYouPageSection() {
                       color: '#ffffff'
                     }}
                   >
-                    {t("thankYouPage.style.continueShoppingButton")}
+                    {"Continue Shopping Button"}
                   </Button>
                 </div>
               </div>
@@ -984,19 +982,19 @@ function EditThankYouPageSection() {
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Code className="w-5 h-5 text-primary" />
-                {t("thankYouPage.advanced.customCSS")}
+                {"Custom C S S"}
               </CardTitle>
               <CardDescription>
-                {t("thankYouPage.advanced.customCSSDescription")}
+                {"Custom C S S Description"}
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div>
-                <Label className="mb-2">{t("thankYouPage.advanced.customCSSCode")}</Label>
+                <Label className="mb-2">{"Custom C S S Code"}</Label>
                 <Textarea
                   value={pageSettings.customCSS}
                   onChange={(e) => setPageSettings(prev => ({ ...prev, customCSS: e.target.value }))}
-                  placeholder={t("thankYouPage.advanced.cssPlaceholder")}
+                  placeholder={"Css Placeholder"}
                   className="font-mono min-h-[200px]"
                 />
               </div>
@@ -1004,7 +1002,7 @@ function EditThankYouPageSection() {
               <Alert className="mt-4">
                 <Code className="h-4 w-4" />
                 <AlertDescription>
-                  {t("thankYouPage.advanced.cssWarning")}
+                  {"Css Warning"}
                 </AlertDescription>
               </Alert>
             </CardContent>
@@ -1014,18 +1012,18 @@ function EditThankYouPageSection() {
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Download className="w-5 h-5 text-primary" />
-                {t("thankYouPage.advanced.digitalProducts")}
+                {"Digital Products"}
               </CardTitle>
               <CardDescription>
-                {t("thankYouPage.advanced.digitalProductsDescription")}
+                {"Digital Products Description"}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium">{t("thankYouPage.advanced.showDownloadLinks")}</p>
+                  <p className="font-medium">{"Show Download Links"}</p>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    {t("thankYouPage.advanced.showDownloadLinksDescription")}
+                    {"Show Download Links Description"}
                   </p>
                 </div>
                 <Switch defaultChecked />
@@ -1033,9 +1031,9 @@ function EditThankYouPageSection() {
 
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium">{t("thankYouPage.advanced.timeLimitedDownloads")}</p>
+                  <p className="font-medium">{"Time Limited Downloads"}</p>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    {t("thankYouPage.advanced.timeLimitedDownloadsDescription")}
+                    {"Time Limited Downloads Description"}
                   </p>
                 </div>
                 <Switch />
@@ -1043,9 +1041,9 @@ function EditThankYouPageSection() {
 
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium">{t("thankYouPage.advanced.downloadLimit")}</p>
+                  <p className="font-medium">{"Download Limit"}</p>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    {t("thankYouPage.advanced.downloadLimitDescription")}
+                    {"Download Limit Description"}
                   </p>
                 </div>
                 <Input type="number" defaultValue="3" className="w-20" />
@@ -1057,44 +1055,44 @@ function EditThankYouPageSection() {
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-primary" />
-                {t("thankYouPage.advanced.specialEffects")}
+                {"Special Effects"}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <Alert>
                 <Gift className="h-4 w-4" />
                 <AlertDescription>
-                  {t("thankYouPage.advanced.specialEffectsInfo")}
+                  {"Special Effects Info"}
                 </AlertDescription>
               </Alert>
 
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <Label>{t("thankYouPage.advanced.animationType")}</Label>
+                  <Label>{"Animation Type"}</Label>
                   <Select defaultValue="confetti">
                     <SelectTrigger className="w-40">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="confetti">{t("thankYouPage.advanced.animations.confetti")}</SelectItem>
-                      <SelectItem value="fireworks">{t("thankYouPage.advanced.animations.fireworks")}</SelectItem>
-                      <SelectItem value="balloons">{t("thankYouPage.advanced.animations.balloons")}</SelectItem>
-                      <SelectItem value="none">{t("thankYouPage.advanced.animations.none")}</SelectItem>
+                      <SelectItem value="confetti">{"Confetti"}</SelectItem>
+                      <SelectItem value="fireworks">{"Fireworks"}</SelectItem>
+                      <SelectItem value="balloons">{"Balloons"}</SelectItem>
+                      <SelectItem value="none">{"None"}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <Label>{t("thankYouPage.advanced.successSoundEffect")}</Label>
+                  <Label>{"Success Sound Effect"}</Label>
                   <Select defaultValue="chime">
                     <SelectTrigger className="w-40">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="chime">{t("thankYouPage.advanced.sounds.chime")}</SelectItem>
-                      <SelectItem value="bell">{t("thankYouPage.advanced.sounds.bell")}</SelectItem>
-                      <SelectItem value="coin">{t("thankYouPage.advanced.sounds.coin")}</SelectItem>
-                      <SelectItem value="none">{t("thankYouPage.advanced.sounds.none")}</SelectItem>
+                      <SelectItem value="chime">{"Chime"}</SelectItem>
+                      <SelectItem value="bell">{"Bell"}</SelectItem>
+                      <SelectItem value="coin">{"Coin"}</SelectItem>
+                      <SelectItem value="none">{"None"}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -1106,11 +1104,11 @@ function EditThankYouPageSection() {
 
       <div className="flex justify-end gap-3">
         <Button variant="outline">
-          {t("thankYouPage.actions.cancel")}
+          {"Cancel"}
         </Button>
         <Button className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70">
           <Save className="w-4 h-4 mr-2" />
-          {t("thankYouPage.actions.save")}
+          {"Save"}
         </Button>
       </div>
     </div>

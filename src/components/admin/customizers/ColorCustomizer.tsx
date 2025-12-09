@@ -15,8 +15,6 @@ import {
   TabsTrigger,
 } from "@/components/ui";
 import { Palette, RotateCcw, Check, Sparkles } from "lucide-react";
-import { useTranslation } from "react-i18next";
-
 interface ColorPickerProps {
   label: string;
   value: string;
@@ -75,7 +73,6 @@ interface ColorPresetProps {
   };
   onApply: () => void;
   isActive?: boolean;
-  t: (key: string) => string;
 }
 
 interface ColorScheme {
@@ -92,7 +89,6 @@ const ColorPreset: React.FC<ColorPresetProps> = ({
   colors,
   onApply,
   isActive,
-  t,
 }) => {
   return (
     <button
@@ -116,17 +112,17 @@ const ColorPreset: React.FC<ColorPresetProps> = ({
         <div
           className="h-8 w-8 rounded-full border border-[#d6d6d6] dark:border-[#424242]"
           style={{ backgroundColor: colors.primary }}
-          title={t("Primary")}
+          title={"Primary"}
         />
         <div
           className="h-8 w-8 rounded-full border border-[#d6d6d6] dark:border-[#424242]"
           style={{ backgroundColor: colors.secondary }}
-          title={t("Secondary")}
+          title={"Secondary"}
         />
         <div
           className="h-8 w-8 rounded-full border border-[#d6d6d6] dark:border-[#424242]"
           style={{ backgroundColor: colors.accent }}
-          title={t("Accent")}
+          title={"Accent"}
         />
       </div>
     </button>
@@ -134,7 +130,6 @@ const ColorPreset: React.FC<ColorPresetProps> = ({
 };
 
 export const ColorCustomizer: React.FC = () => {
-  const { t } = useTranslation();
   const {
     colors,
     themeConfig,
@@ -149,88 +144,86 @@ export const ColorCustomizer: React.FC = () => {
   const lightColorOptions = [
     {
       key: "primary",
-      label: t("Primary Color"),
-      description: t(
-        "Main brand color used for buttons, links, and key UI elements"
-      ),
+      label: "Primary  Color",
+      description: "Main Brand Color Used For Buttons, Links, And Key UI Elements",
     },
     {
       key: "secondary",
-      label: t("Secondary Color"),
-      description: t("Supporting color for secondary actions and accents"),
+      label: "Secondary  Color",
+      description: "Supporting color for secondary actions and accents",
     },
     {
       key: "accent",
-      label: t("Accent Color"),
-      description: t("Highlight color for special elements and notifications"),
+      label: "Accent  Color",
+      description: "Highlight color for special elements and notifications",
     },
     {
       key: "background",
-      label: t("Background"),
-      description: t("Main background color for your store"),
+      label: "Background",
+      description: "Main background color for your store",
     },
     {
       key: "foreground",
-      label: t("Text Color"),
-      description: t("Default text color throughout the store"),
+      label: "Text  Color",
+      description: "Default text color throughout the store",
     },
     {
       key: "muted",
-      label: t("Muted Background"),
-      description: t("Background for cards, sections, and subtle elements"),
+      label: "Muted  Background",
+      description: "Background for cards",
     },
     {
       key: "mutedForeground",
-      label: t("Muted Text"),
-      description: t("Color for secondary text and labels"),
+      label: "Muted  Text",
+      description: "Color for secondary text and labels",
     },
     {
       key: "border",
-      label: t("Border Color"),
-      description: t("Default border color for inputs, cards, and dividers"),
+      label: "Border  Color",
+      description: "Default border color for inputs",
     },
   ];
 
   const darkColorOptions = [
     {
       key: "darkPrimary",
-      label: t("Dark Primary Color"),
-      description: t("Main brand color for dark mode buttons and key elements"),
+      label: "Dark  Primary  Color",
+      description: "Main brand color for dark mode buttons and key elements",
     },
     {
       key: "darkSecondary",
-      label: t("Dark Secondary Color"),
-      description: t("Supporting color for dark mode secondary actions"),
+      label: "Dark  Secondary  Color",
+      description: "Supporting color for dark mode secondary actions",
     },
     {
       key: "darkAccent",
-      label: t("Dark Accent Color"),
-      description: t("Highlight color for dark mode special elements"),
+      label: "Dark  Accent  Color",
+      description: "Highlight color for dark mode special elements",
     },
     {
       key: "darkBackground",
-      label: t("Dark Background"),
-      description: t("Main background color for dark mode"),
+      label: "Dark  Background",
+      description: "Main background color for dark mode",
     },
     {
       key: "darkForeground",
-      label: t("Dark Text Color"),
-      description: t("Default text color in dark mode"),
+      label: "Dark  Text  Color",
+      description: "Default text color in dark mode",
     },
     {
       key: "darkMuted",
-      label: t("Dark Muted Background"),
-      description: t("Background for cards and sections in dark mode"),
+      label: "Dark  Muted  Background",
+      description: "Background for cards and sections in dark mode",
     },
     {
       key: "darkMutedForeground",
-      label: t("Dark Muted Text"),
-      description: t("Secondary text color in dark mode"),
+      label: "Dark  Muted  Text",
+      description: "Secondary text color in dark mode",
     },
     {
       key: "darkBorder",
-      label: t("Dark Border Color"),
-      description: t("Border color for inputs and cards in dark mode"),
+      label: "Dark  Border  Color",
+      description: "Border color for inputs and cards in dark mode",
     },
   ];
 
@@ -265,19 +258,19 @@ export const ColorCustomizer: React.FC = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Palette className="h-5 w-5" />
-            {t("Color Palette")}
+            {"Color  Palette"}
           </CardTitle>
           <CardDescription>
-            {t("Customize your store's color scheme to match your brand")}
+            {"Customize your store's color scheme to match your brand"}
           </CardDescription>
         </CardHeader>
 
         <CardContent>
           <Tabs value={activeTab} onValueChange={setActiveTab}>
             <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="presets">{t("Presets")}</TabsTrigger>
-              <TabsTrigger value="light">{t("Light Mode")}</TabsTrigger>
-              <TabsTrigger value="dark">{t("Dark Mode")}</TabsTrigger>
+              <TabsTrigger value="presets">{"Presets"}</TabsTrigger>
+              <TabsTrigger value="light">{"Light  Mode"}</TabsTrigger>
+              <TabsTrigger value="dark">{"Dark  Mode"}</TabsTrigger>
             </TabsList>
 
             <TabsContent value="presets" className="mt-6">
@@ -289,7 +282,6 @@ export const ColorCustomizer: React.FC = () => {
                     colors={preset.colors}
                     onApply={() => applyPreset(preset)}
                     isActive={isPresetActive(preset)}
-                    t={t}
                   />
                 ))}
               </div>
@@ -299,7 +291,7 @@ export const ColorCustomizer: React.FC = () => {
             <TabsContent value="light" className="mt-6 space-y-6">
               <div>
                 <h4 className="mb-4 text-sm font-semibold text-gray-900">
-                  {t("Brand Colors")}
+                  {"Brand  Colors"}
                 </h4>
 
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -308,10 +300,10 @@ export const ColorCustomizer: React.FC = () => {
                     .map(({ key, label, description }) => (
                       <ColorPicker
                         key={key}
-                        label={t(label)}
+                        label={label}
                         value={colors[key as keyof typeof colors] || "#000000"}
                         onChange={(value) => updateColor(key, value)}
-                        description={t(description)}
+                        description={description}
                       />
                     ))}
                 </div>
@@ -319,7 +311,7 @@ export const ColorCustomizer: React.FC = () => {
 
               <div>
                 <h4 className="mb-4 text-sm font-semibold text-gray-900">
-                  {t("Base Colors")}
+                  {"Base  Colors"}
                 </h4>
 
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -328,10 +320,10 @@ export const ColorCustomizer: React.FC = () => {
                     .map(({ key, label, description }) => (
                       <ColorPicker
                         key={key}
-                        label={t(label)}
+                        label={label}
                         value={colors[key as keyof typeof colors] || "#000000"}
                         onChange={(value) => updateColor(key, value)}
-                        description={t(description)}
+                        description={description}
                       />
                     ))}
                 </div>
@@ -342,7 +334,7 @@ export const ColorCustomizer: React.FC = () => {
             <TabsContent value="dark" className="mt-6 space-y-6">
               <div>
                 <h4 className="mb-4 text-sm font-semibold text-gray-900">
-                  {t("Dark Brand Colors")}
+                  {"Dark  Brand  Colors"}
                 </h4>
 
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -351,10 +343,10 @@ export const ColorCustomizer: React.FC = () => {
                     .map(({ key, label, description }) => (
                       <ColorPicker
                         key={key}
-                        label={t(label)}
+                        label={label}
                         value={colors[key as keyof typeof colors] || "#000000"}
                         onChange={(value) => updateColor(key, value)}
-                        description={t(description)}
+                        description={description}
                       />
                     ))}
                 </div>
@@ -362,7 +354,7 @@ export const ColorCustomizer: React.FC = () => {
 
               <div>
                 <h4 className="mb-4 text-sm font-semibold text-gray-900">
-                  {t("Dark Base Colors")}
+                  {"Dark  Base  Colors"}
                 </h4>
 
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -371,10 +363,10 @@ export const ColorCustomizer: React.FC = () => {
                     .map(({ key, label, description }) => (
                       <ColorPicker
                         key={key}
-                        label={t(label)}
+                        label={label}
                         value={colors[key as keyof typeof colors] || "#000000"}
                         onChange={(value) => updateColor(key, value)}
-                        description={t(description)}
+                        description={description}
                       />
                     ))}
                 </div>
@@ -391,15 +383,15 @@ export const ColorCustomizer: React.FC = () => {
               className="flex items-center gap-2"
             >
               <RotateCcw className="h-4 w-4" />
-              {t("Reset Colors")}
+              {"Reset  Colors"}
             </Button>
 
             <div className="flex gap-2">
               <Button variant="outline" size="sm">
-                {t("Export Palette")}
+                {"Export  Palette"}
               </Button>
               <Button variant="outline" size="sm">
-                {t("Import Palette")}
+                {"Import  Palette"}
               </Button>
             </div>
           </div>
@@ -409,9 +401,9 @@ export const ColorCustomizer: React.FC = () => {
       {/* Preview Section */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-base">{t("Live Preview")}</CardTitle>
+          <CardTitle className="text-base">{"Live  Preview"}</CardTitle>
           <CardDescription className="text-sm">
-            {t("See how your color choices look in context")}
+            {"See how your color choices look in context"}
           </CardDescription>
         </CardHeader>
 
@@ -419,7 +411,7 @@ export const ColorCustomizer: React.FC = () => {
           <div className="space-y-4">
             {/* Buttons */}
             <div>
-              <p className="mb-2 text-sm font-medium">{t("Buttons")}</p>
+              <p className="mb-2 text-sm font-medium">{"Buttons"}</p>
 
               <div className="flex flex-wrap gap-2">
                 <button
@@ -429,7 +421,7 @@ export const ColorCustomizer: React.FC = () => {
                     color: colors.background,
                   }}
                 >
-                  {t("Primary Button")}
+                  {"Primary  Button"}
                 </button>
 
                 <button
@@ -439,7 +431,7 @@ export const ColorCustomizer: React.FC = () => {
                     color: colors.background,
                   }}
                 >
-                  {t("Secondary Button")}
+                  {"Secondary  Button"}
                 </button>
 
                 <button
@@ -450,14 +442,14 @@ export const ColorCustomizer: React.FC = () => {
                     backgroundColor: "transparent",
                   }}
                 >
-                  {t("Outline Button")}
+                  {"Outline  Button"}
                 </button>
               </div>
             </div>
 
             {/* Typography */}
             <div>
-              <p className="mb-2 text-sm font-medium">{t("Typography")}</p>
+              <p className="mb-2 text-sm font-medium">{"Typography"}</p>
 
               <div
                 className="p-4 rounded-lg"
@@ -467,27 +459,25 @@ export const ColorCustomizer: React.FC = () => {
                   className="text-lg font-semibold mb-2"
                   style={{ color: colors.foreground }}
                 >
-                  {t("Heading Example")}
+                  {"Heading  Example"}
                 </h3>
 
                 <p className="mb-2" style={{ color: colors.foreground }}>
-                  {t("This is regular body text using your foreground color.")}
+                  {""}
                 </p>
 
                 <p
                   className="text-sm"
                   style={{ color: colors.mutedForeground }}
                 >
-                  {t(
-                    "This is secondary text using your muted foreground color."
-                  )}
+                  {"This Is Secondary Text Using Your Muted Foreground Color "}
                 </p>
               </div>
             </div>
 
             {/* Card Example */}
             <div>
-              <p className="mb-2 text-sm font-medium">{t("Card Example")}</p>
+              <p className="mb-2 text-sm font-medium">{"Card  Example"}</p>
 
               <div
                 className="p-4 rounded-lg border"
@@ -501,7 +491,7 @@ export const ColorCustomizer: React.FC = () => {
                     className="font-semibold"
                     style={{ color: colors.foreground }}
                   >
-                    {t("Product Card")}
+                    {"Product  Card"}
                   </h4>
 
                   <span
@@ -511,7 +501,7 @@ export const ColorCustomizer: React.FC = () => {
                       color: colors.background,
                     }}
                   >
-                    {t("New")}
+                    {"New"}
                   </span>
                 </div>
 
@@ -519,7 +509,7 @@ export const ColorCustomizer: React.FC = () => {
                   className="text-sm"
                   style={{ color: colors.mutedForeground }}
                 >
-                  {t("Example product description")}
+                  {"Example product description"}
                 </p>
 
                 <div
@@ -538,7 +528,7 @@ export const ColorCustomizer: React.FC = () => {
 
             {/* Swatches */}
             <div>
-              <p className="mb-2 text-sm font-medium">{t("Color Palette")}</p>
+              <p className="mb-2 text-sm font-medium">{"Color  Palette"}</p>
 
               <div className="grid grid-cols-4 gap-2">
                 {Object.entries(colors)
@@ -550,7 +540,7 @@ export const ColorCustomizer: React.FC = () => {
                         style={{ backgroundColor: value }}
                       />
                       <span className="text-xs text-gray-600 capitalize">
-                        {t(key.replace(/([A-Z])/g, " $1").trim())}
+                        {key.replace(/([A-Z])/g, " $1").trim()}
                       </span>
                     </div>
                   ))}
@@ -562,4 +552,5 @@ export const ColorCustomizer: React.FC = () => {
     </div>
   );
 };
+
 

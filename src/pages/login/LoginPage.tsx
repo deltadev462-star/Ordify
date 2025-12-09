@@ -1,20 +1,20 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Eye, EyeOff, Mail, Lock, Loader2, LogIn } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import Lottie from "lottie-react";
 import BackgroundElements from "../signup/BackgroundElements";
 import { AnimatedThemeToggler } from "../../components/ui/AnimatedThemeToggler";
-import LangSwitcher from "../../components/LangSwitcher";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { loginRequest } from "@/store/slices/auth/actions";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
 const LoginPage = () => {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const {
@@ -23,7 +23,6 @@ const LoginPage = () => {
     token,
     error: serverError,
   } = useAppSelector((state) => state.auth);
-  const { t } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [lottieAnimation, setLottieAnimation] = useState<any>(null);
@@ -55,11 +54,11 @@ const LoginPage = () => {
   const validationSchema = Yup.object({
     email: Yup.string()
       .trim()
-      .required(t("login.emailRequired"))
-      .email(t("login.emailInvalid")),
+      .required(t('validation.emailRequired'))
+      .email(t('validation.invalidEmail')),
     password: Yup.string()
-      .required(t("login.passwordRequired"))
-      .min(6, t("login.passwordMinLength")),
+      .required(t('validation.passwordRequired'))
+      .min(6, t('validation.passwordLength')),
   });
 
   // Formik hook
@@ -123,7 +122,6 @@ const LoginPage = () => {
 
       {/* Header Controls */}
       <div className="absolute top-4 right-4 flex gap-2 z-20">
-        <LangSwitcher />
         <AnimatedThemeToggler className="p-1 w-8 h-8 rounded-lg bg-white/10 dark:bg-black/20 backdrop-blur-sm border border-white/20 dark:border-white/10 hover:bg-white/15 dark:hover:bg-black/30 transition-all duration-300 text-foreground dark:text-white" />
       </div>
 
@@ -146,11 +144,11 @@ const LoginPage = () => {
             )}
           </div>
           <h1 className="text-3xl font-bold text-foreground mb-2">
-            {t("login.welcomeBack")}{" "}
+            {t('auth.welcomeBack')}{" "}
             <span className="gradient-text">Ordify</span>
           </h1>
           <p className="text-muted-foreground">
-            {t("login.signInToManageStore")}
+            {t('auth.signInToManageStore')}
           </p>
         </div>
 
@@ -173,14 +171,14 @@ const LoginPage = () => {
                 htmlFor="email"
                 className="text-sm font-medium text-foreground"
               >
-                {t("login.emailAddress")}
+                {t('auth.email')}
               </label>
               <div className="relative group">
                 <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground transition-colors group-focus-within:text-primary" />
                 <Input
                   id="email"
                   type="email"
-                  placeholder={t("login.emailPlaceholder")}
+                  placeholder={t('auth.emailPlaceholder')}
                   {...formik.getFieldProps("email")}
                   className={`pl-11 input-glow ${
                     formik.touched.email && formik.errors.email
@@ -202,14 +200,14 @@ const LoginPage = () => {
                 htmlFor="password"
                 className="text-sm font-medium text-foreground"
               >
-                {t("login.password")}
+                {t('auth.password')}
               </label>
               <div className="relative group">
                 <Lock className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground transition-colors group-focus-within:text-primary" />
                 <Input
                   id="password"
                   type={showPassword ? "text" : "password"}
-                  placeholder={t("login.passwordPlaceholder")}
+                  placeholder={t('auth.passwordPlaceholder')}
                   {...formik.getFieldProps("password")}
                   className={`pl-11 pr-11 input-glow ${
                     formik.touched.password && formik.errors.password
@@ -223,8 +221,8 @@ const LoginPage = () => {
                   className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
                   aria-label={
                     showPassword
-                      ? t("login.hidePassword")
-                      : t("login.showPassword")
+                      ? t('auth.hidePassword')
+                      : t('auth.showPassword')
                   }
                   tabIndex={-1}
                 >
@@ -256,14 +254,14 @@ const LoginPage = () => {
                   htmlFor="remember"
                   className="text-sm text-muted-foreground cursor-pointer"
                 >
-                  {t("login.rememberMe")}
+                  {t('auth.rememberMe')}
                 </label>
               </div>
               <a
                 href="#forgot"
                 className="text-sm text-primary hover:underline"
               >
-                {t("login.forgotPassword")}
+                {t('auth.forgotPassword')}
               </a>
             </div>
 
@@ -277,10 +275,10 @@ const LoginPage = () => {
               {loading || formik.isSubmitting ? (
                 <>
                   <Loader2 className="animate-spin mr-2" />
-                  {t("login.signingIn")}
+                  {t('auth.signingIn')}
                 </>
               ) : (
-                t("login.signIn")
+                t('auth.signIn')
               )}
             </Button>
 
@@ -291,7 +289,7 @@ const LoginPage = () => {
               </div>
               <div className="relative flex justify-center text-xs uppercase">
                 <span className="bg-card px-3 text-muted-foreground">
-                  {t("login.orContinueWith")}
+                  {t('auth.orContinueWith')}
                 </span>
               </div>
             </div>
@@ -322,18 +320,18 @@ const LoginPage = () => {
                   fill="#EA4335"
                 />
               </svg>
-              {t("login.google")}
+              {t('auth.google')}
             </Button>
           </form>
 
           {/* Sign up link */}
           <p className="text-center text-sm text-muted-foreground mt-6">
-            {t("login.newToOrdify")}{" "}
+            {t('auth.newToOrdify')}{" "}
             <Link
               to="/signup"
               className="text-primary font-medium hover:underline"
             >
-              {t("login.createYourStore")}
+              {t('auth.createYourStore')}
             </Link>
           </p>
         </div>
@@ -345,15 +343,15 @@ const LoginPage = () => {
         >
           <div className="space-y-1">
             <p className="text-2xl font-bold text-foreground">50k+</p>
-            <p className="text-xs text-muted-foreground">Active Merchants</p>
+            <p className="text-xs text-muted-foreground">{t('auth.activeMerchants')}</p>
           </div>
           <div className="space-y-1">
             <p className="text-2xl font-bold text-foreground">99.9%</p>
-            <p className="text-xs text-muted-foreground">Uptime SLA</p>
+            <p className="text-xs text-muted-foreground">{t('auth.uptimeSLA')}</p>
           </div>
           <div className="space-y-1">
             <p className="text-2xl font-bold text-foreground">24/7</p>
-            <p className="text-xs text-muted-foreground">Support</p>
+            <p className="text-xs text-muted-foreground">{t('auth.support')}</p>
           </div>
         </div>
       </div>

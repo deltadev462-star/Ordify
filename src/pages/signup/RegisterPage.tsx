@@ -1,11 +1,10 @@
 
 
 import { ShoppingBag } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import BackgroundElements from "./BackgroundElements";
 import SignupForm from "./SignupForm";
 import { AnimatedThemeToggler } from '../../components/ui/AnimatedThemeToggler';
-import LangSwitcher from '../../components/LangSwitcher';
-import { useTranslation } from 'react-i18next';
 
 const RegisterPage = () => {
   const { t } = useTranslation();
@@ -16,7 +15,6 @@ const RegisterPage = () => {
       
       {/* Header Controls */}
       <div className="absolute top-4 right-4 flex gap-2 z-20">
-        <LangSwitcher />
         <AnimatedThemeToggler className="p-1 w-8 h-8 rounded-lg bg-white/10 dark:bg-black/20 backdrop-blur-sm border border-white/20 dark:border-white/10 hover:bg-white/15 dark:hover:bg-black/30 transition-all duration-300 text-foreground dark:text-white" />
       </div>
       
@@ -27,10 +25,10 @@ const RegisterPage = () => {
             <ShoppingBag className="w-7 h-7 text-primary" />
           </div>
           <h1 className="text-3xl font-bold text-foreground mb-2">
-            {t('signup.createAccountSimple')} <span className="gradient-text">Ordify</span>
+            {t('auth.createAccount')} <span className="gradient-text">Ordify</span>
           </h1>
           <p className="text-muted-foreground">
-            {t('signup.startBuilding')}
+            {t('auth.startBuildingStore')}
           </p>
         </div>
 
@@ -44,7 +42,7 @@ const RegisterPage = () => {
 
         {/* Footer */}
         <p className="text-center text-xs text-muted-foreground mt-6 animate-fade-up" style={{ animationDelay: '0.3s' }}>
-          {t('signup.trustedBy')}
+          {t('auth.trustedBy')}
         </p>
       </div>
     </div>

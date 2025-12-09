@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import {
   Package,
   Download,
@@ -44,17 +43,16 @@ interface FileLimit {
 type CloudStorageType = 'local' | 's3' | 'cloudinary' | 'google';
 
 function DigitalProductsDeliverySection() {
-  const { t } = useTranslation();
   const [deliveryMethods, setDeliveryMethods] = useState<DeliveryMethod[]>([
     {
       id: 'email',
-      name: t("digitalDelivery.emailDelivery"),
+      name: "Email Delivery",
       enabled: true,
       config: { template: 'default' }
     },
     {
       id: 'direct',
-      name: t("digitalDelivery.directDownload"),
+      name: "Direct Download",
       enabled: false,
       config: { expiry: '24' }
     }
@@ -104,9 +102,9 @@ function DigitalProductsDeliverySection() {
     <div className="space-y-6">
       <Alert variant="info">
         <AlertIcon variant="info" />
-        <AlertTitle>{t("digitalDelivery.title")}</AlertTitle>
+        <AlertTitle>{"Title"}</AlertTitle>
         <AlertDescription>
-          {t("digitalDelivery.description")}
+          {"Description"}
         </AlertDescription>
       </Alert>
 
@@ -114,15 +112,15 @@ function DigitalProductsDeliverySection() {
         <TabsList className="grid w-full max-w-md grid-cols-3 mb-6">
           <TabsTrigger value="delivery" className="flex items-center gap-2">
             <Package className="w-4 h-4" />
-            {t("digitalDelivery.deliveryMethods")}
+            {"Delivery Methods"}
           </TabsTrigger>
           <TabsTrigger value="security" className="flex items-center gap-2">
             <Shield className="w-4 h-4" />
-            {t("security")}
+            {"Security"}
           </TabsTrigger>
           <TabsTrigger value="storage" className="flex items-center gap-2">
             <Cloud className="w-4 h-4" />
-            {t("storage")}
+            {"Storage"}
           </TabsTrigger>
         </TabsList>
 
@@ -135,14 +133,14 @@ function DigitalProductsDeliverySection() {
                     <Package className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <CardTitle className="text-xl">{t("digitalDelivery.deliveryMethods")}</CardTitle>
+                    <CardTitle className="text-xl">{"Delivery Methods"}</CardTitle>
                     <CardDescription className="text-white/80">
-                      {t("digitalDelivery.description")}
+                      {"Description"}
                     </CardDescription>
                   </div>
                 </div>
                 <Badge className="bg-white/20 text-white border-0">
-                  {deliveryMethods.filter(m => m.enabled).length} {t("active")}
+                  {deliveryMethods.filter(m => m.enabled).length} {"Active"}
                 </Badge>
               </div>
             </CardHeader>
@@ -167,23 +165,23 @@ function DigitalProductsDeliverySection() {
                       </div>
                       <div className="flex-1">
                         <h4 className="font-medium text-gray-800 dark:text-gray-200 mb-1">
-                          {t("digitalDelivery.emailDelivery")}
+                          {"Email Delivery"}
                         </h4>
                         <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-                          {t("digitalDelivery.sendDownloadLinks")}
+                          {"Send Download Links"}
                         </p>
                         {deliveryMethods[0].enabled && (
                           <div className="space-y-3">
                             <div>
-                              <Label className="text-sm">{t("digitalDelivery.emailTemplates")}</Label>
+                              <Label className="text-sm">{"Email Templates"}</Label>
                               <Select defaultValue="default">
                                 <SelectTrigger className="mt-1">
-                                  <SelectValue placeholder={t("select")} />
+                                  <SelectValue placeholder={"Select"} />
                                 </SelectTrigger>
                                 <SelectContent>
-                                  <SelectItem value="default">{t("default")}</SelectItem>
-                                  <SelectItem value="minimal">{t("digitalDelivery.minimal")}</SelectItem>
-                                  <SelectItem value="branded">{t("digitalDelivery.branded")}</SelectItem>
+                                  <SelectItem value="default">{"Default"}</SelectItem>
+                                  <SelectItem value="minimal">{"Minimal"}</SelectItem>
+                                  <SelectItem value="branded">{"Branded"}</SelectItem>
                                 </SelectContent>
                               </Select>
                             </div>
@@ -219,15 +217,15 @@ function DigitalProductsDeliverySection() {
                       </div>
                       <div className="flex-1">
                         <h4 className="font-medium text-gray-800 dark:text-gray-200 mb-1">
-                          {t("digitalDelivery.downloadPage")}
+                          {"Download Page"}
                         </h4>
                         <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-                          {t("digitalDelivery.allowImmediateDownload")}
+                          {"Allow Immediate Download"}
                         </p>
                         {deliveryMethods[1].enabled && (
                           <div className="space-y-3">
                             <div>
-                              <Label className="text-sm">{t("digitalDelivery.expirationTime")}</Label>
+                              <Label className="text-sm">{"Expiration Time"}</Label>
                               <div className="flex gap-2 mt-1">
                                 <Input 
                                   type="number"
@@ -246,8 +244,8 @@ function DigitalProductsDeliverySection() {
                                     <SelectValue />
                                   </SelectTrigger>
                                   <SelectContent>
-                                    <SelectItem value="hours">{t("digitalDelivery.hours")}</SelectItem>
-                                    <SelectItem value="days">{t("days")}</SelectItem>
+                                    <SelectItem value="hours">{"Hours"}</SelectItem>
+                                    <SelectItem value="days">{"Days"}</SelectItem>
                                   </SelectContent>
                                 </Select>
                               </div>
@@ -267,14 +265,14 @@ function DigitalProductsDeliverySection() {
               {/* Auto-delivery Settings */}
               <div className="space-y-4 pt-4 border-t border-gray-200 dark:border-gray-800">
                 <h4 className="font-medium text-gray-800 dark:text-gray-200">
-                  {t("digitalDelivery.settings")}
+                  {"Settings"}
                 </h4>
                 
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <Zap className="w-4 h-4 text-gray-500" />
-                      <Label>{t("digitalDelivery.autoDeliverAfterPayment")}</Label>
+                      <Label>{"Auto Deliver After Payment"}</Label>
                     </div>
                     <Switch
                       checked={settings.autoDeliver}
@@ -285,7 +283,7 @@ function DigitalProductsDeliverySection() {
                   <div className="space-y-2">
                     <Label className="flex items-center gap-2">
                       <Download className="w-4 h-4 text-gray-500" />
-                      {t("digitalDelivery.downloadLimit")}
+                      {"Download Limit"}
                     </Label>
                     <Input
                       type="number"
@@ -298,7 +296,7 @@ function DigitalProductsDeliverySection() {
                   <div className="space-y-2">
                     <Label className="flex items-center gap-2">
                       <Clock className="w-4 h-4 text-gray-500" />
-                      {t("digitalDelivery.expirationTime")}
+                      {"Expiration Time"}
                     </Label>
                     <div className="flex gap-2">
                       <Input
@@ -315,8 +313,8 @@ function DigitalProductsDeliverySection() {
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="hours">{t("digitalDelivery.hours")}</SelectItem>
-                          <SelectItem value="days">{t("days")}</SelectItem>
+                          <SelectItem value="hours">{"Hours"}</SelectItem>
+                          <SelectItem value="days">{"Days"}</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -333,10 +331,10 @@ function DigitalProductsDeliverySection() {
                 <div>
                   <CardTitle className="text-xl flex items-center gap-2">
                     <FileText className="w-5 h-5 text-primary" />
-                    {t("digitalDelivery.emailTemplates")}
+                    {"Email Templates"}
                   </CardTitle>
                   <CardDescription>
-                    {t("digitalDelivery.customizeEmails")}
+                    {"Customize Emails"}
                   </CardDescription>
                 </div>
                 <Button
@@ -345,7 +343,7 @@ function DigitalProductsDeliverySection() {
                   variant="outline"
                 >
                   <Plus className="w-4 h-4 mr-2" />
-                  {t("add")} {t("template")}
+                  {"Add"} {"Template"}
                 </Button>
               </div>
             </CardHeader>
@@ -354,7 +352,7 @@ function DigitalProductsDeliverySection() {
                 <div className="text-center py-8">
                   <FileText className="w-12 h-12 mx-auto text-gray-400 dark:text-gray-600 mb-3" />
                   <p className="text-gray-600 dark:text-gray-400">
-                    {t("digitalDelivery.noCustomTemplates")}
+                    {"No Custom Templates"}
                   </p>
                 </div>
               ) : (
@@ -362,7 +360,7 @@ function DigitalProductsDeliverySection() {
                   <Card key={template.id} className="border border-gray-200 dark:border-gray-800">
                     <CardContent className="p-4 space-y-3">
                       <div className="flex items-center justify-between">
-                        <Label>{t("template")} #{index + 1}</Label>
+                        <Label>{"Template"} #{index + 1}</Label>
                         <Button
                           variant="ghost"
                           size="sm"
@@ -374,16 +372,16 @@ function DigitalProductsDeliverySection() {
                       </div>
                       <div className="grid gap-3">
                         <div>
-                          <Label className="text-sm">{t("name")}</Label>
+                          <Label className="text-sm">{"Name"}</Label>
                           <Input
-                            placeholder={t("digitalDelivery.templateNamePlaceholder")}
+                            placeholder={"Template Name Placeholder"}
                             className="mt-1"
                           />
                         </div>
                         <div>
-                          <Label className="text-sm">{t("digitalDelivery.subject")}</Label>
+                          <Label className="text-sm">{"Subject"}</Label>
                           <Input
-                            placeholder={t("digitalDelivery.subjectPlaceholder")}
+                            placeholder={"Subject Placeholder"}
                             className="mt-1"
                           />
                         </div>
@@ -404,9 +402,9 @@ function DigitalProductsDeliverySection() {
                   <Shield className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <CardTitle className="text-xl">{t("security")} {t("settings")}</CardTitle>
+                  <CardTitle className="text-xl">{"Security"} {"Settings"}</CardTitle>
                   <CardDescription className="text-white/80">
-                    {t("digitalDelivery.protectDigitalProducts")}
+                    {"Protect Digital Products"}
                   </CardDescription>
                 </div>
               </div>
@@ -418,10 +416,10 @@ function DigitalProductsDeliverySection() {
                     <Lock className="w-5 h-5 text-blue-500" />
                     <div>
                       <p className="font-medium text-gray-800 dark:text-gray-200">
-                        {t("digitalDelivery.requireLogin")}
+                        {"Require Login"}
                       </p>
                       <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {t("digitalDelivery.requireLoginDescription")}
+                        {"Require Login Description"}
                       </p>
                     </div>
                   </div>
@@ -436,10 +434,10 @@ function DigitalProductsDeliverySection() {
                     <FileText className="w-5 h-5 text-purple-500" />
                     <div>
                       <p className="font-medium text-gray-800 dark:text-gray-200">
-                        {t("digitalDelivery.pdfWatermarking")}
+                        {"Pdf Watermarking"}
                       </p>
                       <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {t("digitalDelivery.pdfWatermarkingDescription")}
+                        {"Pdf Watermarking Description"}
                       </p>
                     </div>
                   </div>
@@ -454,27 +452,27 @@ function DigitalProductsDeliverySection() {
                     <Link className="w-5 h-5 text-green-500" />
                     <div>
                       <p className="font-medium text-gray-800 dark:text-gray-200">
-                        {t("digitalDelivery.ipRestriction")}
+                        {"Ip Restriction"}
                       </p>
                       <p className="text-sm text-gray-600 dark:text-gray-400">
-                        {t("digitalDelivery.ipRestrictionDescription")}
+                        {"Ip Restriction Description"}
                       </p>
                     </div>
                   </div>
                   <Badge variant="secondary" className="bg-amber-100 text-amber-700 dark:bg-amber-900/20 dark:text-amber-400">
-                    {t("comingSoon")}
+                    {"Coming Soon"}
                   </Badge>
                 </div>
               </div>
 
               <div className="pt-4 border-t border-gray-200 dark:border-gray-800">
                 <h4 className="font-medium text-gray-800 dark:text-gray-200 mb-3">
-                  {t("digitalDelivery.downloadProtection")}
+                  {"Download Protection"}
                 </h4>
                 <Alert variant="info">
                   <AlertCircle className="h-4 w-4" />
                   <AlertDescription>
-                    {t("digitalDelivery.downloadProtectionDescription")}
+                    {"Download Protection Description"}
                   </AlertDescription>
                 </Alert>
               </div>
@@ -490,9 +488,9 @@ function DigitalProductsDeliverySection() {
                   <Cloud className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <CardTitle className="text-xl">{t("storage")} {t("configuration")}</CardTitle>
+                  <CardTitle className="text-xl">{"Storage"} {"Configuration"}</CardTitle>
                   <CardDescription className="text-white/80">
-                    {t("digitalDelivery.chooseStorageLocation")}
+                    {"Choose Storage Location"}
                   </CardDescription>
                 </div>
               </div>
@@ -500,7 +498,7 @@ function DigitalProductsDeliverySection() {
             <CardContent className="p-6 space-y-6">
               <div>
                 <Label className="text-gray-700 dark:text-gray-300 font-medium mb-3 block">
-                  {t("digitalDelivery.storageProviders")}
+                  {"Storage Providers"}
                 </Label>
                 <div className="grid grid-cols-2 gap-3">
                   {cloudStorageOptions.map((option) => {
@@ -525,7 +523,7 @@ function DigitalProductsDeliverySection() {
                             </p>
                             {option.value !== 'local' && (
                               <Badge variant="secondary" className="text-xs mt-1">
-                                {t("digitalDelivery.external")}
+                                {"External"}
                               </Badge>
                             )}
                           </div>
@@ -540,23 +538,23 @@ function DigitalProductsDeliverySection() {
                 <Card className="border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900/50">
                   <CardContent className="p-4 space-y-3">
                     <h4 className="font-medium text-gray-800 dark:text-gray-200">
-                      {settings.cloudStorage === 's3' && t("digitalDelivery.amazonS3Configuration")}
-                      {settings.cloudStorage === 'cloudinary' && t("digitalDelivery.cloudinaryConfiguration")}
-                      {settings.cloudStorage === 'google' && t("digitalDelivery.googleCloudConfiguration")}
+                      {settings.cloudStorage === 's3' && "Amazon S3 Configuration"}
+                      {settings.cloudStorage === 'cloudinary' && "Cloudinary Configuration"}
+                      {settings.cloudStorage === 'google' && "Google Cloud Configuration"}
                     </h4>
                     <div className="space-y-3">
                       <div>
-                        <Label className="text-sm">{t("digitalDelivery.apiKey")}</Label>
-                        <Input type="password" placeholder={t("digitalDelivery.enterApiKey")} className="mt-1" />
+                        <Label className="text-sm">{"Api Key"}</Label>
+                        <Input type="password" placeholder={"Enter Api Key"} className="mt-1" />
                       </div>
                       <div>
-                        <Label className="text-sm">{t("digitalDelivery.secretKey")}</Label>
-                        <Input type="password" placeholder={t("digitalDelivery.enterSecretKey")} className="mt-1" />
+                        <Label className="text-sm">{"Secret Key"}</Label>
+                        <Input type="password" placeholder={"Enter Secret Key"} className="mt-1" />
                       </div>
                       {settings.cloudStorage === 's3' && (
                         <div>
-                          <Label className="text-sm">{t("digitalDelivery.bucketName")}</Label>
-                          <Input placeholder={t("digitalDelivery.bucketNamePlaceholder")} className="mt-1" />
+                          <Label className="text-sm">{"Bucket Name"}</Label>
+                          <Input placeholder={"Bucket Name Placeholder"} className="mt-1" />
                         </div>
                       )}
                     </div>
@@ -566,14 +564,14 @@ function DigitalProductsDeliverySection() {
 
               <div className="space-y-4 pt-4 border-t border-gray-200 dark:border-gray-800">
                 <h4 className="font-medium text-gray-800 dark:text-gray-200">
-                  {t("digitalDelivery.fileRestrictions")}
+                  {"File Restrictions"}
                 </h4>
                 
                 <div className="space-y-3">
                   <div>
                     <Label className="flex items-center gap-2 mb-2">
                       <Upload className="w-4 h-4 text-gray-500" />
-                      {t("digitalDelivery.maximumFileSize")}
+                      {"Maximum File Size"}
                     </Label>
                     <div className="flex gap-2">
                       <Input
@@ -598,7 +596,7 @@ function DigitalProductsDeliverySection() {
                   </div>
 
                   <div>
-                    <Label className="mb-2">{t("digitalDelivery.allowedFileFormats")}</Label>
+                    <Label className="mb-2">{"Allowed File Formats"}</Label>
                     <div className="flex flex-wrap gap-2">
                       {fileLimit.formats.map((format) => (
                         <Badge key={format} variant="secondary" className="font-mono">
@@ -607,7 +605,7 @@ function DigitalProductsDeliverySection() {
                       ))}
                       <Button size="sm" variant="ghost" className="h-6 px-2">
                         <Plus className="w-3 h-3 mr-1" />
-                        {t("add")}
+                        {"Add"}
                       </Button>
                     </div>
                   </div>
@@ -616,7 +614,7 @@ function DigitalProductsDeliverySection() {
                 <Alert>
                   <Settings className="h-4 w-4" />
                   <AlertDescription>
-                    {t("digitalDelivery.storageUsage", { used: "2.4 GB", total: "10 GB", percentage: "24" })}
+                    {"Storage Usage"}
                   </AlertDescription>
                 </Alert>
               </div>

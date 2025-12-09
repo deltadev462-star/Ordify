@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { CreditCard, Banknote, Smartphone, Globe, AlertCircle, Plus } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -13,7 +12,6 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 function PaymentMethodsSection() {
-  const { t } = useTranslation();
   const [showAddMethod, setShowAddMethod] = useState(false);
   const [newMethod, setNewMethod] = useState({
     name: '',
@@ -92,13 +90,13 @@ function PaymentMethodsSection() {
     if (status === 'active') {
       return (
         <Badge className="bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400 border-0">
-          {t('paymentMethods.status.active')}
+          {"Active"}
         </Badge>
       );
     }
     return (
       <Badge variant="secondary" className="bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400 border-0">
-        {t('paymentMethods.status.inactive')}
+        {"Inactive"}
       </Badge>
     );
   };
@@ -112,14 +110,14 @@ function PaymentMethodsSection() {
               <CreditCard className="h-6 w-6" />
             </div>
             <div>
-              <CardTitle className="text-xl">{t('paymentMethods.title')}</CardTitle>
+              <CardTitle className="text-xl">{"Title"}</CardTitle>
               <CardDescription className="text-gray-100 mt-1">
-                {t('paymentMethods.description')}
+                {"Description"}
               </CardDescription>
             </div>
           </div>
           <Badge variant="secondary" className="bg-white/20 text-white border-0">
-            {t('paymentMethods.essential')}
+            {"Essential"}
           </Badge>
         </div>
       </CardHeader>
@@ -127,7 +125,7 @@ function PaymentMethodsSection() {
         <Alert className="border-emerald-200 bg-emerald-50 dark:bg-emerald-900/20 dark:border-emerald-800">
           <AlertCircle className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
           <AlertDescription className="text-emerald-800 dark:text-emerald-200">
-            {t('paymentMethods.conversionAlert')}
+            {"Conversion Alert"}
           </AlertDescription>
         </Alert>
 
@@ -135,7 +133,7 @@ function PaymentMethodsSection() {
         <div>
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-semibold text-gray-900 dark:text-gray-100">
-              {t('paymentMethods.configuredMethods')}
+              {"Configured Methods"}
             </h3>
             <Dialog open={showAddMethod} onOpenChange={setShowAddMethod}>
               <DialogTrigger asChild>
@@ -144,80 +142,80 @@ function PaymentMethodsSection() {
                   className="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white"
                 >
                   <Plus className="h-4 w-4 mr-1" />
-                  {t('paymentMethods.addMethod')}
+                  {"Add Method"}
                 </Button>
               </DialogTrigger>
               <DialogContent className="bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-800">
                 <DialogHeader>
                   <DialogTitle className="text-gray-900 dark:text-gray-100">
-                    {t('paymentMethods.dialog.title')}
+                    {"Title"}
                   </DialogTitle>
                   <DialogDescription className="text-gray-600 dark:text-gray-400">
-                    {t('paymentMethods.dialog.description')}
+                    {"Description"}
                   </DialogDescription>
                 </DialogHeader>
                 <div className="space-y-4 py-4">
                   <div>
                     <Label className="text-gray-700 dark:text-gray-300">
-                      {t('paymentMethods.dialog.paymentProvider')}
+                      {"Payment Provider"}
                     </Label>
                     <Select 
                       value={newMethod.type} 
                       onValueChange={(value) => setNewMethod({...newMethod, type: value})}
                     >
                       <SelectTrigger className="border-gray-300 dark:border-gray-700 dark:bg-gray-800">
-                        <SelectValue placeholder={t('paymentMethods.dialog.selectProvider')} />
+                        <SelectValue placeholder={"Select Provider"} />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="stripe">{t('paymentMethods.providers.stripe')}</SelectItem>
-                        <SelectItem value="paypal">{t('paymentMethods.providers.paypal')}</SelectItem>
-                        <SelectItem value="square">{t('paymentMethods.providers.square')}</SelectItem>
-                        <SelectItem value="razorpay">{t('paymentMethods.providers.razorpay')}</SelectItem>
+                        <SelectItem value="stripe">{"Stripe"}</SelectItem>
+                        <SelectItem value="paypal">{"Paypal"}</SelectItem>
+                        <SelectItem value="square">{"Square"}</SelectItem>
+                        <SelectItem value="razorpay">{"Razorpay"}</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                   <div>
                     <Label className="text-gray-700 dark:text-gray-300">
-                      {t('paymentMethods.dialog.displayName')}
+                      {"Display Name"}
                     </Label>
                     <Input
                       value={newMethod.name}
                       onChange={(e) => setNewMethod({...newMethod, name: e.target.value})}
-                      placeholder={t('paymentMethods.dialog.displayNamePlaceholder')}
+                      placeholder={"Display Name Placeholder"}
                       className="border-gray-300 dark:border-gray-700 dark:bg-gray-800"
                     />
                   </div>
                   <div>
                     <Label className="text-gray-700 dark:text-gray-300">
-                      {t('paymentMethods.dialog.apiKey')}
+                      {"Api Key"}
                     </Label>
                     <Input
                       value={newMethod.apiKey}
                       onChange={(e) => setNewMethod({...newMethod, apiKey: e.target.value})}
-                      placeholder={t('paymentMethods.dialog.apiKeyPlaceholder')}
+                      placeholder={"Api Key Placeholder"}
                       className="border-gray-300 dark:border-gray-700 dark:bg-gray-800"
                     />
                   </div>
                   <div>
                     <Label className="text-gray-700 dark:text-gray-300">
-                      {t('paymentMethods.dialog.secretKey')}
+                      {"Secret Key"}
                     </Label>
                     <Input
                       type="password"
                       value={newMethod.secretKey}
                       onChange={(e) => setNewMethod({...newMethod, secretKey: e.target.value})}
-                      placeholder={t('paymentMethods.dialog.secretKeyPlaceholder')}
+                      placeholder={"Secret Key Placeholder"}
                       className="border-gray-300 dark:border-gray-700 dark:bg-gray-800"
                     />
                   </div>
                   <div>
                     <Label className="text-gray-700 dark:text-gray-300">
-                      {t('paymentMethods.dialog.webhookUrl')} ({t('paymentMethods.dialog.optional')})
+                      {"Webhook Url"} ({"Optional"})
                     </Label>
                     <Input
                       value={newMethod.webhook}
                       onChange={(e) => setNewMethod({...newMethod, webhook: e.target.value})}
-                      placeholder={t('paymentMethods.dialog.webhookUrlPlaceholder')}
+                      placeholder={"Webhook Url Placeholder"}
                       className="border-gray-300 dark:border-gray-700 dark:bg-gray-800"
                     />
                   </div>
@@ -228,13 +226,13 @@ function PaymentMethodsSection() {
                     onClick={() => setShowAddMethod(false)}
                     className="border-gray-300 dark:border-gray-700"
                   >
-                    {t('paymentMethods.dialog.cancel')}
+                    {"Cancel"}
                   </Button>
                   <Button 
                     onClick={handleAddMethod}
                     className="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white"
                   >
-                    {t('paymentMethods.dialog.addMethodButton')}
+                    {"Add Method Button"}
                   </Button>
                 </DialogFooter>
               </DialogContent>
@@ -245,12 +243,12 @@ function PaymentMethodsSection() {
             <Table>
               <TableHeader className="bg-gray-50 dark:bg-gray-800/50">
                 <TableRow>
-                  <TableHead className="text-gray-700 dark:text-gray-300">{t('paymentMethods.table.method')}</TableHead>
-                  <TableHead className="text-gray-700 dark:text-gray-300">{t('paymentMethods.table.status')}</TableHead>
-                  <TableHead className="text-gray-700 dark:text-gray-300">{t('paymentMethods.table.transactions')}</TableHead>
-                  <TableHead className="text-gray-700 dark:text-gray-300">{t('paymentMethods.table.revenue')}</TableHead>
-                  <TableHead className="text-gray-700 dark:text-gray-300">{t('paymentMethods.table.fee')}</TableHead>
-                  <TableHead className="text-gray-700 dark:text-gray-300 text-right">{t('paymentMethods.table.actions')}</TableHead>
+                  <TableHead className="text-gray-700 dark:text-gray-300">{"Method"}</TableHead>
+                  <TableHead className="text-gray-700 dark:text-gray-300">{"Status"}</TableHead>
+                  <TableHead className="text-gray-700 dark:text-gray-300">{"Transactions"}</TableHead>
+                  <TableHead className="text-gray-700 dark:text-gray-300">{"Revenue"}</TableHead>
+                  <TableHead className="text-gray-700 dark:text-gray-300">{"Fee"}</TableHead>
+                  <TableHead className="text-gray-700 dark:text-gray-300 text-right">{"Actions"}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -288,7 +286,7 @@ function PaymentMethodsSection() {
                             variant="ghost"
                             className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
                           >
-                            {t('paymentMethods.configure')}
+                            {"Configure"}
                           </Button>
                         </div>
                       </TableCell>
@@ -303,16 +301,16 @@ function PaymentMethodsSection() {
         {/* Payment Settings */}
         <div className="p-6 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
           <h4 className="font-medium text-gray-900 dark:text-gray-100 mb-4">
-            {t('paymentMethods.settings.title')}
+            {"Title"}
           </h4>
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <div>
                 <Label className="text-gray-700 dark:text-gray-300 font-normal">
-                  {t('paymentMethods.settings.testMode')}
+                  {"Test Mode"}
                 </Label>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                  {t('paymentMethods.settings.testModeDescription')}
+                  {"Test Mode Description"}
                 </p>
               </div>
               <Switch className="data-[state=checked]:bg-primary data-[state=checked]:hover:bg-primary/90 dark:data-[state=checked]:bg-primary dark:data-[state=checked]:hover:bg-primary/80 data-[state=unchecked]:bg-gray-200 data-[state=unchecked]:hover:bg-gray-300 dark:data-[state=unchecked]:bg-gray-700 dark:data-[state=unchecked]:hover:bg-gray-600" />
@@ -320,10 +318,10 @@ function PaymentMethodsSection() {
             <div className="flex items-center justify-between">
               <div>
                 <Label className="text-gray-700 dark:text-gray-300 font-normal">
-                  {t('paymentMethods.settings.autoCapture')}
+                  {"Auto Capture"}
                 </Label>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                  {t('paymentMethods.settings.autoCaptureDescription')}
+                  {"Auto Capture Description"}
                 </p>
               </div>
               <Switch
@@ -334,10 +332,10 @@ function PaymentMethodsSection() {
             <div className="flex items-center justify-between">
               <div>
                 <Label className="text-gray-700 dark:text-gray-300 font-normal">
-                  {t('paymentMethods.settings.saveCardDetails')}
+                  {"Save Card Details"}
                 </Label>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                  {t('paymentMethods.settings.saveCardDetailsDescription')}
+                  {"Save Card Details Description"}
                 </p>
               </div>
               <Switch

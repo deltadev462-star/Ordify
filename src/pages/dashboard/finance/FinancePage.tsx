@@ -1,4 +1,3 @@
-import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import {
   Wallet as WalletIcon,
@@ -12,11 +11,9 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
 export default function FinancePage() {
-  const { t } = useTranslation();
-
   const kpis = [
     {
-      title: t("Current Balance"),
+      title: "Current  Balance",
       value: "12,430",
       change: 5.3,
       changeType: "increase" as const,
@@ -24,11 +21,11 @@ export default function FinancePage() {
       iconColor: "text-green-600 dark:text-green-400",
       iconBgColor: "bg-green-50 dark:bg-green-950/30",
       trend: "up" as const,
-      period: t("vs last week"),
-      subValue: t("EGP"),
+      period: "Vs last week",
+      subValue: "E G P",
     },
     {
-      title: t("Payouts this month"),
+      title: "Payouts this month",
       value: "32,900",
       change: -2.1,
       changeType: "decrease" as const,
@@ -36,11 +33,11 @@ export default function FinancePage() {
       iconColor: "text-blue-600 dark:text-blue-400",
       iconBgColor: "bg-blue-50 dark:bg-blue-950/30",
       trend: "down" as const,
-      period: t("vs last month"),
-      subValue: t("EGP"),
+      period: "Vs last month",
+      subValue: "E G P",
     },
     {
-      title: t("Total Transactions"),
+      title: "Total  Transactions",
       value: "563",
       change: 12.4,
       changeType: "increase" as const,
@@ -48,10 +45,10 @@ export default function FinancePage() {
       iconColor: "text-purple-600 dark:text-purple-400",
       iconBgColor: "bg-purple-50 dark:bg-purple-950/30",
       trend: "up" as const,
-      period: t("vs last month"),
+      period: "Vs last month",
     },
     {
-      title: t("Average Order Value"),
+      title: "Average  Order  Value",
       value: "367",
       change: 1.8,
       changeType: "increase" as const,
@@ -59,21 +56,21 @@ export default function FinancePage() {
       iconColor: "text-orange-600 dark:text-orange-400",
       iconBgColor: "bg-orange-50 dark:bg-orange-950/30",
       trend: "up" as const,
-      period: t("rolling 30 days"),
-      subValue: t("EGP"),
+      period: "Rolling 30 days",
+      subValue: "E G P",
     },
   ];
 
   const quickLinks = [
     {
-      title: t("Wallet Overview"),
-      desc: t("View balance and manage funds"),
+      title: "Wallet  Overview",
+      desc: "View balance and manage funds",
       to: "/dashboard/wallet",
       icon: WalletIcon,
     },
     {
-      title: t("Transactions"),
-      desc: t("Browse and export history"),
+      title: "Transactions",
+      desc: "Browse and export history",
       to: "/dashboard/finance/transactions",
       icon: ArrowLeftRight,
     },
@@ -82,9 +79,9 @@ export default function FinancePage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">{t("Financial Center")}</h1>
+        <h1 className="text-2xl font-bold">{"Financial  Center"}</h1>
         <p className="text-muted-foreground mt-1">
-          {t("Monitor balances, review transactions and manage payouts")}
+          {"Monitor balances"}
         </p>
       </div>
 
@@ -110,10 +107,10 @@ export default function FinancePage() {
         <CardHeader>
           <h3 className="text-lg font-semibold flex items-center gap-2">
             <TrendingUp className="h-5 w-5" />
-            {t("Quick Financial Actions")}
+            {"Quick  Financial  Actions"}
           </h3>
           <p className="text-sm text-muted-foreground">
-            {t("Jump directly to your most used finance tools")}
+            {"Jump directly to your most used finance tools"}
           </p>
         </CardHeader>
         <CardContent>
@@ -127,7 +124,7 @@ export default function FinancePage() {
                       <h4 className="font-semibold">{q.title}</h4>
                       <p className="text-sm text-muted-foreground mt-1">{q.desc}</p>
                       <Button variant="link" className="mt-2 px-0">
-                        {t("Open")}
+                        {"Open"}
                       </Button>
                     </div>
                   </CardContent>

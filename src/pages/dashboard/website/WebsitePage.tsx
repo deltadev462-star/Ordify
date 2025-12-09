@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -39,7 +38,6 @@ import {
 function WebsitePage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { t } = useTranslation();
   const websiteNav = subNavigationData.website;
   
   const [devicePreview, setDevicePreview] = useState<'desktop' | 'tablet' | 'mobile'>('desktop');
@@ -52,37 +50,37 @@ function WebsitePage() {
 
   const stats = [
     {
-      title: t('Active Theme'),
-      value: t('Modern Pro'),
-      subValue: t('Last changed 5 days ago'),
+      title: "Active  Theme",
+      value: "Modern  Pro",
+      subValue: "Last changed 5 days ago",
       icon: Palette,
       color: 'from-purple-500 to-pink-500',
       bgColor: 'from-purple-50 to-pink-50 dark:from-purple-950/20 dark:to-pink-950/20',
-      change: t('Updated'),
-      badge: t('Premium')
+      change: "Updated",
+      badge: "Premium"
     },
     {
-      title: t('Total Pages'),
+      title: "Total  Pages",
       value: '24',
-      subValue: t('3 custom pages'),
+      subValue: "3 custom pages",
       icon: FileText,
       color: 'from-blue-500 to-cyan-500',
       bgColor: 'from-blue-50 to-cyan-50 dark:from-blue-950/20 dark:to-cyan-950/20',
       progress: 80
     },
     {
-      title: t('Languages'),
+      title: "Languages",
       value: '5',
-      subValue: t('English default'),
+      subValue: "English default",
       icon: Languages,
       color: 'from-green-500 to-emerald-500',
       bgColor: 'from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/20',
       active: true
     },
     {
-      title: t('Last Updated'),
-      value: t('2 hours ago'),
-      subValue: t('Auto-save enabled'),
+      title: "Last  Updated",
+      value: "2 hours ago",
+      subValue: "Auto-save enabled",
       icon: Clock,
       color: 'from-orange-500 to-red-500',
       bgColor: 'from-orange-50 to-red-50 dark:from-orange-950/20 dark:to-red-950/20',
@@ -91,10 +89,10 @@ function WebsitePage() {
   ];
 
   const features = [
-    { text: t('Responsive Design'), icon: Monitor },
-    { text: t('SEO Optimized'), icon: Activity },
-    { text: t('Fast Loading'), icon: Zap },
-    { text: t('Secure SSL'), icon: Shield }
+    { text: "Responsive  Design", icon: Monitor },
+    { text: "S E O  Optimized", icon: Activity },
+    { text: "Fast  Loading", icon: Zap },
+    { text: "Secure  S S L", icon: Shield }
   ];
 
   const deviceSizes = {
@@ -116,7 +114,7 @@ function WebsitePage() {
               </div>
               <Badge className="bg-gradient-to-r from-green-500 to-emerald-600 text-white border-0 px-3 py-1">
                 <CheckCircle className="h-3 w-3 mr-1" />
-                {t('Live')}
+                {"Live"}
               </Badge>
             </div>
             <h1 className="text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
@@ -153,12 +151,12 @@ function WebsitePage() {
                   <Globe className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <CardTitle className="text-xl">{t('Your Website')}</CardTitle>
+                  <CardTitle className="text-xl">{"Your  Website"}</CardTitle>
                   <div className="flex items-center gap-2 mt-1">
-                    <CardDescription>{t('www.yourstore.com')}</CardDescription>
+                    <CardDescription>{"Com"}</CardDescription>
                     <Badge variant="outline" className="text-xs">
                       <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse mr-1" />
-                      {t('Online')}
+                      {"Online"}
                     </Badge>
                   </div>
                 </div>
@@ -200,7 +198,7 @@ function WebsitePage() {
                   className="hidden sm:flex"
                 >
                   <RefreshCw className={cn("h-4 w-4 mr-2", isRefreshing && "animate-spin")} />
-                  {t('Refresh')}
+                  {"Refresh"}
                 </Button>
                 
                 <Button
@@ -209,7 +207,7 @@ function WebsitePage() {
                   className="hidden sm:flex"
                 >
                   <ExternalLink className="h-4 w-4 mr-2" />
-                  {t('View Live')}
+                  {"View  Live"}
                 </Button>
                 
                 <Button
@@ -218,7 +216,7 @@ function WebsitePage() {
                   className="hidden sm:flex"
                 >
                   <Code className="h-4 w-4 mr-2" />
-                  {t('Code')}
+                  {"Code"}
                 </Button>
               </div>
             </div>
@@ -229,15 +227,15 @@ function WebsitePage() {
               <TabsList className="w-full rounded-none h-12 bg-gray-50 dark:bg-gray-900">
                 <TabsTrigger value="preview" className="flex-1 data-[state=active]:bg-white dark:data-[state=active]:bg-gray-800">
                   <Eye className="h-4 w-4 mr-2" />
-                  {t('Preview')}
+                  {"Preview"}
                 </TabsTrigger>
                 <TabsTrigger value="analytics" className="flex-1 data-[state=active]:bg-white dark:data-[state=active]:bg-gray-800">
                   <Activity className="h-4 w-4 mr-2" />
-                  {t('Analytics')}
+                  {"Analytics"}
                 </TabsTrigger>
                 <TabsTrigger value="settings" className="flex-1 data-[state=active]:bg-white dark:data-[state=active]:bg-gray-800">
                   <Settings className="h-4 w-4 mr-2" />
-                  {t('Settings')}
+                  {"Settings"}
                 </TabsTrigger>
               </TabsList>
               
@@ -254,7 +252,7 @@ function WebsitePage() {
                         <div className="h-3 w-3 rounded-full bg-green-500" />
                       </div>
                       <div className="flex-1 bg-gray-200 dark:bg-gray-700 rounded h-6 px-3 flex items-center">
-                        <span className="text-xs text-gray-600 dark:text-gray-400">{t('www.yourstore.com')}</span>
+                        <span className="text-xs text-gray-600 dark:text-gray-400">{"Com"}</span>
                       </div>
                     </div>
                     
@@ -264,10 +262,10 @@ function WebsitePage() {
                           <Layout className="h-12 w-12 text-primary" />
                         </div>
                         <p className="text-lg font-medium text-gray-700 dark:text-gray-300">
-                          {t('Website Preview')}
+                          {"Website  Preview"}
                         </p>
                         <p className="text-sm text-muted-foreground mt-1">
-                          {t('Your website content will appear here')}
+                          {"Your website content will appear here"}
                         </p>
                       </div>
                     </div>
@@ -280,31 +278,31 @@ function WebsitePage() {
                   <Card className="border-0 shadow-sm">
                     <CardContent className="p-4">
                       <div className="flex items-center justify-between mb-2">
-                        <p className="text-sm text-muted-foreground">{t('Page Views')}</p>
+                        <p className="text-sm text-muted-foreground">{"Page  Views"}</p>
                         <TrendingUp className="h-4 w-4 text-green-500" />
                       </div>
                       <p className="text-2xl font-bold">12,345</p>
-                      <p className="text-xs text-green-600 mt-1">{t('+12.5% from last week')}</p>
+                      <p className="text-xs text-green-600 mt-1">{"5% from last week"}</p>
                     </CardContent>
                   </Card>
                   <Card className="border-0 shadow-sm">
                     <CardContent className="p-4">
                       <div className="flex items-center justify-between mb-2">
-                        <p className="text-sm text-muted-foreground">{t('Bounce Rate')}</p>
+                        <p className="text-sm text-muted-foreground">{"Bounce  Rate"}</p>
                         <Activity className="h-4 w-4 text-blue-500" />
                       </div>
                       <p className="text-2xl font-bold">42.3%</p>
-                      <p className="text-xs text-blue-600 mt-1">{t('-2.1% improvement')}</p>
+                      <p className="text-xs text-blue-600 mt-1">{"1% improvement"}</p>
                     </CardContent>
                   </Card>
                   <Card className="border-0 shadow-sm">
                     <CardContent className="p-4">
                       <div className="flex items-center justify-between mb-2">
-                        <p className="text-sm text-muted-foreground">{t('Load Time')}</p>
+                        <p className="text-sm text-muted-foreground">{"Load  Time"}</p>
                         <Zap className="h-4 w-4 text-orange-500" />
                       </div>
-                      <p className="text-2xl font-bold">{t('1.2s')}</p>
-                      <p className="text-xs text-orange-600 mt-1">{t('Excellent performance')}</p>
+                      <p className="text-2xl font-bold">{"2s"}</p>
+                      <p className="text-xs text-orange-600 mt-1">{"Excellent performance"}</p>
                     </CardContent>
                   </Card>
                 </div>
@@ -316,24 +314,24 @@ function WebsitePage() {
                     <div className="flex items-center gap-3">
                       <Shield className="h-5 w-5 text-green-600" />
                       <div>
-                        <p className="font-medium">{t('SSL Certificate')}</p>
-                        <p className="text-sm text-muted-foreground">{t('Your site is secure')}</p>
+                        <p className="font-medium">{"S S L  Certificate"}</p>
+                        <p className="text-sm text-muted-foreground">{"Your site is secure"}</p>
                       </div>
                     </div>
                     <Badge className="bg-green-100 text-green-700 dark:bg-green-900/20 dark:text-green-400">
-                      {t('Active')}
+                      {"Active"}
                     </Badge>
                   </div>
                   <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
                     <div className="flex items-center gap-3">
                       <Globe className="h-5 w-5 text-blue-600" />
                       <div>
-                        <p className="font-medium">{t('Custom Domain')}</p>
-                        <p className="text-sm text-muted-foreground">{t('www.yourstore.com')}</p>
+                        <p className="font-medium">{"Custom  Domain"}</p>
+                        <p className="text-sm text-muted-foreground">{"Com"}</p>
                       </div>
                     </div>
                     <Button variant="outline" size="sm">
-                      {t('Manage')}
+                      {"Manage"}
                     </Button>
                   </div>
                 </div>
@@ -385,18 +383,18 @@ function WebsitePage() {
                         </div>
                       )}
                       <div>
-                        <CardTitle className="text-xl mb-1">{t(item.title)}</CardTitle>
+                        <CardTitle className="text-xl mb-1">{item.title}</CardTitle>
                         <div className="flex items-center gap-2">
                           {item.title === "Themes" && (
                             <Badge variant="secondary" className="bg-purple-100 text-purple-700 dark:bg-purple-900/20 dark:text-purple-400">
                               <Sparkles className="h-3 w-3 mr-1" />
-                              {t('12 themes available')}
+                              {"12 themes available"}
                             </Badge>
                           )}
                           {item.title === "Texts" && (
                             <Badge variant="secondary" className="bg-blue-100 text-blue-700 dark:bg-blue-900/20 dark:text-blue-400">
                               <Languages className="h-3 w-3 mr-1" />
-                              {t('5 languages')}
+                              {"5 languages"}
                             </Badge>
                           )}
                         </div>
@@ -404,7 +402,7 @@ function WebsitePage() {
                     </div>
                     {isActive && (
                       <Badge className="bg-green-100 text-green-700 dark:bg-green-900/20 dark:text-green-400 border-0">
-                        {t('Active')}
+                        {"Active"}
                       </Badge>
                     )}
                   </div>
@@ -420,10 +418,10 @@ function WebsitePage() {
                     <div className="space-y-4">
                       <div className="grid grid-cols-4 gap-2">
                         {[
-                          { name: t('Modern'), icon: Sparkles },
-                          { name: t('Classic'), icon: Layout },
-                          { name: t('Minimal'), icon: Type },
-                          { name: t('Luxe'), icon: Brush }
+                          { name: "Modern", icon: Sparkles },
+                          { name: "Classic", icon: Layout },
+                          { name: "Minimal", icon: Type },
+                          { name: "Luxe", icon: Brush }
                         ].map((theme) => (
                           <div
                             key={theme.name}
@@ -431,10 +429,10 @@ function WebsitePage() {
                           >
                             <div className={cn(
                               "absolute inset-0 bg-gradient-to-br",
-                              theme.name === t('Modern') && "from-purple-400 to-pink-400",
-                              theme.name === t('Classic') && "from-blue-400 to-indigo-400",
-                              theme.name === t('Minimal') && "from-gray-300 to-gray-400",
-                              theme.name === t('Luxe') && "from-amber-400 to-orange-400"
+                              theme.name === "Modern" && "from-purple-400 to-pink-400",
+                              theme.name === "Classic" && "from-blue-400 to-indigo-400",
+                              theme.name === "Minimal" && "from-gray-300 to-gray-400",
+                              theme.name === "Luxe" && "from-amber-400 to-orange-400"
                             )} />
                             <div className="absolute inset-0 bg-black/10 group-hover/theme:bg-black/20 transition-colors" />
                             <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
@@ -445,9 +443,9 @@ function WebsitePage() {
                         ))}
                       </div>
                       <div className="flex justify-between items-center text-sm text-muted-foreground">
-                        <span>{t('Currently using')}: {t('Modern Pro')}</span>
+                        <span>{"Currently using"}: {"Modern  Pro"}</span>
                         <Button variant="ghost" size="sm" className="h-auto p-1">
-                          {t('View all')}
+                          {"View all"}
                           <ChevronRight className="h-3 w-3 ml-1" />
                         </Button>
                       </div>
@@ -456,9 +454,9 @@ function WebsitePage() {
                     <div className="space-y-3">
                       <div className="space-y-2">
                         {[
-                          { page: t('Home Page'), status: 'edited', icon: Layout, progress: 100 },
-                          { page: t('Product Page'), status: 'edited', icon: FileText, progress: 85 },
-                          { page: t('Checkout Page'), status: 'default', icon: Type, progress: 60 }
+                          { page: "Home  Page", status: 'edited', icon: Layout, progress: 100 },
+                          { page: "Product  Page", status: 'edited', icon: FileText, progress: 85 },
+                          { page: "Checkout  Page", status: 'default', icon: Type, progress: 60 }
                         ].map((page) => (
                           <div key={page.page} className="space-y-1">
                             <div className="flex items-center justify-between">
@@ -474,7 +472,7 @@ function WebsitePage() {
                                     : "bg-gray-100 text-gray-700 dark:bg-gray-900/20 dark:text-gray-400"
                                 )}
                               >
-                                {page.status === 'edited' ? t('Edited') : t('Default')}
+                                {page.status === 'edited' ? "Edited" : "Default"}
                               </Badge>
                             </div>
                             <Progress value={page.progress} className="h-1" />
@@ -497,10 +495,10 @@ function WebsitePage() {
                     }}
                   >
                     {isActive
-                      ? t('Currently Managing')
+                      ? "Currently  Managing"
                       : item.title === "Themes"
-                      ? t('Browse Themes')
-                      : t('Edit Texts')}
+                      ? "Browse  Themes"
+                      : "Edit  Texts"}
                     <ArrowUpRight className="ml-2 h-4 w-4" />
                   </Button>
                 </CardContent>
@@ -554,7 +552,7 @@ function WebsitePage() {
                     {stat.status === 'live' && (
                       <Badge variant="outline" className="text-xs mt-2">
                         <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse mr-1" />
-                        {t('Live')}
+                        {"Live"}
                       </Badge>
                     )}
                   </div>
@@ -573,26 +571,26 @@ function WebsitePage() {
                   <Settings className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <p className="font-semibold">{t('Quick Actions')}</p>
-                  <p className="text-sm text-muted-foreground">{t('Manage your website settings')}</p>
+                  <p className="font-semibold">{"Quick  Actions"}</p>
+                  <p className="text-sm text-muted-foreground">{"Manage your website settings"}</p>
                 </div>
               </div>
               <div className="flex flex-wrap items-center gap-2">
                 <Button variant="outline" size="sm">
                   <Globe className="h-4 w-4 mr-2" />
-                  {t('Domain')}
+                  {"Domain"}
                 </Button>
                 <Button variant="outline" size="sm">
                   <Shield className="h-4 w-4 mr-2" />
-                  {t('SSL')}
+                  {"S S L"}
                 </Button>
                 <Button variant="outline" size="sm">
                   <Activity className="h-4 w-4 mr-2" />
-                  {t('Analytics')}
+                  {"Analytics"}
                 </Button>
                 <Button size="sm" className="bg-gradient-to-r from-primary to-primary/90">
                   <Settings className="h-4 w-4 mr-2" />
-                  {t('All Settings')}
+                  {"All  Settings"}
                 </Button>
               </div>
             </div>

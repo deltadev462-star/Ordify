@@ -14,8 +14,6 @@ import {
   Zap
 } from "lucide-react";
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
-
 interface ProductCardProps {
   id: string;
   name: string;
@@ -65,8 +63,6 @@ export const ProductCard = ({
 }: ProductCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isWishlisted, setIsWishlisted] = useState(false);
-  const { t } = useTranslation();
-
   const handleWishlist = () => {
     setIsWishlisted(!isWishlisted);
     onWishlist?.({
@@ -124,7 +120,7 @@ export const ProductCard = ({
           )}
           {!inStock && (
             <Badge className="bg-gray-800 text-white border-0 shadow-lg">
-              {t("outOfStock")}
+              {"Out Of Stock"}
             </Badge>
           )}
         </div>
@@ -137,7 +133,7 @@ export const ProductCard = ({
               ? "bg-red-500 text-white"
               : "bg-white/90 backdrop-blur-sm text-gray-700 hover:bg-white"
           }`}
-          aria-label={t("addToWishlist")}
+          aria-label={"Add To Wishlist"}
         >
           <Heart
             className={`h-4 w-4 transition-all ${
@@ -162,7 +158,7 @@ export const ProductCard = ({
               onClick={() => onQuickView?.(id)}
             >
               <Eye className="mr-1.5 h-4 w-4" />
-              {t("quickView")}
+              {"Quick View"}
             </Button>
             {inStock && (
               <Button
@@ -171,7 +167,7 @@ export const ProductCard = ({
                 onClick={() => onAddToCart?.(id)}
               >
                 <ShoppingCart className="mr-1.5 h-4 w-4" />
-                {t("addToCart")}
+                {"Add To Cart"}
               </Button>
             )}
           </div>
@@ -211,7 +207,7 @@ export const ProductCard = ({
             </span>
             {reviewCount > 0 && (
               <span className="text-xs text-gray-500 dark:text-gray-500">
-                ({reviewCount} {t("reviews")})
+                ({reviewCount} {"Reviews"})
               </span>
             )}
           </div>
@@ -229,13 +225,13 @@ export const ProductCard = ({
           {freeShipping && (
             <div className="flex items-center gap-1 text-xs text-green-600 dark:text-green-400">
               <TruckIcon className="h-3.5 w-3.5" />
-              <span className="font-medium">{t("freeShipping")}</span>
+              <span className="font-medium">{"Free Shipping"}</span>
             </div>
           )}
           {fastDelivery && (
             <div className="flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400">
               <Clock className="h-3.5 w-3.5" />
-              <span className="font-medium">{t("fastDelivery")}</span>
+              <span className="font-medium">{"Fast Delivery"}</span>
             </div>
           )}
           {warranty && (
@@ -261,7 +257,7 @@ export const ProductCard = ({
                 </span>
                 {discount > 0 && (
                   <span className="text-sm font-semibold text-green-600 dark:text-green-400">
-                    {t("save")} ${(originalPrice! - price).toFixed(2)}
+                    {"Save"} ${(originalPrice! - price).toFixed(2)}
                   </span>
                 )}
               </div>
@@ -269,7 +265,7 @@ export const ProductCard = ({
             {inStock && (
               <div className="flex items-center gap-1 text-xs text-green-600 dark:text-green-400">
                 <CheckCircle2 className="h-3.5 w-3.5" />
-                <span className="font-medium">{t("inStock")}</span>
+                <span className="font-medium">{"In Stock"}</span>
               </div>
             )}
           </div>
@@ -292,7 +288,7 @@ export const ProductCard = ({
                 variant="secondary"
                 className="text-xs bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300"
               >
-                +{features.length - 3} {t("more")}
+                +{features.length - 3} {"More"}
               </Badge>
             )}
           </div>
@@ -309,7 +305,7 @@ export const ProductCard = ({
                 onClick={() => onAddToCart?.(id)}
               >
                 <ShoppingCart className="mr-2 h-4 w-4" />
-                {t("addToCart")}
+                {"Add To Cart"}
               </Button>
               <Button
                 variant="outline"
@@ -317,7 +313,7 @@ export const ProductCard = ({
                 onClick={() => onQuickView?.(id)}
               >
                 <Eye className="mr-2 h-4 w-4" />
-                {t("quickView")}
+                {"Quick View"}
               </Button>
             </>
           ) : (
@@ -326,7 +322,7 @@ export const ProductCard = ({
               disabled
             >
               <Package className="mr-2 h-4 w-4" />
-              {t("outOfStock")}
+              {"Out Of Stock"}
             </Button>
           )}
         </CardFooter>

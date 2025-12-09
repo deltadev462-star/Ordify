@@ -1,5 +1,4 @@
 import { Link, useLocation } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import {
   LayoutDashboard,
   Package,
@@ -60,7 +59,6 @@ const bottomNavItems: BottomNavItem[] = [
 ];
 
 export function MobileBottomNav({ activeNavId }: MobileBottomNavProps) {
-  const { t } = useTranslation();
   const location = useLocation();
 
   const isActiveRoute = (url: string, id: string) => {
@@ -103,7 +101,7 @@ export function MobileBottomNav({ activeNavId }: MobileBottomNavProps) {
                 )}
               </div>
               <span className={cn("font-medium", isActive && "font-semibold")}>
-                {t(item.title)}
+                {item.title}
               </span>
               {isActive && (
                 <div className="absolute -bottom-2 left-1/2 h-1 w-12 -translate-x-1/2 rounded-full bg-primary dark:bg-blue-400" />
@@ -121,7 +119,6 @@ export function MobileBottomNav({ activeNavId }: MobileBottomNavProps) {
 
 // More Menu Component
 function MoreMenu({ activeNavId }: { activeNavId?: string | null }) {
-  const { t } = useTranslation();
   const location = useLocation();
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
   
@@ -152,12 +149,12 @@ function MoreMenu({ activeNavId }: { activeNavId?: string | null }) {
           className="flex flex-col items-center justify-center gap-1 h-auto py-2 px-3 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
         >
           <Menu className="h-5 w-5" />
-          <span className="text-xs font-medium">{t("More")}</span>
+          <span className="text-xs font-medium">{"More"}</span>
         </Button>
       </SheetTrigger>
       <SheetContent side="bottom" className="h-[70vh] p-0">
         <SheetHeader className="px-6 py-4 border-b border-gray-200 dark:border-gray-800">
-          <SheetTitle>{t("All Navigation")}</SheetTitle>
+          <SheetTitle>{"All  Navigation"}</SheetTitle>
         </SheetHeader>
         <div className="overflow-y-auto h-[calc(70vh-5rem)] px-4 py-4">
           <div className="space-y-2">
@@ -171,7 +168,7 @@ function MoreMenu({ activeNavId }: { activeNavId?: string | null }) {
                     <CollapsibleTrigger className="flex w-full items-center justify-between rounded-lg px-4 py-3 text-left hover:bg-gray-100 dark:hover:bg-gray-800">
                       <div className="flex items-center gap-3">
                         <item.icon className="h-5 w-5 text-gray-600 dark:text-gray-400" />
-                        <span className="font-medium">{t(item.title)}</span>
+                        <span className="font-medium">{item.title}</span>
                         {item.badge && (
                           <Badge
                             variant={
@@ -210,7 +207,7 @@ function MoreMenu({ activeNavId }: { activeNavId?: string | null }) {
                             )}
                           >
                             {child.icon && <child.icon className="h-4 w-4" />}
-                            <span>{t(child.title)}</span>
+                            <span>{child.title}</span>
                             {child.badge && (
                               <Badge
                                 variant={
@@ -241,7 +238,7 @@ function MoreMenu({ activeNavId }: { activeNavId?: string | null }) {
                     )}
                   >
                     <item.icon className="h-5 w-5" />
-                    <span className="font-medium">{t(item.title)}</span>
+                    <span className="font-medium">{item.title}</span>
                     {item.badge && (
                       <Badge
                         variant={

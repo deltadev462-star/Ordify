@@ -5,8 +5,6 @@ import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import { useTranslation } from "react-i18next";
-
 export interface HealthItem {
   id: string;
   title: string;
@@ -31,8 +29,6 @@ export function StoreHealth({
   healthItems,
   onViewDetails 
 }: StoreHealthProps) {
-  const { t } = useTranslation();
-
   const getHealthColor = (score: number) => {
     if (score >= 80) return 'text-green-600 dark:text-green-400';
     if (score >= 60) return 'text-yellow-600 dark:text-yellow-400';
@@ -40,10 +36,10 @@ export function StoreHealth({
   };
 
   const getHealthLabel = (score: number) => {
-    if (score >= 80) return t('Excellent');
-    if (score >= 60) return t('Good');
-    if (score >= 40) return t('Fair');
-    return t('Needs Attention');
+    if (score >= 80) return "Excellent";
+    if (score >= 60) return "Good";
+    if (score >= 40) return "Fair";
+    return "Needs  Attention";
   };
 
   const getStatusIcon = (status: string) => {
@@ -78,14 +74,14 @@ export function StoreHealth({
         <div className="flex justify-between items-start">
           <div>
             <div className="flex items-center gap-2">
-              <h3 className="text-lg font-semibold">{t("Store Health")}</h3>
+              <h3 className="text-lg font-semibold">{"Store  Health"}</h3>
               <Badge variant="outline" className="bg-white/80 dark:bg-gray-900/80">
                 <Sparkles className="h-3 w-3 mr-1" />
-                {t("Pro Tips")}
+                {"Pro  Tips"}
               </Badge>
             </div>
             <p className="text-sm text-muted-foreground mt-1">
-              {t("Your store's performance and setup status")}
+              {"Your store's performance and setup status"}
             </p>
           </div>
           <div className="text-right">
@@ -102,20 +98,20 @@ export function StoreHealth({
         {/* Setup Progress */}
         <div className="space-y-3 mb-6">
           <div className="flex items-center justify-between">
-            <p className="text-sm font-medium">{t("Store Setup Progress")}</p>
+            <p className="text-sm font-medium">{"Store  Setup  Progress"}</p>
             <span className="text-sm font-semibold text-blue-600 dark:text-blue-400">
               {setupProgress}%
             </span>
           </div>
           <Progress value={setupProgress} className="h-2" />
           <p className="text-xs text-muted-foreground">
-            {t("Complete your store setup to unlock all features")}
+            {"Complete your store setup to unlock all features"}
           </p>
         </div>
 
         {/* Health Items */}
         <div className="space-y-3">
-          <p className="text-sm font-medium mb-2">{t("Action Items")}</p>
+          <p className="text-sm font-medium mb-2">{"Action  Items"}</p>
           {healthItems.map((item) => (
             <div
               key={item.id}
@@ -160,7 +156,7 @@ export function StoreHealth({
             className="w-full mt-4"
             onClick={onViewDetails}
           >
-            {t("View Detailed Report")}
+            {"View  Detailed  Report"}
             <ChevronRight className="h-4 w-4 ml-2" />
           </Button>
         )}

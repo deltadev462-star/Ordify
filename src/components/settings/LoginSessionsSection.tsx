@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Monitor, Smartphone, Laptop, Tablet, Globe, MapPin, Calendar, LogOut, Shield, AlertCircle } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -25,7 +24,6 @@ interface LoginSession {
 }
 
 function LoginSessionsSection() {
-  const { t } = useTranslation();
   const [sessions, setSessions] = useState<LoginSession[]>([
     {
       id: "1",
@@ -100,13 +98,13 @@ function LoginSessionsSection() {
                 <Shield className="w-8 h-8 text-indigo-600 dark:text-indigo-400" />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-gray-800 dark:text-gray-100">{t('loginSessions.title')}</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">{t('loginSessions.description')}</p>
+                <h3 className="text-lg font-bold text-gray-800 dark:text-gray-100">{"Title"}</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">{"Description"}</p>
               </div>
             </div>
             <div className="flex items-center gap-2">
               <div className="px-3 py-1.5 rounded-full bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 text-sm font-medium">
-                {sessions.length} {t('loginSessions.active')}
+                {sessions.length} {"Active"}
               </div>
             </div>
           </div>
@@ -117,7 +115,7 @@ function LoginSessionsSection() {
       <div className="space-y-3">
         <h4 className="text-sm font-semibold text-gray-800 dark:text-gray-100 flex items-center gap-2">
           <Monitor className="w-4 h-4 text-primary" />
-          {t('loginSessions.currentSession')}
+          {"Current Session"}
         </h4>
         
         {sessions.filter(s => s.isCurrent).map((session) => {
@@ -138,7 +136,7 @@ function LoginSessionsSection() {
                         {session.device}
                       </h5>
                       <Badge variant="outline" className="bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-400 border-emerald-300 dark:border-emerald-700">
-                        {t('loginSessions.thisDevice')}
+                        {"This Device"}
                       </Badge>
                     </div>
                     <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
@@ -172,7 +170,7 @@ function LoginSessionsSection() {
           <div className="flex items-center justify-between">
             <h4 className="text-sm font-semibold text-gray-800 dark:text-gray-100 flex items-center gap-2">
               <Laptop className="w-4 h-4 text-primary" />
-              {t('loginSessions.otherSessions')}
+              {"Other Sessions"}
             </h4>
             <Button
               variant="ghost"
@@ -181,7 +179,7 @@ function LoginSessionsSection() {
               className="text-red-600 hover:text-red-700 hover:bg-red-50 dark:text-red-400 dark:hover:text-red-300 dark:hover:bg-red-900/20"
             >
               <LogOut className="w-4 h-4 mr-2" />
-              {t('loginSessions.signOutAll')}
+              {"Sign Out All"}
             </Button>
           </div>
 
@@ -242,9 +240,9 @@ function LoginSessionsSection() {
         <div className="flex items-start gap-3">
           <AlertCircle className="w-5 h-5 text-amber-600 dark:text-amber-400 mt-0.5" />
           <div className="space-y-1">
-            <h5 className="text-sm font-medium text-amber-800 dark:text-amber-300">{t('loginSessions.securityNotice.title')}</h5>
+            <h5 className="text-sm font-medium text-amber-800 dark:text-amber-300">{"Title"}</h5>
             <p className="text-xs text-amber-700 dark:text-amber-400">
-              {t('loginSessions.securityNotice.description')}
+              {"Description"}
             </p>
           </div>
         </div>
@@ -254,9 +252,9 @@ function LoginSessionsSection() {
       <Dialog open={showRevokeDialog} onOpenChange={setShowRevokeDialog}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>{t('loginSessions.dialog.title')}</DialogTitle>
+            <DialogTitle>{"Title"}</DialogTitle>
             <DialogDescription>
-              {t('loginSessions.dialog.description')}
+              {"Description"}
             </DialogDescription>
           </DialogHeader>
           {sessionToRevoke && (
@@ -281,13 +279,13 @@ function LoginSessionsSection() {
               variant="outline"
               onClick={() => setShowRevokeDialog(false)}
             >
-              {t('loginSessions.dialog.cancel')}
+              {"Cancel"}
             </Button>
             <Button
               variant="destructive"
               onClick={confirmRevokeSession}
             >
-              {t('loginSessions.dialog.revokeAccess')}
+              {"Revoke Access"}
             </Button>
           </DialogFooter>
         </DialogContent>

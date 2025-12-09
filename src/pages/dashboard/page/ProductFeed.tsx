@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { useIsMobile } from "@/hooks/use-mobile";
 import {
   Card,
@@ -102,7 +101,6 @@ interface ProductFeed {
 }
 
 function ProductFeed() {
-  const { t } = useTranslation();
   const isMobile = useIsMobile();
   
   // Channel configuration with professional styling
@@ -111,66 +109,66 @@ function ProductFeed() {
       value: "meta",
       label: "Meta",
       fullName: "Meta (Facebook & Instagram)",
-      description: t("Reach billions on Facebook and Instagram"),
+      description: "Reach billions on  Facebook and  Instagram",
       icon: Facebook,
       color: "from-blue-500 to-blue-600",
       bgColor: "bg-gradient-to-br from-blue-500/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-600/20",
       borderColor: "border-blue-500/20 dark:border-blue-500/30",
-      requirements: [t("Product ID"), t("Title"), t("Description"), t("Image"), t("Price"), t("Availability")],
-      features: [t("Dynamic ads"), t("Catalog sales"), t("Collection ads"), t("Instagram Shopping")],
-      productCount: "2.9B+ " + t("users"),
+      requirements: ["Product  I D", "Title", "Description", "Image", "Price", "Availability"],
+      features: ["Dynamic ads", "Catalog sales", "Collection ads", "Instagram  Shopping"],
+      productCount: "2.9B+ " + "Users",
     },
     {
       value: "google",
       label: "Google",
       fullName: "Google Shopping",
-      description: t("Showcase products across Google's network"),
+      description: "Showcase products across Google's network",
       icon: ShoppingBag,
       color: "from-green-500 to-emerald-600",
       bgColor: "bg-gradient-to-br from-green-500/10 to-emerald-600/10 dark:from-green-500/20 dark:to-emerald-600/20",
       borderColor: "border-green-500/20 dark:border-green-500/30",
-      requirements: ["GTIN", t("Brand"), t("Condition"), t("Shipping"), t("Tax"), "MPN"],
-      features: [t("Shopping ads"), t("Free listings"), t("Local inventory"), t("Buy on Google")],
-      productCount: "1B+ " + t("shopping searches/day"),
+      requirements: ["GTIN", "Brand", "Condition", "Shipping", "Tax", "MPN"],
+      features: ["Shopping ads", "Free listings", "Local inventory", "Buy on  Google"],
+      productCount: "1B+ " + "Shopping searches/day",
     },
     {
       value: "tiktok",
       label: "TikTok",
       fullName: "TikTok Shop",
-      description: t("Connect with Gen Z and millennials"),
+      description: "Connect with  Gen  Z and millennials",
       icon: Activity,
       color: "from-pink-500 to-purple-600",
       bgColor: "bg-gradient-to-br from-pink-500/10 to-purple-600/10 dark:from-pink-500/20 dark:to-purple-600/20",
       borderColor: "border-pink-500/20 dark:border-pink-500/30",
-      requirements: ["SKU", t("Category"), t("Material"), t("Size"), t("Color"), t("Brand")],
-      features: [t("Live shopping"), t("Influencer partnerships"), t("Video commerce"), t("Shoppable ads")],
-      productCount: "1B+ " + t("monthly users"),
+      requirements: ["SKU", "Category", "Material", "Size", "Color", "Brand"],
+      features: ["Live shopping", "Influencer partnerships", "Video commerce", "Shoppable ads"],
+      productCount: "1B+ " + "Monthly users",
     },
     {
       value: "pinterest",
       label: "Pinterest",
       fullName: "Pinterest Shopping",
-      description: t("Inspire shoppers with visual discovery"),
+      description: "Inspire shoppers with visual discovery",
       icon: Target,
       color: "from-red-500 to-orange-600",
       bgColor: "bg-gradient-to-br from-red-500/10 to-orange-600/10 dark:from-red-500/20 dark:to-orange-600/20",
       borderColor: "border-red-500/20 dark:border-red-500/30",
-      requirements: [t("Product ID"), t("Title"), t("Link"), t("Image"), t("Price"), t("Brand")],
-      features: [t("Shopping ads"), t("Try-on products"), t("Shop the look"), t("Product rich pins")],
-      productCount: "450M+ " + t("monthly users"),
+      requirements: ["Product  I D", "Title", "Link", "Image", "Price", "Brand"],
+      features: ["Shopping ads", "Try-on products", "Shop the look", "Product rich pins"],
+      productCount: "450M+ " + "Monthly users",
     },
     {
       value: "snapchat",
       label: "Snapchat",
       fullName: "Snapchat Catalog",
-      description: t("Engage young audiences with AR shopping"),
+      description: "Engage young audiences with  A R shopping",
       icon: Zap,
       color: "from-yellow-400 to-amber-500",
       bgColor: "bg-gradient-to-br from-yellow-400/10 to-amber-500/10 dark:from-yellow-400/20 dark:to-amber-500/20",
       borderColor: "border-yellow-400/20 dark:border-yellow-400/30",
-      requirements: ["ID", t("Title"), t("Description"), t("Link"), t("Image"), t("Price")],
-      features: [t("AR try-on"), t("Dynamic ads"), t("Collection ads"), t("Story ads")],
-      productCount: "750M+ " + t("monthly users"),
+      requirements: ["ID", "Title", "Description", "Link", "Image", "Price"],
+      features: ["A R try-on", "Dynamic ads", "Collection ads", "Story ads"],
+      productCount: "750M+ " + "Monthly users",
     },
   ];
   const [selectedChannel, setSelectedChannel] = useState("meta");
@@ -192,11 +190,11 @@ function ProductFeed() {
   const [feeds] = useState<ProductFeed[]>([
     {
       id: "1",
-      name: t("Facebook Catalog"),
+      name: "Facebook  Catalog",
       channel: "meta",
       status: "active",
       products: 156,
-      lastSync: t("2 hours ago"),
+      lastSync: "2 hours ago",
       url: "https://store.com/feeds/facebook-catalog.xml",
       created: "2024-01-15",
       performance: {
@@ -207,11 +205,11 @@ function ProductFeed() {
     },
     {
       id: "2",
-      name: t("Google Shopping Feed"),
+      name: "Google  Shopping  Feed",
       channel: "google",
       status: "active",
       products: 203,
-      lastSync: t("1 hour ago"),
+      lastSync: "1 hour ago",
       url: "https://store.com/feeds/google-shopping.xml",
       created: "2024-01-10",
       performance: {
@@ -222,11 +220,11 @@ function ProductFeed() {
     },
     {
       id: "3",
-      name: t("TikTok Shop Products"),
+      name: "Tik Tok  Shop  Products",
       channel: "tiktok",
       status: "pending",
       products: 0,
-      lastSync: t("Processing..."),
+      lastSync: "",
       created: "2024-02-01",
       performance: {
         clicks: 0,
@@ -237,21 +235,21 @@ function ProductFeed() {
   ]);
 
   const categories = [
-    { name: t("Electronics"), icon: "💻", count: 45 },
-    { name: t("Fashion"), icon: "👕", count: 89 },
-    { name: t("Home & Garden"), icon: "🏡", count: 34 },
-    { name: t("Sports & Outdoors"), icon: "⚽", count: 28 },
-    { name: t("Beauty & Health"), icon: "💄", count: 56 },
-    { name: t("Books"), icon: "📚", count: 23 },
-    { name: t("Toys & Games"), icon: "🎮", count: 41 },
-    { name: t("Food & Beverages"), icon: "🍔", count: 67 },
+    { name: "Electronics", icon: "💻", count: 45 },
+    { name: "Fashion", icon: "👕", count: 89 },
+    { name: "Home &  Garden", icon: "🏡", count: 34 },
+    { name: "Sports &  Outdoors", icon: "⚽", count: 28 },
+    { name: "Beauty &  Health", icon: "💄", count: 56 },
+    { name: "Books", icon: "📚", count: 23 },
+    { name: "Toys &  Games", icon: "🎮", count: 41 },
+    { name: "Food &  Beverages", icon: "🍔", count: 67 },
   ];
 
   const handleCreateFeed = async () => {
     if (!feedName.trim()) {
       toast({
-        title: t("Error"),
-        description: t("Please enter a feed name"),
+        title: "Error",
+        description: "Please enter a feed name",
         variant: "destructive",
       });
       return;
@@ -262,11 +260,11 @@ function ProductFeed() {
     // Simulate API call
     setTimeout(() => {
       toast({
-        title: t("Success"),
+        title: "Success",
         description: (
           <div className="flex items-center gap-2">
             <CheckCircle className="h-4 w-4 text-green-500" />
-            {t("Product feed created successfully")}
+            {"Product feed created successfully"}
           </div>
         ),
       });
@@ -283,24 +281,24 @@ function ProductFeed() {
   const handleCopyUrl = (url: string) => {
     navigator.clipboard.writeText(url);
     toast({
-      title: t("Copied"),
-      description: t("Feed URL copied to clipboard"),
+      title: "Copied",
+      description: "Feed  U R L copied to clipboard",
     });
   };
 
   const handleDeleteFeed = (feedId: string) => {
     console.log(`Deleting feed ${feedId}`);
     toast({
-      title: t("Deleted"),
-      description: t("Product feed deleted successfully"),
+      title: "Deleted",
+      description: "Product feed deleted successfully",
     });
   };
 
   const handleRefreshFeed = (feedId: string) => {
     console.log(`Refreshing feed ${feedId}`);
     toast({
-      title: t("Refreshing"),
-      description: t("Feed is being refreshed..."),
+      title: "Refreshing",
+      description: "",
     });
   };
 
@@ -320,12 +318,12 @@ function ProductFeed() {
                 </div>
                 <Badge variant="secondary" className="bg-white/20 text-white border-white/30">
                   <Sparkles className="h-3 w-3 mr-1" />
-                  {t("Pro Feature")}
+                  {"Pro  Feature"}
                 </Badge>
               </div>
-              <h1 className="text-4xl font-bold mb-2">{t("Product Feed")}</h1>
+              <h1 className="text-4xl font-bold mb-2">{"Product  Feed"}</h1>
               <p className="text-lg opacity-90 max-w-2xl">
-                {t("Export your products to social media marketing platforms easily")}
+                {"Export your products to social media marketing platforms easily"}
               </p>
             </div>
             
@@ -339,7 +337,7 @@ function ProductFeed() {
             <Card className="border border-gray-200 dark:border-gray-700 shadow-lg bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                  {t("Active Feeds")}
+                  {"Active  Feeds"}
                 </CardTitle>
                 <div className="p-2 bg-green-100 dark:bg-green-900/30 rounded-lg">
                   <CheckCircle className="h-4 w-4 text-green-600 dark:text-green-400" />
@@ -349,7 +347,7 @@ function ProductFeed() {
                 <div className="text-2xl font-bold">2</div>
                 <p className="text-xs text-muted-foreground flex items-center gap-1 mt-1">
                   <TrendingUp className="h-3 w-3 text-green-500" />
-                  <span className="text-green-600 dark:text-green-400">+100%</span> {t("from last month")}
+                  <span className="text-green-600 dark:text-green-400">+100%</span> {"From last month"}
                 </p>
               </CardContent>
             </Card>
@@ -357,7 +355,7 @@ function ProductFeed() {
             <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-950">
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                  {t("Total Products")}
+                  {"Total  Products"}
                 </CardTitle>
                 <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
                   <Package className="h-4 w-4 text-blue-600 dark:text-blue-400" />
@@ -366,7 +364,7 @@ function ProductFeed() {
               <CardContent>
                 <div className="text-2xl font-bold">359</div>
                 <p className="text-xs text-muted-foreground mt-1">
-                  {t("Across all feeds")}
+                  {"Across all feeds"}
                 </p>
               </CardContent>
             </Card>
@@ -374,7 +372,7 @@ function ProductFeed() {
             <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-950">
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                  {t("Total Revenue")}
+                  {"Total  Revenue"}
                 </CardTitle>
                 <div className="p-2 bg-purple-100 dark:bg-purple-900/30 rounded-lg">
                   <DollarSign className="h-4 w-4 text-purple-600 dark:text-purple-400" />
@@ -384,7 +382,7 @@ function ProductFeed() {
                 <div className="text-2xl font-bold">$74,270</div>
                 <p className="text-xs text-muted-foreground flex items-center gap-1 mt-1">
                   <TrendingUp className="h-3 w-3 text-green-500" />
-                  <span className="text-green-600 dark:text-green-400">+23%</span> {t("this week")}
+                  <span className="text-green-600 dark:text-green-400">+23%</span> {"This week"}
                 </p>
               </CardContent>
             </Card>
@@ -392,7 +390,7 @@ function ProductFeed() {
             <Card className="border border-gray-200 dark:border-gray-700 shadow-lg bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                  {t("Conversion Rate")}
+                  {"Conversion  Rate"}
                 </CardTitle>
                 <div className="p-2 bg-amber-100 dark:bg-amber-900/30 rounded-lg">
                   <BarChart3 className="h-4 w-4 text-amber-600 dark:text-amber-400" />
@@ -401,7 +399,7 @@ function ProductFeed() {
               <CardContent>
                 <div className="text-2xl font-bold">3.4%</div>
                 <p className="text-xs text-muted-foreground mt-1">
-                  {t("Average across platforms")}
+                  {"Average across platforms"}
                 </p>
               </CardContent>
             </Card>
@@ -415,21 +413,21 @@ function ProductFeed() {
                 className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-800 data-[state=active]:shadow-sm rounded-lg"
               >
                 <Plus className="h-4 w-4 mr-2" />
-                {t("Create Feed")}
+                {"Create  Feed"}
               </TabsTrigger>
               <TabsTrigger 
                 value="manage"
                 className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-800 data-[state=active]:shadow-sm rounded-lg"
               >
                 <FileText className="h-4 w-4 mr-2" />
-                {t("Manage")}
+                {"Manage"}
               </TabsTrigger>
               <TabsTrigger 
                 value="settings"
                 className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-800 data-[state=active]:shadow-sm rounded-lg"
               >
                 <Settings className="h-4 w-4 mr-2" />
-                {t("Settings")}
+                {"Settings"}
               </TabsTrigger>
             </TabsList>
 
@@ -438,14 +436,14 @@ function ProductFeed() {
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-lg font-semibold">{t("Select Platform")}</h3>
+                    <h3 className="text-lg font-semibold">{"Select  Platform"}</h3>
                     <p className="text-sm text-gray-500 dark:text-gray-400">
-                      {t("Choose where you want to export your products")}
+                      {"Choose where you want to export your products"}
                     </p>
                   </div>
                   <Button variant="ghost" size="sm">
                     <HelpCircle className="h-4 w-4 mr-2" />
-                    {t("Platform Guide")}
+                    {"Platform  Guide"}
                   </Button>
                 </div>
 
@@ -517,22 +515,22 @@ function ProductFeed() {
                 <CardHeader className="rounded-t-xl">
                   <CardTitle className="flex items-center gap-2">
                     <Target className="h-5 w-5" />
-                    {t("Feed Configuration")}
+                    {"Feed  Configuration"}
                   </CardTitle>
                   <CardDescription>
-                    {t("Set up your product feed details and filters")}
+                    {"Set up your product feed details and filters"}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6 pt-6">
                   <div className="grid gap-6 md:grid-cols-2">
                     <div className="space-y-2">
                       <Label htmlFor="feedName" className="flex items-center gap-2">
-                        {t("Feed Name")}
+                        {"Feed  Name"}
                         <span className="text-red-500">*</span>
                       </Label>
                       <Input
                         id="feedName"
-                        placeholder={t("e.g., Summer Collection 2024")}
+                        placeholder={""}
                         value={feedName}
                         onChange={(e) => setFeedName(e.target.value)}
                         className="h-11"
@@ -540,10 +538,10 @@ function ProductFeed() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="description">{t("Description")}</Label>
+                      <Label htmlFor="description">{"Description"}</Label>
                       <Input
                         id="description"
-                        placeholder={t("Brief description of this feed")}
+                        placeholder={"Brief description of this feed"}
                         value={feedDescription}
                         onChange={(e) => setFeedDescription(e.target.value)}
                         className="h-11"
@@ -560,7 +558,7 @@ function ProductFeed() {
                     >
                       <span className="flex items-center gap-2">
                         <Filter className="h-4 w-4" />
-                        {t("Product Filters & Advanced Options")}
+                        {"Product  Filters &  Advanced  Options"}
                       </span>
                       <ChevronDown className={cn(
                         "h-4 w-4 transition-transform duration-200",
@@ -574,7 +572,7 @@ function ProductFeed() {
                         <div className="space-y-3">
                           <Label className="flex items-center gap-2">
                             <Hash className="h-4 w-4" />
-                            {t("Categories")}
+                            {"Categories"}
                           </Label>
                           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                             {categories.map((category) => (
@@ -597,7 +595,7 @@ function ProductFeed() {
                                 <span className="text-xl">{category.icon}</span>
                                 <div className="flex-1">
                                   <p className="text-sm font-medium">{category.name}</p>
-                                  <p className="text-xs text-gray-500">{category.count} {t("items")}</p>
+                                  <p className="text-xs text-gray-500">{category.count} {"Items"}</p>
                                 </div>
                                 {selectedCategories.includes(category.name) && (
                                   <CheckCircle className="h-4 w-4 text-indigo-500" />
@@ -611,11 +609,11 @@ function ProductFeed() {
                         <div className="space-y-3">
                           <Label className="flex items-center gap-2">
                             <DollarSign className="h-4 w-4" />
-                            {t("Price Range")}
+                            {"Price  Range"}
                           </Label>
                           <div className="grid grid-cols-2 gap-4">
                             <div className="space-y-2">
-                              <Label htmlFor="priceMin" className="text-xs text-gray-500">{t("Minimum")}</Label>
+                              <Label htmlFor="priceMin" className="text-xs text-gray-500">{"Minimum"}</Label>
                               <Input
                                 id="priceMin"
                                 type="number"
@@ -626,7 +624,7 @@ function ProductFeed() {
                               />
                             </div>
                             <div className="space-y-2">
-                              <Label htmlFor="priceMax" className="text-xs text-gray-500">{t("Maximum")}</Label>
+                              <Label htmlFor="priceMax" className="text-xs text-gray-500">{"Maximum"}</Label>
                               <Input
                                 id="priceMax"
                                 type="number"
@@ -641,14 +639,14 @@ function ProductFeed() {
 
                         {/* Advanced Options */}
                         <div className="space-y-4">
-                          <Label>{t("Advanced Options")}</Label>
+                          <Label>{"Advanced  Options"}</Label>
                           <div className="space-y-3">
                             <div className="flex items-center justify-between p-4 rounded-lg border border-gray-200 dark:border-gray-700">
                               <div className="flex items-center gap-3">
                                 <Package className="h-5 w-5 text-gray-500" />
                                 <div>
-                                  <p className="font-medium">{t("Include Out of Stock")}</p>
-                                  <p className="text-sm text-gray-500">{t("Include products with zero inventory")}</p>
+                                  <p className="font-medium">{"Include  Out of  Stock"}</p>
+                                  <p className="text-sm text-gray-500">{"Include products with zero inventory"}</p>
                                 </div>
                               </div>
                               <Switch
@@ -660,8 +658,8 @@ function ProductFeed() {
                               <div className="flex items-center gap-3">
                                 <Copy className="h-5 w-5 text-gray-500" />
                                 <div>
-                                  <p className="font-medium">{t("Include Variants")}</p>
-                                  <p className="text-sm text-gray-500">{t("Export all product variants separately")}</p>
+                                  <p className="font-medium">{"Include  Variants"}</p>
+                                  <p className="text-sm text-gray-500">{"Export all product variants separately"}</p>
                                 </div>
                               </div>
                               <Switch
@@ -682,7 +680,7 @@ function ProductFeed() {
                       <AlertDescription>
                         <div className="space-y-2">
                           <p className="font-medium text-indigo-900 dark:text-indigo-200">
-                            {t("Required fields for")} {currentChannel.label}:
+                            {"Required fields for"} {currentChannel.label}:
                           </p>
                           <div className="flex flex-wrap gap-2 mt-2">
                             {currentChannel.requirements.map((req) => (
@@ -706,12 +704,12 @@ function ProductFeed() {
                     {isCreating ? (
                       <>
                         <RefreshCw className="mr-2 h-5 w-5 animate-spin" />
-                        {t("Creating Feed...")}
+                        {""}
                       </>
                     ) : (
                       <>
                         <Sparkles className="mr-2 h-5 w-5" />
-                        {t("Create Product Feed")}
+                        {"Create  Product  Feed"}
                         <ArrowRight className="ml-2 h-5 w-5" />
                       </>
                     )}
@@ -728,15 +726,15 @@ function ProductFeed() {
                     <div>
                       <CardTitle className="flex items-center gap-2">
                         <FileText className="h-5 w-5" />
-                        {t("Your Product Feeds")}
+                        {"Your  Product  Feeds"}
                       </CardTitle>
                       <CardDescription>
-                        {t("Manage and monitor your existing product feeds")}
+                        {"Manage and monitor your existing product feeds"}
                       </CardDescription>
                     </div>
                     <Button variant="outline" size="sm" className="border-gray-200 dark:border-gray-700">
                       <Download className="h-4 w-4 mr-2" />
-                      {t("Export All")}
+                      {"Export  All"}
                     </Button>
                   </div>
                 </CardHeader>
@@ -773,14 +771,14 @@ function ProductFeed() {
                                   {feed.status === "active" && <CheckCircle className="h-3 w-3 mr-1" />}
                                   {feed.status === "pending" && <Clock className="h-3 w-3 mr-1" />}
                                   {feed.status === "error" && <AlertCircle className="h-3 w-3 mr-1" />}
-                                  {t(feed.status)}
+                                  {feed.status}
                                 </Badge>
                               </div>
 
                               {/* Feed Name and Date */}
                               <div>
                                 <p className="font-medium text-lg">{feed.name}</p>
-                                <p className="text-xs text-gray-500">{t("Created")} {feed.created}</p>
+                                <p className="text-xs text-gray-500">{"Created"} {feed.created}</p>
                               </div>
 
                               {/* Products Count */}
@@ -793,7 +791,7 @@ function ProductFeed() {
                                   "font-medium",
                                   feed.products > 0 ? "text-indigo-600 dark:text-indigo-400" : "text-gray-500"
                                 )}>
-                                  {feed.products} {t("products")}
+                                  {feed.products} {"Products"}
                                 </span>
                               </div>
 
@@ -801,7 +799,7 @@ function ProductFeed() {
                               {feed.performance && feed.performance.revenue > 0 && (
                                 <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-3">
                                   <div className="flex items-center justify-between mb-2">
-                                    <span className="text-sm text-gray-500">{t("Performance")}</span>
+                                    <span className="text-sm text-gray-500">{"Performance"}</span>
                                     <div className="flex items-center gap-1">
                                       <DollarSign className="h-3 w-3 text-green-600 dark:text-green-400" />
                                       <span className="font-semibold text-green-600 dark:text-green-400">
@@ -812,11 +810,11 @@ function ProductFeed() {
                                   <div className="flex items-center justify-between text-xs text-gray-500">
                                     <div className="flex items-center gap-1">
                                       <Activity className="h-3 w-3 text-blue-600 dark:text-blue-400" />
-                                      <span>{feed.performance.clicks.toLocaleString()} {t("clicks")}</span>
+                                      <span>{feed.performance.clicks.toLocaleString()} {"Clicks"}</span>
                                     </div>
                                     <div className="flex items-center gap-1">
                                       <TrendingUp className="h-3 w-3 text-purple-600 dark:text-purple-400" />
-                                      <span>{feed.performance.conversions} {t("sales")}</span>
+                                      <span>{feed.performance.conversions} {"Sales"}</span>
                                     </div>
                                   </div>
                                 </div>
@@ -892,13 +890,13 @@ function ProductFeed() {
                     <Table>
                       <TableHeader>
                         <TableRow className="bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
-                          <TableHead>{t("Feed")}</TableHead>
-                          <TableHead>{t("Platform")}</TableHead>
-                          <TableHead>{t("Status")}</TableHead>
-                          <TableHead>{t("Products")}</TableHead>
-                          <TableHead>{t("Performance")}</TableHead>
-                          <TableHead>{t("Last Sync")}</TableHead>
-                          <TableHead className="text-right">{t("Actions")}</TableHead>
+                          <TableHead>{"Feed"}</TableHead>
+                          <TableHead>{"Platform"}</TableHead>
+                          <TableHead>{"Status"}</TableHead>
+                          <TableHead>{"Products"}</TableHead>
+                          <TableHead>{"Performance"}</TableHead>
+                          <TableHead>{"Last  Sync"}</TableHead>
+                          <TableHead className="text-right">{"Actions"}</TableHead>
                         </TableRow>
                       </TableHeader>
                       <TableBody>
@@ -910,7 +908,7 @@ function ProductFeed() {
                               <TableCell>
                                 <div>
                                   <p className="font-medium">{feed.name}</p>
-                                  <p className="text-xs text-gray-500">{t("Created")} {feed.created}</p>
+                                  <p className="text-xs text-gray-500">{"Created"} {feed.created}</p>
                                 </div>
                               </TableCell>
                               <TableCell>
@@ -937,7 +935,7 @@ function ProductFeed() {
                                   {feed.status === "active" && <CheckCircle className="h-3 w-3 mr-1" />}
                                   {feed.status === "pending" && <Clock className="h-3 w-3 mr-1" />}
                                   {feed.status === "error" && <AlertCircle className="h-3 w-3 mr-1" />}
-                                  {t(feed.status)}
+                                  {feed.status}
                                 </Badge>
                               </TableCell>
                               <TableCell>
@@ -957,15 +955,15 @@ function ProductFeed() {
                                   <div className="flex flex-col gap-1">
                                     <div className="flex items-center gap-2 text-xs">
                                       <DollarSign className="h-3 w-3 text-green-600 dark:text-green-400" />
-                                      <span className="text-gray-500">{t("Revenue")}:</span>
+                                      <span className="text-gray-500">{"Revenue"}:</span>
                                       <span className="font-semibold text-green-600 dark:text-green-400">${feed.performance.revenue.toLocaleString()}</span>
                                     </div>
                                     <div className="flex items-center gap-2 text-xs text-gray-500">
                                       <Activity className="h-3 w-3 text-blue-600 dark:text-blue-400" />
-                                      <span>{feed.performance.clicks.toLocaleString()} {t("clicks")}</span>
+                                      <span>{feed.performance.clicks.toLocaleString()} {"Clicks"}</span>
                                       <span>•</span>
                                       <TrendingUp className="h-3 w-3 text-purple-600 dark:text-purple-400" />
-                                      <span>{feed.performance.conversions} {t("sales")}</span>
+                                      <span>{feed.performance.conversions} {"Sales"}</span>
                                     </div>
                                   </div>
                                 )}
@@ -993,7 +991,7 @@ function ProductFeed() {
                                         <RefreshCw className="h-4 w-4 text-blue-600 dark:text-blue-400" />
                                       </Button>
                                     </TooltipTrigger>
-                                    <TooltipContent>{t("Refresh Feed")}</TooltipContent>
+                                    <TooltipContent>{"Refresh  Feed"}</TooltipContent>
                                   </Tooltip>
                                   
                                   {feed.url && (
@@ -1009,7 +1007,7 @@ function ProductFeed() {
                                             <Link className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
                                           </Button>
                                         </TooltipTrigger>
-                                        <TooltipContent>{t("Copy URL")}</TooltipContent>
+                                        <TooltipContent>{"Copy  U R L"}</TooltipContent>
                                       </Tooltip>
                                       
                                       <Tooltip>
@@ -1023,7 +1021,7 @@ function ProductFeed() {
                                             <ExternalLink className="h-4 w-4 text-purple-600 dark:text-purple-400" />
                                           </Button>
                                         </TooltipTrigger>
-                                        <TooltipContent>{t("View Feed")}</TooltipContent>
+                                        <TooltipContent>{"View  Feed"}</TooltipContent>
                                       </Tooltip>
                                     </>
                                   )}
@@ -1042,7 +1040,7 @@ function ProductFeed() {
                                         <Edit className="h-4 w-4 text-amber-600 dark:text-amber-400" />
                                       </Button>
                                     </TooltipTrigger>
-                                    <TooltipContent>{t("Edit Feed")}</TooltipContent>
+                                    <TooltipContent>{"Edit  Feed"}</TooltipContent>
                                   </Tooltip>
                                   
                                   <Tooltip>
@@ -1056,7 +1054,7 @@ function ProductFeed() {
                                         <Trash2 className="h-4 w-4 text-red-600 dark:text-red-400" />
                                       </Button>
                                     </TooltipTrigger>
-                                    <TooltipContent>{t("Delete Feed")}</TooltipContent>
+                                    <TooltipContent>{"Delete  Feed"}</TooltipContent>
                                   </Tooltip>
                                 </div>
                               </TableCell>
@@ -1075,10 +1073,10 @@ function ProductFeed() {
                 <CardHeader className=" rounded-t-xl">
                   <CardTitle className="flex items-center gap-2">
                     <Settings className="h-5 w-5" />
-                    {t("Feed Settings")}
+                    {"Feed  Settings"}
                   </CardTitle>
                   <CardDescription>
-                    {t("Configure global settings for all product feeds")}
+                    {"Configure global settings for all product feeds"}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-6 pt-6">
@@ -1086,31 +1084,31 @@ function ProductFeed() {
                     <div className="space-y-4">
                       <h3 className="font-medium flex items-center gap-2">
                         <Shield className="h-4 w-4" />
-                        {t("Sync Settings")}
+                        {"Sync  Settings"}
                       </h3>
                       <div className="space-y-3">
                         <div className="flex items-center justify-between p-4 rounded-lg border border-gray-200 dark:border-gray-700">
                           <div className="flex items-center gap-3">
                             <RefreshCw className="h-5 w-5 text-gray-500" />
                             <div>
-                              <p className="font-medium">{t("Auto-sync Feeds")}</p>
-                              <p className="text-sm text-gray-500">{t("Update when products change")}</p>
+                              <p className="font-medium">{"Auto-sync  Feeds"}</p>
+                              <p className="text-sm text-gray-500">{"Update when products change"}</p>
                             </div>
                           </div>
                           <Switch defaultChecked />
                         </div>
                         
                         <div className="space-y-2">
-                          <Label>{t("Update Frequency")}</Label>
+                          <Label>{"Update  Frequency"}</Label>
                           <Select defaultValue="hourly">
                             <SelectTrigger className="h-11">
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent>
-                              <SelectItem value="realtime">{t("Real-time")}</SelectItem>
-                              <SelectItem value="hourly">{t("Every hour")}</SelectItem>
-                              <SelectItem value="daily">{t("Daily")}</SelectItem>
-                              <SelectItem value="weekly">{t("Weekly")}</SelectItem>
+                              <SelectItem value="realtime">{"Real-time"}</SelectItem>
+                              <SelectItem value="hourly">{"Every hour"}</SelectItem>
+                              <SelectItem value="daily">{"Daily"}</SelectItem>
+                              <SelectItem value="weekly">{"Weekly"}</SelectItem>
                             </SelectContent>
                           </Select>
                         </div>
@@ -1120,31 +1118,31 @@ function ProductFeed() {
                     <div className="space-y-4">
                       <h3 className="font-medium flex items-center gap-2">
                         <DollarSign className="h-4 w-4" />
-                        {t("Commerce Settings")}
+                        {"Commerce  Settings"}
                       </h3>
                       <div className="space-y-3">
                         <div className="flex items-center justify-between p-4 rounded-lg border border-gray-200 dark:border-gray-700">
                           <div className="flex items-center gap-3">
                             <DollarSign className="h-5 w-5 text-gray-500" />
                             <div>
-                              <p className="font-medium">{t("Use Sale Prices")}</p>
-                              <p className="text-sm text-gray-500">{t("Export sale prices when available")}</p>
+                              <p className="font-medium">{"Use  Sale  Prices"}</p>
+                              <p className="text-sm text-gray-500">{"Export sale prices when available"}</p>
                             </div>
                           </div>
                           <Switch defaultChecked />
                         </div>
                         
                         <div className="space-y-2">
-                          <Label>{t("Default Currency")}</Label>
+                          <Label>{"Default  Currency"}</Label>
                           <Select defaultValue="USD">
                             <SelectTrigger className="h-11">
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent>
-                              <SelectItem value="USD">{t("USD - US Dollar")}</SelectItem>
-                              <SelectItem value="EUR">{t("EUR - Euro")}</SelectItem>
-                              <SelectItem value="GBP">{t("GBP - British Pound")}</SelectItem>
-                              <SelectItem value="EGP">{t("EGP - Egyptian Pound")}</SelectItem>
+                              <SelectItem value="USD">{"U S D -  U S  Dollar"}</SelectItem>
+                              <SelectItem value="EUR">{"E U R -  Euro"}</SelectItem>
+                              <SelectItem value="GBP">{"G B P -  British  Pound"}</SelectItem>
+                              <SelectItem value="EGP">{"E G P -  Egyptian  Pound"}</SelectItem>
                             </SelectContent>
                           </Select>
                         </div>
@@ -1155,7 +1153,7 @@ function ProductFeed() {
                   <div className="pt-4">
                     <Button className="w-full h-12 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700">
                       <Settings className="mr-2 h-4 w-4" />
-                      {t("Save Settings")}
+                      {"Save  Settings"}
                     </Button>
                   </div>
                 </CardContent>
@@ -1169,14 +1167,14 @@ function ProductFeed() {
       <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>{t("Edit Feed")}</DialogTitle>
+            <DialogTitle>{"Edit  Feed"}</DialogTitle>
             <DialogDescription>
-              {t("Update feed configuration and settings")}
+              {"Update feed configuration and settings"}
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
             <div className="space-y-2">
-              <Label htmlFor="edit-name">{t("Feed Name")}</Label>
+              <Label htmlFor="edit-name">{"Feed  Name"}</Label>
               <Input
                 id="edit-name"
                 defaultValue={selectedFeed?.name}
@@ -1184,7 +1182,7 @@ function ProductFeed() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="edit-channel">{t("Channel")}</Label>
+              <Label htmlFor="edit-channel">{"Channel"}</Label>
               <Select defaultValue={selectedFeed?.channel}>
                 <SelectTrigger id="edit-channel" className="h-11">
                   <SelectValue />
@@ -1201,19 +1199,19 @@ function ProductFeed() {
           </div>
           <DialogFooter>
             <Button variant="outline" onClick={() => setIsEditDialogOpen(false)} className="border-gray-200 dark:border-gray-700">
-              {t("Cancel")}
+              {"Cancel"}
             </Button>
             <Button 
               className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700"
               onClick={() => {
                 setIsEditDialogOpen(false);
                 toast({
-                  title: t("Updated"),
-                  description: t("Feed updated successfully"),
+                  title: "Updated",
+                  description: "Feed updated successfully",
                 });
               }}
             >
-              {t("Save Changes")}
+              {"Save  Changes"}
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -1223,3 +1221,4 @@ function ProductFeed() {
 }
 
 export default ProductFeed;
+

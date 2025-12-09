@@ -21,7 +21,6 @@ import {
   Code2,
   LogIn,
 } from "lucide-react";
-import { useTranslation } from "react-i18next";
 function NavbarSetting({
   active,
   setActive,
@@ -29,34 +28,33 @@ function NavbarSetting({
   active: string;
   setActive: (s: string) => void;
 }) {
-  const { t } = useTranslation();
   const menu = [
-    { title: t("Store Settings"), icon: Settings, key: "Store Settings" },
-    { title: t("Domain Settings"), icon: Globe, key: "Domain Settings" },
-    { title: t("Store Info and Policies"), icon: FileText, key: "Store Info and Policies" },
-    { title: t("Add Header Code"), icon: Code, key: "Add Header Code" },
-    { title: t("SEO Settings"), icon: Search, key: "SEO Settings" },
-    { title: t("Payment Gateways"), icon: CreditCard, key: "Payment Gateways" },
-    { title: t("Pixel Settings"), icon: Camera, key: "Pixel Settings" },
-    { title: t("Google Tag Settings"), icon: Tags, key: "Google Tag Settings" },
+    { title: "Store  Settings", icon: Settings, key: "Store Settings" },
+    { title: "Domain  Settings", icon: Globe, key: "Domain Settings" },
+    { title: "Store  Info and  Policies", icon: FileText, key: "Store Info and Policies" },
+    { title: "Add  Header  Code", icon: Code, key: "Add Header Code" },
+    { title: "S E O  Settings", icon: Search, key: "SEO Settings" },
+    { title: "Payment  Gateways", icon: CreditCard, key: "Payment Gateways" },
+    { title: "Pixel  Settings", icon: Camera, key: "Pixel Settings" },
+    { title: "Google  Tag  Settings", icon: Tags, key: "Google Tag Settings" },
     {
-      title: t("Digital products delivery settings"),
+      title: "Digital products delivery settings",
       icon: Package,
-      badge: t("New"),
+      badge: "New",
       key: "Digital products delivery settings",
     },
-    { title: t("Notifications"), icon: Bell, key: "Order Notifications" },
-    { title: t("Pages"), icon: FileText, key: "Pages" },
-    { title: t("Theme Settings"), icon: Paintbrush, key: "Theme Settings" },
-    { title: t("Edit Main Page"), icon: Home, key: "Edit Main Page" },
-    { title: t("Purchase Form"), icon: ClipboardList, key: "Purchase Form" },
-    { title: t("Shipping Settings"), icon: Truck, key: "Shipping Settings" },
-    { title: t("Edit Thank You Page"), icon: NotebookPen, key: "Edit Thank You Page" },
-    { title: t("Social Links"), icon: Instagram, key: "Social Links" },
-    { title: t("Store Link"), icon: Link, key: "Store Link" },
-    { title: t("Manage Moderators"), icon: Users, key: "Manage Moderators" },
-    { title: t("Public API"), icon: Code2, key: "Public API" },
-    { title: t("Login Sessions"), icon: LogIn, key: "Login Sessions" },
+    { title: "Notifications", icon: Bell, key: "Order Notifications" },
+    { title: "Pages", icon: FileText, key: "Pages" },
+    { title: "Theme  Settings", icon: Paintbrush, key: "Theme Settings" },
+    { title: "Edit  Main  Page", icon: Home, key: "Edit Main Page" },
+    { title: "Purchase  Form", icon: ClipboardList, key: "Purchase Form" },
+    { title: "Shipping  Settings", icon: Truck, key: "Shipping Settings" },
+    { title: "Edit  Thank  You  Page", icon: NotebookPen, key: "Edit Thank You Page" },
+    { title: "Social  Links", icon: Instagram, key: "Social Links" },
+    { title: "Store  Link", icon: Link, key: "Store Link" },
+    { title: "Manage  Moderators", icon: Users, key: "Manage Moderators" },
+    { title: "Public  A P I", icon: Code2, key: "Public API" },
+    { title: "Login  Sessions", icon: LogIn, key: "Login Sessions" },
   ];
 
   return (
