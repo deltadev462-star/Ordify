@@ -77,7 +77,9 @@ export const useTheme = () => {
         typography: {
           ...customizations.typography,
           [parent]: {
-            ...(customizations.typography?.[parent as keyof typeof customizations.typography] as Record<string, unknown>),
+            ...(customizations.typography?.[
+              parent as keyof typeof customizations.typography
+            ] as Record<string, unknown>),
             [child]: value,
           },
         },
@@ -100,7 +102,9 @@ export const useTheme = () => {
         layout: {
           ...customizations.layout,
           [parent]: {
-            ...(customizations.layout?.[parent as keyof typeof customizations.layout] as Record<string, unknown>),
+            ...(customizations.layout?.[
+              parent as keyof typeof customizations.layout
+            ] as Record<string, unknown>),
             [child]: value,
           },
         },
@@ -269,4 +273,3 @@ export const useThemeCSSVariables = () => {
 
   return cssVars;
 };
-

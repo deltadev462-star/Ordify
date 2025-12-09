@@ -133,7 +133,7 @@ function BlockedVerification() {
     {
       id: "1",
       phoneNumber: "+201234567890",
-      reason: t("Too many OTP requests"),
+      reason: "Too many  O T P requests",
       blockedDate: "2024-01-15",
       attemptedVerifications: 47,
       location: "Cairo, Egypt",
@@ -147,7 +147,7 @@ function BlockedVerification() {
     {
       id: "2",
       phoneNumber: "+201098765432",
-      reason: t("Suspicious verification pattern"),
+      reason: "Suspicious verification pattern",
       blockedDate: "2024-01-20",
       attemptedVerifications: 23,
       location: "Alexandria, Egypt",
@@ -160,7 +160,7 @@ function BlockedVerification() {
     {
       id: "3",
       phoneNumber: "+201555666777",
-      reason: t("OTP abuse"),
+      reason: "O T P abuse",
       blockedDate: "2024-02-01",
       attemptedVerifications: 89,
       location: "Giza, Egypt",
@@ -183,19 +183,19 @@ function BlockedVerification() {
   const handleAddNumber = () => {
     if (!phoneNumber.trim()) {
       toast({
-        title: t("Error"),
-        description: t("Please enter a phone number"),
+        title: t("blockedOTP.error"),
+        description: t("blockedOTP.pleaseEnterPhoneNumber"),
         variant: "destructive",
       });
       return;
     }
 
     toast({
-      title: t("Success"),
+      title: t("blockedOTP.success"),
       description: (
         <div className="flex items-center gap-2">
           <CheckCircle className="h-4 w-4 text-green-500" />
-          {t("Phone number blocked from OTP verification")}
+          {t("blockedOTP.phoneNumberBlockedFromOTP")}
         </div>
       ),
     });
@@ -207,19 +207,22 @@ function BlockedVerification() {
   };
 
   const handleBulkAdd = () => {
-    const numbers = bulkNumbers.split('\n').filter(n => n.trim());
+    const numbers = bulkNumbers
+      .split("\n")
+      .map((n) => n.trim())
+      .filter((n) => n.length > 0);
     if (numbers.length === 0) {
       toast({
-        title: t("Error"),
-        description: t("Please enter at least one phone number"),
+        title: t("blockedOTP.error"),
+        description: t("blockedOTP.pleaseEnterPhoneNumber"),
         variant: "destructive",
       });
       return;
     }
 
     toast({
-      title: t("Success"),
-      description: `${numbers.length} ${t("numbers blocked from OTP verification")}`,
+      title: t("blockedOTP.success"),
+      description: `${numbers.length} ${t("blockedOTP.numbersBlockedFromOTP")}`,
     });
     
     setIsBulkAddDialogOpen(false);
@@ -228,23 +231,23 @@ function BlockedVerification() {
 
   const handleUnblockNumber = () => {
     toast({
-      title: t("Success"),
-      description: t("Phone number unblocked for OTP verification"),
+      title: t("blockedOTP.success"),
+      description: t("blockedOTP.phoneNumberUnblockedForOTP"),
     });
   };
 
   const handleSaveSettings = () => {
     toast({
-      title: t("Success"),
-      description: t("OTP verification settings updated"),
+      title: t("blockedOTP.success"),
+      description: t("blockedOTP.otpSettingsUpdated"),
     });
     setIsSettingsDialogOpen(false);
   };
 
   const handleExport = () => {
     toast({
-      title: t("Exporting"),
-      description: t("Preparing blocked OTP numbers list for export..."),
+      title: t("common.export"),
+      description: "",
     });
   };
 
@@ -273,16 +276,14 @@ function BlockedVerification() {
                   className="bg-white/20 text-white border-white/30"
                 >
                   <Lock className="h-3 w-3 mr-1" />
-                  {t("OTP Security")}
+                  {t("blockedOTP.otpSecurity")}
                 </Badge>
               </div>
               <h1 className="text-4xl font-bold mb-2">
-                {t("Blocked OTP Numbers")}
+                {t("blockedOTP.title")}
               </h1>
               <p className="text-lg opacity-90 max-w-2xl">
-                {t(
-                  "You can delete or add the blocked numbers from using the OTP verification code"
-                )}
+                {t("blockedOTP.subtitle")}
               </p>
             </div>
 
@@ -296,7 +297,7 @@ function BlockedVerification() {
             <Card className="border border-gray-200 dark:border-gray-700 shadow-lg bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                  {t("Total Blocked")}
+                  {t("blockedOTP.totalBlocked")}
                 </CardTitle>
                 <div className="p-2 bg-purple-100 dark:bg-purple-900/30 rounded-lg">
                   <PhoneOff className="h-4 w-4 text-purple-600 dark:text-purple-400" />
@@ -305,7 +306,7 @@ function BlockedVerification() {
               <CardContent>
                 <div className="text-2xl font-bold">{stats.totalBlocked}</div>
                 <p className="text-xs text-muted-foreground mt-1">
-                  {t("OTP blocked")}
+                  {t("blockedOTP.otpBlocked")}
                 </p>
               </CardContent>
             </Card>
@@ -313,7 +314,7 @@ function BlockedVerification() {
             <Card className="border border-gray-200 dark:border-gray-700 shadow-lg bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                  {t("Permanent")}
+                  {t("blockedOTP.permanent")}
                 </CardTitle>
                 <div className="p-2 bg-red-100 dark:bg-red-900/30 rounded-lg">
                   <XCircle className="h-4 w-4 text-red-600 dark:text-red-400" />
@@ -324,7 +325,7 @@ function BlockedVerification() {
                   {stats.permanentBlocks}
                 </div>
                 <p className="text-xs text-muted-foreground mt-1">
-                  {t("No expiry")}
+                  {t("blockedOTP.noExpiry")}
                 </p>
               </CardContent>
             </Card>
@@ -332,7 +333,7 @@ function BlockedVerification() {
             <Card className="border border-gray-200 dark:border-gray-700 shadow-lg bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                  {t("Temporary")}
+                  {t("blockedOTP.temporary")}
                 </CardTitle>
                 <div className="p-2 bg-amber-100 dark:bg-amber-900/30 rounded-lg">
                   <Timer className="h-4 w-4 text-amber-600 dark:text-amber-400" />
@@ -343,7 +344,7 @@ function BlockedVerification() {
                   {stats.temporaryBlocks}
                 </div>
                 <p className="text-xs text-muted-foreground mt-1">
-                  {t("Time-limited")}
+                  {t("blockedOTP.timeLimited")}
                 </p>
               </CardContent>
             </Card>
@@ -351,7 +352,7 @@ function BlockedVerification() {
             <Card className="border border-gray-200 dark:border-gray-700 shadow-lg bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                  {t("Today's Blocks")}
+                  {t("blockedOTP.todaysBlocks")}
                 </CardTitle>
                 <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg">
                   <Calendar className="h-4 w-4 text-indigo-600 dark:text-indigo-400" />
@@ -371,7 +372,7 @@ function BlockedVerification() {
             <Card className="border border-gray-200 dark:border-gray-700 shadow-lg bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                  {t("OTP Attempts")}
+                  {t("blockedOTP.otpAttempts")}
                 </CardTitle>
                 <div className="p-2 bg-orange-100 dark:bg-orange-900/30 rounded-lg">
                   <MessageSquare className="h-4 w-4 text-orange-600 dark:text-orange-400" />
@@ -382,7 +383,7 @@ function BlockedVerification() {
                   {stats.attemptedVerifications}
                 </div>
                 <p className="text-xs text-muted-foreground mt-1">
-                  {t("Blocked requests")}
+                  {t("blockedOTP.blockedRequests")}
                 </p>
               </CardContent>
             </Card>
@@ -390,7 +391,7 @@ function BlockedVerification() {
             <Card className="border border-gray-200 dark:border-gray-700 shadow-lg bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                  {t("Cost Saved")}
+                  {t("blockedOTP.costSaved")}
                 </CardTitle>
                 <div className="p-2 bg-green-100 dark:bg-green-900/30 rounded-lg">
                   <Zap className="h-4 w-4 text-green-600 dark:text-green-400" />
@@ -399,7 +400,7 @@ function BlockedVerification() {
               <CardContent>
                 <div className="text-2xl font-bold">${stats.savedCosts}</div>
                 <p className="text-xs text-muted-foreground mt-1">
-                  {t("SMS costs")}
+                  {t("blockedOTP.smsCosts")}
                 </p>
               </CardContent>
             </Card>
@@ -418,21 +419,21 @@ function BlockedVerification() {
                   className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-800 data-[state=active]:shadow-sm rounded-lg"
                 >
                   <Phone className="h-4 w-4 mr-2" />
-                  {t("All")}
+                  {t("blockedOTP.all")}
                 </TabsTrigger>
                 <TabsTrigger
                   value="recent"
                   className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-800 data-[state=active]:shadow-sm rounded-lg"
                 >
                   <Clock className="h-4 w-4 mr-2" />
-                  {t("Recent")}
+                  {t("blockedOTP.recent")}
                 </TabsTrigger>
                 <TabsTrigger
                   value="suspicious"
                   className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-800 data-[state=active]:shadow-sm rounded-lg"
                 >
                   <AlertTriangle className="h-4 w-4 mr-2" />
-                  {t("Suspicious")}
+                  {t("blockedOTP.suspicious")}
                 </TabsTrigger>
                
               </TabsList>
@@ -444,7 +445,7 @@ function BlockedVerification() {
                   className="border-gray-200 dark:border-gray-700"
                 >
                   <Lock className="h-4 w-4 mr-2" />
-                  {t("Security Settings")}
+                  {t("blockedOTP.securitySettings")}
                 </Button>
                 <Button
                   onClick={() => setIsBulkAddDialogOpen(true)}
@@ -452,7 +453,7 @@ function BlockedVerification() {
                   className="border-gray-200 dark:border-gray-700"
                 >
                   <Upload className="h-4 w-4 mr-2" />
-                  {t("Bulk Add")}
+                  {t("blockedOTP.bulkAdd")}
                 </Button>
                 <Button
                   onClick={handleExport}
@@ -460,14 +461,14 @@ function BlockedVerification() {
                   className="border-gray-200 dark:border-gray-700"
                 >
                   <Download className="h-4 w-4 mr-2" />
-                  {t("Export")}
+                  {t("blockedOTP.export")}
                 </Button>
                 <Button
                   onClick={() => setIsAddDialogOpen(true)}
                   className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700"
                 >
                   <Plus className="h-4 w-4 mr-2" />
-                  {t("Block OTP Number")}
+                  {t("blockedOTP.blockOTPNumber")}
                 </Button>
               </div>
             </div>
@@ -480,7 +481,7 @@ function BlockedVerification() {
                     <div className="relative flex-1 max-w-md">
                       <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                       <Input
-                        placeholder={t("Search by phone, name, or reason...")}
+                        placeholder={t("blockedOTP.searchByPhone")}
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         className="pl-10 h-11 border-gray-200 dark:border-gray-700"
@@ -491,28 +492,28 @@ function BlockedVerification() {
                       onValueChange={setFilterStatus}
                     >
                       <SelectTrigger className="w-[180px] h-11 border-gray-200 dark:border-gray-700">
-                        <SelectValue placeholder={t("Status")} />
+                        <SelectValue placeholder={t("common.status")} />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="all">{t("All Status")}</SelectItem>
-                        <SelectItem value="active">{t("Active")}</SelectItem>
+                        <SelectItem value="all">{t("blockedOTP.allStatus")}</SelectItem>
+                        <SelectItem value="active">{t("blockedOTP.active")}</SelectItem>
                         <SelectItem value="temporary">
-                          {t("Temporary")}
+                          {t("blockedOTP.temporary")}
                         </SelectItem>
                         <SelectItem value="permanent">
-                          {t("Permanent")}
+                          {t("blockedOTP.permanent")}
                         </SelectItem>
                       </SelectContent>
                     </Select>
                     <Select value={dateRange} onValueChange={setDateRange}>
                       <SelectTrigger className="w-[180px] h-11 border-gray-200 dark:border-gray-700">
-                        <SelectValue placeholder={t("Date Range")} />
+                        <SelectValue placeholder={t("blockedOTP.dateRange")} />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="all">{t("All Time")}</SelectItem>
-                        <SelectItem value="today">{t("Today")}</SelectItem>
-                        <SelectItem value="week">{t("This Week")}</SelectItem>
-                        <SelectItem value="month">{t("This Month")}</SelectItem>
+                        <SelectItem value="all">{t("blockedOTP.allTime")}</SelectItem>
+                        <SelectItem value="today">{t("blockedOTP.today")}</SelectItem>
+                        <SelectItem value="week">{t("blockedOTP.thisWeek")}</SelectItem>
+                        <SelectItem value="month">{t("blockedOTP.thisMonth")}</SelectItem>
                       </SelectContent>
                     </Select>
                     <Button variant="ghost" size="icon">
@@ -529,16 +530,16 @@ function BlockedVerification() {
                     <div>
                       <CardTitle className="flex items-center gap-2">
                         <MessageSquareOff className="h-5 w-5" />
-                        {t("Blocked OTP Verification Numbers")}
+                        {t("blockedOTP.blockedOTPVerificationNumbers")}
                       </CardTitle>
                       <CardDescription>
-                        {t("Prevent OTP abuse and reduce verification costs")}
+                        {t("blockedOTP.preventOTPAbuse")}
                       </CardDescription>
                     </div>
                     {selectedNumbers.length > 0 && (
                       <Button variant="destructive" size="sm">
                         <Trash2 className="h-4 w-4 mr-2" />
-                        {t("Unblock")} ({selectedNumbers.length})
+                        {t("blockedOTP.unblock")} ({selectedNumbers.length})
                       </Button>
                     )}
                   </div>
@@ -594,7 +595,7 @@ function BlockedVerification() {
                                         number.status === "active" && "bg-green-500"
                                       )}
                                     />
-                                    {t(number.status)}
+                                    {number.status}
                                   </Badge>
                                 </div>
                                 <div className="flex items-center gap-1">
@@ -638,10 +639,8 @@ function BlockedVerification() {
                                       number.phoneNumber
                                     );
                                     toast({
-                                      title: t("Copied"),
-                                      description: t(
-                                        "Phone number copied to clipboard"
-                                      ),
+                                      title: t("messages.copied"),
+                                      description: t("blockedOTP.phoneNumberCopiedToClipboard"),
                                     });
                                   }}
                                 >
@@ -655,7 +654,7 @@ function BlockedVerification() {
                                   <User className="h-4 w-4 text-gray-400 mt-0.5" />
                                   <div className="flex-1">
                                     <p className="font-medium">
-                                      {number.customerName || t("Unknown")}
+                                      {number.customerName || t("blockedOTP.unknown")}
                                     </p>
                                     {number.location && (
                                       <p className="text-xs text-gray-500 flex items-center gap-1">
@@ -711,7 +710,7 @@ function BlockedVerification() {
                                         : "text-purple-600 dark:text-purple-400"
                                     )}
                                   >
-                                    {number.attemptedVerifications} {t("attempts")}
+                                    {number.attemptedVerifications} {t("blockedOTP.attempts")}
                                   </span>
                                 </div>
                                 {number.lastAttempt && (
@@ -747,15 +746,15 @@ function BlockedVerification() {
                               }}
                             />
                           </TableHead>
-                          <TableHead>{t("Phone Number")}</TableHead>
-                          <TableHead>{t("Customer")}</TableHead>
-                          <TableHead>{t("Reason")}</TableHead>
-                          <TableHead>{t("Status")}</TableHead>
-                          <TableHead>{t("Device Info")}</TableHead>
-                          <TableHead>{t("OTP Attempts")}</TableHead>
-                          <TableHead>{t("Last Attempt")}</TableHead>
+                          <TableHead>{t("blockedOTP.phoneNumber")}</TableHead>
+                          <TableHead>{t("blockedOTP.customer")}</TableHead>
+                          <TableHead>{t("blockedOTP.reason")}</TableHead>
+                          <TableHead>{t("blockedOTP.status")}</TableHead>
+                          <TableHead>{t("blockedOTP.deviceInfo")}</TableHead>
+                          <TableHead>{t("blockedOTP.otpAttempts")}</TableHead>
+                          <TableHead>{t("blockedOTP.lastAttempt")}</TableHead>
                           <TableHead className="text-right">
-                            {t("Actions")}
+                            {t("common.actions")}
                           </TableHead>
                         </TableRow>
                       </TableHeader>
@@ -798,10 +797,8 @@ function BlockedVerification() {
                                       number.phoneNumber
                                     );
                                     toast({
-                                      title: t("Copied"),
-                                      description: t(
-                                        "Phone number copied to clipboard"
-                                      ),
+                                      title: t("messages.copied"),
+                                      description: t("blockedOTP.phoneNumberCopiedToClipboard"),
                                     });
                                   }}
                                 >
@@ -814,7 +811,7 @@ function BlockedVerification() {
                                 <User className="h-4 w-4 text-gray-400" />
                                 <div>
                                   <p className="font-medium">
-                                    {number.customerName || t("Unknown")}
+                                    {number.customerName || t("blockedOTP.unknown")}
                                   </p>
                                   {number.location && (
                                     <p className="text-xs text-gray-500 flex items-center gap-1">
@@ -861,7 +858,7 @@ function BlockedVerification() {
                                     number.status === "active" && "bg-green-500"
                                   )}
                                 />
-                                {t(number.status)}
+                                {number.status}
                               </Badge>
                             </TableCell>
                             <TableCell>
@@ -879,7 +876,7 @@ function BlockedVerification() {
                                 </div>
                               ) : (
                                 <span className="text-gray-400 text-sm">
-                                  {t("No data")}
+                                  {t("blockedOTP.noData")}
                                 </span>
                               )}
                             </TableCell>
@@ -920,7 +917,7 @@ function BlockedVerification() {
                                       <Edit className="h-4 w-4 text-amber-600 dark:text-amber-400" />
                                     </Button>
                                   </TooltipTrigger>
-                                  <TooltipContent>{t("Edit")}</TooltipContent>
+                                  <TooltipContent>{t("common.edit")}</TooltipContent>
                                 </Tooltip>
 
                                 <Tooltip>
@@ -935,7 +932,7 @@ function BlockedVerification() {
                                     </Button>
                                   </TooltipTrigger>
                                   <TooltipContent>
-                                    {t("Unblock OTP")}
+                                    {t("blockedOTP.unblockOTP")}
                                   </TooltipContent>
                                 </Tooltip>
 
@@ -946,7 +943,7 @@ function BlockedVerification() {
                                     </Button>
                                   </TooltipTrigger>
                                   <TooltipContent>
-                                    {t("More Options")}
+                                    {t("blockedOTP.moreOptions")}
                                   </TooltipContent>
                                 </Tooltip>
                               </div>
@@ -957,7 +954,7 @@ function BlockedVerification() {
                     </Table>
                     )
                   ) : (
-                    <Empty className="py-12" Name={t("Blocked OTP Numbers")} />
+                    <Empty className="py-12" Name={t("blockedOTP.title")} />
                   )}
                 </CardContent>
               </Card>
@@ -967,30 +964,30 @@ function BlockedVerification() {
               <Alert className="border border-gray-200 dark:border-gray-700 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20">
                 <AlertCircle className="h-4 w-4 text-blue-600" />
                 <AlertDescription>
-                  {t("Showing OTP blocks from the last 24 hours")}
+                  {t("blockedOTP.showingOTPBlocks24Hours")}
                 </AlertDescription>
               </Alert>
-              <Empty className="py-12" Name={t("Recent OTP Blocks")} />
+              <Empty className="py-12" Name={t("blockedOTP.recentOTPBlocks")} />
             </TabsContent>
 
             <TabsContent value="suspicious" className="space-y-6 mt-0">
               <Alert className="border border-gray-200 dark:border-gray-700 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20">
                 <AlertTriangle className="h-4 w-4 text-amber-600" />
                 <AlertDescription>
-                  {t("Numbers with suspicious OTP request patterns")}
+                  {t("blockedOTP.suspiciousOTPPatterns")}
                 </AlertDescription>
               </Alert>
-              <Empty className="py-12" Name={t("Suspicious Activity")} />
+              <Empty className="py-12" Name={t("blockedOTP.suspiciousActivity")} />
             </TabsContent>
 
             <TabsContent value="auto-blocked" className="space-y-6 mt-0">
               <Alert className="border border-gray-200 dark:border-gray-700 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20">
                 <Shield className="h-4 w-4 text-green-600" />
                 <AlertDescription>
-                  {t("Numbers automatically blocked by security system")}
+                  {t("blockedOTP.autoBlockedBySystem")}
                 </AlertDescription>
               </Alert>
-              <Empty className="py-12" Name={t("Auto-Blocked Numbers")} />
+              <Empty className="py-12" Name={t("blockedOTP.autoBlockedNumbers")} />
             </TabsContent>
           </Tabs>
         </div>
@@ -1000,14 +997,14 @@ function BlockedVerification() {
       <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>{t("Block OTP Verification")}</DialogTitle>
+            <DialogTitle>{t("blockedOTP.blockOTPVerification")}</DialogTitle>
             <DialogDescription>
-              {t("Block a phone number from receiving OTP codes")}
+              {t("blockedOTP.blockPhoneFromOTP")}
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
             <div className="space-y-2">
-              <Label htmlFor="phone">{t("Phone Number")} *</Label>
+              <Label htmlFor="phone">{t("blockedOTP.phoneNumber")} *</Label>
               <Input
                 id="phone"
                 placeholder="+20XXXXXXXXXX"
@@ -1017,47 +1014,47 @@ function BlockedVerification() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="reason">{t("Reason for Blocking")} *</Label>
+              <Label htmlFor="reason">{t("blockedOTP.reasonForBlocking")} *</Label>
               <Select value={reason} onValueChange={setReason}>
                 <SelectTrigger className="h-11">
-                  <SelectValue placeholder={t("Select a reason")} />
+                  <SelectValue placeholder={t("blockedOTP.selectReason")} />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="too-many">
-                    {t("Too many OTP requests")}
+                    {t("blockedOTP.tooManyOTPRequests")}
                   </SelectItem>
-                  <SelectItem value="abuse">{t("OTP abuse")}</SelectItem>
+                  <SelectItem value="abuse">{t("blockedOTP.otpAbuse")}</SelectItem>
                   <SelectItem value="suspicious">
-                    {t("Suspicious activity")}
+                    {t("blockedOTP.suspiciousActivity")}
                   </SelectItem>
                   <SelectItem value="bot">
-                    {t("Bot activity detected")}
+                    {t("blockedOTP.botActivityDetected")}
                   </SelectItem>
-                  <SelectItem value="manual">{t("Manual block")}</SelectItem>
+                  <SelectItem value="manual">{t("blockedOTP.manualBlock")}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="type">{t("Block Type")}</Label>
+              <Label htmlFor="type">{t("blockedOTP.blockType")}</Label>
               <Select value={blockType} onValueChange={setBlockType}>
                 <SelectTrigger className="h-11">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="permanent">{t("Permanent")}</SelectItem>
-                  <SelectItem value="24hours">{t("24 Hours")}</SelectItem>
-                  <SelectItem value="48hours">{t("48 Hours")}</SelectItem>
-                  <SelectItem value="7days">{t("7 Days")}</SelectItem>
+                  <SelectItem value="permanent">{t("blockedOTP.permanent")}</SelectItem>
+                  <SelectItem value="24hours">{t("blockedOTP.24Hours")}</SelectItem>
+                  <SelectItem value="48hours">{t("blockedOTP.48Hours")}</SelectItem>
+                  <SelectItem value="7days">{t("blockedOTP.7Days")}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
             <div className="space-y-2">
               <Label htmlFor="notes">
-                {t("Notes")} ({t("Optional")})
+                {t("blockedOTP.notes")} ({t("common.optional")})
               </Label>
               <Textarea
                 id="notes"
-                placeholder={t("Additional information...")}
+                placeholder={""}
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
                 rows={3}
@@ -1066,9 +1063,7 @@ function BlockedVerification() {
             <Alert>
               <Info className="h-4 w-4" />
               <AlertDescription>
-                {t(
-                  "This number will not be able to receive OTP verification codes"
-                )}
+                {t("blockedOTP.numberWillNotReceiveOTP")}
               </AlertDescription>
             </Alert>
           </div>
@@ -1078,13 +1073,13 @@ function BlockedVerification() {
               onClick={() => setIsAddDialogOpen(false)}
               className="border-gray-200 dark:border-gray-700"
             >
-              {t("Cancel")}
+              {t("common.cancel")}
             </Button>
             <Button
               onClick={handleAddNumber}
               className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700"
             >
-              {t("Block OTP")}
+              {t("blockedOTP.blockOTP")}
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -1094,14 +1089,14 @@ function BlockedVerification() {
       <Dialog open={isBulkAddDialogOpen} onOpenChange={setIsBulkAddDialogOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>{t("Bulk Block OTP Numbers")}</DialogTitle>
+            <DialogTitle>{t("blockedOTP.bulkBlockOTPNumbers")}</DialogTitle>
             <DialogDescription>
-              {t("Add multiple phone numbers at once (one per line)")}
+              {t("blockedOTP.addMultiplePhoneNumbers")}
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
             <div className="space-y-2">
-              <Label htmlFor="bulk">{t("Phone Numbers")}</Label>
+              <Label htmlFor="bulk">{t("blockedOTP.phoneNumbers")}</Label>
               <Textarea
                 id="bulk"
                 placeholder={`+201234567890\n+201234567891\n+201234567892`}
@@ -1114,9 +1109,7 @@ function BlockedVerification() {
             <Alert>
               <Info className="h-4 w-4" />
               <AlertDescription>
-                {t(
-                  "Enter phone numbers one per line. Invalid numbers will be skipped."
-                )}
+                {t("blockedOTP.enterPhoneNumbersOnePerLine")}
               </AlertDescription>
             </Alert>
           </div>
@@ -1126,14 +1119,14 @@ function BlockedVerification() {
               onClick={() => setIsBulkAddDialogOpen(false)}
               className="border-gray-200 dark:border-gray-700"
             >
-              {t("Cancel")}
+              {t("common.cancel")}
             </Button>
             <Button
               onClick={handleBulkAdd}
               className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700"
             >
               <Upload className="h-4 w-4 mr-2" />
-              {t("Block All")}
+              {t("blockedOTP.blockAll")}
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -1146,9 +1139,9 @@ function BlockedVerification() {
       >
         <DialogContent className="sm:max-w-lg">
           <DialogHeader>
-            <DialogTitle>{t("OTP Security Settings")}</DialogTitle>
+            <DialogTitle>{t("blockedOTP.otpSecuritySettings")}</DialogTitle>
             <DialogDescription>
-              {t("Configure automatic blocking and security rules")}
+              {t("blockedOTP.configureAutoBlocking")}
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
@@ -1157,10 +1150,10 @@ function BlockedVerification() {
                 <Shield className="h-5 w-5 text-purple-500" />
                 <div>
                   <p className="font-medium">
-                    {t("Auto-Block Suspicious Numbers")}
+                    {t("blockedOTP.autoBlockSuspiciousNumbers")}
                   </p>
                   <p className="text-sm text-gray-500">
-                    {t("Automatically block after threshold")}
+                    {t("blockedOTP.automaticallyBlockAfterThreshold")}
                   </p>
                 </div>
               </div>
@@ -1168,36 +1161,36 @@ function BlockedVerification() {
             </div>
 
             <div className="space-y-2">
-              <Label>{t("Maximum OTP Attempts")}</Label>
+              <Label>{t("blockedOTP.maximumOTPAttempts")}</Label>
               <Select value={maxAttempts} onValueChange={setMaxAttempts}>
                 <SelectTrigger className="h-11">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="3">{t("3 attempts per hour")}</SelectItem>
-                  <SelectItem value="5">{t("5 attempts per hour")}</SelectItem>
+                  <SelectItem value="3">{t("blockedOTP.3AttemptsPerHour")}</SelectItem>
+                  <SelectItem value="5">{t("blockedOTP.5AttemptsPerHour")}</SelectItem>
                   <SelectItem value="10">
-                    {t("10 attempts per hour")}
+                    {t("blockedOTP.10AttemptsPerHour")}
                   </SelectItem>
                   <SelectItem value="20">
-                    {t("20 attempts per hour")}
+                    {t("blockedOTP.20AttemptsPerHour")}
                   </SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
             <div className="space-y-2">
-              <Label>{t("Auto-Block Duration")}</Label>
+              <Label>{t("blockedOTP.autoBlockDuration")}</Label>
               <Select value={blockDuration} onValueChange={setBlockDuration}>
                 <SelectTrigger className="h-11">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="1">{t("1 hour")}</SelectItem>
-                  <SelectItem value="6">{t("6 hours")}</SelectItem>
-                  <SelectItem value="24">{t("24 hours")}</SelectItem>
-                  <SelectItem value="48">{t("48 hours")}</SelectItem>
-                  <SelectItem value="168">{t("7 days")}</SelectItem>
+                  <SelectItem value="1">{t("blockedOTP.1Hour")}</SelectItem>
+                  <SelectItem value="6">{t("blockedOTP.6Hours")}</SelectItem>
+                  <SelectItem value="24">{t("blockedOTP.24Hours")}</SelectItem>
+                  <SelectItem value="48">{t("blockedOTP.48Hours")}</SelectItem>
+                  <SelectItem value="168">{t("blockedOTP.7Days")}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -1205,9 +1198,7 @@ function BlockedVerification() {
             <Alert>
               <Lock className="h-4 w-4" />
               <AlertDescription>
-                {t(
-                  "These settings help prevent OTP abuse and reduce SMS costs"
-                )}
+                {t("blockedOTP.settingsHelpPreventAbuse")}
               </AlertDescription>
             </Alert>
           </div>
@@ -1217,13 +1208,13 @@ function BlockedVerification() {
               onClick={() => setIsSettingsDialogOpen(false)}
               className="border-gray-200 dark:border-gray-700"
             >
-              {t("Cancel")}
+              {t("common.cancel")}
             </Button>
             <Button
               onClick={handleSaveSettings}
               className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700"
             >
-              {t("Save Settings")}
+              {t("blockedOTP.saveSettings")}
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -1233,3 +1224,4 @@ function BlockedVerification() {
 }
 
 export default BlockedVerification;
+

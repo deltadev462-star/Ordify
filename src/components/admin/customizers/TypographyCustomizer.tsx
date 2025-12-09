@@ -19,29 +19,26 @@ import {
 import { Slider } from "@/components/ui/slider";
 import { Type, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useTranslation } from "react-i18next";
-
 export const TypographyCustomizer: React.FC = () => {
-  const { t } = useTranslation();
   const { typography, themeConfig, updateTypography } = useTheme();
 
   const fontFamilies = [
     {
       value:
         "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-      label: t("fontFamilies.systemDefault"),
+      label: "System Default",
     },
-    { value: "'Inter', sans-serif", label: t("fontFamilies.inter") },
-    { value: "'Roboto', sans-serif", label: t("fontFamilies.roboto") },
-    { value: "'Open Sans', sans-serif", label: t("fontFamilies.openSans") },
-    { value: "'Lato', sans-serif", label: t("fontFamilies.lato") },
-    { value: "'Montserrat', sans-serif", label: t("fontFamilies.montserrat") },
-    { value: "'Poppins', sans-serif", label: t("fontFamilies.poppins") },
-    { value: "'Playfair Display', serif", label: t("fontFamilies.playfair") },
-    { value: "'Georgia', serif", label: t("fontFamilies.georgia") },
+    { value: "'Inter', sans-serif", label: "Inter" },
+    { value: "'Roboto', sans-serif", label: "Roboto" },
+    { value: "'Open Sans', sans-serif", label: "Open Sans" },
+    { value: "'Lato', sans-serif", label: "Lato" },
+    { value: "'Montserrat', sans-serif", label: "Montserrat" },
+    { value: "'Poppins', sans-serif", label: "Poppins" },
+    { value: "'Playfair Display', serif", label: "Playfair" },
+    { value: "'Georgia', serif", label: "Georgia" },
     {
       value: "'Times New Roman', serif",
-      label: t("fontFamilies.timesNewRoman"),
+      label: "Times New Roman",
     },
   ];
 
@@ -84,17 +81,17 @@ export const TypographyCustomizer: React.FC = () => {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Type className="h-5 w-5" />
-            {t("titles.fontFamilies")}
+            {"Font Families"}
           </CardTitle>
           <CardDescription>
-            {t("descriptions.chooseFontsBrand")}
+            {"Choose Fonts Brand"}
           </CardDescription>
         </CardHeader>
 
         <CardContent className="space-y-4">
           {/* Body Font */}
           <div className="space-y-2">
-            <Label htmlFor="body-font">{t("labels.bodyFont")}</Label>
+            <Label htmlFor="body-font">{"Body Font"}</Label>
 
             <Select
               value={typography.fontFamily}
@@ -114,13 +111,13 @@ export const TypographyCustomizer: React.FC = () => {
             </Select>
 
             <p className="text-xs text-gray-500">
-              {t("descriptions.bodyFontUsage")}
+              {"Body Font Usage"}
             </p>
           </div>
 
           {/* Heading Font */}
           <div className="space-y-2">
-            <Label htmlFor="heading-font">{t("labels.headingFont")}</Label>
+            <Label htmlFor="heading-font">{"Heading Font"}</Label>
 
             <Select
               value={typography.headingFontFamily}
@@ -142,7 +139,7 @@ export const TypographyCustomizer: React.FC = () => {
             </Select>
 
             <p className="text-xs text-gray-500">
-              {t("descriptions.headingFontUsage")}
+              {"Heading Font Usage"}
             </p>
           </div>
         </CardContent>
@@ -151,8 +148,8 @@ export const TypographyCustomizer: React.FC = () => {
       {/* Font Sizes */}
       <Card>
         <CardHeader>
-          <CardTitle>{t("titles.fontSizes")}</CardTitle>
-          <CardDescription>{t("descriptions.fontSizesDesc")}</CardDescription>
+          <CardTitle>{"Font Sizes"}</CardTitle>
+          <CardDescription>{"Font Sizes Desc"}</CardDescription>
         </CardHeader>
 
         <CardContent className="space-y-4">
@@ -160,7 +157,7 @@ export const TypographyCustomizer: React.FC = () => {
             <div key={key} className="space-y-2">
               <div className="flex items-center justify-between">
                 <Label htmlFor={`size-${key}`} className="capitalize">
-                  {t(`sizes.${key}`, key)}
+                  {"${key}"}
                 </Label>
                 <span className="text-sm text-gray-600 font-mono">{value}</span>
               </div>
@@ -201,8 +198,8 @@ export const TypographyCustomizer: React.FC = () => {
       {/* Font Weights */}
       <Card>
         <CardHeader>
-          <CardTitle>{t("titles.fontWeights")}</CardTitle>
-          <CardDescription>{t("descriptions.fontWeightsDesc")}</CardDescription>
+          <CardTitle>{"Font Weights"}</CardTitle>
+          <CardDescription>{"Font Weights Desc"}</CardDescription>
         </CardHeader>
 
         <CardContent className="space-y-4">
@@ -210,7 +207,7 @@ export const TypographyCustomizer: React.FC = () => {
             <div key={key} className="space-y-2">
               <div className="flex items-center justify-between">
                 <Label htmlFor={`weight-${key}`} className="capitalize">
-                  {t(`weights.${key}`, key)}
+                  {"${key}"}
                 </Label>
 
                 <span className="text-sm text-gray-600 font-mono">{value}</span>
@@ -256,23 +253,23 @@ export const TypographyCustomizer: React.FC = () => {
       <Card>
         <CardHeader>
           <CardTitle className="text-base">
-            {t("titles.typographyPreview")}
+            {"Typography Preview"}
           </CardTitle>
           <CardDescription className="text-sm">
-            {t("descriptions.previewDesc")}
+            {"Preview Desc"}
           </CardDescription>
         </CardHeader>
 
         <CardContent>
-          <h1>{t("preview.heading1")}</h1>
-          <h2>{t("preview.heading2")}</h2>
-          <h3>{t("preview.heading3")}</h3>
+          <h1>{"Heading1"}</h1>
+          <h2>{"Heading2"}</h2>
+          <h3>{"Heading3"}</h3>
 
-          <p>{t("preview.paragraph")}</p>
-          <p>{t("preview.smallText")}</p>
-          <p>{t("preview.extraSmallText")}</p>
+          <p>{"Paragraph"}</p>
+          <p>{"Small Text"}</p>
+          <p>{"Extra Small Text"}</p>
 
-          <button>{t("preview.buttonText")}</button>
+          <button>{"Button Text"}</button>
         </CardContent>
       </Card>
 
@@ -283,7 +280,7 @@ export const TypographyCustomizer: React.FC = () => {
           onClick={handleResetTypography}
         >
           <RotateCcw className="h-4 w-4" />
-          {t("actions.resetTypography")}
+          {"Reset Typography"}
         </Button>
       </div>
     </div>

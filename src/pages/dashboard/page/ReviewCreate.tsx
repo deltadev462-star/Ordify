@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import { 
   Star, 
   Upload, 
@@ -29,7 +28,6 @@ import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
 function ReviewCreate() {
-  const { t } = useTranslation();
   const navigate = useNavigate();
   const [reviewData, setReviewData] = useState({
     product: "",
@@ -114,10 +112,10 @@ function ReviewCreate() {
       <div className="mb-6 flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold dark:text-white">
-            {t("Create New Review")}
+            {"Create  New  Review"}
           </h1>
           <p className="text-gray-500 dark:text-gray-400 mt-1">
-            {t("Add customer feedback for your products")}
+            {"Add customer feedback for your products"}
           </p>
         </div>
         <div className="flex gap-3">
@@ -126,14 +124,14 @@ function ReviewCreate() {
             onClick={() => navigate("/dashboard/reviews")}
             className="dark:bg-[#2a2a2a] dark:border-[#424242] dark:text-white"
           >
-            {t("Cancel")}
+            {"Cancel"}
           </Button>
           <Button
             onClick={handleSave}
             className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white gap-2"
           >
             <Save size={18} />
-            {t("Save Review")}
+            {"Save  Review"}
           </Button>
         </div>
       </div>
@@ -145,10 +143,10 @@ function ReviewCreate() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2 dark:text-white">
                 <MessageSquare size={20} />
-                {t("Review Details")}
+                {"Review  Details"}
               </CardTitle>
               <CardDescription className="dark:text-gray-400">
-                {t("Enter the main review information")}
+                {"Enter the main review information"}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-5">
@@ -156,14 +154,14 @@ function ReviewCreate() {
               <div className="space-y-2">
                 <Label className="flex items-center gap-2 dark:text-gray-200">
                   <Package size={16} />
-                  {t("Product")} <span className="text-red-500">*</span>
+                  {"Product"} <span className="text-red-500">*</span>
                 </Label>
                 <Select
                   value={reviewData.product}
                   onValueChange={(value) => setReviewData(prev => ({ ...prev, product: value }))}
                 >
                   <SelectTrigger className="w-full border-gray-200 dark:bg-[#2a2a2a] dark:border-[#424242] dark:text-white">
-                    <SelectValue placeholder={t("Select a product")} />
+                    <SelectValue placeholder={"Select a product"} />
                   </SelectTrigger>
                   <SelectContent className="dark:bg-[#2a2a2a] dark:border-[#424242]">
                     <SelectItem value="product1">iPhone 15 Pro Max</SelectItem>
@@ -179,23 +177,23 @@ function ReviewCreate() {
                 <div className="space-y-2">
                   <Label className="flex items-center gap-2 dark:text-gray-200">
                     <User size={16} />
-                    {t("Reviewer's Name")} <span className="text-red-500">*</span>
+                    {"Reviewer's Name"} <span className="text-red-500">*</span>
                   </Label>
                   <Input
                     value={reviewData.reviewerName}
                     onChange={(e) => setReviewData(prev => ({ ...prev, reviewerName: e.target.value }))}
-                    placeholder={t("John Doe")}
+                    placeholder={"John  Doe"}
                     className="border-gray-200 dark:bg-[#2a2a2a] dark:border-[#424242] dark:text-white"
                   />
                 </div>
                 <div className="space-y-2">
                   <Label className="dark:text-gray-200">
-                    {t("Review Title")}
+                    {"Review  Title"}
                   </Label>
                   <Input
                     value={reviewData.reviewTitle}
                     onChange={(e) => setReviewData(prev => ({ ...prev, reviewTitle: e.target.value }))}
-                    placeholder={t("Amazing product!")}
+                    placeholder={"Amazing product!"}
                     className="border-gray-200 dark:bg-[#2a2a2a] dark:border-[#424242] dark:text-white"
                   />
                 </div>
@@ -205,7 +203,7 @@ function ReviewCreate() {
               <div className="space-y-3 p-4 bg-gray-50 dark:bg-[#1a1a1a] rounded-lg">
                 <Label className="flex items-center gap-2 dark:text-gray-200">
                   <Star size={16} />
-                  {t("Rating")} <span className="text-red-500">*</span>
+                  {"Rating"} <span className="text-red-500">*</span>
                 </Label>
                 <StarRating 
                   rating={reviewData.rating} 
@@ -216,12 +214,12 @@ function ReviewCreate() {
               {/* Review Text */}
               <div className="space-y-2">
                 <Label className="dark:text-gray-200">
-                  {t("Review Content")} <span className="text-red-500">*</span>
+                  {"Review  Content"} <span className="text-red-500">*</span>
                 </Label>
                 <Textarea
                   value={reviewData.review}
                   onChange={(e) => setReviewData(prev => ({ ...prev, review: e.target.value }))}
-                  placeholder={t("Write your detailed review here...")}
+                  placeholder={""}
                   className="min-h-[180px] resize-none border-gray-200 dark:bg-[#2a2a2a] dark:border-[#424242] dark:text-white"
                 />
                 <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -236,10 +234,10 @@ function ReviewCreate() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2 dark:text-white">
                 <ImageIcon size={20} />
-                {t("Review Media")}
+                {"Review  Media"}
               </CardTitle>
               <CardDescription className="dark:text-gray-400">
-                {t("Add images to make the review more authentic")}
+                {"Add images to make the review more authentic"}
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -264,7 +262,7 @@ function ReviewCreate() {
                       </div>
                       <div>
                         <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                          {t("Click to upload or drag and drop")}
+                          {"Click to upload or drag and drop"}
                         </p>
                         <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                           PNG, JPG, GIF up to 10MB
@@ -305,7 +303,7 @@ function ReviewCreate() {
           <Card className="dark:bg-black/80 border-gray-200 dark:border-[#424242]">
             <CardHeader>
               <CardTitle className="text-lg dark:text-white">
-                {t("Publishing Options")}
+                {"Publishing  Options"}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -315,7 +313,7 @@ function ReviewCreate() {
                   htmlFor="review-published"
                   className="cursor-pointer text-sm font-medium dark:text-gray-200 ltr:mr-2 rtl:ml-2"
                 >
-                  {t("Publish Review")}
+                  {"Publish  Review"}
                 </Label>
                 <Switch
                   id="review-published"
@@ -331,7 +329,7 @@ function ReviewCreate() {
                   htmlFor="verified-purchase"
                   className="cursor-pointer text-sm font-medium dark:text-gray-200 ltr:mr-2 rtl:ml-2"
                 >
-                  {t("Verified Purchase")}
+                  {"Verified  Purchase"}
                 </Label>
                 <Switch
                   id="verified-purchase"
@@ -347,7 +345,7 @@ function ReviewCreate() {
                   htmlFor="recommend-product"
                   className="cursor-pointer text-sm font-medium dark:text-gray-200 ltr:mr-2 rtl:ml-2"
                 >
-                  {t("Recommends Product")}
+                  {"Recommends  Product"}
                 </Label>
                 <Switch
                   id="recommend-product"
@@ -376,7 +374,7 @@ function ReviewCreate() {
           <Card className="dark:bg-black/80 border-gray-200 dark:border-[#424242]">
             <CardHeader>
               <CardTitle className="text-lg dark:text-white">
-                {t("Review Summary")}
+                {"Review  Summary"}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -404,7 +402,7 @@ function ReviewCreate() {
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-600 dark:text-gray-400">Status</span>
                   <span className="text-sm font-medium dark:text-white">
-                    {reviewData.isPublished ? t("Published") : t("Draft")}
+                    {reviewData.isPublished ? "Published" : "Draft"}
                   </span>
                 </div>
               </div>

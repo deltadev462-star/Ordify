@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { 
   TrendingUp, 
   TrendingDown, 
@@ -47,7 +46,6 @@ interface Transaction {
 }
 
 function Transactions() {
-  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
   const [filterType, setFilterType] = useState("all");
   const [filterStatus, setFilterStatus] = useState("all");
@@ -156,11 +154,11 @@ function Transactions() {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "completed":
-        return <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-400">{t("Completed")}</Badge>;
+        return <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-400">{"Completed"}</Badge>;
       case "pending":
-        return <Badge className="bg-yellow-100 text-yellow-700 dark:bg-yellow-950/30 dark:text-yellow-400">{t("Pending")}</Badge>;
+        return <Badge className="bg-yellow-100 text-yellow-700 dark:bg-yellow-950/30 dark:text-yellow-400">{"Pending"}</Badge>;
       case "failed":
-        return <Badge className="bg-red-100 text-red-700 dark:bg-red-950/30 dark:text-red-400">{t("Failed")}</Badge>;
+        return <Badge className="bg-red-100 text-red-700 dark:bg-red-950/30 dark:text-red-400">{"Failed"}</Badge>;
       default:
         return null;
     }
@@ -170,8 +168,8 @@ function Transactions() {
     <div className="space-y-6">
       <div className="flex   m-1 flex-1 flex-col gap-6 p-6">
         <Title
-          title={t("Transactions")}
-          Subtitle={t("Track all your financial transactions and payment history")}
+          title={"Transactions"}
+          Subtitle={"Track all your financial transactions and payment history"}
           className="text-3xl"
           classNamee=""
         />
@@ -182,7 +180,7 @@ function Transactions() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t("Total Income")}</p>
+                  <p className="text-sm text-muted-foreground">{"Total  Income"}</p>
                   <p className="text-2xl font-bold mt-1">EGP {totalIncome.toFixed(2)}</p>
                   <div className="flex items-center gap-1 mt-2">
                     <TrendingUp className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
@@ -200,7 +198,7 @@ function Transactions() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t("Total Expenses")}</p>
+                  <p className="text-sm text-muted-foreground">{"Total  Expenses"}</p>
                   <p className="text-2xl font-bold mt-1">EGP {totalExpenses.toFixed(2)}</p>
                   <div className="flex items-center gap-1 mt-2">
                     <TrendingDown className="h-4 w-4 text-red-600 dark:text-red-400" />
@@ -218,7 +216,7 @@ function Transactions() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t("Net Balance")}</p>
+                  <p className="text-sm text-muted-foreground">{"Net  Balance"}</p>
                   <p className="text-2xl font-bold mt-1">EGP {netBalance.toFixed(2)}</p>
                   <div className="flex items-center gap-1 mt-2">
                     <TrendingUp className="h-4 w-4 text-primary" />
@@ -241,7 +239,7 @@ function Transactions() {
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input
-                    placeholder={t("Search transactions...")}
+                    placeholder={""}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="pl-10 w-full md:w-[300px]"
@@ -250,25 +248,25 @@ function Transactions() {
                 
                 <Select value={filterType} onValueChange={setFilterType}>
                   <SelectTrigger className="w-full md:w-[150px]">
-                    <SelectValue placeholder={t("Type")} />
+                    <SelectValue placeholder={"Type"} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">{t("All Types")}</SelectItem>
-                    <SelectItem value="income">{t("Income")}</SelectItem>
-                    <SelectItem value="expense">{t("Expense")}</SelectItem>
-                    <SelectItem value="refund">{t("Refund")}</SelectItem>
+                    <SelectItem value="all">{"All  Types"}</SelectItem>
+                    <SelectItem value="income">{"Income"}</SelectItem>
+                    <SelectItem value="expense">{"Expense"}</SelectItem>
+                    <SelectItem value="refund">{"Refund"}</SelectItem>
                   </SelectContent>
                 </Select>
 
                 <Select value={filterStatus} onValueChange={setFilterStatus}>
                   <SelectTrigger className="w-full md:w-[150px]">
-                    <SelectValue placeholder={t("Status")} />
+                    <SelectValue placeholder={"Status"} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">{t("All Status")}</SelectItem>
-                    <SelectItem value="completed">{t("Completed")}</SelectItem>
-                    <SelectItem value="pending">{t("Pending")}</SelectItem>
-                    <SelectItem value="failed">{t("Failed")}</SelectItem>
+                    <SelectItem value="all">{"All  Status"}</SelectItem>
+                    <SelectItem value="completed">{"Completed"}</SelectItem>
+                    <SelectItem value="pending">{"Pending"}</SelectItem>
+                    <SelectItem value="failed">{"Failed"}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -276,15 +274,15 @@ function Transactions() {
               <div className="flex gap-2">
                 <Button variant="outline" size="sm" className=" border-gray-200 dark:border-gray-700">
                   <Calendar className="h-4 w-4 mr-2" />
-                  {t("Date Range")}
+                  {"Date  Range"}
                 </Button>
                 <Button variant="outline" size="sm"  className=" border-gray-200 dark:border-gray-700">
                   <Filter className="h-4 w-4 mr-2" />
-                  {t("More Filters")}
+                  {"More  Filters"}
                 </Button>
                 <Button size="sm" className="glow-on-hover border-gray-200 dark:border-gray-700">
                   <Download className="h-4 w-4 mr-2" />
-                  {t("Export")}
+                  {"Export"}
                 </Button>
               </div>
             </div>
@@ -296,12 +294,12 @@ function Transactions() {
               <Table>
                 <TableHeader>
                   <TableRow className="border-b border-gray-200 dark:border-gray-700">
-                    <TableHead>{t("Date")}</TableHead>
-                    <TableHead>{t("Description")}</TableHead>
-                    <TableHead>{t("Type")}</TableHead>
-                    <TableHead>{t("Amount")}</TableHead>
-                    <TableHead>{t("Status")}</TableHead>
-                    <TableHead>{t("Reference")}</TableHead>
+                    <TableHead>{"Date"}</TableHead>
+                    <TableHead>{"Description"}</TableHead>
+                    <TableHead>{"Type"}</TableHead>
+                    <TableHead>{"Amount"}</TableHead>
+                    <TableHead>{"Status"}</TableHead>
+                    <TableHead>{"Reference"}</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -314,7 +312,7 @@ function Transactions() {
                       <TableCell>
                         <div className={`flex items-center gap-2 ${getTypeColor(transaction.type)}`}>
                           {getTypeIcon(transaction.type)}
-                          <span className="capitalize">{t(transaction.type)}</span>
+                          <span className="capitalize">{transaction.type}</span>
                         </div>
                       </TableCell>
                       <TableCell>
@@ -349,7 +347,7 @@ function Transactions() {
                     <div className="flex justify-between items-center pt-2 border-t border-gray-200 dark:border-gray-700">
                       <div className={`flex items-center gap-2 ${getTypeColor(transaction.type)}`}>
                         {getTypeIcon(transaction.type)}
-                        <span className="capitalize">{t(transaction.type)}</span>
+                        <span className="capitalize">{transaction.type}</span>
                       </div>
                       <span className={`font-semibold ${getTypeColor(transaction.type)}`}>
                         {transaction.type === "expense" || transaction.type === "refund" ? "-" : "+"}
@@ -358,7 +356,7 @@ function Transactions() {
                     </div>
                     
                     <p className="text-xs text-muted-foreground">
-                      {t("Ref")}: {transaction.reference}
+                      {"Ref"}: {transaction.reference}
                     </p>
                   </CardContent>
                 </Card>
@@ -368,14 +366,14 @@ function Transactions() {
             {/* Pagination */}
             <div className="flex flex-col md:flex-row items-center justify-between gap-4 mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
               <p className="text-sm text-muted-foreground text-center md:text-left">
-                {t("Showing")} 1-{filteredTransactions.length} {t("of")} {transactions.length} {t("transactions")}
+                {"Showing"} 1-{filteredTransactions.length} {"Of"} {transactions.length} {"Transactions"}
               </p>
               <div className="flex gap-2">
                 <Button variant="outline" size="sm" disabled>
-                  {t("Previous")}
+                  {"Previous"}
                 </Button>
                 <Button variant="outline" size="sm">
-                  {t("Next")}
+                  {"Next"}
                 </Button>
               </div>
             </div>

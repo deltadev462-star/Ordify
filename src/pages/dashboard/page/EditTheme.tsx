@@ -7,8 +7,8 @@ import { useTranslation } from "react-i18next";
 // Removed unused imports: AppSidebar, Header, SidebarInset/SidebarProvider
 
 function EditTheme() {
-  const { id } = useParams<{ id: string }>();
   const { t } = useTranslation();
+  const { id } = useParams<{ id: string }>();
   const [theme, setTheme] = useState({
     id: 0,
     title: "",
@@ -21,34 +21,34 @@ function EditTheme() {
     () => [
       {
         id: 1,
-        title: t("darkMode"),
-        description: t("darkThemeDescription"),
+        title: "Dark Mode",
+        description: "Dark Theme Description",
         image: "/th (1).jpg",
         tryLink: "/try/dark",
       },
       {
         id: 2,
-        title: t("lightMode"),
-        description: t("lightThemeDescription"),
+        title: "Light Mode",
+        description: "Light Theme Description",
         image: "/th (2).jpg",
         tryLink: "/try/light",
       },
       {
         id: 3,
-        title: t("darkMode"),
-        description: t("darkThemeDescription"),
+        title: "Dark Mode",
+        description: "Dark Theme Description",
         image: "/th (3).jpg",
         tryLink: "/try/dark",
       },
       {
         id: 4,
-        title: t("lightMode"),
-        description: t("lightThemeDescription"),
+        title: "Light Mode",
+        description: "Light Theme Description",
         image: "/th (4).jpg",
         tryLink: "/try/light",
       },
     ],
-    [t]
+    []
   );
 
   useEffect(() => {
@@ -60,22 +60,22 @@ function EditTheme() {
 
   const handleSave = () => {
     // Mock save, in real app would call API
-    alert(t("themeSaved"));
+    alert(t("themes.themeSaved"));
   };
 
   return (
-    <div dir="rtl">
+    <div>
       <div className="flex bg-white dark:bg-black/80 rounded-2xl m-1 flex-1 flex-col gap-4 p-4 pt-0">
         <Title
-          Subtitle={t("editSelectedTheme")}
+          Subtitle={t("themes.editSelectedTheme")}
           className=""
           classNamee=""
-          title={`${t("editTheme")} ${id}`}
+          title={`${t("themes.editTheme")} ${id}`}
         />
         <div className="space-y-4">
           <div>
             <label className="block text-sm font-medium mb-1">
-              {t("title")}
+              {t("common.title")}
             </label>
             <Input
               value={theme.title}
@@ -84,7 +84,7 @@ function EditTheme() {
           </div>
           <div>
             <label className="block text-sm font-medium mb-1">
-              {t("description")}
+              {t("common.description")}
             </label>
             <Input
               value={theme.description}
@@ -95,7 +95,7 @@ function EditTheme() {
           </div>
           <div>
             <label className="block text-sm font-medium mb-1">
-              {t("imageUrl")}
+              {t("themes.imageUrl")}
             </label>
             <Input
               value={theme.image}
@@ -104,14 +104,14 @@ function EditTheme() {
           </div>
           <div>
             <label className="block text-sm font-medium mb-1">
-              {t("tryLink")}
+              {t("themes.tryLink")}
             </label>
             <Input
               value={theme.tryLink}
               onChange={(e) => setTheme({ ...theme, tryLink: e.target.value })}
             />
           </div>
-          <Button onClick={handleSave}>{t("saveChanges")}</Button>
+          <Button onClick={handleSave}>{t("common.saveChanges")}</Button>
         </div>
       </div>
     </div>

@@ -283,28 +283,28 @@ function Retargeting() {
         return (
           <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-400">
             <PlayCircle className="h-3 w-3 mr-1" />
-            {t("Active")}
+            {t("retargeting.status.active")}
           </Badge>
         );
       case "paused":
         return (
           <Badge className="bg-yellow-100 text-yellow-700 dark:bg-yellow-950/30 dark:text-yellow-400">
             <PauseCircle className="h-3 w-3 mr-1" />
-            {t("Paused")}
+            {t("retargeting.status.paused")}
           </Badge>
         );
       case "scheduled":
         return (
           <Badge className="bg-blue-100 text-blue-700 dark:bg-blue-950/30 dark:text-blue-400">
             <Clock className="h-3 w-3 mr-1" />
-            {t("Scheduled")}
+            {t("retargeting.status.scheduled")}
           </Badge>
         );
       case "draft":
         return (
           <Badge className="bg-gray-100 text-gray-700 dark:bg-gray-950/30 dark:text-gray-400">
             <Edit className="h-3 w-3 mr-1" />
-            {t("Draft")}
+            {t("retargeting.status.draft")}
           </Badge>
         );
       default:
@@ -336,36 +336,36 @@ function Retargeting() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuLabel>{t("Actions")}</DropdownMenuLabel>
+              <DropdownMenuLabel>{t("retargeting.actions.title")}</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem>
                 <Eye className="h-4 w-4 mr-2" />
-                {t("View Details")}
+                {t("retargeting.actions.viewDetails")}
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Edit className="h-4 w-4 mr-2" />
-                {t("Edit Campaign")}
+                {t("retargeting.actions.editCampaign")}
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Copy className="h-4 w-4 mr-2" />
-                {t("Duplicate")}
+                {t("retargeting.actions.duplicate")}
               </DropdownMenuItem>
               {campaign.status === "active" && (
                 <DropdownMenuItem>
                   <PauseCircle className="h-4 w-4 mr-2" />
-                  {t("Pause")}
+                  {t("retargeting.actions.pause")}
                 </DropdownMenuItem>
               )}
               {campaign.status === "paused" && (
                 <DropdownMenuItem>
                   <PlayCircle className="h-4 w-4 mr-2" />
-                  {t("Resume")}
+                  {t("retargeting.actions.resume")}
                 </DropdownMenuItem>
               )}
               <DropdownMenuSeparator />
               <DropdownMenuItem className="text-destructive">
                 <Trash2 className="h-4 w-4 mr-2" />
-                {t("Delete")}
+                {t("retargeting.actions.delete")}
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -375,7 +375,7 @@ function Retargeting() {
         <div>
           <p className="font-medium">{campaign.audience}</p>
           <p className="text-xs text-muted-foreground">
-            {campaign.audienceSize.toLocaleString()} {t("users")}
+            {campaign.audienceSize.toLocaleString()} {t("retargeting.users")}
           </p>
         </div>
 
@@ -394,22 +394,22 @@ function Retargeting() {
 
         <div className="grid grid-cols-2 gap-4 pt-2">
           <div>
-            <p className="text-sm text-muted-foreground">{t("Performance")}</p>
+            <p className="text-sm text-muted-foreground">{t("retargeting.performance")}</p>
             <div className="space-y-1 mt-1">
               <div className="flex items-center justify-between text-xs">
-                <span className="text-muted-foreground">{t("CTR")}</span>
+                <span className="text-muted-foreground">{t("retargeting.ctr")}</span>
                 <span className="font-medium">
                   {campaign.impressions > 0 ? ((campaign.clicks / campaign.impressions) * 100).toFixed(1) : 0}%
                 </span>
               </div>
               <Progress value={campaign.impressions > 0 ? (campaign.clicks / campaign.impressions) * 100 : 0} className="h-2" />
               <p className="text-xs text-muted-foreground">
-                {campaign.conversions} {t("conversions")}
+                {campaign.conversions} {t("retargeting.conversions")}
               </p>
             </div>
           </div>
           <div>
-            <p className="text-sm text-muted-foreground">{t("Revenue")}</p>
+            <p className="text-sm text-muted-foreground">{t("retargeting.revenue")}</p>
             <p className="font-medium mt-1">EGP {campaign.revenue.toLocaleString()}</p>
             <div className="flex items-center gap-1 mt-1">
               <Progress value={(campaign.spent / campaign.budget) * 100} className="h-2 flex-1" />
@@ -422,7 +422,7 @@ function Retargeting() {
 
         {campaign.roi > 0 && (
           <div className="flex items-center justify-between pt-2 border-t">
-            <span className="text-sm text-muted-foreground">{t("ROI")}</span>
+            <span className="text-sm text-muted-foreground">{t("retargeting.roi")}</span>
             <p className="font-bold text-emerald-600 dark:text-emerald-400">
               {campaign.roi.toLocaleString()}%
             </p>
@@ -437,19 +437,19 @@ function Retargeting() {
       <div className="flex bg-white dark:bg-black/80 rounded-2xl m-1 flex-1 flex-col gap-6 p-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <Title
-            title={t("Retargeting")}
-            Subtitle={t("Re-engage visitors and recover lost sales with targeted campaigns")}
+            title={t("retargeting.title")}
+            Subtitle={t("retargeting.subtitle")}
             className="text-3xl"
             classNamee=""
           />
           <div className="flex gap-2 w-full sm:w-auto">
             <Button variant="outline" className="glow-on-hover flex-1 sm:flex-none">
               <Settings className="h-4 w-4 mr-2" />
-              {t("Settings")}
+              {t("retargeting.buttons.settings")}
             </Button>
             <Button className="glow-on-hover flex-1 sm:flex-none" size="lg">
               <Plus className="h-4 w-4 mr-2" />
-              {t("Create Campaign")}
+              {t("retargeting.buttons.createCampaign")}
             </Button>
           </div>
         </div>
@@ -460,11 +460,11 @@ function Retargeting() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t("Active Campaigns")}</p>
+                  <p className="text-sm text-muted-foreground">{t("retargeting.stats.activeCampaigns")}</p>
                   <p className="text-3xl font-bold mt-1">{activeCampaigns}</p>
                   <div className="flex items-center gap-1 mt-2">
                     <Activity className="h-3 w-3 text-primary" />
-                    <span className="text-xs text-primary">{t("Running now")}</span>
+                    <span className="text-xs text-primary">{t("retargeting.stats.runningNow")}</span>
                   </div>
                 </div>
                 <div className="h-12 w-12 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
@@ -478,7 +478,7 @@ function Retargeting() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t("Revenue Generated")}</p>
+                  <p className="text-sm text-muted-foreground">{t("retargeting.stats.revenueGenerated")}</p>
                   <p className="text-3xl font-bold mt-1">EGP {(totalRevenue / 1000).toFixed(1)}K</p>
                   <div className="flex items-center gap-1 mt-2">
                     <TrendingUp className="h-3 w-3 text-emerald-600 dark:text-emerald-400" />
@@ -496,11 +496,11 @@ function Retargeting() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t("Average ROI")}</p>
+                  <p className="text-sm text-muted-foreground">{t("retargeting.stats.averageROI")}</p>
                   <p className="text-3xl font-bold mt-1">{avgROI.toFixed(0)}%</p>
                   <div className="flex items-center gap-1 mt-2">
                     <BarChart3 className="h-3 w-3 text-purple-600 dark:text-purple-400" />
-                    <span className="text-xs text-purple-600 dark:text-purple-400">{t("Return")}</span>
+                    <span className="text-xs text-purple-600 dark:text-purple-400">{t("retargeting.stats.return")}</span>
                   </div>
                 </div>
                 <div className="h-12 w-12 rounded-full bg-gradient-to-br from-purple-500/20 to-purple-400/10 flex items-center justify-center">
@@ -514,11 +514,11 @@ function Retargeting() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t("Conversions")}</p>
+                  <p className="text-sm text-muted-foreground">{t("retargeting.stats.conversions")}</p>
                   <p className="text-3xl font-bold mt-1">{totalConversions}</p>
                   <div className="flex items-center gap-1 mt-2">
                     <Users className="h-3 w-3 text-blue-600 dark:text-blue-400" />
-                    <span className="text-xs text-blue-600 dark:text-blue-400">{t("Recovered")}</span>
+                    <span className="text-xs text-blue-600 dark:text-blue-400">{t("retargeting.stats.recovered")}</span>
                   </div>
                 </div>
                 <div className="h-12 w-12 rounded-full bg-gradient-to-br from-blue-500/20 to-blue-400/10 flex items-center justify-center">
@@ -532,7 +532,7 @@ function Retargeting() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t("Ad Spend")}</p>
+                  <p className="text-sm text-muted-foreground">{t("retargeting.stats.adSpend")}</p>
                   <p className="text-3xl font-bold mt-1">EGP {(totalSpent / 1000).toFixed(1)}K</p>
                   <Progress value={(totalSpent / campaigns.reduce((sum, c) => sum + c.budget, 0)) * 100} className="h-2 mt-2" />
                 </div>
@@ -546,8 +546,8 @@ function Retargeting() {
 
         <Tabs value={selectedTab} onValueChange={setSelectedTab} className="space-y-6">
           <TabsList className="grid grid-cols-2 w-full max-w-[400px]">
-            <TabsTrigger value="campaigns">{t("Campaigns")}</TabsTrigger>
-            <TabsTrigger value="audiences">{t("Audiences")}</TabsTrigger>
+            <TabsTrigger value="campaigns">{t("retargeting.tabs.campaigns")}</TabsTrigger>
+            <TabsTrigger value="audiences">{t("retargeting.tabs.audiences")}</TabsTrigger>
           </TabsList>
 
           <TabsContent value="campaigns" className="space-y-6">
@@ -562,8 +562,8 @@ function Retargeting() {
                     <ShoppingCart className="h-5 w-5 text-orange-600 dark:text-orange-400" />
                   </div>
                   <div className="text-left">
-                    <p className="font-medium">{t("Cart Recovery")}</p>
-                    <p className="text-xs text-muted-foreground">{t("Win back abandoners")}</p>
+                    <p className="font-medium">{t("retargeting.quickActions.cartRecovery")}</p>
+                    <p className="text-xs text-muted-foreground">{t("retargeting.quickActions.cartRecoveryDesc")}</p>
                   </div>
                 </div>
               </Button>
@@ -576,8 +576,8 @@ function Retargeting() {
                     <Eye className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                   </div>
                   <div className="text-left">
-                    <p className="font-medium">{t("Browse Abandonment")}</p>
-                    <p className="text-xs text-muted-foreground">{t("Re-engage browsers")}</p>
+                    <p className="font-medium">{t("retargeting.quickActions.browseAbandonment")}</p>
+                    <p className="text-xs text-muted-foreground">{t("retargeting.quickActions.browseAbandonmentDesc")}</p>
                   </div>
                 </div>
               </Button>
@@ -590,8 +590,8 @@ function Retargeting() {
                     <UserPlus className="h-5 w-5 text-green-600 dark:text-green-400" />
                   </div>
                   <div className="text-left">
-                    <p className="font-medium">{t("Post-Purchase")}</p>
-                    <p className="text-xs text-muted-foreground">{t("Upsell customers")}</p>
+                    <p className="font-medium">{t("retargeting.quickActions.postPurchase")}</p>
+                    <p className="text-xs text-muted-foreground">{t("retargeting.quickActions.postPurchaseDesc")}</p>
                   </div>
                 </div>
               </Button>
@@ -604,8 +604,8 @@ function Retargeting() {
                     <RotateCw className="h-5 w-5 text-purple-600 dark:text-purple-400" />
                   </div>
                   <div className="text-left">
-                    <p className="font-medium">{t("Win-Back")}</p>
-                    <p className="text-xs text-muted-foreground">{t("Re-activate customers")}</p>
+                    <p className="font-medium">{t("retargeting.quickActions.winBack")}</p>
+                    <p className="text-xs text-muted-foreground">{t("retargeting.quickActions.winBackDesc")}</p>
                   </div>
                 </div>
               </Button>
@@ -615,13 +615,13 @@ function Retargeting() {
             <Card className="glass-card border-0">
               <CardHeader>
                 <div className="flex flex-col gap-4">
-                  <CardTitle className="text-lg">{t("Retargeting Campaigns")}</CardTitle>
+                  <CardTitle className="text-lg">{t("retargeting.retargetingCampaigns")}</CardTitle>
                   
                   <div className="flex flex-col sm:flex-row gap-3">
                     <div className="relative flex-1">
                       <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                       <Input
-                        placeholder={t("Search campaigns...")}
+                        placeholder={t("retargeting.searchPlaceholder")}
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         className="pl-10 w-full"
@@ -631,27 +631,27 @@ function Retargeting() {
                     <div className="flex gap-2">
                       <Select value={filterType} onValueChange={setFilterType}>
                         <SelectTrigger className="w-full sm:w-[140px]">
-                          <SelectValue placeholder={t("Type")} />
+                          <SelectValue placeholder={t("retargeting.filters.type")} />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="all">{t("All Types")}</SelectItem>
-                          <SelectItem value="abandoned-cart">{t("Cart")}</SelectItem>
-                          <SelectItem value="browse-abandonment">{t("Browse")}</SelectItem>
-                          <SelectItem value="post-purchase">{t("Post")}</SelectItem>
-                          <SelectItem value="win-back">{t("Win-Back")}</SelectItem>
+                          <SelectItem value="all">{t("retargeting.filters.allTypes")}</SelectItem>
+                          <SelectItem value="abandoned-cart">{t("retargeting.filters.cart")}</SelectItem>
+                          <SelectItem value="browse-abandonment">{t("retargeting.filters.browse")}</SelectItem>
+                          <SelectItem value="post-purchase">{t("retargeting.filters.post")}</SelectItem>
+                          <SelectItem value="win-back">{t("retargeting.filters.winBack")}</SelectItem>
                         </SelectContent>
                       </Select>
 
                       <Select value={filterStatus} onValueChange={setFilterStatus}>
                         <SelectTrigger className="w-full sm:w-[120px]">
-                          <SelectValue placeholder={t("Status")} />
+                          <SelectValue placeholder={t("retargeting.filters.status")} />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="all">{t("All")}</SelectItem>
-                          <SelectItem value="active">{t("Active")}</SelectItem>
-                          <SelectItem value="paused">{t("Paused")}</SelectItem>
-                          <SelectItem value="scheduled">{t("Scheduled")}</SelectItem>
-                          <SelectItem value="draft">{t("Draft")}</SelectItem>
+                          <SelectItem value="all">{t("retargeting.filters.all")}</SelectItem>
+                          <SelectItem value="active">{t("retargeting.status.active")}</SelectItem>
+                          <SelectItem value="paused">{t("retargeting.status.paused")}</SelectItem>
+                          <SelectItem value="scheduled">{t("retargeting.status.scheduled")}</SelectItem>
+                          <SelectItem value="draft">{t("retargeting.status.draft")}</SelectItem>
                         </SelectContent>
                       </Select>
 
@@ -676,14 +676,14 @@ function Retargeting() {
                   <Table>
                     <TableHeader>
                       <TableRow className="border-b border-gray-200 dark:border-gray-700">
-                        <TableHead>{t("Campaign")}</TableHead>
-                        <TableHead>{t("Audience")}</TableHead>
-                        <TableHead>{t("Channels")}</TableHead>
-                        <TableHead>{t("Status")}</TableHead>
-                        <TableHead>{t("Performance")}</TableHead>
-                        <TableHead>{t("Revenue")}</TableHead>
-                        <TableHead>{t("ROI")}</TableHead>
-                        <TableHead className="text-right">{t("Actions")}</TableHead>
+                        <TableHead>{t("retargeting.table.campaign")}</TableHead>
+                        <TableHead>{t("retargeting.table.audience")}</TableHead>
+                        <TableHead>{t("retargeting.table.channels")}</TableHead>
+                        <TableHead>{t("retargeting.table.status")}</TableHead>
+                        <TableHead>{t("retargeting.table.performance")}</TableHead>
+                        <TableHead>{t("retargeting.table.revenue")}</TableHead>
+                        <TableHead>{t("retargeting.table.roi")}</TableHead>
+                        <TableHead className="text-right">{t("retargeting.table.actions")}</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -705,7 +705,7 @@ function Retargeting() {
                             <div>
                               <p className="font-medium">{campaign.audience}</p>
                               <p className="text-xs text-muted-foreground">
-                                {campaign.audienceSize.toLocaleString()} {t("users")}
+                                {campaign.audienceSize.toLocaleString()} {t("retargeting.users")}
                               </p>
                             </div>
                           </TableCell>
@@ -727,14 +727,14 @@ function Retargeting() {
                           <TableCell>
                             <div className="space-y-1">
                               <div className="flex items-center justify-between text-xs">
-                                <span className="text-muted-foreground">{t("CTR")}</span>
+                                <span className="text-muted-foreground">{t("retargeting.ctr")}</span>
                                 <span className="font-medium">
                                   {((campaign.clicks / campaign.impressions) * 100).toFixed(1)}%
                                 </span>
                               </div>
                               <Progress value={(campaign.clicks / campaign.impressions) * 100} className="h-2" />
                               <p className="text-xs text-muted-foreground">
-                                {campaign.conversions} {t("conversions")}
+                                {campaign.conversions} {t("retargeting.conversions")}
                               </p>
                             </div>
                           </TableCell>
@@ -756,7 +756,7 @@ function Retargeting() {
                                   <p className="font-bold text-emerald-600 dark:text-emerald-400">
                                     {campaign.roi.toLocaleString()}%
                                   </p>
-                                  <p className="text-xs text-muted-foreground">{t("Return")}</p>
+                                  <p className="text-xs text-muted-foreground">{t("retargeting.return")}</p>
                                 </>
                               ) : (
                                 <span className="text-muted-foreground">-</span>
@@ -771,37 +771,37 @@ function Retargeting() {
                                 </Button>
                               </DropdownMenuTrigger>
                               <DropdownMenuContent align="end">
-                                <DropdownMenuLabel>{t("Actions")}</DropdownMenuLabel>
+                                <DropdownMenuLabel>{t("retargeting.actions.title")}</DropdownMenuLabel>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem>
                                   <Eye className="h-4 w-4 mr-2" />
-                                  {t("View Details")}
+                                  {t("retargeting.actions.viewDetails")}
                                 </DropdownMenuItem>
                                 <DropdownMenuItem>
                                   <Edit className="h-4 w-4 mr-2" />
-                                  {t("Edit Campaign")}
+                                  {t("retargeting.actions.editCampaign")}
                                 </DropdownMenuItem>
                                 <DropdownMenuItem>
                                   <Copy className="h-4 w-4 mr-2" />
-                                  {t("Duplicate")}
+                                  {t("retargeting.actions.duplicate")}
                                 </DropdownMenuItem>
                                 <DropdownMenuItem>
                                   {campaign.status === "active" ? (
                                     <>
                                       <PauseCircle className="h-4 w-4 mr-2" />
-                                      {t("Pause")}
+                                      {t("retargeting.actions.pause")}
                                     </>
                                   ) : campaign.status === "paused" ? (
                                     <>
                                       <PlayCircle className="h-4 w-4 mr-2" />
-                                      {t("Resume")}
+                                      {t("retargeting.actions.resume")}
                                     </>
                                   ) : null}
                                 </DropdownMenuItem>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem className="text-destructive">
                                   <Trash2 className="h-4 w-4 mr-2" />
-                                  {t("Delete")}
+                                  {t("retargeting.actions.delete")}
                                 </DropdownMenuItem>
                               </DropdownMenuContent>
                             </DropdownMenu>
@@ -815,14 +815,14 @@ function Retargeting() {
                 {/* Pagination */}
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
                   <p className="text-sm text-muted-foreground text-center sm:text-left">
-                    {t("Showing")} 1-{filteredCampaigns.length} {t("of")} {campaigns.length} {t("campaigns")}
+                    {t("retargeting.pagination.showing")} 1-{filteredCampaigns.length} {t("retargeting.pagination.of")} {campaigns.length} {t("retargeting.pagination.campaigns")}
                   </p>
                   <div className="flex gap-2">
                     <Button variant="outline" size="sm" disabled>
-                      {t("Previous")}
+                      {t("retargeting.pagination.previous")}
                     </Button>
                     <Button variant="outline" size="sm">
-                      {t("Next")}
+                      {t("retargeting.pagination.next")}
                     </Button>
                   </div>
                 </div>
@@ -834,13 +834,13 @@ function Retargeting() {
             <Card className="glass-card border-0">
               <CardHeader>
                 <div className="flex items-center justify-between">
-                  <CardTitle className="text-lg">{t("Audience Segments")}</CardTitle>
+                  <CardTitle className="text-lg">{t("retargeting.audienceSegments")}</CardTitle>
                   <Button size="sm" className="sm:hidden">
                     <Plus className="h-4 w-4" />
                   </Button>
                   <Button size="sm" className="hidden sm:flex">
                     <Plus className="h-4 w-4 mr-2" />
-                    {t("Create Segment")}
+                    {t("retargeting.buttons.createSegment")}
                   </Button>
                 </div>
               </CardHeader>
@@ -866,7 +866,7 @@ function Retargeting() {
                         
                         <div className="grid grid-cols-2 gap-4">
                           <div className="space-y-1">
-                            <p className="text-xs text-muted-foreground">{t("Audience Size")}</p>
+                            <p className="text-xs text-muted-foreground">{t("retargeting.audienceSize")}</p>
                             <p className="text-xl font-bold">{segment.size.toLocaleString()}</p>
                             <div className="flex items-center gap-1">
                               <TrendingUp className={`h-3 w-3 ${segment.color}`} />
@@ -874,7 +874,7 @@ function Retargeting() {
                             </div>
                           </div>
                           <div className="space-y-1">
-                            <p className="text-xs text-muted-foreground">{t("Avg. Value")}</p>
+                            <p className="text-xs text-muted-foreground">{t("retargeting.value")}</p>
                             <p className="text-xl font-bold">EGP {segment.value}</p>
                             <Progress value={segment.engagement} className="h-2" />
                           </div>
@@ -883,11 +883,11 @@ function Retargeting() {
                         <div className="flex gap-2 mt-4">
                           <Button size="sm" className="flex-1" variant="outline">
                             <Target className="h-4 w-4 mr-2" />
-                            {t("Target")}
+                            {t("retargeting.buttons.target")}
                           </Button>
                           <Button size="sm" className="flex-1" variant="outline">
                             <BarChart3 className="h-4 w-4 mr-2" />
-                            {t("Analyze")}
+                            {t("retargeting.buttons.analyze")}
                           </Button>
                         </div>
                       </CardContent>

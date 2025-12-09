@@ -318,28 +318,28 @@ function WhatsappMarketing() {
         return (
           <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-400">
             <PlayCircle className="h-3 w-3 mr-1" />
-            {t("Active")}
+            {t("whatsappMarketing.campaignList.status.active")}
           </Badge>
         );
       case "paused":
         return (
           <Badge className="bg-yellow-100 text-yellow-700 dark:bg-yellow-950/30 dark:text-yellow-400">
             <PauseCircle className="h-3 w-3 mr-1" />
-            {t("Paused")}
+            {t("whatsappMarketing.campaignList.status.paused")}
           </Badge>
         );
       case "scheduled":
         return (
           <Badge className="bg-blue-100 text-blue-700 dark:bg-blue-950/30 dark:text-blue-400">
             <Clock className="h-3 w-3 mr-1" />
-            {t("Scheduled")}
+            {t("campaigns.scheduled")}
           </Badge>
         );
       case "completed":
         return (
           <Badge className="bg-gray-100 text-gray-700 dark:bg-gray-950/30 dark:text-gray-400">
             <CheckCircle className="h-3 w-3 mr-1" />
-            {t("Completed")}
+            {t("whatsappMarketing.campaignList.status.completed")}
           </Badge>
         );
       default:
@@ -350,11 +350,11 @@ function WhatsappMarketing() {
   const getTemplateStatusBadge = (status: string) => {
     switch (status) {
       case "approved":
-        return <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-400">{t("Approved")}</Badge>;
+        return <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-400">{t("whatsappMarketing.templateStatus.approved")}</Badge>;
       case "pending":
-        return <Badge className="bg-yellow-100 text-yellow-700 dark:bg-yellow-950/30 dark:text-yellow-400">{t("Pending")}</Badge>;
+        return <Badge className="bg-yellow-100 text-yellow-700 dark:bg-yellow-950/30 dark:text-yellow-400">{t("whatsappMarketing.templateStatus.pending")}</Badge>;
       case "rejected":
-        return <Badge className="bg-red-100 text-red-700 dark:bg-red-950/30 dark:text-red-400">{t("Rejected")}</Badge>;
+        return <Badge className="bg-red-100 text-red-700 dark:bg-red-950/30 dark:text-red-400">{t("whatsappMarketing.templateStatus.rejected")}</Badge>;
       default:
         return null;
     }
@@ -384,30 +384,30 @@ function WhatsappMarketing() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuLabel>{t("Actions")}</DropdownMenuLabel>
+              <DropdownMenuLabel>{t("common.actions")}</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem>
                 <Eye className="h-4 w-4 mr-2" />
-                {t("View Report")}
+                {t("campaigns.viewReport")}
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Edit className="h-4 w-4 mr-2" />
-                {t("Edit")}
+                {t("whatsappMarketing.campaignList.edit")}
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Copy className="h-4 w-4 mr-2" />
-                {t("Duplicate")}
+                {t("campaigns.duplicate")}
               </DropdownMenuItem>
               {campaign.status === "active" && (
                 <DropdownMenuItem>
                   <PauseCircle className="h-4 w-4 mr-2" />
-                  {t("Pause")}
+                  {t("whatsappMarketing.campaignList.pause")}
                 </DropdownMenuItem>
               )}
               <DropdownMenuSeparator />
               <DropdownMenuItem className="text-destructive">
                 <Trash2 className="h-4 w-4 mr-2" />
-                {t("Delete")}
+                {t("common.delete")}
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -417,42 +417,42 @@ function WhatsappMarketing() {
         <div>
           <p className="font-medium">{campaign.audience}</p>
           <p className="text-xs text-muted-foreground">
-            {campaign.audienceSize.toLocaleString()} {t("contacts")}
+            {campaign.audienceSize.toLocaleString()} {t("whatsappMarketing.contacts")}
           </p>
         </div>
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <p className="text-sm text-muted-foreground">{t("Delivered")}</p>
+            <p className="text-sm text-muted-foreground">{t("customerCommunication.delivered")}</p>
             <div className="space-y-1 mt-1">
               <div className="flex items-center justify-between text-xs">
                 <span className="font-medium">
-                  {campaign.deliveredCount > 0 
+                  {campaign.deliveredCount > 0
                     ? ((campaign.deliveredCount / campaign.sentCount) * 100).toFixed(1)
                     : 0}%
                 </span>
               </div>
-              <Progress 
-                value={campaign.deliveredCount > 0 ? (campaign.deliveredCount / campaign.sentCount) * 100 : 0} 
+              <Progress
+                value={campaign.deliveredCount > 0 ? (campaign.deliveredCount / campaign.sentCount) * 100 : 0}
                 className="h-2"
               />
             </div>
           </div>
 
           <div>
-            <p className="text-sm text-muted-foreground">{t("Engagement")}</p>
+            <p className="text-sm text-muted-foreground">{t("whatsappMarketing.quickStats.engagement")}</p>
             <div className="flex items-center gap-4 text-xs mt-1">
               <div>
                 <span className="font-medium">
                   {campaign.deliveredCount > 0 ? ((campaign.readCount / campaign.deliveredCount) * 100).toFixed(0) : 0}%
                 </span>
-                <span className="text-muted-foreground ml-1">{t("Read")}</span>
+                <span className="text-muted-foreground ml-1">{t("campaigns.conversions")}</span>
               </div>
               <div>
                 <span className="font-medium">
                   {campaign.readCount > 0 ? ((campaign.responseCount / campaign.readCount) * 100).toFixed(0) : 0}%
                 </span>
-                <span className="text-muted-foreground ml-1">{t("Reply")}</span>
+                <span className="text-muted-foreground ml-1">{t("customers.email")}</span>
               </div>
             </div>
           </div>
@@ -460,7 +460,7 @@ function WhatsappMarketing() {
 
         {campaign.conversionCount > 0 && (
           <div className="flex items-center justify-between pt-2 border-t">
-            <span className="text-sm text-muted-foreground">{t("Conversions")}</span>
+            <span className="text-sm text-muted-foreground">{t("campaigns.conversions")}</span>
             <div className="text-right">
               <p className="font-bold text-emerald-600 dark:text-emerald-400">
                 {campaign.conversionCount}
@@ -482,7 +482,7 @@ function WhatsappMarketing() {
           <div className="flex items-center gap-3">
             <Avatar className="h-12 w-12">
               {contact.avatar && <AvatarImage src={contact.avatar} />}
-              <AvatarFallback>{contact.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+              <AvatarFallback>{contact.name.split(' ').filter(Boolean).map(n => n[0]).join('')}</AvatarFallback>
             </Avatar>
             <div>
               <p className="font-medium">{contact.name}</p>
@@ -494,7 +494,7 @@ function WhatsappMarketing() {
             contact.status === "blocked" ? "bg-red-100 text-red-700 dark:bg-red-950/30 dark:text-red-400" :
             "bg-gray-100 text-gray-700 dark:bg-gray-950/30 dark:text-gray-400"
           }>
-            {t(contact.status)}
+            {contact.status}
           </Badge>
         </div>
 
@@ -506,18 +506,18 @@ function WhatsappMarketing() {
 
         <div className="grid grid-cols-2 gap-3 text-sm mb-3">
           <div>
-            <p className="text-muted-foreground">{t("Chats")}</p>
+            <p className="text-muted-foreground">{t("whatsappMarketing.contactsOverview.groups")}</p>
             <p className="font-medium">{contact.conversationCount}</p>
           </div>
           <div>
-            <p className="text-muted-foreground">{t("Last seen")}</p>
+            <p className="text-muted-foreground">{t("customers.lastSeen")}</p>
             <p className="font-medium">{new Date(contact.lastSeen).toLocaleDateString()}</p>
           </div>
         </div>
 
         <Button variant="outline" size="sm" className="w-full">
           <MessageSquare className="h-4 w-4 mr-2" />
-          {t("Chat")}
+          {t("navigation.agentStore")}
         </Button>
       </CardContent>
     </Card>
@@ -528,19 +528,19 @@ function WhatsappMarketing() {
       <div className="flex bg-white dark:bg-black/80 rounded-2xl m-1 flex-1 flex-col gap-6 p-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <Title
-            title={t("WhatsApp Marketing")}
-            Subtitle={t("Engage customers with personalized WhatsApp campaigns")}
+            title={t("whatsappMarketing.title")}
+            Subtitle={t("whatsappMarketing.subtitle")}
             className="text-3xl"
             classNamee=""
           />
           <div className="flex gap-2 w-full sm:w-auto">
             <Button variant="outline" className="glow-on-hover flex-1 sm:flex-none">
               <QrCode className="h-4 w-4 mr-2" />
-              {t("QR Code")}
+              {t("products.barcode")}
             </Button>
             <Button className="glow-on-hover flex-1 sm:flex-none" size="lg">
               <Plus className="h-4 w-4 mr-2" />
-              {t("Create Campaign")}
+              {t("whatsappMarketing.createCampaign")}
             </Button>
           </div>
         </div>
@@ -551,12 +551,12 @@ function WhatsappMarketing() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t("Active Contacts")}</p>
+                  <p className="text-sm text-muted-foreground">{"Active  Contacts"}</p>
                   <p className="text-3xl font-bold mt-1">{activeContacts.toLocaleString()}</p>
                   <div className="flex items-center gap-1 mt-2">
                     <TrendingUp className="h-3 w-3 text-emerald-600 dark:text-emerald-400" />
                     <span className="text-xs text-emerald-600 dark:text-emerald-400">
-                      +{((activeContacts / totalContacts) * 100).toFixed(1)}% {t("opt-in")}
+                      +{((activeContacts / totalContacts) * 100).toFixed(1)}% {"Opt-in"}
                     </span>
                   </div>
                 </div>
@@ -571,12 +571,12 @@ function WhatsappMarketing() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t("Messages Sent")}</p>
+                  <p className="text-sm text-muted-foreground">{"Messages  Sent"}</p>
                   <p className="text-3xl font-bold mt-1">{(totalMessagesSent / 1000).toFixed(0)}K</p>
                   <div className="flex items-center gap-1 mt-2">
                     <Activity className="h-3 w-3 text-blue-600 dark:text-blue-400" />
                     <span className="text-xs text-blue-600 dark:text-blue-400">
-                      {avgDeliveryRate}% {t("delivered")}
+                      {avgDeliveryRate}% {"Delivered"}
                     </span>
                   </div>
                 </div>
@@ -591,7 +591,7 @@ function WhatsappMarketing() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t("Avg. Read Rate")}</p>
+                  <p className="text-sm text-muted-foreground">{t("campaigns.conversions")}</p>
                   <p className="text-3xl font-bold mt-1">{avgReadRate}%</p>
                   <Progress value={avgReadRate} className="h-2 mt-2" />
                 </div>
@@ -606,12 +606,12 @@ function WhatsappMarketing() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t("Response Rate")}</p>
+                  <p className="text-sm text-muted-foreground">{t("retargeting.conversionRate")}</p>
                   <p className="text-3xl font-bold mt-1">{avgResponseRate}%</p>
                   <div className="flex items-center gap-1 mt-2">
                     <TrendingUp className="h-3 w-3 text-orange-600 dark:text-orange-400" />
                     <span className="text-xs text-orange-600 dark:text-orange-400">
-                      +2.3% {t("vs last month")}
+                      +2.3% {t("whatsappMarketing.quickStats.vsLastMonth")}
                     </span>
                   </div>
                 </div>
@@ -628,7 +628,7 @@ function WhatsappMarketing() {
           <CardHeader>
             <CardTitle className="text-lg flex items-center gap-2">
               <MessageSquare className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
-              {t("WhatsApp Business Account")}
+              {t("whatsappMarketing.title")} Business Account
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -644,7 +644,7 @@ function WhatsappMarketing() {
                   <div className="flex items-center justify-center sm:justify-start gap-2 mt-1 flex-wrap">
                     <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-400">
                       <CheckCircle className="h-3 w-3 mr-1" />
-                      {t("Verified Business")}
+                      {t("common.status")} Business
                     </Badge>
                     <Badge variant="outline">
                       <Globe className="h-3 w-3 mr-1" />
@@ -658,16 +658,16 @@ function WhatsappMarketing() {
                 <div className="flex gap-6">
                   <div className="text-center">
                     <p className="text-2xl font-bold">1K</p>
-                    <p className="text-xs text-muted-foreground">{t("Daily Limit")}</p>
+                    <p className="text-xs text-muted-foreground">{t("common.date")} Limit</p>
                   </div>
                   <div className="text-center">
                     <p className="text-2xl font-bold">100K</p>
-                    <p className="text-xs text-muted-foreground">{t("Monthly Limit")}</p>
+                    <p className="text-xs text-muted-foreground">{t("dashboard.thisMonth")} Limit</p>
                   </div>
                 </div>
                 <Button variant="outline">
                   <Settings className="h-4 w-4 mr-2" />
-                  {t("Configure")}
+                  {t("whatsappMarketing.automationRules.createAutomation")}
                 </Button>
               </div>
             </div>
@@ -676,10 +676,10 @@ function WhatsappMarketing() {
 
         <Tabs value={selectedTab} onValueChange={setSelectedTab} className="space-y-6">
           <TabsList className="grid w-full max-w-[600px] grid-cols-2 sm:grid-cols-4">
-            <TabsTrigger value="campaigns">{t("Campaigns")}</TabsTrigger>
-            <TabsTrigger value="templates">{t("Templates")}</TabsTrigger>
-            <TabsTrigger value="contacts">{t("Contacts")}</TabsTrigger>
-            <TabsTrigger value="automation">{t("Automation")}</TabsTrigger>
+            <TabsTrigger value="campaigns">{t("whatsappMarketing.campaigns")}</TabsTrigger>
+            <TabsTrigger value="templates">{t("whatsappMarketing.templates")}</TabsTrigger>
+            <TabsTrigger value="contacts">{t("whatsappMarketing.contacts")}</TabsTrigger>
+            <TabsTrigger value="automation">{t("whatsappMarketing.automation")}</TabsTrigger>
           </TabsList>
 
           <TabsContent value="campaigns" className="space-y-6">
@@ -694,8 +694,8 @@ function WhatsappMarketing() {
                     <Send className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                   </div>
                   <div className="text-left">
-                    <p className="font-medium">{t("Broadcast")}</p>
-                    <p className="text-xs text-muted-foreground">{t("Send to many")}</p>
+                    <p className="font-medium">{t("campaigns.type")}</p>
+                    <p className="text-xs text-muted-foreground">{t("common.sendEmail")}</p>
                   </div>
                 </div>
               </Button>
@@ -708,8 +708,8 @@ function WhatsappMarketing() {
                     <Zap className="h-5 w-5 text-purple-600 dark:text-purple-400" />
                   </div>
                   <div className="text-left">
-                    <p className="font-medium">{t("Automation")}</p>
-                    <p className="text-xs text-muted-foreground">{t("Auto-respond")}</p>
+                    <p className="font-medium">{t("whatsappMarketing.automation")}</p>
+                    <p className="text-xs text-muted-foreground">{t("retargeting.audience")}</p>
                   </div>
                 </div>
               </Button>
@@ -722,8 +722,8 @@ function WhatsappMarketing() {
                     <FileText className="h-5 w-5 text-green-600 dark:text-green-400" />
                   </div>
                   <div className="text-left">
-                    <p className="font-medium">{t("Template")}</p>
-                    <p className="text-xs text-muted-foreground">{t("Pre-approved")}</p>
+                    <p className="font-medium">{t("whatsappMarketing.templates")}</p>
+                    <p className="text-xs text-muted-foreground">{t("whatsappMarketing.templateStatus.approved")}</p>
                   </div>
                 </div>
               </Button>
@@ -736,8 +736,8 @@ function WhatsappMarketing() {
                     <MessageCircle className="h-5 w-5 text-orange-600 dark:text-orange-400" />
                   </div>
                   <div className="text-left">
-                    <p className="font-medium">{t("Interactive")}</p>
-                    <p className="text-xs text-muted-foreground">{t("Buttons & lists")}</p>
+                    <p className="font-medium">{t("common.actions")}</p>
+                    <p className="text-xs text-muted-foreground">{t("navigation.appMarketplace")}</p>
                   </div>
                 </div>
               </Button>
@@ -747,13 +747,13 @@ function WhatsappMarketing() {
             <Card className="glass-card border-0">
               <CardHeader>
                 <div className="flex flex-col gap-4">
-                  <CardTitle className="text-lg">{t("Campaign Management")}</CardTitle>
+                  <CardTitle className="text-lg">{t("campaigns.title")}</CardTitle>
                   
                   <div className="flex flex-col sm:flex-row gap-3">
                     <div className="relative flex-1">
                       <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                       <Input
-                        placeholder={t("Search campaigns...")}
+                        placeholder={t("common.search")}
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         className="pl-10 w-full"
@@ -763,27 +763,27 @@ function WhatsappMarketing() {
                     <div className="flex gap-2">
                       <Select value={filterType} onValueChange={setFilterType}>
                         <SelectTrigger className="w-full sm:w-[130px]">
-                          <SelectValue placeholder={t("Type")} />
+                          <SelectValue placeholder={t("campaigns.type")} />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="all">{t("All")}</SelectItem>
-                          <SelectItem value="broadcast">{t("Broadcast")}</SelectItem>
-                          <SelectItem value="automated">{t("Automated")}</SelectItem>
-                          <SelectItem value="template">{t("Template")}</SelectItem>
-                          <SelectItem value="interactive">{t("Interactive")}</SelectItem>
+                          <SelectItem value="all">{t("common.all")}</SelectItem>
+                          <SelectItem value="broadcast">{t("campaigns.type")}</SelectItem>
+                          <SelectItem value="automated">{t("whatsappMarketing.automation")}</SelectItem>
+                          <SelectItem value="template">{t("whatsappMarketing.templates")}</SelectItem>
+                          <SelectItem value="interactive">{t("common.actions")}</SelectItem>
                         </SelectContent>
                       </Select>
 
                       <Select value={filterStatus} onValueChange={setFilterStatus}>
                         <SelectTrigger className="w-full sm:w-[120px]">
-                          <SelectValue placeholder={t("Status")} />
+                          <SelectValue placeholder={t("campaigns.status")} />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="all">{t("All")}</SelectItem>
-                          <SelectItem value="active">{t("Active")}</SelectItem>
-                          <SelectItem value="paused">{t("Paused")}</SelectItem>
-                          <SelectItem value="scheduled">{t("Scheduled")}</SelectItem>
-                          <SelectItem value="completed">{t("Completed")}</SelectItem>
+                          <SelectItem value="all">{t("common.all")}</SelectItem>
+                          <SelectItem value="active">{t("whatsappMarketing.campaignList.status.active")}</SelectItem>
+                          <SelectItem value="paused">{t("whatsappMarketing.campaignList.status.paused")}</SelectItem>
+                          <SelectItem value="scheduled">{t("campaigns.scheduled")}</SelectItem>
+                          <SelectItem value="completed">{t("whatsappMarketing.campaignList.status.completed")}</SelectItem>
                         </SelectContent>
                       </Select>
 
@@ -808,13 +808,13 @@ function WhatsappMarketing() {
                   <Table>
                     <TableHeader>
                       <TableRow className="border-b border-gray-200 dark:border-gray-700">
-                        <TableHead>{t("Campaign")}</TableHead>
-                        <TableHead>{t("Audience")}</TableHead>
-                        <TableHead>{t("Status")}</TableHead>
-                        <TableHead>{t("Performance")}</TableHead>
-                        <TableHead>{t("Engagement")}</TableHead>
-                        <TableHead>{t("Conversions")}</TableHead>
-                        <TableHead className="text-right">{t("Actions")}</TableHead>
+                        <TableHead>{t("campaigns.campaignName")}</TableHead>
+                        <TableHead>{t("retargeting.audience")}</TableHead>
+                        <TableHead>{t("campaigns.status")}</TableHead>
+                        <TableHead>{t("crossSelling.performance")}</TableHead>
+                        <TableHead>{t("whatsappMarketing.quickStats.engagement")}</TableHead>
+                        <TableHead>{t("campaigns.conversions")}</TableHead>
+                        <TableHead className="text-right">{t("common.actions")}</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -836,7 +836,7 @@ function WhatsappMarketing() {
                             <div>
                               <p className="font-medium">{campaign.audience}</p>
                               <p className="text-xs text-muted-foreground">
-                                {campaign.audienceSize.toLocaleString()} {t("contacts")}
+                                {campaign.audienceSize.toLocaleString()} {t("whatsappMarketing.contacts")}
                               </p>
                             </div>
                           </TableCell>
@@ -844,7 +844,7 @@ function WhatsappMarketing() {
                           <TableCell>
                             <div className="space-y-1">
                               <div className="flex items-center justify-between text-xs">
-                                <span className="text-muted-foreground">{t("Delivered")}</span>
+                                <span className="text-muted-foreground">{t("customerCommunication.delivered")}</span>
                                 <span className="font-medium">
                                   {campaign.deliveredCount > 0 
                                     ? ((campaign.deliveredCount / campaign.sentCount) * 100).toFixed(1)
@@ -861,11 +861,11 @@ function WhatsappMarketing() {
                             <div className="flex items-center gap-4 text-sm">
                               <div className="text-center">
                                 <p className="font-medium">{((campaign.readCount / campaign.deliveredCount) * 100).toFixed(0)}%</p>
-                                <p className="text-xs text-muted-foreground">{t("Read")}</p>
+                                <p className="text-xs text-muted-foreground">{t("campaigns.conversions")}</p>
                               </div>
                               <div className="text-center">
                                 <p className="font-medium">{((campaign.responseCount / campaign.readCount) * 100).toFixed(0)}%</p>
-                                <p className="text-xs text-muted-foreground">{t("Reply")}</p>
+                                <p className="text-xs text-muted-foreground">{t("customers.email")}</p>
                               </div>
                             </div>
                           </TableCell>
@@ -891,30 +891,30 @@ function WhatsappMarketing() {
                                 </Button>
                               </DropdownMenuTrigger>
                               <DropdownMenuContent align="end">
-                                <DropdownMenuLabel>{t("Actions")}</DropdownMenuLabel>
+                                <DropdownMenuLabel>{t("common.actions")}</DropdownMenuLabel>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem>
                                   <Eye className="h-4 w-4 mr-2" />
-                                  {t("View Report")}
+                                  {t("campaigns.viewReport")}
                                 </DropdownMenuItem>
                                 <DropdownMenuItem>
                                   <Edit className="h-4 w-4 mr-2" />
-                                  {t("Edit")}
+                                  {t("whatsappMarketing.campaignList.edit")}
                                 </DropdownMenuItem>
                                 <DropdownMenuItem>
                                   <Copy className="h-4 w-4 mr-2" />
-                                  {t("Duplicate")}
+                                  {t("campaigns.duplicate")}
                                 </DropdownMenuItem>
                                 {campaign.status === "active" && (
                                   <DropdownMenuItem>
                                     <PauseCircle className="h-4 w-4 mr-2" />
-                                    {t("Pause")}
+                                    {t("whatsappMarketing.campaignList.pause")}
                                   </DropdownMenuItem>
                                 )}
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem className="text-destructive">
                                   <Trash2 className="h-4 w-4 mr-2" />
-                                  {t("Delete")}
+                                  {t("common.delete")}
                                 </DropdownMenuItem>
                               </DropdownMenuContent>
                             </DropdownMenu>
@@ -928,14 +928,14 @@ function WhatsappMarketing() {
                 {/* Pagination */}
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
                   <p className="text-sm text-muted-foreground text-center sm:text-left">
-                    {t("Showing")} 1-{filteredCampaigns.length} {t("of")} {campaigns.length} {t("campaigns")}
+                    {t("products.showingCount", { count: filteredCampaigns.length })} {campaigns.length} {t("whatsappMarketing.campaigns")}
                   </p>
                   <div className="flex gap-2">
                     <Button variant="outline" size="sm" disabled>
-                      {t("Previous")}
+                      {t("common.previous")}
                     </Button>
                     <Button variant="outline" size="sm">
-                      {t("Next")}
+                      {t("common.next")}
                     </Button>
                   </div>
                 </div>
@@ -990,12 +990,12 @@ function WhatsappMarketing() {
                     
                     <div className="grid grid-cols-2 gap-4 text-sm">
                       <div>
-                        <p className="text-muted-foreground">{t("Usage")}</p>
-                        <p className="font-medium">{template.usage.toLocaleString()} {t("times")}</p>
+                        <p className="text-muted-foreground">{t("coupons.usageLimit")}</p>
+                        <p className="font-medium">{template.usage.toLocaleString()} {t("whatsappMarketing.broadcastSettings.times")}</p>
                       </div>
                       {template.approvalRate > 0 && (
                         <div>
-                          <p className="text-muted-foreground">{t("Success Rate")}</p>
+                          <p className="text-muted-foreground">{t("coupons.timesUsed")} Rate</p>
                           <p className="font-medium">{template.approvalRate}%</p>
                         </div>
                       )}
@@ -1004,7 +1004,7 @@ function WhatsappMarketing() {
                     <div className="flex gap-2">
                       <Button size="sm" className="flex-1">
                         <Send className="h-4 w-4 mr-2" />
-                        {t("Use Template")}
+                        {t("whatsappMarketing.createTemplate")}
                       </Button>
                       <Button size="sm" variant="outline">
                         <Edit className="h-4 w-4" />
@@ -1020,15 +1020,15 @@ function WhatsappMarketing() {
             <Card className="glass-card border-0">
               <CardHeader>
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                  <CardTitle className="text-lg">{t("Contact Management")}</CardTitle>
+                  <CardTitle className="text-lg">{t("whatsappMarketing.contacts")}</CardTitle>
                   <div className="flex gap-2 w-full sm:w-auto">
                     <Button variant="outline" size="sm" className="flex-1 sm:flex-none">
                       <Upload className="h-4 w-4 mr-2" />
-                      {t("Import")}
+                      {t("whatsappMarketing.importContacts")}
                     </Button>
                     <Button variant="outline" size="sm" className="flex-1 sm:flex-none">
                       <Download className="h-4 w-4 mr-2" />
-                      {t("Export")}
+                      {t("common.export")}
                     </Button>
                   </div>
                 </div>
@@ -1048,7 +1048,7 @@ function WhatsappMarketing() {
                       <div className="flex items-center gap-3">
                         <Avatar className="h-12 w-12">
                           {contact.avatar && <AvatarImage src={contact.avatar} />}
-                          <AvatarFallback>{contact.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                          <AvatarFallback>{contact.name.split(' ').filter(Boolean).map(n => n[0]).join('')}</AvatarFallback>
                         </Avatar>
                         <div>
                           <p className="font-medium">{contact.name}</p>
@@ -1064,10 +1064,10 @@ function WhatsappMarketing() {
                       <div className="flex items-center gap-6">
                         <div className="text-center">
                           <p className="text-sm font-medium">{contact.conversationCount}</p>
-                          <p className="text-xs text-muted-foreground">{t("Chats")}</p>
+                          <p className="text-xs text-muted-foreground">{t("whatsappMarketing.contactsOverview.groups")}</p>
                         </div>
                         <div className="text-center">
-                          <p className="text-xs text-muted-foreground">{t("Last seen")}</p>
+                          <p className="text-xs text-muted-foreground">{t("customers.lastSeen")}</p>
                           <p className="text-xs">{new Date(contact.lastSeen).toLocaleDateString()}</p>
                         </div>
                         <Badge className={
@@ -1075,11 +1075,11 @@ function WhatsappMarketing() {
                           contact.status === "blocked" ? "bg-red-100 text-red-700 dark:bg-red-950/30 dark:text-red-400" :
                           "bg-gray-100 text-gray-700 dark:bg-gray-950/30 dark:text-gray-400"
                         }>
-                          {t(contact.status)}
+                          {contact.status}
                         </Badge>
                         <Button variant="outline" size="sm">
                           <MessageSquare className="h-4 w-4 mr-2" />
-                          {t("Chat")}
+                          {t("navigation.agentStore")}
                         </Button>
                       </div>
                     </div>
@@ -1095,7 +1095,7 @@ function WhatsappMarketing() {
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-lg flex items-center gap-2">
                     <Bot className="h-5 w-5 text-purple-600 dark:text-purple-400" />
-                    {t("Automation Settings")}
+                    {t("whatsappMarketing.automationRules.triggers")} {t("common.settings")}
                   </CardTitle>
                   <Switch 
                     checked={automationEnabled}
@@ -1110,15 +1110,15 @@ function WhatsappMarketing() {
                       <div className="flex items-center justify-between mb-3">
                         <div className="flex items-center gap-2">
                           <ShoppingCart className="h-4 w-4 text-orange-600 dark:text-orange-400" />
-                          <h4 className="font-medium">{t("Cart Abandonment")}</h4>
+                          <h4 className="font-medium">{t("retargeting.abandonedCart")}</h4>
                         </div>
                         <Switch defaultChecked />
                       </div>
                       <p className="text-sm text-muted-foreground mb-3">
-                        {t("Send reminder after 2 hours of cart abandonment")}
+                        {t("coupons.discountValue")} reminder after 2 {t("whatsappMarketing.broadcastSettings.hours")} of {t("retargeting.abandonedCart")}
                       </p>
                       <Button variant="outline" size="sm" className="w-full">
-                        {t("Configure")}
+                        {t("whatsappMarketing.automationRules.createAutomation")}
                       </Button>
                     </div>
                     
@@ -1126,15 +1126,15 @@ function WhatsappMarketing() {
                       <div className="flex items-center justify-between mb-3">
                         <div className="flex items-center gap-2">
                           <Package className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-                          <h4 className="font-medium">{t("Order Updates")}</h4>
+                          <h4 className="font-medium">{t("orders.orderDetails")} {t("common.update")}</h4>
                         </div>
                         <Switch defaultChecked />
                       </div>
                       <p className="text-sm text-muted-foreground mb-3">
-                        {t("Automatic order status notifications")}
+                        {t("whatsappMarketing.automation")} {t("orders.status")} {t("navigation.notifications")}
                       </p>
                       <Button variant="outline" size="sm" className="w-full">
-                        {t("Configure")}
+                        {"Configure"}
                       </Button>
                     </div>
                   </div>
@@ -1144,15 +1144,15 @@ function WhatsappMarketing() {
                       <div className="flex items-center justify-between mb-3">
                         <div className="flex items-center gap-2">
                           <UserCheck className="h-4 w-4 text-green-600 dark:text-green-400" />
-                          <h4 className="font-medium">{t("Welcome Message")}</h4>
+                          <h4 className="font-medium">{t("whatsappMarketing.campaignList.welcomeSeries")}</h4>
                         </div>
                         <Switch defaultChecked />
                       </div>
                       <p className="text-sm text-muted-foreground mb-3">
-                        {t("Greet new contacts automatically")}
+                        {t("common.new")} {t("whatsappMarketing.contacts")} {t("whatsappMarketing.automation")}
                       </p>
                       <Button variant="outline" size="sm" className="w-full">
-                        {t("Configure")}
+                        {"Configure"}
                       </Button>
                     </div>
                     
@@ -1160,15 +1160,15 @@ function WhatsappMarketing() {
                       <div className="flex items-center justify-between mb-3">
                         <div className="flex items-center gap-2">
                           <Clock className="h-4 w-4 text-purple-600 dark:text-purple-400" />
-                          <h4 className="font-medium">{t("Away Message")}</h4>
+                          <h4 className="font-medium">{t("whatsappMarketing.automationRules.messages")}</h4>
                         </div>
                         <Switch />
                       </div>
                       <p className="text-sm text-muted-foreground mb-3">
-                        {t("Reply when outside business hours")}
+                        {t("customers.email")} {t("whatsappMarketing.broadcastSettings.sendingWindow")}
                       </p>
                       <Button variant="outline" size="sm" className="w-full">
-                        {t("Configure")}
+                        {"Configure"}
                       </Button>
                     </div>
                   </div>

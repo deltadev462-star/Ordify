@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -42,8 +41,6 @@ interface StatCardProps {
 }
 
 function StatCard({ title, value, subValue, icon, trend, color, bgGradient }: StatCardProps) {
-  const { t } = useTranslation();
-  
   return (
     <div className="group relative">
       <div className={cn(
@@ -59,7 +56,7 @@ function StatCard({ title, value, subValue, icon, trend, color, bgGradient }: St
         <CardContent className="p-4 sm:p-6 relative">
           <div className="flex items-start justify-between gap-4">
             <div className="flex-1">
-              <p className="text-sm text-muted-foreground mb-2">{t(title)}</p>
+              <p className="text-sm text-muted-foreground mb-2">{title}</p>
               <p className={cn("text-2xl sm:text-3xl font-bold mb-1", color)}>{value}</p>
               {subValue && (
                 <p className="text-xs sm:text-sm text-muted-foreground">{subValue}</p>
@@ -74,7 +71,7 @@ function StatCard({ title, value, subValue, icon, trend, color, bgGradient }: St
                     "text-xs font-medium",
                     trend >= 0 ? "text-green-600" : "text-red-600"
                   )}>
-                    {Math.abs(trend)}% {t("this month")}
+                    {Math.abs(trend)}% {"This month"}
                   </span>
                 </div>
               )}
@@ -93,9 +90,7 @@ function StatCard({ title, value, subValue, icon, trend, color, bgGradient }: St
 }
 
 function AffiliateMarketing() {
-  const { t, i18n } = useTranslation();
   const [copied, setCopied] = useState(false);
-  const isRTL = i18n.language === 'ar';
   
   // Mock data - replace with actual data
   const affiliateStats = {
@@ -122,7 +117,7 @@ function AffiliateMarketing() {
     {
       title: "Total Commission",
       value: `$${affiliateStats.totalCommission.toLocaleString()}`,
-      subValue: t("Lifetime earnings"),
+      subValue: "Lifetime earnings",
       icon: <DollarSign className="h-5 sm:h-6 w-5 sm:w-6" />,
       trend: 11.2,
       color: "text-green-600",
@@ -131,7 +126,7 @@ function AffiliateMarketing() {
     {
       title: "Total Referrals",
       value: affiliateStats.totalReferrals.toString(),
-      subValue: `${affiliateStats.activeReferrals} ${t("active")}`,
+      subValue: `${affiliateStats.activeReferrals} ${"Active"}`,
       icon: <Users className="h-5 sm:h-6 w-5 sm:w-6" />,
       trend: 8.5,
       color: "text-blue-600",
@@ -140,7 +135,7 @@ function AffiliateMarketing() {
     {
       title: "This Month",
       value: `$${affiliateStats.thisMonthEarnings.toLocaleString()}`,
-      subValue: `+${((affiliateStats.thisMonthEarnings - affiliateStats.lastMonthEarnings) / affiliateStats.lastMonthEarnings * 100).toFixed(1)}% ${t("vs last month")}`,
+      subValue: `+${((affiliateStats.thisMonthEarnings - affiliateStats.lastMonthEarnings) / affiliateStats.lastMonthEarnings * 100).toFixed(1)}% ${"Vs last month"}`,
       icon: <TrendingUp className="h-5 sm:h-6 w-5 sm:w-6" />,
       trend: 15.3,
       color: "text-purple-600",
@@ -149,7 +144,7 @@ function AffiliateMarketing() {
     {
       title: "Conversion Rate",
       value: `${affiliateStats.conversionRate}%`,
-      subValue: t("Sign-up to active"),
+      subValue: "Sign-up to active",
       icon: <Target className="h-5 sm:h-6 w-5 sm:w-6" />,
       color: "text-orange-600",
       bgGradient: "from-orange-500 to-red-500"
@@ -165,7 +160,7 @@ function AffiliateMarketing() {
   ];
 
   return (
-    <div className={cn("min-h-screen ", isRTL && "rtl")}>
+    <div className={cn("min-h-screen ")}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6 sm:space-y-8">
         {/* NotActive Component */}
         <NotActive />
@@ -191,25 +186,25 @@ function AffiliateMarketing() {
                   <div>
                     <Badge className="bg-gradient-to-r from-green-500 to-emerald-600 text-white border-0 px-3 sm:px-4 py-1 sm:py-1.5 shadow-lg mb-2">
                       <Sparkles className="h-3 sm:h-3.5 w-3 sm:w-3.5 mr-1.5" />
-                      {affiliateStats.commissionRate}% {t("Commission")}
+                      {affiliateStats.commissionRate}% {"Commission"}
                     </Badge>
                     <Badge variant="outline" className="backdrop-blur-sm bg-white/10 dark:bg-black/10 ml-2">
-                      {t("Lifetime Earnings")}
+                      {"Lifetime  Earnings"}
                     </Badge>
                   </div>
                 </div>
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 dark:from-white dark:via-gray-200 dark:to-gray-400 bg-clip-text text-transparent mb-4">
-                  {t("Affiliate Program")}
+                  {"Affiliate  Program"}
                 </h1>
                 <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl leading-relaxed mb-6">
-                  {t("When you share our platform's link with others, you will earn a 20% commission on any amount they top up. You will receive your commission in cash, not wallet balance.")}
+                  When you share our platform's link with others, you will earn a 20% commission on any amount they top up. You will receive your commission in cash, not wallet balance.
                 </p>
                 <Button 
                   size="lg"
                   className="gap-2 shadow-xl bg-gradient-to-r from-gray-900 to-gray-700 hover:from-gray-800 hover:to-gray-600 dark:from-white dark:to-gray-200 dark:hover:from-gray-100 dark:hover:to-gray-300 dark:text-black transition-all duration-300 hover:scale-105 text-sm sm:text-base px-4 sm:px-6"
                 >
                   <SquarePlay className="h-4 sm:h-5 w-4 sm:w-5" />
-                  {t("Watch How It Works")}
+                  {"Watch  How  It  Works"}
                 </Button>
               </div>
               
@@ -217,7 +212,7 @@ function AffiliateMarketing() {
                 <div className="absolute inset-0 bg-gradient-to-br from-green-500 to-emerald-500 rounded-3xl blur-2xl opacity-20 group-hover:opacity-30 transition-opacity"></div>
                 <div className="relative bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/50 dark:to-emerald-950/50 rounded-3xl p-6 sm:p-8 shadow-2xl">
                   <div className="text-center">
-                    <p className="text-sm text-muted-foreground mb-2">{t("Available Balance")}</p>
+                    <p className="text-sm text-muted-foreground mb-2">{"Available  Balance"}</p>
                     <p className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-br from-green-600 to-emerald-600 bg-clip-text text-transparent">
                       ${affiliateStats.pendingCommission.toLocaleString()}
                     </p>
@@ -225,7 +220,7 @@ function AffiliateMarketing() {
                       className="mt-4 gap-2 shadow-lg bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 transition-all duration-300 hover:scale-105 w-full text-sm sm:text-base"
                     >
                       <Wallet className="h-4 sm:h-5 w-4 sm:w-5" />
-                      {t("Withdraw Funds")}
+                      {"Withdraw  Funds"}
                     </Button>
                   </div>
                 </div>
@@ -250,10 +245,10 @@ function AffiliateMarketing() {
               <CardHeader className="pb-4">
                 <CardTitle className="text-xl sm:text-2xl flex items-center gap-3">
                   <Link2 className="h-5 sm:h-6 w-5 sm:w-6 text-primary" />
-                  {t("Your Referral Link")}
+                  {"Your  Referral  Link"}
                 </CardTitle>
                 <CardDescription className="text-sm sm:text-base">
-                  {t("Share this link to earn commission on referrals")}
+                  {"Share this link to earn commission on referrals"}
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -275,12 +270,12 @@ function AffiliateMarketing() {
                     {copied ? (
                       <>
                         <CheckCircle className="h-4 sm:h-5 w-4 sm:w-5" />
-                        {t("Copied!")}
+                        {"Copied!"}
                       </>
                     ) : (
                       <>
                         <Copy className="h-4 sm:h-5 w-4 sm:w-5" />
-                        {t("Copy Link")}
+                        {"Copy  Link"}
                       </>
                     )}
                   </Button>
@@ -289,22 +284,22 @@ function AffiliateMarketing() {
                 <div className="flex flex-wrap gap-2">
                   <Button variant="secondary" size="sm" className="gap-1.5 text-xs sm:text-sm">
                     <Share2 className="h-3.5 sm:h-4 w-3.5 sm:w-4" />
-                    {t("Share on Facebook")}
+                    {"Share on  Facebook"}
                   </Button>
                   <Button variant="secondary" size="sm" className="gap-1.5 text-xs sm:text-sm">
                     <Share2 className="h-3.5 sm:h-4 w-3.5 sm:w-4" />
-                    {t("Share on Twitter")}
+                    {"Share on  Twitter"}
                   </Button>
                   <Button variant="secondary" size="sm" className="gap-1.5 text-xs sm:text-sm">
                     <Share2 className="h-3.5 sm:h-4 w-3.5 sm:w-4" />
-                    {t("Share on WhatsApp")}
+                    {"Share on  Whats App"}
                   </Button>
                 </div>
                 
                 <Alert className="bg-blue-50 dark:bg-blue-950/30 border-blue-200 dark:border-blue-800">
                   <Info className="h-4 w-4 text-blue-600" />
                   <AlertDescription className="text-xs sm:text-sm">
-                    {t("You can withdraw your commission to a bank account or e-wallet by contacting support.")}
+                    Earn commission when your referrals make purchases. Track your earnings and withdraw anytime.
                   </AlertDescription>
                 </Alert>
               </CardContent>
@@ -315,7 +310,7 @@ function AffiliateMarketing() {
               <CardHeader>
                 <CardTitle className="text-xl sm:text-2xl flex items-center gap-3">
                   <BarChart3 className="h-5 sm:h-6 w-5 sm:w-6 text-primary" />
-                  {t("Earnings Overview")}
+                  {"Earnings  Overview"}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -323,7 +318,7 @@ function AffiliateMarketing() {
                   {/* Monthly Earnings */}
                   <div>
                     <div className="flex justify-between items-center mb-2">
-                      <span className="text-sm text-muted-foreground">{t("This Month")}</span>
+                      <span className="text-sm text-muted-foreground">{"This  Month"}</span>
                       <span className="text-sm font-bold">${affiliateStats.thisMonthEarnings.toLocaleString()}</span>
                     </div>
                     <Progress value={75} className="h-2" />
@@ -332,7 +327,7 @@ function AffiliateMarketing() {
                   {/* Last Month */}
                   <div>
                     <div className="flex justify-between items-center mb-2">
-                      <span className="text-sm text-muted-foreground">{t("Last Month")}</span>
+                      <span className="text-sm text-muted-foreground">{"Last  Month"}</span>
                       <span className="text-sm font-bold">${affiliateStats.lastMonthEarnings.toLocaleString()}</span>
                     </div>
                     <Progress value={65} className="h-2" />
@@ -341,7 +336,7 @@ function AffiliateMarketing() {
                   {/* Average */}
                   <div>
                     <div className="flex justify-between items-center mb-2">
-                      <span className="text-sm text-muted-foreground">{t("6 Month Average")}</span>
+                      <span className="text-sm text-muted-foreground">{"6  Month  Average"}</span>
                       <span className="text-sm font-bold">$3,850.00</span>
                     </div>
                     <Progress value={70} className="h-2" />
@@ -351,11 +346,11 @@ function AffiliateMarketing() {
                 <div className="grid grid-cols-2 gap-4 mt-6 pt-6 border-t">
                   <div className="text-center">
                     <p className="text-2xl sm:text-3xl font-bold text-green-600">${affiliateStats.pendingCommission.toLocaleString()}</p>
-                    <p className="text-xs sm:text-sm text-muted-foreground">{t("Available to Withdraw")}</p>
+                    <p className="text-xs sm:text-sm text-muted-foreground">{"Available to  Withdraw"}</p>
                   </div>
                   <div className="text-center">
                     <p className="text-2xl sm:text-3xl font-bold text-blue-600">${affiliateStats.withdrawnCommission.toLocaleString()}</p>
-                    <p className="text-xs sm:text-sm text-muted-foreground">{t("Total Withdrawn")}</p>
+                    <p className="text-xs sm:text-sm text-muted-foreground">{"Total  Withdrawn"}</p>
                   </div>
                 </div>
               </CardContent>
@@ -369,10 +364,10 @@ function AffiliateMarketing() {
               <CardHeader>
                 <CardTitle className="text-lg sm:text-xl flex items-center gap-3">
                   <Trophy className="h-5 sm:h-6 w-5 sm:w-6 text-primary" />
-                  {t("Commission Tiers")}
+                  {"Commission  Tiers"}
                 </CardTitle>
                 <CardDescription className="text-xs sm:text-sm">
-                  {t("Earn more as you grow")}
+                  {"Earn more as you grow"}
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-3">
@@ -392,13 +387,13 @@ function AffiliateMarketing() {
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
                         <Badge variant={tier.achieved ? "default" : "secondary"} className="text-xs">
-                          {t("Level")} {tier.level}
+                          {"Level"} {tier.level}
                         </Badge>
-                        <span className="text-xs text-muted-foreground">{tier.referrals} {t("referrals")}</span>
+                        <span className="text-xs text-muted-foreground">{tier.referrals} {"Referrals"}</span>
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="font-bold text-lg">{tier.rate}</span>
-                        <span className="text-xs sm:text-sm text-muted-foreground">+{tier.bonus} {t("bonus")}</span>
+                        <span className="text-xs sm:text-sm text-muted-foreground">+{tier.bonus} {"Bonus"}</span>
                       </div>
                     </div>
                   </div>
@@ -411,28 +406,28 @@ function AffiliateMarketing() {
               <CardHeader>
                 <CardTitle className="text-lg sm:text-xl flex items-center gap-3">
                   <Zap className="h-5 sm:h-6 w-5 sm:w-6 text-primary" />
-                  {t("Quick Actions")}
+                  {"Quick  Actions"}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
                 <Button variant="outline" className="w-full justify-start gap-3 h-11 sm:h-12 text-sm">
                   <UserPlus className="h-4 sm:h-5 w-4 sm:w-5" />
-                  {t("Invite Friends")}
+                  {"Invite  Friends"}
                   <ChevronRight className="h-4 w-4 ml-auto" />
                 </Button>
                 <Button variant="outline" className="w-full justify-start gap-3 h-11 sm:h-12 text-sm">
                   <BarChart3 className="h-4 sm:h-5 w-4 sm:w-5" />
-                  {t("View Analytics")}
+                  {"View  Analytics"}
                   <ChevronRight className="h-4 w-4 ml-auto" />
                 </Button>
                 <Button variant="outline" className="w-full justify-start gap-3 h-11 sm:h-12 text-sm">
                   <Calendar className="h-4 sm:h-5 w-4 sm:w-5" />
-                  {t("Payment History")}
+                  {"Payment  History"}
                   <ChevronRight className="h-4 w-4 ml-auto" />
                 </Button>
                 <Button variant="outline" className="w-full justify-start gap-3 h-11 sm:h-12 text-sm">
                   <Award className="h-4 sm:h-5 w-4 sm:w-5" />
-                  {t("Leaderboard")}
+                  {"Leaderboard"}
                   <ChevronRight className="h-4 w-4 ml-auto" />
                 </Button>
               </CardContent>

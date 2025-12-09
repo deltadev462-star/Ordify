@@ -1,4 +1,3 @@
-import { useTranslation } from "react-i18next";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
@@ -32,8 +31,6 @@ function StockSettings({
   setDisableWhenOutOfStock,
   handleSave,
 }: StockSettingsProps) {
-  const { t } = useTranslation();
-
   return (
     <div className=" ">
       <div className="space-y-8 p-8 bg-white dark:bg-[#080808] rounded-2xl shadow-sm">
@@ -41,7 +38,7 @@ function StockSettings({
         <div className="flex items-center gap-3 pb-2 ">
           <Package className="h-7 w-7 text-gray-700 dark:text-gray-300" />
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-            {t("Stock Settings")}
+            {"Stock  Settings"}
           </h2>
         </div>
 
@@ -53,13 +50,13 @@ function StockSettings({
               className="flex items-center gap-2 text-base font-semibold mb-3 text-gray-800 dark:text-gray-200"
             >
               <BarChart3 className="h-5 w-5" />
-              {t("Stock Quantity")}
+              {"Stock  Quantity"}
             </Label>
             <Input
               id="stock-quantity"
               type="number"
               min="0"
-              placeholder={t("Stock Quantity")}
+              placeholder={"Stock  Quantity"}
               value={stockQuantity}
               onChange={(e) => setStockQuantity(e.target.value)}
               className="mt-2 h-12 text-base bg-gray-50 dark:bg-gray-900/50 border-gray-300 dark:border-gray-700 
@@ -67,7 +64,7 @@ function StockSettings({
                          focus:ring-2 focus:ring-green-500 dark:focus:ring-green-400"
             />
             <p className="text-sm text-gray-600 dark:text-gray-400 mt-3 leading-relaxed">
-              {t("The quantity of the product in stock. If the quantity is 0, the product will be out of stock.")}
+              {"If the quantity is 0"}
             </p>
           </div>
 
@@ -76,7 +73,7 @@ function StockSettings({
             <div className="flex gap-3">
               <AlertTriangle className="h-5 w-5 text-orange-600 dark:text-orange-500 mt-0.5 flex-shrink-0" />
               <AlertDescription className="text-orange-700 dark:text-orange-300 text-sm leading-relaxed">
-                {t("If the product has multiple properties such as colors and sizes, the quantity for the variations must be changed in variable product section and add stock for each variant, this quantity will not be effective.")}
+                {"If the product has multiple properties such as colors and sizes"}
               </AlertDescription>
             </div>
           </Alert>
@@ -93,10 +90,10 @@ function StockSettings({
                 htmlFor="track-stock" 
                 className="text-base font-medium text-gray-900 dark:text-gray-200 cursor-pointer block"
               >
-                {t("Track Stock")}
+                {"Track  Stock"}
               </Label>
               <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                {t("If you activate this option, the quantity of the product will decrease with each purchase.")}
+                {"If you activate this option"}
               </p>
             </div>
             <Switch
@@ -119,10 +116,10 @@ function StockSettings({
                 htmlFor="disable-out-of-stock" 
                 className="text-base font-medium text-gray-900 dark:text-gray-200 cursor-pointer block"
               >
-                {t("Disable When Out of Stock")}
+                {"Disable  When  Out of  Stock"}
               </Label>
               <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                {t("If you activate this option, the product will be disabled when the quantity is 0.")}
+                {"If you activate this option"}
               </p>
             </div>
             <Switch
@@ -143,7 +140,7 @@ function StockSettings({
                      transition-colors duration-200 shadow-sm"
           >
             <Save className="h-4 w-4" />
-            {t("Save")}
+            {"Save"}
           </Button>
         </div>
       </div>

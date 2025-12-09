@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { SimpleDataTable, type Column } from "@/components/shared/DataTable/SimpleDataTable";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -48,8 +47,6 @@ export function CustomersTable({
   onViewOrders,
   onBlockCustomer 
 }: CustomersTableProps) {
-  const { t } = useTranslation();
-
   const getStatusColor = (status: Customer['status']) => {
     const colors = {
       active: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400',
@@ -62,6 +59,7 @@ export function CustomersTable({
   const getInitials = (name: string) => {
     return name
       .split(' ')
+      .filter(Boolean)
       .map(word => word[0])
       .join('')
       .toUpperCase()
@@ -71,7 +69,7 @@ export function CustomersTable({
   const columns: Column<Customer>[] = [
     {
       key: 'name',
-      header: t('Customer'),
+      header: "Customer",
       sortable: true,
       render: (value, row) => (
         <div className="flex items-center gap-3">
@@ -93,7 +91,7 @@ export function CustomersTable({
     },
     {
       key: 'phone',
-      header: t('Phone'),
+      header: "Phone",
       sortable: true,
       render: (value) => (
         <div className="flex items-center gap-2 text-sm">
@@ -104,19 +102,19 @@ export function CustomersTable({
     },
     {
       key: 'orders',
-      header: t('Orders'),
+      header: "Orders",
       sortable: true,
       render: (value, row) => (
         <div className="space-y-1">
           <div className="flex items-center gap-2">
             <ShoppingBag className="h-4 w-4 text-muted-foreground" />
             <span className="font-medium">{row.orders.total}</span>
-            <span className="text-sm text-muted-foreground">{t('total')}</span>
+            <span className="text-sm text-muted-foreground">{"Total"}</span>
           </div>
           <div className="flex gap-3 text-xs">
-            <span className="text-green-600">{row.orders.completed} {t('completed')}</span>
+            <span className="text-green-600">{row.orders.completed} {"Completed"}</span>
             {row.orders.cancelled > 0 && (
-              <span className="text-red-600">{row.orders.cancelled} {t('cancelled')}</span>
+              <span className="text-red-600">{row.orders.cancelled} {"Cancelled"}</span>
             )}
           </div>
         </div>
@@ -124,25 +122,25 @@ export function CustomersTable({
     },
     {
       key: 'totalSpent',
-      header: t('Total Spent'),
+      header: "Total  Spent",
       sortable: true,
       render: (value) => (
-        <div className="font-medium">{t('EGP')} {value.toLocaleString()}</div>
+        <div className="font-medium">{"E G P"} {value.toLocaleString()}</div>
       ),
     },
     {
       key: 'status',
-      header: t('Status'),
+      header: "Status",
       sortable: true,
       render: (value) => (
         <Badge className={cn("capitalize", getStatusColor(value))}>
-          {t(value)}
+          {value}
         </Badge>
       ),
     },
     {
       key: 'lastOrderAt',
-      header: t('Last Order'),
+      header: "Last  Order",
       sortable: true,
       render: (value) => (
         <div className="text-sm">
@@ -154,14 +152,14 @@ export function CustomersTable({
               </div>
             </>
           ) : (
-            <span className="text-muted-foreground">{t('No orders yet')}</span>
+            <span className="text-muted-foreground">{"No orders yet"}</span>
           )}
         </div>
       ),
     },
     {
       key: 'tags',
-      header: t('Tags'),
+      header: "Tags",
       render: (value) => (
         <div className="flex flex-wrap gap-1">
           {value && value.length > 0 ? (
@@ -195,23 +193,23 @@ export function CustomersTable({
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuLabel>{t("Actions")}</DropdownMenuLabel>
+              <DropdownMenuLabel>{"Actions"}</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={() => onViewCustomer?.(row)}>
                 <Eye className="mr-2 h-4 w-4" />
-                {t("View Profile")}
+                {"View  Profile"}
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => onContactCustomer?.(row)}>
                 <Mail className="mr-2 h-4 w-4" />
-                {t("Send Email")}
+                {"Send  Email"}
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => onContactCustomer?.(row)}>
                 <Phone className="mr-2 h-4 w-4" />
-                {t("Call Customer")}
+                {"Call  Customer"}
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => onViewOrders?.(row)}>
                 <ShoppingBag className="mr-2 h-4 w-4" />
-                {t("View Orders")}
+                {"View  Orders"}
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               {row.status !== 'blocked' ? (
@@ -219,14 +217,14 @@ export function CustomersTable({
                   onClick={() => onBlockCustomer?.(row.id)}
                   className="text-red-600 dark:text-red-400"
                 >
-                  {t("Block Customer")}
+                  {"Block  Customer"}
                 </DropdownMenuItem>
               ) : (
                 <DropdownMenuItem 
                   onClick={() => onBlockCustomer?.(row.id)}
                   className="text-green-600 dark:text-green-400"
                 >
-                  {t("Unblock Customer")}
+                  {"Unblock  Customer"}
                 </DropdownMenuItem>
               )}
             </DropdownMenuContent>
@@ -241,7 +239,7 @@ export function CustomersTable({
       data={customers}
       columns={columns}
       searchKey="name"
-      searchPlaceholder={t("Search customers by name...")}
+      searchPlaceholder={""}
       pageSize={10}
     />
   );

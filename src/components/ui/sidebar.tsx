@@ -4,8 +4,6 @@ import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
 import { ListIndentDecrease } from "lucide-react"
-import { useTranslation } from "react-i18next"
-
 import { useIsMobile } from "@/hooks/use-mobile"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -164,7 +162,6 @@ function Sidebar({
   variant?: "sidebar" | "floating" | "inset"
   collapsible?: "offcanvas" | "icon" | "none"
 }) {
-  const { t } = useTranslation()
   const { isMobile, state, openMobile, setOpenMobile } = useSidebar()
 
   const currentSide = side
@@ -200,8 +197,8 @@ function Sidebar({
           side={currentSide}
         >
           <SheetHeader className="sr-only">
-            <SheetTitle>{t("Sidebar")}</SheetTitle>
-            <SheetDescription>{t("Displays the mobile sidebar.")}</SheetDescription>
+            <SheetTitle>{"Sidebar"}</SheetTitle>
+            <SheetDescription>{""}</SheetDescription>
           </SheetHeader>
           <div className="flex h-full w-full flex-col">{children}</div>
         </SheetContent>
@@ -263,8 +260,6 @@ function SidebarTrigger({
   ...props
 }: React.ComponentProps<typeof Button>) {
   const { toggleSidebar } = useSidebar()
-  const { t } = useTranslation()
-
   return (
     <Button
       data-sidebar="trigger"
@@ -280,7 +275,7 @@ function SidebarTrigger({
     >
       <ListIndentDecrease size={20} />
       {/* <PanelLeftIcon   /> */}
-      <span className="sr-only">{t("Toggle Sidebar")}</span>
+      <span className="sr-only">{"Toggle  Sidebar"}</span>
     </Button>
   )
 }

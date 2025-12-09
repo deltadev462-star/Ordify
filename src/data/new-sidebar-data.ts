@@ -64,7 +64,7 @@ export const newSidebarData = {
   navigation: [
     {
       id: 'overview',
-      title: 'Dashboard',
+      title: 'navigation.dashboard',
       url: '/dashboard',
       icon: LayoutDashboard,
       badge: null,
@@ -72,42 +72,42 @@ export const newSidebarData = {
     },
     {
       id: 'orders',
-      title: 'Orders',
+      title: 'navigation.orders',
       url: '/dashboard/orders',
       icon: Package,
       badge: { value: '12', variant: 'warning' as const },
       isActive: false,
       children: [
         {
-          title: 'All Orders',
+          title: 'navigation.allOrders',
           url: '/dashboard/orders',
           icon: PackageOpen
         },
         {
-          title: 'Pending Orders',
+          title: 'navigation.pendingOrders',
           url: '/dashboard/orders/pending',
           badge: { value: '8', variant: 'danger' as const }
         },
         {
-          title: 'Processing',
+          title: 'navigation.processing',
           url: '/dashboard/orders/processing',
           badge: { value: '4', variant: 'info' as const }
         },
         {
-          title: 'Completed',
+          title: 'navigation.completed',
           url: '/dashboard/orders/completed'
         },
         {
-          title: 'Order Issues',
+          title: 'navigation.orderIssues',
           url: '/dashboard/orders/issues'
         },
         {
-          title: 'Blocked Numbers',
+          title: 'navigation.blockedNumbers',
           url: '/dashboard/orders/blocked-numbers',
           icon: ShoppingBasket
         },
         {
-          title: 'Blocked OTP',
+          title: 'navigation.blockedOTP',
           url: '/dashboard/orders/blocked-otp',
           icon: PhoneOff
         }
@@ -115,72 +115,72 @@ export const newSidebarData = {
     },
     {
       id: 'products',
-      title: 'Products & Catalog',
+      title: 'navigation.products',
       url: '/dashboard/products',
       icon: Tag,
       badge: null,
       isActive: false,
       children: [
         {
-          title: 'All Products',
+          title: 'navigation.allProducts',
           url: '/dashboard/products'
         },
         {
-          title: 'Add Product',
+          title: 'navigation.addProduct',
           url: '/dashboard/products/new',
           icon: Plus
         },
         {
-          title: 'Categories',
+          title: 'navigation.categories',
           url: '/dashboard/products/categories'
         },
         {
-          title: 'Collections',
+          title: 'navigation.collections',
           url: '/dashboard/products/collections'
         },
         {
-          title: 'Reviews',
+          title: 'navigation.reviews',
           url: '/dashboard/products/reviews'
         },
         {
-          title: 'Product Feed',
+          title: 'navigation.productFeed',
           url: '/dashboard/products/feed'
         },
         {
-          title: 'Easy Catalog',
+          title: 'navigation.easyCatalog',
           url: '/dashboard/products/catalog'
         }
       ]
     },
     {
       id: 'customers',
-      title: 'Customers',
+      title: 'navigation.customers',
       url: '/dashboard/customers',
       icon: Users,
       badge: null,
       isActive: false,
       children: [
         {
-          title: 'All Customers',
+          title: 'navigation.allCustomers',
           url: '/dashboard/customers'
         },
         {
-          title: 'Segments',
+          title: 'navigation.segments',
           url: '/dashboard/customers/segments'
         },
         {
-          title: 'Communication',
+          title: 'navigation.communication',
           url: '/dashboard/customers/messages'
         },
         {
-          title: 'Loyalty Program',
+          title: 'navigation.loyaltyProgram',
           url: '/dashboard/customers/loyalty'
         }
       ]
     },
     {
       id: 'agent-store',
-      title: 'Agent Store',
+      title: 'navigation.agentStore',
       url: '/dashboard/agent-store',
       icon: Crown,
       badge: { value: 'VIP', variant: 'warning' as const },
@@ -188,200 +188,200 @@ export const newSidebarData = {
     },
     {
       id: 'marketing',
-      title: 'Marketing Hub',
+      title: 'navigation.marketingHub',
       url: '/dashboard/marketing',
       icon: Megaphone,
       badge: { value: 'PRO', variant: 'success' as const },
       isActive: false,
       children: [
         {
-          title: 'Campaigns',
+          title: 'navigation.campaigns',
           url: '/dashboard/marketing'
         },
         {
-          title: 'Promotions',
+          title: 'navigation.promotions',
           url: '/dashboard/marketing/promotions'
         },
         {
-          title: 'Coupons',
+          title: 'navigation.coupons',
           url: '/dashboard/marketing/coupons'
         },
         {
-          title: 'Cross Selling',
+          title: 'navigation.crossSelling',
           url: '/dashboard/marketing/cross-selling'
         },
         {
-          title: 'Retargeting',
+          title: 'navigation.retargeting',
           url: '/dashboard/marketing/retargeting'
         },
         {
-          title: 'Integrations',
+          title: 'navigation.integrations',
           url: '/dashboard/marketing/integrations'
         },
         {
-          title: 'WhatsApp Marketing',
+          title: 'navigation.whatsappMarketing',
           url: '/dashboard/marketing/whatsapp'
         },
         {
-          title: 'Affiliate Program',
+          title: 'navigation.affiliateProgram',
           url: '/dashboard/marketing/affiliate'
         },
         {
-          title: 'Referral Links',
+          title: 'navigation.referralLinks',
           url: '/dashboard/marketing/referrals'
         }
       ]
     },
     {
       id: 'analytics',
-      title: 'Analytics & Reports',
+      title: 'navigation.analyticsReports',
       url: '/dashboard/analytics',
       icon: BarChart3,
       badge: null,
       isActive: false,
       children: [
         {
-          title: 'Overview',
+          title: 'navigation.overview',
           url: '/dashboard/analytics'
         },
         {
-          title: 'Sales Reports',
+          title: 'navigation.salesReports',
           url: '/dashboard/analytics/sales'
         },
         {
-          title: 'Customer Analytics',
+          title: 'navigation.customerAnalytics',
           url: '/dashboard/analytics/customers'
         },
         {
-          title: 'Product Performance',
+          title: 'navigation.productPerformance',
           url: '/dashboard/analytics/products'
         },
         {
-          title: 'Marketing Analytics',
+          title: 'navigation.marketingAnalytics',
           url: '/dashboard/analytics/marketing'
         },
         {
-          title: 'Custom Reports',
+          title: 'navigation.customReports',
           url: '/dashboard/analytics/custom'
         }
       ]
     },
     {
       id: 'settings',
-      title: 'Store Settings',
+      title: 'navigation.storeSettings',
       url: '/dashboard/settings',
       icon: Settings,
       badge: null,
       isActive: false,
       children: [
         {
-          title: 'Store Information',
+          title: 'navigation.storeInformation',
           url: '/dashboard/settings'
         },
         {
-          title: 'Shipping & Delivery',
+          title: 'navigation.shippingDelivery',
           url: '/dashboard/settings/shipping'
         },
         {
-          title: 'Payment Methods',
+          title: 'navigation.paymentMethods',
           url: '/dashboard/settings/payments'
         },
         {
-          title: 'Store Policies',
+          title: 'navigation.storePolicies',
           url: '/dashboard/settings/policies'
         },
         {
-          title: 'Staff & Permissions',
+          title: 'navigation.staffPermissions',
           url: '/dashboard/settings/staff'
         },
         {
-          title: 'Tax Settings',
+          title: 'navigation.taxSettings',
           url: '/dashboard/settings/tax'
         }
       ]
     },
     {
       id: 'design',
-      title: 'Design & Content',
+      title: 'navigation.designContent',
       url: '/dashboard/design',
       icon: Palette,
       badge: null,
       isActive: false,
       children: [
         {
-          title: 'Themes',
+          title: 'navigation.themes',
           url: '/dashboard/design'
         },
         {
-          title: 'Customize Theme',
+          title: 'navigation.customizeTheme',
           url: '/dashboard/design/customize'
         },
         {
-          title: 'Pages',
+          title: 'navigation.pages',
           url: '/dashboard/design/pages'
         },
         {
-          title: 'Media Library',
+          title: 'navigation.mediaLibrary',
           url: '/dashboard/design/media'
         },
         {
-          title: 'SEO & Metadata',
+          title: 'navigation.seoMetadata',
           url: '/dashboard/design/seo'
         }
       ]
     },
     {
       id: 'apps',
-      title: 'Apps & Integrations',
+      title: 'navigation.appsIntegrations',
       url: '/dashboard/apps',
       icon: Grid3x3,
       badge: null,
       isActive: false,
       children: [
         {
-          title: 'Installed Apps',
+          title: 'navigation.installedApps',
           url: '/dashboard/apps'
         },
         {
-          title: 'App Marketplace',
+          title: 'navigation.appMarketplace',
           url: '/dashboard/apps/marketplace'
         },
         {
-          title: 'API Access',
+          title: 'navigation.apiAccess',
           url: '/dashboard/apps/api'
         },
         {
-          title: 'Webhooks',
+          title: 'navigation.webhooks',
           url: '/dashboard/apps/webhooks'
         }
       ]
     },
     {
       id: 'finance',
-      title: 'Financial Center',
+      title: 'navigation.financialCenter',
       url: '/dashboard/finance',
       icon: Wallet,
       badge: null,
       isActive: false,
       children: [
         {
-          title: 'Wallet',
+          title: 'navigation.wallet',
           url: '/dashboard/finance'
         },
         {
-          title: 'Transactions',
+          title: 'navigation.transactions',
           url: '/dashboard/finance/transactions'
         },
         {
-          title: 'Billing',
+          title: 'navigation.billing',
           url: '/dashboard/finance/billing'
         },
         {
-          title: 'Payouts',
+          title: 'navigation.payouts',
           url: '/dashboard/finance/payouts'
         },
         {
-          title: 'Financial Reports',
+          title: 'navigation.financialReports',
           url: '/dashboard/finance/reports'
         }
       ]
@@ -391,17 +391,17 @@ export const newSidebarData = {
   // Quick actions for easy access
   quickActions: [
     {
-      title: 'Add Product',
+      title: 'navigation.addProduct',
       url: '/dashboard/products/new',
       icon: Plus
     },
     {
-      title: 'New Campaign',
+      title: 'dashboard.newCampaign',
       url: '/dashboard/marketing/campaigns/new',
       icon: Megaphone
     },
     {
-      title: 'View Reports',
+      title: 'dashboard.viewReports',
       url: '/dashboard/analytics',
       icon: FileText
     }
@@ -410,17 +410,17 @@ export const newSidebarData = {
   // Help links
   helpLinks: [
     {
-      title: 'Documentation',
+      title: 'navigation.documentation',
       url: '/help/docs',
       icon: Book
     },
     {
-      title: 'Video Tutorials',
+      title: 'navigation.videoTutorials',
       url: '/help/tutorials',
       icon: Play
     },
     {
-      title: 'Support',
+      title: 'navigation.support',
       url: '/help/support',
       icon: HelpCircle
     }

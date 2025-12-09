@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { useTranslation } from "react-i18next";
-
 export interface QuickAction {
   id: string;
   title: string;
@@ -60,15 +58,13 @@ const defaultActions: QuickAction[] = [
 ];
 
 export function QuickActions({ actions = defaultActions, className }: QuickActionsProps) {
-  const { t } = useTranslation();
-
   return (
     <Card className={cn("border-0 shadow-sm", className)}>
       <CardHeader className="pb-4">
         <div>
-          <h3 className="text-lg font-semibold">{t("Quick Actions")}</h3>
+          <h3 className="text-lg font-semibold">{"Quick  Actions"}</h3>
           <p className="text-sm text-muted-foreground mt-1">
-            {t("Frequently used actions for quick access")}
+            {"Frequently used actions for quick access"}
           </p>
         </div>
       </CardHeader>
@@ -93,11 +89,11 @@ export function QuickActions({ actions = defaultActions, className }: QuickActio
                   </div>
                   <div className="flex-1 text-left">
                     <div className="flex items-center justify-between">
-                      <p className="font-medium text-sm">{t(action.title)}</p>
+                      <p className="font-medium text-sm">{action.title}</p>
                       <ArrowRight className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
                     <p className="text-xs text-muted-foreground mt-1">
-                      {t(action.description)}
+                      {action.description}
                     </p>
                   </div>
                 </div>
@@ -117,7 +113,7 @@ export function QuickActions({ actions = defaultActions, className }: QuickActio
             >
               <Link to="/dashboard/products">
                 <Tag className="h-4 w-4" />
-                <span className="text-xs">{t("Products")}</span>
+                <span className="text-xs">{"Products"}</span>
               </Link>
             </Button>
             <Button
@@ -128,7 +124,7 @@ export function QuickActions({ actions = defaultActions, className }: QuickActio
             >
               <Link to="/dashboard/customers">
                 <Users className="h-4 w-4" />
-                <span className="text-xs">{t("Customers")}</span>
+                <span className="text-xs">{"Customers"}</span>
               </Link>
             </Button>
             <Button
@@ -139,7 +135,7 @@ export function QuickActions({ actions = defaultActions, className }: QuickActio
             >
               <Link to="/dashboard/finance">
                 <FileText className="h-4 w-4" />
-                <span className="text-xs">{t("Finance")}</span>
+                <span className="text-xs">{"Finance"}</span>
               </Link>
             </Button>
             <Button
@@ -150,7 +146,7 @@ export function QuickActions({ actions = defaultActions, className }: QuickActio
             >
               <Link to="/dashboard/settings">
                 <Settings className="h-4 w-4" />
-                <span className="text-xs">{t("Settings")}</span>
+                <span className="text-xs">{"Settings"}</span>
               </Link>
             </Button>
           </div>

@@ -1,4 +1,3 @@
-import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -46,8 +45,6 @@ export function ProductCard({
   onDelete,
   onDuplicate 
 }: ProductCardProps) {
-  const { t } = useTranslation();
-
   const getStatusColor = (status: Product['status']) => {
     const colors = {
       active: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400',
@@ -90,7 +87,7 @@ export function ProductCard({
             getStatusColor(product.status)
           )}
         >
-          {t(product.status)}
+          {product.status}
         </Badge>
 
         {/* Discount Badge */}
@@ -103,12 +100,12 @@ export function ProductCard({
         {/* Stock Alert */}
         {isOutOfStock && (
           <Badge className="absolute bottom-2 left-2 bg-red-600 text-white">
-            {t("Out of Stock")}
+            {"Out of  Stock"}
           </Badge>
         )}
         {isLowStock && !isOutOfStock && (
           <Badge className="absolute bottom-2 left-2 bg-yellow-600 text-white">
-            {t("Low Stock")} ({product.inventory.quantity})
+            {"Low  Stock"} ({product.inventory.quantity})
           </Badge>
         )}
       </div>
@@ -138,7 +135,7 @@ export function ProductCard({
           {/* Stock Info */}
           {product.inventory.trackInventory && (
             <p className="text-xs text-muted-foreground">
-              {t("Stock")}: {product.inventory.quantity} {t("units")}
+              {"Stock"}: {product.inventory.quantity} {"Units"}
             </p>
           )}
         </div>
@@ -152,7 +149,7 @@ export function ProductCard({
           className="flex-1"
         >
           <Eye className="h-4 w-4 mr-1" />
-          {t("View")}
+          {"View"}
         </Button>
         
         <DropdownMenu>
@@ -162,19 +159,19 @@ export function ProductCard({
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>{t("Actions")}</DropdownMenuLabel>
+            <DropdownMenuLabel>{"Actions"}</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={() => onView?.(product)}>
               <Eye className="mr-2 h-4 w-4" />
-              {t("View Details")}
+              {"View  Details"}
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => onEdit?.(product)}>
               <Edit className="mr-2 h-4 w-4" />
-              {t("Edit Product")}
+              {"Edit  Product"}
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => onDuplicate?.(product)}>
               <Copy className="mr-2 h-4 w-4" />
-              {t("Duplicate")}
+              {"Duplicate"}
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem 
@@ -182,7 +179,7 @@ export function ProductCard({
               className="text-red-600 dark:text-red-400"
             >
               <Trash className="mr-2 h-4 w-4" />
-              {t("Delete")}
+              {"Delete"}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

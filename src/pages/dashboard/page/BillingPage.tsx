@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import {
   FileText,
   Download,
@@ -61,7 +60,6 @@ interface Invoice {
 }
 
 function BillingPage() {
-  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
   const [filterStatus, setFilterStatus] = useState("all");
   const [filterPeriod, setFilterPeriod] = useState("all");
@@ -183,28 +181,28 @@ function BillingPage() {
         return (
           <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-400 flex items-center gap-1">
             {getStatusIcon(status)}
-            {t("Paid")}
+            {"Paid"}
           </Badge>
         );
       case "pending":
         return (
           <Badge className="bg-yellow-100 text-yellow-700 dark:bg-yellow-950/30 dark:text-yellow-400 flex items-center gap-1">
             {getStatusIcon(status)}
-            {t("Pending")}
+            {"Pending"}
           </Badge>
         );
       case "overdue":
         return (
           <Badge className="bg-red-100 text-red-700 dark:bg-red-950/30 dark:text-red-400 flex items-center gap-1">
             {getStatusIcon(status)}
-            {t("Overdue")}
+            {"Overdue"}
           </Badge>
         );
       case "cancelled":
         return (
           <Badge variant="secondary" className="flex items-center gap-1">
             {getStatusIcon(status)}
-            {t("Cancelled")}
+            {"Cancelled"}
           </Badge>
         );
       default:
@@ -224,8 +222,8 @@ function BillingPage() {
     <div className="space-y-6">
       <div className="flex  rounded-2xl m-1 flex-1 flex-col gap-6 p-6">
         <Title
-          title={t("Billing & Invoices")}
-          Subtitle={t("Manage your invoices, billing history, and payment records")}
+          title={"Billing &  Invoices"}
+          Subtitle={"Manage your invoices"}
           className="text-3xl"
           classNamee=""
         />
@@ -236,9 +234,9 @@ function BillingPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t("Total Billed")}</p>
+                  <p className="text-sm text-muted-foreground">{"Total  Billed"}</p>
                   <p className="text-2xl font-bold mt-1">EGP {totalBilled.toFixed(2)}</p>
-                  <p className="text-xs text-muted-foreground mt-2">{t("This month")}</p>
+                  <p className="text-xs text-muted-foreground mt-2">{"This month"}</p>
                 </div>
                 <div className="h-12 w-12 rounded-full gradient-border bg-primary/10 flex items-center justify-center">
                   <DollarSign className="h-6 w-6 text-primary" />
@@ -251,10 +249,10 @@ function BillingPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t("Paid Invoices")}</p>
+                  <p className="text-sm text-muted-foreground">{"Paid  Invoices"}</p>
                   <p className="text-2xl font-bold mt-1">EGP {totalPaid.toFixed(2)}</p>
                   <p className="text-xs text-emerald-600 dark:text-emerald-400 mt-2">
-                    {((totalPaid / totalBilled) * 100).toFixed(0)}% {t("collected")}
+                    {((totalPaid / totalBilled) * 100).toFixed(0)}% {"Collected"}
                   </p>
                 </div>
                 <div className="h-12 w-12 rounded-full bg-emerald-50 dark:bg-emerald-950/30 flex items-center justify-center">
@@ -268,10 +266,10 @@ function BillingPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t("Pending Amount")}</p>
+                  <p className="text-sm text-muted-foreground">{"Pending  Amount"}</p>
                   <p className="text-2xl font-bold mt-1">EGP {totalPending.toFixed(2)}</p>
                   <p className="text-xs text-yellow-600 dark:text-yellow-400 mt-2">
-                    {invoices.filter(inv => inv.status === "pending").length} {t("invoices")}
+                    {invoices.filter(inv => inv.status === "pending").length} {"Invoices"}
                   </p>
                 </div>
                 <div className="h-12 w-12 rounded-full bg-yellow-50 dark:bg-yellow-950/30 flex items-center justify-center">
@@ -285,10 +283,10 @@ function BillingPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t("Overdue")}</p>
+                  <p className="text-sm text-muted-foreground">{"Overdue"}</p>
                   <p className="text-2xl font-bold mt-1">{overdueCount}</p>
                   <p className="text-xs text-red-600 dark:text-red-400 mt-2">
-                    {t("Requires attention")}
+                    {"Requires attention"}
                   </p>
                 </div>
                 <div className="h-12 w-12 rounded-full bg-red-50 dark:bg-red-950/30 flex items-center justify-center">
@@ -307,7 +305,7 @@ function BillingPage() {
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input
-                    placeholder={t("Search invoices...")}
+                    placeholder={""}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="pl-10 w-full md:w-[300px]"
@@ -316,28 +314,28 @@ function BillingPage() {
 
                 <Select value={filterStatus} onValueChange={setFilterStatus}>
                   <SelectTrigger className="w-full md:w-[150px]">
-                    <SelectValue placeholder={t("Status")} />
+                    <SelectValue placeholder={"Status"} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">{t("All Status")}</SelectItem>
-                    <SelectItem value="paid">{t("Paid")}</SelectItem>
-                    <SelectItem value="pending">{t("Pending")}</SelectItem>
-                    <SelectItem value="overdue">{t("Overdue")}</SelectItem>
-                    <SelectItem value="cancelled">{t("Cancelled")}</SelectItem>
+                    <SelectItem value="all">{"All  Status"}</SelectItem>
+                    <SelectItem value="paid">{"Paid"}</SelectItem>
+                    <SelectItem value="pending">{"Pending"}</SelectItem>
+                    <SelectItem value="overdue">{"Overdue"}</SelectItem>
+                    <SelectItem value="cancelled">{"Cancelled"}</SelectItem>
                   </SelectContent>
                 </Select>
 
                 <Select value={filterPeriod} onValueChange={setFilterPeriod}>
                   <SelectTrigger className="w-full md:w-[150px]">
-                    <SelectValue placeholder={t("Period")} />
+                    <SelectValue placeholder={"Period"} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">{t("All Time")}</SelectItem>
-                    <SelectItem value="today">{t("Today")}</SelectItem>
-                    <SelectItem value="week">{t("This Week")}</SelectItem>
-                    <SelectItem value="month">{t("This Month")}</SelectItem>
-                    <SelectItem value="quarter">{t("This Quarter")}</SelectItem>
-                    <SelectItem value="year">{t("This Year")}</SelectItem>
+                    <SelectItem value="all">{"All  Time"}</SelectItem>
+                    <SelectItem value="today">{"Today"}</SelectItem>
+                    <SelectItem value="week">{"This  Week"}</SelectItem>
+                    <SelectItem value="month">{"This  Month"}</SelectItem>
+                    <SelectItem value="quarter">{"This  Quarter"}</SelectItem>
+                    <SelectItem value="year">{"This  Year"}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -345,11 +343,11 @@ function BillingPage() {
               <div className="flex gap-2">
                 <Button variant="outline" size="sm">
                   <Calendar className="h-4 w-4 mr-2" />
-                  {t("Date Range")}
+                  {"Date  Range"}
                 </Button>
                 <Button size="sm" className="glow-on-hover gradient-border">
                   <Receipt className="h-4 w-4 mr-2" />
-                  {t("Create Invoice")}
+                  {"Create  Invoice"}
                 </Button>
               </div>
             </div>
@@ -361,13 +359,13 @@ function BillingPage() {
               <Table>
                 <TableHeader>
                   <TableRow className="border-b border-gray-200 dark:border-gray-700">
-                    <TableHead>{t("Invoice")}</TableHead>
-                    <TableHead>{t("Customer")}</TableHead>
-                    <TableHead>{t("Date")}</TableHead>
-                    <TableHead>{t("Due Date")}</TableHead>
-                    <TableHead>{t("Amount")}</TableHead>
-                    <TableHead>{t("Status")}</TableHead>
-                    <TableHead className="text-right">{t("Actions")}</TableHead>
+                    <TableHead>{"Invoice"}</TableHead>
+                    <TableHead>{"Customer"}</TableHead>
+                    <TableHead>{"Date"}</TableHead>
+                    <TableHead>{"Due  Date"}</TableHead>
+                    <TableHead>{"Amount"}</TableHead>
+                    <TableHead>{"Status"}</TableHead>
+                    <TableHead className="text-right">{"Actions"}</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -384,7 +382,7 @@ function BillingPage() {
                             <FileText className="h-4 w-4 text-muted-foreground" />
                             <div>
                               <p className="font-medium">{invoice.invoiceNumber}</p>
-                              <p className="text-xs text-muted-foreground">{invoice.items} {t("items")}</p>
+                              <p className="text-xs text-muted-foreground">{invoice.items} {"Items"}</p>
                             </div>
                           </div>
                         </TableCell>
@@ -402,12 +400,12 @@ function BillingPage() {
                             <p>{new Date(invoice.dueDate).toLocaleDateString()}</p>
                             {invoice.status === "pending" && daysUntilDue > 0 && (
                               <p className="text-xs text-muted-foreground">
-                                {t("Due in")} {daysUntilDue} {t("days")}
+                                {"Due in"} {daysUntilDue} {"Days"}
                               </p>
                             )}
                             {invoice.status === "overdue" && (
                               <p className="text-xs text-red-600 dark:text-red-400">
-                                {Math.abs(daysUntilDue)} {t("days overdue")}
+                                {Math.abs(daysUntilDue)} {"Days overdue"}
                               </p>
                             )}
                           </div>
@@ -416,7 +414,7 @@ function BillingPage() {
                           <div>
                             <p className="font-semibold">EGP {invoice.total.toFixed(2)}</p>
                             <p className="text-xs text-muted-foreground">
-                              {t("Tax")}: EGP {invoice.tax.toFixed(2)}
+                              {"Tax"}: EGP {invoice.tax.toFixed(2)}
                             </p>
                           </div>
                         </TableCell>
@@ -425,36 +423,36 @@ function BillingPage() {
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                               <Button variant="ghost" size="sm">
-                                {t("Actions")}
+                                {"Actions"}
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end">
-                              <DropdownMenuLabel>{t("Invoice Actions")}</DropdownMenuLabel>
+                              <DropdownMenuLabel>{"Invoice  Actions"}</DropdownMenuLabel>
                               <DropdownMenuSeparator />
                               <DropdownMenuItem className="cursor-pointer">
                                 <Eye className="h-4 w-4 mr-2" />
-                                {t("View Invoice")}
+                                {"View  Invoice"}
                               </DropdownMenuItem>
                               <DropdownMenuItem className="cursor-pointer">
                                 <Download className="h-4 w-4 mr-2" />
-                                {t("Download PDF")}
+                                {"Download  P D F"}
                               </DropdownMenuItem>
                               <DropdownMenuItem className="cursor-pointer">
                                 <Mail className="h-4 w-4 mr-2" />
-                                {t("Send by Email")}
+                                {"Send by  Email"}
                               </DropdownMenuItem>
                               <DropdownMenuItem className="cursor-pointer">
                                 <Printer className="h-4 w-4 mr-2" />
-                                {t("Print")}
+                                {"Print"}
                               </DropdownMenuItem>
                               <DropdownMenuSeparator />
                               <DropdownMenuItem className="cursor-pointer">
                                 <CreditCard className="h-4 w-4 mr-2" />
-                                {t("Record Payment")}
+                                {"Record  Payment"}
                               </DropdownMenuItem>
                               <DropdownMenuItem className="cursor-pointer text-destructive">
                                 <XCircle className="h-4 w-4 mr-2" />
-                                {t("Cancel Invoice")}
+                                {"Cancel  Invoice"}
                               </DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
@@ -479,7 +477,7 @@ function BillingPage() {
                           <FileText className="h-4 w-4 text-muted-foreground" />
                           <div>
                             <p className="font-medium">{invoice.invoiceNumber}</p>
-                            <p className="text-xs text-muted-foreground">{invoice.items} {t("items")}</p>
+                            <p className="text-xs text-muted-foreground">{invoice.items} {"Items"}</p>
                           </div>
                         </div>
                         {getStatusBadge(invoice.status)}
@@ -492,22 +490,22 @@ function BillingPage() {
                         </div>
                         
                         <div className="flex justify-between text-sm">
-                          <span className="text-muted-foreground">{t("Date")}</span>
+                          <span className="text-muted-foreground">{"Date"}</span>
                           <span>{new Date(invoice.date).toLocaleDateString()}</span>
                         </div>
                         
                         <div className="flex justify-between text-sm">
-                          <span className="text-muted-foreground">{t("Due Date")}</span>
+                          <span className="text-muted-foreground">{"Due  Date"}</span>
                           <div className="text-right">
                             <p>{new Date(invoice.dueDate).toLocaleDateString()}</p>
                             {invoice.status === "pending" && daysUntilDue > 0 && (
                               <p className="text-xs text-muted-foreground">
-                                {t("Due in")} {daysUntilDue} {t("days")}
+                                {"Due in"} {daysUntilDue} {"Days"}
                               </p>
                             )}
                             {invoice.status === "overdue" && (
                               <p className="text-xs text-red-600 dark:text-red-400">
-                                {Math.abs(daysUntilDue)} {t("days overdue")}
+                                {Math.abs(daysUntilDue)} {"Days overdue"}
                               </p>
                             )}
                           </div>
@@ -518,43 +516,43 @@ function BillingPage() {
                         <div>
                           <p className="font-semibold text-lg">EGP {invoice.total.toFixed(2)}</p>
                           <p className="text-xs text-muted-foreground">
-                            {t("Tax")}: EGP {invoice.tax.toFixed(2)}
+                            {"Tax"}: EGP {invoice.tax.toFixed(2)}
                           </p>
                         </div>
                         
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
                             <Button variant="outline" size="sm">
-                              {t("Actions")}
+                              {"Actions"}
                             </Button>
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
-                            <DropdownMenuLabel>{t("Invoice Actions")}</DropdownMenuLabel>
+                            <DropdownMenuLabel>{"Invoice  Actions"}</DropdownMenuLabel>
                             <DropdownMenuSeparator />
                             <DropdownMenuItem className="cursor-pointer">
                               <Eye className="h-4 w-4 mr-2" />
-                              {t("View Invoice")}
+                              {"View  Invoice"}
                             </DropdownMenuItem>
                             <DropdownMenuItem className="cursor-pointer">
                               <Download className="h-4 w-4 mr-2" />
-                              {t("Download PDF")}
+                              {"Download  P D F"}
                             </DropdownMenuItem>
                             <DropdownMenuItem className="cursor-pointer">
                               <Mail className="h-4 w-4 mr-2" />
-                              {t("Send by Email")}
+                              {"Send by  Email"}
                             </DropdownMenuItem>
                             <DropdownMenuItem className="cursor-pointer">
                               <Printer className="h-4 w-4 mr-2" />
-                              {t("Print")}
+                              {"Print"}
                             </DropdownMenuItem>
                             <DropdownMenuSeparator />
                             <DropdownMenuItem className="cursor-pointer">
                               <CreditCard className="h-4 w-4 mr-2" />
-                              {t("Record Payment")}
+                              {"Record  Payment"}
                             </DropdownMenuItem>
                             <DropdownMenuItem className="cursor-pointer text-destructive">
                               <XCircle className="h-4 w-4 mr-2" />
-                              {t("Cancel Invoice")}
+                              {"Cancel  Invoice"}
                             </DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>
@@ -568,14 +566,14 @@ function BillingPage() {
             {/* Pagination */}
             <div className="flex flex-col md:flex-row items-center justify-between gap-4 mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
               <p className="text-sm text-muted-foreground text-center md:text-left">
-                {t("Showing")} 1-{filteredInvoices.length} {t("of")} {invoices.length} {t("invoices")}
+                {"Showing"} 1-{filteredInvoices.length} {"Of"} {invoices.length} {"Invoices"}
               </p>
               <div className="flex gap-2">
                 <Button variant="outline" size="sm" disabled>
-                  {t("Previous")}
+                  {"Previous"}
                 </Button>
                 <Button variant="outline" size="sm">
-                  {t("Next")}
+                  {"Next"}
                 </Button>
               </div>
             </div>

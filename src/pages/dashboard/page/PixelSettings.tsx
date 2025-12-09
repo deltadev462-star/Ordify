@@ -1,5 +1,4 @@
 import { useState, type FC } from "react";
-import { useTranslation } from "react-i18next";
 import {
   Camera,
   Activity,
@@ -68,7 +67,6 @@ interface PixelConfig {
 }
 
 function PixelSettings() {
-  const { t } = useTranslation();
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [customPixels, setCustomPixels] = useState<Array<{ id: string; name: string; code: string }>>([]);
   
@@ -162,20 +160,20 @@ function PixelSettings() {
   };
 
   return (
-    <div dir="rtl">
+    <div>
       <div className="flex bg-white dark:bg-black/80 rounded-2xl m-1 flex-1 flex-col gap-4 p-4 pt-0">
         <Title
-          title={t("pixelSettings.title")}
-          Subtitle={t("pixelSettings.description")}
+          title={"Title"}
+          Subtitle={"Description"}
           className="text-3xl"
           classNamee=""
         />
 
         <Alert variant="info" className="mb-4">
           <AlertIcon variant="info" />
-          <AlertTitle>{t("pixelSettings.trackYourConversions")}</AlertTitle>
+          <AlertTitle>{"Track Your Conversions"}</AlertTitle>
           <AlertDescription>
-            {t("pixelSettings.connectAdvertisingPixels")}
+            {"Connect Advertising Pixels"}
           </AlertDescription>
         </Alert>
 
@@ -183,11 +181,11 @@ function PixelSettings() {
           <TabsList className="grid w-full max-w-md grid-cols-2 mb-6">
             <TabsTrigger value="platforms" className="flex items-center gap-2">
               <Activity className="w-4 h-4" />
-              {t("pixelSettings.platformPixels")}
+              {"Platform Pixels"}
             </TabsTrigger>
             <TabsTrigger value="custom" className="flex items-center gap-2">
               <Code2 className="w-4 h-4" />
-              {t("pixelSettings.customCode")}
+              {"Custom Code"}
             </TabsTrigger>
           </TabsList>
 
@@ -242,8 +240,8 @@ function PixelSettings() {
                                 : "text-gray-600 dark:text-gray-400"
                             )}>
                               {pixel.enabled
-                                ? t("pixelSettings.activeAndTracking")
-                                : t("pixelSettings.notConfigured")}
+                                ? "Active And Tracking"
+                                : "Not Configured"}
                             </CardDescription>
                           </div>
                         </div>
@@ -258,7 +256,7 @@ function PixelSettings() {
                                 ? "hover:bg-white/20 text-white" 
                                 : "hover:bg-gray-200 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400"
                             )}
-                            title={t("pixelSettings.helpDocumentation")}
+                            title={"Help Documentation"}
                           >
                             <ExternalLink className="w-4 h-4" />
                           </a>
@@ -278,13 +276,13 @@ function PixelSettings() {
                         <div className="space-y-2">
                           <Label className="text-gray-700 dark:text-gray-300 font-medium flex items-center gap-2">
                             <Camera className="w-4 h-4" />
-                            {t("pixelSettings.pixelId")}
+                            {"Pixel Id"}
                           </Label>
                           <div className="flex gap-2">
                             <Input
                               value={pixel.pixelId}
                               onChange={(e) => handlePixelUpdate(pixel.platform, "pixelId", e.target.value)}
-                              placeholder={t("pixelSettings.enterPixelId", { name: pixel.name })}
+                              placeholder={"Enter Pixel Id"}
                               className="font-mono text-sm border-gray-300 dark:border-gray-700"
                             />
                             <Button
@@ -306,15 +304,15 @@ function PixelSettings() {
                           <div className="space-y-2">
                             <Label className="text-gray-700 dark:text-gray-300 font-medium flex items-center gap-2">
                               <TestTube className="w-4 h-4" />
-                              {t("pixelSettings.testEventCode")}
+                              {"Test Event Code"}
                               <Badge variant="secondary" className="text-xs">
-                                {t("optional")}
+                                {"Optional"}
                               </Badge>
                             </Label>
                             <Input
                               value={pixel.testEventCode || ""}
                               onChange={(e) => handlePixelUpdate(pixel.platform, "testEventCode", e.target.value)}
-                              placeholder={t("TEST12345")}
+                              placeholder={"T E S T12345"}
                               className="font-mono text-sm border-gray-300 dark:border-gray-700"
                             />
                           </div>
@@ -322,7 +320,7 @@ function PixelSettings() {
 
                         <div className="space-y-2">
                           <Label className="text-gray-700 dark:text-gray-300 font-medium">
-                            {t("pixelSettings.trackedEvents")}
+                            {"Tracked Events"}
                           </Label>
                           <div className="flex flex-wrap gap-2">
                             {pixel.events.map((event) => (
@@ -341,13 +339,13 @@ function PixelSettings() {
                           <div className="flex items-center justify-between pt-3 border-t border-gray-200 dark:border-gray-800">
                             <div className="flex items-center gap-2">
                               <Label className="text-gray-700 dark:text-gray-300 font-medium">
-                                {t("pixelSettings.conversionApi")}
+                                {"Conversion Api"}
                               </Label>
                               <Badge 
                                 variant="default" 
                                 className="text-xs bg-gradient-to-r from-purple-500 to-pink-500"
                               >
-                                {t("pro")}
+                                {"Pro"}
                               </Badge>
                             </div>
                             <Switch
@@ -376,9 +374,9 @@ function PixelSettings() {
                       <Code2 className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <CardTitle className="text-xl">{t("pixelSettings.customTrackingCode")}</CardTitle>
+                      <CardTitle className="text-xl">{"Custom Tracking Code"}</CardTitle>
                       <CardDescription className="text-white/80">
-                        {t("pixelSettings.addCustomJavaScript")}
+                        {"Add Custom Java Script"}
                       </CardDescription>
                     </div>
                   </div>
@@ -388,7 +386,7 @@ function PixelSettings() {
                     className="bg-white/20 hover:bg-white/30 text-white border-0"
                   >
                     <Plus className="w-4 h-4 mr-2" />
-                    {t("pixelSettings.addCustomCode")}
+                    {"Add Custom Code"}
                   </Button>
                 </div>
               </CardHeader>
@@ -398,7 +396,7 @@ function PixelSettings() {
                   <div className="text-center py-8">
                     <Code2 className="w-12 h-12 mx-auto text-gray-400 dark:text-gray-600 mb-3" />
                     <p className="text-gray-600 dark:text-gray-400">
-                      {t("pixelSettings.noCustomCodesAdded")}
+                      {"No Custom Codes Added"}
                     </p>
                   </div>
                 ) : (
@@ -407,7 +405,7 @@ function PixelSettings() {
                       <CardContent className="p-4 space-y-3">
                         <div className="flex items-center justify-between">
                           <Label className="text-gray-700 dark:text-gray-300 font-medium">
-                            {t("pixelSettings.customCode")} #{index + 1}
+                            {"Custom Code"} #{index + 1}
                           </Label>
                           <Button
                             variant="ghost"
@@ -422,13 +420,13 @@ function PixelSettings() {
                         <Input
                           value={pixel.name}
                           onChange={(e) => updateCustomPixel(pixel.id, "name", e.target.value)}
-                          placeholder={t("pixelSettings.codeName")}
+                          placeholder={"Code Name"}
                           className="border-gray-300 dark:border-gray-700"
                         />
                         
                         <div className="space-y-2">
                           <Label className="text-sm text-gray-600 dark:text-gray-400">
-                            {t("pixelSettings.javaScriptCode")}
+                            {"Java Script Code"}
                           </Label>
                           <textarea
                             value={pixel.code}
@@ -451,12 +449,12 @@ function PixelSettings() {
             variant="outline" 
             className="border-gray-300 dark:border-gray-700"
           >
-            {t("pixelSettings.cancel")}
+            {"Cancel"}
           </Button>
           <Button 
             className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white"
           >
-            {t("pixelSettings.saveConfiguration")}
+            {"Save Configuration"}
           </Button>
         </div>
       </div>

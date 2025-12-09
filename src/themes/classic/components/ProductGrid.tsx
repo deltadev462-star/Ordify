@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { ProductCard } from "@/themes/shared/components/ProductCard";
 import { Button } from "@/components/ui/button";
 import {
@@ -48,18 +47,17 @@ export const ClassicProductGrid = ({
   onWishlist,
   className = "",
 }: ClassicProductGridProps) => {
-  const { t } = useTranslation();
   const [currentView, setCurrentView] = useState(defaultView);
   const [sortBy, setSortBy] = useState("position");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
 
   const sortOptions = [
-    { value: "position", label: t("Position") },
-    { value: "name-asc", label: t("Product Name: A to Z") },
-    { value: "name-desc", label: t("Product Name: Z to A") },
-    { value: "price-asc", label: t("Price: Low to High") },
-    { value: "price-desc", label: t("Price: High to Low") },
+    { value: "position", label: "Position" },
+    { value: "name-asc", label: "Product  Name:  A to  Z" },
+    { value: "name-desc", label: "Product  Name:  Z to  A" },
+    { value: "price-asc", label: "Price:  Low to  High" },
+    { value: "price-desc", label: "Price:  High to  Low" },
   ];
 
   // Sort products
@@ -103,9 +101,9 @@ export const ClassicProductGrid = ({
       {/* Breadcrumbs */}
       {showBreadcrumbs && (
         <nav className="mb-4 flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
-          <a href="/" className="hover:text-gray-900 dark:hover:text-gray-100">{t("Home")}</a>
+          <a href="/" className="hover:text-gray-900 dark:hover:text-gray-100">{"Home"}</a>
           <ChevronRight className="h-4 w-4" />
-          <a href="/shop" className="hover:text-gray-900 dark:hover:text-gray-100">{t("Shop")}</a>
+          <a href="/shop" className="hover:text-gray-900 dark:hover:text-gray-100">{"Shop"}</a>
           {title && (
             <>
               <ChevronRight className="h-4 w-4" />
@@ -126,11 +124,7 @@ export const ClassicProductGrid = ({
           {/* Results Count */}
           {showResultsCount && (
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              {t("Showing ... results", {
-                start: (currentPage - 1) * itemsPerPage + 1,
-                end: Math.min(currentPage * itemsPerPage, sortedProducts.length),
-                total: sortedProducts.length
-              })}
+              {"results"}
             </p>
           )}
 
@@ -166,7 +160,7 @@ export const ClassicProductGrid = ({
             {/* Sorting */}
             {showSorting && (
               <div className="flex items-center gap-2">
-                <span className="text-sm text-gray-600 dark:text-gray-400">{t("Sort by:")}</span>
+                <span className="text-sm text-gray-600 dark:text-gray-400">{"Sort by:"}</span>
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
@@ -231,14 +225,14 @@ export const ClassicProductGrid = ({
                     onClick={() => onAddToCart?.(product.id)}
                     disabled={!product.inStock}
                   >
-                    {product.inStock ? t("Add to Cart") : t("Out of Stock")}
+                    {product.inStock ? "Add to  Cart" : "Out of  Stock"}
                   </Button>
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={() => onQuickView?.(product.id)}
                   >
-                    {t("Quick View")}
+                    {"Quick  View"}
                   </Button>
                 </div>
               </div>
@@ -258,7 +252,7 @@ export const ClassicProductGrid = ({
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
             >
-              {t("Previous")}
+              {"Previous"}
             </Button>
 
             {/* Page Numbers */}
@@ -300,7 +294,7 @@ export const ClassicProductGrid = ({
               onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
               disabled={currentPage === totalPages}
             >
-              {t("Next")}
+              {"Next"}
             </Button>
           </nav>
         </div>

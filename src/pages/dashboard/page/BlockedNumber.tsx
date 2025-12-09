@@ -115,7 +115,7 @@ function BlockedNumber() {
     {
       id: "1",
       phoneNumber: "+201234567890",
-      reason: t("Fraudulent activity detected"),
+      reason: "Fraudulent activity detected",
       blockedDate: "2024-01-15",
       attemptedOrders: 12,
       location: "Cairo, Egypt",
@@ -126,7 +126,7 @@ function BlockedNumber() {
     {
       id: "2",
       phoneNumber: "+201098765432",
-      reason: t("Repeated order cancellations"),
+      reason: "Repeated order cancellations",
       blockedDate: "2024-01-20",
       attemptedOrders: 8,
       location: "Alexandria, Egypt",
@@ -136,7 +136,7 @@ function BlockedNumber() {
     {
       id: "3",
       phoneNumber: "+201555666777",
-      reason: t("Spam orders"),
+      reason: "Spam orders",
       blockedDate: "2024-02-01",
       attemptedOrders: 25,
       location: "Giza, Egypt",
@@ -157,19 +157,19 @@ function BlockedNumber() {
   const handleAddNumber = () => {
     if (!phoneNumber.trim()) {
       toast({
-        title: t("Error"),
-        description: t("Please enter a phone number"),
+        title: t("blockedNumbers.error"),
+        description: t("blockedNumbers.pleaseEnterPhoneNumber"),
         variant: "destructive",
       });
       return;
     }
 
     toast({
-      title: t("Success"),
+      title: t("blockedNumbers.success"),
       description: (
         <div className="flex items-center gap-2">
           <CheckCircle className="h-4 w-4 text-green-500" />
-          {t("Phone number blocked successfully")}
+          {t("blockedNumbers.phoneNumberBlockedSuccessfully")}
         </div>
       ),
     });
@@ -181,19 +181,22 @@ function BlockedNumber() {
   };
 
   const handleBulkAdd = () => {
-    const numbers = bulkNumbers.split('\n').filter(n => n.trim());
+    const numbers = bulkNumbers
+      .split("\n")
+      .map((n) => n.trim())
+      .filter((n) => n.length > 0);
     if (numbers.length === 0) {
       toast({
-        title: t("Error"),
-        description: t("Please enter at least one phone number"),
+        title: t("blockedNumbers.error"),
+        description: t("blockedNumbers.pleaseEnterPhoneNumber"),
         variant: "destructive",
       });
       return;
     }
 
     toast({
-      title: t("Success"),
-      description: `${numbers.length} ${t("numbers blocked successfully")}`,
+      title: t("blockedNumbers.success"),
+      description: `${numbers.length} ${t("blockedNumbers.numbersBlockedSuccessfully")}`,
     });
     
     setIsBulkAddDialogOpen(false);
@@ -202,15 +205,15 @@ function BlockedNumber() {
 
   const handleUnblockNumber = () => {
     toast({
-      title: t("Success"),
-      description: t("Phone number unblocked successfully"),
+      title: t("blockedNumbers.success"),
+      description: t("blockedNumbers.phoneNumberUnblockedSuccessfully"),
     });
   };
 
   const handleExport = () => {
     toast({
-      title: t("Exporting"),
-      description: t("Preparing blocked numbers list for export..."),
+      title: t("common.export"),
+      description: "",
     });
   };
 
@@ -239,16 +242,14 @@ function BlockedNumber() {
                   className="bg-white/20 text-white border-white/30"
                 >
                   <Ban className="h-3 w-3 mr-1" />
-                  {t("Security Feature")}
+                  {t("blockedNumbers.securityFeature")}
                 </Badge>
               </div>
               <h1 className="text-4xl font-bold mb-2">
-                {t("Blocked Numbers")}
+                {t("blockedNumbers.title")}
               </h1>
               <p className="text-lg opacity-90 max-w-2xl">
-                {t(
-                  "You can delete or add the blocked numbers from making a purchase from the store"
-                )}
+                {t("blockedNumbers.subtitle")}
               </p>
             </div>
 
@@ -262,7 +263,7 @@ function BlockedNumber() {
             <Card className="border border-gray-200 dark:border-gray-700 shadow-lg bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                  {t("Total Blocked")}
+                  {t("blockedNumbers.totalBlocked")}
                 </CardTitle>
                 <div className="p-2 bg-red-100 dark:bg-red-900/30 rounded-lg">
                   <UserX className="h-4 w-4 text-red-600 dark:text-red-400" />
@@ -271,7 +272,7 @@ function BlockedNumber() {
               <CardContent>
                 <div className="text-2xl font-bold">{stats.totalBlocked}</div>
                 <p className="text-xs text-muted-foreground mt-1">
-                  {t("Active blocks")}
+                  {t("blockedNumbers.activeBlocks")}
                 </p>
               </CardContent>
             </Card>
@@ -279,7 +280,7 @@ function BlockedNumber() {
             <Card className="border border-gray-200 dark:border-gray-700 shadow-lg bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                  {t("Permanent Blocks")}
+                  {t("blockedNumbers.permanentBlocks")}
                 </CardTitle>
                 <div className="p-2 bg-purple-100 dark:bg-purple-900/30 rounded-lg">
                   <XCircle className="h-4 w-4 text-purple-600 dark:text-purple-400" />
@@ -290,7 +291,7 @@ function BlockedNumber() {
                   {stats.permanentBlocks}
                 </div>
                 <p className="text-xs text-muted-foreground mt-1">
-                  {t("No expiry")}
+                  {t("blockedNumbers.noExpiry")}
                 </p>
               </CardContent>
             </Card>
@@ -298,7 +299,7 @@ function BlockedNumber() {
             <Card className="border border-gray-200 dark:border-gray-700 shadow-lg bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                  {t("Temporary Blocks")}
+                  {t("blockedNumbers.temporaryBlocks")}
                 </CardTitle>
                 <div className="p-2 bg-amber-100 dark:bg-amber-900/30 rounded-lg">
                   <Clock className="h-4 w-4 text-amber-600 dark:text-amber-400" />
@@ -309,7 +310,7 @@ function BlockedNumber() {
                   {stats.temporaryBlocks}
                 </div>
                 <p className="text-xs text-muted-foreground mt-1">
-                  {t("Time-limited")}
+                  {t("blockedNumbers.timeLimited")}
                 </p>
               </CardContent>
             </Card>
@@ -317,7 +318,7 @@ function BlockedNumber() {
             <Card className="border border-gray-200 dark:border-gray-700 shadow-lg bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                  {t("Blocked Today")}
+                  {t("blockedNumbers.blockedToday")}
                 </CardTitle>
                 <div className="p-2 bg-green-100 dark:bg-green-900/30 rounded-lg">
                   <Calendar className="h-4 w-4 text-green-600 dark:text-green-400" />
@@ -337,7 +338,7 @@ function BlockedNumber() {
             <Card className="border border-gray-200 dark:border-gray-700 shadow-lg bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900">
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                  {t("Blocked Attempts")}
+                  {t("blockedNumbers.attemptedOrders")}
                 </CardTitle>
                 <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
                   <ShoppingCart className="h-4 w-4 text-blue-600 dark:text-blue-400" />
@@ -348,7 +349,7 @@ function BlockedNumber() {
                   {stats.attemptedOrders}
                 </div>
                 <p className="text-xs text-muted-foreground mt-1">
-                  {t("Orders prevented")}
+                  {t("blockedNumbers.ordersPrevent")}
                 </p>
               </CardContent>
             </Card>
@@ -367,21 +368,21 @@ function BlockedNumber() {
                   className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-800 data-[state=active]:shadow-sm rounded-lg"
                 >
                   <Phone className="h-4 w-4 mr-2" />
-                  {t("All Numbers")}
+                  {t("blockedNumbers.allNumbers")}
                 </TabsTrigger>
                 <TabsTrigger
                   value="recent"
                   className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-800 data-[state=active]:shadow-sm rounded-lg"
                 >
                   <Clock className="h-4 w-4 mr-2" />
-                  {t("Recent")}
+                  {t("blockedNumbers.recent")}
                 </TabsTrigger>
                 <TabsTrigger
                   value="high-risk"
                   className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-800 data-[state=active]:shadow-sm rounded-lg"
                 >
                   <AlertTriangle className="h-4 w-4 mr-2" />
-                  {t("High Risk")}
+                  {t("blockedNumbers.highRisk")}
                 </TabsTrigger>
               </TabsList>
 
@@ -392,7 +393,7 @@ function BlockedNumber() {
                   className="border-gray-200 dark:border-gray-700"
                 >
                   <Upload className="h-4 w-4 mx-0.5 md:mx-2" />
-                  {t("Bulk Add")}
+                  {t("blockedNumbers.bulkAdd")}
                 </Button>
                 <Button
                   onClick={handleExport}
@@ -400,14 +401,14 @@ function BlockedNumber() {
                   className="border-gray-200 dark:border-gray-700"
                 >
                   <Download className="h-4 w-4 mx-0.5 md:mx-2" />
-                  {t("Export")}
+                  {t("blockedNumbers.export")}
                 </Button>
                 <Button
                   onClick={() => setIsAddDialogOpen(true)}
                   className="bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700"
                 >
                   <Plus className="h-4 w-4 mx-0.5 md:mx-2" />
-                  {t("Block")}
+                  {t("blockedNumbers.block")}
                 </Button>
               </div>
             </div>
@@ -420,7 +421,7 @@ function BlockedNumber() {
                     <div className="relative flex-1 max-w-md">
                       <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                       <Input
-                        placeholder={t("Search by phone, name, or reason...")}
+                        placeholder={t("blockedNumbers.searchByPhone")}
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         className="pl-10 h-11 border-gray-200 dark:border-gray-700"
@@ -431,28 +432,28 @@ function BlockedNumber() {
                       onValueChange={setFilterStatus}
                     >
                       <SelectTrigger className="w-[180px] h-11 border-gray-200 dark:border-gray-700">
-                        <SelectValue placeholder={t("Status")} />
+                        <SelectValue placeholder={t("common.status")} />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="all">{t("All Status")}</SelectItem>
-                        <SelectItem value="active">{t("Active")}</SelectItem>
+                        <SelectItem value="all">{t("blockedNumbers.allStatus")}</SelectItem>
+                        <SelectItem value="active">{t("blockedNumbers.active")}</SelectItem>
                         <SelectItem value="temporary">
-                          {t("Temporary")}
+                          {t("blockedNumbers.temporary")}
                         </SelectItem>
                         <SelectItem value="permanent">
-                          {t("Permanent")}
+                          {t("blockedNumbers.permanent")}
                         </SelectItem>
                       </SelectContent>
                     </Select>
                     <Select value={dateRange} onValueChange={setDateRange}>
                       <SelectTrigger className="w-[180px] h-11 border-gray-200 dark:border-gray-700">
-                        <SelectValue placeholder={t("Date Range")} />
+                        <SelectValue placeholder={t("blockedNumbers.dateRange")} />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="all">{t("All Time")}</SelectItem>
-                        <SelectItem value="today">{t("Today")}</SelectItem>
-                        <SelectItem value="week">{t("This Week")}</SelectItem>
-                        <SelectItem value="month">{t("This Month")}</SelectItem>
+                        <SelectItem value="all">{t("blockedNumbers.allTime")}</SelectItem>
+                        <SelectItem value="today">{t("blockedNumbers.today")}</SelectItem>
+                        <SelectItem value="week">{t("blockedNumbers.thisWeek")}</SelectItem>
+                        <SelectItem value="month">{t("blockedNumbers.thisMonth")}</SelectItem>
                       </SelectContent>
                     </Select>
                     <Button variant="ghost" size="icon">
@@ -469,18 +470,16 @@ function BlockedNumber() {
                     <div>
                       <CardTitle className="flex items-center gap-2">
                         <UserX className="h-5 w-5" />
-                        {t("Blocked Phone Numbers")}
+                        {t("blockedNumbers.blockedPhoneNumbers")}
                       </CardTitle>
                       <CardDescription>
-                        {t(
-                          "Manage blocked numbers to prevent fraudulent orders"
-                        )}
+                        {t("blockedNumbers.manageBlockedNumbers")}
                       </CardDescription>
                     </div>
                     {selectedNumbers.length > 0 && (
                       <Button variant="destructive" size="sm">
                         <Trash2 className="h-4 w-4 mr-2" />
-                        {t("Unblock")} ({selectedNumbers.length})
+                        {t("blockedNumbers.unblock")} ({selectedNumbers.length})
                       </Button>
                     )}
                   </div>
@@ -539,7 +538,7 @@ function BlockedNumber() {
                                           "bg-green-500"
                                       )}
                                     />
-                                    {t(number.status)}
+                                    {number.status}
                                   </Badge>
                                 </div>
                                 <div className="flex items-center gap-1">
@@ -583,10 +582,8 @@ function BlockedNumber() {
                                       number.phoneNumber
                                     );
                                     toast({
-                                      title: t("Copied"),
-                                      description: t(
-                                        "Phone number copied to clipboard"
-                                      ),
+                                      title: t("messages.copied"),
+                                      description: t("blockedNumbers.phoneNumberCopiedToClipboard"),
                                     });
                                   }}
                                 >
@@ -599,7 +596,7 @@ function BlockedNumber() {
                                 <User className="h-4 w-4 text-gray-400 mt-0.5" />
                                 <div className="flex-1">
                                   <p className="font-medium">
-                                    {number.customerName || t("Unknown")}
+                                    {number.customerName || t("blockedNumbers.unknown")}
                                   </p>
                                   {number.location && (
                                     <p className="text-xs text-gray-500 flex items-center gap-1">
@@ -634,7 +631,7 @@ function BlockedNumber() {
                                 <div className="flex items-center gap-2">
                                   <ShoppingCart className="h-4 w-4 text-orange-500" />
                                   <span className="font-medium text-orange-600 dark:text-orange-400">
-                                    {number.attemptedOrders} {t("attempts")}
+                                    {number.attemptedOrders} {t("blockedNumbers.attempts")}
                                   </span>
                                 </div>
                               </div>
@@ -664,14 +661,14 @@ function BlockedNumber() {
                                 }}
                               />
                             </TableHead>
-                            <TableHead>{t("Phone Number")}</TableHead>
-                            <TableHead>{t("Customer")}</TableHead>
-                            <TableHead>{t("Reason")}</TableHead>
-                            <TableHead>{t("Status")}</TableHead>
-                            <TableHead>{t("Blocked Date")}</TableHead>
-                            <TableHead>{t("Attempts")}</TableHead>
+                            <TableHead>{t("blockedNumbers.phoneNumber")}</TableHead>
+                            <TableHead>{t("blockedNumbers.customer")}</TableHead>
+                            <TableHead>{t("blockedNumbers.reason")}</TableHead>
+                            <TableHead>{t("blockedNumbers.status")}</TableHead>
+                            <TableHead>{t("blockedNumbers.blockedDate")}</TableHead>
+                            <TableHead>{t("blockedNumbers.attempts")}</TableHead>
                             <TableHead className="text-right">
-                              {t("Actions")}
+                              {t("common.actions")}
                             </TableHead>
                           </TableRow>
                         </TableHeader>
@@ -714,10 +711,8 @@ function BlockedNumber() {
                                         number.phoneNumber
                                       );
                                       toast({
-                                        title: t("Copied"),
-                                        description: t(
-                                          "Phone number copied to clipboard"
-                                        ),
+                                        title: t("messages.copied"),
+                                        description: t("blockedNumbers.phoneNumberCopiedToClipboard"),
                                       });
                                     }}
                                   >
@@ -730,7 +725,7 @@ function BlockedNumber() {
                                   <User className="h-4 w-4 text-gray-400" />
                                   <div>
                                     <p className="font-medium">
-                                      {number.customerName || t("Unknown")}
+                                      {number.customerName || t("blockedNumbers.unknown")}
                                     </p>
                                     {number.location && (
                                       <p className="text-xs text-gray-500 flex items-center gap-1">
@@ -778,7 +773,7 @@ function BlockedNumber() {
                                         "bg-green-500"
                                     )}
                                   />
-                                  {t(number.status)}
+                                  {number.status}
                                 </Badge>
                               </TableCell>
                               <TableCell>
@@ -807,7 +802,7 @@ function BlockedNumber() {
                                         <Edit className="h-4 w-4 text-amber-600 dark:text-amber-400" />
                                       </Button>
                                     </TooltipTrigger>
-                                    <TooltipContent>{t("Edit")}</TooltipContent>
+                                    <TooltipContent>{t("common.edit")}</TooltipContent>
                                   </Tooltip>
 
                                   <Tooltip>
@@ -822,7 +817,7 @@ function BlockedNumber() {
                                       </Button>
                                     </TooltipTrigger>
                                     <TooltipContent>
-                                      {t("Unblock")}
+                                      {t("blockedNumbers.unblock")}
                                     </TooltipContent>
                                   </Tooltip>
 
@@ -833,7 +828,7 @@ function BlockedNumber() {
                                       </Button>
                                     </TooltipTrigger>
                                     <TooltipContent>
-                                      {t("More Options")}
+                                      {t("blockedNumbers.moreOptions")}
                                     </TooltipContent>
                                   </Tooltip>
                                 </div>
@@ -844,7 +839,7 @@ function BlockedNumber() {
                       </Table>
                     )
                   ) : (
-                    <Empty className="py-12" Name={t("Blocked Numbers")} />
+                    <Empty className="py-12" Name={t("blockedNumbers.title")} />
                   )}
                 </CardContent>
               </Card>
@@ -854,20 +849,20 @@ function BlockedNumber() {
               <Alert className="border border-gray-200 dark:border-gray-700 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20">
                 <AlertCircle className="h-4 w-4 text-blue-600" />
                 <AlertDescription>
-                  {t("Showing numbers blocked in the last 7 days")}
+                  {t("blockedNumbers.showingRecentBlocks")}
                 </AlertDescription>
               </Alert>
-              <Empty className="py-12" Name={t("Recent Blocks")} />
+              <Empty className="py-12" Name={t("blockedNumbers.recentBlocks")} />
             </TabsContent>
 
             <TabsContent value="high-risk" className="space-y-6 mt-0">
               <Alert className="border border-gray-200 dark:border-gray-700 bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20">
                 <AlertTriangle className="h-4 w-4 text-red-600" />
                 <AlertDescription>
-                  {t("High-risk numbers with multiple violation attempts")}
+                  {t("blockedNumbers.highRiskMultipleAttempts")}
                 </AlertDescription>
               </Alert>
-              <Empty className="py-12" Name={t("High Risk Numbers")} />
+              <Empty className="py-12" Name={t("blockedNumbers.highRiskNumbers")} />
             </TabsContent>
           </Tabs>
         </div>
@@ -877,14 +872,14 @@ function BlockedNumber() {
       <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>{t("Block Phone Number")}</DialogTitle>
+            <DialogTitle>{t("blockedNumbers.blockPhoneNumber")}</DialogTitle>
             <DialogDescription>
-              {t("Add a phone number to the blocked list")}
+              {t("blockedNumbers.addPhoneNumberToBlockedList")}
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
             <div className="space-y-2">
-              <Label htmlFor="phone">{t("Phone Number")} *</Label>
+              <Label htmlFor="phone">{t("blockedNumbers.phoneNumber")} *</Label>
               <Input
                 id="phone"
                 placeholder="+20XXXXXXXXXX"
@@ -894,45 +889,45 @@ function BlockedNumber() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="reason">{t("Reason for Blocking")} *</Label>
+              <Label htmlFor="reason">{t("blockedNumbers.reasonForBlocking")} *</Label>
               <Select value={reason} onValueChange={setReason}>
                 <SelectTrigger className="h-11">
-                  <SelectValue placeholder={t("Select a reason")} />
+                  <SelectValue placeholder={t("blockedNumbers.selectReason")} />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="fraud">
-                    {t("Fraudulent activity")}
+                    {t("blockedNumbers.fraudulentActivity")}
                   </SelectItem>
-                  <SelectItem value="spam">{t("Spam orders")}</SelectItem>
+                  <SelectItem value="spam">{t("blockedNumbers.spamOrders")}</SelectItem>
                   <SelectItem value="cancellation">
-                    {t("Repeated cancellations")}
+                    {t("blockedNumbers.repeatedCancellations")}
                   </SelectItem>
-                  <SelectItem value="payment">{t("Payment issues")}</SelectItem>
-                  <SelectItem value="other">{t("Other")}</SelectItem>
+                  <SelectItem value="payment">{t("blockedNumbers.paymentIssues")}</SelectItem>
+                  <SelectItem value="other">{t("blockedNumbers.other")}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="type">{t("Block Type")}</Label>
+              <Label htmlFor="type">{t("blockedNumbers.blockType")}</Label>
               <Select value={blockType} onValueChange={setBlockType}>
                 <SelectTrigger className="h-11">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="permanent">{t("Permanent")}</SelectItem>
+                  <SelectItem value="permanent">{t("blockedNumbers.permanent")}</SelectItem>
                   <SelectItem value="temporary">
-                    {t("Temporary (30 days)")}
+                    {t("blockedNumbers.temporary30Days")}
                   </SelectItem>
                 </SelectContent>
               </Select>
             </div>
             <div className="space-y-2">
               <Label htmlFor="notes">
-                {t("Notes")} ({t("Optional")})
+                {t("blockedNumbers.notes")} ({t("common.optional")})
               </Label>
               <Textarea
                 id="notes"
-                placeholder={t("Additional information...")}
+                placeholder={""}
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
                 rows={3}
@@ -945,13 +940,13 @@ function BlockedNumber() {
               onClick={() => setIsAddDialogOpen(false)}
               className="border-gray-200 dark:border-gray-700"
             >
-              {t("Cancel")}
+              {t("common.cancel")}
             </Button>
             <Button
               onClick={handleAddNumber}
               className="bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700"
             >
-              {t("Block Number")}
+              {t("blockedNumbers.blockNumber")}
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -961,14 +956,14 @@ function BlockedNumber() {
       <Dialog open={isBulkAddDialogOpen} onOpenChange={setIsBulkAddDialogOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>{t("Bulk Block Numbers")}</DialogTitle>
+            <DialogTitle>{t("blockedNumbers.bulkBlockNumbers")}</DialogTitle>
             <DialogDescription>
-              {t("Add multiple phone numbers at once (one per line)")}
+              {t("blockedNumbers.addMultiplePhoneNumbers")}
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
             <div className="space-y-2">
-              <Label htmlFor="bulk">{t("Phone Numbers")}</Label>
+              <Label htmlFor="bulk">{t("blockedNumbers.phoneNumbers")}</Label>
               <Textarea
                 id="bulk"
                 placeholder={`+201234567890\n+201234567891\n+201234567892`}
@@ -981,9 +976,7 @@ function BlockedNumber() {
             <Alert>
               <Info className="h-4 w-4" />
               <AlertDescription>
-                {t(
-                  "Enter phone numbers one per line. Invalid numbers will be skipped."
-                )}
+                {t("blockedNumbers.enterPhoneNumbersOnePerLine")}
               </AlertDescription>
             </Alert>
           </div>
@@ -993,14 +986,14 @@ function BlockedNumber() {
               onClick={() => setIsBulkAddDialogOpen(false)}
               className="border-gray-200 dark:border-gray-700"
             >
-              {t("Cancel")}
+              {t("common.cancel")}
             </Button>
             <Button
               onClick={handleBulkAdd}
               className="bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700"
             >
               <Upload className="h-4 w-4 mr-2" />
-              {t("Block All")}
+              {t("blockedNumbers.blockAll")}
             </Button>
           </DialogFooter>
         </DialogContent>
@@ -1010,3 +1003,4 @@ function BlockedNumber() {
 }
 
 export default BlockedNumber;
+

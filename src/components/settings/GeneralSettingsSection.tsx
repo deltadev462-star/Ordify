@@ -7,7 +7,6 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import LangSwitcher from '@/components/LangSwitcher';
 
 function GeneralSettingsSection() {
   const { t } = useTranslation();
@@ -37,14 +36,14 @@ function GeneralSettingsSection() {
               <Building className="h-6 w-6" />
             </div>
             <div>
-              <CardTitle className="text-xl">{t('General Settings')}</CardTitle>
+              <CardTitle className="text-xl">{t("generalSettings.title")}</CardTitle>
               <CardDescription className="text-gray-100 mt-1">
-                {t('Configure your store basic information')}
+                {t("generalSettings.description")}
               </CardDescription>
             </div>
           </div>
           <Badge variant="secondary" className="bg-white/20 text-white border-0">
-            {t('Required')}
+            {t("generalSettings.required")}
           </Badge>
         </div>
       </CardHeader>
@@ -53,83 +52,83 @@ function GeneralSettingsSection() {
           <div>
             <Label className="text-gray-700 dark:text-gray-300 font-medium flex items-center gap-2 mb-2">
               <Building className="h-4 w-4 text-gray-500" />
-              {t('Store Name')}
+              {t("generalSettings.storeName")}
             </Label>
             <Input 
               value={settings.storeName}
               onChange={(e) => handleInputChange('storeName', e.target.value)}
-              placeholder={t('Enter store name')}
+              placeholder={t("generalSettings.storeNamePlaceholder")}
               className="border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
             />
           </div>
           <div>
             <Label className="text-gray-700 dark:text-gray-300 font-medium flex items-center gap-2 mb-2">
               <Globe className="h-4 w-4 text-gray-500" />
-              {t('Store URL')}
+              {t("generalSettings.storeUrl")}
             </Label>
-            <Input 
+            <Input
               value={settings.storeUrl}
               onChange={(e) => handleInputChange('storeUrl', e.target.value)}
-              placeholder={t('mystore.com')}
+              placeholder={t("generalSettings.storeUrlPlaceholder")}
               className="border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
             />
           </div>
           <div>
             <Label className="text-gray-700 dark:text-gray-300 font-medium flex items-center gap-2 mb-2">
               <Mail className="h-4 w-4 text-gray-500" />
-              {t('Contact Email')}
+              {t("generalSettings.contactEmail")}
             </Label>
             <Input 
               type="email"
               value={settings.contactEmail}
               onChange={(e) => handleInputChange('contactEmail', e.target.value)}
-              placeholder={t('contact@example.com')}
+              placeholder={t("generalSettings.contactEmailPlaceholder")}
               className="border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
             />
           </div>
           <div>
             <Label className="text-gray-700 dark:text-gray-300 font-medium flex items-center gap-2 mb-2">
               <Phone className="h-4 w-4 text-gray-500" />
-              {t('Contact Phone')}
+              {t("generalSettings.contactPhone")}
             </Label>
             <Input 
               type="tel"
               value={settings.contactPhone}
               onChange={(e) => handleInputChange('contactPhone', e.target.value)}
-              placeholder={t('+1234567890')}
+              placeholder={t("generalSettings.contactPhonePlaceholder")}
               className="border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
             />
           </div>
           <div>
             <Label className="text-gray-700 dark:text-gray-300 font-medium flex items-center gap-2 mb-2">
               <Calendar className="h-4 w-4 text-gray-500" />
-              {t('Timezone')}
+              {t("generalSettings.timezone")}
             </Label>
             <Select value={settings.timezone} onValueChange={(value) => handleInputChange('timezone', value)}>
               <SelectTrigger className="border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200">
-                <SelectValue placeholder={t('Select timezone')} />
+                <SelectValue placeholder={t("generalSettings.selectTimezone")} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="UTC">{t('UTC')}</SelectItem>
-                <SelectItem value="EST">{t('EST')}</SelectItem>
-                <SelectItem value="PST">{t('PST')}</SelectItem>
-                <SelectItem value="CET">{t('CET')}</SelectItem>
+                <SelectItem value="UTC">UTC</SelectItem>
+                <SelectItem value="EST">EST</SelectItem>
+                <SelectItem value="PST">PST</SelectItem>
+                <SelectItem value="CET">CET</SelectItem>
               </SelectContent>
             </Select>
           </div>
           <div>
             <Label className="text-gray-700 dark:text-gray-300 font-medium flex items-center gap-2 mb-2">
               <Building className="h-4 w-4 text-gray-500" />
-              {t('Business Type')}
+              {t("generalSettings.businessType")}
             </Label>
             <Select value={settings.businessType} onValueChange={(value) => handleInputChange('businessType', value)}>
               <SelectTrigger className="border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200">
-                <SelectValue placeholder={t('Select business type')} />
+                <SelectValue placeholder={t("generalSettings.selectBusinessType")} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="retail">{t('Retail')}</SelectItem>
-                <SelectItem value="wholesale">{t('Wholesale')}</SelectItem>
-                <SelectItem value="service">{t('Service')}</SelectItem>
+                <SelectItem value="retail">{t("generalSettings.retail")}</SelectItem>
+                <SelectItem value="wholesale">{t("generalSettings.wholesale")}</SelectItem>
+                <SelectItem value="service">{t("generalSettings.service")}</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -137,9 +136,17 @@ function GeneralSettingsSection() {
         
         <div className="flex items-center gap-4 pt-4 border-t border-gray-200 dark:border-gray-800">
           <Label className="text-gray-700 dark:text-gray-300 font-medium">
-            {t('Language')}:
+            {t("generalSettings.language")}:
           </Label>
-          <LangSwitcher />
+          <Select defaultValue="en">
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder={t("generalSettings.selectLanguage")} />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="en">{t("generalSettings.english")}</SelectItem>
+              <SelectItem value="ar">{t("generalSettings.arabic")}</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         <div className="flex justify-end gap-4 pt-4 border-t border-gray-200 dark:border-gray-800">
@@ -147,13 +154,13 @@ function GeneralSettingsSection() {
             variant="outline" 
             className="border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300"
           >
-            {t('Cancel')}
+            {t("generalSettings.cancel")}
           </Button>
           <Button 
             onClick={handleSave}
             className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white"
           >
-            {t('Save Changes')}
+            {t("generalSettings.saveChanges")}
           </Button>
         </div>
       </CardContent>

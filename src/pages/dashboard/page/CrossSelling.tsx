@@ -225,10 +225,10 @@ function CrossSelling() {
 
   const getTypeLabel = (type: string) => {
     switch (type) {
-      case "bundle": return t("Product Bundle");
-      case "recommendation": return t("AI Recommendation");
-      case "upsell": return t("Upsell");
-      case "frequently-bought": return t("Frequently Bought");
+      case "bundle": return t("crossSelling.types.bundle");
+      case "recommendation": return t("crossSelling.types.recommendation");
+      case "upsell": return t("crossSelling.types.upsell");
+      case "frequently-bought": return t("crossSelling.types.frequentlyBought");
       default: return type;
     }
   };
@@ -236,11 +236,11 @@ function CrossSelling() {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "active":
-        return <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-400">{t("Active")}</Badge>;
+        return <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-400">{t("crossSelling.status.active")}</Badge>;
       case "inactive":
-        return <Badge className="bg-gray-100 text-gray-700 dark:bg-gray-950/30 dark:text-gray-400">{t("Inactive")}</Badge>;
+        return <Badge className="bg-gray-100 text-gray-700 dark:bg-gray-950/30 dark:text-gray-400">{t("crossSelling.status.inactive")}</Badge>;
       case "testing":
-        return <Badge className="bg-blue-100 text-blue-700 dark:bg-blue-950/30 dark:text-blue-400">{t("A/B Testing")}</Badge>;
+        return <Badge className="bg-blue-100 text-blue-700 dark:bg-blue-950/30 dark:text-blue-400">{t("crossSelling.status.testing")}</Badge>;
       default:
         return null;
     }
@@ -249,11 +249,11 @@ function CrossSelling() {
   const getPriorityBadge = (priority: string) => {
     switch (priority) {
       case "high":
-        return <Badge variant="outline" className="border-red-500 text-red-600 dark:text-red-400">{t("High")}</Badge>;
+        return <Badge variant="outline" className="border-red-500 text-red-600 dark:text-red-400">{t("crossSelling.priority.high")}</Badge>;
       case "medium":
-        return <Badge variant="outline" className="border-yellow-500 text-yellow-600 dark:text-yellow-400">{t("Medium")}</Badge>;
+        return <Badge variant="outline" className="border-yellow-500 text-yellow-600 dark:text-yellow-400">{t("crossSelling.priority.medium")}</Badge>;
       case "low":
-        return <Badge variant="outline" className="border-gray-500 text-gray-600 dark:text-gray-400">{t("Low")}</Badge>;
+        return <Badge variant="outline" className="border-gray-500 text-gray-600 dark:text-gray-400">{t("crossSelling.priority.low")}</Badge>;
       default:
         return null;
     }
@@ -275,7 +275,7 @@ function CrossSelling() {
         <div className="flex items-start justify-between">
           <div className="space-y-1">
             <h3 className="font-medium">{bundle.name}</h3>
-            <p className="text-xs text-muted-foreground">{t("Main")}: {bundle.mainProduct}</p>
+            <p className="text-xs text-muted-foreground">{t("crossSelling.mainProduct")}: {bundle.mainProduct}</p>
             <div className="flex items-center gap-2 mt-2 flex-wrap">
               {getStatusBadge(bundle.status)}
               {getPriorityBadge(bundle.priority)}
@@ -288,24 +288,24 @@ function CrossSelling() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuLabel>{t("Actions")}</DropdownMenuLabel>
+              <DropdownMenuLabel>{t("crossSelling.actions.title")}</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem>
                 <Eye className="h-4 w-4 mr-2" />
-                {t("View Analytics")}
+                {t("crossSelling.actions.viewAnalytics")}
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Edit className="h-4 w-4 mr-2" />
-                {t("Edit Bundle")}
+                {t("crossSelling.actions.editBundle")}
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <RefreshCw className="h-4 w-4 mr-2" />
-                {t("A/B Test")}
+                {t("crossSelling.actions.abTest")}
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem className="text-destructive">
                 <Trash2 className="h-4 w-4 mr-2" />
-                {t("Delete")}
+                {t("crossSelling.actions.delete")}
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -319,7 +319,7 @@ function CrossSelling() {
 
         <div className="flex items-center gap-2">
           <Badge variant="outline">
-            {bundle.relatedProducts.length + 1} {t("items")}
+            {bundle.relatedProducts.length + 1} {t("crossSelling.items")}
           </Badge>
           {bundle.discount > 0 && (
             <Badge className="bg-orange-100 text-orange-700 dark:bg-orange-950/30 dark:text-orange-400">
@@ -330,23 +330,23 @@ function CrossSelling() {
 
         <div className="grid grid-cols-2 gap-4 pt-2">
           <div>
-            <p className="text-sm text-muted-foreground">{t("Performance")}</p>
+            <p className="text-sm text-muted-foreground">{t("crossSelling.performance")}</p>
             <div className="space-y-1 mt-1">
               <div className="flex items-center justify-between text-sm">
-                <span className="text-muted-foreground">{t("Conv.")}</span>
+                <span className="text-muted-foreground">{t("crossSelling.rate")}</span>
                 <span className="font-medium">{bundle.conversionRate}%</span>
               </div>
               <Progress value={bundle.conversionRate * 10} className="h-2" />
               <p className="text-xs text-muted-foreground">
-                {bundle.clicks}/{bundle.views} {t("clicks")}
+                {bundle.clicks}/{bundle.views} {t("crossSelling.clicks")}
               </p>
             </div>
           </div>
           <div>
-            <p className="text-sm text-muted-foreground">{t("Revenue")}</p>
+            <p className="text-sm text-muted-foreground">{t("crossSelling.revenue")}</p>
             <p className="font-medium mt-1">EGP {bundle.revenue.toLocaleString()}</p>
             <p className="text-xs text-muted-foreground">
-              {bundle.purchases} {t("sales")}
+              {bundle.purchases} {t("crossSelling.sales")}
             </p>
           </div>
         </div>
@@ -359,19 +359,19 @@ function CrossSelling() {
       <div className="flex bg-white dark:bg-black/80 rounded-2xl m-1 flex-1 flex-col gap-6 p-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <Title
-            title={t("Cross Selling")}
-            Subtitle={t("Boost sales with smart product recommendations and bundles")}
+            title={t("crossSelling.title")}
+            Subtitle={t("crossSelling.subtitle")}
             className="text-3xl"
             classNamee=""
           />
           <div className="flex gap-2 w-full sm:w-auto">
             <Button variant="outline" className="glow-on-hover flex-1 sm:flex-none">
               <Settings className="h-4 w-4 mr-2" />
-              {t("Settings")}
+              {t("crossSelling.buttons.settings")}
             </Button>
             <Button className="glow-on-hover flex-1 sm:flex-none" size="lg">
               <Plus className="h-4 w-4 mr-2" />
-              {t("Create Bundle")}
+              {t("crossSelling.buttons.createBundle")}
             </Button>
           </div>
         </div>
@@ -382,12 +382,12 @@ function CrossSelling() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t("Active Bundles")}</p>
+                  <p className="text-sm text-muted-foreground">{t("crossSelling.stats.activeBundles")}</p>
                   <p className="text-3xl font-bold mt-1">{activeBundles}</p>
                   <div className="flex items-center gap-1 mt-2">
                     <TrendingUp className="h-3 w-3 text-emerald-600 dark:text-emerald-400" />
                     <span className="text-xs text-emerald-600 dark:text-emerald-400">
-                      +3 {t("this month")}
+                      +3 {t("crossSelling.stats.thisMonth")}
                     </span>
                   </div>
                 </div>
@@ -402,12 +402,12 @@ function CrossSelling() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t("Revenue Impact")}</p>
+                  <p className="text-sm text-muted-foreground">{t("crossSelling.stats.revenueImpact")}</p>
                   <p className="text-3xl font-bold mt-1">EGP {(totalRevenue / 1000).toFixed(1)}K</p>
                   <div className="flex items-center gap-1 mt-2">
                     <TrendingUp className="h-3 w-3 text-emerald-600 dark:text-emerald-400" />
                     <span className="text-xs text-emerald-600 dark:text-emerald-400">
-                      +24.8% {t("growth")}
+                      +24.8% {t("crossSelling.stats.growth")}
                     </span>
                   </div>
                 </div>
@@ -422,12 +422,12 @@ function CrossSelling() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t("Conversion Rate")}</p>
+                  <p className="text-sm text-muted-foreground">{t("crossSelling.stats.conversionRate")}</p>
                   <p className="text-3xl font-bold mt-1">{avgConversionRate.toFixed(1)}%</p>
                   <div className="flex items-center gap-1 mt-2">
                     <Target className="h-3 w-3 text-blue-600 dark:text-blue-400" />
                     <span className="text-xs text-blue-600 dark:text-blue-400">
-                      {t("Average rate")}
+                      {t("crossSelling.stats.averageRate")}
                     </span>
                   </div>
                 </div>
@@ -442,12 +442,12 @@ function CrossSelling() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t("Bundle Sales")}</p>
+                  <p className="text-sm text-muted-foreground">{t("crossSelling.stats.bundleSales")}</p>
                   <p className="text-3xl font-bold mt-1">{totalPurchases}</p>
                   <div className="flex items-center gap-1 mt-2">
                     <ShoppingBag className="h-3 w-3 text-purple-600 dark:text-purple-400" />
                     <span className="text-xs text-purple-600 dark:text-purple-400">
-                      {t("Total purchases")}
+                      {t("crossSelling.stats.totalPurchases")}
                     </span>
                   </div>
                 </div>
@@ -465,7 +465,7 @@ function CrossSelling() {
             <div className="flex items-center justify-between">
               <CardTitle className="text-lg flex items-center gap-2">
                 <Sparkles className="h-5 w-5 text-purple-600 dark:text-purple-400" />
-                {t("AI-Powered Recommendations")}
+                {t("crossSelling.aiPoweredRecommendations")}
               </CardTitle>
               <Switch 
                 checked={autoRecommendations}
@@ -488,21 +488,21 @@ function CrossSelling() {
                           <div className="min-w-0">
                             <h4 className="font-medium truncate">{rec.product}</h4>
                             <p className="text-xs text-muted-foreground mt-1">
-                              {t("Recommended with")} {rec.recommendedWith.length} {t("products")}
+                              {t("crossSelling.recommendedWith")} {rec.recommendedWith.length} {t("crossSelling.products")}
                             </p>
                           </div>
                           {getAlgorithmBadge(rec.algorithm)}
                         </div>
                         <div className="space-y-2">
                           <div className="flex items-center justify-between">
-                            <span className="text-sm text-muted-foreground">{t("Score")}</span>
+                            <span className="text-sm text-muted-foreground">{t("crossSelling.score")}</span>
                             <div className="flex items-center gap-2">
                               <Progress value={rec.score} className="h-2 w-20" />
                               <span className="text-sm font-medium">{rec.score}%</span>
                             </div>
                           </div>
                           <div className="flex items-center justify-between">
-                            <span className="text-sm text-muted-foreground">{t("Conv. Rate")}</span>
+                            <span className="text-sm text-muted-foreground">{t("crossSelling.rate")}</span>
                             <span className="text-sm font-medium text-emerald-600 dark:text-emerald-400">
                               {rec.conversionRate}%
                             </span>
@@ -528,8 +528,8 @@ function CrossSelling() {
                 <Package className="h-5 w-5 text-blue-600 dark:text-blue-400" />
               </div>
               <div className="text-left">
-                <p className="font-medium">{t("Product Bundle")}</p>
-                <p className="text-xs text-muted-foreground">{t("Create bundle deals")}</p>
+                <p className="font-medium">{t("crossSelling.quickActions.productBundle")}</p>
+                <p className="text-xs text-muted-foreground">{t("crossSelling.quickActions.productBundleDesc")}</p>
               </div>
             </div>
           </Button>
@@ -542,8 +542,8 @@ function CrossSelling() {
                 <Zap className="h-5 w-5 text-purple-600 dark:text-purple-400" />
               </div>
               <div className="text-left">
-                <p className="font-medium">{t("Smart Upsell")}</p>
-                <p className="text-xs text-muted-foreground">{t("AI-powered upsells")}</p>
+                <p className="font-medium">{t("crossSelling.quickActions.smartUpsell")}</p>
+                <p className="text-xs text-muted-foreground">{t("crossSelling.quickActions.smartUpsellDesc")}</p>
               </div>
             </div>
           </Button>
@@ -556,8 +556,8 @@ function CrossSelling() {
                 <Link className="h-5 w-5 text-green-600 dark:text-green-400" />
               </div>
               <div className="text-left">
-                <p className="font-medium">{t("Related Products")}</p>
-                <p className="text-xs text-muted-foreground">{t("Link similar items")}</p>
+                <p className="font-medium">{t("crossSelling.quickActions.relatedProducts")}</p>
+                <p className="text-xs text-muted-foreground">{t("crossSelling.quickActions.relatedProductsDesc")}</p>
               </div>
             </div>
           </Button>
@@ -570,8 +570,8 @@ function CrossSelling() {
                 <BarChart3 className="h-5 w-5 text-orange-600 dark:text-orange-400" />
               </div>
               <div className="text-left">
-                <p className="font-medium">{t("Analytics")}</p>
-                <p className="text-xs text-muted-foreground">{t("View performance")}</p>
+                <p className="font-medium">{t("crossSelling.quickActions.analytics")}</p>
+                <p className="text-xs text-muted-foreground">{t("crossSelling.quickActions.analyticsDesc")}</p>
               </div>
             </div>
           </Button>
@@ -581,13 +581,13 @@ function CrossSelling() {
         <Card className="glass-card border-0">
           <CardHeader>
             <div className="flex flex-col gap-4">
-              <CardTitle className="text-lg">{t("Cross-Selling Campaigns")}</CardTitle>
+              <CardTitle className="text-lg">{t("crossSelling.crossSellingCampaigns")}</CardTitle>
               
               <div className="flex flex-col sm:flex-row gap-3">
                 <div className="relative flex-1">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input
-                    placeholder={t("Search bundles...")}
+                    placeholder={t("crossSelling.searchPlaceholder")}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="pl-10 w-full"
@@ -597,26 +597,26 @@ function CrossSelling() {
                 <div className="flex gap-2">
                   <Select value={filterType} onValueChange={setFilterType}>
                     <SelectTrigger className="w-full sm:w-[140px]">
-                      <SelectValue placeholder={t("Type")} />
+                      <SelectValue placeholder={t("crossSelling.filters.type")} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="all">{t("All Types")}</SelectItem>
-                      <SelectItem value="bundle">{t("Bundle")}</SelectItem>
-                      <SelectItem value="recommendation">{t("Recommend")}</SelectItem>
-                      <SelectItem value="upsell">{t("Upsell")}</SelectItem>
-                      <SelectItem value="frequently-bought">{t("Frequent")}</SelectItem>
+                      <SelectItem value="all">{t("crossSelling.filters.allTypes")}</SelectItem>
+                      <SelectItem value="bundle">{t("crossSelling.filters.bundle")}</SelectItem>
+                      <SelectItem value="recommendation">{t("crossSelling.filters.recommendation")}</SelectItem>
+                      <SelectItem value="upsell">{t("crossSelling.filters.upsell")}</SelectItem>
+                      <SelectItem value="frequently-bought">{t("crossSelling.filters.frequent")}</SelectItem>
                     </SelectContent>
                   </Select>
 
                   <Select value={filterStatus} onValueChange={setFilterStatus}>
                     <SelectTrigger className="w-full sm:w-[120px]">
-                      <SelectValue placeholder={t("Status")} />
+                      <SelectValue placeholder={t("crossSelling.filters.status")} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="all">{t("All")}</SelectItem>
-                      <SelectItem value="active">{t("Active")}</SelectItem>
-                      <SelectItem value="inactive">{t("Inactive")}</SelectItem>
-                      <SelectItem value="testing">{t("Testing")}</SelectItem>
+                      <SelectItem value="all">{t("crossSelling.filters.all")}</SelectItem>
+                      <SelectItem value="active">{t("crossSelling.status.active")}</SelectItem>
+                      <SelectItem value="inactive">{t("crossSelling.status.inactive")}</SelectItem>
+                      <SelectItem value="testing">{t("crossSelling.status.testing")}</SelectItem>
                     </SelectContent>
                   </Select>
 
@@ -641,14 +641,14 @@ function CrossSelling() {
               <Table>
                 <TableHeader>
                   <TableRow className="border-b border-gray-200 dark:border-gray-700">
-                    <TableHead>{t("Bundle Name")}</TableHead>
-                    <TableHead>{t("Type")}</TableHead>
-                    <TableHead>{t("Products")}</TableHead>
-                    <TableHead>{t("Status")}</TableHead>
-                    <TableHead>{t("Performance")}</TableHead>
-                    <TableHead>{t("Revenue")}</TableHead>
-                    <TableHead>{t("Priority")}</TableHead>
-                    <TableHead className="text-right">{t("Actions")}</TableHead>
+                    <TableHead>{t("crossSelling.table.bundleName")}</TableHead>
+                    <TableHead>{t("crossSelling.table.type")}</TableHead>
+                    <TableHead>{t("crossSelling.table.products")}</TableHead>
+                    <TableHead>{t("crossSelling.table.status")}</TableHead>
+                    <TableHead>{t("crossSelling.table.performance")}</TableHead>
+                    <TableHead>{t("crossSelling.table.revenue")}</TableHead>
+                    <TableHead>{t("crossSelling.table.priority")}</TableHead>
+                    <TableHead className="text-right">{t("crossSelling.table.actions")}</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -658,7 +658,7 @@ function CrossSelling() {
                         <div>
                           <p className="font-medium">{bundle.name}</p>
                           <p className="text-xs text-muted-foreground mt-1">
-                            {t("Main")}: {bundle.mainProduct}
+                            {t("crossSelling.mainProduct")}: {bundle.mainProduct}
                           </p>
                         </div>
                       </TableCell>
@@ -671,7 +671,7 @@ function CrossSelling() {
                       <TableCell>
                         <div className="flex items-center gap-2">
                           <Badge variant="outline">
-                            {bundle.relatedProducts.length + 1} {t("items")}
+                            {bundle.relatedProducts.length + 1} {t("crossSelling.items")}
                           </Badge>
                           {bundle.discount > 0 && (
                             <Badge className="bg-orange-100 text-orange-700 dark:bg-orange-950/30 dark:text-orange-400">
@@ -684,12 +684,12 @@ function CrossSelling() {
                       <TableCell>
                         <div className="space-y-1">
                           <div className="flex items-center justify-between text-sm">
-                            <span className="text-muted-foreground">{t("Conv.")}</span>
+                            <span className="text-muted-foreground">{t("crossSelling.rate")}</span>
                             <span className="font-medium">{bundle.conversionRate}%</span>
                           </div>
                           <Progress value={bundle.conversionRate * 10} className="h-2" />
                           <p className="text-xs text-muted-foreground">
-                            {bundle.clicks}/{bundle.views} {t("clicks")}
+                            {bundle.clicks}/{bundle.views} {t("crossSelling.clicks")}
                           </p>
                         </div>
                       </TableCell>
@@ -697,7 +697,7 @@ function CrossSelling() {
                         <div>
                           <p className="font-medium">EGP {bundle.revenue.toLocaleString()}</p>
                           <p className="text-xs text-muted-foreground">
-                            {bundle.purchases} {t("sales")}
+                            {bundle.purchases} {t("crossSelling.sales")}
                           </p>
                         </div>
                       </TableCell>
@@ -710,24 +710,24 @@ function CrossSelling() {
                             </Button>
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
-                            <DropdownMenuLabel>{t("Actions")}</DropdownMenuLabel>
+                            <DropdownMenuLabel>{t("crossSelling.actions.title")}</DropdownMenuLabel>
                             <DropdownMenuSeparator />
                             <DropdownMenuItem>
                               <Eye className="h-4 w-4 mr-2" />
-                              {t("View Analytics")}
+                              {t("crossSelling.actions.viewAnalytics")}
                             </DropdownMenuItem>
                             <DropdownMenuItem>
                               <Edit className="h-4 w-4 mr-2" />
-                              {t("Edit Bundle")}
+                              {t("crossSelling.actions.editBundle")}
                             </DropdownMenuItem>
                             <DropdownMenuItem>
                               <RefreshCw className="h-4 w-4 mr-2" />
-                              {t("A/B Test")}
+                              {t("crossSelling.actions.abTest")}
                             </DropdownMenuItem>
                             <DropdownMenuSeparator />
                             <DropdownMenuItem className="text-destructive">
                               <Trash2 className="h-4 w-4 mr-2" />
-                              {t("Delete")}
+                              {t("crossSelling.actions.delete")}
                             </DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>
@@ -741,14 +741,14 @@ function CrossSelling() {
             {/* Pagination */}
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
               <p className="text-sm text-muted-foreground text-center sm:text-left">
-                {t("Showing")} 1-{filteredBundles.length} {t("of")} {bundles.length} {t("bundles")}
+                {t("crossSelling.pagination.showing")} 1-{filteredBundles.length} {t("crossSelling.pagination.of")} {bundles.length} {t("crossSelling.pagination.bundles")}
               </p>
               <div className="flex gap-2">
                 <Button variant="outline" size="sm" disabled>
-                  {t("Previous")}
+                  {t("crossSelling.pagination.previous")}
                 </Button>
                 <Button variant="outline" size="sm">
-                  {t("Next")}
+                  {t("crossSelling.pagination.next")}
                 </Button>
               </div>
             </div>

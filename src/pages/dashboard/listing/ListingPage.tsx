@@ -14,7 +14,6 @@ import {
 } from '@/components/ui/select';
 import { subNavigationData } from '@/data/sidebar-data';
 import { cn } from '@/lib/utils';
-import { useTranslation } from 'react-i18next';
 import {
   Package,
   Search,
@@ -62,7 +61,6 @@ interface ActivityItem {
 function ListingPage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { t } = useTranslation();
   const listingNav = subNavigationData.listing;
   
   const [searchQuery, setSearchQuery] = useState('');
@@ -72,53 +70,53 @@ function ListingPage() {
   const mainStats: StatCard[] = [
     {
       id: 'products',
-      title: t("Total Products"),
+      title: "Total  Products",
       value: "856",
       change: 15.3,
       trend: 'up',
       icon: Package,
       color: 'blue',
       bgGradient: 'from-blue-50 to-blue-100 dark:from-blue-950/30 dark:to-blue-900/30',
-      subValue: t("Active"),
+      subValue: "Active",
       progress: 85,
       target: "1,000"
     },
     {
       id: 'categories',
-      title: t("Active Categories"),
+      title: "Active  Categories",
       value: "24",
       change: 8.2,
       trend: 'up',
       icon: BarChart3,
       color: 'purple',
       bgGradient: 'from-purple-50 to-purple-100 dark:from-purple-950/30 dark:to-purple-900/30',
-      subValue: t("Categories"),
+      subValue: "Categories",
       progress: 92,
       target: "30"
     },
     {
       id: 'reviews',
-      title: t("Total Reviews"),
+      title: "Total  Reviews",
       value: "3,421",
       change: -2.1,
       trend: 'down',
       icon: Star,
       color: 'orange',
       bgGradient: 'from-orange-50 to-orange-100 dark:from-orange-950/30 dark:to-orange-900/30',
-      subValue: t("Reviews"),
+      subValue: "Reviews",
       progress: 68,
       target: "5,000"
     },
     {
       id: 'rating',
-      title: t("Average Rating"),
+      title: "Average  Rating",
       value: "4.6",
       change: 0.3,
       trend: 'up',
       icon: Award,
       color: 'green',
       bgGradient: 'from-green-50 to-green-100 dark:from-green-950/30 dark:to-green-900/30',
-      subValue: t("out of 5"),
+      subValue: "Out of 5",
       progress: 92,
       target: "5.0"
     }
@@ -129,36 +127,36 @@ function ListingPage() {
     {
       id: '1',
       type: 'product',
-      title: t('New Product Added'),
-      description: t('Summer Collection T-Shirt was added to catalog'),
-      time: t('5 minutes ago'),
+      title: "New  Product  Added",
+      description: "Summer  Collection  T- Shirt was added to catalog",
+      time: "5 minutes ago",
       status: 'success',
       icon: Package
     },
     {
       id: '2',
       type: 'stock',
-      title: t('Low Stock Alert'),
-      description: t('5 products are running low on stock'),
-      time: t('1 hour ago'),
+      title: "Low  Stock  Alert",
+      description: "5 products are running low on stock",
+      time: "1 hour ago",
       status: 'warning',
       icon: AlertCircle
     },
     {
       id: '3',
       type: 'review',
-      title: t('New Review'),
-      description: t('5-star review on Winter Jacket'),
-      time: t('2 hours ago'),
+      title: "New  Review",
+      description: "5-star review on  Winter  Jacket",
+      time: "2 hours ago",
       status: 'success',
       icon: Star
     },
     {
       id: '4',
       type: 'category',
-      title: t('Category Updated'),
-      description: t('Electronics category was modified'),
-      time: t('3 hours ago'),
+      title: "Category  Updated",
+      description: "Electronics category was modified",
+      time: "3 hours ago",
       status: 'info',
       icon: BarChart3
     }
@@ -198,14 +196,14 @@ function ListingPage() {
           <div className="flex gap-3">
             <Badge variant="outline" className="px-3 py-1">
               <Activity className="h-3 w-3 mr-1" />
-              {t("Active Listings")}: 856
+              {"Active  Listings"}: 856
             </Badge>
             <Button 
               className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg shadow-blue-500/25"
               onClick={() => navigate('/dashboard/listing/products')}
             >
               <Plus className="h-4 w-4 mr-2" />
-              {t("Add New Product")}
+              {"Add  New  Product"}
             </Button>
           </div>
         </div>
@@ -217,7 +215,7 @@ function ListingPage() {
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
-                  placeholder={t("Search products, categories, or reviews...")}
+                  placeholder={"Search products"}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="pl-10 bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700"
@@ -226,14 +224,14 @@ function ListingPage() {
               <Select value={filterBy} onValueChange={setFilterBy}>
                 <SelectTrigger className="w-full md:w-[200px] bg-gray-50 dark:bg-gray-800">
                   <Filter className="h-4 w-4 mr-2" />
-                  <SelectValue placeholder={t("Filter by")} />
+                  <SelectValue placeholder={"Filter by"} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">{t("All Items")}</SelectItem>
-                  <SelectItem value="products">{t("Products")}</SelectItem>
-                  <SelectItem value="categories">{t("Categories")}</SelectItem>
-                  <SelectItem value="reviews">{t("Reviews")}</SelectItem>
-                  <SelectItem value="outofstock">{t("Out of Stock")}</SelectItem>
+                  <SelectItem value="all">{"All  Items"}</SelectItem>
+                  <SelectItem value="products">{"Products"}</SelectItem>
+                  <SelectItem value="categories">{"Categories"}</SelectItem>
+                  <SelectItem value="reviews">{"Reviews"}</SelectItem>
+                  <SelectItem value="outofstock">{"Out of  Stock"}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -294,10 +292,10 @@ function ListingPage() {
                     <div className="space-y-2 mt-3">
                       <div className="flex justify-between items-center text-xs">
                         <span className={`text-${stat.color}-600/70 dark:text-${stat.color}-400/70`}>
-                          {t("Progress")}
+                          {"Progress"}
                         </span>
                         <span className={`font-medium text-${stat.color}-700 dark:text-${stat.color}-400`}>
-                          {stat.progress}% {t("of")} {stat.target}
+                          {stat.progress}% {"Of"} {stat.target}
                         </span>
                       </div>
                       <Progress 
@@ -316,9 +314,9 @@ function ListingPage() {
       {/* Enhanced Sub-navigation Cards */}
       <div className="space-y-4">
         <div className="flex justify-between items-center">
-          <h2 className="text-2xl font-bold text-foreground">{t("Manage Listings")}</h2>
+          <h2 className="text-2xl font-bold text-foreground">{"Manage  Listings"}</h2>
           <Button variant="ghost" size="sm">
-            {t("View All")}
+            {"View  All"}
             <ChevronRight className="h-4 w-4 ml-1" />
           </Button>
         </div>
@@ -367,7 +365,7 @@ function ListingPage() {
                     </div>
                     {isActive && (
                       <Badge className="bg-primary/10 text-primary border-0">
-                        {t("Active")}
+                        {"Active"}
                       </Badge>
                     )}
                   </div>
@@ -379,7 +377,7 @@ function ListingPage() {
                   
                   {/* Add some mock stats for each section */}
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-muted-foreground">{t("Items")}</span>
+                    <span className="text-muted-foreground">{"Items"}</span>
                     <span className="font-medium">
                       {index === 0 ? '856' : index === 1 ? '24' : index === 2 ? '3,421' : '12'}
                     </span>
@@ -393,7 +391,7 @@ function ListingPage() {
                       navigate(item.url);
                     }}
                   >
-                    {isActive ? t("Currently Viewing") : t("Go to Section")}
+                    {isActive ? "Currently  Viewing" : "Go to  Section"}
                     <ArrowUpRight className="h-4 w-4 ml-2" />
                   </Button>
                 </CardContent>
@@ -409,9 +407,9 @@ function ListingPage() {
         <Card className="border-0 shadow-lg bg-white dark:bg-gray-900">
           <CardHeader className="pb-4">
             <div className="flex justify-between items-center">
-              <h3 className="text-lg font-semibold">{t("Recent Activity")}</h3>
+              <h3 className="text-lg font-semibold">{"Recent  Activity"}</h3>
               <Button variant="ghost" size="sm">
-                {t("View All")}
+                {"View  All"}
                 <ChevronRight className="h-4 w-4 ml-1" />
               </Button>
             </div>
@@ -444,10 +442,10 @@ function ListingPage() {
             <div className="flex justify-between items-center">
               <div>
                 <h3 className="text-lg font-semibold text-indigo-700 dark:text-indigo-400">
-                  {t("Quick Actions")}
+                  {"Quick  Actions"}
                 </h3>
                 <p className="text-sm text-indigo-600/70 dark:text-indigo-400/70 mt-1">
-                  {t("Manage your product listings efficiently")}
+                  {"Manage your product listings efficiently"}
                 </p>
               </div>
               <Sparkles className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
@@ -457,31 +455,31 @@ function ListingPage() {
             <Button className="w-full justify-between bg-white/60 hover:bg-white/80 dark:bg-white/10 dark:hover:bg-white/20 text-indigo-700 dark:text-indigo-300 border-indigo-300 dark:border-indigo-700">
               <span className="flex items-center gap-2">
                 <Package className="h-4 w-4" />
-                {t("Import Products")}
+                {"Import  Products"}
               </span>
               <ChevronRight className="h-4 w-4" />
             </Button>
             <Button className="w-full justify-between bg-white/60 hover:bg-white/80 dark:bg-white/10 dark:hover:bg-white/20 text-indigo-700 dark:text-indigo-300 border-indigo-300 dark:border-indigo-700">
               <span className="flex items-center gap-2">
                 <BarChart3 className="h-4 w-4" />
-                {t("Bulk Edit")}
+                {"Bulk  Edit"}
               </span>
               <ChevronRight className="h-4 w-4" />
             </Button>
             <Button className="w-full justify-between bg-white/60 hover:bg-white/80 dark:bg-white/10 dark:hover:bg-white/20 text-indigo-700 dark:text-indigo-300 border-indigo-300 dark:border-indigo-700">
               <span className="flex items-center gap-2">
                 <DollarSign className="h-4 w-4" />
-                {t("Update Prices")}
+                {"Update  Prices"}
               </span>
               <ChevronRight className="h-4 w-4" />
             </Button>
             <Button className="w-full justify-between bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white shadow-lg">
               <span className="flex items-center gap-2">
                 <Zap className="h-4 w-4" />
-                {t("Quick Inventory Check")}
+                {"Quick  Inventory  Check"}
               </span>
               <Badge className="bg-white/30 text-white border-0">
-                {t("NEW")}
+                {"N E W"}
               </Badge>
             </Button>
           </CardContent>
@@ -495,37 +493,37 @@ function ListingPage() {
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-3">
                 <Trophy className="h-8 w-8 text-yellow-300" />
-                <h3 className="text-2xl font-bold">{t("Product Performance Insights")}</h3>
+                <h3 className="text-2xl font-bold">{"Product  Performance  Insights"}</h3>
               </div>
               <p className="text-white/90 mb-6 max-w-2xl">
-                {t("Your top performing product Summer Collection T-Shirt has generated 45% more revenue this month. Keep your inventory stocked!")}
+                {"Keep your inventory stocked!"}
               </p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                 <div>
-                  <p className="text-sm text-white/70">{t("Best Seller")}</p>
-                  <p className="text-lg font-semibold">{t("Summer T-Shirt")}</p>
+                  <p className="text-sm text-white/70">{"Best  Seller"}</p>
+                  <p className="text-lg font-semibold">{"Summer  T- Shirt"}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-white/70">{t("Revenue")}</p>
-                  <p className="text-lg font-semibold">{t("+45%")}</p>
+                  <p className="text-sm text-white/70">{"Revenue"}</p>
+                  <p className="text-lg font-semibold">{"+45%"}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-white/70">{t("Units Sold")}</p>
-                  <p className="text-lg font-semibold">{t("234")}</p>
+                  <p className="text-sm text-white/70">{"Units  Sold"}</p>
+                  <p className="text-lg font-semibold">{"234"}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-white/70">{t("Stock Level")}</p>
-                  <p className="text-lg font-semibold">{t("Low (12)")}</p>
+                  <p className="text-sm text-white/70">{"Stock  Level"}</p>
+                  <p className="text-lg font-semibold">{"Low 12"}</p>
                 </div>
               </div>
               <div className="flex flex-wrap gap-3">
                 <Button className="bg-white text-emerald-600 hover:bg-gray-100 font-semibold shadow-lg">
                   <Eye className="h-4 w-4 mr-2" />
-                  {t("View Product Analytics")}
+                  {"View  Product  Analytics"}
                 </Button>
                 <Button className="bg-emerald-400 hover:bg-emerald-300 text-emerald-900 font-semibold shadow-lg">
                   <ShoppingCart className="h-4 w-4 mr-2" />
-                  {t("Restock Now")}
+                  {"Restock  Now"}
                 </Button>
               </div>
             </div>

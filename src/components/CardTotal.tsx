@@ -1,4 +1,3 @@
-import { useTranslation } from "react-i18next";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   DollarSign,
@@ -36,8 +35,6 @@ export default function CardTotal({
   showProgress = true,
   className = ""
 }: CardTotalProps) {
-  const { t } = useTranslation();
-
   const colorConfig = {
     blue: {
       bg: 'from-blue-50 to-blue-100 dark:from-blue-950/30 dark:to-blue-900/30',
@@ -121,7 +118,7 @@ export default function CardTotal({
             </div>
             <div>
               <p className={`text-sm font-medium ${config.text} opacity-80`}>
-                {t(title)}
+                {title}
               </p>
               <div className="flex items-baseline gap-2 mt-1">
                 <p className={`text-3xl font-bold ${config.text}`}>
@@ -148,10 +145,10 @@ export default function CardTotal({
           <div className="space-y-2">
             <div className="flex justify-between items-center text-xs">
               <span className={`${config.text} opacity-70`}>
-                {t("Progress")}
+                {"Progress"}
               </span>
               <span className={`font-medium ${config.text}`}>
-                {progress}% {t("of")} {target}
+                {progress}% {"Of"} {target}
               </span>
             </div>
             <Progress 

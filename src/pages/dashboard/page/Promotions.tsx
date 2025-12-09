@@ -163,10 +163,10 @@ function Promotions() {
 
   const getTypeLabel = (type: string) => {
     switch (type) {
-      case "percentage": return t("Percentage Off");
-      case "fixed": return t("Fixed Amount");
-      case "bogo": return t("Buy One Get One");
-      case "freeShipping": return t("Free Shipping");
+      case "percentage": return t("coupons.percentage");
+      case "fixed": return t("coupons.fixedAmount");
+      case "bogo": return t("promotions.bundleDeal");
+      case "freeShipping": return t("promotions.freeShipping");
       default: return type;
     }
   };
@@ -184,13 +184,13 @@ function Promotions() {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "active":
-        return <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-400">{t("Active")}</Badge>;
+        return <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-400">{t("promotions.active")}</Badge>;
       case "scheduled":
-        return <Badge className="bg-blue-100 text-blue-700 dark:bg-blue-950/30 dark:text-blue-400">{t("Scheduled")}</Badge>;
+        return <Badge className="bg-blue-100 text-blue-700 dark:bg-blue-950/30 dark:text-blue-400">{t("promotions.scheduled")}</Badge>;
       case "paused":
-        return <Badge className="bg-yellow-100 text-yellow-700 dark:bg-yellow-950/30 dark:text-yellow-400">{t("Paused")}</Badge>;
+        return <Badge className="bg-yellow-100 text-yellow-700 dark:bg-yellow-950/30 dark:text-yellow-400">{t("whatsappMarketing.campaignList.status.paused")}</Badge>;
       case "expired":
-        return <Badge className="bg-gray-100 text-gray-700 dark:bg-gray-950/30 dark:text-gray-400">{t("Expired")}</Badge>;
+        return <Badge className="bg-gray-100 text-gray-700 dark:bg-gray-950/30 dark:text-gray-400">{t("promotions.expired")}</Badge>;
       default:
         return null;
     }
@@ -217,32 +217,32 @@ function Promotions() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuLabel>{t("Actions")}</DropdownMenuLabel>
+              <DropdownMenuLabel>{t("common.actions")}</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem>
                 <Edit className="h-4 w-4 mr-2" />
-                {t("Edit")}
+                {t("common.edit")}
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Copy className="h-4 w-4 mr-2" />
-                {t("Duplicate")}
+                {t("campaigns.duplicate")}
               </DropdownMenuItem>
               {promotion.status === "active" && (
                 <DropdownMenuItem>
                   <PauseCircle className="h-4 w-4 mr-2" />
-                  {t("Pause")}
+                  {t("whatsappMarketing.campaignList.pause")}
                 </DropdownMenuItem>
               )}
               {promotion.status === "paused" && (
                 <DropdownMenuItem>
                   <PlayCircle className="h-4 w-4 mr-2" />
-                  {t("Resume")}
+                  {t("products.active")}
                 </DropdownMenuItem>
               )}
               <DropdownMenuSeparator />
               <DropdownMenuItem className="text-destructive">
                 <Trash2 className="h-4 w-4 mr-2" />
-                {t("Delete")}
+                {t("common.delete")}
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -270,7 +270,7 @@ function Promotions() {
 
         <div className="grid grid-cols-2 gap-4 pt-2">
           <div>
-            <p className="text-sm text-muted-foreground">{t("Usage")}</p>
+            <p className="text-sm text-muted-foreground">{t("coupons.usageLimit")}</p>
             <div className="space-y-1 mt-1">
               <p className="font-medium">
                 {promotion.usageCount} / {promotion.usageLimit === -1 ? "∞" : promotion.usageLimit}
@@ -284,13 +284,13 @@ function Promotions() {
             </div>
           </div>
           <div>
-            <p className="text-sm text-muted-foreground">{t("Revenue")}</p>
+            <p className="text-sm text-muted-foreground">{t("crossSelling.revenue")}</p>
             <p className="font-medium mt-1">EGP {promotion.revenue.toLocaleString()}</p>
           </div>
         </div>
 
         <div className="flex items-center justify-between pt-2 border-t">
-          <span className="text-sm text-muted-foreground">{t("Conversion Rate")}</span>
+          <span className="text-sm text-muted-foreground">{t("retargeting.conversionRate")}</span>
           <div className="flex items-center gap-1">
             <span className={`font-medium ${promotion.conversionRate > 5 ? "text-emerald-600 dark:text-emerald-400" : ""}`}>
               {promotion.conversionRate}%
@@ -309,14 +309,14 @@ function Promotions() {
       <div className="flex bg-white dark:bg-black/80 rounded-2xl m-1 flex-1 flex-col gap-6 p-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <Title
-            title={t("Promotions")}
-            Subtitle={t("Create and manage promotional campaigns to boost your sales")}
+            title={t("promotions.title")}
+            Subtitle={t("dashboard.subtitle")}
             className="text-3xl"
             classNamee=""
           />
           <Button className="glow-on-hover w-full sm:w-auto" size="lg">
             <Plus className="h-4 w-4 mr-2" />
-            {t("Create Promotion")}
+            {t("promotions.createPromotion")}
           </Button>
         </div>
 
@@ -326,10 +326,10 @@ function Promotions() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t("Active Promotions")}</p>
+                  <p className="text-sm text-muted-foreground">{t("promotions.active")} {t("promotions.title")}</p>
                   <p className="text-3xl font-bold mt-1">{activePromotions}</p>
                   <p className="text-xs text-emerald-600 dark:text-emerald-400 mt-2">
-                    +2 {t("this week")}
+                    +2 {t("dashboard.thisWeek")}
                   </p>
                 </div>
                 <div className="h-12 w-12 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
@@ -343,7 +343,7 @@ function Promotions() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t("Total Revenue")}</p>
+                  <p className="text-sm text-muted-foreground">{t("dashboard.totalSales")}</p>
                   <p className="text-3xl font-bold mt-1">EGP {(totalRevenue / 1000).toFixed(1)}K</p>
                   <p className="text-xs text-emerald-600 dark:text-emerald-400 mt-2 flex items-center">
                     <TrendingUp className="h-3 w-3 mr-1" />
@@ -361,10 +361,10 @@ function Promotions() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t("Total Usage")}</p>
+                  <p className="text-sm text-muted-foreground">{t("coupons.timesUsed")}</p>
                   <p className="text-3xl font-bold mt-1">{totalUsage.toLocaleString()}</p>
                   <p className="text-xs text-blue-600 dark:text-blue-400 mt-2">
-                    {t("Times redeemed")}
+                    {t("promotions.timesUsed")}
                   </p>
                 </div>
                 <div className="h-12 w-12 rounded-full bg-gradient-to-br from-blue-500/20 to-blue-400/10 flex items-center justify-center">
@@ -378,11 +378,11 @@ function Promotions() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t("Avg. Conversion")}</p>
+                  <p className="text-sm text-muted-foreground">{t("campaigns.conversions")}</p>
                   <p className="text-3xl font-bold mt-1">{avgConversionRate.toFixed(1)}%</p>
                   <p className="text-xs text-purple-600 dark:text-purple-400 mt-2">
                     <Target className="h-3 w-3 inline mr-1" />
-                    {t("Success rate")}
+                    {t("coupons.timesUsed")}
                   </p>
                 </div>
                 <div className="h-12 w-12 rounded-full bg-gradient-to-br from-purple-500/20 to-purple-400/10 flex items-center justify-center">
@@ -396,7 +396,7 @@ function Promotions() {
         {/* Quick Actions */}
         <Card className="glass-card border-0">
           <CardHeader>
-            <CardTitle className="text-lg">{t("Quick Actions")}</CardTitle>
+            <CardTitle className="text-lg">{t("dashboard.quickActions")}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
@@ -404,8 +404,8 @@ function Promotions() {
                 <div className="flex flex-col items-start gap-2 w-full">
                   <Percent className="h-5 w-5 text-primary" />
                   <div className="text-left">
-                    <p className="font-medium">{t("Percentage Discount")}</p>
-                    <p className="text-xs text-muted-foreground">{t("Create % off promotion")}</p>
+                    <p className="font-medium">{t("coupons.percentage")} {t("promotions.discount")}</p>
+                    <p className="text-xs text-muted-foreground">{t("common.create")} % {t("promotions.discount")}</p>
                   </div>
                 </div>
               </Button>
@@ -413,8 +413,8 @@ function Promotions() {
                 <div className="flex flex-col items-start gap-2 w-full">
                   <Tag className="h-5 w-5 text-primary" />
                   <div className="text-left">
-                    <p className="font-medium">{t("Fixed Amount")}</p>
-                    <p className="text-xs text-muted-foreground">{t("Create fixed discount")}</p>
+                    <p className="font-medium">{t("coupons.fixedAmount")}</p>
+                    <p className="text-xs text-muted-foreground">{t("common.create")} {t("coupons.fixedAmount")}</p>
                   </div>
                 </div>
               </Button>
@@ -422,8 +422,8 @@ function Promotions() {
                 <div className="flex flex-col items-start gap-2 w-full">
                   <Gift className="h-5 w-5 text-primary" />
                   <div className="text-left">
-                    <p className="font-medium">{t("BOGO Offer")}</p>
-                    <p className="text-xs text-muted-foreground">{t("Buy one get one deals")}</p>
+                    <p className="font-medium">{t("promotions.bundleDeal")}</p>
+                    <p className="text-xs text-muted-foreground">{t("promotions.bundleDeal")} {t("promotions.discount")}</p>
                   </div>
                 </div>
               </Button>
@@ -431,8 +431,8 @@ function Promotions() {
                 <div className="flex flex-col items-start gap-2 w-full">
                   <Zap className="h-5 w-5 text-primary" />
                   <div className="text-left">
-                    <p className="font-medium">{t("Free Shipping")}</p>
-                    <p className="text-xs text-muted-foreground">{t("Shipping promotions")}</p>
+                    <p className="font-medium">{t("promotions.freeShipping")}</p>
+                    <p className="text-xs text-muted-foreground">{t("common.shipping")} {t("promotions.title")}</p>
                   </div>
                 </div>
               </Button>
@@ -444,12 +444,12 @@ function Promotions() {
         <Card className="glass-card border-0">
           <CardHeader>
             <div className="flex flex-col gap-4">
-              <CardTitle className="text-lg">{t("All Promotions")}</CardTitle>
+              <CardTitle className="text-lg">{t("common.all")} {t("promotions.title")}</CardTitle>
               <div className="flex flex-col sm:flex-row gap-3">
                 <div className="relative flex-1">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input
-                    placeholder={t("Search promotions...")}
+                    placeholder={t("common.search")}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="pl-10 w-full"
@@ -459,27 +459,27 @@ function Promotions() {
                 <div className="flex gap-2">
                   <Select value={filterType} onValueChange={setFilterType}>
                     <SelectTrigger className="w-full sm:w-[180px]">
-                      <SelectValue placeholder={t("Filter by Type")} />
+                      <SelectValue placeholder={t("products.filterByCategory")} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="all">{t("All Types")}</SelectItem>
-                      <SelectItem value="percentage">{t("Percentage")}</SelectItem>
-                      <SelectItem value="fixed">{t("Fixed Amount")}</SelectItem>
-                      <SelectItem value="bogo">{t("BOGO")}</SelectItem>
-                      <SelectItem value="freeShipping">{t("Free Shipping")}</SelectItem>
+                      <SelectItem value="all">{t("common.all")} {t("promotions.type")}</SelectItem>
+                      <SelectItem value="percentage">{t("coupons.percentage")}</SelectItem>
+                      <SelectItem value="fixed">{t("coupons.fixedAmount")}</SelectItem>
+                      <SelectItem value="bogo">{t("promotions.bundleDeal")}</SelectItem>
+                      <SelectItem value="freeShipping">{t("promotions.freeShipping")}</SelectItem>
                     </SelectContent>
                   </Select>
 
                   <Select value={filterStatus} onValueChange={setFilterStatus}>
                     <SelectTrigger className="w-full sm:w-[150px]">
-                      <SelectValue placeholder={t("Status")} />
+                      <SelectValue placeholder={t("common.status")} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="all">{t("All Status")}</SelectItem>
-                      <SelectItem value="active">{t("Active")}</SelectItem>
-                      <SelectItem value="scheduled">{t("Scheduled")}</SelectItem>
-                      <SelectItem value="paused">{t("Paused")}</SelectItem>
-                      <SelectItem value="expired">{t("Expired")}</SelectItem>
+                      <SelectItem value="all">{t("common.all")} {t("common.status")}</SelectItem>
+                      <SelectItem value="active">{t("promotions.active")}</SelectItem>
+                      <SelectItem value="scheduled">{t("promotions.scheduled")}</SelectItem>
+                      <SelectItem value="paused">{t("whatsappMarketing.campaignList.status.paused")}</SelectItem>
+                      <SelectItem value="expired">{t("promotions.expired")}</SelectItem>
                     </SelectContent>
                   </Select>
 
@@ -504,14 +504,14 @@ function Promotions() {
               <Table>
                 <TableHeader>
                   <TableRow className="border-b border-gray-200 dark:border-gray-700">
-                    <TableHead>{t("Promotion")}</TableHead>
-                    <TableHead>{t("Code")}</TableHead>
-                    <TableHead>{t("Type")}</TableHead>
-                    <TableHead>{t("Status")}</TableHead>
-                    <TableHead>{t("Usage")}</TableHead>
-                    <TableHead>{t("Revenue")}</TableHead>
-                    <TableHead>{t("Conversion")}</TableHead>
-                    <TableHead className="text-right">{t("Actions")}</TableHead>
+                    <TableHead>{t("promotions.promotionName")}</TableHead>
+                    <TableHead>{t("coupons.couponCode")}</TableHead>
+                    <TableHead>{t("promotions.type")}</TableHead>
+                    <TableHead>{t("common.status")}</TableHead>
+                    <TableHead>{t("coupons.usageLimit")}</TableHead>
+                    <TableHead>{t("crossSelling.revenue")}</TableHead>
+                    <TableHead>{t("campaigns.conversions")}</TableHead>
+                    <TableHead className="text-right">{t("common.actions")}</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -582,33 +582,33 @@ function Promotions() {
                             </Button>
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
-                            <DropdownMenuLabel>{t("Actions")}</DropdownMenuLabel>
+                            <DropdownMenuLabel>{t("common.actions")}</DropdownMenuLabel>
                             <DropdownMenuSeparator />
                             <DropdownMenuItem>
                               <Edit className="h-4 w-4 mr-2" />
-                              {t("Edit")}
+                              {t("common.edit")}
                             </DropdownMenuItem>
                             <DropdownMenuItem>
                               <Copy className="h-4 w-4 mr-2" />
-                              {t("Duplicate")}
+                              {t("campaigns.duplicate")}
                             </DropdownMenuItem>
                             <DropdownMenuItem>
                               {promotion.status === "active" ? (
                                 <>
                                   <PauseCircle className="h-4 w-4 mr-2" />
-                                  {t("Pause")}
+                                  {t("whatsappMarketing.campaignList.pause")}
                                 </>
                               ) : promotion.status === "paused" ? (
                                 <>
                                   <PlayCircle className="h-4 w-4 mr-2" />
-                                  {t("Resume")}
+                                  {t("products.active")}
                                 </>
                               ) : null}
                             </DropdownMenuItem>
                             <DropdownMenuSeparator />
                             <DropdownMenuItem className="text-destructive">
                               <Trash2 className="h-4 w-4 mr-2" />
-                              {t("Delete")}
+                              {t("common.delete")}
                             </DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>
@@ -622,14 +622,14 @@ function Promotions() {
             {/* Pagination */}
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
               <p className="text-sm text-muted-foreground text-center sm:text-left">
-                {t("Showing")} 1-{filteredPromotions.length} {t("of")} {promotions.length} {t("promotions")}
+                {t("products.showingCount", { count: filteredPromotions.length })} {promotions.length} {t("promotions.title")}
               </p>
               <div className="flex gap-2">
                 <Button variant="outline" size="sm" disabled>
-                  {t("Previous")}
+                  {t("common.previous")}
                 </Button>
                 <Button variant="outline" size="sm">
-                  {t("Next")}
+                  {t("common.next")}
                 </Button>
               </div>
             </div>

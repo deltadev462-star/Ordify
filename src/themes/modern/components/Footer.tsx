@@ -12,8 +12,6 @@ import {
   Truck,
   RefreshCw,
 } from "lucide-react";
-import { useTranslation } from "react-i18next";
-
 interface FooterLink {
   label: string;
   href: string;
@@ -65,44 +63,42 @@ export const ModernFooter = ({
   },
   className = "",
 }: ModernFooterProps) => {
-  const { t } = useTranslation();
-
   const defaultSections: FooterSection[] = [
     {
-      title: t("Shop"),
+      title: "Shop",
       links: [
-        { label: t("New Arrivals"), href: "/shop/new" },
-        { label: t("Best Sellers"), href: "/shop/best-sellers" },
-        { label: t("Sale"), href: "/shop/sale" },
-        { label: t("All Products"), href: "/shop" },
+        { label: "New  Arrivals", href: "/shop/new" },
+        { label: "Best  Sellers", href: "/shop/best-sellers" },
+        { label: "Sale", href: "/shop/sale" },
+        { label: "All  Products", href: "/shop" },
       ],
     },
     {
-      title: t("Customer Care"),
+      title: "Customer  Care",
       links: [
-        { label: t("Contact Us"), href: "/contact" },
-        { label: t("Shipping Info"), href: "/shipping" },
-        { label: t("Returns & Exchanges"), href: "/returns" },
-        { label: t("Size Guide"), href: "/size-guide" },
-        { label: t("FAQs"), href: "/faqs" },
+        { label: "Contact  Us", href: "/contact" },
+        { label: "Shipping  Info", href: "/shipping" },
+        { label: "Returns &  Exchanges", href: "/returns" },
+        { label: "Size  Guide", href: "/size-guide" },
+        { label: "F A Qs", href: "/faqs" },
       ],
     },
     {
-      title: t("Company"),
+      title: "Company",
       links: [
-        { label: t("About Us"), href: "/about" },
-        { label: t("Careers"), href: "/careers" },
-        { label: t("Press"), href: "/press" },
-        { label: t("Sustainability"), href: "/sustainability" },
+        { label: "About  Us", href: "/about" },
+        { label: "Careers", href: "/careers" },
+        { label: "Press", href: "/press" },
+        { label: "Sustainability", href: "/sustainability" },
       ],
     },
     {
-      title: t("Legal"),
+      title: "Legal",
       links: [
-        { label: t("Terms of Service"), href: "/terms" },
-        { label: t("Privacy Policy"), href: "/privacy" },
-        { label: t("Cookie Policy"), href: "/cookies" },
-        { label: t("Accessibility"), href: "/accessibility" },
+        { label: "Terms of  Service", href: "/terms" },
+        { label: "Privacy  Policy", href: "/privacy" },
+        { label: "Cookie  Policy", href: "/cookies" },
+        { label: "Accessibility", href: "/accessibility" },
       ],
     },
   ];
@@ -112,23 +108,23 @@ export const ModernFooter = ({
   const features = [
     {
       icon: <Truck className="h-5 w-5" />,
-      title: t("Free Shipping"),
-      description: t("On orders over $50"),
+      title: "Free  Shipping",
+      description: "On orders over $50",
     },
     {
       icon: <RefreshCw className="h-5 w-5" />,
-      title: t("Easy Returns"),
-      description: t("30-day return policy"),
+      title: "Easy  Returns",
+      description: "30-day return policy",
     },
     {
       icon: <ShieldCheck className="h-5 w-5" />,
-      title: t("Secure Payment"),
-      description: t("100% secure checkout"),
+      title: "Secure  Payment",
+      description: "100% secure checkout",
     },
     {
       icon: <CreditCard className="h-5 w-5" />,
-      title: t("Multiple Payment"),
-      description: t("Various payment methods"),
+      title: "Multiple  Payment",
+      description: "Various payment methods",
     },
   ];
 
@@ -165,10 +161,8 @@ export const ModernFooter = ({
           <div className="container mx-auto px-4 py-12">
             <Newsletter
               variant="modern"
-              title={t("Stay in the Loop")}
-              description={t(
-                "Subscribe to get special offers, free giveaways, and new arrivals updates."
-              )}
+              title={"Stay in the  Loop"}
+              description={"Subscribe To Get Special Offers, Free Giveaways, And New Arrivals Updates "}
               className="mx-auto max-w-2xl"
             />
           </div>
@@ -189,9 +183,7 @@ export const ModernFooter = ({
             </div>
             <p className="mb-6 text-sm text-gray-400">
               {description ||
-                t(
-                  "Your trusted partner in ecommerce. Providing quality products and exceptional service since 2024."
-                )}
+                "Your Trusted Partner In Ecommerce  Providing Quality Products And Exceptional Service Since 2024 "}
             </p>
 
             {/* Social Links */}
@@ -260,7 +252,7 @@ export const ModernFooter = ({
 
           {/* Contact Column */}
           <div className="lg:col-span-1">
-            <h4 className="mb-4 font-semibold">{t("Get in Touch")}</h4>
+            <h4 className="mb-4 font-semibold">{"Get in  Touch"}</h4>
             <ul className="space-y-3">
               {contactInfo.email && (
                 <li className="flex items-start gap-2">
@@ -303,13 +295,13 @@ export const ModernFooter = ({
           <p className="text-sm text-gray-400">
             © {new Date().getFullYear()}{" "}
             {typeof logo === "string" ? logo : "Ordify"}.{" "}
-            {t("All rights reserved.")}
+            {""}
           </p>
 
           {/* Payment Methods */}
           {showPaymentIcons && (
             <div className="flex items-center gap-4">
-              <span className="text-sm text-gray-400">{t("We accept:")}</span>
+              <span className="text-sm text-gray-400">{"We accept:"}</span>
               <div className="flex gap-2">
                 {paymentMethods.map((method) => (
                   <span

@@ -3,8 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Mail } from "lucide-react";
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
-
 interface NewsletterProps {
   title?: string;
   description?: string;
@@ -27,13 +25,11 @@ export const Newsletter = ({
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
-  const { t } = useTranslation();
-  
   // Use default values from translations if not provided
-  const displayTitle = title || t("subscribeNewsletter");
-  const displayDescription = description || t("newsletterDescription");
-  const displayPlaceholder = placeholder || t("enterEmail");
-  const displayButtonText = buttonText || t("subscribe");
+  const displayTitle = title || "Subscribe Newsletter";
+  const displayDescription = description || "Newsletter Description";
+  const displayPlaceholder = placeholder || "Enter Email";
+  const displayButtonText = buttonText || "Subscribe";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -70,7 +66,7 @@ export const Newsletter = ({
               disabled={isLoading}
             />
             <Button type="submit" disabled={isLoading || isSubscribed}>
-              {isSubscribed ? t("subscribed") : displayButtonText}
+              {isSubscribed ? "Subscribed" : displayButtonText}
             </Button>
           </form>
         </div>
@@ -107,7 +103,7 @@ export const Newsletter = ({
                 disabled={isLoading || isSubscribed}
                 className="bg-white text-gray-900 hover:bg-white/90"
               >
-                {isSubscribed ? t("subscribed") : displayButtonText}
+                {isSubscribed ? "Subscribed" : displayButtonText}
               </Button>
             </form>
           </div>
@@ -144,7 +140,7 @@ export const Newsletter = ({
                 disabled={isLoading || isSubscribed}
                 className="bg-white text-gray-900 hover:bg-white/90"
               >
-                {isSubscribed ? t("subscribedCheck") : displayButtonText}
+                {isSubscribed ? "Subscribed Check" : displayButtonText}
               </Button>
             </form>
           </div>

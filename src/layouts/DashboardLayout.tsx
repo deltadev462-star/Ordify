@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import { SidebarProvider, useSidebar } from "@/components/ui/sidebar";
 import { DashboardSidebar } from "@/components/layout/Sidebar/DashboardSidebar";
 import { DashboardHeader } from "@/components/layout/Header/DashboardHeader";
@@ -9,7 +8,6 @@ import { findActiveNavItem, getBreadcrumbs } from "@/data/new-sidebar-data";
 import { newSidebarData } from "@/data/new-sidebar-data";
 
 function DashboardContent() {
-  const { i18n } = useTranslation();
   const location = useLocation();
   const { open, setOpen, openMobile, setOpenMobile, isMobile } = useSidebar();
   const [activeNavId, setActiveNavId] = useState<string | null>(null);
@@ -81,7 +79,7 @@ function DashboardContent() {
            showMenuButton={true}
         />
         {/* Page Content */}
-        <main dir={i18n.dir()} className="flex-1 p-4 sm:p-6 lg:p-8">
+        <main className="flex-1 p-4 sm:p-6 lg:p-8">
           <Outlet />
         </main>
       </div>

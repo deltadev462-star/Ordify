@@ -1,5 +1,4 @@
 import { Newsletter } from "@/themes/shared/components/Newsletter";
-import { useTranslation } from "react-i18next";
 import {
   Facebook,
   Twitter,
@@ -66,48 +65,46 @@ export const ClassicFooter = ({
   },
   className = "",
 }: ClassicFooterProps) => {
-  const { t } = useTranslation();
-
   const defaultSections: FooterSection[] = [
     {
-      title: t("Customer Service"),
+      title: "Customer  Service",
       links: [
-        { label: t("Help Center"), href: "/help" },
-        { label: t("Contact Us"), href: "/contact" },
-        { label: t("Order Status"), href: "/order-status" },
-        { label: t("Shipping Info"), href: "/shipping" },
-        { label: t("Returns"), href: "/returns" },
-        { label: t("FAQs"), href: "/faqs" },
+        { label: "Help  Center", href: "/help" },
+        { label: "Contact  Us", href: "/contact" },
+        { label: "Order  Status", href: "/order-status" },
+        { label: "Shipping  Info", href: "/shipping" },
+        { label: "Returns", href: "/returns" },
+        { label: "F A Qs", href: "/faqs" },
       ],
     },
     {
-      title: t("About Us"),
+      title: "About  Us",
       links: [
-        { label: t("Our Story"), href: "/about" },
-        { label: t("Careers"), href: "/careers" },
-        { label: t("Press"), href: "/press" },
-        { label: t("Store Locator"), href: "/stores" },
-        { label: t("Corporate Info"), href: "/corporate" },
+        { label: "Our  Story", href: "/about" },
+        { label: "Careers", href: "/careers" },
+        { label: "Press", href: "/press" },
+        { label: "Store  Locator", href: "/stores" },
+        { label: "Corporate  Info", href: "/corporate" },
       ],
     },
     {
-      title: t("Popular Categories"),
+      title: "Popular  Categories",
       links: [
-        { label: t("Electronics"), href: "/categories/electronics" },
-        { label: t("Fashion"), href: "/categories/fashion" },
-        { label: t("Home & Garden"), href: "/categories/home-garden" },
-        { label: t("Sports"), href: "/categories/sports" },
-        { label: t("Beauty"), href: "/categories/beauty" },
+        { label: "Electronics", href: "/categories/electronics" },
+        { label: "Fashion", href: "/categories/fashion" },
+        { label: "Home &  Garden", href: "/categories/home-garden" },
+        { label: "Sports", href: "/categories/sports" },
+        { label: "Beauty", href: "/categories/beauty" },
       ],
     },
     {
-      title: t("Policies"),
+      title: "Policies",
       links: [
-        { label: t("Privacy Policy"), href: "/privacy" },
-        { label: t("Terms of Use"), href: "/terms" },
-        { label: t("Cookie Policy"), href: "/cookies" },
-        { label: t("Security"), href: "/security" },
-        { label: t("Accessibility"), href: "/accessibility" },
+        { label: "Privacy  Policy", href: "/privacy" },
+        { label: "Terms of  Use", href: "/terms" },
+        { label: "Cookie  Policy", href: "/cookies" },
+        { label: "Security", href: "/security" },
+        { label: "Accessibility", href: "/accessibility" },
       ],
     },
   ];
@@ -117,23 +114,23 @@ export const ClassicFooter = ({
   const features = [
     {
       icon: <Truck className="h-5 w-5" />,
-      title: t("Free Shipping"),
-      description: t("Orders over $50"),
+      title: "Free  Shipping",
+      description: "Orders over $50",
     },
     {
       icon: <RefreshCw className="h-5 w-5" />,
-      title: t("30-Day Returns"),
-      description: t("Easy returns policy"),
+      title: "30- Day  Returns",
+      description: "Easy returns policy",
     },
     {
       icon: <Shield className="h-5 w-5" />,
-      title: t("Secure Shopping"),
-      description: t("SSL encryption"),
+      title: "Secure  Shopping",
+      description: "S S L encryption",
     },
     {
       icon: <HeadphonesIcon className="h-5 w-5" />,
-      title: t("24/7 Support"),
-      description: t("Always here to help"),
+      title: "24/7  Support",
+      description: "Always here to help",
     },
   ];
 
@@ -167,8 +164,8 @@ export const ClassicFooter = ({
             <div className="mx-auto max-w-4xl">
               <Newsletter
                 variant="default"
-                title={t("Subscribe to Our Newsletter")}
-                description={t("Get exclusive deals, new product alerts, and shopping tips delivered to your inbox")}
+                title={"Subscribe to  Our  Newsletter"}
+                description={"Get exclusive deals"}
                 className="bg-transparent"
               />
             </div>
@@ -186,7 +183,7 @@ export const ClassicFooter = ({
             ) : (
               logo
             )}
-            <p className="mb-6 text-sm text-gray-600 dark:text-gray-400">{description || t("Your trusted online shopping destination since 1999. Quality products, competitive prices, and exceptional customer service.")}</p>
+            <p className="mb-6 text-sm text-gray-600 dark:text-gray-400">{description || "Quality products"}</p>
             
             {/* Contact Info */}
             <ul className="space-y-2 text-sm">
@@ -239,7 +236,7 @@ export const ClassicFooter = ({
         <div className="mt-8 border-t border-[#d6d6d6] dark:border-[#424242] dark:border-[#3a3a3a] pt-8">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
             <div className="flex items-center gap-4">
-              <span className="text-sm text-gray-600 dark:text-gray-400">{t("Follow Us:")}</span>
+              <span className="text-sm text-gray-600 dark:text-gray-400">{"Follow  Us:"}</span>
               <div className="flex gap-2">
                 {socialLinks.facebook && (
                   <a
@@ -283,10 +280,10 @@ export const ClassicFooter = ({
             {/* Payment Methods */}
             {showPaymentMethods && (
               <div className="flex items-center gap-2">
-                <span className="text-sm text-gray-600 dark:text-gray-400">{t("We Accept:")}</span>
+                <span className="text-sm text-gray-600 dark:text-gray-400">{"We  Accept:"}</span>
                 <div className="flex gap-2">
                   <CreditCard className="h-8 w-12 text-gray-400 dark:text-gray-500" />
-                  <span className="text-sm text-gray-400 dark:text-gray-500">{t("and more")}</span>
+                  <span className="text-sm text-gray-400 dark:text-gray-500">{"And more"}</span>
                 </div>
               </div>
             )}
@@ -296,8 +293,8 @@ export const ClassicFooter = ({
         {/* Copyright */}
         <div className="mt-6 border-t border-[#d6d6d6] dark:border-[#424242] dark:border-[#3a3a3a] pt-6 text-center text-sm text-gray-500 dark:text-gray-400">
           <p>
-            © {new Date().getFullYear()} {typeof logo === "string" ? logo : "Classic Store"}. {t("All Rights Reserved.")} |
-            <a href="/sitemap" className="ml-1 hover:text-[#34495e] dark:hover:text-[#8b7355]">{t("Sitemap")}</a>
+            © {new Date().getFullYear()} {typeof logo === "string" ? logo : "Classic Store"}. {""} |
+            <a href="/sitemap" className="ml-1 hover:text-[#34495e] dark:hover:text-[#8b7355]">{"Sitemap"}</a>
           </p>
         </div>
       </div>

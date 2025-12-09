@@ -1,5 +1,4 @@
 import Title from "@/components/Title";
-import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import {
@@ -20,31 +19,29 @@ import {
 } from "lucide-react";
 
 function ServiceGallery() {
-  const { t } = useTranslation();
-
   const galleryFeatures = [
     {
       icon: Grid3X3,
-      title: t("Smart Grid Layout"),
-      description: t("Automatically arrange your images in stunning grid layouts"),
+      title: "Smart  Grid  Layout",
+      description: "Automatically arrange your images in stunning grid layouts",
       color: "from-blue-500 to-cyan-500"
     },
     {
       icon: Zap,
-      title: t("Fast Loading"),
-      description: t("Optimized images for lightning-fast page loads"),
+      title: "Fast  Loading",
+      description: "Optimized images for lightning-fast page loads",
       color: "from-amber-500 to-orange-500"
     },
     {
       icon: Palette,
-      title: t("Custom Styling"),
-      description: t("Match your brand with customizable gallery themes"),
+      title: "Custom  Styling",
+      description: "Match your brand with customizable gallery themes",
       color: "from-pink-500 to-rose-500"
     },
     {
       icon: Eye,
-      title: t("Lightbox Preview"),
-      description: t("Beautiful fullscreen image viewing experience"),
+      title: "Lightbox  Preview",
+      description: "Beautiful fullscreen image viewing experience",
       color: "from-violet-500 to-purple-500"
     }
   ];
@@ -59,11 +56,11 @@ function ServiceGallery() {
   ];
 
   return (
-    <div dir="rtl">
+    <div>
       <div className="flex bg-white dark:bg-black/80 rounded-2xl m-1 flex-1 flex-col gap-6 p-6 pt-0">
         <Title
-          title={t("Service Gallery")}
-          Subtitle={t("Design and optimize your sales Service Gallery")}
+          title={"Service  Gallery"}
+          Subtitle={"Design and optimize your sales  Service  Gallery"}
           className="text-3xl"
           classNamee=""
         />
@@ -77,7 +74,7 @@ function ServiceGallery() {
               <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-primary/10 dark:bg-primary/20 border border-gray-200 dark:border-gray-700">
                 <Sparkles className="w-5 h-5 text-primary animate-pulse" />
                 <span className="text-sm font-semibold gradient-text">
-                  {t("Professional Gallery System")}
+                  {"Professional  Gallery  System"}
                 </span>
                 <Sparkles className="w-5 h-5 text-primary animate-pulse" />
               </div>
@@ -86,19 +83,19 @@ function ServiceGallery() {
             {/* Main Title */}
             <div className="text-center max-w-3xl mx-auto mb-10">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">
-                {t("Showcase Your")} <span className="gradient-text">{t("Products")}</span> {t("Beautifully")}
+                {"Showcase  Your"} <span className="gradient-text">{"Products"}</span> {"Beautifully"}
               </h2>
               <p className="text-muted-foreground text-lg leading-relaxed">
-                {t("Create stunning visual galleries that captivate your customers and drive sales. Easy to manage, beautiful to view.")}
+                {"Easy to manage"}
               </p>
             </div>
 
             {/* Stats Row */}
             <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto mb-10">
               {[
-                { icon: Image, value: "1000+", label: t("Images Supported") },
-                { icon: TrendingUp, value: "3x", label: t("Engagement Boost") },
-                { icon: Star, value: "4.9", label: t("User Rating") }
+                { icon: Image, value: "1000+", label: "Images  Supported" },
+                { icon: TrendingUp, value: "3x", label: "Engagement  Boost" },
+                { icon: Star, value: "4.9", label: "User  Rating" }
               ].map((stat, index) => (
                 <div
                   key={index}
@@ -138,26 +135,26 @@ function ServiceGallery() {
                       <Upload className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
                     </div>
                     <div className="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-medium">
-                      {t("Quick Upload")}
+                      {"Quick  Upload"}
                     </div>
                   </div>
                   <CardTitle className="text-xl text-foreground">
-                    {t("Upload Images")}
+                    {"Upload  Images"}
                   </CardTitle>
                   <CardDescription className="text-muted-foreground">
-                    {t("Drag and drop or browse to add images to your gallery")}
+                    {"Drag and drop or browse to add images to your gallery"}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="relative space-y-4">
                   {/* Upload Zone Preview */}
                   <div className="border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-xl p-6 text-center hover:border-emerald-500/50 transition-colors">
                     <ImagePlus className="w-8 h-8 mx-auto mb-2 text-emerald-500/60" />
-                    <p className="text-sm text-muted-foreground">{t("Drop images here or click to browse")}</p>
-                    <p className="text-xs text-muted-foreground mt-1">{t("Supports JPG, PNG, WebP up to 10MB")}</p>
+                    <p className="text-sm text-muted-foreground">{"Drop images here or click to browse"}</p>
+                    <p className="text-xs text-muted-foreground mt-1">{"Supports  J P G"}</p>
                   </div>
                   <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all duration-300 group/btn">
                     <Upload className="w-4 h-4 mr-2" />
-                    {t("Upload Images")}
+                    {"Upload  Images"}
                     <ArrowRight className="w-4 h-4 mr-2 group-hover/btn:translate-x-1 transition-transform" />
                   </Button>
                 </CardContent>
@@ -172,24 +169,24 @@ function ServiceGallery() {
                       <Settings2 className="w-6 h-6 text-violet-600 dark:text-violet-400" />
                     </div>
                     <div className="px-3 py-1 rounded-full bg-violet-500/10 text-violet-600 dark:text-violet-400 text-xs font-medium">
-                      {t("Management")}
+                      {"Management"}
                     </div>
                   </div>
                   <CardTitle className="text-xl text-foreground">
-                    {t("Manage Gallery")}
+                    {"Manage  Gallery"}
                   </CardTitle>
                   <CardDescription className="text-muted-foreground">
-                    {t("Organize, edit and customize your gallery settings")}
+                    {"Organize"}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="relative space-y-4">
                   {/* Quick Actions */}
                   <div className="grid grid-cols-2 gap-2">
                     {[
-                      { icon: FolderOpen, label: t("Categories") },
-                      { icon: Layers, label: t("Arrange") },
-                      { icon: Palette, label: t("Themes") },
-                      { icon: Eye, label: t("Preview") }
+                      { icon: FolderOpen, label: "Categories" },
+                      { icon: Layers, label: "Arrange" },
+                      { icon: Palette, label: "Themes" },
+                      { icon: Eye, label: "Preview" }
                     ].map((action, index) => (
                       <div
                         key={index}
@@ -202,7 +199,7 @@ function ServiceGallery() {
                   </div>
                   <Button className="w-full bg-gradient-to-r from-violet-600 to-purple-600 hover:from-violet-700 hover:to-purple-700 text-white shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all duration-300 group/btn">
                     <Settings2 className="w-4 h-4 mr-2" />
-                    {t("Open Manager")}
+                    {"Open  Manager"}
                     <ArrowRight className="w-4 h-4 mr-2 group-hover/btn:translate-x-1 transition-transform" />
                   </Button>
                 </CardContent>
@@ -216,12 +213,12 @@ function ServiceGallery() {
           <div className="relative glass-card rounded-[22px] p-8">
             <div className="flex items-center justify-between mb-6">
               <div>
-                <h3 className="text-xl font-bold text-foreground mb-1">{t("Gallery Preview")}</h3>
-                <p className="text-sm text-muted-foreground">{t("Preview how your gallery will look to customers")}</p>
+                <h3 className="text-xl font-bold text-foreground mb-1">{"Gallery  Preview"}</h3>
+                <p className="text-sm text-muted-foreground">{"Preview how your gallery will look to customers"}</p>
               </div>
               <Button variant="outline" className="border-primary/30 hover:bg-primary/10">
                 <Eye className="w-4 h-4 mr-2" />
-                {t("View Full Gallery")}
+                {"View  Full  Gallery"}
               </Button>
             </div>
 
@@ -235,7 +232,7 @@ function ServiceGallery() {
                   <div className="text-center">
                     <Image className="w-8 h-8 mx-auto text-muted-foreground/50 group-hover:text-primary/70 transition-colors" />
                     <span className="text-xs text-muted-foreground mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                      {t("Add Image")}
+                      {"Add  Image"}
                     </span>
                   </div>
                 </div>
@@ -245,10 +242,10 @@ function ServiceGallery() {
             {/* Empty State Message */}
             <div className="text-center mt-6 p-6 rounded-2xl bg-muted/30 border border-dashed border-gray-200 dark:border-gray-700">
               <Layers className="w-10 h-10 mx-auto text-muted-foreground/50 mb-3" />
-              <p className="text-muted-foreground">{t("Your gallery is empty. Start by uploading some images!")}</p>
+              <p className="text-muted-foreground">{"Start by uploading some images!"}</p>
               <Button className="mt-4" variant="outline">
                 <ImagePlus className="w-4 h-4 mr-2" />
-                {t("Add Your First Image")}
+                {"Add  Your  First  Image"}
               </Button>
             </div>
           </div>
@@ -258,7 +255,7 @@ function ServiceGallery() {
         <div className="flex justify-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted/50 text-muted-foreground text-sm">
             <Sparkles className="w-4 h-4 text-primary" />
-            {t("Pro tip: High-quality images increase conversion by up to 40%")}
+            {"Pro tip:  High-quality images increase conversion by up to 40%"}
           </div>
         </div>
       </div>

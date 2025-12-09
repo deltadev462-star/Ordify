@@ -79,8 +79,8 @@ export default function CustomerSegmentsPage() {
   const segments: Segment[] = [
     {
       id: "1",
-      name: "VIP Customers",
-      description: "High-value customers with 10+ orders",
+      name: t("customerSegments.vipCustomers"),
+      description: t("customerSegments.highValueCustomers"),
       icon: Crown,
       color: "text-purple-600",
       bgGradient: "from-purple-500/20 via-purple-400/10 to-pink-500/20",
@@ -89,16 +89,16 @@ export default function CustomerSegmentsPage() {
       totalRevenue: 599250,
       growth: 12.5,
       conditions: [
-        { type: "Total Orders", value: "10+" },
-        { type: "Total Spent", value: "5000+ EGP" }
+        { type: t("customerSegments.totalOrders"), value: t("customerSegments.tenPlusOrders") },
+        { type: t("customerSegments.totalSpent"), value: t("customerSegments.fiveThousandPlusEGP") }
       ],
       lastUpdated: "2024-01-15T10:00:00Z",
       status: "active"
     },
     {
-      id: "2", 
-      name: "New Customers",
-      description: "First-time buyers in the last 30 days",
+      id: "2",
+      name: t("customerSegments.newCustomers"),
+      description: t("customerSegments.firstTimeBuyers"),
       icon: Star,
       color: "text-blue-600",
       bgGradient: "from-blue-500/20 via-blue-400/10 to-cyan-500/20",
@@ -107,16 +107,16 @@ export default function CustomerSegmentsPage() {
       totalRevenue: 409700,
       growth: 25.3,
       conditions: [
-        { type: "Registration Date", value: "Last 30 days" },
-        { type: "Total Orders", value: "1" }
+        { type: t("customerSegments.registrationDate"), value: t("customerSegments.last30Days") },
+        { type: t("customerSegments.totalOrders"), value: t("customerSegments.one") }
       ],
       lastUpdated: "2024-01-15T10:00:00Z",
       status: "active"
     },
     {
       id: "3",
-      name: "Repeat Buyers",
-      description: "Customers with multiple purchases",
+      name: t("customerSegments.repeatBuyers"),
+      description: t("customerSegments.customersWithMultiplePurchases"),
       icon: Award,
       color: "text-green-600",
       bgGradient: "from-green-500/20 via-green-400/10 to-emerald-500/20",
@@ -125,16 +125,16 @@ export default function CustomerSegmentsPage() {
       totalRevenue: 1204200,
       growth: 8.7,
       conditions: [
-        { type: "Total Orders", value: "2-9" },
-        { type: "Last Order", value: "Within 60 days" }
+        { type: t("customerSegments.totalOrders"), value: t("customerSegments.twoToNine") },
+        { type: t("customerSegments.lastOrderDate"), value: t("customerSegments.within60Days") }
       ],
       lastUpdated: "2024-01-15T10:00:00Z",
       status: "active"
     },
     {
       id: "4",
-      name: "At Risk",
-      description: "Haven't ordered in 90+ days",
+      name: t("customerSegments.atRisk"),
+      description: t("customerSegments.haventOrderedIn90Days"),
       icon: Clock,
       color: "text-orange-600",
       bgGradient: "from-orange-500/20 via-orange-400/10 to-yellow-500/20",
@@ -143,8 +143,8 @@ export default function CustomerSegmentsPage() {
       totalRevenue: 171600,
       growth: -5.2,
       conditions: [
-        { type: "Last Order", value: "90+ days ago" },
-        { type: "Total Orders", value: "2+" }
+        { type: t("customerSegments.lastOrderDate"), value: t("customerSegments.ninetyPlusDaysAgo") },
+        { type: t("customerSegments.totalOrders"), value: t("customerSegments.twoPlusOrders") }
       ],
       lastUpdated: "2024-01-15T10:00:00Z",
       status: "active"
@@ -154,7 +154,7 @@ export default function CustomerSegmentsPage() {
   // Statistics
   const stats = [
     {
-      title: t("Total Segments"),
+      title: t("customerSegments.totalSegments"),
       value: segments.length.toString(),
       change: 2,
       changeType: "increase" as const,
@@ -162,21 +162,21 @@ export default function CustomerSegmentsPage() {
       iconColor: "text-purple-600 dark:text-purple-400",
       iconBgColor: "bg-purple-50 dark:bg-purple-950/30",
       trend: "up" as const,
-      period: t("vs last month"),
+      period: t("customerSegments.vsLastMonth"),
     },
     {
-      title: t("Active Segments"),
+      title: t("customerSegments.activeSegments"),
       value: segments.filter(s => s.status === "active").length.toString(),
       change: 1,
       changeType: "increase" as const,
       icon: Zap,
-      iconColor: "text-green-600 dark:text-green-400", 
+      iconColor: "text-green-600 dark:text-green-400",
       iconBgColor: "bg-green-50 dark:bg-green-950/30",
       trend: "up" as const,
-      period: t("currently active"),
+      period: t("customerSegments.currentlyActive"),
     },
     {
-      title: t("Total Customers"),
+      title: t("customerSegments.totalCustomers"),
       value: segments.reduce((sum, s) => sum + s.customerCount, 0).toLocaleString(),
       change: 15.3,
       changeType: "increase" as const,
@@ -184,10 +184,10 @@ export default function CustomerSegmentsPage() {
       iconColor: "text-blue-600 dark:text-blue-400",
       iconBgColor: "bg-blue-50 dark:bg-blue-950/30",
       trend: "up" as const,
-      period: t("segmented customers"),
+      period: t("customerSegments.segmentedCustomers"),
     },
     {
-      title: t("Revenue from Segments"),
+      title: t("customerSegments.revenueFromSegments"),
       value: `${(segments.reduce((sum, s) => sum + s.totalRevenue, 0) / 1000).toFixed(0)}K`,
       change: 22.8,
       changeType: "increase" as const,
@@ -195,7 +195,7 @@ export default function CustomerSegmentsPage() {
       iconColor: "text-indigo-600 dark:text-indigo-400",
       iconBgColor: "bg-indigo-50 dark:bg-indigo-950/30",
       trend: "up" as const,
-      period: t("total revenue"),
+      period: t("customerSegments.totalRevenue"),
     },
   ];
 
@@ -230,61 +230,61 @@ export default function CustomerSegmentsPage() {
       {/* Header */}
       <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold">{t("Customer Segments")}</h1>
+          <h1 className="text-2xl font-bold">{t("customerSegments.title")}</h1>
           <p className="text-muted-foreground mt-1">
-            {t("Create and manage customer segments for targeted marketing")}
+            {t("customerSegments.subtitle")}
           </p>
         </div>
         <div className="flex gap-2">
           <Button variant="outline" className="gap-2">
             <Filter className="h-4 w-4" />
-            {t("Filter")}
+            {t("customerSegments.filter")}
           </Button>
           
           <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
             <DialogTrigger asChild>
               <Button className="gap-2 bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90">
                 <Plus className="h-4 w-4" />
-                {t("Create Segment")}
+                {t("customerSegments.createSegment")}
               </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[525px]">
               <DialogHeader>
-                <DialogTitle>{t("Create New Segment")}</DialogTitle>
+                <DialogTitle>{t("customerSegments.createNewSegment")}</DialogTitle>
                 <DialogDescription>
-                  {t("Define conditions to automatically group customers")}
+                  {t("customerSegments.defineConditions")}
                 </DialogDescription>
               </DialogHeader>
               <div className="grid gap-4 py-4">
                 <div className="space-y-2">
-                  <Label htmlFor="name">{t("Segment Name")}</Label>
-                  <Input id="name" placeholder={t("e.g., High Value Customers")} />
+                  <Label htmlFor="name">{t("customerSegments.segmentName")}</Label>
+                  <Input id="name" placeholder="" />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="description">{t("Description")}</Label>
-                  <Input id="description" placeholder={t("Describe this segment...")} />
+                  <Label htmlFor="description">{t("customerSegments.description")}</Label>
+                  <Input id="description" placeholder="" />
                 </div>
                 <div className="space-y-2">
-                  <Label>{t("Conditions")}</Label>
+                  <Label>{t("customerSegments.conditions")}</Label>
                   <Select>
                     <SelectTrigger>
-                      <SelectValue placeholder={t("Select condition type")} />
+                      <SelectValue placeholder={t("customerSegments.selectConditionType")} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="orders">{t("Total Orders")}</SelectItem>
-                      <SelectItem value="spent">{t("Total Spent")}</SelectItem>
-                      <SelectItem value="lastorder">{t("Last Order Date")}</SelectItem>
-                      <SelectItem value="registration">{t("Registration Date")}</SelectItem>
+                      <SelectItem value="orders">{t("customerSegments.totalOrders")}</SelectItem>
+                      <SelectItem value="spent">{t("customerSegments.totalSpent")}</SelectItem>
+                      <SelectItem value="lastorder">{t("customerSegments.lastOrderDate")}</SelectItem>
+                      <SelectItem value="registration">{t("customerSegments.registrationDate")}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
               </div>
               <DialogFooter>
                 <Button variant="outline" onClick={() => setIsCreateDialogOpen(false)}>
-                  {t("Cancel")}
+                  {t("customerSegments.cancel")}
                 </Button>
                 <Button onClick={() => setIsCreateDialogOpen(false)}>
-                  {t("Create Segment")}
+                  {t("customerSegments.createSegment")}
                 </Button>
               </DialogFooter>
             </DialogContent>
@@ -317,14 +317,14 @@ export default function CustomerSegmentsPage() {
             <div className="flex flex-col-reverse gap-3 lg:flex-row lg:items-center lg:justify-between">
               <Tabs value={selectedTab} onValueChange={setSelectedTab}>
                 <TabsList>
-                  <TabsTrigger value="all">{t("All Segments")}</TabsTrigger>
-                  <TabsTrigger value="active">{t("Active")}</TabsTrigger>
-                  <TabsTrigger value="inactive">{t("Inactive")}</TabsTrigger>
+                  <TabsTrigger value="all">{t("customerSegments.allSegments")}</TabsTrigger>
+                  <TabsTrigger value="active">{t("customerSegments.active")}</TabsTrigger>
+                  <TabsTrigger value="inactive">{t("customerSegments.inactive")}</TabsTrigger>
                 </TabsList>
               </Tabs>
               <div className="relative max-w-md">
                 <Input
-                  placeholder={t("Search segments...")}
+                  placeholder={t("customerSegments.searchSegments")}
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-10"
@@ -365,23 +365,23 @@ export default function CustomerSegmentsPage() {
                           </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
-                          <DropdownMenuLabel>{t("Actions")}</DropdownMenuLabel>
+                          <DropdownMenuLabel>{t("customerSegments.actions")}</DropdownMenuLabel>
                           <DropdownMenuSeparator />
                           <DropdownMenuItem onClick={() => handleViewCustomers(segment.id)}>
                             <Eye className="mr-2 h-4 w-4" />
-                            {t("View Customers")}
+                            {t("customerSegments.viewCustomers")}
                           </DropdownMenuItem>
                           <DropdownMenuItem onClick={() => handleSendMessage(segment.id)}>
                             <Send className="mr-2 h-4 w-4" />
-                            {t("Send Message")}
+                            {t("customerSegments.sendMessage")}
                           </DropdownMenuItem>
                           <DropdownMenuItem>
                             <Edit className="mr-2 h-4 w-4" />
-                            {t("Edit Segment")}
+                            {t("customerSegments.editSegment")}
                           </DropdownMenuItem>
                           <DropdownMenuItem onClick={() => handleDuplicate(segment.id)}>
                             <Copy className="mr-2 h-4 w-4" />
-                            {t("Duplicate")}
+                            {t("customerSegments.duplicate")}
                           </DropdownMenuItem>
                           <DropdownMenuSeparator />
                           <DropdownMenuItem 
@@ -389,7 +389,7 @@ export default function CustomerSegmentsPage() {
                             className="text-red-600 dark:text-red-400"
                           >
                             <Trash2 className="mr-2 h-4 w-4" />
-                            {t("Delete")}
+                            {t("customerSegments.delete")}
                           </DropdownMenuItem>
                         </DropdownMenuContent>
                       </DropdownMenu>
@@ -400,7 +400,7 @@ export default function CustomerSegmentsPage() {
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="text-2xl font-bold">{segment.customerCount.toLocaleString()}</p>
-                        <p className="text-sm text-muted-foreground">{t("customers")}</p>
+                        <p className="text-sm text-muted-foreground">{t("customerSegments.customers")}</p>
                       </div>
                       <div className="text-right">
                         <div className="flex items-center gap-1">
@@ -409,25 +409,25 @@ export default function CustomerSegmentsPage() {
                             {segment.growth >= 0 ? '+' : ''}{segment.growth}%
                           </span>
                         </div>
-                        <p className="text-xs text-muted-foreground">{t("growth")}</p>
+                        <p className="text-xs text-muted-foreground">{t("customerSegments.growth")}</p>
                       </div>
                     </div>
 
                     {/* Revenue info */}
                     <div className="grid grid-cols-2 gap-2">
                       <div className="p-2 rounded-lg bg-white/60 dark:bg-gray-900/60">
-                        <p className="text-xs text-muted-foreground">{t("Avg Order")}</p>
-                        <p className="text-sm font-semibold">{t("EGP")} {segment.avgOrderValue.toLocaleString()}</p>
+                        <p className="text-xs text-muted-foreground">{t("customerSegments.avgOrder")}</p>
+                        <p className="text-sm font-semibold">{t("common.egp")} {segment.avgOrderValue.toLocaleString()}</p>
                       </div>
                       <div className="p-2 rounded-lg bg-white/60 dark:bg-gray-900/60">
-                        <p className="text-xs text-muted-foreground">{t("Total Revenue")}</p>
-                        <p className="text-sm font-semibold">{t("EGP")} {(segment.totalRevenue / 1000).toFixed(0)}K</p>
+                        <p className="text-xs text-muted-foreground">{t("customerSegments.totalRevenue")}</p>
+                        <p className="text-sm font-semibold">{t("common.egp")} {(segment.totalRevenue / 1000).toFixed(0)}K</p>
                       </div>
                     </div>
 
                     {/* Conditions */}
                     <div className="space-y-2">
-                      <p className="text-xs text-muted-foreground uppercase tracking-wide">{t("Conditions")}</p>
+                      <p className="text-xs text-muted-foreground uppercase tracking-wide">{t("customerSegments.conditions")}</p>
                       <div className="flex flex-wrap gap-1">
                         {segment.conditions.map((condition, idx) => (
                           <Badge key={idx} variant="secondary" className="text-xs">
@@ -443,10 +443,10 @@ export default function CustomerSegmentsPage() {
                         variant={segment.status === 'active' ? 'default' : 'secondary'}
                         className={segment.status === 'active' ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400' : ''}
                       >
-                        {t(segment.status)}
+                        {segment.status}
                       </Badge>
                       <p className="text-xs text-muted-foreground">
-                        {t("Updated")} {new Date(segment.lastUpdated).toLocaleDateString()}
+                        {t("customerSegments.updated")} {new Date(segment.lastUpdated).toLocaleDateString()}
                       </p>
                     </div>
                   </CardContent>

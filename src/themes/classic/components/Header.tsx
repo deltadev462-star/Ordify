@@ -1,6 +1,5 @@
 
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -101,7 +100,6 @@ export const ClassicHeader = ({
   onCheckout,
   className = "",
 }: ClassicHeaderProps) => {
-  const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
@@ -109,29 +107,29 @@ export const ClassicHeader = ({
   const [isWishlistOpen, setIsWishlistOpen] = useState(false);
 
   const defaultNavigation: NavigationItem[] = [
-    { label: t("Home"), href: "/" },
+    { label: "Home", href: "/" },
     {
-      label: t("Shop"),
+      label: "Shop",
       children: [
-        { label: t("All Products"), href: "/shop" },
-        { label: t("New Arrivals"), href: "/shop/new" },
-        { label: t("Best Sellers"), href: "/shop/best-sellers" },
-        { label: t("Sale"), href: "/shop/sale" },
+        { label: "All  Products", href: "/shop" },
+        { label: "New  Arrivals", href: "/shop/new" },
+        { label: "Best  Sellers", href: "/shop/best-sellers" },
+        { label: "Sale", href: "/shop/sale" },
       ],
     },
     {
-      label: t("Categories"),
+      label: "Categories",
       children: [
-        { label: t("Electronics"), href: "/categories/electronics" },
-        { label: t("Fashion"), href: "/categories/fashion" },
-        { label: t("Home & Garden"), href: "/categories/home-garden" },
-        { label: t("Sports & Outdoors"), href: "/categories/sports" },
-        { label: t("Beauty & Health"), href: "/categories/beauty" },
+        { label: "Electronics", href: "/categories/electronics" },
+        { label: "Fashion", href: "/categories/fashion" },
+        { label: "Home &  Garden", href: "/categories/home-garden" },
+        { label: "Sports &  Outdoors", href: "/categories/sports" },
+        { label: "Beauty &  Health", href: "/categories/beauty" },
       ],
     },
-    { label: t("About Us"), href: "/about" },
-    { label: t("Contact"), href: "/contact" },
-    { label: t("Blog"), href: "/blog" },
+    { label: "About  Us", href: "/about" },
+    { label: "Contact", href: "/contact" },
+    { label: "Blog", href: "/blog" },
   ];
 
   const navigationToUse = navigation && navigation.length > 0 ? navigation : defaultNavigation;
@@ -169,11 +167,11 @@ export const ClassicHeader = ({
                 )}
               </div>
               <div className="hidden items-center gap-4 md:flex">
-                <a href="/track-order" className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-[#8b7355]">{t("Track Order")}</a>
+                <a href="/track-order" className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-[#8b7355]">{"Track  Order"}</a>
                 <span className="text-gray-300 dark:text-gray-600">|</span>
-                <a href="/help" className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-[#8b7355]">{t("Help")}</a>
+                <a href="/help" className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-[#8b7355]">{"Help"}</a>
                 <span className="text-gray-300 dark:text-gray-600">|</span>
-                <a href="/account" className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-[#8b7355]">{t("My Account")}</a>
+                <a href="/account" className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-[#8b7355]">{"My  Account"}</a>
               </div>
             </div>
           </div>
@@ -193,7 +191,7 @@ export const ClassicHeader = ({
               </SheetTrigger>
               <SheetContent side="left" className="w-80">
                 <SheetHeader>
-                  <SheetTitle>{t("Menu")}</SheetTitle>
+                  <SheetTitle>{"Menu"}</SheetTitle>
                 </SheetHeader>
                 <nav className="mt-6">
                   <ul className="space-y-3">
@@ -249,7 +247,7 @@ export const ClassicHeader = ({
                 <form onSubmit={handleSearch} className="relative">
                   <Input
                     type="search"
-                    placeholder={t("Search for products...")}
+                    placeholder={""}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="pr-10 border border-[#e0e0e0] dark:border-[#3a3a3a] dark:bg-[#242424] dark:text-gray-100 w-150 mx-auto"
@@ -281,11 +279,11 @@ export const ClassicHeader = ({
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-96 bg-white dark:bg-[#242424] border border-[#e0e0e0] dark:border-[#3a3a3a]">
-                  <DropdownMenuLabel className="font-medium text-gray-900 dark:text-gray-100">{t("My Wishlist")}</DropdownMenuLabel>
+                  <DropdownMenuLabel className="font-medium text-gray-900 dark:text-gray-100">{"My  Wishlist"}</DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   {wishlistItems.length === 0 ? (
                     <div className="p-6 text-center text-gray-500 dark:text-gray-400">
-                      {t("Your wishlist is empty")}
+                      {"Your wishlist is empty"}
                     </div>
                   ) : (
                     <>
@@ -318,7 +316,7 @@ export const ClassicHeader = ({
                                         onRemoveFromWishlist?.(item.id);
                                       }}
                                     >
-                                      {t("Add to Cart")}
+                                      {"Add to  Cart"}
                                     </Button>
                                     <Button
                                       variant="ghost"
@@ -348,7 +346,7 @@ export const ClassicHeader = ({
                             onWishlistClick?.();
                           }}
                         >
-                          {t("View All Wishlist Items")}
+                          {"View  All  Wishlist  Items"}
                         </Button>
                       </div>
                     </>
@@ -369,11 +367,11 @@ export const ClassicHeader = ({
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-96 bg-white dark:bg-[#242424] border border-[#e0e0e0] dark:border-[#3a3a3a]">
-                  <DropdownMenuLabel className="font-medium text-gray-900 dark:text-gray-100">{t("Shopping Cart")}</DropdownMenuLabel>
+                  <DropdownMenuLabel className="font-medium text-gray-900 dark:text-gray-100">{"Shopping  Cart"}</DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   {cartItems.length === 0 ? (
                     <div className="p-6 text-center text-gray-500 dark:text-gray-400">
-                      {t("Your cart is empty")}
+                      {"Your cart is empty"}
                     </div>
                   ) : (
                     <>
@@ -442,7 +440,7 @@ export const ClassicHeader = ({
                       <DropdownMenuSeparator />
                       <div className="p-4">
                         <div className="flex justify-between mb-3">
-                          <span className="font-medium text-gray-900 dark:text-gray-100">{t("Subtotal")}</span>
+                          <span className="font-medium text-gray-900 dark:text-gray-100">{"Subtotal"}</span>
                           <span className="font-medium text-gray-900 dark:text-gray-100">${calculateSubtotal().toFixed(2)}</span>
                         </div>
                         <div className="space-y-2">
@@ -453,7 +451,7 @@ export const ClassicHeader = ({
                               onCheckout?.();
                             }}
                           >
-                            {t("Checkout")}
+                            {"Checkout"}
                           </Button>
                           <Button
                             variant="outline"
@@ -463,7 +461,7 @@ export const ClassicHeader = ({
                               onCartClick?.();
                             }}
                           >
-                            {t("View Cart")}
+                            {"View  Cart"}
                           </Button>
                         </div>
                       </div>
@@ -480,7 +478,7 @@ export const ClassicHeader = ({
               <form onSubmit={handleSearch} className="relative">
                 <Input
                   type="search"
-                  placeholder={t("Search...")}
+                  placeholder={""}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="pr-10 dark:bg-[#242424] dark:border-[#3a3a3a] dark:text-gray-100"

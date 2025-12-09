@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import { ArrowRight, Upload, ChevronLeft, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -16,7 +15,6 @@ import {
 } from "@/components/ui/select";
 
 function CategoryCreate() {
-  const { t } = useTranslation();
   const navigate = useNavigate();
 
   // Form state
@@ -35,7 +33,7 @@ function CategoryCreate() {
 
   // Mock parent categories - you'll replace this with actual API data
   const parentCategories = [
-    { id: "none", name: t("No Parent Category") },
+    { id: "none", name: "No  Parent  Category" },
     { id: "1", name: "Electronics" },
     { id: "2", name: "Clothing" },
     { id: "3", name: "Home & Garden" },
@@ -75,16 +73,16 @@ function CategoryCreate() {
     const newErrors: Record<string, string> = {};
     
     if (!formData.name.trim()) {
-      newErrors.name = t("Category name is required");
+      newErrors.name = "Category name is required";
     }
     
     if (!formData.description.trim()) {
-      newErrors.description = t("Description is required");
+      newErrors.description = "Description is required";
     }
     
-    const sortOrderNum = parseInt(formData.sortOrder);
+    const sortOrderNum = parseInt(formData.sortOrder, 10);
     if (isNaN(sortOrderNum) || sortOrderNum < 0) {
-      newErrors.sortOrder = t("Sort order must be a positive number");
+      newErrors.sortOrder = "Sort order must be a positive number";
     }
     
     setErrors(newErrors);
@@ -138,10 +136,10 @@ function CategoryCreate() {
           </Button>
           <div>
             <h1 className="text-2xl font-bold text-foreground">
-              {t("Create New Category")}
+              {"Create  New  Category"}
             </h1>
             <p className="text-sm text-muted-foreground">
-              {t("Add a new category to organize your products")}
+              {"Add a new category to organize your products"}
             </p>
           </div>
         </div>
@@ -153,20 +151,20 @@ function CategoryCreate() {
           {/* Basic Information Card */}
           <div className=" rounded-2xl p-6 shadow-sm border border-border">
             <h2 className="text-lg font-semibold mb-6 text-card-foreground">
-              {t("Basic Information")}
+              {"Basic  Information"}
             </h2>
             
             <div className="space-y-6">
               {/* Category Name */}
               <div className="space-y-2">
                 <Label htmlFor="name" className="text-sm font-medium">
-                  {t("Category Name")} <span className="text-destructive">*</span>
+                  {"Category  Name"} <span className="text-destructive">*</span>
                 </Label>
                 <Input
                   id="name"
                   name="name"
                   type="text"
-                  placeholder={t("e.g., Electronics, Clothing")}
+                  placeholder={""}
                   value={formData.name}
                   onChange={handleInputChange}
                   className={`rounded-xl h-12 ${errors.name ? 'border-destructive' : ''}`}
@@ -179,12 +177,12 @@ function CategoryCreate() {
               {/* Description */}
               <div className="space-y-2">
                 <Label htmlFor="description" className="text-sm font-medium">
-                  {t("Description")} <span className="text-destructive">*</span>
+                  {"Description"} <span className="text-destructive">*</span>
                 </Label>
                 <Textarea
                   id="description"
                   name="description"
-                  placeholder={t("Describe this category...")}
+                  placeholder={""}
                   value={formData.description}
                   onChange={handleInputChange}
                   rows={4}
@@ -198,14 +196,14 @@ function CategoryCreate() {
               {/* Parent Category */}
               <div className="space-y-2">
                 <Label htmlFor="parentId" className="text-sm font-medium">
-                  {t("Parent Category")}
+                  {"Parent  Category"}
                 </Label>
                 <Select
                   value={formData.parentId}
                   onValueChange={(value) => setFormData(prev => ({ ...prev, parentId: value }))}
                 >
                   <SelectTrigger className="rounded-xl h-12">
-                    <SelectValue placeholder={t("Select parent category")} />
+                    <SelectValue placeholder={"Select parent category"} />
                   </SelectTrigger>
                   <SelectContent>
                     {parentCategories.map((category) => (
@@ -222,7 +220,7 @@ function CategoryCreate() {
           {/* Image Upload Card */}
           <div className=" rounded-2xl p-6 shadow-sm border border-border">
             <h2 className="text-lg font-semibold mb-6 text-card-foreground">
-              {t("Category Image")}
+              {"Category  Image"}
             </h2>
             
             <div className="space-y-4">
@@ -234,7 +232,7 @@ function CategoryCreate() {
                   <div className="flex flex-col items-center justify-center pt-5 pb-6">
                     <Upload className="w-12 h-12 mb-4 text-muted-foreground" />
                     <p className="mb-2 text-sm font-medium text-muted-foreground">
-                      {t("Click to upload image")}
+                      {"Click to upload image"}
                     </p>
                     <p className="text-xs text-muted-foreground">
                       PNG, JPG or WebP (MAX. 2MB)
@@ -271,7 +269,7 @@ function CategoryCreate() {
           {/* Settings Card */}
           <div className=" rounded-2xl p-6 shadow-sm border border-border">
             <h2 className="text-lg font-semibold mb-6 text-card-foreground">
-              {t("Settings")}
+              {"Settings"}
             </h2>
             
             <div className="space-y-6">
@@ -279,10 +277,10 @@ function CategoryCreate() {
               <div className="flex items-center justify-between">
                 <div className="space-y-0.5">
                   <Label htmlFor="isActive" className="text-sm font-medium">
-                    {t("Active Status")}
+                    {"Active  Status"}
                   </Label>
                   <p className="text-sm text-muted-foreground">
-                    {t("Enable this category to be visible in your store")}
+                    {"Enable this category to be visible in your store"}
                   </p>
                 </div>
                 <Switch
@@ -298,7 +296,7 @@ function CategoryCreate() {
               {/* Sort Order */}
               <div className="space-y-2">
                 <Label htmlFor="sortOrder" className="text-sm font-medium">
-                  {t("Sort Order")}
+                  {"Sort  Order"}
                 </Label>
                 <Input
                   id="sortOrder"
@@ -314,7 +312,7 @@ function CategoryCreate() {
                   <p className="text-sm text-destructive">{errors.sortOrder}</p>
                 )}
                 <p className="text-sm text-muted-foreground">
-                  {t("Lower numbers appear first")}
+                  {"Lower numbers appear first"}
                 </p>
               </div>
             </div>
@@ -329,7 +327,7 @@ function CategoryCreate() {
               className="rounded-xl"
               disabled={loading}
             >
-              {t("Cancel")}
+              {"Cancel"}
             </Button>
             <Button
               type="submit"
@@ -339,11 +337,11 @@ function CategoryCreate() {
               {loading ? (
                 <div className="flex items-center gap-2">
                   <div className="h-4 w-4 animate-spin rounded-full border-2 border-primary-foreground border-t-transparent" />
-                  {t("Creating...")}
+                  {""}
                 </div>
               ) : (
                 <>
-                  {t("Create Category")} <ArrowRight className="mr-2 h-4 w-4" />
+                  {"Create  Category"} <ArrowRight className="mr-2 h-4 w-4" />
                 </>
               )}
             </Button>

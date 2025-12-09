@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button";
@@ -47,7 +46,6 @@ export const ClassicSidebar = ({
   showBestSellers = true,
   className = "",
 }: ClassicSidebarProps) => {
-  const { t } = useTranslation();
   const [expandedSections, setExpandedSections] = useState<string[]>([]);
   const [localFilters, setLocalFilters] = useState<SelectedFilters>(
     selectedFilters as SelectedFilters
@@ -55,13 +53,13 @@ export const ClassicSidebar = ({
 
   const defaultFilters: FilterSection[] = [
     {
-      title: t("Price"),
+      title: "Price",
       type: "price",
       min: 0,
       max: 1000,
     },
     {
-      title: t("Brand"),
+      title: "Brand",
       type: "checkbox",
       options: [
         { label: "Nike", value: "nike", count: 125 },
@@ -72,7 +70,7 @@ export const ClassicSidebar = ({
       ],
     },
     {
-      title: t("Size"),
+      title: "Size",
       type: "size",
       options: [
         { label: "XS", value: "xs" },
@@ -84,15 +82,15 @@ export const ClassicSidebar = ({
       ],
     },
     {
-      title: t("Color"),
+      title: "Color",
       type: "color",
       options: [
-        { label: t("Black"), value: "black" },
-        { label: t("White"), value: "white" },
-        { label: t("Red"), value: "red" },
-        { label: t("Blue"), value: "blue" },
-        { label: t("Green"), value: "green" },
-        { label: t("Yellow"), value: "yellow" },
+        { label: "Black", value: "black" },
+        { label: "White", value: "white" },
+        { label: "Red", value: "red" },
+        { label: "Blue", value: "blue" },
+        { label: "Green", value: "green" },
+        { label: "Yellow", value: "yellow" },
       ],
     },
   ];
@@ -161,7 +159,7 @@ export const ClassicSidebar = ({
       {categories.length > 0 && (
         <div className="rounded-lg border bg-white p-4">
           <h3 className="mb-3 font-serif text-lg font-semibold">
-            {t("Categories")}
+            {"Categories"}
           </h3>
           <ul className="space-y-2">
             {categories.map((category) => (
@@ -196,13 +194,13 @@ export const ClassicSidebar = ({
       {/* Filters */}
       <div className="rounded-lg border bg-white p-4">
         <div className="mb-3 flex items-center justify-between">
-          <h3 className="font-serif text-lg font-semibold">{t("Filters")}</h3>
+          <h3 className="font-serif text-lg font-semibold">{"Filters"}</h3>
           {hasActiveFilters() && (
             <button
               onClick={clearAllFilters}
               className="text-xs text-primary hover:underline"
             >
-              {t("Clear All")}
+              {"Clear  All"}
             </button>
           )}
         </div>
@@ -351,7 +349,7 @@ export const ClassicSidebar = ({
       {showBestSellers && (
         <div className="rounded-lg border bg-white p-4">
           <h3 className="mb-3 font-serif text-lg font-semibold">
-            {t("Best Sellers")}
+            {"Best  Sellers"}
           </h3>
           <div className="space-y-3">
             {[1, 2, 3].map((item) => (
@@ -362,7 +360,7 @@ export const ClassicSidebar = ({
                   className="h-16 w-16 object-cover"
                 />
                 <div>
-                  <h4 className="text-sm font-medium">{t("Product Name")} {item}</h4>
+                  <h4 className="text-sm font-medium">{"Product  Name"} {item}</h4>
                   <p className="text-sm text-gray-600">$49.99</p>
                   <div className="flex">
                     {[...Array(5)].map((_, i) => (
@@ -382,18 +380,18 @@ export const ClassicSidebar = ({
       {showNewsletter && (
         <div className="rounded-lg border bg-primary p-4 text-white">
           <h3 className="mb-2 font-serif text-lg font-semibold">
-            {t("Newsletter Sign Up")}
+            {"Newsletter  Sign  Up"}
           </h3>
           <p className="mb-3 text-sm">
-            {t("Get exclusive offers and updates delivered to your inbox")}
+            {"Get exclusive offers and updates delivered to your inbox"}
           </p>
           <input
             type="email"
-            placeholder={t("Enter your email")}
+            placeholder={"Enter your email"}
             className="mb-3 w-full rounded px-3 py-2 text-gray-900"
           />
           <Button variant="secondary" className="w-full">
-            {t("Subscribe")}
+            {"Subscribe"}
           </Button>
         </div>
       )}

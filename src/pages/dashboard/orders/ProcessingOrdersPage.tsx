@@ -106,7 +106,7 @@ export default function ProcessingOrdersPage() {
   // Processing statistics
   const processingStats = [
     {
-      title: t("Processing Now"),
+      title: t("processingOrders.processingNow"),
       value: "18",
       change: -12.5,
       changeType: 'decrease' as const,
@@ -114,10 +114,10 @@ export default function ProcessingOrdersPage() {
       iconColor: 'text-amber-600 dark:text-amber-400',
       iconBgColor: 'bg-amber-50 dark:bg-amber-950/30',
       trend: 'down' as const,
-      period: t("vs yesterday")
+      period: t("processingOrders.vsYesterday")
     },
     {
-      title: t("Shipped Orders"),
+      title: t("processingOrders.shippedOrders"),
       value: "24",
       change: 15.3,
       changeType: 'increase' as const,
@@ -125,10 +125,10 @@ export default function ProcessingOrdersPage() {
       iconColor: 'text-purple-600 dark:text-purple-400',
       iconBgColor: 'bg-purple-50 dark:bg-purple-950/30',
       trend: 'up' as const,
-      period: t("vs yesterday")
+      period: t("processingOrders.vsYesterday")
     },
     {
-      title: t("Ready for Pickup"),
+      title: t("processingOrders.readyForPickup"),
       value: "9",
       change: 8.1,
       changeType: 'increase' as const,
@@ -136,10 +136,10 @@ export default function ProcessingOrdersPage() {
       iconColor: 'text-blue-600 dark:text-blue-400',
       iconBgColor: 'bg-blue-50 dark:bg-blue-950/30',
       trend: 'up' as const,
-      period: t("vs last week")
+      period: t("processingOrders.vsLastWeek")
     },
     {
-      title: t("Average Processing Time"),
+      title: t("processingOrders.averageProcessingTime"),
       value: "2.4h",
       change: -18.2,
       changeType: 'decrease' as const,
@@ -147,7 +147,7 @@ export default function ProcessingOrdersPage() {
       iconColor: 'text-green-600 dark:text-green-400',
       iconBgColor: 'bg-green-50 dark:bg-green-950/30',
       trend: 'down' as const,
-      period: t("improvement")
+      period: t("processingOrders.improvement")
     }
   ];
 
@@ -191,10 +191,10 @@ export default function ProcessingOrdersPage() {
     count: number;
     color?: string;
   }> = [
-    { value: 'all', label: t('All Priorities'), count: processingOrders.length },
-    { value: 'high', label: t('High Priority'), count: 5, color: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400' },
-    { value: 'medium', label: t('Medium Priority'), count: 8, color: 'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400' },
-    { value: 'low', label: t('Low Priority'), count: 5, color: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400' }
+    { value: 'all', label: t("processingOrders.allPriorities"), count: processingOrders.length },
+    { value: 'high', label: t("processingOrders.highPriority"), count: 5, color: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400' },
+    { value: 'medium', label: t("processingOrders.mediumPriority"), count: 8, color: 'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400' },
+    { value: 'low', label: t("processingOrders.lowPriority"), count: 5, color: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400' }
   ];
 
   const getStatusColor = (status: Order['status']) => {
@@ -223,7 +223,7 @@ export default function ProcessingOrdersPage() {
               </p>
             </div>
             <Badge className={cn("capitalize", getStatusColor(order.status))}>
-              {t(order.status)}
+              {order.status}
             </Badge>
           </div>
 
@@ -245,16 +245,16 @@ export default function ProcessingOrdersPage() {
           {/* Order details */}
           <div className="grid grid-cols-3 gap-4 pt-2 border-t border-gray-200 dark:border-gray-700">
             <div>
-              <p className="text-sm text-muted-foreground">{t("Items")}</p>
+              <p className="text-sm text-muted-foreground">{t("processingOrders.items")}</p>
               <p className="font-medium">{order.items}</p>
             </div>
             <div>
-              <p className="text-sm text-muted-foreground">{t("Total")}</p>
-              <p className="font-medium">{t('EGP')} {order.total.toLocaleString()}</p>
+              <p className="text-sm text-muted-foreground">{t("processingOrders.total")}</p>
+              <p className="font-medium">{t("common.egp")} {order.total.toLocaleString()}</p>
             </div>
             <div>
-              <p className="text-sm text-muted-foreground">{t("Payment")}</p>
-              <p className="font-medium capitalize">{t(order.paymentMethod)}</p>
+              <p className="text-sm text-muted-foreground">{t("processingOrders.payment")}</p>
+              <p className="font-medium capitalize">{order.paymentMethod}</p>
             </div>
           </div>
 
@@ -267,7 +267,7 @@ export default function ProcessingOrdersPage() {
               onClick={() => handleViewOrder(order)}
             >
               <Eye className="h-4 w-4" />
-              {t("View Details")}
+              {t("processingOrders.viewDetails")}
             </Button>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -276,14 +276,14 @@ export default function ProcessingOrdersPage() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuLabel>{t("Actions")}</DropdownMenuLabel>
+                <DropdownMenuLabel>{t("common.actions")}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 {order.status === 'processing' && (
                   <DropdownMenuItem 
                     onClick={() => handleUpdateStatus(order.id, 'shipped')}
                     className="text-purple-600"
                   >
-                    {t("Mark as Shipped")}
+                    {t("processingOrders.markAsShipped")}
                   </DropdownMenuItem>
                 )}
                 {order.status === 'shipped' && (
@@ -291,14 +291,14 @@ export default function ProcessingOrdersPage() {
                     onClick={() => handleUpdateStatus(order.id, 'delivered')}
                     className="text-green-600"
                   >
-                    {t("Mark as Delivered")}
+                    {t("processingOrders.markAsDelivered")}
                   </DropdownMenuItem>
                 )}
                 <DropdownMenuItem 
                   onClick={() => handleUpdateStatus(order.id, 'cancelled')}
                   className="text-red-600"
                 >
-                  {t("Cancel Order")}
+                  {t("processingOrders.cancelOrder")}
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -320,15 +320,15 @@ export default function ProcessingOrdersPage() {
           <div>
             <h1 className="text-2xl md:text-3xl font-bold flex items-center gap-3">
               <Activity className="h-6 w-6 md:h-8 md:w-8" />
-              {t("Processing Orders")}
+              {t("processingOrders.title")}
             </h1>
             <p className="mt-2 text-sm md:text-base text-purple-100 max-w-2xl">
-              {t("Monitor and manage orders currently being processed and shipped. Track fulfillment progress in real-time.")}
+              {t("processingOrders.subtitle")}
             </p>
           </div>
           <div className="flex items-center gap-3">
             <div className="text-right">
-              <p className="text-xs md:text-sm text-purple-100">{t("Active Orders")}</p>
+              <p className="text-xs md:text-sm text-purple-100">{t("processingOrders.activeOrders")}</p>
               <p className="text-xl md:text-2xl font-bold">42</p>
             </div>
             <div className="p-2 md:p-3 bg-white/20 backdrop-blur-sm rounded-lg">
@@ -360,34 +360,34 @@ export default function ProcessingOrdersPage() {
       {/* Processing Progress Overview - Responsive */}
       <Card className="border border-gray-200 dark:border-gray-700 shadow-lg bg-gradient-to-br from-white to-gray-50 dark:from-gray-900 dark:to-gray-950 animate-in slide-in-from-left duration-500">
         <CardHeader className="pb-3">
-          <h3 className="text-lg font-semibold">{t("Processing Pipeline")}</h3>
+          <h3 className="text-lg font-semibold">{t("processingOrders.processingPipeline")}</h3>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="space-y-2">
               <div className="flex justify-between items-center">
-                <span className="text-sm font-medium">{t("Order Verification")}</span>
+                <span className="text-sm font-medium">{t("processingOrders.orderVerification")}</span>
                 <span className="text-sm text-muted-foreground">6</span>
               </div>
               <Progress value={75} className="h-2" />
             </div>
             <div className="space-y-2">
               <div className="flex justify-between items-center">
-                <span className="text-sm font-medium">{t("Packing")}</span>
+                <span className="text-sm font-medium">{t("processingOrders.packing")}</span>
                 <span className="text-sm text-muted-foreground">8</span>
               </div>
               <Progress value={60} className="h-2" />
             </div>
             <div className="space-y-2">
               <div className="flex justify-between items-center">
-                <span className="text-sm font-medium">{t("Quality Check")}</span>
+                <span className="text-sm font-medium">{t("processingOrders.qualityCheck")}</span>
                 <span className="text-sm text-muted-foreground">4</span>
               </div>
               <Progress value={40} className="h-2" />
             </div>
             <div className="space-y-2">
               <div className="flex justify-between items-center">
-                <span className="text-sm font-medium">{t("Ready to Ship")}</span>
+                <span className="text-sm font-medium">{t("processingOrders.readyToShip")}</span>
                 <span className="text-sm text-muted-foreground">24</span>
               </div>
               <Progress value={90} className="h-2" />
@@ -452,7 +452,7 @@ export default function ProcessingOrdersPage() {
               ))}
               {filteredOrders.length === 0 && (
                 <div className="text-center py-8">
-                  <p className="text-muted-foreground">{t("No orders found")}</p>
+                  <p className="text-muted-foreground">{t("processingOrders.noOrdersFound")}</p>
                 </div>
               )}
             </div>
@@ -468,21 +468,21 @@ export default function ProcessingOrdersPage() {
               <CheckCircle className="h-5 w-5 md:h-6 md:w-6 text-indigo-600 dark:text-indigo-400" />
             </div>
             <div className="flex-1">
-              <h3 className="font-semibold text-base md:text-lg mb-2">{t("Processing Performance")}</h3>
+              <h3 className="font-semibold text-base md:text-lg mb-2">{t("processingOrders.processingPerformance")}</h3>
               <p className="text-sm text-muted-foreground mb-3">
-                {t("Your average processing time has improved by 18% this week. Keep up the excellent work!")}
+                {t("processingOrders.keepUpTheExcellentWork")}
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
                 <div>
-                  <span className="text-muted-foreground">{t("Orders/Hour:")}</span>
+                  <span className="text-muted-foreground">{t("processingOrders.ordersPerHour")}</span>
                   <span className="ml-2 font-semibold text-green-600 dark:text-green-400">8.5</span>
                 </div>
                 <div>
-                  <span className="text-muted-foreground">{t("Accuracy Rate:")}</span>
+                  <span className="text-muted-foreground">{t("processingOrders.accuracyRate")}</span>
                   <span className="ml-2 font-semibold text-green-600 dark:text-green-400">99.2%</span>
                 </div>
                 <div>
-                  <span className="text-muted-foreground">{t("Customer Satisfaction:")}</span>
+                  <span className="text-muted-foreground">{t("processingOrders.customerSatisfaction")}</span>
                   <span className="ml-2 font-semibold text-green-600 dark:text-green-400">4.8/5</span>
                 </div>
               </div>

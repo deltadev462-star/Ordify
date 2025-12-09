@@ -1,4 +1,4 @@
-import { Bell, Menu, Search, User, LogOut, Settings, Globe, Moon, Sun } from "lucide-react";
+import { Bell, Menu, Search, User, LogOut, Settings, Moon, Sun } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
@@ -16,6 +16,7 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
  
 import { useDarkMode } from "@/hooks/useDarkMode";
+import LangSwitcher from "@/components/common/LangSwitcher";
 
 interface DashboardHeaderProps {
   breadcrumbs?: { title: string; url: string }[];
@@ -24,32 +25,9 @@ interface DashboardHeaderProps {
 }
 
 export function DashboardHeader({   onMenuClick, showMenuButton = true }: DashboardHeaderProps) {
-  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const { isDarkMode, toggleDarkMode } = useDarkMode();
-
-  const handleLanguageSwitch = () => {
-    console.log("Language switch clicked!");
-    console.log("Current language:", i18n.language);
-    
-    const newLang = i18n.language === 'ar' ? 'en' : 'ar';
-    console.log("Switching to:", newLang);
-    
-    i18n.changeLanguage(newLang).then(() => {
-      console.log("Language changed to:", newLang);
-      
-      // Update document direction
-      const newDir = newLang === "ar" ? "rtl" : "ltr";
-      document.documentElement.dir = newDir;
-      document.documentElement.lang = newLang;
-      
-      // Save to localStorage
-      localStorage.setItem("i18nextLng", newLang);
-      localStorage.setItem("documentDir", newDir);
-    }).catch((error) => {
-      console.error("Error changing language:", error);
-    });
-  };
+  const { t } = useTranslation();
 
   const handleLogout = () => {
     // Handle logout logic here
@@ -65,8 +43,11 @@ export function DashboardHeader({   onMenuClick, showMenuButton = true }: Dashbo
         {/* Search Button - Mobile */}
         <Button variant="ghost" size="icon" className="md:hidden">
           <Search className="h-5 w-5" />
-          <span className="sr-only">Search</span>
+          <span className="sr-only">{t('common.search')}</span>
         </Button>
+
+        {/* Language Switcher */}
+        <LangSwitcher />
 
         {/* Dark Mode Toggle */}
         <Button variant="ghost" size="icon" onClick={toggleDarkMode}>
@@ -75,13 +56,7 @@ export function DashboardHeader({   onMenuClick, showMenuButton = true }: Dashbo
           ) : (
             <Moon className="h-5 w-5" />
           )}
-          <span className="sr-only">Toggle dark mode</span>
-        </Button>
-
-        {/* Language Switcher */}
-        <Button variant="ghost" size="icon" onClick={handleLanguageSwitch}>
-          <Globe className="h-5 w-5" />
-          <span className="sr-only">Switch language</span>
+          <span className="sr-only">Toggle {t('common.theme')}</span>
         </Button>
 
         {/* Notifications */}
@@ -95,30 +70,30 @@ export function DashboardHeader({   onMenuClick, showMenuButton = true }: Dashbo
               >
                 3
               </Badge>
-              <span className="sr-only">Notifications</span>
+              <span className="sr-only">{t('navigation.notifications')}</span>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-80">
-            <DropdownMenuLabel>{t("Notifications")}</DropdownMenuLabel>
+            <DropdownMenuLabel>{t('navigation.notifications')}</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <div className="space-y-1 py-2">
               <DropdownMenuItem className="flex flex-col items-start gap-1 p-3 cursor-pointer">
-                <p className="text-sm font-medium">{t("New Order #12345")}</p>
-                <p className="text-xs text-muted-foreground">{t("2 minutes ago")}</p>
+                <p className="text-sm font-medium">{t('notifications.newOrder')} #12345</p>
+                <p className="text-xs text-muted-foreground">2 {t('notifications.minutesAgo')}</p>
               </DropdownMenuItem>
               <DropdownMenuItem className="flex flex-col items-start gap-1 p-3 cursor-pointer">
-                <p className="text-sm font-medium">{t("Low Stock Alert")}</p>
-                <p className="text-xs text-muted-foreground">{t("Product ABC is running low")}</p>
+                <p className="text-sm font-medium">{t('notifications.lowStockAlert')}</p>
+                <p className="text-xs text-muted-foreground">{t('notifications.productRunningLow', { product: 'ABC' })}</p>
               </DropdownMenuItem>
               <DropdownMenuItem className="flex flex-col items-start gap-1 p-3 cursor-pointer">
-                <p className="text-sm font-medium">{t("Payment Received")}</p>
-                <p className="text-xs text-muted-foreground">{t("$250 from Order #12344")}</p>
+                <p className="text-sm font-medium">{t('notifications.paymentReceived')}</p>
+                <p className="text-xs text-muted-foreground">{t('notifications.paymentFromOrder', { amount: '250', orderId: '12344' })}</p>
               </DropdownMenuItem>
             </div>
             <DropdownMenuSeparator />
             <DropdownMenuItem className="w-full text-center">
               <Link to="/dashboard/notifications" className="text-sm text-blue-600 dark:text-blue-400">
-                {t("View all notifications")}
+                {t('notifications.viewAllNotifications')}
               </Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
@@ -132,7 +107,7 @@ export function DashboardHeader({   onMenuClick, showMenuButton = true }: Dashbo
                 <AvatarImage src="/avatars/user.jpg" alt="User" />
                 <AvatarFallback>JD</AvatarFallback>
               </Avatar>
-              <span className="sr-only">User menu</span>
+              <span className="sr-only">{t('common.profile')}</span>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-56">
@@ -146,19 +121,19 @@ export function DashboardHeader({   onMenuClick, showMenuButton = true }: Dashbo
             <DropdownMenuItem asChild>
               <Link to="/dashboard/profile" className="cursor-pointer">
                 <User className="mr-2 h-4 w-4" />
-                {t("My Profile")}
+                {t('common.profile')}
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
               <Link to="/dashboard/settings" className="cursor-pointer">
                 <Settings className="mr-2 h-4 w-4" />
-                {t("Settings")}
+                {t('common.settings')}
               </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={handleLogout} className="cursor-pointer text-red-600 dark:text-red-400">
               <LogOut className="mr-2 h-4 w-4" />
-              {t("Logout")}
+              {t('common.logout')}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -175,7 +150,7 @@ export function DashboardHeader({   onMenuClick, showMenuButton = true }: Dashbo
             data-menu-button
           >
             <Menu className="h-5 w-5" />
-            <span className="sr-only">{t("Toggle Sidebar")}</span>
+            <span className="sr-only">Toggle Sidebar</span>
           </Button>
         )}
     </header>

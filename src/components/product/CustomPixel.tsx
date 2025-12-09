@@ -1,4 +1,3 @@
-import { useTranslation } from "react-i18next";
 import { FloatingLabelInput } from "@/components/ui/floating-label-input";
 import { Button } from "@/components/ui/button";
 import { Save, Trash2 } from "lucide-react";
@@ -20,8 +19,6 @@ function CustomPixel({
   setPixelItems,
   handleSave
 }: CustomPixelProps) {
-  const { t } = useTranslation();
-
   const handleAddPixel = () => {
     setPixelItems([...pixelItems, { id: Date.now().toString(), pixelId: '', pixelType: '' }]);
   };
@@ -45,7 +42,7 @@ function CustomPixel({
   return (
     <div className="mt-4">
       <div className="bg-gray-100 dark:bg-[#080808] rounded-lg p-6 space-y-6">
-        <h2 className="text-xl font-semibold mb-4">{t("Product Pixel")}</h2>
+        <h2 className="text-xl font-semibold mb-4">{"Product  Pixel"}</h2>
         
         {/* Listed Pixel IDs */}
         {pixelItems.length > 0 && (
@@ -64,17 +61,17 @@ function CustomPixel({
                   >
                     <span className="flex items-center gap-2">
                       <Trash2 className="w-4 h-4" />
-                      {t("Remove")}
+                      {"Remove"}
                     </span>
                   </Button>
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <FloatingLabelInput
-                    label={t("Enter your pixel ID *")}
+                    label={"Enter your pixel  I D *"}
                     value={item.pixelId}
                     onChange={(e) => handlePixelIdChange(index, e.target.value)}
-                    placeholder={t("Add only the ID, not the full code.")}
+                    placeholder={"Add only the  I D"}
                   />
                   
                   <div className="relative">
@@ -83,16 +80,16 @@ function CustomPixel({
                       onChange={(e) => handlePixelTypeChange(index, e.target.value)}
                       className="w-full px-4 py-3 bg-white dark:bg-black border border-gray-300 dark:border-gray-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-green-500"
                     >
-                      <option value="">{t("Pixel type *")}</option>
-                      <option value="facebook">{t("Facebook Pixel")}</option>
-                      <option value="tiktok">{t("TikTok Pixel")}</option>
-                      <option value="snapchat">{t("Snapchat Pixel")}</option>
-                      <option value="google">{t("Google Analytics")}</option>
+                      <option value="">{"Pixel type *"}</option>
+                      <option value="facebook">{"Facebook  Pixel"}</option>
+                      <option value="tiktok">{"Tik Tok  Pixel"}</option>
+                      <option value="snapchat">{"Snapchat  Pixel"}</option>
+                      <option value="google">{"Google  Analytics"}</option>
                     </select>
                   </div>
                 </div>
                 
-                <p className="text-xs text-gray-500">{t("Add only the ID, not the full code.")}</p>
+                <p className="text-xs text-gray-500">{"Add only the  I D"}</p>
               </div>
             ))}
           </div>
@@ -105,7 +102,7 @@ function CustomPixel({
           className="flex items-center justify-center gap-2 border-0"
         >
           <span className="text-xl">+</span>
-          {t("Add")}
+          {"Add"}
         </Button>
         
         {/* Save Button */}
@@ -114,7 +111,7 @@ function CustomPixel({
           className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg flex items-center justify-center gap-2"
         >
           <Save className="w-5 h-5" />
-          {t("Save")}
+          {"Save"}
         </Button>
       </div>
     </div>

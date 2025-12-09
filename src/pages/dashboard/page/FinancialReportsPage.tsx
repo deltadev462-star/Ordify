@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import {
   TrendingUp,
   Download,
@@ -42,6 +41,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useTranslation } from "react-i18next";
 
 interface FinancialMetric {
   label: string;
@@ -70,28 +70,28 @@ function FinancialReportsPage() {
   // Mock financial data
   const financialMetrics: FinancialMetric[] = [
     {
-      label: t("Total Revenue"),
+      label: t("financialReports.totalRevenue"),
       value: 245900,
       previousValue: 218750,
       format: "currency",
       trend: "up"
     },
     {
-      label: t("Total Expenses"),
+      label: t("financialReports.totalExpenses"),
       value: 45670,
       previousValue: 52100,
       format: "currency",
       trend: "down"
     },
     {
-      label: t("Net Profit"),
+      label: t("financialReports.netProfit"),
       value: 200230,
       previousValue: 166650,
       format: "currency",
       trend: "up"
     },
     {
-      label: t("Profit Margin"),
+      label: t("financialReports.profitMargin"),
       value: 81.4,
       previousValue: 76.2,
       format: "percentage",
@@ -102,8 +102,8 @@ function FinancialReportsPage() {
   const reportSections: ReportSection[] = [
     {
       id: "sales",
-      title: t("Sales Report"),
-      description: t("Detailed breakdown of sales, orders, and revenue"),
+      title: t("financialReports.salesReport"),
+      description: t("financialReports.salesReportDesc"),
       icon: ShoppingCart,
       iconColor: "text-blue-600 dark:text-blue-400",
       iconBgColor: "bg-blue-50 dark:bg-blue-950/30",
@@ -111,8 +111,8 @@ function FinancialReportsPage() {
     },
     {
       id: "expenses",
-      title: t("Expense Report"),
-      description: t("Track all business expenses and cost analysis"),
+      title: t("financialReports.expenseReport"),
+      description: t("financialReports.expenseReportDesc"),
       icon: Receipt,
       iconColor: "text-red-600 dark:text-red-400",
       iconBgColor: "bg-red-50 dark:bg-red-950/30",
@@ -120,8 +120,8 @@ function FinancialReportsPage() {
     },
     {
       id: "profit-loss",
-      title: t("Profit & Loss Statement"),
-      description: t("Comprehensive P&L statement with margins"),
+      title: t("financialReports.profitLossStatement"),
+      description: t("financialReports.profitLossDesc"),
       icon: BarChart3,
       iconColor: "text-emerald-600 dark:text-emerald-400",
       iconBgColor: "bg-emerald-50 dark:bg-emerald-950/30",
@@ -129,8 +129,8 @@ function FinancialReportsPage() {
     },
     {
       id: "cashflow",
-      title: t("Cash Flow Report"),
-      description: t("Monitor cash inflows and outflows"),
+      title: t("financialReports.cashFlowReport"),
+      description: t("financialReports.cashFlowDesc"),
       icon: Activity,
       iconColor: "text-purple-600 dark:text-purple-400",
       iconBgColor: "bg-purple-50 dark:bg-purple-950/30",
@@ -138,8 +138,8 @@ function FinancialReportsPage() {
     },
     {
       id: "tax",
-      title: t("Tax Report"),
-      description: t("Tax calculations and compliance reports"),
+      title: t("financialReports.taxReport"),
+      description: t("financialReports.taxReportDesc"),
       icon: FileText,
       iconColor: "text-orange-600 dark:text-orange-400",
       iconBgColor: "bg-orange-50 dark:bg-orange-950/30",
@@ -147,8 +147,8 @@ function FinancialReportsPage() {
     },
     {
       id: "custom",
-      title: t("Custom Reports"),
-      description: t("Build your own custom financial reports"),
+      title: t("financialReports.customReports"),
+      description: t("financialReports.customReportsDesc"),
       icon: PieChart,
       iconColor: "text-indigo-600 dark:text-indigo-400",
       iconBgColor: "bg-indigo-50 dark:bg-indigo-950/30",
@@ -158,20 +158,20 @@ function FinancialReportsPage() {
 
   // Mock monthly data for charts
   const monthlyData = [
-    { month: "Jan", revenue: 180000, expenses: 42000, profit: 138000 },
-    { month: "Feb", revenue: 195000, expenses: 45000, profit: 150000 },
-    { month: "Mar", revenue: 210000, expenses: 48000, profit: 162000 },
-    { month: "Apr", revenue: 205000, expenses: 44000, profit: 161000 },
-    { month: "May", revenue: 225000, expenses: 46000, profit: 179000 },
-    { month: "Jun", revenue: 245900, expenses: 45670, profit: 200230 },
+    { month: t("financialReports.months.jan"), revenue: 180000, expenses: 42000, profit: 138000 },
+    { month: t("financialReports.months.feb"), revenue: 195000, expenses: 45000, profit: 150000 },
+    { month: t("financialReports.months.mar"), revenue: 210000, expenses: 48000, profit: 162000 },
+    { month: t("financialReports.months.apr"), revenue: 205000, expenses: 44000, profit: 161000 },
+    { month: t("financialReports.months.may"), revenue: 225000, expenses: 46000, profit: 179000 },
+    { month: t("financialReports.months.jun"), revenue: 245900, expenses: 45670, profit: 200230 },
   ];
 
   const expenseCategories = [
-    { category: t("Platform Fees"), amount: 12500, percentage: 27.4 },
-    { category: t("Marketing"), amount: 8900, percentage: 19.5 },
-    { category: t("Operations"), amount: 15200, percentage: 33.3 },
-    { category: t("Payroll"), amount: 6800, percentage: 14.9 },
-    { category: t("Other"), amount: 2270, percentage: 4.9 },
+    { category: t("financialReports.expenseCategories.platformFees"), amount: 12500, percentage: 27.4 },
+    { category: t("financialReports.expenseCategories.marketing"), amount: 8900, percentage: 19.5 },
+    { category: t("financialReports.expenseCategories.operations"), amount: 15200, percentage: 33.3 },
+    { category: t("financialReports.expenseCategories.payroll"), amount: 6800, percentage: 14.9 },
+    { category: t("financialReports.expenseCategories.other"), amount: 2270, percentage: 4.9 },
   ];
 
   const calculateChange = (current: number, previous: number): number => {
@@ -205,8 +205,8 @@ function FinancialReportsPage() {
     <div className="space-y-6">
       <div className="flex bg-white dark:bg-black/80 rounded-2xl m-1 flex-1 flex-col gap-6 p-6">
         <Title
-          title={t("Financial Reports")}
-          Subtitle={t("Comprehensive financial analytics and reporting dashboard")}
+          title={t("financialReports.title")}
+          Subtitle={t("financialReports.subtitle")}
           className="text-3xl"
           classNamee=""
         />
@@ -218,51 +218,51 @@ function FinancialReportsPage() {
               <div className="flex gap-3">
                 <Select value={selectedPeriod} onValueChange={setSelectedPeriod}>
                   <SelectTrigger className="w-[150px]">
-                    <SelectValue placeholder={t("Select Period")} />
+                    <SelectValue placeholder={t("financialReports.selectPeriod")} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="today">{t("Today")}</SelectItem>
-                    <SelectItem value="week">{t("This Week")}</SelectItem>
-                    <SelectItem value="month">{t("This Month")}</SelectItem>
-                    <SelectItem value="quarter">{t("This Quarter")}</SelectItem>
-                    <SelectItem value="year">{t("This Year")}</SelectItem>
-                    <SelectItem value="custom">{t("Custom Range")}</SelectItem>
+                    <SelectItem value="today">{t("financialReports.today")}</SelectItem>
+                    <SelectItem value="week">{t("financialReports.thisWeek")}</SelectItem>
+                    <SelectItem value="month">{t("financialReports.thisMonth")}</SelectItem>
+                    <SelectItem value="quarter">{t("financialReports.thisQuarter")}</SelectItem>
+                    <SelectItem value="year">{t("financialReports.thisYear")}</SelectItem>
+                    <SelectItem value="custom">{t("financialReports.customRange")}</SelectItem>
                   </SelectContent>
                 </Select>
 
                 <Select value={comparisonPeriod} onValueChange={setComparisonPeriod}>
                   <SelectTrigger className="w-[180px]">
-                    <SelectValue placeholder={t("Compare with")} />
+                    <SelectValue placeholder={t("financialReports.compareWith")} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="previous">{t("Previous Period")}</SelectItem>
-                    <SelectItem value="year">{t("Same Period Last Year")}</SelectItem>
-                    <SelectItem value="none">{t("No Comparison")}</SelectItem>
+                    <SelectItem value="previous">{t("financialReports.previousPeriod")}</SelectItem>
+                    <SelectItem value="year">{t("financialReports.samePeriodLastYear")}</SelectItem>
+                    <SelectItem value="none">{t("financialReports.noComparison")}</SelectItem>
                   </SelectContent>
                 </Select>
 
                 <Button variant="outline" size="default">
                   <Calendar className="h-4 w-4 mr-2" />
-                  {t("Date Range")}
+                  {t("financialReports.dateRange")}
                 </Button>
               </div>
 
               <div className="flex gap-2">
                 <Button variant="outline" size="sm">
                   <Filter className="h-4 w-4 mr-2" />
-                  {t("Filters")}
+                  {t("financialReports.filters")}
                 </Button>
                 <Button variant="outline" size="sm">
                   <Printer className="h-4 w-4 mr-2" />
-                  {t("Print")}
+                  {t("financialReports.print")}
                 </Button>
                 <Button variant="outline" size="sm">
                   <Mail className="h-4 w-4 mr-2" />
-                  {t("Email")}
+                  {t("financialReports.email")}
                 </Button>
                 <Button size="sm" className="glow-on-hover">
                   <Download className="h-4 w-4 mr-2" />
-                  {t("Export All")}
+                  {t("financialReports.exportAll")}
                 </Button>
               </div>
             </div>
@@ -271,12 +271,12 @@ function FinancialReportsPage() {
 
         <Tabs value={selectedReport} onValueChange={setSelectedReport} className="space-y-6">
           <TabsList className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2 h-auto">
-            <TabsTrigger value="overview">{t("Overview")}</TabsTrigger>
-            <TabsTrigger value="revenue">{t("Revenue")}</TabsTrigger>
-            <TabsTrigger value="expenses">{t("Expenses")}</TabsTrigger>
-            <TabsTrigger value="profit-loss">{t("P&L")}</TabsTrigger>
-            <TabsTrigger value="cashflow">{t("Cash Flow")}</TabsTrigger>
-            <TabsTrigger value="reports">{t("All Reports")}</TabsTrigger>
+            <TabsTrigger value="overview">{t("financialReports.tabs.overview")}</TabsTrigger>
+            <TabsTrigger value="revenue">{t("financialReports.tabs.revenue")}</TabsTrigger>
+            <TabsTrigger value="expenses">{t("financialReports.tabs.expenses")}</TabsTrigger>
+            <TabsTrigger value="profit-loss">{t("financialReports.tabs.profitLoss")}</TabsTrigger>
+            <TabsTrigger value="cashflow">{t("financialReports.tabs.cashFlow")}</TabsTrigger>
+            <TabsTrigger value="reports">{t("financialReports.tabs.allReports")}</TabsTrigger>
           </TabsList>
 
           <TabsContent value="overview" className="space-y-6">
@@ -284,7 +284,7 @@ function FinancialReportsPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {financialMetrics.map((metric, index) => {
                 const change = calculateChange(metric.value, metric.previousValue);
-                const isExpense = metric.label === t("Total Expenses");
+                const isExpense = metric.label === t("financialReports.totalExpenses");
                 
                 return (
                   <Card key={index} className="glass-card border-0 hover:shadow-lg transition-all duration-300 hover:scale-105">
@@ -297,7 +297,7 @@ function FinancialReportsPage() {
                               <Info className="h-4 w-4 text-muted-foreground cursor-help" />
                             </TooltipTrigger>
                             <TooltipContent>
-                              <p>{t("Compared to")} {comparisonPeriod === "previous" ? t("last month") : t("last year")}</p>
+                              <p>{t("financialReports.comparedTo")} {comparisonPeriod === "previous" ? t("financialReports.lastMonth") : t("financialReports.lastYear")}</p>
                             </TooltipContent>
                           </Tooltip>
                         </TooltipProvider>
@@ -314,7 +314,7 @@ function FinancialReportsPage() {
                             {change > 0 ? "+" : ""}{change.toFixed(1)}%
                           </span>
                           <span className="text-sm text-muted-foreground">
-                            {t("vs")} {formatValue(metric.previousValue, metric.format)}
+                            {t("common.vsLastMonth")} {formatValue(metric.previousValue, metric.format)}
                           </span>
                         </div>
                         
@@ -333,12 +333,12 @@ function FinancialReportsPage() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <LineChart className="h-5 w-5" />
-                  {t("Revenue Trend")}
+                  {t("financialReports.revenueTrend")}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="h-[300px] flex items-center justify-center bg-muted/30 rounded-lg">
-                  <p className="text-muted-foreground">{t("Chart visualization would go here")}</p>
+                  <p className="text-muted-foreground">{t("financialReports.chartVisualization")}</p>
                 </div>
                 
                 {/* Monthly Summary */}
@@ -363,7 +363,7 @@ function FinancialReportsPage() {
                 <CardHeader>
                   <CardTitle className="text-base flex items-center gap-2">
                     <Target className="h-4 w-4" />
-                    {t("Top Performance Indicators")}
+                    {t("financialReports.topPerformanceIndicators")}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
@@ -373,8 +373,8 @@ function FinancialReportsPage() {
                         <DollarSign className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
                       </div>
                       <div>
-                        <p className="font-medium">{t("Average Order Value")}</p>
-                        <p className="text-xs text-muted-foreground">{t("Per transaction")}</p>
+                        <p className="font-medium">{t("financialReports.averageOrderValue")}</p>
+                        <p className="text-xs text-muted-foreground">{t("financialReports.perTransaction")}</p>
                       </div>
                     </div>
                     <div className="text-right">
@@ -389,8 +389,8 @@ function FinancialReportsPage() {
                         <Users className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                       </div>
                       <div>
-                        <p className="font-medium">{t("Customer Lifetime Value")}</p>
-                        <p className="text-xs text-muted-foreground">{t("Average CLV")}</p>
+                        <p className="font-medium">{t("financialReports.customerLifetimeValue")}</p>
+                        <p className="text-xs text-muted-foreground">{t("financialReports.averageCLV")}</p>
                       </div>
                     </div>
                     <div className="text-right">
@@ -405,8 +405,8 @@ function FinancialReportsPage() {
                         <Activity className="h-5 w-5 text-purple-600 dark:text-purple-400" />
                       </div>
                       <div>
-                        <p className="font-medium">{t("Conversion Rate")}</p>
-                        <p className="text-xs text-muted-foreground">{t("Visitor to customer")}</p>
+                        <p className="font-medium">{t("financialReports.conversionRate")}</p>
+                        <p className="text-xs text-muted-foreground">{t("financialReports.visitorToCustomer")}</p>
                       </div>
                     </div>
                     <div className="text-right">
@@ -422,7 +422,7 @@ function FinancialReportsPage() {
                 <CardHeader>
                   <CardTitle className="text-base flex items-center gap-2">
                     <PieChart className="h-4 w-4" />
-                    {t("Expense Breakdown")}
+                    {t("financialReports.expenseBreakdown")}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
@@ -440,7 +440,7 @@ function FinancialReportsPage() {
                   
                   <div className="pt-3 mt-3 border-t border-border/50">
                     <div className="flex items-center justify-between">
-                      <p className="font-medium">{t("Total Expenses")}</p>
+                      <p className="font-medium">{t("financialReports.totalExpenses")}</p>
                       <p className="font-semibold">EGP 45,670</p>
                     </div>
                   </div>
@@ -465,7 +465,7 @@ function FinancialReportsPage() {
                       </div>
                       {!report.available && (
                         <Badge variant="secondary" className="text-xs">
-                          {t("Coming Soon")}
+                          {t("common.comingSoon")}
                         </Badge>
                       )}
                     </div>
@@ -479,7 +479,7 @@ function FinancialReportsPage() {
                       className="w-full"
                       disabled={!report.available}
                     >
-                      {report.available ? t("Generate Report") : t("Not Available")}
+                      {report.available ? t("financialReports.generateReport") : t("financialReports.notAvailable")}
                       {report.available && <ChevronRight className="h-4 w-4 ml-2" />}
                     </Button>
                   </CardContent>
@@ -490,25 +490,25 @@ function FinancialReportsPage() {
             {/* Quick Export Options */}
             <Card className="glass-card border-0">
               <CardHeader>
-                <CardTitle className="text-base">{t("Quick Export Options")}</CardTitle>
+                <CardTitle className="text-base">{t("financialReports.quickExportOptions")}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
                   <Button variant="outline" className="justify-start">
                     <FileText className="h-4 w-4 mr-2" />
-                    {t("Export to PDF")}
+                    {t("financialReports.exportToPDF")}
                   </Button>
                   <Button variant="outline" className="justify-start">
                     <FileText className="h-4 w-4 mr-2" />
-                    {t("Export to Excel")}
+                    {t("financialReports.exportToExcel")}
                   </Button>
                   <Button variant="outline" className="justify-start">
                     <FileText className="h-4 w-4 mr-2" />
-                    {t("Export to CSV")}
+                    {t("financialReports.exportToCSV")}
                   </Button>
                   <Button variant="outline" className="justify-start">
                     <Mail className="h-4 w-4 mr-2" />
-                    {t("Schedule Reports")}
+                    {t("financialReports.scheduleReports")}
                   </Button>
                 </div>
               </CardContent>
@@ -520,9 +520,9 @@ function FinancialReportsPage() {
             <Card className="glass-card border-0">
               <CardContent className="p-12 text-center">
                 <BarChart3 className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                <h3 className="text-lg font-semibold mb-2">{t("Revenue Analysis")}</h3>
+                <h3 className="text-lg font-semibold mb-2">{t("financialReports.revenueAnalysis")}</h3>
                 <p className="text-muted-foreground">
-                  {t("Detailed revenue reports and analytics will be displayed here")}
+                  {t("financialReports.revenueAnalysisDesc")}
                 </p>
               </CardContent>
             </Card>
@@ -532,9 +532,9 @@ function FinancialReportsPage() {
             <Card className="glass-card border-0">
               <CardContent className="p-12 text-center">
                 <Receipt className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                <h3 className="text-lg font-semibold mb-2">{t("Expense Analysis")}</h3>
+                <h3 className="text-lg font-semibold mb-2">{t("financialReports.expenseAnalysis")}</h3>
                 <p className="text-muted-foreground">
-                  {t("Detailed expense reports and cost analysis will be displayed here")}
+                  {t("financialReports.expenseAnalysisDesc")}
                 </p>
               </CardContent>
             </Card>
@@ -544,9 +544,9 @@ function FinancialReportsPage() {
             <Card className="glass-card border-0">
               <CardContent className="p-12 text-center">
                 <TrendingUp className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                <h3 className="text-lg font-semibold mb-2">{t("Profit & Loss Statement")}</h3>
+                <h3 className="text-lg font-semibold mb-2">{t("financialReports.profitLossStatement")}</h3>
                 <p className="text-muted-foreground">
-                  {t("Comprehensive P&L statement will be displayed here")}
+                  {t("financialReports.profitLossStatementDesc")}
                 </p>
               </CardContent>
             </Card>
@@ -556,9 +556,9 @@ function FinancialReportsPage() {
             <Card className="glass-card border-0">
               <CardContent className="p-12 text-center">
                 <Activity className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                <h3 className="text-lg font-semibold mb-2">{t("Cash Flow Analysis")}</h3>
+                <h3 className="text-lg font-semibold mb-2">{t("financialReports.cashFlowAnalysis")}</h3>
                 <p className="text-muted-foreground">
-                  {t("Cash flow reports and forecasts will be displayed here")}
+                  {t("financialReports.cashFlowAnalysisDesc")}
                 </p>
               </CardContent>
             </Card>

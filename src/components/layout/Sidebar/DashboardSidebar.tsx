@@ -31,10 +31,10 @@ interface DashboardSidebarProps {
 }
 
 export function DashboardSidebar({ activeNavId, side = "right" }: DashboardSidebarProps) {
-  const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
   const { open, isMobile } = useSidebar();
+  const { t } = useTranslation();
   const isOpen = open;
   const [expandedItems, setExpandedItems] = useState<string[]>([activeNavId || ""]);
 
@@ -235,7 +235,7 @@ export function DashboardSidebar({ activeNavId, side = "right" }: DashboardSideb
           {isOpen && (
             <div className="px-3 py-4">
               <h3 className="mb-2 px-2 text-xs font-semibold text-gray-500 dark:text-gray-400">
-                {t("Quick Actions")}
+                {t('dashboard.quickActions')}
               </h3>
               <div className="space-y-1">
                 {newSidebarData.quickActions.map((action) => (

@@ -122,7 +122,7 @@ export default function CompletedOrdersPage() {
   // Completed orders statistics
   const completedStats = [
     {
-      title: t("Total Completed"),
+      title: t("completedOrders.totalCompleted"),
       value: "285",
       change: 12.3,
       changeType: 'increase' as const,
@@ -130,21 +130,21 @@ export default function CompletedOrdersPage() {
       iconColor: 'text-green-600 dark:text-green-400',
       iconBgColor: 'bg-green-50 dark:bg-green-950/30',
       trend: 'up' as const,
-      period: t("vs last month")
+      period: t("completedOrders.vsLastMonth")
     },
     {
-      title: t("Revenue Generated"),
-      value: "EGP 425,320",
+      title: t("completedOrders.revenueGenerated"),
+      value: `${t("common.egp")} 425,320`,
       change: 18.7,
       changeType: 'increase' as const,
       icon: TrendingUp,
       iconColor: 'text-blue-600 dark:text-blue-400',
       iconBgColor: 'bg-blue-50 dark:bg-blue-950/30',
       trend: 'up' as const,
-      period: t("vs last month")
+      period: t("completedOrders.vsLastMonth")
     },
     {
-      title: t("Customer Rating"),
+      title: t("completedOrders.customerRating"),
       value: "4.8",
       subValue: "/5",
       change: 0.3,
@@ -153,10 +153,10 @@ export default function CompletedOrdersPage() {
       iconColor: 'text-yellow-600 dark:text-yellow-400',
       iconBgColor: 'bg-yellow-50 dark:bg-yellow-950/30',
       trend: 'up' as const,
-      period: t("improvement")
+      period: t("completedOrders.improvement")
     },
     {
-      title: t("Repeat Customers"),
+      title: t("completedOrders.repeatCustomers"),
       value: "62%",
       change: 8.5,
       changeType: 'increase' as const,
@@ -164,7 +164,7 @@ export default function CompletedOrdersPage() {
       iconColor: 'text-pink-600 dark:text-pink-400',
       iconBgColor: 'bg-pink-50 dark:bg-pink-950/30',
       trend: 'up' as const,
-      period: t("vs last quarter")
+      period: t("completedOrders.vsLastQuarter")
     }
   ];
 
@@ -198,10 +198,10 @@ export default function CompletedOrdersPage() {
 
   // Time range filters
   const timeRangeOptions = [
-    { value: 'today', label: t('Today'), count: 12 },
-    { value: 'week', label: t('This Week'), count: 85 },
-    { value: 'month', label: t('This Month'), count: 285 },
-    { value: 'all', label: t('All Time'), count: 1250 }
+    { value: 'today', label: t("completedOrders.today"), count: 12 },
+    { value: 'week', label: t("completedOrders.thisWeek"), count: 85 },
+    { value: 'month', label: t("completedOrders.thisMonth"), count: 285 },
+    { value: 'all', label: t("completedOrders.allTime"), count: 1250 }
   ];
 
   // Customer satisfaction data
@@ -239,7 +239,7 @@ export default function CompletedOrdersPage() {
               </p>
             </div>
             <Badge className={cn("capitalize", getStatusColor(order.status))}>
-              {t(order.status)}
+              {order.status}
             </Badge>
           </div>
 
@@ -261,16 +261,16 @@ export default function CompletedOrdersPage() {
           {/* Order details */}
           <div className="grid grid-cols-3 gap-4 pt-2 border-t border-gray-200 dark:border-gray-700">
             <div>
-              <p className="text-sm text-muted-foreground">{t("Items")}</p>
+              <p className="text-sm text-muted-foreground">{t("completedOrders.items")}</p>
               <p className="font-medium">{order.items}</p>
             </div>
             <div>
-              <p className="text-sm text-muted-foreground">{t("Total")}</p>
-              <p className="font-medium">{t('EGP')} {order.total.toLocaleString()}</p>
+              <p className="text-sm text-muted-foreground">{t("completedOrders.total")}</p>
+              <p className="font-medium">{t("common.egp")} {order.total.toLocaleString()}</p>
             </div>
             <div>
-              <p className="text-sm text-muted-foreground">{t("Payment")}</p>
-              <p className="font-medium capitalize">{t(order.paymentMethod)}</p>
+              <p className="text-sm text-muted-foreground">{t("completedOrders.payment")}</p>
+              <p className="font-medium capitalize">{order.paymentMethod}</p>
             </div>
           </div>
 
@@ -283,7 +283,7 @@ export default function CompletedOrdersPage() {
               onClick={() => handleViewOrder(order)}
             >
               <Eye className="h-4 w-4" />
-              {t("View Details")}
+              {t("completedOrders.viewDetails")}
             </Button>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -292,19 +292,19 @@ export default function CompletedOrdersPage() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuLabel>{t("Actions")}</DropdownMenuLabel>
+                <DropdownMenuLabel>{t("common.actions")}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => handleViewOrder(order)}>
                   <Eye className="mr-2 h-4 w-4" />
-                  {t("View Details")}
+                  {t("completedOrders.viewDetails")}
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <Download className="mr-2 h-4 w-4" />
-                  {t("Download Invoice")}
+                  {t("completedOrders.downloadInvoice")}
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <MessageSquare className="mr-2 h-4 w-4" />
-                  {t("Request Review")}
+                  {t("completedOrders.requestReview")}
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -326,16 +326,16 @@ export default function CompletedOrdersPage() {
           <div>
             <h1 className="text-2xl md:text-3xl font-bold flex items-center gap-3">
               <Award className="h-6 w-6 md:h-8 md:w-8" />
-              {t("Completed Orders")}
+              {t("completedOrders.title")}
             </h1>
             <p className="mt-2 text-sm md:text-base text-green-100 max-w-2xl">
-              {t("View and analyze all successfully delivered orders. Track customer satisfaction and revenue metrics.")}
+              {t("completedOrders.subtitle")}
             </p>
           </div>
           <div className="flex items-center gap-3">
             <div className="text-right">
-              <p className="text-xs md:text-sm text-green-100">{t("Total Revenue")}</p>
-              <p className="text-xl md:text-2xl font-bold">EGP 425,320</p>
+              <p className="text-xs md:text-sm text-green-100">{t("completedOrders.totalRevenue")}</p>
+              <p className="text-xl md:text-2xl font-bold">{t("common.egp")} 425,320</p>
             </div>
             <div className="p-2 md:p-3 bg-white/20 backdrop-blur-sm rounded-lg">
               <BarChart3 className="h-5 w-5 md:h-6 md:w-6" />
@@ -370,7 +370,7 @@ export default function CompletedOrdersPage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Star className="h-5 w-5 text-yellow-500" />
-              {t("Customer Satisfaction")}
+              {t("completedOrders.customerSatisfaction")}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -406,7 +406,7 @@ export default function CompletedOrdersPage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <MessageSquare className="h-5 w-5 text-blue-500" />
-              {t("Customer Feedback")}
+              {t("completedOrders.customerFeedback")}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -414,25 +414,25 @@ export default function CompletedOrdersPage() {
               <div className="flex items-center gap-4 p-3 rounded-lg bg-gray-50 dark:bg-gray-800">
                 <ThumbsUp className="h-5 w-5 text-green-500" />
                 <div className="flex-1">
-                  <p className="text-sm font-medium">{t("Positive Feedback")}</p>
+                  <p className="text-sm font-medium">{t("completedOrders.positiveFeedback")}</p>
                   <p className="text-2xl font-bold text-green-600">92%</p>
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div className="p-3 rounded-lg border border-gray-200 dark:border-gray-700">
-                  <p className="text-sm text-muted-foreground">{t("Fast Delivery")}</p>
+                  <p className="text-sm text-muted-foreground">{t("completedOrders.fastDelivery")}</p>
                   <p className="text-lg font-semibold">89%</p>
                 </div>
                 <div className="p-3 rounded-lg border border-gray-200 dark:border-gray-700">
-                  <p className="text-sm text-muted-foreground">{t("Product Quality")}</p>
+                  <p className="text-sm text-muted-foreground">{t("completedOrders.productQuality")}</p>
                   <p className="text-lg font-semibold">95%</p>
                 </div>
                 <div className="p-3 rounded-lg border border-gray-200 dark:border-gray-700">
-                  <p className="text-sm text-muted-foreground">{t("Customer Service")}</p>
+                  <p className="text-sm text-muted-foreground">{t("completedOrders.customerService")}</p>
                   <p className="text-lg font-semibold">87%</p>
                 </div>
                 <div className="p-3 rounded-lg border border-gray-200 dark:border-gray-700">
-                  <p className="text-sm text-muted-foreground">{t("Value for Money")}</p>
+                  <p className="text-sm text-muted-foreground">{t("completedOrders.valueForMoney")}</p>
                   <p className="text-lg font-semibold">91%</p>
                 </div>
               </div>
@@ -496,7 +496,7 @@ export default function CompletedOrdersPage() {
               ))}
               {filteredOrders.length === 0 && (
                 <div className="text-center py-8">
-                  <p className="text-muted-foreground">{t("No orders found")}</p>
+                  <p className="text-muted-foreground">{t("completedOrders.noOrdersFound")}</p>
                 </div>
               )}
             </div>
@@ -512,21 +512,21 @@ export default function CompletedOrdersPage() {
               <TrendingUp className="h-5 w-5 md:h-6 md:w-6 text-green-600 dark:text-green-400" />
             </div>
             <div className="flex-1">
-              <h3 className="font-semibold text-base md:text-lg mb-2">{t("Revenue Performance")}</h3>
+              <h3 className="font-semibold text-base md:text-lg mb-2">{t("completedOrders.revenuePerformance")}</h3>
               <p className="text-sm text-muted-foreground mb-3">
-                {t("Your revenue has increased by 18.7% this month! Average order value is up by 12%.")}
+                {t("completedOrders.revenuePerformanceSubtitle")}
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
                 <div>
-                  <span className="text-muted-foreground">{t("Avg. Order Value:")}</span>
-                  <span className="ml-2 font-semibold text-green-600 dark:text-green-400">EGP 1,492</span>
+                  <span className="text-muted-foreground">{t("completedOrders.orderValue")}</span>
+                  <span className="ml-2 font-semibold text-green-600 dark:text-green-400">{t("common.egp")} 1,492</span>
                 </div>
                 <div>
-                  <span className="text-muted-foreground">{t("Best Selling Day:")}</span>
-                  <span className="ml-2 font-semibold text-green-600 dark:text-green-400">{t("Friday")}</span>
+                  <span className="text-muted-foreground">{t("completedOrders.bestSellingDay")}</span>
+                  <span className="ml-2 font-semibold text-green-600 dark:text-green-400">{t("completedOrders.friday")}</span>
                 </div>
                 <div>
-                  <span className="text-muted-foreground">{t("Peak Hour:")}</span>
+                  <span className="text-muted-foreground">{t("completedOrders.peakHour")}</span>
                   <span className="ml-2 font-semibold text-green-600 dark:text-green-400">8-10 PM</span>
                 </div>
               </div>
@@ -544,8 +544,8 @@ export default function CompletedOrdersPage() {
                 <Download className="h-5 w-5 text-blue-600 dark:text-blue-400" />
               </div>
               <div>
-                <h4 className="font-medium">{t("Export Report")}</h4>
-                <p className="text-sm text-muted-foreground">{t("Download detailed analytics")}</p>
+                <h4 className="font-medium">{t("completedOrders.exportReport")}</h4>
+                <p className="text-sm text-muted-foreground">{t("completedOrders.downloadDetailedAnalytics")}</p>
               </div>
             </div>
           </CardContent>
@@ -558,8 +558,8 @@ export default function CompletedOrdersPage() {
                 <MessageSquare className="h-5 w-5 text-purple-600 dark:text-purple-400" />
               </div>
               <div>
-                <h4 className="font-medium">{t("Request Feedback")}</h4>
-                <p className="text-sm text-muted-foreground">{t("Send review invitations")}</p>
+                <h4 className="font-medium">{t("completedOrders.requestFeedback")}</h4>
+                <p className="text-sm text-muted-foreground">{t("completedOrders.sendReviewInvitations")}</p>
               </div>
             </div>
           </CardContent>
@@ -572,8 +572,8 @@ export default function CompletedOrdersPage() {
                 <Award className="h-5 w-5 text-green-600 dark:text-green-400" />
               </div>
               <div>
-                <h4 className="font-medium">{t("Loyalty Program")}</h4>
-                <p className="text-sm text-muted-foreground">{t("Reward repeat customers")}</p>
+                <h4 className="font-medium">{t("completedOrders.loyaltyProgram")}</h4>
+                <p className="text-sm text-muted-foreground">{t("completedOrders.rewardRepeatCustomers")}</p>
               </div>
             </div>
           </CardContent>

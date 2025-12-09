@@ -823,88 +823,87 @@ html {
 .sidebar-link-hover:hover {
   background-color: hsl(var(--primary) / 0.1) !important;
 }
- 
 
 /* RTL Support */
 @layer utilities {
 /* RTL Direction utilities */
-[dir="rtl"] {
+[] {
   direction: rtl;
 }
 
 /* Text alignment */
-[dir="rtl"] .text-left {
+[] .text-left {
   text-align: right;
 }
-[dir="rtl"] .text-right {
+[] .text-right {
   text-align: left;
 }
 
 /* Margin utilities */
-[dir="rtl"] .ml-auto {
+[] .ml-auto {
   margin-left: 0;
   margin-right: auto;
 }
-[dir="rtl"] .mr-auto {
+[] .mr-auto {
   margin-right: 0;
   margin-left: auto;
 }
 
 /* Specific margin values */
-[dir="rtl"] .ml-2 { margin-left: 0; margin-right: 0.5rem; }
-[dir="rtl"] .mr-2 { margin-right: 0; margin-left: 0.5rem; }
-[dir="rtl"] .ml-3 { margin-left: 0; margin-right: 0.75rem; }
-[dir="rtl"] .mr-3 { margin-right: 0; margin-left: 0.75rem; }
-[dir="rtl"] .ml-4 { margin-left: 0; margin-right: 1rem; }
-[dir="rtl"] .mr-4 { margin-right: 0; margin-left: 1rem; }
+[] .ml-2 { margin-left: 0; margin-right: 0.5rem; }
+[] .mr-2 { margin-right: 0; margin-left: 0.5rem; }
+[] .ml-3 { margin-left: 0; margin-right: 0.75rem; }
+[] .mr-3 { margin-right: 0; margin-left: 0.75rem; }
+[] .ml-4 { margin-left: 0; margin-right: 1rem; }
+[] .mr-4 { margin-right: 0; margin-left: 1rem; }
 
 /* Padding utilities */
-[dir="rtl"] .pl-2 { padding-left: 0; padding-right: 0.5rem; }
-[dir="rtl"] .pr-2 { padding-right: 0; padding-left: 0.5rem; }
-[dir="rtl"] .pl-3 { padding-left: 0; padding-right: 0.75rem; }
-[dir="rtl"] .pr-3 { padding-right: 0; padding-left: 0.75rem; }
-[dir="rtl"] .pl-4 { padding-left: 0; padding-right: 1rem; }
-[dir="rtl"] .pr-4 { padding-right: 0; padding-left: 1rem; }
-[dir="rtl"] .pl-6 { padding-left: 0; padding-right: 1.5rem; }
-[dir="rtl"] .pr-6 { padding-right: 0; padding-left: 1.5rem; }
+[] .pl-2 { padding-left: 0; padding-right: 0.5rem; }
+[] .pr-2 { padding-right: 0; padding-left: 0.5rem; }
+[] .pl-3 { padding-left: 0; padding-right: 0.75rem; }
+[] .pr-3 { padding-right: 0; padding-left: 0.75rem; }
+[] .pl-4 { padding-left: 0; padding-right: 1rem; }
+[] .pr-4 { padding-right: 0; padding-left: 1rem; }
+[] .pl-6 { padding-left: 0; padding-right: 1.5rem; }
+[] .pr-6 { padding-right: 0; padding-left: 1.5rem; }
 
 /* Position utilities */
-[dir="rtl"] .left-0 { left: auto; right: 0; }
-[dir="rtl"] .right-0 { right: auto; left: 0; }
-[dir="rtl"] .left-2 { left: auto; right: 0.5rem; }
-[dir="rtl"] .right-2 { right: auto; left: 0.5rem; }
-[dir="rtl"] .left-4 { left: auto; right: 1rem; }
-[dir="rtl"] .right-4 { right: auto; left: 1rem; }
+[] .left-0 { left: auto; right: 0; }
+[] .right-0 { right: auto; left: 0; }
+[] .left-2 { left: auto; right: 0.5rem; }
+[] .right-2 { right: auto; left: 0.5rem; }
+[] .left-4 { left: auto; right: 1rem; }
+[] .right-4 { right: auto; left: 1rem; }
 
 /* Transform utilities */
-[dir="rtl"] .translate-x-2 { transform: translateX(-0.5rem); }
-[dir="rtl"] .-translate-x-2 { transform: translateX(0.5rem); }
-[dir="rtl"] .translate-x-full { transform: translateX(-100%); }
-[dir="rtl"] .-translate-x-full { transform: translateX(100%); }
+[] .translate-x-2 { transform: translateX(-0.5rem); }
+[] .-translate-x-2 { transform: translateX(0.5rem); }
+[] .translate-x-full { transform: translateX(-100%); }
+[] .-translate-x-full { transform: translateX(100%); }
 
 /* Rotation for icons (chevrons, arrows) */
-[dir="rtl"] .rotate-90 { transform: rotate(-90deg); }
-[dir="rtl"] .rotate-180 { transform: rotate(180deg); }
-[dir="rtl"] .-rotate-90 { transform: rotate(90deg); }
+[] .rotate-90 { transform: rotate(-90deg); }
+[] .rotate-180 { transform: rotate(180deg); }
+[] .-rotate-90 { transform: rotate(90deg); }
 
 /* Icon mirroring for directional icons */
-[dir="rtl"] .rtl-mirror {
+[] .rtl-mirror {
   transform: scaleX(-1);
 }
 
 /* Combined transforms */
-[dir="rtl"] .rotate-180.translate-x-2 {
+[] .rotate-180.translate-x-2 {
   transform: rotate(180deg) translateX(-0.5rem);
 }
 
 /* Border radius */
-[dir="rtl"] .rounded-l-none {
+[] .rounded-l-none {
   border-top-left-radius: var(--radius);
   border-bottom-left-radius: var(--radius);
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-[dir="rtl"] .rounded-r-none {
+[] .rounded-r-none {
   border-top-right-radius: var(--radius);
   border-bottom-right-radius: var(--radius);
   border-top-left-radius: 0;
@@ -912,63 +911,63 @@ html {
 }
 
 /* Float utilities */
-[dir="rtl"] .float-left { float: right; }
-[dir="rtl"] .float-right { float: left; }
+[] .float-left { float: right; }
+[] .float-right { float: left; }
 
 /* Flexbox utilities */
-[dir="rtl"] .flex-row { flex-direction: row-reverse; }
-[dir="rtl"] .space-x-2 > :not([hidden]) ~ :not([hidden]) {
+[] .flex-row { flex-direction: row-reverse; }
+[] .space-x-2 > :not([hidden]) ~ :not([hidden]) {
   margin-left: 0;
   margin-right: 0.5rem;
 }
-[dir="rtl"] .space-x-3 > :not([hidden]) ~ :not([hidden]) {
+[] .space-x-3 > :not([hidden]) ~ :not([hidden]) {
   margin-left: 0;
   margin-right: 0.75rem;
 }
-[dir="rtl"] .space-x-4 > :not([hidden]) ~ :not([hidden]) {
+[] .space-x-4 > :not([hidden]) ~ :not([hidden]) {
   margin-left: 0;
   margin-right: 1rem;
 }
 
 /* Gradient direction */
-[dir="rtl"] .bg-gradient-to-r {
+[] .bg-gradient-to-r {
   background-image: linear-gradient(to left, var(--tw-gradient-stops));
 }
-[dir="rtl"] .bg-gradient-to-l {
+[] .bg-gradient-to-l {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
 }
 
 /* Animation adjustments for RTL - override translate values */
-[dir="rtl"] .animate-float-slow,
-[dir="rtl"] .animate-float-medium,
-[dir="rtl"] .animate-float-fast {
+[] .animate-float-slow,
+[] .animate-float-medium,
+[] .animate-float-fast {
   animation-direction: reverse;
 }
 
 /* Sidebar specific RTL adjustments */
-[dir="rtl"] [data-side="left"] {
+[] [data-side="left"] {
   left: auto;
   right: 0;
 }
-[dir="rtl"] [data-side="right"] {
+[] [data-side="right"] {
   right: auto;
   left: 0;
 }
 
 /* Typography adjustments */
-[dir="rtl"] {
+[] {
   font-family: 'Inter', 'Segoe UI', 'Tahoma', system-ui, -apple-system, sans-serif;
 }
 
 /* Chevron and arrow icon classes for automatic mirroring */
-[dir="rtl"] .chevron-right,
-[dir="rtl"] .arrow-right,
-[dir="rtl"] .chevron-left,
-[dir="rtl"] .arrow-left,
-[dir="rtl"] [class*="ChevronRight"],
-[dir="rtl"] [class*="ChevronLeft"],
-[dir="rtl"] [class*="ArrowRight"],
-[dir="rtl"] [class*="ArrowLeft"] {
+[] .chevron-right,
+[] .arrow-right,
+[] .chevron-left,
+[] .arrow-left,
+[] [class*="ChevronRight"],
+[] [class*="ChevronLeft"],
+[] [class*="ArrowRight"],
+[] [class*="ArrowLeft"] {
   transform: scaleX(-1);
 }
 }

@@ -197,28 +197,28 @@ function Coupons() {
         return (
           <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-400">
             <CheckCircle2 className="h-3 w-3 mr-1" />
-            {t("Active")}
+            {t("coupons.status.active")}
           </Badge>
         );
       case "inactive":
         return (
           <Badge className="bg-gray-100 text-gray-700 dark:bg-gray-950/30 dark:text-gray-400">
             <XCircle className="h-3 w-3 mr-1" />
-            {t("Inactive")}
+            {t("coupons.status.inactive")}
           </Badge>
         );
       case "expired":
         return (
           <Badge className="bg-red-100 text-red-700 dark:bg-red-950/30 dark:text-red-400">
             <AlertCircle className="h-3 w-3 mr-1" />
-            {t("Expired")}
+            {t("coupons.status.expired")}
           </Badge>
         );
       case "scheduled":
         return (
           <Badge className="bg-blue-100 text-blue-700 dark:bg-blue-950/30 dark:text-blue-400">
             <Clock className="h-3 w-3 mr-1" />
-            {t("Scheduled")}
+            {t("coupons.status.scheduled")}
           </Badge>
         );
       default:
@@ -262,24 +262,24 @@ function Coupons() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuLabel>{t("Actions")}</DropdownMenuLabel>
+              <DropdownMenuLabel>{t("coupons.actions.title")}</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem>
                 <Eye className="h-4 w-4 mr-2" />
-                {t("View Details")}
+                {t("coupons.actions.viewDetails")}
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Edit className="h-4 w-4 mr-2" />
-                {t("Edit")}
+                {t("coupons.actions.edit")}
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Copy className="h-4 w-4 mr-2" />
-                {t("Duplicate")}
+                {t("coupons.actions.duplicate")}
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem className="text-destructive">
                 <Trash2 className="h-4 w-4 mr-2" />
-                {t("Delete")}
+                {t("coupons.actions.delete")}
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -290,7 +290,7 @@ function Coupons() {
           <p className="font-medium">{coupon.description}</p>
           {coupon.minOrderValue && (
             <p className="text-xs text-muted-foreground mt-1">
-              {t("Min. order")}: EGP {coupon.minOrderValue}
+              {t("coupons.minOrder")}: EGP {coupon.minOrderValue}
             </p>
           )}
         </div>
@@ -300,30 +300,30 @@ function Coupons() {
           <span className="font-medium">
             {coupon.type === "percentage" ? `${coupon.value}%` : 
              coupon.type === "fixed" ? `EGP ${coupon.value}` : 
-             t("Free")}
+             "Free"}
           </span>
         </div>
 
         <div className="grid grid-cols-2 gap-4 pt-2">
           <div>
-            <p className="text-sm text-muted-foreground">{t("Usage")}</p>
+            <p className="text-sm text-muted-foreground">{t("coupons.usage")}</p>
             <div className="space-y-1 mt-1">
               <p className="font-medium">
                 {coupon.usageCount} / {coupon.usageLimit || "∞"}
               </p>
               {coupon.usageLimit && (
-                <Progress 
-                  value={(coupon.usageCount / coupon.usageLimit) * 100} 
+                <Progress
+                  value={(coupon.usageCount / coupon.usageLimit) * 100}
                   className="h-2"
                 />
               )}
             </div>
           </div>
           <div>
-            <p className="text-sm text-muted-foreground">{t("Revenue")}</p>
+            <p className="text-sm text-muted-foreground">{t("coupons.revenue")}</p>
             <p className="font-medium mt-1">EGP {coupon.totalRevenue.toLocaleString()}</p>
             <p className="text-xs text-muted-foreground">
-              {t("Avg")}: EGP {coupon.avgOrderValue.toFixed(0)}
+              {t("coupons.avg")}: EGP {coupon.avgOrderValue.toFixed(0)}
             </p>
           </div>
         </div>
@@ -347,19 +347,19 @@ function Coupons() {
       <div className="flex bg-white dark:bg-black/80 rounded-2xl m-1 flex-1 flex-col gap-6 p-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <Title
-            title={t("Coupons")}
-            Subtitle={t("Create and manage discount coupons for your customers")}
+            title={t("coupons.title")}
+            Subtitle={t("coupons.subtitle")}
             className="text-3xl"
             classNamee=""
           />
           <div className="flex gap-2 w-full sm:w-auto">
             <Button variant="outline" className="glow-on-hover flex-1 sm:flex-none">
               <Download className="h-4 w-4 mr-2" />
-              {t("Export")}
+              {t("coupons.buttons.export")}
             </Button>
             <Button className="glow-on-hover flex-1 sm:flex-none" size="lg">
               <Plus className="h-4 w-4 mr-2" />
-              {t("Create Coupon")}
+              {t("coupons.buttons.createCoupon")}
             </Button>
           </div>
         </div>
@@ -370,12 +370,12 @@ function Coupons() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t("Active Coupons")}</p>
+                  <p className="text-sm text-muted-foreground">{t("coupons.stats.activeCoupons")}</p>
                   <p className="text-3xl font-bold mt-1">{activeCoupons}</p>
                   <div className="flex items-center gap-1 mt-2">
                     <TrendingUp className="h-3 w-3 text-emerald-600 dark:text-emerald-400" />
                     <span className="text-xs text-emerald-600 dark:text-emerald-400">
-                      +12% {t("vs last month")}
+                      +12% {t("coupons.stats.vsLastMonth")}
                     </span>
                   </div>
                 </div>
@@ -390,12 +390,12 @@ function Coupons() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t("Total Usage")}</p>
+                  <p className="text-sm text-muted-foreground">{t("coupons.stats.totalUsage")}</p>
                   <p className="text-3xl font-bold mt-1">{totalUsage.toLocaleString()}</p>
                   <div className="flex items-center gap-1 mt-2">
                     <Users className="h-3 w-3 text-blue-600 dark:text-blue-400" />
                     <span className="text-xs text-blue-600 dark:text-blue-400">
-                      {t("Redeemed coupons")}
+                      {t("coupons.stats.redeemedCoupons")}
                     </span>
                   </div>
                 </div>
@@ -410,12 +410,12 @@ function Coupons() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t("Revenue Generated")}</p>
+                  <p className="text-sm text-muted-foreground">{t("coupons.stats.revenueGenerated")}</p>
                   <p className="text-3xl font-bold mt-1">EGP {(totalRevenue / 1000).toFixed(1)}K</p>
                   <div className="flex items-center gap-1 mt-2">
                     <TrendingUp className="h-3 w-3 text-emerald-600 dark:text-emerald-400" />
                     <span className="text-xs text-emerald-600 dark:text-emerald-400">
-                      +23.5% {t("increase")}
+                      +23.5% {t("coupons.stats.increase")}
                     </span>
                   </div>
                 </div>
@@ -430,12 +430,12 @@ function Coupons() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t("Conversion Rate")}</p>
+                  <p className="text-sm text-muted-foreground">{t("coupons.stats.conversionRate")}</p>
                   <p className="text-3xl font-bold mt-1">{avgConversionRate}%</p>
                   <div className="flex items-center gap-1 mt-2">
                     <BarChart3 className="h-3 w-3 text-purple-600 dark:text-purple-400" />
                     <span className="text-xs text-purple-600 dark:text-purple-400">
-                      {t("Average rate")}
+                      {t("coupons.stats.averageRate")}
                     </span>
                   </div>
                 </div>
@@ -450,12 +450,12 @@ function Coupons() {
         {/* Quick Create Buttons */}
         <Card className="glass-card border-0">
           <CardHeader>
-            <CardTitle className="text-lg">{t("Quick Create")}</CardTitle>
+            <CardTitle className="text-lg">{t("coupons.quickCreate.title")}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 className="justify-start h-auto p-4 hover:scale-105 transition-all duration-300 hover:border-primary"
               >
                 <div className="flex items-center gap-3 w-full">
@@ -463,13 +463,13 @@ function Coupons() {
                     <Percent className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                   </div>
                   <div className="text-left">
-                    <p className="font-medium">{t("Percentage Discount")}</p>
-                    <p className="text-xs text-muted-foreground">{t("Create % off coupon")}</p>
+                    <p className="font-medium">{t("coupons.quickCreate.percentageDiscount")}</p>
+                    <p className="text-xs text-muted-foreground">{t("coupons.quickCreate.percentageDescription")}</p>
                   </div>
                 </div>
               </Button>
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 className="justify-start h-auto p-4 hover:scale-105 transition-all duration-300 hover:border-primary"
               >
                 <div className="flex items-center gap-3 w-full">
@@ -477,13 +477,13 @@ function Coupons() {
                     <Tag className="h-5 w-5 text-green-600 dark:text-green-400" />
                   </div>
                   <div className="text-left">
-                    <p className="font-medium">{t("Fixed Amount")}</p>
-                    <p className="text-xs text-muted-foreground">{t("Fixed value discount")}</p>
+                    <p className="font-medium">{t("coupons.quickCreate.fixedAmount")}</p>
+                    <p className="text-xs text-muted-foreground">{t("coupons.quickCreate.fixedDescription")}</p>
                   </div>
                 </div>
               </Button>
-              <Button 
-                variant="outline" 
+              <Button
+                variant="outline"
                 className="justify-start h-auto p-4 hover:scale-105 transition-all duration-300 hover:border-primary sm:col-span-2 lg:col-span-1"
               >
                 <div className="flex items-center gap-3 w-full">
@@ -491,8 +491,8 @@ function Coupons() {
                     <Ticket className="h-5 w-5 text-purple-600 dark:text-purple-400" />
                   </div>
                   <div className="text-left">
-                    <p className="font-medium">{t("Free Shipping")}</p>
-                    <p className="text-xs text-muted-foreground">{t("Shipping discount")}</p>
+                    <p className="font-medium">{t("coupons.quickCreate.freeShipping")}</p>
+                    <p className="text-xs text-muted-foreground">{t("coupons.quickCreate.shippingDescription")}</p>
                   </div>
                 </div>
               </Button>
@@ -504,14 +504,14 @@ function Coupons() {
         <Card className="glass-card border-0">
           <CardHeader>
             <div className="space-y-4">
-              <CardTitle className="text-lg">{t("Manage Coupons")}</CardTitle>
+              <CardTitle className="text-lg">{t("coupons.manageCoupons")}</CardTitle>
               
               <div className="flex flex-col gap-4">
                 <div className="flex flex-col sm:flex-row gap-3">
                   <div className="relative flex-1">
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                     <Input
-                      placeholder={t("Search coupons...")}
+                      placeholder={t("coupons.searchPlaceholder")}
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
                       className="pl-10 w-full"
@@ -521,26 +521,26 @@ function Coupons() {
                   <div className="flex gap-2">
                     <Select value={filterType} onValueChange={setFilterType}>
                       <SelectTrigger className="w-full sm:w-[140px]">
-                        <SelectValue placeholder={t("Type")} />
+                        <SelectValue placeholder={t("coupons.filters.type")} />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="all">{t("All Types")}</SelectItem>
-                        <SelectItem value="percentage">{t("Percentage")}</SelectItem>
-                        <SelectItem value="fixed">{t("Fixed")}</SelectItem>
-                        <SelectItem value="shipping">{t("Shipping")}</SelectItem>
+                        <SelectItem value="all">{t("coupons.filters.allTypes")}</SelectItem>
+                        <SelectItem value="percentage">{t("coupons.types.percentage")}</SelectItem>
+                        <SelectItem value="fixed">{t("coupons.types.fixed")}</SelectItem>
+                        <SelectItem value="shipping">{t("coupons.types.shipping")}</SelectItem>
                       </SelectContent>
                     </Select>
 
                     <Select value={filterStatus} onValueChange={setFilterStatus}>
                       <SelectTrigger className="w-full sm:w-[120px]">
-                        <SelectValue placeholder={t("Status")} />
+                        <SelectValue placeholder={t("coupons.filters.status")} />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="all">{t("All")}</SelectItem>
-                        <SelectItem value="active">{t("Active")}</SelectItem>
-                        <SelectItem value="inactive">{t("Inactive")}</SelectItem>
-                        <SelectItem value="expired">{t("Expired")}</SelectItem>
-                        <SelectItem value="scheduled">{t("Scheduled")}</SelectItem>
+                        <SelectItem value="all">{t("coupons.filters.all")}</SelectItem>
+                        <SelectItem value="active">{t("coupons.status.active")}</SelectItem>
+                        <SelectItem value="inactive">{t("coupons.status.inactive")}</SelectItem>
+                        <SelectItem value="expired">{t("coupons.status.expired")}</SelectItem>
+                        <SelectItem value="scheduled">{t("coupons.status.scheduled")}</SelectItem>
                       </SelectContent>
                     </Select>
 
@@ -552,9 +552,9 @@ function Coupons() {
 
                 <Tabs value={selectedTab} onValueChange={setSelectedTab} className="w-full">
                   <TabsList className="grid w-full grid-cols-3 max-w-[400px]">
-                    <TabsTrigger value="all">{t("All Coupons")}</TabsTrigger>
-                    <TabsTrigger value="active">{t("Active")}</TabsTrigger>
-                    <TabsTrigger value="expired">{t("Expired")}</TabsTrigger>
+                    <TabsTrigger value="all">{t("coupons.tabs.allCoupons")}</TabsTrigger>
+                    <TabsTrigger value="active">{t("coupons.tabs.active")}</TabsTrigger>
+                    <TabsTrigger value="expired">{t("coupons.tabs.expired")}</TabsTrigger>
                   </TabsList>
                 </Tabs>
               </div>
@@ -574,14 +574,14 @@ function Coupons() {
               <Table>
                 <TableHeader>
                   <TableRow className="border-b border-gray-200 dark:border-gray-700">
-                    <TableHead>{t("Coupon Code")}</TableHead>
-                    <TableHead>{t("Description")}</TableHead>
-                    <TableHead>{t("Type & Value")}</TableHead>
-                    <TableHead>{t("Status")}</TableHead>
-                    <TableHead>{t("Usage")}</TableHead>
-                    <TableHead>{t("Revenue")}</TableHead>
-                    <TableHead>{t("Valid Period")}</TableHead>
-                    <TableHead className="text-right">{t("Actions")}</TableHead>
+                    <TableHead>{t("coupons.table.couponCode")}</TableHead>
+                    <TableHead>{t("coupons.table.description")}</TableHead>
+                    <TableHead>{t("coupons.table.typeAndValue")}</TableHead>
+                    <TableHead>{t("coupons.table.status")}</TableHead>
+                    <TableHead>{t("coupons.table.usage")}</TableHead>
+                    <TableHead>{t("coupons.table.revenue")}</TableHead>
+                    <TableHead>{t("coupons.table.validPeriod")}</TableHead>
+                    <TableHead className="text-right">{t("coupons.table.actions")}</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -614,7 +614,7 @@ function Coupons() {
                           <p className="font-medium">{coupon.description}</p>
                           {coupon.minOrderValue && (
                             <p className="text-xs text-muted-foreground mt-1">
-                              {t("Min. order")}: EGP {coupon.minOrderValue}
+                              {t("coupons.minOrder")}: EGP {coupon.minOrderValue}
                             </p>
                           )}
                         </div>
@@ -625,7 +625,7 @@ function Coupons() {
                           <span className="font-medium">
                             {coupon.type === "percentage" ? `${coupon.value}%` : 
                              coupon.type === "fixed" ? `EGP ${coupon.value}` : 
-                             t("Free")}
+                             "Free"}
                           </span>
                         </div>
                       </TableCell>
@@ -647,7 +647,7 @@ function Coupons() {
                         <div>
                           <p className="font-medium">EGP {coupon.totalRevenue.toLocaleString()}</p>
                           <p className="text-xs text-muted-foreground">
-                            {t("Avg")}: EGP {coupon.avgOrderValue.toFixed(0)}
+                            {t("coupons.avg")}: EGP {coupon.avgOrderValue.toFixed(0)}
                           </p>
                         </div>
                       </TableCell>
@@ -671,24 +671,24 @@ function Coupons() {
                             </Button>
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
-                            <DropdownMenuLabel>{t("Actions")}</DropdownMenuLabel>
+                            <DropdownMenuLabel>{t("coupons.actions.title")}</DropdownMenuLabel>
                             <DropdownMenuSeparator />
                             <DropdownMenuItem>
                               <Eye className="h-4 w-4 mr-2" />
-                              {t("View Details")}
+                              {t("coupons.actions.viewDetails")}
                             </DropdownMenuItem>
                             <DropdownMenuItem>
                               <Edit className="h-4 w-4 mr-2" />
-                              {t("Edit")}
+                              {t("coupons.actions.edit")}
                             </DropdownMenuItem>
                             <DropdownMenuItem>
                               <Copy className="h-4 w-4 mr-2" />
-                              {t("Duplicate")}
+                              {t("coupons.actions.duplicate")}
                             </DropdownMenuItem>
                             <DropdownMenuSeparator />
                             <DropdownMenuItem className="text-destructive">
                               <Trash2 className="h-4 w-4 mr-2" />
-                              {t("Delete")}
+                              {t("coupons.actions.delete")}
                             </DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>
@@ -702,14 +702,14 @@ function Coupons() {
             {/* Pagination */}
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
               <p className="text-sm text-muted-foreground text-center sm:text-left">
-                {t("Showing")} 1-{filteredCoupons.length} {t("of")} {coupons.length} {t("coupons")}
+                {t("coupons.pagination.showing")} 1-{filteredCoupons.length} {t("coupons.pagination.of")} {coupons.length} {t("coupons.pagination.coupons")}
               </p>
               <div className="flex gap-2">
                 <Button variant="outline" size="sm" disabled>
-                  {t("Previous")}
+                  {t("coupons.pagination.previous")}
                 </Button>
                 <Button variant="outline" size="sm">
-                  {t("Next")}
+                  {t("coupons.pagination.next")}
                 </Button>
               </div>
             </div>

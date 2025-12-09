@@ -1,7 +1,6 @@
 // Removed unused imports: AppSidebar, SidebarInset/SidebarProvider, Header
 import NotActive from "@/components/NotActive";
 import Title from "@/components/Title";
-import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import Empty from "@/components/Empty";
 import { Plus, SquarePlay, Edit2, Trash2, Package, ShoppingBag, Smartphone, Shirt, Home, Heart, Book, Gamepad2, MoreVertical, Eye, X } from "lucide-react";
@@ -103,7 +102,6 @@ const mockCategories = [
 ];
 
 function Categories() {
-  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [categories] = useState(mockCategories);
   const [hoveredId, setHoveredId] = useState<number | null>(null);
@@ -155,8 +153,8 @@ function Categories() {
         <NotActive />
         <div className="flex justify-between items-center mb-6">
           <Title
-            title={t("Categories")}
-            Subtitle={t("Manage and organize your product categories")}
+            title={"Categories"}
+            Subtitle={"Manage and organize your product categories"}
             className="text-3xl"
             classNamee=""
           />
@@ -165,16 +163,16 @@ function Categories() {
               onClick={() => navigate('/dashboard/products/categories/new')}
               className="bg-primary hover:bg-primary/90 border-0 rounded-2xl text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300"
             >
-              <Plus size={16} className="ml-1" /> {t("Create Category")}
+              <Plus size={16} className="ml-1" /> {"Create  Category"}
             </Button>
             <Button className="bg-[#252525] border-0 md:mb-0 rounded-2xl text-white/80 hover:text-white">
-              {t("How to Create Categories")} <SquarePlay size={16} />
+              {"How to  Create  Categories"} <SquarePlay size={16} />
             </Button>
           </div>
         </div>
 
         {categories.length === 0 ? (
-          <Empty className={" "} Name={t("Categories").toLowerCase()} />
+          <Empty className={" "} Name={"Categories".toLowerCase()} />
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {categories.map((category) => {
@@ -222,7 +220,7 @@ function Categories() {
                             }
                           `}
                         >
-                          {category.isActive ? t("Active") : t("Inactive")}
+                          {category.isActive ? "Active" : "Inactive"}
                         </Badge>
                         
                         <DropdownMenu>
@@ -241,14 +239,14 @@ function Categories() {
                               className="rounded-lg cursor-pointer"
                             >
                               <Eye className="ml-2 h-4 w-4" />
-                              {t("View Products")}
+                              {"View  Products"}
                             </DropdownMenuItem>
                             <DropdownMenuItem
                               onClick={() => handleEdit(category.id)}
                               className="rounded-lg cursor-pointer"
                             >
                               <Edit2 className="ml-2 h-4 w-4" />
-                              {t("Edit")}
+                              {"Edit"}
                             </DropdownMenuItem>
                             <DropdownMenuSeparator />
                             <DropdownMenuItem
@@ -256,7 +254,7 @@ function Categories() {
                               className="rounded-lg cursor-pointer text-red-600 dark:text-red-400"
                             >
                               <Trash2 className="ml-2 h-4 w-4" />
-                              {t("Delete")}
+                              {"Delete"}
                             </DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>
@@ -266,7 +264,7 @@ function Categories() {
                     {/* Category Info */}
                     <div className="space-y-3">
                       <h3 className="text-xl font-bold text-foreground">
-                        {i18n.language === 'ar' ? category.nameAr : category.name}
+                        {category.name}
                       </h3>
                       <p className="text-sm text-muted-foreground line-clamp-2">
                         {category.description}
@@ -276,7 +274,7 @@ function Categories() {
                       <div className="flex items-center gap-2 pt-2">
                         <Package className="h-4 w-4 text-muted-foreground" />
                         <span className="text-sm font-medium text-muted-foreground">
-                          {category.productCount} {t("products")}
+                          {category.productCount} {"Products"}
                         </span>
                       </div>
                     </div>
@@ -295,7 +293,7 @@ function Categories() {
                           className="flex-1 rounded-xl bg-white/90 dark:bg-black/50 backdrop-blur-sm hover:bg-white dark:hover:bg-black/70 text-foreground"
                         >
                           <Edit2 className="h-4 w-4 ml-1" />
-                          {t("Edit")}
+                          {"Edit"}
                         </Button>
                         <Button
                           size="sm"
@@ -304,7 +302,7 @@ function Categories() {
                           className="flex-1 rounded-xl"
                         >
                           <ShoppingBag className="h-4 w-4 ml-1" />
-                          {t("View")}
+                          {"View"}
                         </Button>
                       </div>
                     </div>
@@ -320,7 +318,7 @@ function Categories() {
       <Dialog open={isEditModalOpen} onOpenChange={setIsEditModalOpen}>
         <DialogContent className="max-w-2xl">
           <DialogHeader>
-            <DialogTitle>{t("Edit")} {t("Category")}</DialogTitle>
+            <DialogTitle>{"Edit"} {"Category"}</DialogTitle>
           </DialogHeader>
           
           <div className="space-y-6 py-4">
@@ -328,7 +326,7 @@ function Categories() {
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="name">
-                  {t("Category Name")} (English)
+                  {"Category  Name"} (English)
                 </Label>
                 <Input
                   id="name"
@@ -341,7 +339,7 @@ function Categories() {
               
               <div className="space-y-2">
                 <Label htmlFor="nameAr">
-                  {t("Category Name")} (العربية)
+                  {"Category  Name"} (العربية)
                 </Label>
                 <Input
                   id="nameAr"
@@ -349,7 +347,6 @@ function Categories() {
                   onChange={(e) => setFormData({ ...formData, nameAr: e.target.value })}
                   placeholder="مثال: الإلكترونيات"
                   className="rounded-xl"
-                  dir="rtl"
                 />
               </div>
             </div>
@@ -357,13 +354,13 @@ function Categories() {
             {/* Description */}
             <div className="space-y-2">
               <Label htmlFor="description">
-                {t("Description")}
+                {"Description"}
               </Label>
               <Textarea
                 id="description"
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                placeholder={t("Describe this category...")}
+                placeholder={""}
                 className="rounded-xl min-h-[100px]"
                 rows={4}
               />
@@ -373,10 +370,10 @@ function Categories() {
             <div className="flex items-center justify-between p-4 rounded-xl border bg-muted/50">
               <div className="space-y-0.5">
                 <Label htmlFor="isActive" className="text-base">
-                  {t("Active Status")}
+                  {"Active  Status"}
                 </Label>
                 <p className="text-sm text-muted-foreground">
-                  {t("Enable this category to be visible in your store")}
+                  {"Enable this category to be visible in your store"}
                 </p>
               </div>
               <Switch
@@ -390,7 +387,7 @@ function Categories() {
             {/* Sort Order */}
             <div className="space-y-2">
               <Label htmlFor="sortOrder">
-                {t("Sort Order")}
+                {"Sort  Order"}
               </Label>
               <Input
                 id="sortOrder"
@@ -401,7 +398,7 @@ function Categories() {
                 className="rounded-xl"
               />
               <p className="text-xs text-muted-foreground">
-                {t("Lower numbers appear first")}
+                {"Lower numbers appear first"}
               </p>
             </div>
           </div>
@@ -412,13 +409,13 @@ function Categories() {
               onClick={() => setIsEditModalOpen(false)}
               className="rounded-xl"
             >
-              {t("Cancel")}
+              {"Cancel"}
             </Button>
             <Button
               onClick={handleSaveEdit}
               className="rounded-xl bg-primary hover:bg-primary/90"
             >
-              {t("Save Changes")}
+              {"Save  Changes"}
             </Button>
           </div>
         </DialogContent>

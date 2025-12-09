@@ -1,7 +1,5 @@
 import { Newsletter } from "@/themes/shared/components/Newsletter";
 import { Instagram, Facebook, Twitter, Youtube } from "lucide-react";
-import { useTranslation } from "react-i18next";
-
 interface FooterLink {
   label: string;
   href: string;
@@ -36,20 +34,18 @@ export const MinimalFooter = ({
   copyright,
   className = "",
 }: MinimalFooterProps) => {
-  const { t } = useTranslation();
-
   const defaultLinks: FooterLink[] = [
-    { label: t("About"), href: "/about" },
-    { label: t("Contact"), href: "/contact" },
-    { label: t("Privacy"), href: "/privacy" },
-    { label: t("Terms"), href: "/terms" },
+    { label: "About", href: "/about" },
+    { label: "Contact", href: "/contact" },
+    { label: "Privacy", href: "/privacy" },
+    { label: "Terms", href: "/terms" },
   ];
 
   const footerLinks = links || defaultLinks;
   const currentYear = new Date().getFullYear();
   const defaultCopyright = `© ${currentYear} ${
-    typeof logo === "string" ? logo : t("Minimal Store")
-  }. ${t("All rights reserved.")}`;
+    typeof logo === "string" ? logo : "Minimal  Store"
+  }. ${""}`;
 
   return (
     <footer className={`bg-white ${className}`}>
@@ -59,12 +55,10 @@ export const MinimalFooter = ({
             <div className="max-w-md mx-auto text-center">
               <Newsletter
                 variant="minimal"
-                title={t("Stay Updated")}
-                description={t(
-                  "Subscribe for new products and exclusive offers"
-                )}
-                buttonText={t("Subscribe")}
-                placeholder={t("Your email")}
+                title={"Stay  Updated"}
+                description={"Subscribe For New Products And Exclusive Offers"}
+                buttonText={"Subscribe"}
+                placeholder={"Your email"}
               />
             </div>
           </div>
@@ -195,16 +189,15 @@ export const MinimalTwoColumnFooter = ({
   copyright,
   className = "",
 }: MinimalTwoColumnFooterProps) => {
-  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
   const defaultCopyright = `© ${currentYear} ${
-    typeof logo === "string" ? logo : t("Minimal Store")
+    typeof logo === "string" ? logo : "Minimal  Store"
   }`;
 
   const translatedSections = sections.map((section) => ({
     ...section,
-    title: t(section.title),
-    links: section.links.map((link) => ({ ...link, label: t(link.label) })),
+    title: section.title,
+    links: section.links.map((link) => ({ ...link, label: link.label })),
   }));
 
   return (
@@ -223,7 +216,7 @@ export const MinimalTwoColumnFooter = ({
             </a>
             {description && (
               <p className="text-sm text-gray-600 font-light mb-6 max-w-sm">
-                {t(description)}
+                {description}
               </p>
             )}
             <div className="flex items-center space-x-4">

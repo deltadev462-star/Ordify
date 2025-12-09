@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { 
   CreditCard, 
   User,
@@ -53,7 +52,6 @@ interface PaymentMethod {
 }
 
 function PurchaseFormSection() {
-  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState('fields');
   
   const [formSettings, setFormSettings] = useState({
@@ -78,20 +76,20 @@ function PurchaseFormSection() {
     {
       id: 'full_name',
       name: 'full_name',
-      label: t('purchaseForm.fields.fullName'),
+      label: "Full Name",
       type: 'text',
       required: true,
-      placeholder: t('purchaseForm.placeholders.fullName'),
+      placeholder: "Full Name",
       order: 1,
       visible: true
     },
     {
       id: 'email',
       name: 'email',
-      label: t('purchaseForm.fields.email'),
+      label: "Email",
       type: 'email',
       required: true,
-      placeholder: t('purchaseForm.placeholders.email'),
+      placeholder: "Email",
       validation: 'email',
       order: 2,
       visible: true
@@ -99,10 +97,10 @@ function PurchaseFormSection() {
     {
       id: 'phone',
       name: 'phone',
-      label: t('purchaseForm.fields.phone'),
+      label: "Phone",
       type: 'phone',
       required: true,
-      placeholder: t('purchaseForm.placeholders.phone'),
+      placeholder: "Phone",
       validation: 'phone',
       order: 3,
       visible: true
@@ -110,30 +108,30 @@ function PurchaseFormSection() {
     {
       id: 'shipping_address',
       name: 'shipping_address',
-      label: t('purchaseForm.fields.shippingAddress'),
+      label: "Shipping Address",
       type: 'text',
       required: true,
-      placeholder: t('purchaseForm.placeholders.shippingAddress'),
+      placeholder: "Shipping Address",
       order: 4,
       visible: true
     },
     {
       id: 'city',
       name: 'city',
-      label: t('purchaseForm.fields.city'),
+      label: "City",
       type: 'text',
       required: true,
-      placeholder: t('purchaseForm.placeholders.city'),
+      placeholder: "City",
       order: 5,
       visible: true
     },
     {
       id: 'country',
       name: 'country',
-      label: t('purchaseForm.fields.country'),
+      label: "Country",
       type: 'select',
       required: true,
-      options: [t('purchaseForm.countries.us'), t('purchaseForm.countries.ca'), t('purchaseForm.countries.uk'), t('purchaseForm.countries.au')],
+      options: ["Us", "Ca", "Uk", "Au"],
       order: 6,
       visible: true
     }
@@ -142,33 +140,33 @@ function PurchaseFormSection() {
   const [paymentMethods, setPaymentMethods] = useState<PaymentMethod[]>([
     {
       id: 'cod',
-      name: t('purchaseForm.paymentMethods.cod'),
+      name: "Cod",
       icon: DollarSign,
       enabled: true,
-      description: t('purchaseForm.paymentMethods.codDescription'),
+      description: "Cod Description",
       fee: 5,
       feeType: 'fixed'
     },
     {
       id: 'card',
-      name: t('purchaseForm.paymentMethods.card'),
+      name: "Card",
       icon: CreditCard,
       enabled: true,
-      description: t('purchaseForm.paymentMethods.cardDescription'),
+      description: "Card Description",
     },
     {
       id: 'paypal',
-      name: t('purchaseForm.paymentMethods.paypal'),
+      name: "Paypal",
       icon: CreditCard,
       enabled: false,
-      description: t('purchaseForm.paymentMethods.paypalDescription'),
+      description: "Paypal Description",
     },
     {
       id: 'bank',
-      name: t('purchaseForm.paymentMethods.bank'),
+      name: "Bank",
       icon: FileText,
       enabled: false,
-      description: t('purchaseForm.paymentMethods.bankDescription'),
+      description: "Bank Description",
       fee: 2,
       feeType: 'percentage'
     }
@@ -229,9 +227,9 @@ function PurchaseFormSection() {
     <div className="space-y-6">
       <Alert variant="info">
         <AlertIcon variant="info" />
-        <AlertTitle>{t("purchaseForm.title")}</AlertTitle>
+        <AlertTitle>{"Title"}</AlertTitle>
         <AlertDescription>
-          {t("purchaseForm.description")}
+          {"Description"}
         </AlertDescription>
       </Alert>
 
@@ -239,19 +237,19 @@ function PurchaseFormSection() {
         <TabsList className="grid w-full max-w-2xl grid-cols-2 sm:grid-cols-4 mb-6">
           <TabsTrigger value="fields" className="flex items-center gap-2">
             <FileText className="w-4 h-4" />
-            {t("purchaseForm.tabs.formFields")}
+            {"Form Fields"}
           </TabsTrigger>
           <TabsTrigger value="payment" className="flex items-center gap-2">
             <CreditCard className="w-4 h-4" />
-            {t("purchaseForm.tabs.payment")}
+            {"Payment"}
           </TabsTrigger>
           <TabsTrigger value="appearance" className="flex items-center gap-2">
             <Settings className="w-4 h-4" />
-            {t("purchaseForm.tabs.appearance")}
+            {"Appearance"}
           </TabsTrigger>
           <TabsTrigger value="advanced" className="flex items-center gap-2">
             <Shield className="w-4 h-4" />
-            {t("purchaseForm.tabs.advanced")}
+            {"Advanced"}
           </TabsTrigger>
         </TabsList>
 
@@ -260,10 +258,10 @@ function PurchaseFormSection() {
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <User className="w-5 h-5 text-primary" />
-                {t("purchaseForm.customerInfo.title")}
+                {"Title"}
               </CardTitle>
               <CardDescription>
-                {t("purchaseForm.customerInfo.description")}
+                {"Description"}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -300,23 +298,23 @@ function PurchaseFormSection() {
                             </h4>
                             {field.required && (
                               <Badge variant="destructive" className="text-xs">
-                                {t("purchaseForm.required")}
+                                {"Required"}
                               </Badge>
                             )}
                             {!field.visible && (
                               <Badge variant="secondary" className="text-xs">
-                                {t("purchaseForm.hidden")}
+                                {"Hidden"}
                               </Badge>
                             )}
                           </div>
                           <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mt-1">
                             <span className="font-mono">{field.name}</span>
                             <span>•</span>
-                            <span>{t("purchaseForm.type")}: {field.type}</span>
+                            <span>{"Type"}: {field.type}</span>
                             {field.validation && (
                               <>
                                 <span>•</span>
-                                <span>{t("purchaseForm.validation")}: {field.validation}</span>
+                                <span>{"Validation"}: {field.validation}</span>
                               </>
                             )}
                           </div>
@@ -325,14 +323,14 @@ function PurchaseFormSection() {
 
                       <div className="flex items-center gap-4">
                         <div className="flex items-center gap-2">
-                          <Label className="text-sm">{t("purchaseForm.required")}</Label>
+                          <Label className="text-sm">{"Required"}</Label>
                           <Switch
                             checked={field.required}
                             onCheckedChange={() => handleFieldRequiredToggle(field.id)}
                           />
                         </div>
                         <div className="flex items-center gap-2">
-                          <Label className="text-sm">{t("purchaseForm.visible")}</Label>
+                          <Label className="text-sm">{"Visible"}</Label>
                           <Switch
                             checked={field.visible}
                             onCheckedChange={() => handleFieldToggle(field.id)}
@@ -345,7 +343,7 @@ function PurchaseFormSection() {
               ))}
 
               <div className="pt-4">
-                <h4 className="font-medium mb-3">{t("purchaseForm.customFields.title")}</h4>
+                <h4 className="font-medium mb-3">{"Title"}</h4>
                 
                 {customFields.length > 0 && (
                   <div className="space-y-3 mb-4">
@@ -353,7 +351,7 @@ function PurchaseFormSection() {
                       <Card key={field.id} className="border border-gray-200 dark:border-gray-800">
                         <CardContent className="p-4 space-y-3">
                           <div className="flex items-center justify-between">
-                            <Label>{t("purchaseForm.customFields.customField", {number: index + 1})}</Label>
+                            <Label>{"Custom Field"}</Label>
                             <Button
                               variant="ghost"
                               size="sm"
@@ -366,23 +364,23 @@ function PurchaseFormSection() {
                           
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <div>
-                              <Label className="text-sm">{t("purchaseForm.customFields.fieldLabel")}</Label>
+                              <Label className="text-sm">{"Field Label"}</Label>
                               <Input
-                                placeholder={t("purchaseForm.customFields.fieldLabelPlaceholder")}
+                                placeholder={"Field Label Placeholder"}
                                 className="mt-1"
                               />
                             </div>
                             <div>
-                              <Label className="text-sm">{t("purchaseForm.customFields.fieldType")}</Label>
+                              <Label className="text-sm">{"Field Type"}</Label>
                               <Select defaultValue="text">
                                 <SelectTrigger className="mt-1">
                                   <SelectValue />
                                 </SelectTrigger>
                                 <SelectContent>
-                                  <SelectItem value="text">{t("purchaseForm.fieldTypes.text")}</SelectItem>
-                                  <SelectItem value="textarea">{t("purchaseForm.fieldTypes.textarea")}</SelectItem>
-                                  <SelectItem value="select">{t("purchaseForm.fieldTypes.dropdown")}</SelectItem>
-                                  <SelectItem value="checkbox">{t("purchaseForm.fieldTypes.checkbox")}</SelectItem>
+                                  <SelectItem value="text">{"Text"}</SelectItem>
+                                  <SelectItem value="textarea">{"Textarea"}</SelectItem>
+                                  <SelectItem value="select">{"Dropdown"}</SelectItem>
+                                  <SelectItem value="checkbox">{"Checkbox"}</SelectItem>
                                 </SelectContent>
                               </Select>
                             </div>
@@ -399,7 +397,7 @@ function PurchaseFormSection() {
                   className="w-full"
                 >
                   <Plus className="w-4 h-4 mr-2" />
-                  {t("purchaseForm.customFields.addField")}
+                  {"Add Field"}
                 </Button>
               </div>
             </CardContent>
@@ -414,9 +412,9 @@ function PurchaseFormSection() {
                   <CreditCard className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <CardTitle className="text-xl">{t("purchaseForm.payment.title")}</CardTitle>
+                  <CardTitle className="text-xl">{"Title"}</CardTitle>
                   <CardDescription className="text-white/80">
-                    {t("purchaseForm.payment.description")}
+                    {"Description"}
                   </CardDescription>
                 </div>
               </div>
@@ -455,7 +453,7 @@ function PurchaseFormSection() {
                             {method.enabled && method.fee && (
                               <div className="mt-3 p-3 bg-gray-50 dark:bg-gray-900 rounded-lg">
                                 <div className="flex items-center justify-between">
-                                  <Label className="text-sm">{t("purchaseForm.payment.transactionFee")}</Label>
+                                  <Label className="text-sm">{"Transaction Fee"}</Label>
                                   <div className="flex items-center gap-2">
                                     <Input
                                       type="number"
@@ -468,7 +466,7 @@ function PurchaseFormSection() {
                                         <SelectValue />
                                       </SelectTrigger>
                                       <SelectContent>
-                                        <SelectItem value="fixed">{t("purchaseForm.payment.fixed")}</SelectItem>
+                                        <SelectItem value="fixed">{"Fixed"}</SelectItem>
                                         <SelectItem value="percentage">%</SelectItem>
                                       </SelectContent>
                                     </Select>
@@ -491,7 +489,7 @@ function PurchaseFormSection() {
               <Alert>
                 <Info className="h-4 w-4" />
                 <AlertDescription>
-                  {t("purchaseForm.payment.warning")}
+                  {"Warning"}
                 </AlertDescription>
               </Alert>
             </CardContent>
@@ -501,15 +499,15 @@ function PurchaseFormSection() {
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Package className="w-5 h-5 text-primary" />
-                {t("purchaseForm.shipping.title")}
+                {"Title"}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium">{t("purchaseForm.shipping.showCalculator")}</p>
+                  <p className="font-medium">{"Show Calculator"}</p>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    {t("purchaseForm.shipping.showCalculatorDescription")}
+                    {"Show Calculator Description"}
                   </p>
                 </div>
                 <Switch defaultChecked />
@@ -517,9 +515,9 @@ function PurchaseFormSection() {
               
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium">{t("purchaseForm.shipping.expressOption")}</p>
+                  <p className="font-medium">{"Express Option"}</p>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    {t("purchaseForm.shipping.expressOptionDescription")}
+                    {"Express Option Description"}
                   </p>
                 </div>
                 <Switch />
@@ -533,15 +531,15 @@ function PurchaseFormSection() {
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Settings className="w-5 h-5 text-primary" />
-                {t("purchaseForm.appearance.title")}
+                {"Title"}
               </CardTitle>
               <CardDescription>
-                {t("purchaseForm.appearance.description")}
+                {"Description"}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div>
-                <Label className="mb-2">{t("purchaseForm.appearance.formLayout")}</Label>
+                <Label className="mb-2">{"Form Layout"}</Label>
                 <Select 
                   value={formSettings.layout}
                   onValueChange={(value: 'single' | 'multi') => 
@@ -552,8 +550,8 @@ function PurchaseFormSection() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="single">{t("purchaseForm.appearance.singlePage")}</SelectItem>
-                    <SelectItem value="multi">{t("purchaseForm.appearance.multiStep")}</SelectItem>
+                    <SelectItem value="single">{"Single Page"}</SelectItem>
+                    <SelectItem value="multi">{"Multi Step"}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -562,16 +560,16 @@ function PurchaseFormSection() {
                 <Alert>
                   <Info className="h-4 w-4" />
                   <AlertDescription>
-                    {t("purchaseForm.appearance.multiStepDescription")}
+                    {"Multi Step Description"}
                   </AlertDescription>
                 </Alert>
               )}
 
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium">{t("purchaseForm.appearance.progressIndicator")}</p>
+                  <p className="font-medium">{"Progress Indicator"}</p>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    {t("purchaseForm.appearance.progressIndicatorDescription")}
+                    {"Progress Indicator Description"}
                   </p>
                 </div>
                 <Switch
@@ -583,7 +581,7 @@ function PurchaseFormSection() {
               </div>
 
               <div>
-                <Label className="mb-2">{t("purchaseForm.appearance.orderSummaryPosition")}</Label>
+                <Label className="mb-2">{"Order Summary Position"}</Label>
                 <Select 
                   value={formSettings.summaryPosition}
                   onValueChange={(value: 'right' | 'top') => 
@@ -594,19 +592,19 @@ function PurchaseFormSection() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="right">{t("purchaseForm.appearance.sidebarRight")}</SelectItem>
-                    <SelectItem value="top">{t("purchaseForm.appearance.topOfForm")}</SelectItem>
+                    <SelectItem value="right">{"Sidebar Right"}</SelectItem>
+                    <SelectItem value="top">{"Top Of Form"}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
               <div className="pt-4 border-t">
-                <h4 className="font-medium mb-3">{t("purchaseForm.appearance.securityBadges")}</h4>
+                <h4 className="font-medium mb-3">{"Security Badges"}</h4>
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="font-medium">{t("purchaseForm.appearance.showSecurityBadges")}</p>
+                    <p className="font-medium">{"Show Security Badges"}</p>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                      {t("purchaseForm.appearance.showSecurityBadgesDescription")}
+                      {"Show Security Badges Description"}
                     </p>
                   </div>
                   <Switch
@@ -624,7 +622,7 @@ function PurchaseFormSection() {
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Eye className="w-5 h-5 text-primary" />
-                {t("purchaseForm.appearance.formPreview")}
+                {"Form Preview"}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -633,8 +631,8 @@ function PurchaseFormSection() {
                   {formSettings.showProgressBar && (
                     <div className="mb-6">
                       <div className="flex items-center justify-between mb-2">
-                        <span className="text-sm font-medium text-primary">{t("purchaseForm.appearance.stepProgress", { current: 1, total: 3 })}</span>
-                        <span className="text-sm text-gray-600">{t("purchaseForm.appearance.customerInfo")}</span>
+                        <span className="text-sm font-medium text-primary">{"Step Progress"}</span>
+                        <span className="text-sm text-gray-600">{"Customer Info"}</span>
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
                         <div className="bg-primary h-2 rounded-full" style={{ width: '33%' }} />
@@ -665,11 +663,11 @@ function PurchaseFormSection() {
                     <div className="flex items-center gap-4 mt-6 pt-4 border-t">
                       <Badge variant="secondary" className="gap-1">
                         <Shield className="w-3 h-3" />
-                        {t("purchaseForm.appearance.sslSecured")}
+                        {"Ssl Secured"}
                       </Badge>
                       <Badge variant="secondary" className="gap-1">
                         <CheckCircle className="w-3 h-3" />
-                        {t("purchaseForm.appearance.verifiedMerchant")}
+                        {"Verified Merchant"}
                       </Badge>
                     </div>
                   )}
@@ -684,19 +682,19 @@ function PurchaseFormSection() {
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Shield className="w-5 h-5 text-primary" />
-                {t("purchaseForm.advanced.title")}
+                {"Title"}
               </CardTitle>
               <CardDescription>
-                {t("purchaseForm.advanced.description")}
+                {"Description"}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="font-medium">{t("purchaseForm.advanced.guestCheckout")}</p>
+                    <p className="font-medium">{"Guest Checkout"}</p>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                      {t("purchaseForm.advanced.guestCheckoutDescription")}
+                      {"Guest Checkout Description"}
                     </p>
                   </div>
                   <Switch
@@ -709,9 +707,9 @@ function PurchaseFormSection() {
 
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="font-medium">{t("purchaseForm.advanced.autoSave")}</p>
+                    <p className="font-medium">{"Auto Save"}</p>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                      {t("purchaseForm.advanced.autoSaveDescription")}
+                      {"Auto Save Description"}
                     </p>
                   </div>
                   <Switch
@@ -724,9 +722,9 @@ function PurchaseFormSection() {
 
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="font-medium">{t("purchaseForm.advanced.couponCode")}</p>
+                    <p className="font-medium">{"Coupon Code"}</p>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                      {t("purchaseForm.advanced.couponCodeDescription")}
+                      {"Coupon Code Description"}
                     </p>
                   </div>
                   <Switch
@@ -739,9 +737,9 @@ function PurchaseFormSection() {
 
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="font-medium">{t("purchaseForm.advanced.giftMessage")}</p>
+                    <p className="font-medium">{"Gift Message"}</p>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                      {t("purchaseForm.advanced.giftMessageDescription")}
+                      {"Gift Message Description"}
                     </p>
                   </div>
                   <Switch
@@ -754,9 +752,9 @@ function PurchaseFormSection() {
 
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="font-medium">{t("purchaseForm.advanced.termsConditions")}</p>
+                    <p className="font-medium">{"Terms Conditions"}</p>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                      {t("purchaseForm.advanced.termsConditionsDescription")}
+                      {"Terms Conditions Description"}
                     </p>
                   </div>
                   <Switch
@@ -769,9 +767,9 @@ function PurchaseFormSection() {
 
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="font-medium">{t("purchaseForm.advanced.newsletterOptIn")}</p>
+                    <p className="font-medium">{"Newsletter Opt In"}</p>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                      {t("purchaseForm.advanced.newsletterOptInDescription")}
+                      {"Newsletter Opt In Description"}
                     </p>
                   </div>
                   <Switch
@@ -789,34 +787,34 @@ function PurchaseFormSection() {
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <AlertCircle className="w-5 h-5 text-primary" />
-                {t("purchaseForm.validation.title")}
+                {"Title"}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <Label>{t("purchaseForm.validation.errorMessageStyle")}</Label>
+                <Label>{"Error Message Style"}</Label>
                 <Select defaultValue="inline">
                   <SelectTrigger className="mt-1">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="inline">{t("purchaseForm.validation.inline")}</SelectItem>
-                    <SelectItem value="toast">{t("purchaseForm.validation.toast")}</SelectItem>
-                    <SelectItem value="summary">{t("purchaseForm.validation.summary")}</SelectItem>
+                    <SelectItem value="inline">{"Inline"}</SelectItem>
+                    <SelectItem value="toast">{"Toast"}</SelectItem>
+                    <SelectItem value="summary">{"Summary"}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
               <div>
-                <Label>{t("purchaseForm.validation.phoneFormat")}</Label>
+                <Label>{"Phone Format"}</Label>
                 <Select defaultValue="international">
                   <SelectTrigger className="mt-1">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="international">{t("purchaseForm.validation.international")}</SelectItem>
-                    <SelectItem value="national">{t("purchaseForm.validation.national")}</SelectItem>
-                    <SelectItem value="none">{t("purchaseForm.validation.noFormatting")}</SelectItem>
+                    <SelectItem value="international">{"International"}</SelectItem>
+                    <SelectItem value="national">{"National"}</SelectItem>
+                    <SelectItem value="none">{"No Formatting"}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -827,11 +825,11 @@ function PurchaseFormSection() {
 
       <div className="flex justify-end gap-3">
         <Button variant="outline">
-          {t("purchaseForm.actions.cancel")}
+          {"Cancel"}
         </Button>
         <Button className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70">
           <Save className="w-4 h-4 mr-2" />
-          {t("purchaseForm.actions.save")}
+          {"Save"}
         </Button>
       </div>
     </div>

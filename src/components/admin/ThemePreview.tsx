@@ -1,5 +1,4 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 import { useTheme } from "@/hooks/useTheme";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -12,7 +11,6 @@ interface ThemePreviewProps {
 export const ThemePreview: React.FC<ThemePreviewProps> = ({
   className = "",
 }) => {
-  const { t } = useTranslation();
   const { currentTheme } = useTheme();
 
   // Simplified preview - just show a static image
@@ -22,7 +20,7 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
     >
       <CardHeader>
         <CardTitle>
-          {t("themePreview")} - {currentTheme}
+          {"Theme Preview"} - {currentTheme}
         </CardTitle>
       </CardHeader>
       <CardContent className="p-0">
@@ -35,7 +33,7 @@ export const ThemePreview: React.FC<ThemePreviewProps> = ({
           <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
             <div className="text-center text-white">
               <h3 className="text-2xl font-bold mb-2">{currentTheme} Theme</h3>
-              <p className="text-lg">{t("Live Preview")}</p>
+              <p className="text-lg">{"Live  Preview"}</p>
             </div>
           </div>
         </div>

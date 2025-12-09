@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import {
   Link2,
   Users,
@@ -118,7 +117,6 @@ interface Commission {
 }
 
 function ReferralLinks() {
-  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
   const [filterStatus, setFilterStatus] = useState("all");
   const [filterPartner, setFilterPartner] = useState("all");
@@ -402,21 +400,21 @@ function ReferralLinks() {
         return (
           <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-400">
             <CheckCircle className="h-3 w-3 mr-1" />
-            {t("Active")}
+            {"Active"}
           </Badge>
         );
       case "paused":
         return (
           <Badge className="bg-yellow-100 text-yellow-700 dark:bg-yellow-950/30 dark:text-yellow-400">
             <Clock className="h-3 w-3 mr-1" />
-            {t("Paused")}
+            {"Paused"}
           </Badge>
         );
       case "expired":
         return (
           <Badge className="bg-gray-100 text-gray-700 dark:bg-gray-950/30 dark:text-gray-400">
             <XCircle className="h-3 w-3 mr-1" />
-            {t("Expired")}
+            {"Expired"}
           </Badge>
         );
       default:
@@ -427,13 +425,13 @@ function ReferralLinks() {
   const getTierBadge = (tier: string) => {
     switch (tier) {
       case "bronze":
-        return <Badge className="bg-orange-100 text-orange-700 dark:bg-orange-950/30 dark:text-orange-400">{t("Bronze")}</Badge>;
+        return <Badge className="bg-orange-100 text-orange-700 dark:bg-orange-950/30 dark:text-orange-400">{"Bronze"}</Badge>;
       case "silver":
-        return <Badge className="bg-gray-100 text-gray-700 dark:bg-gray-950/30 dark:text-gray-400">{t("Silver")}</Badge>;
+        return <Badge className="bg-gray-100 text-gray-700 dark:bg-gray-950/30 dark:text-gray-400">{"Silver"}</Badge>;
       case "gold":
-        return <Badge className="bg-yellow-100 text-yellow-700 dark:bg-yellow-950/30 dark:text-yellow-400">{t("Gold")}</Badge>;
+        return <Badge className="bg-yellow-100 text-yellow-700 dark:bg-yellow-950/30 dark:text-yellow-400">{"Gold"}</Badge>;
       case "platinum":
-        return <Badge className="bg-purple-100 text-purple-700 dark:bg-purple-950/30 dark:text-purple-400">{t("Platinum")}</Badge>;
+        return <Badge className="bg-purple-100 text-purple-700 dark:bg-purple-950/30 dark:text-purple-400">{"Platinum"}</Badge>;
       default:
         return null;
     }
@@ -442,13 +440,13 @@ function ReferralLinks() {
   const getCommissionStatusBadge = (status: string) => {
     switch (status) {
       case "pending":
-        return <Badge variant="outline">{t("Pending")}</Badge>;
+        return <Badge variant="outline">{"Pending"}</Badge>;
       case "approved":
-        return <Badge className="bg-blue-100 text-blue-700 dark:bg-blue-950/30 dark:text-blue-400">{t("Approved")}</Badge>;
+        return <Badge className="bg-blue-100 text-blue-700 dark:bg-blue-950/30 dark:text-blue-400">{"Approved"}</Badge>;
       case "paid":
-        return <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-400">{t("Paid")}</Badge>;
+        return <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-400">{"Paid"}</Badge>;
       case "rejected":
-        return <Badge className="bg-red-100 text-red-700 dark:bg-red-950/30 dark:text-red-400">{t("Rejected")}</Badge>;
+        return <Badge className="bg-red-100 text-red-700 dark:bg-red-950/30 dark:text-red-400">{"Rejected"}</Badge>;
       default:
         return null;
     }
@@ -486,34 +484,34 @@ function ReferralLinks() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuLabel>{t("Actions")}</DropdownMenuLabel>
+              <DropdownMenuLabel>{"Actions"}</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem>
                 <Eye className="h-4 w-4 mr-2" />
-                {t("View Details")}
+                {"View  Details"}
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Edit className="h-4 w-4 mr-2" />
-                {t("Edit")}
+                {"Edit"}
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <QrCode className="h-4 w-4 mr-2" />
-                {t("Generate QR")}
+                {"Generate  Q R"}
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Share2 className="h-4 w-4 mr-2" />
-                {t("Share")}
+                {"Share"}
               </DropdownMenuItem>
               {link.status === "active" && (
                 <DropdownMenuItem>
                   <Clock className="h-4 w-4 mr-2" />
-                  {t("Pause")}
+                  {"Pause"}
                 </DropdownMenuItem>
               )}
               <DropdownMenuSeparator />
               <DropdownMenuItem className="text-destructive">
                 <Trash2 className="h-4 w-4 mr-2" />
-                {t("Delete")}
+                {"Delete"}
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -524,7 +522,7 @@ function ReferralLinks() {
           <div className="flex items-center gap-2">
             <Avatar className="h-8 w-8">
               {link.partner.avatar && <AvatarImage src={link.partner.avatar} />}
-              <AvatarFallback>{link.partner.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+              <AvatarFallback>{link.partner.name.split(' ').filter(Boolean).map(n => n[0]).join('')}</AvatarFallback>
             </Avatar>
             <div className="flex-1">
               <p className="text-sm font-medium">{link.partner.name}</p>
@@ -537,13 +535,13 @@ function ReferralLinks() {
           <div>{getStatusBadge(link.status)}</div>
           <div className="text-right">
             <p className="font-medium">{link.clicks.toLocaleString()}</p>
-            <p className="text-xs text-muted-foreground">{t("clicks")}</p>
+            <p className="text-xs text-muted-foreground">{"Clicks"}</p>
           </div>
         </div>
 
         <div className="grid grid-cols-2 gap-4 pt-3 border-t">
           <div>
-            <p className="text-sm text-muted-foreground">{t("Conversions")}</p>
+            <p className="text-sm text-muted-foreground">{"Conversions"}</p>
             <div className="space-y-1">
               <div className="flex items-center justify-between">
                 <span className="text-sm font-medium">{link.conversions}</span>
@@ -553,13 +551,13 @@ function ReferralLinks() {
             </div>
           </div>
           <div>
-            <p className="text-sm text-muted-foreground">{t("Revenue")}</p>
+            <p className="text-sm text-muted-foreground">{"Revenue"}</p>
             <p className="font-bold">${link.revenue.toLocaleString()}</p>
           </div>
         </div>
 
         <div className="flex items-center justify-between pt-3 border-t">
-          <span className="text-sm text-muted-foreground">{t("Commission")}</span>
+          <span className="text-sm text-muted-foreground">{"Commission"}</span>
           <div className="text-right">
             <p className="font-medium">${link.commission.toLocaleString()}</p>
             <p className="text-xs text-muted-foreground">{link.commissionRate}%</p>
@@ -576,7 +574,7 @@ function ReferralLinks() {
           <div className="flex items-center gap-2">
             <Avatar className="h-8 w-8">
               {commission.partner.avatar && <AvatarImage src={commission.partner.avatar} />}
-              <AvatarFallback>{commission.partner.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+              <AvatarFallback>{commission.partner.name.split(' ').filter(Boolean).map(n => n[0]).join('')}</AvatarFallback>
             </Avatar>
             <div>
               <p className="text-sm font-medium">{commission.partner.name}</p>
@@ -590,7 +588,7 @@ function ReferralLinks() {
       </CardHeader>
       <CardContent className="space-y-3">
         <div className="flex items-center justify-between">
-          <span className="text-sm text-muted-foreground">{t("Order")}</span>
+          <span className="text-sm text-muted-foreground">{"Order"}</span>
           <Button variant="link" size="sm" className="p-0 h-auto">
             {commission.orderId}
             <ExternalLink className="h-3 w-3 ml-1" />
@@ -599,11 +597,11 @@ function ReferralLinks() {
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <p className="text-sm text-muted-foreground">{t("Amount")}</p>
+            <p className="text-sm text-muted-foreground">{"Amount"}</p>
             <p className="font-medium">${commission.orderAmount}</p>
           </div>
           <div>
-            <p className="text-sm text-muted-foreground">{t("Commission")}</p>
+            <p className="text-sm text-muted-foreground">{"Commission"}</p>
             <div>
               <p className="font-medium">${commission.commissionAmount}</p>
               <p className="text-xs text-muted-foreground">{commission.commissionRate}%</p>
@@ -615,12 +613,12 @@ function ReferralLinks() {
           <p className="text-sm text-muted-foreground">{new Date(commission.date).toLocaleDateString()}</p>
           {commission.status === "pending" && (
             <Button variant="outline" size="sm">
-              {t("Approve")}
+              {"Approve"}
             </Button>
           )}
           {commission.status === "approved" && (
             <Button variant="outline" size="sm">
-              {t("Pay")}
+              {"Pay"}
             </Button>
           )}
         </div>
@@ -633,19 +631,19 @@ function ReferralLinks() {
       <div className="flex bg-white dark:bg-black/80 rounded-2xl m-1 flex-1 flex-col gap-6 p-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <Title
-            title={t("Referral Links")}
-            Subtitle={t("Manage affiliate and referral programs")}
+            title={"Referral  Links"}
+            Subtitle={"Manage affiliate and referral programs"}
             className="text-3xl"
             classNamee=""
           />
           <div className="flex gap-2 w-full sm:w-auto">
             <Button variant="outline" className="glow-on-hover flex-1 sm:flex-none">
               <UserPlus className="h-4 w-4 mr-2" />
-              {t("Invite Partner")}
+              {"Invite  Partner"}
             </Button>
             <Button className="glow-on-hover flex-1 sm:flex-none" size="lg">
               <Plus className="h-4 w-4 mr-2" />
-              {t("Create Link")}
+              {"Create  Link"}
             </Button>
           </div>
         </div>
@@ -656,11 +654,11 @@ function ReferralLinks() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t("Total Clicks")}</p>
+                  <p className="text-sm text-muted-foreground">{"Total  Clicks"}</p>
                   <p className="text-3xl font-bold mt-1">{(totalClicks / 1000).toFixed(1)}K</p>
                   <div className="flex items-center gap-1 mt-2">
                     <TrendingUp className="h-3 w-3 text-emerald-600 dark:text-emerald-400" />
-                    <span className="text-xs text-emerald-600 dark:text-emerald-400">+12.5% {t("vs last month")}</span>
+                    <span className="text-xs text-emerald-600 dark:text-emerald-400">+12.5% {"Vs last month"}</span>
                   </div>
                 </div>
                 <div className="h-12 w-12 rounded-full bg-gradient-to-br from-blue-500/20 to-blue-400/10 flex items-center justify-center">
@@ -674,7 +672,7 @@ function ReferralLinks() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t("Conversions")}</p>
+                  <p className="text-sm text-muted-foreground">{"Conversions"}</p>
                   <p className="text-3xl font-bold mt-1">{totalConversions.toLocaleString()}</p>
                   <div className="flex items-center gap-2 mt-2">
                     <Progress value={avgConversionRate} className="h-2 flex-1" />
@@ -692,11 +690,11 @@ function ReferralLinks() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t("Revenue Generated")}</p>
+                  <p className="text-sm text-muted-foreground">{"Revenue  Generated"}</p>
                   <p className="text-3xl font-bold mt-1">${(totalRevenue / 1000).toFixed(0)}K</p>
                   <div className="flex items-center gap-1 mt-2">
                     <ArrowUpRight className="h-3 w-3 text-emerald-600 dark:text-emerald-400" />
-                    <span className="text-xs text-emerald-600 dark:text-emerald-400">+23.4% {t("growth")}</span>
+                    <span className="text-xs text-emerald-600 dark:text-emerald-400">+23.4% {"Growth"}</span>
                   </div>
                 </div>
                 <div className="h-12 w-12 rounded-full bg-gradient-to-br from-purple-500/20 to-purple-400/10 flex items-center justify-center">
@@ -710,11 +708,11 @@ function ReferralLinks() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{t("Commission Pending")}</p>
+                  <p className="text-sm text-muted-foreground">{"Commission  Pending"}</p>
                   <p className="text-3xl font-bold mt-1">${(totalCommission / 1000).toFixed(1)}K</p>
                   <div className="flex items-center gap-1 mt-2">
                     <Wallet className="h-3 w-3 text-orange-600 dark:text-orange-400" />
-                    <span className="text-xs text-orange-600 dark:text-orange-400">{partners.length} {t("partners")}</span>
+                    <span className="text-xs text-orange-600 dark:text-orange-400">{partners.length} {"Partners"}</span>
                   </div>
                 </div>
                 <div className="h-12 w-12 rounded-full bg-gradient-to-br from-orange-500/20 to-orange-400/10 flex items-center justify-center">
@@ -727,10 +725,10 @@ function ReferralLinks() {
 
         <Tabs value={selectedTab} onValueChange={setSelectedTab} className="space-y-6">
           <TabsList className="grid w-full max-w-[600px] grid-cols-2 sm:grid-cols-4">
-            <TabsTrigger value="overview">{t("Overview")}</TabsTrigger>
-            <TabsTrigger value="links">{t("Links")}</TabsTrigger>
-            <TabsTrigger value="partners">{t("Partners")}</TabsTrigger>
-            <TabsTrigger value="commissions">{t("Commissions")}</TabsTrigger>
+            <TabsTrigger value="overview">{"Overview"}</TabsTrigger>
+            <TabsTrigger value="links">{"Links"}</TabsTrigger>
+            <TabsTrigger value="partners">{"Partners"}</TabsTrigger>
+            <TabsTrigger value="commissions">{"Commissions"}</TabsTrigger>
           </TabsList>
 
           <TabsContent value="overview" className="space-y-6">
@@ -745,8 +743,8 @@ function ReferralLinks() {
                     <Link2 className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                   </div>
                   <div className="text-left">
-                    <p className="font-medium">{t("Generate Link")}</p>
-                    <p className="text-xs text-muted-foreground">{t("Quick create")}</p>
+                    <p className="font-medium">{"Generate  Link"}</p>
+                    <p className="text-xs text-muted-foreground">{"Quick create"}</p>
                   </div>
                 </div>
               </Button>
@@ -759,8 +757,8 @@ function ReferralLinks() {
                     <Gift className="h-5 w-5 text-purple-600 dark:text-purple-400" />
                   </div>
                   <div className="text-left">
-                    <p className="font-medium">{t("Create Offer")}</p>
-                    <p className="text-xs text-muted-foreground">{t("Special deals")}</p>
+                    <p className="font-medium">{"Create  Offer"}</p>
+                    <p className="text-xs text-muted-foreground">{"Special deals"}</p>
                   </div>
                 </div>
               </Button>
@@ -773,8 +771,8 @@ function ReferralLinks() {
                     <BarChart3 className="h-5 w-5 text-green-600 dark:text-green-400" />
                   </div>
                   <div className="text-left">
-                    <p className="font-medium">{t("Analytics")}</p>
-                    <p className="text-xs text-muted-foreground">{t("View reports")}</p>
+                    <p className="font-medium">{"Analytics"}</p>
+                    <p className="text-xs text-muted-foreground">{"View reports"}</p>
                   </div>
                 </div>
               </Button>
@@ -787,8 +785,8 @@ function ReferralLinks() {
                     <Settings className="h-5 w-5 text-orange-600 dark:text-orange-400" />
                   </div>
                   <div className="text-left">
-                    <p className="font-medium">{t("Settings")}</p>
-                    <p className="text-xs text-muted-foreground">{t("Configure")}</p>
+                    <p className="font-medium">{"Settings"}</p>
+                    <p className="text-xs text-muted-foreground">{"Configure"}</p>
                   </div>
                 </div>
               </Button>
@@ -799,7 +797,7 @@ function ReferralLinks() {
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
                   <Award className="h-5 w-5 text-yellow-600 dark:text-yellow-400" />
-                  {t("Top Performing Links")}
+                  {"Top  Performing  Links"}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -840,7 +838,7 @@ function ReferralLinks() {
                         </div>
                         <div className="text-right sm:text-left">
                           <p className="font-bold text-lg">${(link.revenue / 1000).toFixed(1)}K</p>
-                          <p className="text-xs text-muted-foreground">{link.conversions} {t("conversions")}</p>
+                          <p className="text-xs text-muted-foreground">{link.conversions} {"Conversions"}</p>
                         </div>
                       </div>
                     ))}
@@ -854,13 +852,13 @@ function ReferralLinks() {
             <Card className="glass-card border-0">
               <CardHeader>
                 <div className="flex flex-col gap-4">
-                  <CardTitle className="text-lg">{t("Referral Link Management")}</CardTitle>
+                  <CardTitle className="text-lg">{"Referral  Link  Management"}</CardTitle>
                   
                   <div className="flex flex-col sm:flex-row gap-3">
                     <div className="relative flex-1">
                       <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                       <Input
-                        placeholder={t("Search links...")}
+                        placeholder={""}
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         className="pl-10 w-full"
@@ -870,22 +868,22 @@ function ReferralLinks() {
                     <div className="flex gap-2">
                       <Select value={filterStatus} onValueChange={setFilterStatus}>
                         <SelectTrigger className="w-full sm:w-[120px]">
-                          <SelectValue placeholder={t("Status")} />
+                          <SelectValue placeholder={"Status"} />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="all">{t("All")}</SelectItem>
-                          <SelectItem value="active">{t("Active")}</SelectItem>
-                          <SelectItem value="paused">{t("Paused")}</SelectItem>
-                          <SelectItem value="expired">{t("Expired")}</SelectItem>
+                          <SelectItem value="all">{"All"}</SelectItem>
+                          <SelectItem value="active">{"Active"}</SelectItem>
+                          <SelectItem value="paused">{"Paused"}</SelectItem>
+                          <SelectItem value="expired">{"Expired"}</SelectItem>
                         </SelectContent>
                       </Select>
 
                       <Select value={filterPartner} onValueChange={setFilterPartner}>
                         <SelectTrigger className="w-full sm:w-[140px]">
-                          <SelectValue placeholder={t("Partner")} />
+                          <SelectValue placeholder={"Partner"} />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="all">{t("All Partners")}</SelectItem>
+                          <SelectItem value="all">{"All  Partners"}</SelectItem>
                           {partners.map(partner => (
                             <SelectItem key={partner.id} value={partner.id}>
                               {partner.name}
@@ -915,14 +913,14 @@ function ReferralLinks() {
                   <Table>
                     <TableHeader>
                       <TableRow className="border-b border-gray-200 dark:border-gray-700">
-                        <TableHead>{t("Link Details")}</TableHead>
-                        <TableHead>{t("Partner")}</TableHead>
-                        <TableHead>{t("Performance")}</TableHead>
-                        <TableHead>{t("Conversion")}</TableHead>
-                        <TableHead>{t("Revenue")}</TableHead>
-                        <TableHead>{t("Commission")}</TableHead>
-                        <TableHead>{t("Status")}</TableHead>
-                        <TableHead className="text-right">{t("Actions")}</TableHead>
+                        <TableHead>{"Link  Details"}</TableHead>
+                        <TableHead>{"Partner"}</TableHead>
+                        <TableHead>{"Performance"}</TableHead>
+                        <TableHead>{"Conversion"}</TableHead>
+                        <TableHead>{"Revenue"}</TableHead>
+                        <TableHead>{"Commission"}</TableHead>
+                        <TableHead>{"Status"}</TableHead>
+                        <TableHead className="text-right">{"Actions"}</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -956,7 +954,7 @@ function ReferralLinks() {
                               <div className="flex items-center gap-2">
                                 <Avatar className="h-8 w-8">
                                   {link.partner.avatar && <AvatarImage src={link.partner.avatar} />}
-                                  <AvatarFallback>{link.partner.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                                  <AvatarFallback>{link.partner.name.split(' ').filter(Boolean).map(n => n[0]).join('')}</AvatarFallback>
                                 </Avatar>
                                 <div>
                                   <p className="text-sm font-medium">{link.partner.name}</p>
@@ -970,7 +968,7 @@ function ReferralLinks() {
                           <TableCell>
                             <div className="text-center">
                               <p className="font-medium">{link.clicks.toLocaleString()}</p>
-                              <p className="text-xs text-muted-foreground">{t("clicks")}</p>
+                              <p className="text-xs text-muted-foreground">{"Clicks"}</p>
                             </div>
                           </TableCell>
                           <TableCell>
@@ -1000,34 +998,34 @@ function ReferralLinks() {
                                 </Button>
                               </DropdownMenuTrigger>
                               <DropdownMenuContent align="end">
-                                <DropdownMenuLabel>{t("Actions")}</DropdownMenuLabel>
+                                <DropdownMenuLabel>{"Actions"}</DropdownMenuLabel>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem>
                                   <Eye className="h-4 w-4 mr-2" />
-                                  {t("View Details")}
+                                  {"View  Details"}
                                 </DropdownMenuItem>
                                 <DropdownMenuItem>
                                   <Edit className="h-4 w-4 mr-2" />
-                                  {t("Edit")}
+                                  {"Edit"}
                                 </DropdownMenuItem>
                                 <DropdownMenuItem>
                                   <QrCode className="h-4 w-4 mr-2" />
-                                  {t("Generate QR")}
+                                  {"Generate  Q R"}
                                 </DropdownMenuItem>
                                 <DropdownMenuItem>
                                   <Share2 className="h-4 w-4 mr-2" />
-                                  {t("Share")}
+                                  {"Share"}
                                 </DropdownMenuItem>
                                 {link.status === "active" && (
                                   <DropdownMenuItem>
                                     <Clock className="h-4 w-4 mr-2" />
-                                    {t("Pause")}
+                                    {"Pause"}
                                   </DropdownMenuItem>
                                 )}
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem className="text-destructive">
                                   <Trash2 className="h-4 w-4 mr-2" />
-                                  {t("Delete")}
+                                  {"Delete"}
                                 </DropdownMenuItem>
                               </DropdownMenuContent>
                             </DropdownMenu>
@@ -1041,14 +1039,14 @@ function ReferralLinks() {
                 {/* Pagination */}
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
                   <p className="text-sm text-muted-foreground text-center sm:text-left">
-                    {t("Showing")} 1-{filteredLinks.length} {t("of")} {referralLinks.length} {t("links")}
+                    {"Showing"} 1-{filteredLinks.length} {"Of"} {referralLinks.length} {"Links"}
                   </p>
                   <div className="flex gap-2">
                     <Button variant="outline" size="sm" disabled>
-                      {t("Previous")}
+                      {"Previous"}
                     </Button>
                     <Button variant="outline" size="sm">
-                      {t("Next")}
+                      {"Next"}
                     </Button>
                   </div>
                 </div>
@@ -1065,7 +1063,7 @@ function ReferralLinks() {
                       <div className="flex items-center gap-3">
                         <Avatar className="h-12 w-12">
                           {partner.avatar && <AvatarImage src={partner.avatar} />}
-                          <AvatarFallback>{partner.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                          <AvatarFallback>{partner.name.split(' ').filter(Boolean).map(n => n[0]).join('')}</AvatarFallback>
                         </Avatar>
                         <div>
                           <h3 className="font-medium">{partner.name}</h3>
@@ -1074,13 +1072,13 @@ function ReferralLinks() {
                             {getTierBadge(partner.tier)}
                             {partner.status === "active" ? (
                               <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-400">
-                                {t("Active")}
+                                {"Active"}
                               </Badge>
                             ) : partner.status === "pending" ? (
-                              <Badge variant="outline">{t("Pending")}</Badge>
+                              <Badge variant="outline">{"Pending"}</Badge>
                             ) : (
                               <Badge className="bg-red-100 text-red-700 dark:bg-red-950/30 dark:text-red-400">
-                                {t("Suspended")}
+                                {"Suspended"}
                               </Badge>
                             )}
                           </div>
@@ -1094,11 +1092,11 @@ function ReferralLinks() {
                   <CardContent className="space-y-4">
                     <div className="grid grid-cols-2 gap-4 text-sm">
                       <div>
-                        <p className="text-muted-foreground">{t("Total Sales")}</p>
+                        <p className="text-muted-foreground">{"Total  Sales"}</p>
                         <p className="font-bold text-lg">${(partner.totalSales / 1000).toFixed(0)}K</p>
                       </div>
                       <div>
-                        <p className="text-muted-foreground">{t("Total Commission")}</p>
+                        <p className="text-muted-foreground">{"Total  Commission"}</p>
                         <p className="font-bold text-lg">${(partner.totalCommission / 1000).toFixed(1)}K</p>
                       </div>
                     </div>
@@ -1107,13 +1105,13 @@ function ReferralLinks() {
 
                     <div className="grid grid-cols-2 gap-4 text-sm">
                       <div>
-                        <p className="text-muted-foreground">{t("Pending")}</p>
+                        <p className="text-muted-foreground">{"Pending"}</p>
                         <p className="font-medium text-orange-600 dark:text-orange-400">
                           ${partner.pendingCommission.toLocaleString()}
                         </p>
                       </div>
                       <div>
-                        <p className="text-muted-foreground">{t("Paid")}</p>
+                        <p className="text-muted-foreground">{"Paid"}</p>
                         <p className="font-medium text-emerald-600 dark:text-emerald-400">
                           ${partner.paidCommission.toLocaleString()}
                         </p>
@@ -1123,22 +1121,22 @@ function ReferralLinks() {
                     <Separator />
 
                     <div className="space-y-2">
-                      <p className="text-sm font-medium">{t("Performance")}</p>
+                      <p className="text-sm font-medium">{"Performance"}</p>
                       <div className="grid grid-cols-2 gap-2 text-sm">
                         <div className="flex items-center justify-between">
-                          <span className="text-muted-foreground">{t("Clicks")}</span>
+                          <span className="text-muted-foreground">{"Clicks"}</span>
                           <span className="font-medium">{partner.performance.clicks.toLocaleString()}</span>
                         </div>
                         <div className="flex items-center justify-between">
-                          <span className="text-muted-foreground">{t("Conversions")}</span>
+                          <span className="text-muted-foreground">{"Conversions"}</span>
                           <span className="font-medium">{partner.performance.conversions}</span>
                         </div>
                         <div className="flex items-center justify-between">
-                          <span className="text-muted-foreground">{t("Conv. Rate")}</span>
+                          <span className="text-muted-foreground">{"Rate"}</span>
                           <span className="font-medium">{partner.performance.conversionRate}%</span>
                         </div>
                         <div className="flex items-center justify-between">
-                          <span className="text-muted-foreground">{t("Avg. Order")}</span>
+                          <span className="text-muted-foreground">{"Order"}</span>
                           <span className="font-medium">${partner.performance.avgOrderValue}</span>
                         </div>
                       </div>
@@ -1147,7 +1145,7 @@ function ReferralLinks() {
                     <div className="flex gap-2">
                       <Button size="sm" className="flex-1">
                         <Mail className="h-4 w-4 mr-2" />
-                        {t("Contact")}
+                        {"Contact"}
                       </Button>
                       <Button size="sm" variant="outline">
                         <BarChart3 className="h-4 w-4" />
@@ -1165,34 +1163,34 @@ function ReferralLinks() {
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
                   <Settings className="h-5 w-5" />
-                  {t("Commission Structure")}
+                  {"Commission  Structure"}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                   <div>
-                    <Label className="text-sm font-medium mb-2 block">{t("Default Commission Rate")}</Label>
+                    <Label className="text-sm font-medium mb-2 block">{"Default  Commission  Rate"}</Label>
                     <div className="flex items-center gap-2">
                       <Input type="number" defaultValue="10" className="w-20" />
                       <span className="text-sm text-muted-foreground">%</span>
                     </div>
                   </div>
                   <div>
-                    <Label className="text-sm font-medium mb-2 block">{t("Cookie Duration")}</Label>
+                    <Label className="text-sm font-medium mb-2 block">{"Cookie  Duration"}</Label>
                     <Select defaultValue="30">
                       <SelectTrigger className="w-full">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="7">7 {t("days")}</SelectItem>
-                        <SelectItem value="30">30 {t("days")}</SelectItem>
-                        <SelectItem value="60">60 {t("days")}</SelectItem>
-                        <SelectItem value="90">90 {t("days")}</SelectItem>
+                        <SelectItem value="7">7 {"Days"}</SelectItem>
+                        <SelectItem value="30">30 {"Days"}</SelectItem>
+                        <SelectItem value="60">60 {"Days"}</SelectItem>
+                        <SelectItem value="90">90 {"Days"}</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                   <div>
-                    <Label className="text-sm font-medium mb-2 block">{t("Payout Threshold")}</Label>
+                    <Label className="text-sm font-medium mb-2 block">{"Payout  Threshold"}</Label>
                     <div className="flex items-center gap-2">
                       <span className="text-sm text-muted-foreground">$</span>
                       <Input type="number" defaultValue="100" className="w-full" />
@@ -1206,10 +1204,10 @@ function ReferralLinks() {
             <Card className="glass-card border-0">
               <CardHeader>
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                  <CardTitle className="text-lg">{t("Recent Commissions")}</CardTitle>
+                  <CardTitle className="text-lg">{"Recent  Commissions"}</CardTitle>
                   <Button variant="outline" size="sm">
                     <Download className="h-4 w-4 mr-2" />
-                    {t("Export")}
+                    {"Export"}
                   </Button>
                 </div>
               </CardHeader>
@@ -1226,13 +1224,13 @@ function ReferralLinks() {
                   <Table>
                     <TableHeader>
                       <TableRow className="border-b border-gray-200 dark:border-gray-700">
-                        <TableHead>{t("Partner")}</TableHead>
-                        <TableHead>{t("Order")}</TableHead>
-                        <TableHead>{t("Amount")}</TableHead>
-                        <TableHead>{t("Commission")}</TableHead>
-                        <TableHead>{t("Status")}</TableHead>
-                        <TableHead>{t("Date")}</TableHead>
-                        <TableHead className="text-right">{t("Actions")}</TableHead>
+                        <TableHead>{"Partner"}</TableHead>
+                        <TableHead>{"Order"}</TableHead>
+                        <TableHead>{"Amount"}</TableHead>
+                        <TableHead>{"Commission"}</TableHead>
+                        <TableHead>{"Status"}</TableHead>
+                        <TableHead>{"Date"}</TableHead>
+                        <TableHead className="text-right">{"Actions"}</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -1242,7 +1240,7 @@ function ReferralLinks() {
                             <div className="flex items-center gap-2">
                               <Avatar className="h-8 w-8">
                                 {commission.partner.avatar && <AvatarImage src={commission.partner.avatar} />}
-                                <AvatarFallback>{commission.partner.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                                <AvatarFallback>{commission.partner.name.split(' ').filter(Boolean).map(n => n[0]).join('')}</AvatarFallback>
                               </Avatar>
                               <div>
                                 <p className="text-sm font-medium">{commission.partner.name}</p>
@@ -1270,12 +1268,12 @@ function ReferralLinks() {
                           <TableCell className="text-right">
                             {commission.status === "pending" && (
                               <Button variant="outline" size="sm">
-                                {t("Approve")}
+                                {"Approve"}
                               </Button>
                             )}
                             {commission.status === "approved" && (
                               <Button variant="outline" size="sm">
-                                {t("Pay")}
+                                {"Pay"}
                               </Button>
                             )}
                           </TableCell>
@@ -1288,14 +1286,14 @@ function ReferralLinks() {
                 {/* Pagination */}
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
                   <p className="text-sm text-muted-foreground text-center sm:text-left">
-                    {t("Showing")} 1-{commissions.length} {t("of")} {commissions.length} {t("commissions")}
+                    {"Showing"} 1-{commissions.length} {"Of"} {commissions.length} {"Commissions"}
                   </p>
                   <div className="flex gap-2">
                     <Button variant="outline" size="sm" disabled>
-                      {t("Previous")}
+                      {"Previous"}
                     </Button>
                     <Button variant="outline" size="sm">
-                      {t("Next")}
+                      {"Next"}
                     </Button>
                   </div>
                 </div>

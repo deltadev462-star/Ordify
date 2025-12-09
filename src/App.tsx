@@ -2,13 +2,12 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { ThemeProvider } from "./context/ThemeContext";
 import { TooltipProvider } from "./components/ui/tooltip";
-import { useRTL } from "./hooks/useRTL";
-import DashboardLayout from "./layouts/DashboardLayout";
  
 import LoginPage from "./pages/login/LoginPage";
 import RegisterPage from "./pages/signup/RegisterPage";
 import NotFound from "./pages/NotFound";
 import ProfilePage from "./pages/profile/ProfilePage";
+import DashboardLayout from "./layouts/DashboardLayout";
 
 // Lazy load pages
 const Home = lazy(() => import("./pages/Home/Home"));
@@ -467,8 +466,6 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  useRTL(); // Initialize RTL support
-  
   return (
     <ThemeProvider defaultTheme="modern">
       <TooltipProvider>

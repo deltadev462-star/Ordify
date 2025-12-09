@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Globe, Link, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -10,7 +9,6 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 function DomainConfigurationSection() {
-  const { t } = useTranslation();
   const [newDomain, setNewDomain] = useState('');
   const [domains, setDomains] = useState([
     { 
@@ -95,7 +93,7 @@ function DomainConfigurationSection() {
       <Badge variant={config.variant} className={config.className}>
         <span className="flex items-center gap-1">
           {config.icon}
-          {t(`domainConfig.status.${status}`)}
+          {"Status ${status}"}
         </span>
       </Badge>
     );
@@ -110,14 +108,14 @@ function DomainConfigurationSection() {
               <Globe className="h-6 w-6" />
             </div>
             <div>
-              <CardTitle className="text-xl">{t('domainConfig.title')}</CardTitle>
+              <CardTitle className="text-xl">{"Title"}</CardTitle>
               <CardDescription className="text-gray-100 mt-1">
-                {t('domainConfig.description')}
+                {"Description"}
               </CardDescription>
             </div>
           </div>
           <Badge variant="secondary" className="bg-white/20 text-white border-0">
-            {t('domainConfig.advanced')}
+            {"Advanced"}
           </Badge>
         </div>
       </CardHeader>
@@ -125,7 +123,7 @@ function DomainConfigurationSection() {
         <Alert className="border-blue-200 bg-blue-50 dark:bg-blue-900/20 dark:border-blue-800">
           <AlertCircle className="h-4 w-4 text-blue-600 dark:text-blue-400" />
           <AlertDescription className="text-blue-800 dark:text-blue-200">
-            {t('domainConfig.dnsInstructions')}
+            {"Dns Instructions"}
           </AlertDescription>
         </Alert>
 
@@ -134,20 +132,20 @@ function DomainConfigurationSection() {
           <div>
             <Label className="text-gray-700 dark:text-gray-300 font-medium flex items-center gap-2 mb-2">
               <Link className="h-4 w-4 text-gray-500" />
-              {t('domainConfig.addNewDomain')}
+              {"Add New Domain"}
             </Label>
             <div className="flex gap-3">
               <Input
                 value={newDomain}
                 onChange={(e) => setNewDomain(e.target.value)}
-                placeholder={t('domainConfig.domainPlaceholder')}
+                placeholder={"Domain Placeholder"}
                 className="flex-1 border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
               />
               <Button 
                 onClick={handleAddDomain}
                 className="bg-gradient-to-r from-green-500 to-teal-600 hover:from-green-600 hover:to-teal-700 text-white"
               >
-                {t('domainConfig.addDomainButton')}
+                {"Add Domain Button"}
               </Button>
             </div>
           </div>
@@ -156,18 +154,18 @@ function DomainConfigurationSection() {
         {/* Domains List */}
         <div>
           <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-4">
-            {t('domainConfig.configuredDomains')}
+            {"Configured Domains"}
           </h3>
           <div className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
             <Table>
               <TableHeader className="bg-gray-50 dark:bg-gray-800/50">
                 <TableRow>
-                  <TableHead className="text-gray-700 dark:text-gray-300">{t('domainConfig.table.domain')}</TableHead>
-                  <TableHead className="text-gray-700 dark:text-gray-300">{t('domainConfig.table.status')}</TableHead>
-                  <TableHead className="text-gray-700 dark:text-gray-300">{t('domainConfig.table.ssl')}</TableHead>
-                  <TableHead className="text-gray-700 dark:text-gray-300">{t('domainConfig.table.type')}</TableHead>
-                  <TableHead className="text-gray-700 dark:text-gray-300">{t('domainConfig.table.verified')}</TableHead>
-                  <TableHead className="text-gray-700 dark:text-gray-300 text-right">{t('domainConfig.table.actions')}</TableHead>
+                  <TableHead className="text-gray-700 dark:text-gray-300">{"Domain"}</TableHead>
+                  <TableHead className="text-gray-700 dark:text-gray-300">{"Status"}</TableHead>
+                  <TableHead className="text-gray-700 dark:text-gray-300">{"Ssl"}</TableHead>
+                  <TableHead className="text-gray-700 dark:text-gray-300">{"Type"}</TableHead>
+                  <TableHead className="text-gray-700 dark:text-gray-300">{"Verified"}</TableHead>
+                  <TableHead className="text-gray-700 dark:text-gray-300 text-right">{"Actions"}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -184,22 +182,22 @@ function DomainConfigurationSection() {
                       {domain.ssl ? (
                         <Badge className="bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400 border-0">
                           <CheckCircle className="h-3 w-3 mr-1" />
-                          {t('domainConfig.ssl.active')}
+                          {"Active"}
                         </Badge>
                       ) : (
                         <Badge variant="secondary" className="bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400 border-0">
-                          {t('domainConfig.ssl.notConfigured')}
+                          {"Not Configured"}
                         </Badge>
                       )}
                     </TableCell>
                     <TableCell>
                       {domain.primary ? (
                         <Badge className="bg-purple-100 text-purple-800 dark:bg-purple-900/20 dark:text-purple-400 border-0">
-                          {t('domainConfig.type.primary')}
+                          {"Primary"}
                         </Badge>
                       ) : (
                         <Badge variant="outline" className="border-gray-300 dark:border-gray-700">
-                          {t('domainConfig.type.secondary')}
+                          {"Secondary"}
                         </Badge>
                       )}
                     </TableCell>
@@ -215,7 +213,7 @@ function DomainConfigurationSection() {
                             onClick={() => handleVerifyDomain(domain.id)}
                             className="text-green-600 hover:text-green-700 border-green-200 hover:bg-green-50 dark:text-green-400 dark:border-green-800 dark:hover:bg-green-900/20"
                           >
-                            {t('domainConfig.actions.verify')}
+                            {"Verify"}
                           </Button>
                         )}
                         {!domain.primary && domain.status === 'active' && (
@@ -225,7 +223,7 @@ function DomainConfigurationSection() {
                             onClick={() => handleSetPrimary(domain.id)}
                             className="text-purple-600 hover:text-purple-700 border-purple-200 hover:bg-purple-50 dark:text-purple-400 dark:border-purple-800 dark:hover:bg-purple-900/20"
                           >
-                            {t('domainConfig.actions.setPrimary')}
+                            {"Set Primary"}
                           </Button>
                         )}
                         {!domain.primary && (
@@ -235,7 +233,7 @@ function DomainConfigurationSection() {
                             onClick={() => handleRemoveDomain(domain.id)}
                             className="text-red-600 hover:text-red-700 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-900/20"
                           >
-                            {t('domainConfig.actions.remove')}
+                            {"Remove"}
                           </Button>
                         )}
                       </div>
@@ -250,18 +248,18 @@ function DomainConfigurationSection() {
         {/* DNS Configuration Info */}
         <div className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
           <h4 className="font-medium text-gray-900 dark:text-gray-100 mb-3">
-            {t('domainConfig.dnsConfiguration')}
+            {"Dns Configuration"}
           </h4>
           <div className="space-y-2 text-sm">
             <div className="flex items-center gap-2">
               <span className="text-gray-600 dark:text-gray-400 font-mono bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">
-                {t('domainConfig.dns.aRecord')}
+                {"A Record"}
               </span>
               <span className="text-gray-800 dark:text-gray-200 font-mono">192.168.1.1</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="text-gray-600 dark:text-gray-400 font-mono bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">
-                {t('domainConfig.dns.cname')}
+                {"Cname"}
               </span>
               <span className="text-gray-800 dark:text-gray-200 font-mono">verify.mystore.com</span>
             </div>

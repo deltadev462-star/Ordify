@@ -115,8 +115,8 @@ interface LoyaltyMember {
 }
 
 export default function LoyaltyProgramPage() {
-  const { t } = useTranslation();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   
   const [selectedTab, setSelectedTab] = useState("overview");
   const [searchTerm, setSearchTerm] = useState("");
@@ -312,7 +312,7 @@ export default function LoyaltyProgramPage() {
   // Statistics
   const stats = [
     {
-      title: t("Active Members"),
+      title: t("loyaltyProgram.activeMembers"),
       value: "2,340",
       change: 15.3,
       changeType: "increase" as const,
@@ -320,10 +320,10 @@ export default function LoyaltyProgramPage() {
       iconColor: "text-blue-600 dark:text-blue-400",
       iconBgColor: "bg-blue-50 dark:bg-blue-950/30",
       trend: "up" as const,
-      period: t("vs last month"),
+      period: t("loyaltyProgram.vsLastMonth"),
     },
     {
-      title: t("Points Issued"),
+      title: t("loyaltyProgram.pointsIssued"),
       value: "284K",
       change: 23.5,
       changeType: "increase" as const,
@@ -331,10 +331,10 @@ export default function LoyaltyProgramPage() {
       iconColor: "text-green-600 dark:text-green-400",
       iconBgColor: "bg-green-50 dark:bg-green-950/30",
       trend: "up" as const,
-      period: t("this month"),
+      period: t("loyaltyProgram.thisMonth"),
     },
     {
-      title: t("Rewards Redeemed"),
+      title: t("loyaltyProgram.rewardsRedeemed"),
       value: "892",
       change: 18.2,
       changeType: "increase" as const,
@@ -342,10 +342,10 @@ export default function LoyaltyProgramPage() {
       iconColor: "text-purple-600 dark:text-purple-400",
       iconBgColor: "bg-purple-50 dark:bg-purple-950/30",
       trend: "up" as const,
-      period: t("this month"),
+      period: t("loyaltyProgram.thisMonth"),
     },
     {
-      title: t("Program Revenue"),
+      title: t("loyaltyProgram.programRevenue"),
       value: "156K",
       change: 32.7,
       changeType: "increase" as const,
@@ -353,7 +353,7 @@ export default function LoyaltyProgramPage() {
       iconColor: "text-indigo-600 dark:text-indigo-400",
       iconBgColor: "bg-indigo-50 dark:bg-indigo-950/30",
       trend: "up" as const,
-      period: t("from members"),
+      period: t("loyaltyProgram.fromMembers"),
     },
   ];
 
@@ -388,6 +388,7 @@ export default function LoyaltyProgramPage() {
   const getInitials = (name: string) => {
     return name
       .split(' ')
+      .filter(Boolean)
       .map(word => word[0])
       .join('')
       .toUpperCase()
@@ -399,9 +400,9 @@ export default function LoyaltyProgramPage() {
       {/* Header */}
       <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold">{t("Loyalty Program")}</h1>
+          <h1 className="text-2xl font-bold">{t("loyaltyProgram.title")}</h1>
           <p className="text-muted-foreground mt-1">
-            {t("Manage your customer loyalty program and rewards")}
+            {t("loyaltyProgram.subtitle")}
           </p>
         </div>
         <div className="flex gap-2">
@@ -409,66 +410,66 @@ export default function LoyaltyProgramPage() {
             <DialogTrigger asChild>
               <Button variant="outline" className="gap-2 border-gray-200 dark:border-gray-700">
                 <Settings className="h-4 w-4" />
-                {t("Settings")}
+                {t("loyaltyProgram.settings")}
               </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[600px]">
               <DialogHeader>
-                <DialogTitle>{t("Loyalty Program Settings")}</DialogTitle>
+                <DialogTitle>{t("loyaltyProgram.loyaltyProgramSettings")}</DialogTitle>
                 <DialogDescription>
-                  {t("Configure your loyalty program rules and settings")}
+                  {t("loyaltyProgram.configureRules")}
                 </DialogDescription>
               </DialogHeader>
               <div className="grid gap-4 py-4">
                 <div className="space-y-2">
-                  <Label>{t("Points per EGP spent")}</Label>
+                  <Label>{t("loyaltyProgram.pointsPerEGP")}</Label>
                   <Input type="number" defaultValue="1" />
                   <p className="text-xs text-muted-foreground">
-                    {t("How many points customers earn per EGP spent")}
+                    {t("loyaltyProgram.pointsEarnDescription")}
                   </p>
                 </div>
                 
                 <div className="space-y-2">
-                  <Label>{t("Points Expiry")}</Label>
+                  <Label>{t("loyaltyProgram.pointsExpiry")}</Label>
                   <Select defaultValue="12">
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="6">6 {t("months")}</SelectItem>
-                      <SelectItem value="12">12 {t("months")}</SelectItem>
-                      <SelectItem value="24">24 {t("months")}</SelectItem>
-                      <SelectItem value="never">{t("Never expire")}</SelectItem>
+                      <SelectItem value="6">6 {t("loyaltyProgram.months")}</SelectItem>
+                      <SelectItem value="12">12 {t("loyaltyProgram.months")}</SelectItem>
+                      <SelectItem value="24">24 {t("loyaltyProgram.months")}</SelectItem>
+                      <SelectItem value="never">{t("loyaltyProgram.neverExpire")}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
                 
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <Label>{t("Birthday Rewards")}</Label>
+                    <Label>{t("loyaltyProgram.birthdayRewards")}</Label>
                     <Switch defaultChecked />
                   </div>
                   <p className="text-xs text-muted-foreground">
-                    {t("Automatically give birthday rewards to members")}
+                    {t("loyaltyProgram.birthdayRewardsDescription")}
                   </p>
                 </div>
                 
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <Label>{t("Referral Program")}</Label>
+                    <Label>{t("loyaltyProgram.referralProgram")}</Label>
                     <Switch defaultChecked />
                   </div>
                   <p className="text-xs text-muted-foreground">
-                    {t("Enable referral rewards for members")}
+                    {t("loyaltyProgram.referralProgramDescription")}
                   </p>
                 </div>
               </div>
               <DialogFooter>
                 <Button variant="outline" onClick={() => setIsSettingsOpen(false)}>
-                  {t("Cancel")}
+                  {t("loyaltyProgram.cancel")}
                 </Button>
                 <Button onClick={() => setIsSettingsOpen(false)}>
-                  {t("Save Settings")}
+                  {t("loyaltyProgram.saveSettings")}
                 </Button>
               </DialogFooter>
             </DialogContent>
@@ -478,71 +479,71 @@ export default function LoyaltyProgramPage() {
             <DialogTrigger asChild>
               <Button className="gap-2 bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90">
                 <Plus className="h-4 w-4" />
-                {t("Create Reward")}
+                {t("loyaltyProgram.createReward")}
               </Button>
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
-                <DialogTitle>{t("Create New Reward")}</DialogTitle>
+                <DialogTitle>{t("loyaltyProgram.createNewReward")}</DialogTitle>
                 <DialogDescription>
-                  {t("Add a new reward to your loyalty program")}
+                  {t("loyaltyProgram.addRewardDescription")}
                 </DialogDescription>
               </DialogHeader>
               <div className="grid gap-4 py-4">
                 <div className="space-y-2">
-                  <Label>{t("Reward Name")}</Label>
-                  <Input placeholder={t("e.g., 20% Off Next Order")} />
+                  <Label>{t("loyaltyProgram.rewardName")}</Label>
+                  <Input placeholder={t("loyaltyProgram.rewardNamePlaceholder")} />
                 </div>
                 
                 <div className="space-y-2">
-                  <Label>{t("Description")}</Label>
-                  <Textarea 
-                    placeholder={t("Describe the reward...")}
+                  <Label>{t("loyaltyProgram.description")}</Label>
+                  <Textarea
+                    placeholder={t("loyaltyProgram.descriptionPlaceholder")}
                     className="min-h-[80px]"
                   />
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label>{t("Points Cost")}</Label>
+                    <Label>{t("loyaltyProgram.pointsCost")}</Label>
                     <Input type="number" placeholder="500" />
                   </div>
                   <div className="space-y-2">
-                    <Label>{t("Type")}</Label>
+                    <Label>{t("loyaltyProgram.type")}</Label>
                     <Select>
                       <SelectTrigger>
-                        <SelectValue placeholder={t("Select type")} />
+                        <SelectValue placeholder={t("loyaltyProgram.selectType")} />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="discount">{t("Discount")}</SelectItem>
-                        <SelectItem value="product">{t("Product")}</SelectItem>
-                        <SelectItem value="shipping">{t("Shipping")}</SelectItem>
-                        <SelectItem value="exclusive">{t("Exclusive")}</SelectItem>
+                        <SelectItem value="discount">{t("loyaltyProgram.discount")}</SelectItem>
+                        <SelectItem value="product">{t("loyaltyProgram.product")}</SelectItem>
+                        <SelectItem value="shipping">{t("loyaltyProgram.shipping")}</SelectItem>
+                        <SelectItem value="exclusive">{t("loyaltyProgram.exclusive")}</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                 </div>
                 
                 <div className="space-y-2">
-                  <Label>{t("Availability")}</Label>
+                  <Label>{t("loyaltyProgram.availability")}</Label>
                   <Select defaultValue="active">
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="active">{t("Active")}</SelectItem>
-                      <SelectItem value="limited">{t("Limited Time")}</SelectItem>
-                      <SelectItem value="inactive">{t("Inactive")}</SelectItem>
+                      <SelectItem value="active">{t("loyaltyProgram.active")}</SelectItem>
+                      <SelectItem value="limited">{t("loyaltyProgram.limitedTime")}</SelectItem>
+                      <SelectItem value="inactive">{t("loyaltyProgram.inactive")}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
               </div>
               <DialogFooter>
                 <Button variant="outline" onClick={() => setIsCreateRewardOpen(false)}>
-                  {t("Cancel")}
+                  {t("loyaltyProgram.cancel")}
                 </Button>
                 <Button onClick={() => setIsCreateRewardOpen(false)}>
-                  {t("Create Reward")}
+                  {t("loyaltyProgram.createReward")}
                 </Button>
               </DialogFooter>
             </DialogContent>
@@ -575,19 +576,19 @@ export default function LoyaltyProgramPage() {
             <TabsList className="grid w-full grid-cols-4 lg:w-auto lg:inline-flex">
               <TabsTrigger value="overview" className="gap-2">
                 <Trophy className="h-4 w-4" />
-                {t("Overview")}
+                {t("loyaltyProgram.overview")}
               </TabsTrigger>
               <TabsTrigger value="tiers" className="gap-2">
                 <Crown className="h-4 w-4" />
-                {t("Tiers")}
+                {t("loyaltyProgram.tiers")}
               </TabsTrigger>
               <TabsTrigger value="rewards" className="gap-2">
                 <Gift className="h-4 w-4" />
-                {t("Rewards")}
+                {t("loyaltyProgram.rewards")}
               </TabsTrigger>
               <TabsTrigger value="members" className="gap-2">
                 <Users className="h-4 w-4" />
-                {t("Members")}
+                {t("loyaltyProgram.members")}
               </TabsTrigger>
             </TabsList>
             
@@ -596,9 +597,9 @@ export default function LoyaltyProgramPage() {
                 {/* Tier Distribution */}
                 <Card className="lg:col-span-2  border-gray-200 dark:border-gray-700">
                   <CardHeader>
-                    <CardTitle>{t("Tier Distribution")}</CardTitle>
+                    <CardTitle>{t("loyaltyProgram.tierDistribution")}</CardTitle>
                     <CardDescription>
-                      {t("Member distribution across loyalty tiers")}
+                      {t("loyaltyProgram.memberDistribution")}
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
@@ -632,7 +633,7 @@ export default function LoyaltyProgramPage() {
                 {/* Recent Activity */}
                 <Card className=" border-gray-200 dark:border-gray-700">
                   <CardHeader>
-                    <CardTitle>{t("Recent Activity")}</CardTitle>
+                    <CardTitle>{t("loyaltyProgram.recentActivity")}</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
@@ -690,9 +691,9 @@ export default function LoyaltyProgramPage() {
                               <Icon className="h-6 w-6" />
                             </div>
                             <div>
-                              <CardTitle>{tier.name} {t("Tier")}</CardTitle>
+                              <CardTitle>{tier.name} {t("loyaltyProgram.tier")}</CardTitle>
                               <p className="text-sm text-muted-foreground mt-1">
-                                {tier.minPoints.toLocaleString()}{tier.maxPoints ? ` - ${tier.maxPoints.toLocaleString()}` : '+'} {t("points")}
+                                {tier.minPoints.toLocaleString()}{tier.maxPoints ? ` - ${tier.maxPoints.toLocaleString()}` : '+'} {t("loyaltyProgram.pointsLabel")}
                               </p>
                             </div>
                           </div>
@@ -705,15 +706,15 @@ export default function LoyaltyProgramPage() {
                             <DropdownMenuContent align="end">
                               <DropdownMenuItem>
                                 <Edit className="mr-2 h-4 w-4" />
-                                {t("Edit Tier")}
+                                {t("loyaltyProgram.editTier")}
                               </DropdownMenuItem>
                               <DropdownMenuItem>
                                 <Users className="mr-2 h-4 w-4" />
-                                {t("View Members")}
+                                {t("loyaltyProgram.viewMembers")}
                               </DropdownMenuItem>
                               <DropdownMenuItem>
                                 <Send className="mr-2 h-4 w-4" />
-                                {t("Message Members")}
+                                {t("loyaltyProgram.messageMembers")}
                               </DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
@@ -722,11 +723,11 @@ export default function LoyaltyProgramPage() {
                       <CardContent className="relative space-y-4">
                         <div>
                           <p className="text-2xl font-bold">{tier.memberCount.toLocaleString()}</p>
-                          <p className="text-sm text-muted-foreground">{t("members")}</p>
+                          <p className="text-sm text-muted-foreground">{t("loyaltyProgram.members")}</p>
                         </div>
                         
                         <div className="space-y-3">
-                          <p className="text-sm font-medium">{t("Perks")}:</p>
+                          <p className="text-sm font-medium">{t("loyaltyProgram.perks")}:</p>
                           <div className="grid grid-cols-1 gap-2">
                             {tier.perks.map((perk, idx) => (
                               <div key={idx} className="flex items-center justify-between p-2 rounded-lg bg-white/60 dark:bg-gray-900/60">
@@ -738,7 +739,7 @@ export default function LoyaltyProgramPage() {
                         </div>
                         
                         <div className="space-y-2">
-                          <p className="text-sm font-medium">{t("Benefits")}:</p>
+                          <p className="text-sm font-medium">{t("loyaltyProgram.benefits")}:</p>
                           <ul className="space-y-1">
                             {tier.benefits.map((benefit, idx) => (
                               <li key={idx} className="flex items-start gap-2 text-sm">
@@ -758,7 +759,7 @@ export default function LoyaltyProgramPage() {
             <TabsContent value="rewards" className="mt-6">
               <div className="mb-4 flex items-center justify-between">
                 <Input
-                  placeholder={t("Search rewards...")}
+                  placeholder={t("loyaltyProgram.searchRewards")}
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="max-w-md"
@@ -766,11 +767,11 @@ export default function LoyaltyProgramPage() {
                 <div className="flex gap-2">
                   <Button variant="outline" size="sm" className="gap-2  border-gray-200 dark:border-gray-700">
                     <Filter className="h-4 w-4" />
-                    {t("Filter")}
+                    {t("loyaltyProgram.filter")}
                   </Button>
                   <Button variant="outline" size="sm" className="gap-2  border-gray-200 dark:border-gray-700">
                     <Download className="h-4 w-4" />
-                    {t("Export")}
+                    {t("loyaltyProgram.export")}
                   </Button>
                 </div>
               </div>
@@ -806,7 +807,7 @@ export default function LoyaltyProgramPage() {
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
                             <Coins className="h-4 w-4 text-yellow-600" />
-                            <span className="font-semibold">{reward.pointsCost} {t("points")}</span>
+                            <span className="font-semibold">{reward.pointsCost} {t("loyaltyProgram.pointsLabel")}</span>
                           </div>
                           <Badge 
                             variant={reward.status === 'active' ? 'default' : reward.status === 'limited' ? 'secondary' : 'outline'}
@@ -815,20 +816,20 @@ export default function LoyaltyProgramPage() {
                               reward.status === 'limited' && "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-400 border-0"
                             )}
                           >
-                            {t(reward.status)}
+                            {reward.status}
                           </Badge>
                         </div>
                         
                         <div className="flex items-center justify-between text-sm">
-                          <span className="text-muted-foreground">{t("Redeemed")}</span>
-                          <span className="font-medium">{reward.redeemedCount} {t("times")}</span>
+                          <span className="text-muted-foreground">{t("loyaltyProgram.redeemed")}</span>
+                          <span className="font-medium">{reward.redeemedCount} {t("loyaltyProgram.times")}</span>
                         </div>
                         
                         {reward.stock !== undefined && (
                           <div className="space-y-1">
                             <div className="flex items-center justify-between text-sm">
-                              <span className="text-muted-foreground">{t("Stock")}</span>
-                              <span className="font-medium">{reward.stock} {t("left")}</span>
+                              <span className="text-muted-foreground">{t("loyaltyProgram.stock")}</span>
+                              <span className="font-medium">{reward.stock} {t("loyaltyProgram.left")}</span>
                             </div>
                             <Progress value={(reward.stock / (reward.stock + reward.redeemedCount)) * 100} className="h-2" />
                           </div>
@@ -837,11 +838,11 @@ export default function LoyaltyProgramPage() {
                         <div className="pt-3 flex gap-2">
                           <Button variant="outline" size="sm" className="flex-1  border-gray-200 dark:border-gray-700">
                             <Edit className="h-4 w-4" />
-                            {t("Edit")}
+                            {t("loyaltyProgram.edit")}
                           </Button>
                           <Button variant="outline" size="sm" className="flex-1  border-gray-200 dark:border-gray-700">
                             <Eye className="h-4 w-4" />
-                            {t("Details")}
+                            {t("loyaltyProgram.details")}
                           </Button>
                         </div>
                       </CardContent>
@@ -856,9 +857,9 @@ export default function LoyaltyProgramPage() {
                 {/* Top Members */}
                 <Card className="border-gray-200 dark:border-gray-700">
                   <CardHeader>
-                    <CardTitle>{t("Top Members")}</CardTitle>
+                    <CardTitle>{t("loyaltyProgram.topMembers")}</CardTitle>
                     <CardDescription>
-                      {t("Most engaged loyalty program members")}
+                      {t("loyaltyProgram.mostEngagedMembers")}
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
@@ -899,7 +900,7 @@ export default function LoyaltyProgramPage() {
                             </div>
                             <div className="text-right">
                               <p className="text-2xl font-bold">{member.points.toLocaleString()}</p>
-                              <p className="text-sm text-muted-foreground">{t("points")}</p>
+                              <p className="text-sm text-muted-foreground">{t("loyaltyProgram.pointsLabel")}</p>
                               <div className="flex items-center gap-4 mt-2 text-xs">
                                 <span className="text-green-600">+{member.totalPointsEarned.toLocaleString()}</span>
                                 <span className="text-orange-600">-{member.totalPointsRedeemed.toLocaleString()}</span>
@@ -916,7 +917,7 @@ export default function LoyaltyProgramPage() {
                         className="gap-2  border-gray-200 dark:border-gray-700"
                       >
                         <Users className="h-4 w-4" />
-                        {t("View All Members")}
+                        {t("loyaltyProgram.viewAllMembers")}
                       </Button>
                     </div>
                   </CardContent>

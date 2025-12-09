@@ -8,8 +8,6 @@ import {
   LogOut,
   Sparkles,
 } from "lucide-react"
-import { useTranslation } from "react-i18next";
-
 import {
   Avatar,
   AvatarFallback,
@@ -41,8 +39,6 @@ export function NavUser({
   }
 }) {
   const { isMobile } = useSidebar()
-  const { t } = useTranslation();
-
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -85,28 +81,28 @@ export function NavUser({
             <DropdownMenuGroup>
               <DropdownMenuItem>
                 <Sparkles />
-                {t("Upgrade to Pro")}
+                {"Upgrade to  Pro"}
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
                 <BadgeCheck />
-                {t("Account")}
+                {"Account"}
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <CreditCard />
-                {t("Billing")}
+                {"Billing"}
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <Bell />
-                {t("Notifications")}
+                {"Notifications"}
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
               <LogOut />
-              {t("Log out")}
+              {"Log out"}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

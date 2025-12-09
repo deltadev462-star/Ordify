@@ -3,8 +3,6 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { useTranslation } from "react-i18next";
-
 export interface ActivityItem {
   id: string;
   type: 'order' | 'user' | 'payment' | 'alert';
@@ -21,8 +19,6 @@ interface ActivityFeedProps {
 }
 
 export function ActivityFeed({ activities, onViewAll }: ActivityFeedProps) {
-  const { t } = useTranslation();
-
   const getActivityIcon = (type: string, status: string) => {
     const iconClass = cn(
       "h-5 w-5",
@@ -50,7 +46,7 @@ export function ActivityFeed({ activities, onViewAll }: ActivityFeedProps) {
 
     return (
       <Badge variant={variant} className="ml-auto">
-        {t(status.charAt(0).toUpperCase() + status.slice(1))}
+        {status.charAt(0).toUpperCase() + status.slice(1)}
       </Badge>
     );
   };
@@ -70,14 +66,14 @@ export function ActivityFeed({ activities, onViewAll }: ActivityFeedProps) {
       <CardHeader className="pb-4">
         <div className="flex justify-between items-center">
           <div>
-            <h3 className="text-lg font-semibold">{t("Recent Activity")}</h3>
+            <h3 className="text-lg font-semibold">{"Recent  Activity"}</h3>
             <p className="text-sm text-muted-foreground mt-1">
-              {t("Track your store's latest activities")}
+              {"Track your store's latest activities"}
             </p>
           </div>
           {onViewAll && (
             <Button variant="ghost" size="sm" onClick={onViewAll}>
-              {t("View All")}
+              {"View  All"}
             </Button>
           )}
         </div>
@@ -85,7 +81,7 @@ export function ActivityFeed({ activities, onViewAll }: ActivityFeedProps) {
       <CardContent className="space-y-4">
         {activities.length === 0 ? (
           <div className="text-center py-8">
-            <p className="text-muted-foreground">{t("No recent activity")}</p>
+            <p className="text-muted-foreground">{"No recent activity"}</p>
           </div>
         ) : (
           activities.map((activity) => (

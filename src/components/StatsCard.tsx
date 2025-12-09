@@ -1,4 +1,3 @@
-import { useTranslation } from "react-i18next";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   TrendingUp,
@@ -44,8 +43,6 @@ const StatCardItem = ({
   period,
   showActions = false
 }: StatCardProps) => {
-  const { t } = useTranslation();
-
   const getTrendIcon = () => {
     if (trend === 'up') return <TrendingUp className="h-4 w-4 text-green-500" />;
     if (trend === 'down') return <TrendingDown className="h-4 w-4 text-red-500" />;
@@ -77,11 +74,11 @@ const StatCardItem = ({
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuLabel>{t("Actions")}</DropdownMenuLabel>
+                <DropdownMenuLabel>{"Actions"}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>{t("View Details")}</DropdownMenuItem>
-                <DropdownMenuItem>{t("Export Data")}</DropdownMenuItem>
-                <DropdownMenuItem>{t("Set Alert")}</DropdownMenuItem>
+                <DropdownMenuItem>{"View  Details"}</DropdownMenuItem>
+                <DropdownMenuItem>{"Export  Data"}</DropdownMenuItem>
+                <DropdownMenuItem>{"Set  Alert"}</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           )}
@@ -113,14 +110,12 @@ const StatCardItem = ({
 };
 
 export default function StatsCard() {
-  const { t } = useTranslation();
-
   // Enhanced stats data with trends and changes
   const enhancedStats = statsData.map(stat => ({
     ...stat,
     change: Math.random() > 0.5 ? Math.floor(Math.random() * 20) : -Math.floor(Math.random() * 10),
     trend: Math.random() > 0.5 ? 'up' as const : Math.random() > 0.3 ? 'down' as const : 'stable' as const,
-    period: t("vs last month")
+    period: "Vs last month"
   }));
 
   return (
@@ -128,18 +123,18 @@ export default function StatsCard() {
       {/* Section Header */}
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
         <div>
-          <h2 className="text-2xl font-bold text-foreground">{t("Statistics")}</h2>
+          <h2 className="text-2xl font-bold text-foreground">{"Statistics"}</h2>
           <p className="text-muted-foreground mt-1">
-            {t("Know more about your store's performance and more.")}
+            {"Know more about your store's performance and more."}
           </p>
         </div>
         <div className="flex gap-2">
           <Badge variant="outline" className="px-3 py-1">
             <Activity className="h-3 w-3 mr-1" />
-            {t("Live")}
+            {"Live"}
           </Badge>
           <Button variant="outline" size="sm">
-            {t("View All Stats")}
+            {"View  All  Stats"}
             <ArrowUpRight className="h-4 w-4 ml-1" />
           </Button>
         </div>
@@ -170,7 +165,7 @@ export default function StatsCard() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-lg font-semibold text-blue-700 dark:text-blue-400 mb-2">
-                  {t("Revenue Overview")}
+                  {"Revenue  Overview"}
                 </p>
                 <div className="space-y-3">
                   <div className="flex items-baseline gap-3">
@@ -178,7 +173,7 @@ export default function StatsCard() {
                       85,420
                     </p>
                     <span className="text-sm font-medium text-blue-600/70 dark:text-blue-400/70">
-                      {t("EGP")}
+                      {"E G P"}
                     </span>
                     <Badge className="bg-green-500/10 text-green-600 border-0">
                       <ArrowUpRight className="h-3 w-3 mr-1" />
@@ -186,19 +181,19 @@ export default function StatsCard() {
                     </Badge>
                   </div>
                   <p className="text-sm text-blue-600/70 dark:text-blue-400/70">
-                    {t("Total revenue this month")}
+                    {"Total revenue this month"}
                   </p>
                   <div className="grid grid-cols-3 gap-4 mt-4">
                     <div>
-                      <p className="text-xs text-blue-600/60 dark:text-blue-400/60">{t("Orders")}</p>
+                      <p className="text-xs text-blue-600/60 dark:text-blue-400/60">{"Orders"}</p>
                       <p className="text-lg font-semibold text-blue-700 dark:text-blue-400">234</p>
                     </div>
                     <div>
-                      <p className="text-xs text-blue-600/60 dark:text-blue-400/60">{t("Customers")}</p>
+                      <p className="text-xs text-blue-600/60 dark:text-blue-400/60">{"Customers"}</p>
                       <p className="text-lg font-semibold text-blue-700 dark:text-blue-400">189</p>
                     </div>
                     <div>
-                      <p className="text-xs text-blue-600/60 dark:text-blue-400/60">{t("Avg Order")}</p>
+                      <p className="text-xs text-blue-600/60 dark:text-blue-400/60">{"Avg  Order"}</p>
                       <p className="text-lg font-semibold text-blue-700 dark:text-blue-400">365</p>
                     </div>
                   </div>
@@ -220,18 +215,18 @@ export default function StatsCard() {
                 <Percent className="h-6 w-6 text-purple-600 dark:text-purple-400" />
               </div>
               <Badge className="bg-purple-500/10 text-purple-600 border-0">
-                {t("Goal")}
+                {"Goal"}
               </Badge>
             </div>
             <p className="text-sm font-medium text-purple-700 dark:text-purple-400 mb-2">
-              {t("Conversion Rate")}
+              {"Conversion  Rate"}
             </p>
             <p className="text-3xl font-bold text-purple-700 dark:text-purple-400 mb-3">
               4.8%
             </p>
             <div className="space-y-2">
               <div className="flex justify-between text-xs">
-                <span className="text-purple-600/70 dark:text-purple-400/70">{t("Target")}: 5%</span>
+                <span className="text-purple-600/70 dark:text-purple-400/70">{"Target"}: 5%</span>
                 <span className="text-purple-600 dark:text-purple-400 font-medium">96%</span>
               </div>
               <div className="w-full bg-purple-200 dark:bg-purple-900/50 rounded-full h-2">

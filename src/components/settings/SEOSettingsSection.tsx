@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Search, Globe, Image, FileText, Share2 } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -11,7 +10,6 @@ import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 function SEOSettingsSection() {
-  const { t } = useTranslation();
   const [seoSettings, setSeoSettings] = useState({
     meta: {
       title: 'My Store - Best Products Online',
@@ -98,14 +96,14 @@ function SEOSettingsSection() {
               <Search className="h-6 w-6" />
             </div>
             <div>
-              <CardTitle className="text-xl">{t('seo.title')}</CardTitle>
+              <CardTitle className="text-xl">{"Title"}</CardTitle>
               <CardDescription className="text-gray-100 mt-1">
-                {t('seo.description')}
+                {"Description"}
               </CardDescription>
             </div>
           </div>
           <Badge variant="secondary" className="bg-white/20 text-white border-0">
-            {t('seo.important')}
+            {"Important"}
           </Badge>
         </div>
       </CardHeader>
@@ -116,31 +114,31 @@ function SEOSettingsSection() {
               value="meta" 
               className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-700"
             >
-              {t('seo.tabs.metaTags')}
+              {"Meta Tags"}
             </TabsTrigger>
             <TabsTrigger 
               value="opengraph" 
               className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-700"
             >
-              {t('seo.tabs.openGraph')}
+              {"Open Graph"}
             </TabsTrigger>
             <TabsTrigger 
               value="twitter" 
               className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-700"
             >
-              {t('seo.tabs.twitterCard')}
+              {"Twitter Card"}
             </TabsTrigger>
             <TabsTrigger 
               value="sitemap" 
               className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-700"
             >
-              {t('seo.tabs.sitemap')}
+              {"Sitemap"}
             </TabsTrigger>
             <TabsTrigger 
               value="robots" 
               className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-700"
             >
-              {t('seo.tabs.robots')}
+              {"Robots"}
             </TabsTrigger>
           </TabsList>
 
@@ -149,45 +147,45 @@ function SEOSettingsSection() {
               <div>
                 <Label className="text-gray-700 dark:text-gray-300 font-medium flex items-center gap-2 mb-2">
                   <FileText className="h-4 w-4 text-gray-500" />
-                  {t('seo.meta.pageTitle')}
+                  {"Page Title"}
                 </Label>
                 <Input
                   value={seoSettings.meta.title}
                   onChange={(e) => handleMetaChange('title', e.target.value)}
-                  placeholder={t('seo.meta.pageTitlePlaceholder')}
+                  placeholder={"Page Title Placeholder"}
                   className="border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
                 />
                 <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                  {t('seo.meta.titleRecommendation', { count: seoSettings.meta.title.length })}
+                  {"Title Recommendation"}
                 </p>
               </div>
 
               <div>
                 <Label className="text-gray-700 dark:text-gray-300 font-medium flex items-center gap-2 mb-2">
                   <FileText className="h-4 w-4 text-gray-500" />
-                  {t('seo.meta.metaDescription')}
+                  {"Meta Description"}
                 </Label>
                 <Textarea
                   value={seoSettings.meta.description}
                   onChange={(e) => handleMetaChange('description', e.target.value)}
-                  placeholder={t('seo.meta.metaDescriptionPlaceholder')}
+                  placeholder={"Meta Description Placeholder"}
                   rows={3}
                   className="border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
                 />
                 <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                  {t('seo.meta.descriptionRecommendation', { count: seoSettings.meta.description.length })}
+                  {"Description Recommendation"}
                 </p>
               </div>
 
               <div>
                 <Label className="text-gray-700 dark:text-gray-300 font-medium flex items-center gap-2 mb-2">
                   <Search className="h-4 w-4 text-gray-500" />
-                  {t('seo.meta.keywords')}
+                  {"Keywords"}
                 </Label>
                 <Input
                   value={seoSettings.meta.keywords}
                   onChange={(e) => handleMetaChange('keywords', e.target.value)}
-                  placeholder={t('seo.meta.keywordsPlaceholder')}
+                  placeholder={"Keywords Placeholder"}
                   className="border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
                 />
               </div>
@@ -195,12 +193,12 @@ function SEOSettingsSection() {
               <div>
                 <Label className="text-gray-700 dark:text-gray-300 font-medium flex items-center gap-2 mb-2">
                   <Globe className="h-4 w-4 text-gray-500" />
-                  {t('seo.meta.author')}
+                  {"Author"}
                 </Label>
                 <Input
                   value={seoSettings.meta.author}
                   onChange={(e) => handleMetaChange('author', e.target.value)}
-                  placeholder={t('seo.meta.authorPlaceholder')}
+                  placeholder={"Author Placeholder"}
                   className="border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
                 />
               </div>
@@ -212,10 +210,10 @@ function SEOSettingsSection() {
               <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
                 <div>
                   <h4 className="font-medium text-gray-900 dark:text-gray-100">
-                    {t('seo.openGraph.enable')}
+                    {"Enable"}
                   </h4>
                   <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                    {t('seo.openGraph.enableDescription')}
+                    {"Enable Description"}
                   </p>
                 </div>
                 <Switch
@@ -230,12 +228,12 @@ function SEOSettingsSection() {
                   <div>
                     <Label className="text-gray-700 dark:text-gray-300 font-medium flex items-center gap-2 mb-2">
                       <Share2 className="h-4 w-4 text-gray-500" />
-                      {t('seo.openGraph.ogTitle')}
+                      {"Og Title"}
                     </Label>
                     <Input
                       value={seoSettings.openGraph.title}
                       onChange={(e) => handleOpenGraphChange('title', e.target.value)}
-                      placeholder={t('seo.openGraph.ogTitlePlaceholder')}
+                      placeholder={"Og Title Placeholder"}
                       className="border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
                     />
                   </div>
@@ -243,12 +241,12 @@ function SEOSettingsSection() {
                   <div>
                     <Label className="text-gray-700 dark:text-gray-300 font-medium flex items-center gap-2 mb-2">
                       <FileText className="h-4 w-4 text-gray-500" />
-                      {t('seo.openGraph.ogDescription')}
+                      {"Og Description"}
                     </Label>
                     <Textarea
                       value={seoSettings.openGraph.description}
                       onChange={(e) => handleOpenGraphChange('description', e.target.value)}
-                      placeholder={t('seo.openGraph.ogDescriptionPlaceholder')}
+                      placeholder={"Og Description Placeholder"}
                       rows={2}
                       className="border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
                     />
@@ -257,16 +255,16 @@ function SEOSettingsSection() {
                   <div>
                     <Label className="text-gray-700 dark:text-gray-300 font-medium flex items-center gap-2 mb-2">
                       <Image className="h-4 w-4 text-gray-500" />
-                      {t('seo.openGraph.ogImageUrl')}
+                      {"Og Image Url"}
                     </Label>
                     <Input
                       value={seoSettings.openGraph.image}
                       onChange={(e) => handleOpenGraphChange('image', e.target.value)}
-                      placeholder={t('seo.openGraph.ogImageUrlPlaceholder')}
+                      placeholder={"Og Image Url Placeholder"}
                       className="border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
                     />
                     <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
-                      {t('seo.openGraph.imageRecommendation')}
+                      {"Image Recommendation"}
                     </p>
                   </div>
                 </>
@@ -279,10 +277,10 @@ function SEOSettingsSection() {
               <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
                 <div>
                   <h4 className="font-medium text-gray-900 dark:text-gray-100">
-                    {t('seo.twitter.enableCards')}
+                    {"Enable Cards"}
                   </h4>
                   <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                    {t('seo.twitter.enableDescription')}
+                    {"Enable Description"}
                   </p>
                 </div>
                 <Switch
@@ -297,12 +295,12 @@ function SEOSettingsSection() {
                   <div>
                     <Label className="text-gray-700 dark:text-gray-300 font-medium flex items-center gap-2 mb-2">
                       <Share2 className="h-4 w-4 text-gray-500" />
-                      {t('seo.twitter.twitterSite')}
+                      {"Twitter Site"}
                     </Label>
                     <Input
                       value={seoSettings.twitter.site}
                       onChange={(e) => handleTwitterChange('site', e.target.value)}
-                      placeholder={t('seo.twitter.usernamePlaceholder')}
+                      placeholder={"Username Placeholder"}
                       className="border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
                     />
                   </div>
@@ -310,12 +308,12 @@ function SEOSettingsSection() {
                   <div>
                     <Label className="text-gray-700 dark:text-gray-300 font-medium flex items-center gap-2 mb-2">
                       <Share2 className="h-4 w-4 text-gray-500" />
-                      {t('seo.twitter.twitterCreator')}
+                      {"Twitter Creator"}
                     </Label>
                     <Input
                       value={seoSettings.twitter.creator}
                       onChange={(e) => handleTwitterChange('creator', e.target.value)}
-                      placeholder={t('seo.twitter.creatorPlaceholder')}
+                      placeholder={"Creator Placeholder"}
                       className="border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
                     />
                   </div>
@@ -329,10 +327,10 @@ function SEOSettingsSection() {
               <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
                 <div>
                   <h4 className="font-medium text-gray-900 dark:text-gray-100">
-                    {t('seo.sitemap.generate')}
+                    {"Generate"}
                   </h4>
                   <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                    {t('seo.sitemap.generateDescription')}
+                    {"Generate Description"}
                   </p>
                 </div>
                 <Switch
@@ -347,7 +345,7 @@ function SEOSettingsSection() {
 
               <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
                 <p className="text-sm text-blue-800 dark:text-blue-200">
-                  {t('seo.sitemap.availableAt')}
+                  {"Available At"}
                 </p>
               </div>
             </div>
@@ -358,10 +356,10 @@ function SEOSettingsSection() {
               <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
                 <div>
                   <h4 className="font-medium text-gray-900 dark:text-gray-100">
-                    {t('seo.robots.allowIndexing')}
+                    {"Allow Indexing"}
                   </h4>
                   <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                    {t('seo.robots.allowIndexingDescription')}
+                    {"Allow Indexing Description"}
                   </p>
                 </div>
                 <Switch
@@ -374,10 +372,10 @@ function SEOSettingsSection() {
               <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
                 <div>
                   <h4 className="font-medium text-gray-900 dark:text-gray-100">
-                    {t('seo.robots.followLinks')}
+                    {"Follow Links"}
                   </h4>
                   <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                    {t('seo.robots.followLinksDescription')}
+                    {"Follow Links Description"}
                   </p>
                 </div>
                 <Switch
@@ -390,10 +388,10 @@ function SEOSettingsSection() {
               <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
                 <div>
                   <h4 className="font-medium text-gray-900 dark:text-gray-100">
-                    {t('seo.robots.showSnippets')}
+                    {"Show Snippets"}
                   </h4>
                   <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                    {t('seo.robots.showSnippetsDescription')}
+                    {"Show Snippets Description"}
                   </p>
                 </div>
                 <Switch
@@ -411,13 +409,13 @@ function SEOSettingsSection() {
             variant="outline" 
             className="border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300"
           >
-            {t('seo.actions.cancel')}
+            {"Cancel"}
           </Button>
           <Button 
             onClick={handleSave}
             className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white"
           >
-            {t('seo.actions.saveSettings')}
+            {"Save Settings"}
           </Button>
         </div>
       </CardContent>

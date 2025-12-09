@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Link, Activity, Globe2, ShieldCheck, Zap, CheckCircle2, Copy, ExternalLink, Share2, Shield } from 'lucide-react';
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -7,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 
 function StoreLinkSection() {
-  const { t } = useTranslation();
   const [storeDomain, setStoreDomain] = useState("myshoping.ordify.com");
   const [customDomain, setCustomDomain] = useState("");
   const [useCustomDomain, setUseCustomDomain] = useState(false);
@@ -34,8 +32,8 @@ function StoreLinkSection() {
               <Link className="w-6 h-6 text-primary" />
             </div>
             <div>
-              <h3 className="text-lg font-bold text-gray-800 dark:text-gray-100">{t('storeLink.title')}</h3>
-              <p className="text-xs text-gray-600 dark:text-gray-400">{t('storeLink.description')}</p>
+              <h3 className="text-lg font-bold text-gray-800 dark:text-gray-100">{"Title"}</h3>
+              <p className="text-xs text-gray-600 dark:text-gray-400">{"Description"}</p>
             </div>
           </div>
           
@@ -76,19 +74,19 @@ function StoreLinkSection() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
             <div className="p-3 rounded-lg bg-emerald-500/10 text-center">
               <Activity className="w-5 h-5 text-emerald-500 mx-auto mb-1" />
-              <p className="text-xs text-gray-600 dark:text-gray-400">{t('storeLink.status.active')}</p>
+              <p className="text-xs text-gray-600 dark:text-gray-400">{"Active"}</p>
             </div>
             <div className="p-3 rounded-lg bg-blue-500/10 text-center">
               <Globe2 className="w-5 h-5 text-blue-500 mx-auto mb-1" />
-              <p className="text-xs text-gray-600 dark:text-gray-400">{t('storeLink.status.public')}</p>
+              <p className="text-xs text-gray-600 dark:text-gray-400">{"Public"}</p>
             </div>
             <div className="p-3 rounded-lg bg-violet-500/10 text-center">
               <ShieldCheck className="w-5 h-5 text-violet-500 mx-auto mb-1" />
-              <p className="text-xs text-gray-600 dark:text-gray-400">{t('storeLink.status.sslSecured')}</p>
+              <p className="text-xs text-gray-600 dark:text-gray-400">{"Ssl Secured"}</p>
             </div>
             <div className="p-3 rounded-lg bg-amber-500/10 text-center">
               <Zap className="w-5 h-5 text-amber-500 mx-auto mb-1" />
-              <p className="text-xs text-gray-600 dark:text-gray-400">{t('storeLink.status.fast')}</p>
+              <p className="text-xs text-gray-600 dark:text-gray-400">{"Fast"}</p>
             </div>
           </div>
         </div>
@@ -98,7 +96,7 @@ function StoreLinkSection() {
       <div className="space-y-4">
         <h4 className="text-sm font-semibold text-gray-800 dark:text-gray-100 flex items-center gap-2">
           <Globe2 className="w-4 h-4 text-primary" />
-          {t('storeLink.domainSettings.title')}
+          {"Title"}
         </h4>
 
         <div className="space-y-4">
@@ -110,8 +108,8 @@ function StoreLinkSection() {
                   <Link className="w-4 h-4 text-primary" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{t('storeLink.domainSettings.defaultDomain.label')}</p>
-                  <p className="text-xs text-gray-600 dark:text-gray-400">{t('storeLink.domainSettings.defaultDomain.description')}</p>
+                  <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{"Label"}</p>
+                  <p className="text-xs text-gray-600 dark:text-gray-400">{"Description"}</p>
                 </div>
               </div>
             </div>
@@ -130,8 +128,8 @@ function StoreLinkSection() {
                 <Globe2 className="w-4 h-4 text-violet-500" />
               </div>
               <div className="flex-1">
-                <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{t('storeLink.domainSettings.useCustomDomain.label')}</p>
-                <p className="text-xs text-gray-600 dark:text-gray-400">{t('storeLink.domainSettings.useCustomDomain.description')}</p>
+                <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{"Label"}</p>
+                <p className="text-xs text-gray-600 dark:text-gray-400">{"Description"}</p>
               </div>
             </div>
             <Switch
@@ -146,7 +144,7 @@ function StoreLinkSection() {
             <div className="p-4 rounded-xl bg-white dark:bg-gray-900/50 border border-gray-200 dark:border-gray-800 hover:border-primary/50 dark:hover:border-primary/30 transition-all animate-in slide-in-from-top-2">
               <Label className="text-sm font-medium text-gray-700 dark:text-gray-200 flex items-center gap-2 mb-3">
                 <Globe2 className="w-4 h-4 text-primary" />
-                {t('storeLink.domainSettings.customDomain.label')}
+                {"Label"}
               </Label>
               <Input
                 value={customDomain}
@@ -155,7 +153,7 @@ function StoreLinkSection() {
                 placeholder="www.yourstore.com"
               />
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
-                {t('storeLink.domainSettings.customDomain.dnsNote')}
+                {"Dns Note"}
               </p>
             </div>
           )}
@@ -170,28 +168,28 @@ function StoreLinkSection() {
             className="flex items-center gap-2 border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800/50"
           >
             <Share2 className="w-4 h-4" />
-            {t('storeLink.actions.shareStore')}
+            {"Share Store"}
           </Button>
           <Button
             variant="outline"
             className="flex items-center gap-2 border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800/50"
           >
             <Activity className="w-4 h-4" />
-            {t('storeLink.actions.viewAnalytics')}
+            {"View Analytics"}
           </Button>
           <Button
             variant="outline"
             className="flex items-center gap-2 border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800/50"
           >
             <Shield className="w-4 h-4" />
-            {t('storeLink.actions.sslCertificate')}
+            {"Ssl Certificate"}
           </Button>
         </div>
         <Button 
           onClick={handleSave}
           className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white"
         >
-          {t('storeLink.actions.saveChanges')}
+          {"Save Changes"}
         </Button>
       </div>
     </div>

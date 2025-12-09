@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Shield, Key, Lock, AlertTriangle, RefreshCw } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -11,7 +10,6 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 function SecuritySection() {
-  const { t } = useTranslation();
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -36,14 +34,14 @@ function SecuritySection() {
               <Shield className="h-6 w-6" />
             </div>
             <div>
-              <CardTitle className="text-xl">{t('security.title')}</CardTitle>
+              <CardTitle className="text-xl">{"Title"}</CardTitle>
               <CardDescription className="text-gray-100 mt-1">
-                {t('security.description')}
+                {"Description"}
               </CardDescription>
             </div>
           </div>
           <Badge variant="secondary" className="bg-white/20 text-white border-0">
-            {t('security.highPriority')}
+            {"High Priority"}
           </Badge>
         </div>
       </CardHeader>
@@ -54,19 +52,19 @@ function SecuritySection() {
               value="password" 
               className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-700"
             >
-              {t('security.tabs.password')}
+              {"Password"}
             </TabsTrigger>
             <TabsTrigger 
               value="2fa" 
               className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-700"
             >
-              {t('security.tabs.twoFactorAuth')}
+              {"Two Factor Auth"}
             </TabsTrigger>
             <TabsTrigger 
               value="sessions" 
               className="data-[state=active]:bg-white dark:data-[state=active]:bg-gray-700"
             >
-              {t('security.tabs.sessions')}
+              {"Sessions"}
             </TabsTrigger>
           </TabsList>
 
@@ -74,7 +72,7 @@ function SecuritySection() {
             <Alert className="border-amber-200 bg-amber-50 dark:bg-amber-900/20 dark:border-amber-800">
               <AlertTriangle className="h-4 w-4 text-amber-600 dark:text-amber-400" />
               <AlertDescription className="text-amber-800 dark:text-amber-200">
-                {t('security.passwordAlert')}
+                {"Password Alert"}
               </AlertDescription>
             </Alert>
 
@@ -82,39 +80,39 @@ function SecuritySection() {
               <div>
                 <Label className="text-gray-700 dark:text-gray-300 font-medium flex items-center gap-2 mb-2">
                   <Lock className="h-4 w-4 text-gray-500" />
-                  {t('security.currentPassword')}
+                  {"Current Password"}
                 </Label>
                 <Input 
                   type="password"
                   value={currentPassword}
                   onChange={(e) => setCurrentPassword(e.target.value)}
-                  placeholder={t('security.enterCurrentPassword')}
+                  placeholder={"Enter Current Password"}
                   className="border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
                 />
               </div>
               <div>
                 <Label className="text-gray-700 dark:text-gray-300 font-medium flex items-center gap-2 mb-2">
                   <Key className="h-4 w-4 text-gray-500" />
-                  {t('security.newPassword')}
+                  {"New Password"}
                 </Label>
                 <Input 
                   type="password"
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
-                  placeholder={t('security.enterNewPassword')}
+                  placeholder={"Enter New Password"}
                   className="border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
                 />
               </div>
               <div>
                 <Label className="text-gray-700 dark:text-gray-300 font-medium flex items-center gap-2 mb-2">
                   <RefreshCw className="h-4 w-4 text-gray-500" />
-                  {t('security.confirmNewPassword')}
+                  {"Confirm New Password"}
                 </Label>
                 <Input 
                   type="password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  placeholder={t('security.confirmNewPasswordPlaceholder')}
+                  placeholder={"Confirm New Password Placeholder"}
                   className="border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
                 />
               </div>
@@ -122,7 +120,7 @@ function SecuritySection() {
                 onClick={handlePasswordChange}
                 className="bg-gradient-to-r from-red-500 to-orange-600 hover:from-red-600 hover:to-orange-700 text-white w-full"
               >
-                {t('security.changePasswordButton')}
+                {"Change Password Button"}
               </Button>
             </div>
           </TabsContent>
@@ -132,10 +130,10 @@ function SecuritySection() {
               <div className="flex items-center justify-between mb-4">
                 <div className="space-y-1">
                   <h4 className="font-medium text-gray-900 dark:text-gray-100">
-                    {t('security.twoFactorAuth.title')}
+                    {"Title"}
                   </h4>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    {t('security.twoFactorAuth.description')}
+                    {"Description"}
                   </p>
                 </div>
                 <Switch
@@ -149,15 +147,15 @@ function SecuritySection() {
                 <div className="space-y-4 pt-4 border-t border-gray-200 dark:border-gray-700">
                   <div className="grid grid-cols-2 gap-4">
                     <Button variant="outline" className="justify-center">
-                      {t('security.twoFactorAuth.setupAuthenticator')}
+                      {"Setup Authenticator"}
                     </Button>
                     <Button variant="outline" className="justify-center">
-                      {t('security.twoFactorAuth.setupSMS')}
+                      {"Setup S M S"}
                     </Button>
                   </div>
                   <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
                     <p className="text-sm text-blue-800 dark:text-blue-200">
-                      {t('security.twoFactorAuth.backupCodes', { count: 5 })}
+                      {"Backup Codes"}
                     </p>
                   </div>
                 </div>
@@ -168,10 +166,10 @@ function SecuritySection() {
               <div className="flex items-center justify-between">
                 <div className="space-y-1">
                   <h4 className="font-medium text-gray-900 dark:text-gray-100">
-                    {t('security.emailNotifications.title')}
+                    {"Title"}
                   </h4>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    {t('security.emailNotifications.description')}
+                    {"Description"}
                   </p>
                 </div>
                 <Switch
@@ -189,14 +187,14 @@ function SecuritySection() {
                 <div className="flex items-center justify-between">
                   <div className="space-y-1">
                     <h4 className="font-medium text-gray-900 dark:text-gray-100">
-                      {t('security.sessions.currentSession')}
+                      {"Current Session"}
                     </h4>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                      Chrome on Windows • {t('security.sessions.activeNow')}
+                      Chrome on Windows • {"Active Now"}
                     </p>
                   </div>
                   <Badge className="bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400 border-0">
-                    {t('security.sessions.active')}
+                    {"Active"}
                   </Badge>
                 </div>
               </div>
@@ -205,10 +203,10 @@ function SecuritySection() {
                 <div className="flex items-center justify-between">
                   <div className="space-y-1">
                     <h4 className="font-medium text-gray-900 dark:text-gray-100">
-                      {t('security.sessions.mobileApp')}
+                      {"Mobile App"}
                     </h4>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                      iOS • {t('security.sessions.lastActive', { time: '2 hours ago' })}
+                      iOS • {"Last Active"}
                     </p>
                   </div>
                   <Button 
@@ -216,7 +214,7 @@ function SecuritySection() {
                     size="sm"
                     className="text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-900/20"
                   >
-                    {t('security.sessions.revoke')}
+                    {"Revoke"}
                   </Button>
                 </div>
               </div>
@@ -225,7 +223,7 @@ function SecuritySection() {
                 variant="outline" 
                 className="w-full border-red-200 text-red-600 hover:bg-red-50 dark:border-red-800 dark:text-red-400 dark:hover:bg-red-900/20"
               >
-                {t('security.sessions.signOutAll')}
+                {"Sign Out All"}
               </Button>
             </div>
           </TabsContent>

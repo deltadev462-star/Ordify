@@ -1,5 +1,4 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 import { useTheme } from "@/hooks/useTheme";
 import { getAllThemes } from "@/themes";
 import { Card, CardContent } from "@/components/ui/card";
@@ -9,7 +8,6 @@ import type { ThemeMetadata } from "@/types/theme.types";
 
 
 export const ThemeSelector: React.FC = () => {
-  const { t } = useTranslation();
   const { currentTheme, setTheme } = useTheme();
   const themes = getAllThemes();
 
@@ -20,9 +18,9 @@ export const ThemeSelector: React.FC = () => {
   return (
     <div className="space-y-4  ">
       <div>
-        <h3 className="text-lg font-semibold mb-2">{t("Choose Theme")}</h3>
+        <h3 className="text-lg font-semibold mb-2">{"Choose  Theme"}</h3>
         <p className="text-sm text-gray-600 dark:text-white/75 mb-4">
-          {t("Select a theme that best fits your brand and target audience")}
+          {"Select a theme that best fits your brand and target audience"}
         </p>
       </div>
 
@@ -40,9 +38,9 @@ export const ThemeSelector: React.FC = () => {
             <CardContent className="p-4">
               <div className="flex items-start justify-between mb-3">
                 <div>
-                  <h4 className="font-semibold text-gray-900 dark:text-gray-300">{t(theme.name)}</h4>
+                  <h4 className="font-semibold text-gray-900 dark:text-gray-300">{theme.name}</h4>
                   <p className="text-sm text-gray-600 dark:text-gray-500 mt-1">
-                    {t(theme.description)}
+                    {theme.description}
                   </p>
                 </div>
                 {currentTheme === theme.id && (
@@ -56,7 +54,7 @@ export const ThemeSelector: React.FC = () => {
               {/* <div className="mb-3 aspect-video rounded-lg bg-gray-100 overflow-hidden">
                 <img
                   src={getImageSrc(theme)}
-                  alt={`${theme.name} ${t("preview")}`}
+                  alt={`${theme.name} ${"Preview"}`}
                   className="h-full w-full object-cover"
                   onError={() => handleImageError(theme.id)}
                 />
@@ -65,22 +63,22 @@ export const ThemeSelector: React.FC = () => {
               {/* Color Palette */}
               <div className="mb-3">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-xs font-medium text-gray-700">{t("Colors:")}</span>
+                  <span className="text-xs font-medium text-gray-700">{"Colors:"}</span>
                   <div className="flex gap-1">
                     <div
                       className="h-4 w-4 rounded-full border border-gray-300"
                       style={{ backgroundColor: theme.colors.primary }}
-                      title={`${t("Primary Color")}: ${theme.colors.primary}`}
+                      title={`${"Primary  Color"}: ${theme.colors.primary}`}
                     />
                     <div
                       className="h-4 w-4 rounded-full border border-gray-300"
                       style={{ backgroundColor: theme.colors.secondary }}
-                      title={`${t("Secondary Color")}: ${theme.colors.secondary}`}
+                      title={`${"Secondary  Color"}: ${theme.colors.secondary}`}
                     />
                     <div
                       className="h-4 w-4 rounded-full border border-gray-300"
                       style={{ backgroundColor: theme.colors.accent }}
-                      title={`${t("Accent Color")}: ${theme.colors.accent}`}
+                      title={`${"Accent  Color"}: ${theme.colors.accent}`}
                     />
                   </div>
                 </div>
@@ -88,9 +86,9 @@ export const ThemeSelector: React.FC = () => {
 
               {/* Typography */}
               <div className="mb-3">
-                <span className="text-xs font-medium text-gray-700 dark:text-gray-500">{t("Font:")}</span>
+                <span className="text-xs font-medium text-gray-700 dark:text-gray-500">{"Font:"}</span>
                 <span className="ml-2 text-xs text-gray-600">
-                  {theme.typography.fontFamily.split(',')[0].replace(/['"]/g, '')}
+                  {theme.typography.fontFamily.split(",")[0].replace(/['"]/g, '')}
                 </span>
               </div>
 
@@ -104,12 +102,12 @@ export const ThemeSelector: React.FC = () => {
                         variant="secondary"
                         className="text-xs"
                       >
-                        {t(feature)}
+                        {feature}
                       </Badge>
                     ))}
                     {theme.features.length > 3 && (
                       <Badge variant="outline" className="text-xs">
-                        +{theme.features.length - 3} {t("more")}
+                        +{theme.features.length - 3} {"More"}
                       </Badge>
                     )}
                   </>
@@ -123,7 +121,7 @@ export const ThemeSelector: React.FC = () => {
                         variant="secondary"
                         className="text-xs"
                       >
-                        {t(feature)}
+                        {feature}
                       </Badge>
                     ))
                 )}
@@ -136,12 +134,13 @@ export const ThemeSelector: React.FC = () => {
       {/* Current Selection Info */}
       <div className="rounded-lg bg-blue-50 dark:bg-[#353434] p-4">
         <h4 className="font-semibold text-blue-900 dark:text-blue-200 mb-2">
-          {t("Selected:")} {t(themes.find((theme: ThemeMetadata) => theme.id === currentTheme)?.name || "")}
+          {"Selected:"} {themes.find((theme: ThemeMetadata) => theme.id === currentTheme)?.name || ""}
         </h4>
         <p className="text-sm text-blue-800 dark:text-blue-200">
-          {t(themes.find((theme: ThemeMetadata) => theme.id === currentTheme)?.description || "")}
+          {themes.find((theme: ThemeMetadata) => theme.id === currentTheme)?.description || ""}
         </p>
       </div>
     </div>
   );
 };
+

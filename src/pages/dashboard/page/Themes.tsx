@@ -13,9 +13,9 @@ import {
   Minimize2,
 } from "lucide-react";
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { useTheme } from "@/hooks/useTheme";
 import { ThemePreview } from "@/components/admin/ThemePreview";
+import { useTranslation } from "react-i18next";
 
 const Themes = () => {
   const { t } = useTranslation();
@@ -36,16 +36,16 @@ const Themes = () => {
 
   const handleSaveTheme = () => {
     // In a real app, this would save to the backend
-    alert(t("themeSettingsSaved"));
+    alert(t("themes.settingsSaved"));
   };
 
   return (
-    <div dir="rtl">
+    <div>
       <div className="p-6">
         <div className="grid grid-cols-1 lg:grid-cols-2  mb-6 ">
           <Title
-            title={t("themeCustomization")}
-            Subtitle={t("customizeStoreAppearance")}
+            title={t("themes.title")}
+            Subtitle={t("themes.subtitle")}
             className=""
             classNamee=""
           />
@@ -59,7 +59,7 @@ const Themes = () => {
                 onClick={() => setActiveView("split")}
                 className="px-3"
               >
-                {t("splitView")}
+                {t("themes.splitView")}
               </Button>
               <Button
                 size="sm"
@@ -67,7 +67,7 @@ const Themes = () => {
                 onClick={() => setActiveView("customize")}
                 className="px-3"
               >
-                {t("customizeOnly")}
+                {t("themes.customizeOnly")}
               </Button>
               <Button
                 size="sm"
@@ -75,7 +75,7 @@ const Themes = () => {
                 onClick={() => setActiveView("preview")}
                 className="px-3"
               >
-                {t("previewOnly")}
+                {t("themes.previewOnly")}
               </Button>
             </div>
 
@@ -105,7 +105,7 @@ const Themes = () => {
           {isFullscreen && (
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-2xl font-bold dark:text-white">
-                {t("themeCustomization")}
+                {t("themes.title")}
               </h2>
               <Button
                 size="sm"
@@ -113,7 +113,7 @@ const Themes = () => {
                 onClick={() => setIsFullscreen(false)}
               >
                 <Minimize2 className="h-4 w-4 mx-2 dark:text-white" />
-                {t("exitFullscreen")}
+                {t("themes.exitFullscreen")}
               </Button>
             </div>
           )}
@@ -135,7 +135,7 @@ const Themes = () => {
                   <CardHeader className="pb-3 ">
                     <div className="flex items-center justify-between">
                       <CardTitle className="text-base">
-                        {t("livePreview")}
+                        {t("themes.livePreview")}
                       </CardTitle>
                       <div className="flex gap-2">
                         <Button
@@ -182,7 +182,7 @@ const Themes = () => {
                 <Card className="border border-[#d6d6d6] dark:bg-[#101010] dark:border-[#424242] dark:text-white">
                   <CardHeader>
                     <CardTitle className="text-base">
-                      {t("quickActions")}
+                      {t("themes.quickActions")}
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-3">
@@ -192,11 +192,11 @@ const Themes = () => {
                       onClick={handlePreview}
                     >
                       <Eye className="mr-2 h-4 w-4" />
-                      {t("previewInNewWindow")}
+                      {t("themes.previewInNewWindow")}
                     </Button>
                     <Button className="w-full" variant="outline">
                       <ExternalLink className="mr-2 h-4 w-4" />
-                      {t("viewLiveStore")}
+                      {t("themes.viewLiveStore")}
                     </Button>
                   </CardContent>
                 </Card>
@@ -219,7 +219,7 @@ const Themes = () => {
               <Card>
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between">
-                    <CardTitle>{t("themePreview")}</CardTitle>
+                    <CardTitle>{t("themes.themePreview")}</CardTitle>
                     <div className="flex gap-2">
                       <Button
                         size="sm"
@@ -264,27 +264,27 @@ const Themes = () => {
             {/* Current Theme Status */}
             <Card className="border border-[#d6d6d6] dark:bg-[#101010] dark:border-[#424242] dark:text-white">
               <CardHeader>
-                <CardTitle className="text-base">{t("currentTheme")}</CardTitle>
+                <CardTitle className="text-base">{t("themes.currentTheme")}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">{t("active")}:</span>
+                  <span className="text-sm text-gray-600">{t("themes.active")}:</span>
                   <span className="font-semibold text-sm">
                     {themeConfig?.name || currentTheme}
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-gray-600">
-                    {t("modified")}:
+                    {t("themes.modified")}:
                   </span>
                   <span className="text-sm">
                     {new Date().toLocaleDateString()}
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-600">{t("status")}:</span>
+                  <span className="text-sm text-gray-600">{t("themes.status")}:</span>
                   <span className="text-sm text-green-600 font-medium">
-                    {t("published")}
+                    {t("themes.published")}
                   </span>
                 </div>
               </CardContent>
@@ -294,7 +294,7 @@ const Themes = () => {
             <Card className="border border-[#d6d6d6] dark:bg-[#101010] dark:border-[#424242] dark:text-white">
               <CardHeader>
                 <CardTitle className="text-base">
-                  {t("activeFeatures")}
+                  {t("themes.activeFeatures")}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -311,7 +311,7 @@ const Themes = () => {
                           >
                             <div className="h-2 w-2 rounded-full bg-green-500" />
                             <span className="text-sm capitalize">
-                              {t(feature.replace(/([A-Z])/g, " $1").trim())}
+                              {feature.replace(/([A-Z])/g, " $1").trim()}
                             </span>
                           </div>
                         ))}
@@ -324,24 +324,24 @@ const Themes = () => {
             {/* Help & Documentation */}
             <Card className="border border-[#d6d6d6] dark:bg-[#101010] dark:border-[#424242] dark:text-white">
               <CardHeader>
-                <CardTitle className="text-base">{t("needHelp")}</CardTitle>
+                <CardTitle className="text-base">{t("themes.needHelp")}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 <p className="text-sm text-gray-600">
-                  {t("learnCustomizeTheme")}
+                  {t("themes.learnCustomizeTheme")}
                 </p>
                 <div className="space-y-2">
                   <Button
                     variant="link"
                     className="p-0 h-auto justify-start text-sm"
                   >
-                    {t("viewDocumentation")}
+                    {t("themes.viewDocumentation")}
                   </Button>
                   <Button
                     variant="link"
                     className="p-0 h-auto justify-start text-sm"
                   >
-                    {t("contactSupport")}
+                    {t("themes.contactSupport")}
                   </Button>
                 </div>
               </CardContent>
@@ -354,3 +354,4 @@ const Themes = () => {
 };
 
 export default Themes;
+

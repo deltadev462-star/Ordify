@@ -1,8 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useTheme } from "@/hooks/useTheme";
-import { useTranslation } from "react-i18next";
-
 interface ClassicHeroProps {
   slides: Array<{
     id: string;
@@ -23,8 +21,6 @@ export const ClassicHero = ({
   className = "",
 }: ClassicHeroProps) => {
   const { colors, layout } = useTheme();
-  const { t } = useTranslation();
-  
   if (!slides || slides.length === 0) return null;
   
   const currentSlide = slides[0]; // Classic theme shows single hero
@@ -100,7 +96,7 @@ export const ClassicHero = ({
                       borderRadius: layout?.borderRadius.md,
                     }}
                   >
-                    <span className="relative z-10">{t("Learn More")}</span>
+                    <span className="relative z-10">{"Learn  More"}</span>
                     <div
                       className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300"
                       style={{

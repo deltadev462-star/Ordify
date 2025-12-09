@@ -3,7 +3,6 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { getUserProfile, updateProfile, updatePassword } from "@/store/slices/auth/actions";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useTranslation } from "react-i18next";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -36,7 +35,6 @@ import { cn } from "@/lib/utils";
 
 const ProfilePage = () => {
   const dispatch = useAppDispatch();
-  const { t } = useTranslation();
   const { toast } = useToast();
   const { user, loading, error } = useAppSelector((state) => state.auth);
   const [activeTab, setActiveTab] = useState("profile");
@@ -75,9 +73,9 @@ const ProfilePage = () => {
   const getMemberSince = () => {
     if (user?.createdAt) {
       const date = new Date(user.createdAt);
-      return date.toLocaleDateString(t("language") === "ar" ? "ar-EG" : "en-US", { 
-        year: 'numeric', 
-        month: 'long' 
+      return date.toLocaleDateString("en-US", {
+        year: 'numeric',
+        month: 'long'
       });
     }
     return "";
@@ -87,34 +85,34 @@ const ProfilePage = () => {
   const profileValidationSchema = Yup.object({
     firstName: Yup.string()
       .trim()
-      .required(t("signup.firstNameRequired"))
-      .min(2, t("signup.firstNameMinLength")),
+      .required("First Name Required")
+      .min(2, "First Name Min Length"),
     lastName: Yup.string()
       .trim()
-      .required(t("signup.lastNameRequired"))
-      .min(2, t("signup.lastNameMinLength")),
+      .required("Last Name Required")
+      .min(2, "Last Name Min Length"),
     email: Yup.string()
       .trim()
-      .required(t("signup.emailRequired"))
-      .email(t("signup.emailInvalid")),
+      .required("Email Required")
+      .email("Email Invalid"),
     phone: Yup.string()
       .trim()
-      .matches(/^[0-9+\-\s()]+$/, t("signup.phoneInvalid"))
+      .matches(/^[0-9+\-\s()]+$/, "Phone Invalid")
       .optional(),
   });
 
   // Password form validation schema
   const passwordValidationSchema = Yup.object({
     currentPassword: Yup.string()
-      .required(t("profile.currentPasswordRequired"))
-      .min(6, t("signup.passwordMinLength")),
+      .required("Current Password Required")
+      .min(6, "Password Min Length"),
     newPassword: Yup.string()
-      .required(t("profile.newPasswordRequired"))
-      .min(8, t("signup.passwordMinLength"))
-      .notOneOf([Yup.ref('currentPassword')], t("profile.newPasswordMustBeDifferent")),
+      .required("New Password Required")
+      .min(8, "Password Min Length")
+      .notOneOf([Yup.ref('currentPassword')], "New Password Must Be Different"),
     confirmPassword: Yup.string()
-      .required(t("signup.confirmPasswordRequired"))
-      .oneOf([Yup.ref('newPassword')], t("signup.passwordsDoNotMatch")),
+      .required("Confirm Password Required")
+      .oneOf([Yup.ref('newPassword')], "Passwords Do Not Match"),
   });
 
   // Profile form
@@ -132,17 +130,17 @@ const ProfilePage = () => {
       try {
         const resultAction = await dispatch(updateProfile(values));
         if (updateProfile.fulfilled.match(resultAction)) {
-          setSuccessMessage(t("profile.profileUpdatedSuccess"));
+          setSuccessMessage("Profile Updated Success");
           toast({
-            title: t("profile.success"),
-            description: t("profile.profileUpdatedDescription"),
+            title: "Success",
+            description: "Profile Updated Description",
             variant: "default",
           });
           // Refresh profile data
           dispatch(getUserProfile());
         } else if (updateProfile.rejected.match(resultAction)) {
           toast({
-            title: t("profile.error"),
+            title: "Error",
             description: resultAction.payload as string,
             variant: "destructive",
           });
@@ -169,10 +167,10 @@ const ProfilePage = () => {
           newPassword: values.newPassword,
         }));
         if (updatePassword.fulfilled.match(resultAction)) {
-          setSuccessMessage(t("profile.passwordUpdatedSuccess"));
+          setSuccessMessage("Password Updated Success");
           toast({
-            title: t("profile.success"),
-            description: t("profile.passwordUpdatedDescription"),
+            title: "Success",
+            description: "Password Updated Description",
             variant: "default",
           });
           resetForm();
@@ -182,7 +180,7 @@ const ProfilePage = () => {
           setShowConfirmPassword(false);
         } else if (updatePassword.rejected.match(resultAction)) {
           toast({
-            title: t("profile.error"),
+            title: "Error",
             description: resultAction.payload as string,
             variant: "destructive",
           });
@@ -208,11 +206,11 @@ const ProfilePage = () => {
         <div className="flex items-center space-x-2">
           <User className="h-8 w-8 text-primary" />
           <h1 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-            {t("profile.profileSettings")}
+            {"Profile Settings"}
           </h1>
         </div>
         <p className="text-muted-foreground text-lg">
-          {t("profile.manageAccountSettings")}
+          {"Manage Account Settings"}
         </p>
       </div>
 
@@ -254,7 +252,7 @@ const ProfilePage = () => {
                   size="icon"
                   variant="secondary"
                   className="h-8 w-8 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 transform"
-                  title={t("profile.changeAvatar") || "Change avatar"}
+                  title="Change Avatar"
                 >
                   <Camera className="h-4 w-4" />
                 </Button>
@@ -269,7 +267,7 @@ const ProfilePage = () => {
                   {profileCompletion === 100 && (
                     <Badge variant="secondary" className="gap-1">
                       <CheckCircle2 className="h-3 w-3" />
-                      {t("profile.verified")}
+                      {"Verified"}
                     </Badge>
                   )}
                 </h2>
@@ -283,14 +281,14 @@ const ProfilePage = () => {
               <div className="flex flex-wrap gap-4 justify-center md:justify-start text-sm">
                 <div className="flex items-center gap-1">
                   <Calendar className="h-4 w-4 text-muted-foreground" />
-                  <span className="text-muted-foreground">{t("profile.memberSince")}</span>
+                  <span className="text-muted-foreground">{"Member Since"}</span>
                   <span className="font-medium">{getMemberSince()}</span>
                 </div>
                 <div className="flex items-center gap-1">
                   <TrendingUp className="h-4 w-4 text-muted-foreground" />
-                  <span className="text-muted-foreground">{t("profile.accountStatus")}</span>
+                  <span className="text-muted-foreground">{"Account Status"}</span>
                   <Badge variant="outline" className="text-green-600 border-green-600">
-                    {t("profile.active")}
+                    {"Active"}
                   </Badge>
                 </div>
               </div>
@@ -298,13 +296,13 @@ const ProfilePage = () => {
               {/* Profile Completion */}
               <div className="space-y-2 max-w-sm mx-auto md:mx-0">
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-muted-foreground">{t("profile.profileCompletion")}</span>
+                  <span className="text-muted-foreground">{"Profile Completion"}</span>
                   <span className="font-medium">{profileCompletion}%</span>
                 </div>
                 <Progress value={profileCompletion} className="h-2" />
                 {profileCompletion < 100 && (
                   <p className="text-xs text-muted-foreground">
-                    {t("profile.completeProfileMessage")}
+                    {"Complete Profile Message"}
                   </p>
                 )}
               </div>
@@ -321,14 +319,14 @@ const ProfilePage = () => {
             className="data-[state=active]:bg-background data-[state=active]:shadow-sm py-3 text-base font-medium transition-all"
           >
             <User className="mr-2 h-5 w-5" />
-            {t("profile.personalInfo")}
+            {"Personal Info"}
           </TabsTrigger>
           <TabsTrigger 
             value="password" 
             className="data-[state=active]:bg-background data-[state=active]:shadow-sm py-3 text-base font-medium transition-all"
           >
             <Lock className="mr-2 h-5 w-5" />
-            {t("profile.changePassword")}
+            {"Change Password"}
           </TabsTrigger>
         </TabsList>
 
@@ -338,10 +336,10 @@ const ProfilePage = () => {
             <CardHeader className="space-y-1 pb-6">
               <CardTitle className="text-2xl flex items-center gap-2">
                 <Sparkles className="h-6 w-6 text-primary" />
-                {t("profile.personalInformation")}
+                {"Personal Information"}
               </CardTitle>
               <CardDescription className="text-base">
-                {t("profile.updatePersonalDetails")}
+                {"Update Personal Details"}
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -350,7 +348,7 @@ const ProfilePage = () => {
                   {/* First Name */}
                   <div className="space-y-2">
                     <Label htmlFor="firstName" className="text-base font-medium">
-                      {t("signup.firstName")}
+                      {"First Name"}
                     </Label>
                     <Input
                       id="firstName"
@@ -362,7 +360,7 @@ const ProfilePage = () => {
                           ? "border-destructive focus:ring-destructive/20" 
                           : ""
                       )}
-                      placeholder={t("signup.firstNamePlaceholder")}
+                      placeholder={"First Name Placeholder"}
                       {...profileForm.getFieldProps("firstName")}
                     />
                     {profileForm.touched.firstName && profileForm.errors.firstName && (
@@ -375,7 +373,7 @@ const ProfilePage = () => {
                   {/* Last Name */}
                   <div className="space-y-2">
                     <Label htmlFor="lastName" className="text-base font-medium">
-                      {t("signup.lastName")}
+                      {"Last Name"}
                     </Label>
                     <Input
                       id="lastName"
@@ -387,7 +385,7 @@ const ProfilePage = () => {
                           ? "border-destructive focus:ring-destructive/20" 
                           : ""
                       )}
-                      placeholder={t("signup.lastNamePlaceholder")}
+                      placeholder={"Last Name Placeholder"}
                       {...profileForm.getFieldProps("lastName")}
                     />
                     {profileForm.touched.lastName && profileForm.errors.lastName && (
@@ -401,7 +399,7 @@ const ProfilePage = () => {
                 {/* Email */}
                 <div className="space-y-2">
                   <Label htmlFor="email" className="text-base font-medium">
-                    {t("signup.emailAddress")}
+                    {"Email Address"}
                   </Label>
                   <div className="relative">
                     <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
@@ -415,7 +413,7 @@ const ProfilePage = () => {
                           ? "border-destructive focus:ring-destructive/20" 
                           : ""
                       )}
-                      placeholder={t("signup.emailPlaceholder")}
+                      placeholder={"Email Placeholder"}
                       {...profileForm.getFieldProps("email")}
                     />
                   </div>
@@ -429,8 +427,8 @@ const ProfilePage = () => {
                 {/* Phone */}
                 <div className="space-y-2">
                   <Label htmlFor="phone" className="text-base font-medium">
-                    {t("signup.phone")} 
-                    <span className="text-sm text-muted-foreground ml-1">{t("signup.optional")}</span>
+                    {"Phone"} 
+                    <span className="text-sm text-muted-foreground ml-1">{"Optional"}</span>
                   </Label>
                   <div className="relative">
                     <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
@@ -444,7 +442,7 @@ const ProfilePage = () => {
                           ? "border-destructive focus:ring-destructive/20" 
                           : ""
                       )}
-                      placeholder={t("signup.phonePlaceholder")}
+                      placeholder={"Phone Placeholder"}
                       {...profileForm.getFieldProps("phone")}
                     />
                   </div>
@@ -468,12 +466,12 @@ const ProfilePage = () => {
                     {(loading || profileForm.isSubmitting) ? (
                       <>
                         <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                        {t("profile.saving")}
+                        {"Saving"}
                       </>
                     ) : (
                       <>
                         <Save className="mr-2 h-5 w-5" />
-                        {t("profile.saveChanges")}
+                        {"Save Changes"}
                       </>
                     )}
                   </Button>
@@ -489,10 +487,10 @@ const ProfilePage = () => {
             <CardHeader className="space-y-1 pb-6">
               <CardTitle className="text-2xl flex items-center gap-2">
                 <Shield className="h-6 w-6 text-primary" />
-                {t("profile.changePassword")}
+                {"Change Password"}
               </CardTitle>
               <CardDescription className="text-base">
-                {t("profile.updatePasswordDescription")}
+                {"Update Password Description"}
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -500,7 +498,7 @@ const ProfilePage = () => {
                 {/* Current Password */}
                 <div className="space-y-2">
                   <Label htmlFor="currentPassword" className="text-base font-medium">
-                    {t("profile.currentPassword")}
+                    {"Current Password"}
                   </Label>
                   <div className="relative">
                     <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
@@ -541,7 +539,7 @@ const ProfilePage = () => {
                 {/* New Password */}
                 <div className="space-y-2">
                   <Label htmlFor="newPassword" className="text-base font-medium">
-                    {t("profile.newPassword")}
+                    {"New Password"}
                   </Label>
                   <div className="relative">
                     <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
@@ -583,7 +581,7 @@ const ProfilePage = () => {
                 {/* Confirm Password */}
                 <div className="space-y-2">
                   <Label htmlFor="confirmPassword" className="text-base font-medium">
-                    {t("signup.confirmPassword")}
+                    {"Confirm Password"}
                   </Label>
                   <div className="relative">
                     <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
@@ -625,11 +623,11 @@ const ProfilePage = () => {
                 <Alert className="bg-muted/50 border-muted">
                   <Shield className="h-4 w-4" />
                   <AlertDescription>
-                    <p className="font-medium mb-2">{t("profile.passwordTips")}</p>
+                    <p className="font-medium mb-2">{"Password Tips"}</p>
                     <ul className="text-sm space-y-1 list-disc list-inside">
-                      <li>{t("profile.passwordTip1")}</li>
-                      <li>{t("profile.passwordTip2")}</li>
-                      <li>{t("profile.passwordTip3")}</li>
+                      <li>{"Password Tip1"}</li>
+                      <li>{"Password Tip2"}</li>
+                      <li>{"Password Tip3"}</li>
                     </ul>
                   </AlertDescription>
                 </Alert>
@@ -647,12 +645,12 @@ const ProfilePage = () => {
                     {(loading || passwordForm.isSubmitting) ? (
                       <>
                         <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                        {t("profile.updating")}
+                        {"Updating"}
                       </>
                     ) : (
                       <>
                         <Shield className="mr-2 h-5 w-5" />
-                        {t("profile.updatePassword")}
+                        {"Update Password"}
                       </>
                     )}
                   </Button>

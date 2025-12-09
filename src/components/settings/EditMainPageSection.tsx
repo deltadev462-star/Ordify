@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import {
   Home,
   Layout,
@@ -64,19 +63,18 @@ interface Section {
 }
 
 function EditMainPageSection() {
-  const { t } = useTranslation();
   const [previewMode, setPreviewMode] = useState(false);
   const [sections, setSections] = useState<Section[]>([
     {
       id: 'hero',
       type: 'hero',
-      title: t('editMainPage.sections.heroBanner'),
+      title: "Hero Banner",
       enabled: true,
       order: 1,
       settings: {
-        title: t('editMainPage.defaults.welcomeTitle'),
-        subtitle: t('editMainPage.defaults.welcomeSubtitle'),
-        buttonText: t('editMainPage.defaults.shopNow'),
+        title: "Welcome Title",
+        subtitle: "Welcome Subtitle",
+        buttonText: "Shop Now",
         buttonLink: '/products',
         backgroundImage: '',
         overlay: true,
@@ -86,11 +84,11 @@ function EditMainPageSection() {
     {
       id: 'featured',
       type: 'products',
-      title: t('editMainPage.sections.featuredProducts'),
+      title: "Featured Products",
       enabled: true,
       order: 2,
       settings: {
-        title: t('editMainPage.sections.featuredProducts'),
+        title: "Featured Products",
         productCount: 8,
         columns: 4,
         showPrice: true,
@@ -100,12 +98,12 @@ function EditMainPageSection() {
     {
       id: 'promo',
       type: 'promo',
-      title: t('editMainPage.sections.promotionBanner'),
+      title: "Promotion Banner",
       enabled: false,
       order: 3,
       settings: {
-        title: t('editMainPage.defaults.limitedOffer'),
-        description: t('editMainPage.defaults.promoDescription'),
+        title: "Limited Offer",
+        description: "Promo Description",
         code: 'SAVE20',
         backgroundColor: '#ff6b6b',
         textColor: '#ffffff'
@@ -114,11 +112,11 @@ function EditMainPageSection() {
     {
       id: 'testimonials',
       type: 'testimonials',
-      title: t('editMainPage.sections.customerReviews'),
+      title: "Customer Reviews",
       enabled: true,
       order: 4,
       settings: {
-        title: t('editMainPage.defaults.testimonialsTitle'),
+        title: "Testimonials Title",
         autoplay: true,
         speed: 5000,
         showDots: true
@@ -169,7 +167,7 @@ function EditMainPageSection() {
     const newSection: Section = {
       id: `${type}_${Date.now()}`,
       type: type,
-      title: t(`editMainPage.sections.${type}`),
+      title: "Sections ${type}",
       enabled: true,
       order: sections.length + 1,
       settings: {}
@@ -181,16 +179,16 @@ function EditMainPageSection() {
     <div className="space-y-6">
       <Alert variant="info">
         <AlertIcon variant="info" />
-        <AlertTitle>{t("editMainPage.title")}</AlertTitle>
+        <AlertTitle>{"Title"}</AlertTitle>
         <AlertDescription>
-          {t("editMainPage.description")}
+          {"Description"}
         </AlertDescription>
       </Alert>
 
       <div className="flex justify-between items-center">
         <h3 className="text-lg font-semibold flex items-center gap-2">
           <Layout className="w-5 h-5 text-primary" />
-          {t("editMainPage.pageSections")}
+          {"Page Sections"}
         </h3>
         
         <div className="flex items-center gap-3">
@@ -200,7 +198,7 @@ function EditMainPageSection() {
             onClick={() => setPreviewMode(!previewMode)}
           >
             <Eye className="w-4 h-4 mr-2" />
-            {previewMode ? t("editMainPage.editMode") : t("editMainPage.preview")}
+            {previewMode ? "Edit Mode" : "Preview"}
           </Button>
           
           <Button
@@ -208,7 +206,7 @@ function EditMainPageSection() {
             className="bg-gradient-to-r from-primary to-primary/80"
           >
             <Save className="w-4 h-4 mr-2" />
-            {t("editMainPage.saveChanges")}
+            {"Save Changes"}
           </Button>
         </div>
       </div>
@@ -234,7 +232,7 @@ function EditMainPageSection() {
                           </h3>
                         </div>
                         <div className="text-gray-600 dark:text-gray-400">
-                          {t('editMainPage.previewSection', { type: section.type })}
+                          {"Preview Section"}
                         </div>
                       </div>
                     );
@@ -246,8 +244,8 @@ function EditMainPageSection() {
       ) : (
         <Tabs defaultValue="sections" className="w-full">
           <TabsList className="grid w-full max-w-md grid-cols-1 sm:grid-cols-2 mb-6">
-            <TabsTrigger value="sections">{t("editMainPage.tabs.sections")}</TabsTrigger>
-            <TabsTrigger value="settings">{t("editMainPage.tabs.settings")}</TabsTrigger>
+            <TabsTrigger value="sections">{"Sections"}</TabsTrigger>
+            <TabsTrigger value="settings">{"Settings"}</TabsTrigger>
           </TabsList>
 
           <TabsContent value="sections" className="space-y-4">
@@ -278,17 +276,17 @@ function EditMainPageSection() {
                           <h4 className="text-lg font-semibold text-gray-800 dark:text-gray-100 flex items-center gap-2">
                             {section.title}
                             {!section.enabled && (
-                              <Badge variant="secondary">{t("editMainPage.disabled")}</Badge>
+                              <Badge variant="secondary">{"Disabled"}</Badge>
                             )}
                           </h4>
                           <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                            {t(`editMainPage.sectionDescriptions.${section.type}`)}
+                            {"Section Descriptions ${section Type}"}
                           </p>
 
                           {section.type === 'hero' && section.enabled && (
                             <div className="mt-4 space-y-3">
                               <div>
-                                <Label className="text-sm">{t("editMainPage.fields.title")}</Label>
+                                <Label className="text-sm">{"Title"}</Label>
                                 <Input
                                   value={section.settings.title}
                                   onChange={(e) => updateSectionSettings(section.id, { title: e.target.value })}
@@ -296,7 +294,7 @@ function EditMainPageSection() {
                                 />
                               </div>
                               <div>
-                                <Label className="text-sm">{t("editMainPage.fields.subtitle")}</Label>
+                                <Label className="text-sm">{"Subtitle"}</Label>
                                 <Textarea
                                   value={section.settings.subtitle}
                                   onChange={(e) => updateSectionSettings(section.id, { subtitle: e.target.value })}
@@ -306,7 +304,7 @@ function EditMainPageSection() {
                               </div>
                               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                 <div>
-                                  <Label className="text-sm">{t("editMainPage.fields.buttonText")}</Label>
+                                  <Label className="text-sm">{"Button Text"}</Label>
                                   <Input
                                     value={section.settings.buttonText}
                                     onChange={(e) => updateSectionSettings(section.id, { buttonText: e.target.value })}
@@ -314,7 +312,7 @@ function EditMainPageSection() {
                                   />
                                 </div>
                                 <div>
-                                  <Label className="text-sm">{t("editMainPage.fields.buttonLink")}</Label>
+                                  <Label className="text-sm">{"Button Link"}</Label>
                                   <Input
                                     value={section.settings.buttonLink}
                                     onChange={(e) => updateSectionSettings(section.id, { buttonLink: e.target.value })}
@@ -323,7 +321,7 @@ function EditMainPageSection() {
                                 </div>
                               </div>
                               <div>
-                                <Label className="text-sm mb-2 block">{t("editMainPage.fields.textAlignment")}</Label>
+                                <Label className="text-sm mb-2 block">{"Text Alignment"}</Label>
                                 <div className="flex gap-2">
                                   <Button
                                     size="sm"
@@ -354,7 +352,7 @@ function EditMainPageSection() {
                           {section.type === 'products' && section.enabled && (
                             <div className="mt-4 space-y-3">
                               <div>
-                                <Label className="text-sm">{t("editMainPage.fields.sectionTitle")}</Label>
+                                <Label className="text-sm">{"Section Title"}</Label>
                                 <Input
                                   value={section.settings.title}
                                   onChange={(e) => updateSectionSettings(section.id, { title: e.target.value })}
@@ -363,7 +361,7 @@ function EditMainPageSection() {
                               </div>
                               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                 <div>
-                                  <Label className="text-sm">{t("editMainPage.fields.productsToShow")}</Label>
+                                  <Label className="text-sm">{"Products To Show"}</Label>
                                   <Select
                                     value={section.settings.productCount?.toString()}
                                     onValueChange={(value) => updateSectionSettings(section.id, { productCount: parseInt(value) })}
@@ -380,7 +378,7 @@ function EditMainPageSection() {
                                   </Select>
                                 </div>
                                 <div>
-                                  <Label className="text-sm">{t("editMainPage.fields.columns")}</Label>
+                                  <Label className="text-sm">{"Columns"}</Label>
                                   <Select
                                     value={section.settings.columns?.toString()}
                                     onValueChange={(value) => updateSectionSettings(section.id, { columns: parseInt(value) })}
@@ -398,14 +396,14 @@ function EditMainPageSection() {
                                 </div>
                               </div>
                               <div className="flex items-center justify-between">
-                                <Label className="text-sm">{t("editMainPage.fields.showPrice")}</Label>
+                                <Label className="text-sm">{"Show Price"}</Label>
                                 <Switch
                                   checked={section.settings.showPrice}
                                   onCheckedChange={(checked) => updateSectionSettings(section.id, { showPrice: checked })}
                                 />
                               </div>
                               <div className="flex items-center justify-between">
-                                <Label className="text-sm">{t("editMainPage.fields.showAddToCart")}</Label>
+                                <Label className="text-sm">{"Show Add To Cart"}</Label>
                                 <Switch
                                   checked={section.settings.showAddToCart}
                                   onCheckedChange={(checked) => updateSectionSettings(section.id, { showAddToCart: checked })}
@@ -417,7 +415,7 @@ function EditMainPageSection() {
                           {section.type === 'promo' && section.enabled && (
                             <div className="mt-4 space-y-3">
                               <div>
-                                <Label className="text-sm">{t("editMainPage.fields.promoTitle")}</Label>
+                                <Label className="text-sm">{"Promo Title"}</Label>
                                 <Input
                                   value={section.settings.title}
                                   onChange={(e) => updateSectionSettings(section.id, { title: e.target.value })}
@@ -425,7 +423,7 @@ function EditMainPageSection() {
                                 />
                               </div>
                               <div>
-                                <Label className="text-sm">{t("editMainPage.fields.description")}</Label>
+                                <Label className="text-sm">{"Description"}</Label>
                                 <Input
                                   value={section.settings.description}
                                   onChange={(e) => updateSectionSettings(section.id, { description: e.target.value })}
@@ -433,7 +431,7 @@ function EditMainPageSection() {
                                 />
                               </div>
                               <div>
-                                <Label className="text-sm">{t("editMainPage.fields.promoCode")}</Label>
+                                <Label className="text-sm">{"Promo Code"}</Label>
                                 <Input
                                   value={section.settings.code}
                                   onChange={(e) => updateSectionSettings(section.id, { code: e.target.value })}
@@ -442,7 +440,7 @@ function EditMainPageSection() {
                               </div>
                               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                                 <div>
-                                  <Label className="text-sm">{t("editMainPage.fields.backgroundColor")}</Label>
+                                  <Label className="text-sm">{"Background Color"}</Label>
                                   <div className="flex gap-2 mt-1">
                                     <Input
                                       type="color"
@@ -458,7 +456,7 @@ function EditMainPageSection() {
                                   </div>
                                 </div>
                                 <div>
-                                  <Label className="text-sm">{t("editMainPage.fields.textColor")}</Label>
+                                  <Label className="text-sm">{"Text Color"}</Label>
                                   <div className="flex gap-2 mt-1">
                                     <Input
                                       type="color"
@@ -513,7 +511,7 @@ function EditMainPageSection() {
             <Card className="border-2 border-dashed border-gray-300 dark:border-gray-700">
               <CardContent className="p-6 text-center">
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  {t("editMainPage.addNewSection")}
+                  {"Add New Section"}
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 max-w-md mx-auto">
                   <Button
@@ -522,7 +520,7 @@ function EditMainPageSection() {
                     onClick={() => addNewSection('features')}
                   >
                     <Sparkles className="w-4 h-4 mr-2" />
-                    {t("editMainPage.sections.features")}
+                    {"Features"}
                   </Button>
                   <Button
                     variant="outline"
@@ -530,7 +528,7 @@ function EditMainPageSection() {
                     onClick={() => addNewSection('cta')}
                   >
                     <Megaphone className="w-4 h-4 mr-2" />
-                    {t("editMainPage.sections.cta")}
+                    {"Cta"}
                   </Button>
                   <Button
                     variant="outline"
@@ -538,7 +536,7 @@ function EditMainPageSection() {
                     onClick={() => addNewSection('promo')}
                   >
                     <Gift className="w-4 h-4 mr-2" />
-                    {t("editMainPage.sections.promo")}
+                    {"Promo"}
                   </Button>
                 </div>
               </CardContent>
@@ -550,25 +548,25 @@ function EditMainPageSection() {
               <CardHeader>
                 <CardTitle className="text-xl flex items-center gap-2">
                   <Settings className="w-5 h-5 text-primary" />
-                  {t("editMainPage.pageSettings.title")}
+                  {"Title"}
                 </CardTitle>
                 <CardDescription>
-                  {t("editMainPage.pageSettings.description")}
+                  {"Description"}
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <Label>{t("editMainPage.pageSettings.pageTitle")}</Label>
+                  <Label>{"Page Title"}</Label>
                   <Input
-                    placeholder={t("editMainPage.pageSettings.pageTitlePlaceholder")}
+                    placeholder={"Page Title Placeholder"}
                     className="mt-1"
                   />
                 </div>
                 
                 <div>
-                  <Label>{t("editMainPage.pageSettings.metaDescription")}</Label>
+                  <Label>{"Meta Description"}</Label>
                   <Textarea
-                    placeholder={t("editMainPage.pageSettings.metaDescriptionPlaceholder")}
+                    placeholder={"Meta Description Placeholder"}
                     className="mt-1 resize-none"
                     rows={3}
                   />
@@ -576,9 +574,9 @@ function EditMainPageSection() {
 
                 <div className="flex items-center justify-between pt-4 border-t">
                   <div>
-                    <p className="font-medium">{t("editMainPage.pageSettings.enableAnimations")}</p>
+                    <p className="font-medium">{"Enable Animations"}</p>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                      {t("editMainPage.pageSettings.animationsDescription")}
+                      {"Animations Description"}
                     </p>
                   </div>
                   <Switch defaultChecked />
@@ -586,9 +584,9 @@ function EditMainPageSection() {
 
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="font-medium">{t("editMainPage.pageSettings.stickyNavigation")}</p>
+                    <p className="font-medium">{"Sticky Navigation"}</p>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                      {t("editMainPage.pageSettings.stickyNavigationDescription")}
+                      {"Sticky Navigation Description"}
                     </p>
                   </div>
                   <Switch defaultChecked />
@@ -600,24 +598,24 @@ function EditMainPageSection() {
               <CardHeader>
                 <CardTitle className="text-xl flex items-center gap-2">
                   <Palette className="w-5 h-5 text-primary" />
-                  {t("editMainPage.themeOverride.title")}
+                  {"Title"}
                 </CardTitle>
                 <CardDescription>
-                  {t("editMainPage.themeOverride.description")}
+                  {"Description"}
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <Alert>
                   <Settings className="h-4 w-4" />
                   <AlertDescription>
-                    {t("editMainPage.themeOverride.warning")}
+                    {"Warning"}
                   </AlertDescription>
                 </Alert>
 
                 <div>
-                  <Label>{t("editMainPage.themeOverride.customCSS")}</Label>
+                  <Label>{"Custom C S S"}</Label>
                   <Textarea
-                    placeholder={t("editMainPage.themeOverride.cssPlaceholder")}
+                    placeholder={"Css Placeholder"}
                     className="mt-1 font-mono text-sm resize-none"
                     rows={6}
                   />

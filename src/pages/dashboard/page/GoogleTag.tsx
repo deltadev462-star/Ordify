@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { 
   Tags, 
   Code2,
@@ -61,7 +60,6 @@ interface EventConfig {
 }
 
 function GoogleTag() {
-  const { t } = useTranslation();
   const [containerId, setContainerId] = useState("");
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [dataLayerEnabled, setDataLayerEnabled] = useState(true);
@@ -187,20 +185,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   };
 
   return (
-    <div dir="rtl">
+    <div>
       <div className="flex bg-white dark:bg-black/80 rounded-2xl m-1 flex-1 flex-col gap-4 p-4 pt-0">
         <Title
-          title={t("googleTag.title")}
-          Subtitle={t("googleTag.description")}
+          title={"Title"}
+          Subtitle={"Description"}
           className="text-3xl"
           classNamee=""
         />
 
         <Alert variant="info" className="mb-4">
           <AlertIcon variant="info" />
-          <AlertTitle>{t("googleTag.title")}</AlertTitle>
+          <AlertTitle>{"Title"}</AlertTitle>
           <AlertDescription>
-            {t("googleTag.description")}
+            {"Description"}
           </AlertDescription>
         </Alert>
 
@@ -208,19 +206,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <TabsList className="grid w-full max-w-xl grid-cols-4 mb-6">
             <TabsTrigger value="setup" className="flex items-center gap-2">
               <Settings className="w-4 h-4" />
-              {t("setup")}
+              {"Setup"}
             </TabsTrigger>
             <TabsTrigger value="events" className="flex items-center gap-2">
               <Zap className="w-4 h-4" />
-              {t("googleTag.events")}
+              {"Events"}
             </TabsTrigger>
             <TabsTrigger value="custom" className="flex items-center gap-2">
               <Code2 className="w-4 h-4" />
-              {t("custom")}
+              {"Custom"}
             </TabsTrigger>
             <TabsTrigger value="debug" className="flex items-center gap-2">
               <TestTube className="w-4 h-4" />
-              {t("googleTag.debug")}
+              {"Debug"}
             </TabsTrigger>
           </TabsList>
 
@@ -234,9 +232,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <Tags className="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <CardTitle className="text-xl">{t("googleTag.containerSetup")}</CardTitle>
+                        <CardTitle className="text-xl">{"Container Setup"}</CardTitle>
                         <CardDescription className="text-white/80">
-                          {t("googleTag.enterContainerId")}
+                          {"Enter Container Id"}
                         </CardDescription>
                       </div>
                     </div>
@@ -245,7 +243,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-2 hover:bg-white/20 rounded-lg transition-colors"
-                      title={t("googleTag.title")}
+                      title={"Title"}
                     >
                       <ExternalLink className="w-5 h-5 text-white" />
                     </a>
@@ -255,7 +253,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <div className="space-y-2">
                     <Label className="text-gray-700 dark:text-gray-300 font-medium flex items-center gap-2">
                       <Tags className="w-4 h-4" />
-                      {t("googleTag.containerId")}
+                      {"Container Id"}
                     </Label>
                     <div className="flex gap-2">
                       <Input
@@ -280,7 +278,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </div>
                     {containerId && (
                       <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                        {t("googleTag.connected")} <span className="font-mono">{containerId}</span>
+                        {"Connected"} <span className="font-mono">{containerId}</span>
                       </p>
                     )}
                   </div>
@@ -304,13 +302,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <div className="flex items-center justify-between">
                       <div>
                         <Label className="text-gray-700 dark:text-gray-300 font-medium flex items-center gap-2">
-                          {t("googleTag.enhancedEcommerce")}
+                          {"Enhanced Ecommerce"}
                           <Badge variant="secondary" className="text-xs">
-                            {t("recommended")}
+                            {"Recommended"}
                           </Badge>
                         </Label>
                         <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                          {t("googleTag.measurePurchases")}
+                          {"Measure Purchases"}
                         </p>
                       </div>
                       <Switch
@@ -324,7 +322,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <div className="space-y-4 pt-4 border-t border-gray-200 dark:border-gray-800">
                       <div>
                         <Label className="text-gray-700 dark:text-gray-300 font-medium mb-2 block">
-                          {t("googleTag.step1Title")}
+                          {"Step1 Title"}
                         </Label>
                         <div className="relative">
                           <pre className="bg-gray-50 dark:bg-gray-900 p-4 rounded-lg text-xs overflow-x-auto">
@@ -349,7 +347,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                       <div>
                         <Label className="text-gray-700 dark:text-gray-300 font-medium mb-2 block">
-                          {t("googleTag.step2Title")}
+                          {"Step2 Title"}
                         </Label>
                         <div className="relative">
                           <pre className="bg-gray-50 dark:bg-gray-900 p-4 rounded-lg text-xs overflow-x-auto">
@@ -384,10 +382,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <CardHeader>
                   <CardTitle className="text-xl flex items-center gap-2">
                     <BarChart3 className="w-5 h-5 text-primary" />
-                    {t("googleTag.standardEvents")}
+                    {"Standard Events"}
                   </CardTitle>
                   <CardDescription>
-                    {t("googleTag.eventConfiguration")}
+                    {"Event Configuration"}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
@@ -417,14 +415,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                               <div className="flex-1">
                                 <div className="flex items-center gap-2 mb-1">
                                   <h4 className="font-medium text-gray-800 dark:text-gray-200">
-                                    {t(event.name)}
+                                    {event.name}
                                   </h4>
                                   <Badge variant="outline" className="text-xs font-mono">
                                     {event.gtmEvent}
                                   </Badge>
                                 </div>
                                 <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                                  {t(event.description)}
+                                  {event.description}
                                 </p>
                                 {event.enabled && event.parameters.length > 0 && (
                                   <div className="mt-3 space-y-1">
@@ -464,10 +462,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                   <div>
                     <CardTitle className="text-xl flex items-center gap-2">
                       <Code2 className="w-5 h-5 text-primary" />
-                      {t("googleTag.customEvents")}
+                      {"Custom Events"}
                     </CardTitle>
                     <CardDescription>
-                      {t("googleTag.eventConfiguration")}
+                      {"Event Configuration"}
                     </CardDescription>
                   </div>
                   <Button
@@ -476,7 +474,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     className="bg-primary hover:bg-primary/90"
                   >
                     <Plus className="w-4 h-4 mr-2" />
-                    {t("googleTag.addEvent")}
+                    {"Add Event"}
                   </Button>
                 </div>
               </CardHeader>
@@ -509,7 +507,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <div className="grid grid-cols-2 gap-3">
                           <div>
                             <Label className="text-sm text-gray-600 dark:text-gray-400 mb-1">
-                              {t("googleTag.eventName")}
+                              {"Event Name"}
                             </Label>
                             <Input
                               value={event.name}
@@ -597,16 +595,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <CheckCircle className="w-5 h-5 text-green-500" />
                         <div>
                           <p className="font-medium text-gray-800 dark:text-gray-200">
-                            {t("googleTag.status")}
+                            {"Status"}
                           </p>
                           <p className="text-sm text-gray-600 dark:text-gray-400">
-                            {containerId ? t("googleTag.connected") : t("pixelSettings.notConfigured")}
+                            {containerId ? "Connected" : "Not Configured"}
                           </p>
                         </div>
                       </div>
                       {containerId && (
                         <Badge variant="secondary" className="bg-green-100 text-green-700 dark:bg-green-900/20 dark:text-green-400">
-                          {t("active")}
+                          {"Active"}
                         </Badge>
                       )}
                     </div>
@@ -646,9 +644,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             event: 'test_event',
                             test_timestamp: new Date().toISOString()
                           });
-                          alert("Test event sent! Check your GTM debug console.");
+                          alert("");
                         } else {
-                          alert("Data layer not found. Please ensure GTM is properly installed.");
+                          alert("");
                         }
                       }}
                       className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white"
@@ -664,7 +662,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <CardHeader>
                   <CardTitle className="text-lg flex items-center gap-2">
                     <Info className="w-5 h-5 text-blue-500" />
-                    {t("googleTag.implementation")}
+                    {"Implementation"}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
@@ -683,7 +681,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                       rel="noopener noreferrer"
                       className="text-primary hover:underline text-sm flex items-center gap-1"
                     >
-                      {t("googleTag.learnMore")}
+                      {"Learn More"}
                       <ExternalLink className="w-3 h-3" />
                     </a>
                   </div>
@@ -698,13 +696,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             variant="outline" 
             className="border-gray-300 dark:border-gray-700"
           >
-            {t("cancel")}
+            {"Cancel"}
           </Button>
           <Button 
             className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white"
             disabled={!containerId}
           >
-            {t("googleTag.save")}
+            {"Save"}
           </Button>
         </div>
       </div>

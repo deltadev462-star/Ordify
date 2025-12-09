@@ -1,18 +1,18 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Eye, EyeOff, User, Mail, Lock, Loader2, Phone } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { registerRequest } from "@/store/slices/auth/actions";
 
 const SignupForm = () => {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { t, ready } = useTranslation();
   const { loading, isAuthenticated, token, error: serverError } = useAppSelector((state) => state.auth);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -37,26 +37,26 @@ const SignupForm = () => {
   const validationSchema = Yup.object({
     firstName: Yup.string()
       .trim()
-      .required(t('signup.firstNameRequired'))
-      .min(2, t('signup.firstNameMinLength')),
+      .required(t('validation.firstNameRequired'))
+      .min(2, t('validation.firstNameMinLength')),
     lastName: Yup.string()
       .trim()
-      .required(t('signup.lastNameRequired'))
-      .min(2, t('signup.lastNameMinLength')),
+      .required(t('validation.lastNameRequired'))
+      .min(2, t('validation.lastNameMinLength')),
     email: Yup.string()
       .trim()
-      .required(t('signup.emailRequired'))
-      .email(t('signup.emailInvalid')),
+      .required(t('validation.emailRequired'))
+      .email(t('validation.invalidEmail')),
     phone: Yup.string()
       .trim()
-      .required(t('signup.phoneRequired'))
-      .matches(/^\+?[1-9]\d{1,14}$/, t('signup.phoneInvalid')),
+      .required(t('validation.phoneRequired'))
+      .matches(/^\+?[1-9]\d{1,14}$/, t('validation.invalidPhone')),
     password: Yup.string()
-      .required(t('signup.passwordRequired'))
-      .min(8, t('signup.passwordMinLength')),
+      .required(t('validation.passwordRequired'))
+      .min(8, t('validation.passwordLength')),
     confirmPassword: Yup.string()
-      .required(t('signup.confirmPasswordRequired'))
-      .oneOf([Yup.ref('password')], t('signup.passwordsDoNotMatch')),
+      .required(t('validation.confirmPasswordRequired'))
+      .oneOf([Yup.ref('password')], t('validation.passwordMatch')),
     storeName: Yup.string()
       .trim()
       .optional(),
@@ -112,13 +112,6 @@ const SignupForm = () => {
     setServerErrorMessage("Google authentication would be integrated here.");
   };
 
-  // Show loading while translations are loading
-  if (!ready) {
-    return <div className="flex justify-center items-center h-96">
-      <Loader2 className="animate-spin w-8 h-8 text-primary" />
-    </div>;
-  }
-
   return (
     <form onSubmit={formik.handleSubmit} className="space-y-5">
       {/* Server Error Message */}
@@ -132,14 +125,14 @@ const SignupForm = () => {
         {/* First Name Field */}
         <div className="space-y-2">
           <label htmlFor="firstName" className="text-sm font-medium text-foreground">
-            {t('signup.firstName')}
+            {t('auth.firstName')}
           </label>
           <div className="relative group">
             <User className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground transition-colors group-focus-within:text-primary" />
             <Input
               id="firstName"
               type="text"
-              placeholder={t('signup.firstNamePlaceholder')}
+              placeholder={t('auth.firstNamePlaceholder')}
               {...formik.getFieldProps('firstName')}
               className={`pl-11 input-glow  ${
                 formik.touched.firstName && formik.errors.firstName ? "border-destructive" : ""
@@ -154,14 +147,14 @@ const SignupForm = () => {
         {/* Last Name Field */}
         <div className="space-y-2">
           <label htmlFor="lastName" className="text-sm font-medium text-foreground">
-            {t('signup.lastName')}
+            {t('auth.lastName')}
           </label>
           <div className="relative group">
             <User className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground transition-colors group-focus-within:text-primary" />
             <Input
               id="lastName"
               type="text"
-              placeholder={t('signup.lastNamePlaceholder')}
+              placeholder={t('auth.lastNamePlaceholder')}
               {...formik.getFieldProps('lastName')}
               className={`pl-11 input-glow  ${
                 formik.touched.lastName && formik.errors.lastName ? "border-destructive" : ""
@@ -177,14 +170,14 @@ const SignupForm = () => {
       {/* Email Field */}
       <div className="space-y-2">
         <label htmlFor="email" className="text-sm font-medium text-foreground">
-          {t('signup.emailAddress')}
+          {t('auth.email')}
         </label>
         <div className="relative group">
           <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground transition-colors group-focus-within:text-primary" />
           <Input
             id="email"
             type="email"
-            placeholder={t('signup.emailPlaceholder')}
+            placeholder={t('auth.emailPlaceholder')}
             {...formik.getFieldProps('email')}
             className={`pl-11 input-glow ${
               formik.touched.email && formik.errors.email ? "border-destructive" : ""
@@ -199,14 +192,14 @@ const SignupForm = () => {
       {/* Phone Field */}
       <div className="space-y-2">
         <label htmlFor="phone" className="text-sm font-medium text-foreground">
-          {t('signup.phone')}
+          {t('auth.phone')}
         </label>
         <div className="relative group">
           <Phone className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground transition-colors group-focus-within:text-primary" />
           <Input
             id="phone"
             type="tel"
-            placeholder={t('signup.phonePlaceholder')}
+            placeholder={t('auth.phonePlaceholder')}
             {...formik.getFieldProps('phone')}
             className={`pl-11 input-glow ${
               formik.touched.phone && formik.errors.phone ? "border-destructive" : ""
@@ -221,14 +214,14 @@ const SignupForm = () => {
       {/* Password Field */}
       <div className="space-y-2">
         <label htmlFor="password" className="text-sm font-medium text-foreground">
-          {t('signup.password')}
+          {t('auth.password')}
         </label>
         <div className="relative group">
           <Lock className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground transition-colors group-focus-within:text-primary" />
           <Input
             id="password"
             type={showPassword ? "text" : "password"}
-            placeholder={t('signup.passwordPlaceholder')}
+            placeholder={t('auth.passwordPlaceholder')}
             {...formik.getFieldProps('password')}
             className={`pl-11 pr-11 input-glow ${
               formik.touched.password && formik.errors.password ? "border-destructive" : ""
@@ -238,7 +231,7 @@ const SignupForm = () => {
             type="button"
             onClick={() => setShowPassword(!showPassword)}
             className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
-            aria-label={showPassword ? t('signup.hidePassword') : t('signup.showPassword')}
+            aria-label={showPassword ? t('auth.hidePassword') : t('auth.showPassword')}
             tabIndex={-1}
           >
             {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -252,14 +245,14 @@ const SignupForm = () => {
       {/* Confirm Password Field */}
       <div className="space-y-2">
         <label htmlFor="confirmPassword" className="text-sm font-medium text-foreground">
-          {t('signup.confirmPassword')}
+          {t('auth.confirmPassword')}
         </label>
         <div className="relative group">
           <Lock className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground transition-colors group-focus-within:text-primary" />
           <Input
             id="confirmPassword"
             type={showConfirmPassword ? "text" : "password"}
-            placeholder={t('signup.confirmPasswordPlaceholder')}
+            placeholder={t('auth.confirmPasswordPlaceholder')}
             {...formik.getFieldProps('confirmPassword')}
             className={`pl-11 pr-11 input-glow ${
               formik.touched.confirmPassword && formik.errors.confirmPassword ? "border-destructive" : ""
@@ -269,7 +262,7 @@ const SignupForm = () => {
             type="button"
             onClick={() => setShowConfirmPassword(!showConfirmPassword)}
             className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
-            aria-label={showConfirmPassword ? t('signup.hidePassword') : t('signup.showPassword')}
+            aria-label={showConfirmPassword ? t('auth.hidePassword') : t('auth.showPassword')}
             tabIndex={-1}
           >
             {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -283,13 +276,13 @@ const SignupForm = () => {
       {/* Store Name Field (Optional) */}
       <div className="space-y-2">
         <label htmlFor="storeName" className="text-sm font-medium text-foreground">
-          {t('signup.storeName')} <span className="text-muted-foreground">{t('signup.optional')}</span>
+          {t('auth.storeName')} <span className="text-muted-foreground">{t('common.optional')}</span>
         </label>
         <div className="relative group">
           <Input
             id="storeName"
             type="text"
-            placeholder={t('signup.storeNamePlaceholder')}
+            placeholder={t('auth.storeNamePlaceholder')}
             {...formik.getFieldProps('storeName')}
             className={`input-glow ${
               formik.touched.storeName && formik.errors.storeName ? "border-destructive" : ""
@@ -313,10 +306,10 @@ const SignupForm = () => {
         {(loading || formik.isSubmitting) ? (
           <>
             <Loader2 className="animate-spin mr-2" />
-            {t('signup.creatingAccount')}
+            {t('auth.creatingAccount')}
           </>
         ) : (
-          t('signup.createAccountButton')
+          t('auth.createAccount')
         )}
       </Button>
 
@@ -326,7 +319,7 @@ const SignupForm = () => {
           <div className="w-full border-t border-border"></div>
         </div>
         <div className="relative flex justify-center text-xs uppercase">
-          <span className="bg-card px-3 text-muted-foreground">{t('signup.orContinueWith')}</span>
+          <span className="bg-card px-3 text-muted-foreground">{t('auth.orContinueWith')}</span>
         </div>
       </div>
 
@@ -356,14 +349,14 @@ const SignupForm = () => {
             fill="#EA4335"
           />
         </svg>
-        {t('signup.continueWithGoogle')}
+        {t('auth.continueWithGoogle')}
       </Button>
 
       {/* Sign in link */}
       <p className="text-center text-sm text-muted-foreground mt-6">
-        {t('signup.alreadyHaveAccount')}{" "}
+        {t('auth.alreadyHaveAccount')}{" "}
         <Link to="/login" className="text-primary font-medium hover:underline">
-          {t('signup.signIn')}
+          {t('auth.signIn')}
         </Link>
       </p>
     </form>

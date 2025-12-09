@@ -24,7 +24,7 @@ type NavItem = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar
-      side="right"
+      side="left"
       collapsible="icon"
       className="glass-card bg-sidebar-background/80 dark:bg-sidebar-background/80 z-999 border-sidebar-border/50 dark:border-sidebar-border/50 dark:text-sidebar-foreground backdrop-blur-xl"
       {...props}

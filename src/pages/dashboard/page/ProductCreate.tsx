@@ -1,5 +1,5 @@
-import { useTranslation } from "react-i18next";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useSEO } from "@/hooks/useSEO";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -164,28 +164,28 @@ function ProductCreate() {
   };
 
   const categoryOptions = [
-    { value: "electronics", label: t("Electronics") },
-    { value: "clothing", label: t("Clothing") },
-    { value: "home", label: t("Home & Garden") },
-    { value: "beauty", label: t("Health & Beauty") },
-    { value: "sports", label: t("Sports") },
-    { value: "toys", label: t("Toys & Games") },
-    { value: "books", label: t("Books") },
-    { value: "food", label: t("Food & Beverages") },
+    { value: "electronics", label: t('products.categories.electronics') },
+    { value: "clothing", label: t('products.categories.clothing') },
+    { value: "home", label: t('products.categories.homeGarden') },
+    { value: "beauty", label: t('products.categories.healthBeauty') },
+    { value: "sports", label: t('products.categories.sports') },
+    { value: "toys", label: t('products.categories.toysGames') },
+    { value: "books", label: t('products.categories.books') },
+    { value: "food", label: t('products.categories.foodBeverages') },
   ];
 
   const currencyOptions = [
-    { value: "USD", label: t("USD - US Dollar") },
-    { value: "EUR", label: t("EUR - Euro") },
-    { value: "GBP", label: t("GBP - British Pound") },
-    { value: "EGP", label: t("EGP - Egyptian Pound") },
-    { value: "SAR", label: "SAR - Saudi Riyal" },
-    { value: "AED", label: "AED - UAE Dirham" },
+    { value: "USD", label: t('products.currencies.USD') },
+    { value: "EUR", label: t('products.currencies.EUR') },
+    { value: "GBP", label: t('products.currencies.GBP') },
+    { value: "EGP", label: t('products.currencies.EGP') },
+    { value: "SAR", label: t('products.currencies.SAR') },
+    { value: "AED", label: t('products.currencies.AED') },
   ];
 
   useSEO({
-    title: t("Create Product") + " - Ordify Dashboard",
-    description: t("Create a new product in your Ordify store with comprehensive details and settings"),
+    title: t('products.createProduct') + " - Ordify Dashboard",
+    description: "Create a new product in your Ordify store with comprehensive details and settings",
   });
 
   return (
@@ -193,9 +193,9 @@ function ProductCreate() {
       <div className="container mx-auto max-w-6xl py-8 px-4 md:px-6">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2">{t("Create Product")}</h1>
+          <h1 className="text-3xl font-bold mb-2">{t('products.createProduct')}</h1>
           <p className="text-muted-foreground">
-            {t("Add a new product to your store with all necessary details")}
+            {t('products.createProductSubtitle')}
           </p>
         </div>
 
@@ -205,52 +205,52 @@ function ProductCreate() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Package className="h-5 w-5 text-primary" />
-                {t("Essential Information")}
+                {t('products.essentialInformation')}
               </CardTitle>
               <CardDescription>
-                {t("Basic product details that customers will see")}
+                {t('products.essentialInformationDesc')}
               </CardDescription>
             </CardHeader>
             <CardContent className="grid gap-6">
               <div className="grid gap-6 md:grid-cols-2">
                 <FloatingLabelInput
-                  label={t("Product Name *")}
+                  label={t('products.productName')}
                   value={productName}
                   onChange={handleProductNameChange}
-                  placeholder={t("e.g., Premium Leather Bag")}
+                  placeholder={""}
                   required
                 />
             
               </div>
 
               <div className="grid gap-6 md:grid-cols-2">
-              
+               
                 <MultiSelect
-                  label={t("Product Categories")}
+                  label={t('products.productCategories')}
                   options={categoryOptions}
                   value={selectedCategories}
                   onChange={setSelectedCategories}
-                  placeholder={t("Select categories...")}
+                  placeholder={""}
                 />
               </div>
 
               <FloatingLabelTextarea
-                label={t("Meta Description")}
+                label={t('products.metaDescription')}
                 value={metaDescription}
                 onChange={(e) => setMetaDescription(e.target.value)}
-                placeholder={t("Brief description for search engines...")}
+                placeholder={""}
                 rows={3}
                 className="resize-none"
               />
 
               <div>
                 <Label className="text-base font-medium mb-2 block">
-                  {t("Product Description")}
+                  {t('products.productDescription')}
                 </Label>
                 <RichTextEditor
                   value={productDescription}
                   onChange={setProductDescription}
-                  placeholder={t("Enter product description...")}
+                  placeholder={""}
                 />
               </div>
             </CardContent>
@@ -261,36 +261,36 @@ function ProductCreate() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <DollarSign className="h-5 w-5 text-primary" />
-                {t("Pricing & Inventory")}
+                {t('products.pricingInventory')}
               </CardTitle>
               <CardDescription>
-                {t("Set your product pricing and stock levels")}
+                {t('products.pricingInventoryDesc')}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid gap-6 md:grid-cols-3">
                 <FloatingLabelInput
-                  label={t("Price *")}
+                  label={t('products.price')}
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
-                  placeholder={t("0.00")}
+                  placeholder={"00"}
                   type="number"
                   step="0.01"
                   required
                 />
                 <FloatingLabelInput
-                  label={t("Sale Price (Leave blank for no discount)")}
+                  label={t('products.salePrice')}
                   value={salePrice}
                   onChange={(e) => setSalePrice(e.target.value)}
-                  placeholder={t("0.00")}
+                  placeholder={"00"}
                   type="number"
                   step="0.01"
                 />
                 <FloatingLabelInput
-                  label={t("Product Expense")}
+                  label={t('products.productExpense')}
                   value={productExpense}
                   onChange={(e) => setProductExpense(e.target.value)}
-                  placeholder={t("0.00")}
+                  placeholder={"00"}
                   type="number"
                   step="0.01"
                 />
@@ -299,20 +299,20 @@ function ProductCreate() {
               <Separator />
 
               <div className="space-y-4">
-                <h4 className="text-sm font-medium">{t("Stock Management")}</h4>
+                <h4 className="text-sm font-medium">{t('products.stockManagement')}</h4>
                 <div className="grid gap-6 md:grid-cols-2">
                   <FloatingLabelInput
-                    label={t("Stock Quantity")}
+                    label={t('products.stockQuantity')}
                     value={stockQuantity}
                     onChange={(e) => setStockQuantity(e.target.value)}
-                    placeholder={t("0")}
+                    placeholder={"0"}
                     type="number"
                     disabled={!trackStock}
                   />
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
                       <Label htmlFor="track-stock" className="text-sm cursor-pointer">
-                        {t("Track Stock")}
+                        {t('products.trackStock')}
                       </Label>
                       <Switch
                         id="track-stock"
@@ -322,7 +322,7 @@ function ProductCreate() {
                     </div>
                     <div className="flex items-center justify-between">
                       <Label htmlFor="disable-out-of-stock" className="text-sm cursor-pointer">
-                        {t("Disable When Out of Stock")}
+                        {t('products.disableWhenOutOfStock')}
                       </Label>
                       <Switch
                         id="disable-out-of-stock"
@@ -342,10 +342,10 @@ function ProductCreate() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <ImageIcon className="h-5 w-5 text-primary" />
-                {t("productImages")}
+                {t('products.productImages')}
               </CardTitle>
               <CardDescription>
-                {t("Upload high-quality images to showcase your product")}
+                {t('products.productImagesDesc')}
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -363,14 +363,14 @@ function ProductCreate() {
           <div className="space-y-4">
             {/* Digital Product Settings */}
             <CollapsibleSection
-              title={t("digitalProductsNew")}
-              description={t("digitalProductsDesc")}
+              title={t('products.digitalProducts')}
+              description={t('products.digitalProductsDesc')}
               icon={<Zap className="h-5 w-5" />}
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <Label htmlFor="digital-product" className="text-sm cursor-pointer">
-                    {t("Enable Digital Product")}
+                    {t('products.enableDigitalProduct')}
                   </Label>
                   <Switch
                     id="digital-product"
@@ -380,10 +380,10 @@ function ProductCreate() {
                 </div>
                 {enableDigitalProduct && (
                   <FloatingLabelInput
-                    label={t("Digital Product Type")}
+                    label={t('products.digitalProductType')}
                     value={digitalProductType}
                     onChange={(e) => setDigitalProductType(e.target.value)}
-                    placeholder={t("e.g., PDF, Video, Software")}
+                    placeholder={""}
                   />
                 )}
               </div>
@@ -391,15 +391,15 @@ function ProductCreate() {
 
             {/* External Platform Integration */}
             <CollapsibleSection
-              title={t("linkToExternalPlatform")}
-              description={t("externalPlatformDesc")}
+              title={t('products.linkToExternalPlatform')}
+              description={t('products.externalPlatformDesc')}
               icon={<Globe className="h-5 w-5" />}
             >
               <div className="space-y-4">
                 <div className="grid gap-4 md:grid-cols-2">
                   <div className="flex items-center justify-between">
                     <Label htmlFor="taager" className="text-sm cursor-pointer">
-                      {t("Activate the integration with Taager company")}
+                      {t('products.activateTaagerIntegration')}
                     </Label>
                     <Switch
                       id="taager"
@@ -409,7 +409,7 @@ function ProductCreate() {
                   </div>
                   <div className="flex items-center justify-between">
                     <Label htmlFor="angazny" className="text-sm cursor-pointer">
-                      {t("Activate the integration with Angazny company")}
+                      {t('products.activateAngaznyIntegration')}
                     </Label>
                     <Switch
                       id="angazny"
@@ -421,16 +421,16 @@ function ProductCreate() {
                 {(taagerIntegration || angaznyIntegration) && (
                   <div className="grid gap-4 md:grid-cols-2">
                     <FloatingLabelInput
-                      label={t("Product code in the external platform")}
+                      label={t('products.externalProductCode')}
                       value={externalPlatformCode}
                       onChange={(e) => setExternalPlatformCode(e.target.value)}
-                      placeholder={t("Enter product code...")}
+                      placeholder={""}
                     />
                     <FloatingLabelInput
-                      label={t("Link the product to an external platform")}
+                      label={t('products.externalProductLink')}
                       value={externalPlatformLink}
                       onChange={(e) => setExternalPlatformLink(e.target.value)}
-                      placeholder={t("Enter external platform link...")}
+                      placeholder={""}
                       icon={Globe}
                     />
                   </div>
@@ -440,8 +440,8 @@ function ProductCreate() {
 
             {/* Marketing Features */}
             <CollapsibleSection
-              title={t("Marketing Features")}
-              description={t("Boost conversions with marketing tools")}
+              title={t('products.marketingFeatures')}
+              description={t('products.marketingFeaturesDesc')}
               icon={<Star className="h-5 w-5" />}
             >
               <div className="space-y-6">
@@ -449,7 +449,7 @@ function ProductCreate() {
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
                       <Label htmlFor="reviews" className="text-sm cursor-pointer">
-                        {t("Activate Reviews?")}
+                        {t('products.activateReviews')}
                       </Label>
                       <Switch
                         id="reviews"
@@ -459,7 +459,7 @@ function ProductCreate() {
                     </div>
                     <div className="flex items-center justify-between">
                       <Label htmlFor="free-shipping" className="text-sm cursor-pointer">
-                        {t("Activate free shipping for the product")}
+                        {t('products.activateFreeShipping')}
                       </Label>
                       <Switch
                         id="free-shipping"
@@ -472,7 +472,7 @@ function ProductCreate() {
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
                       <Label htmlFor="fake-visitors" className="text-sm cursor-pointer">
-                        {t("Display fake visitor counter?")}
+                        {t('products.displayFakeVisitorCounter')}
                       </Label>
                       <Switch
                         id="fake-visitors"
@@ -483,14 +483,14 @@ function ProductCreate() {
                     {displayFakeVisitor && (
                       <div className="grid grid-cols-2 gap-4">
                         <FloatingLabelInput
-                          label={t("Minimum number of visitors currently viewing the page")}
+                          label={t('products.minVisitors')}
                           value={minVisitors}
                           onChange={(e) => setMinVisitors(e.target.value)}
                           placeholder="20"
                           type="number"
                         />
                         <FloatingLabelInput
-                          label={t("Maximum number of visitors currently viewing the page")}
+                          label={t('products.maxVisitors')}
                           value={maxVisitors}
                           onChange={(e) => setMaxVisitors(e.target.value)}
                           placeholder="70"
@@ -506,7 +506,7 @@ function ProductCreate() {
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <Label htmlFor="fake-stock" className="text-sm cursor-pointer">
-                      {t("Activate the fake stock feature")}
+                      {t('products.activateFakeStock')}
                     </Label>
                     <Switch
                       id="fake-stock"
@@ -516,7 +516,7 @@ function ProductCreate() {
                   </div>
                   {activateFakeStock && (
                     <FloatingLabelInput
-                      label={t("Number of fake stock items")}
+                      label={t('products.fakeStockItems')}
                       value={fakeStockItems}
                       onChange={(e) => setFakeStockItems(e.target.value)}
                       placeholder="5"
@@ -526,7 +526,7 @@ function ProductCreate() {
                   
                   <div className="flex items-center justify-between">
                     <Label htmlFor="timer" className="text-sm cursor-pointer">
-                      {t("Fake Timer")}
+                      {t('products.fakeTimer')}
                     </Label>
                     <Switch
                       id="timer"
@@ -536,7 +536,7 @@ function ProductCreate() {
                   </div>
                   {fakeTimer && (
                     <FloatingLabelInput
-                      label={t("Number of hours in the fake timer")}
+                      label={t('products.fakeTimerHours')}
                       value={fakeTimerHours}
                       onChange={(e) => setFakeTimerHours(e.target.value)}
                       placeholder="1"
@@ -549,14 +549,14 @@ function ProductCreate() {
 
             {/* Purchase Settings */}
             <CollapsibleSection
-              title={t("Purchase Settings")}
-              description={t("Customize the buying experience")}
+              title={t('products.purchaseSettings')}
+              description={t('products.purchaseSettingsDesc')}
               icon={<Truck className="h-5 w-5" />}
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <Label htmlFor="skip-cart" className="text-sm cursor-pointer">
-                    {t("Skip Cart")}
+                    {t('products.skipCart')}
                   </Label>
                   <Switch
                     id="skip-cart"
@@ -566,16 +566,16 @@ function ProductCreate() {
                 </div>
                 {skipCart && (
                   <FloatingLabelInput
-                    label={t("Text written on the Buy Now button")}
+                    label={t('products.buyNowButtonText')}
                     value={buyNowButtonText}
                     onChange={(e) => setBuyNowButtonText(e.target.value)}
-                    placeholder={t("Click here to buy")}
+                    placeholder={t('products.buyNowButtonPlaceholder')}
                   />
                 )}
                 
                 <div className="flex items-center justify-between">
                   <Label htmlFor="fixed-buy" className="text-sm cursor-pointer">
-                    {t("Activate the Fixed Buy Button at the Bottom of the Page")}
+                    {t('products.fixedBuyButton')}
                   </Label>
                   <Switch
                     id="fixed-buy"
@@ -586,7 +586,7 @@ function ProductCreate() {
                 
                 <div className="flex items-center justify-between">
                   <Label htmlFor="checkout-first" className="text-sm cursor-pointer">
-                    {t("Make checkout form before product description")}
+                    {t('products.checkoutBeforeDescription')}
                   </Label>
                   <Switch
                     id="checkout-first"
@@ -599,21 +599,21 @@ function ProductCreate() {
 
             {/* Additional Settings */}
             <CollapsibleSection
-              title={t("advancedSettings")}
-              description={t("advancedSettingsDesc")}
+              title={t('products.advancedSettings')}
+              description={t('products.advancedSettingsDesc')}
               icon={<Settings className="h-5 w-5" />}
             >
               <div className="space-y-4">
                 <div className="grid gap-6 md:grid-cols-2">
                   <MultiSelect
-                    label={t("customCurrency")}
+                    label={t('products.customCurrency')}
                     options={currencyOptions}
                     value={selectedCurrency ? [selectedCurrency] : []}
                     onChange={(values) => setSelectedCurrency(values[0] || "")}
-                    placeholder={t("Select a currency")}
+                    placeholder={t('products.selectCurrency')}
                   />
                   <FloatingLabelInput
-                    label={t("Priority in appearance")}
+                    label={t('products.priorityInAppearance')}
                     value={priority}
                     onChange={(e) => setPriority(e.target.value)}
                     placeholder="0"
@@ -623,7 +623,7 @@ function ProductCreate() {
                 
                 <div className="flex items-center justify-between">
                   <Label htmlFor="hidden" className="text-sm cursor-pointer">
-                    {t("Hidden Product")}
+                    {t('products.hiddenProduct')}
                   </Label>
                   <Switch
                     id="hidden"
@@ -639,15 +639,15 @@ function ProductCreate() {
           <Card className="border-none bg-muted/50">
             <CardContent className="flex justify-end gap-4 pt-6">
               <Button variant="outline" size="lg">
-                {t("Cancel")}
+                {t('common.cancel')}
               </Button>
-              <Button 
+              <Button
                 size="lg"
                 onClick={handleSave}
                 className="min-w-[150px]"
               >
                 <Save className="h-4 w-4 mr-2" />
-                {t("SAVE")}
+                {t('common.save')}
               </Button>
             </CardContent>
           </Card>

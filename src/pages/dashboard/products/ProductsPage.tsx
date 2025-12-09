@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { Package, TrendingUp, AlertTriangle, Archive } from "lucide-react";
 import { MetricCard } from "@/components/dashboard/widgets/MetricCard";
@@ -13,7 +12,6 @@ import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 
 export default function ProductsPage() {
-  const { t } = useTranslation();
   const navigate = useNavigate();
   const [filters, setFilters] = useState<ProductFiltersType>({});
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
@@ -125,7 +123,7 @@ export default function ProductsPage() {
   // Product statistics
   const productStats = [
     {
-      title: t("Total Products"),
+      title: "Total  Products",
       value: "256",
       change: 5.2,
       changeType: 'increase' as const,
@@ -133,10 +131,10 @@ export default function ProductsPage() {
       iconColor: 'text-blue-600 dark:text-blue-400',
       iconBgColor: 'bg-blue-50 dark:bg-blue-950/30',
       trend: 'up' as const,
-      period: t("vs last month")
+      period: "Vs last month"
     },
     {
-      title: t("Active Products"),
+      title: "Active  Products",
       value: "198",
       change: 3.8,
       changeType: 'increase' as const,
@@ -144,10 +142,10 @@ export default function ProductsPage() {
       iconColor: 'text-green-600 dark:text-green-400',
       iconBgColor: 'bg-green-50 dark:bg-green-950/30',
       trend: 'up' as const,
-      period: t("vs last month")
+      period: "Vs last month"
     },
     {
-      title: t("Low Stock"),
+      title: "Low  Stock",
       value: "23",
       change: 15.2,
       changeType: 'increase' as const,
@@ -155,10 +153,10 @@ export default function ProductsPage() {
       iconColor: 'text-yellow-600 dark:text-yellow-400',
       iconBgColor: 'bg-yellow-50 dark:bg-yellow-950/30',
       trend: 'up' as const,
-      period: t("Items below 10")
+      period: "Items below 10"
     },
     {
-      title: t("Archived"),
+      title: "Archived",
       value: "35",
       change: -2.1,
       changeType: 'decrease' as const,
@@ -166,7 +164,7 @@ export default function ProductsPage() {
       iconColor: 'text-gray-600 dark:text-gray-400',
       iconBgColor: 'bg-gray-50 dark:bg-gray-950/30',
       trend: 'down' as const,
-      period: t("vs last month")
+      period: "Vs last month"
     }
   ];
 
@@ -235,7 +233,7 @@ export default function ProductsPage() {
   const tableColumns: Column<Product>[] = [
     {
       key: 'name',
-      header: t('Product'),
+      header: "Product",
       sortable: true,
       render: (value, row) => (
         <div className="flex items-center gap-3">
@@ -262,7 +260,7 @@ export default function ProductsPage() {
     },
     {
       key: 'price',
-      header: t('Price'),
+      header: "Price",
       sortable: true,
       render: (value, row) => (
         <div>
@@ -277,7 +275,7 @@ export default function ProductsPage() {
     },
     {
       key: 'inventory.quantity',
-      header: t('Stock'),
+      header: "Stock",
       sortable: true,
       render: (value, row) => (
         <div>
@@ -289,17 +287,17 @@ export default function ProductsPage() {
                 "default"
               }
             >
-              {row.inventory.quantity} {t('units')}
+              {row.inventory.quantity} {"Units"}
             </Badge>
           ) : (
-            <span className="text-sm text-muted-foreground">{t('Not tracked')}</span>
+            <span className="text-sm text-muted-foreground">{"Not tracked"}</span>
           )}
         </div>
       ),
     },
     {
       key: 'status',
-      header: t('Status'),
+      header: "Status",
       sortable: true,
       render: (value) => (
         <Badge
@@ -309,7 +307,7 @@ export default function ProductsPage() {
             'outline'
           }
         >
-          {t(value)}
+          {value}
         </Badge>
       ),
     },
@@ -323,14 +321,14 @@ export default function ProductsPage() {
             size="sm"
             onClick={() => handleEditProduct(row)}
           >
-            {t('Edit')}
+            {"Edit"}
           </Button>
           <Button
             variant="ghost"
             size="sm"
             onClick={() => handleViewProduct(row)}
           >
-            {t('View')}
+            {"View"}
           </Button>
         </div>
       ),
@@ -341,9 +339,9 @@ export default function ProductsPage() {
     <div className="space-y-6">
       {/* Page Header */}
       <div>
-        <h1 className="text-2xl font-bold">{t("Products & Catalog")}</h1>
+        <h1 className="text-2xl font-bold">{"Products &  Catalog"}</h1>
         <p className="text-muted-foreground mt-1">
-          {t("Manage your product inventory and catalog")}
+          {"Manage your product inventory and catalog"}
         </p>
       </div>
 
@@ -372,7 +370,7 @@ export default function ProductsPage() {
             <div className="relative flex-1 max-w-md">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
               <Input
-                placeholder={t("Search products...")}
+                placeholder={""}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-10"
@@ -415,14 +413,14 @@ export default function ProductsPage() {
             {filteredProducts.length === 0 && (
               <div className="text-center py-12">
                 <Package className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-lg font-semibold mb-2">{t("No products found")}</h3>
+                <h3 className="text-lg font-semibold mb-2">{"No products found"}</h3>
                 <p className="text-muted-foreground mb-4">
                   {searchTerm || Object.keys(filters).length > 0
-                    ? t("Try adjusting your search or filters")
-                    : t("Start by adding your first product")}
+                    ? "Try adjusting your search or filters"
+                    : "Start by adding your first product"}
                 </p>
                 <Button onClick={handleCreateProduct}>
-                  {t("Add Product")}
+                  {"Add  Product"}
                 </Button>
               </div>
             )}

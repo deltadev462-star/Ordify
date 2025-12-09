@@ -1,4 +1,3 @@
-import { useTranslation } from "react-i18next";
 import { useRef } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
@@ -19,8 +18,6 @@ function ProductImages({
   setOtherImages,
   handleSave
 }: ProductImagesProps) {
-  const { t } = useTranslation();
-  
   const mainImageInputRef = useRef<HTMLInputElement>(null);
   const otherImagesInputRef = useRef<HTMLInputElement>(null);
 
@@ -70,20 +67,20 @@ function ProductImages({
             value="main-image"
             className="data-[state=active]:bg-green-500 data-[state=active]:text-white"
           >
-            {t("Main Product Image")}
+            {"Main  Product  Image"}
           </TabsTrigger>
           <TabsTrigger
             value="other-images"
             className="data-[state=active]:bg-green-500 data-[state=active]:text-white"
           >
-            {t("Other Product Images")}
+            {"Other  Product  Images"}
           </TabsTrigger>
         </TabsList>
 
         {/* Main Product Image Tab */}
         <TabsContent value="main-image" className="space-y-6">
           <div className="bg-gray-100 dark:bg-[#080808] rounded-lg p-6">
-            <h2 className="text-xl font-semibold mb-4">{t("Main Product Image")}</h2>
+            <h2 className="text-xl font-semibold mb-4">{"Main  Product  Image"}</h2>
             
             <div className="space-y-4">
               {/* Upload Button */}
@@ -93,7 +90,7 @@ function ProductImages({
                 className="w-full md:w-auto flex items-center gap-2 bg-white dark:bg-black hover:bg-gray-50 dark:hover:bg-gray-900 border-2 border-dashed"
               >
                 <Upload className="w-5 h-5" />
-                {t("Upload images")}
+                {"Upload images"}
               </Button>
               
               {/* Hidden file input */}
@@ -123,7 +120,7 @@ function ProductImages({
                     className="w-full md:w-auto flex items-center gap-2"
                   >
                     <RefreshCw className="w-5 h-5" />
-                    {t("Change Image")}
+                    {"Change  Image"}
                   </Button>
                 </div>
               )}
@@ -133,7 +130,7 @@ function ProductImages({
                 <div className="flex items-center justify-center w-full max-w-sm mx-auto aspect-square bg-gray-50 dark:bg-gray-900 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-lg">
                   <div className="text-center">
                     <Image className="w-12 h-12 mx-auto text-gray-400" />
-                    <p className="mt-2 text-sm text-gray-500">{t("No image uploaded")}</p>
+                    <p className="mt-2 text-sm text-gray-500">{"No image uploaded"}</p>
                   </div>
                 </div>
               )}
@@ -147,7 +144,7 @@ function ProductImages({
               className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg flex items-center gap-2"
             >
               <Save className="w-5 h-5" />
-              {t("SAVE")}
+              {"S A V E"}
             </Button>
           </div>
         </TabsContent>
@@ -155,7 +152,7 @@ function ProductImages({
         {/* Other Product Images Tab */}
         <TabsContent value="other-images" className="space-y-6">
           <div className="bg-gray-100 dark:bg-[#080808] rounded-lg p-6">
-            <h2 className="text-xl font-semibold mb-4">{t("Other Product Images")}</h2>
+            <h2 className="text-xl font-semibold mb-4">{"Other  Product  Images"}</h2>
             
             <div className="space-y-4">
               {/* Upload Button */}
@@ -165,7 +162,7 @@ function ProductImages({
                 className="w-full md:w-auto flex items-center gap-2 bg-white dark:bg-black hover:bg-gray-50 dark:hover:bg-gray-900 border-2 border-dashed"
               >
                 <Upload className="w-5 h-5" />
-                {t("Upload images")}
+                {"Upload images"}
               </Button>
               
               {/* Hidden file input */}
@@ -195,7 +192,7 @@ function ProductImages({
                         <Button
                           variant="outline"
                           onClick={() => {
-                            const input = document.createElement('input');
+                            const input = document.createElement("input");
                             input.type = 'file';
                             input.accept = 'image/*';
                             input.onchange = (e) => {
@@ -213,7 +210,7 @@ function ProductImages({
                           className="flex-1 flex items-center justify-center gap-2"
                         >
                           <RefreshCw className="w-4 h-4" />
-                          {t("Change Image")}
+                          {"Change  Image"}
                         </Button>
                         
                         <Button
@@ -222,7 +219,7 @@ function ProductImages({
                           className="flex-1 flex items-center justify-center gap-2 bg-red-500 hover:bg-red-600"
                         >
                           <Trash2 className="w-4 h-4" />
-                          {t("Delete Image")}
+                          {"Delete  Image"}
                         </Button>
                       </div>
                     </div>
@@ -235,7 +232,7 @@ function ProductImages({
                 <div className="flex items-center justify-center w-full h-48 bg-gray-50 dark:bg-gray-900 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-lg">
                   <div className="text-center">
                     <Image className="w-12 h-12 mx-auto text-gray-400" />
-                    <p className="mt-2 text-sm text-gray-500">{t("No additional images uploaded")}</p>
+                    <p className="mt-2 text-sm text-gray-500">{"No additional images uploaded"}</p>
                   </div>
                 </div>
               )}
@@ -249,7 +246,7 @@ function ProductImages({
               className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg flex items-center gap-2"
             >
               <Save className="w-5 h-5" />
-              {t("SAVE")}
+              {"S A V E"}
             </Button>
           </div>
         </TabsContent>

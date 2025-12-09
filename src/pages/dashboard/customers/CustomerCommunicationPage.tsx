@@ -96,7 +96,6 @@ interface MessageTemplate {
 
 export default function CustomerCommunicationPage() {
   const { t } = useTranslation();
-  
   const [selectedTab, setSelectedTab] = useState("campaigns");
   const [searchTerm, setSearchTerm] = useState("");
   const [isCreateCampaignOpen, setIsCreateCampaignOpen] = useState(false);
@@ -242,7 +241,7 @@ export default function CustomerCommunicationPage() {
   // Statistics
   const stats = [
     {
-      title: t("Messages Sent"),
+      title: t("communication.messagesSent"),
       value: "12.4K",
       change: 23.5,
       changeType: "increase" as const,
@@ -250,10 +249,10 @@ export default function CustomerCommunicationPage() {
       iconColor: "text-blue-600 dark:text-blue-400",
       iconBgColor: "bg-blue-50 dark:bg-blue-950/30",
       trend: "up" as const,
-      period: t("this month"),
+      period: t("communication.thisMonth"),
     },
     {
-      title: t("Open Rate"),
+      title: t("communication.openRate"),
       value: "68%",
       change: 5.2,
       changeType: "increase" as const,
@@ -261,10 +260,10 @@ export default function CustomerCommunicationPage() {
       iconColor: "text-green-600 dark:text-green-400",
       iconBgColor: "bg-green-50 dark:bg-green-950/30",
       trend: "up" as const,
-      period: t("avg open rate"),
+      period: t("communication.avgOpenRate"),
     },
     {
-      title: t("Click Rate"),
+      title: t("communication.clickRate"),
       value: "24%",
       change: 2.8,
       changeType: "increase" as const,
@@ -272,10 +271,10 @@ export default function CustomerCommunicationPage() {
       iconColor: "text-purple-600 dark:text-purple-400",
       iconBgColor: "bg-purple-50 dark:bg-purple-950/30",
       trend: "up" as const,
-      period: t("avg click rate"),
+      period: t("communication.avgClickRate"),
     },
     {
-      title: t("Revenue"),
+      title: t("communication.revenue"),
       value: "89.5K",
       change: 34.2,
       changeType: "increase" as const,
@@ -283,7 +282,7 @@ export default function CustomerCommunicationPage() {
       iconColor: "text-indigo-600 dark:text-indigo-400",
       iconBgColor: "bg-indigo-50 dark:bg-indigo-950/30",
       trend: "up" as const,
-      period: t("from campaigns"),
+      period: t("communication.fromCampaigns"),
     },
   ];
 
@@ -302,7 +301,7 @@ export default function CustomerCommunicationPage() {
     return (
       <Badge variant={config.variant} className={cn("gap-1", config.className)}>
         <Icon className="h-3 w-3" />
-        {t(status)}
+        {status}
       </Badge>
     );
   };
@@ -350,39 +349,39 @@ export default function CustomerCommunicationPage() {
       {/* Header */}
       <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold">{t("Communication")}</h1>
+          <h1 className="text-2xl font-bold">{t("communication.title")}</h1>
           <p className="text-muted-foreground mt-1">
-            {t("Engage with your customers through multiple channels")}
+            {t("communication.subtitle")}
           </p>
         </div>
         <div className="flex gap-2">
           <Button variant="outline" className="gap-2">
             <Filter className="h-4 w-4" />
-            {t("Filter")}
+            {t("communication.filter")}
           </Button>
           
           <Dialog open={isCreateCampaignOpen} onOpenChange={setIsCreateCampaignOpen}>
             <DialogTrigger asChild>
               <Button className="gap-2 bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90">
                 <Plus className="h-4 w-4" />
-                {t("Create Campaign")}
+                {t("communication.createCampaign")}
               </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[600px]">
               <DialogHeader>
-                <DialogTitle>{t("Create New Campaign")}</DialogTitle>
+                <DialogTitle>{t("communication.createNewCampaign")}</DialogTitle>
                 <DialogDescription>
-                  {t("Send targeted messages to your customer segments")}
+                  {t("communication.sendTargetedMessages")}
                 </DialogDescription>
               </DialogHeader>
               <div className="grid gap-4 py-4">
                 <div className="space-y-2">
-                  <Label>{t("Campaign Name")}</Label>
-                  <Input placeholder={t("e.g., Weekend Sale Announcement")} />
+                  <Label>{t("communication.campaignName")}</Label>
+                  <Input placeholder="" />
                 </div>
                 
                 <div className="space-y-2">
-                  <Label>{t("Channel")}</Label>
+                  <Label>{t("communication.channel")}</Label>
                   <div className="grid grid-cols-3 gap-2">
                     {(['email', 'sms', 'whatsapp'] as const).map((channel) => {
                       const Icon = getChannelIcon(channel);
@@ -394,7 +393,7 @@ export default function CustomerCommunicationPage() {
                           className="gap-2"
                         >
                           <Icon className="h-4 w-4" />
-                          {t(channel.toUpperCase())}
+                          {channel.toUpperCase()}
                         </Button>
                       );
                     })}
@@ -402,59 +401,59 @@ export default function CustomerCommunicationPage() {
                 </div>
                 
                 <div className="space-y-2">
-                  <Label>{t("Target Segment")}</Label>
+                  <Label>{t("communication.targetSegment")}</Label>
                   <Select>
                     <SelectTrigger>
-                      <SelectValue placeholder={t("Select customer segment")} />
+                      <SelectValue placeholder={t("communication.selectCustomerSegment")} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="all">{t("All Customers")}</SelectItem>
-                      <SelectItem value="vip">{t("VIP Customers")}</SelectItem>
-                      <SelectItem value="new">{t("New Customers")}</SelectItem>
-                      <SelectItem value="inactive">{t("Inactive Customers")}</SelectItem>
-                      <SelectItem value="abandoned">{t("Abandoned Carts")}</SelectItem>
+                      <SelectItem value="all">{t("communication.allCustomers")}</SelectItem>
+                      <SelectItem value="vip">{t("communication.vipCustomers")}</SelectItem>
+                      <SelectItem value="new">{t("communication.newCustomers")}</SelectItem>
+                      <SelectItem value="inactive">{t("communication.inactiveCustomers")}</SelectItem>
+                      <SelectItem value="abandoned">{t("communication.abandonedCarts")}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
                 
                 {selectedChannel === 'email' && (
                   <div className="space-y-2">
-                    <Label>{t("Subject Line")}</Label>
-                    <Input placeholder={t("Enter email subject...")} />
+                    <Label>{t("communication.subjectLine")}</Label>
+                    <Input placeholder="" />
                   </div>
                 )}
                 
                 <div className="space-y-2">
-                  <Label>{t("Message")}</Label>
-                  <Textarea 
-                    placeholder={t("Write your message here...")}
+                  <Label>{t("communication.message")}</Label>
+                  <Textarea
+                    placeholder={t("communication.typeYourMessage")}
                     className="min-h-[100px]"
                   />
                   <p className="text-xs text-muted-foreground">
-                    {t("Use {{customer_name}}, {{order_id}} for personalization")}
+                    {t("communication.useCustomerNameVariable")}
                   </p>
                 </div>
                 
                 <div className="space-y-2">
-                  <Label>{t("Schedule")}</Label>
+                  <Label>{t("communication.schedule")}</Label>
                   <Select>
                     <SelectTrigger>
-                      <SelectValue placeholder={t("When to send?")} />
+                      <SelectValue placeholder={t("communication.whenToSend")} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="now">{t("Send Now")}</SelectItem>
-                      <SelectItem value="schedule">{t("Schedule for Later")}</SelectItem>
-                      <SelectItem value="draft">{t("Save as Draft")}</SelectItem>
+                      <SelectItem value="now">{t("communication.sendNow")}</SelectItem>
+                      <SelectItem value="schedule">{t("communication.scheduleForLater")}</SelectItem>
+                      <SelectItem value="draft">{t("communication.saveAsDraft")}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
               </div>
               <DialogFooter>
                 <Button variant="outline" onClick={() => setIsCreateCampaignOpen(false)}>
-                  {t("Cancel")}
+                  {t("communication.cancel")}
                 </Button>
                 <Button onClick={() => setIsCreateCampaignOpen(false)}>
-                  {t("Create Campaign")}
+                  {t("communication.createCampaign")}
                 </Button>
               </DialogFooter>
             </DialogContent>
@@ -488,20 +487,20 @@ export default function CustomerCommunicationPage() {
               <TabsList>
                 <TabsTrigger value="campaigns" className="gap-2">
                   <Send className="h-4 w-4" />
-                  {t("Campaigns")}
+                  {t("communication.campaigns")}
                 </TabsTrigger>
                 <TabsTrigger value="templates" className="gap-2">
                   <FileText className="h-4 w-4" />
-                  {t("Templates")}
+                  {t("communication.templates")}
                 </TabsTrigger>
                 <TabsTrigger value="automation" className="gap-2">
                   <Zap className="h-4 w-4" />
-                  {t("Automation")}
+                  {t("communication.automation")}
                 </TabsTrigger>
               </TabsList>
               <div className="relative max-w-md">
                 <Input
-                  placeholder={t("Search...")}
+                  placeholder={t("communication.searchCampaigns")}
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-10"
@@ -526,7 +525,7 @@ export default function CustomerCommunicationPage() {
                             <div>
                               <h3 className="font-semibold text-lg">{campaign.name}</h3>
                               <p className="text-sm text-muted-foreground mt-1">
-                                {campaign.segment} • {campaign.recipients.total.toLocaleString()} {t("recipients")}
+                                {campaign.segment} • {campaign.recipients.total.toLocaleString()} {t("communication.recipients")}
                               </p>
                               {campaign.subject && (
                                 <p className="text-sm mt-2 font-medium">{campaign.subject}</p>
@@ -545,28 +544,28 @@ export default function CustomerCommunicationPage() {
                                 </Button>
                               </DropdownMenuTrigger>
                               <DropdownMenuContent align="end">
-                                <DropdownMenuLabel>{t("Actions")}</DropdownMenuLabel>
+                                <DropdownMenuLabel>{t("communication.actions")}</DropdownMenuLabel>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem>
                                   <Eye className="mr-2 h-4 w-4" />
-                                  {t("View Details")}
+                                  {t("communication.viewDetails")}
                                 </DropdownMenuItem>
                                 <DropdownMenuItem>
                                   <Edit className="mr-2 h-4 w-4" />
-                                  {t("Edit Campaign")}
+                                  {t("communication.editCampaign")}
                                 </DropdownMenuItem>
                                 <DropdownMenuItem>
                                   <Copy className="mr-2 h-4 w-4" />
-                                  {t("Duplicate")}
+                                  {t("communication.duplicate")}
                                 </DropdownMenuItem>
                                 <DropdownMenuItem>
                                   <BarChart3 className="mr-2 h-4 w-4" />
-                                  {t("View Analytics")}
+                                  {t("communication.viewAnalytics")}
                                 </DropdownMenuItem>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem className="text-red-600 dark:text-red-400">
                                   <Trash2 className="mr-2 h-4 w-4" />
-                                  {t("Delete")}
+                                  {t("communication.delete")}
                                 </DropdownMenuItem>
                               </DropdownMenuContent>
                             </DropdownMenu>
@@ -578,7 +577,7 @@ export default function CustomerCommunicationPage() {
                           <>
                             <div className="mb-4">
                               <div className="flex items-center justify-between text-sm mb-2">
-                                <span className="text-muted-foreground">{t("Delivery Rate")}</span>
+                                <span className="text-muted-foreground">{t("communication.deliveryRate")}</span>
                                 <span className="font-medium">{deliveryRate.toFixed(1)}%</span>
                               </div>
                               <Progress value={deliveryRate} className="h-2" />
@@ -586,20 +585,20 @@ export default function CustomerCommunicationPage() {
                             
                             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                               <div className="space-y-1">
-                                <p className="text-xs text-muted-foreground">{t("Delivered")}</p>
+                                <p className="text-xs text-muted-foreground">{t("communication.delivered")}</p>
                                 <p className="text-lg font-semibold">{campaign.recipients.delivered.toLocaleString()}</p>
                               </div>
                               <div className="space-y-1">
-                                <p className="text-xs text-muted-foreground">{t("Open Rate")}</p>
+                                <p className="text-xs text-muted-foreground">{t("communication.openRate2")}</p>
                                 <p className="text-lg font-semibold">{campaign.performance.openRate}%</p>
                               </div>
                               <div className="space-y-1">
-                                <p className="text-xs text-muted-foreground">{t("Click Rate")}</p>
+                                <p className="text-xs text-muted-foreground">{t("communication.clickRate2")}</p>
                                 <p className="text-lg font-semibold">{campaign.performance.clickRate}%</p>
                               </div>
                               <div className="space-y-1">
-                                <p className="text-xs text-muted-foreground">{t("Revenue")}</p>
-                                <p className="text-lg font-semibold">{t("EGP")} {campaign.performance.revenue.toLocaleString()}</p>
+                                <p className="text-xs text-muted-foreground">{t("communication.revenue")}</p>
+                                <p className="text-lg font-semibold">{t("common.egp")} {campaign.performance.revenue.toLocaleString()}</p>
                               </div>
                             </div>
                           </>
@@ -609,11 +608,11 @@ export default function CustomerCommunicationPage() {
                         <div className="mt-4 pt-4 border-t flex items-center gap-2 text-xs text-muted-foreground">
                           <Calendar className="h-3 w-3" />
                           {campaign.status === 'scheduled' ? (
-                            <span>{t("Scheduled for")} {new Date(campaign.scheduledAt!).toLocaleString()}</span>
+                            <span>{t("communication.scheduledFor")} {new Date(campaign.scheduledAt!).toLocaleString()}</span>
                           ) : campaign.sentAt ? (
-                            <span>{t("Sent on")} {new Date(campaign.sentAt).toLocaleString()}</span>
+                            <span>{t("communication.sentOn")} {new Date(campaign.sentAt).toLocaleString()}</span>
                           ) : (
-                            <span>{t("Draft")}</span>
+                            <span>{t("communication.draft")}</span>
                           )}
                         </div>
                       </CardContent>
@@ -631,7 +630,7 @@ export default function CustomerCommunicationPage() {
                   className="gap-2 border-gray-200 dark:border-gray-700"
                 >
                   <Plus className="h-4 w-4" />
-                  {t("Create Template")}
+                  {t("communication.createTemplate")}
                 </Button>
               </div>
               
@@ -663,19 +662,19 @@ export default function CustomerCommunicationPage() {
                             <DropdownMenuContent align="end">
                               <DropdownMenuItem>
                                 <Eye className="mr-2 h-4 w-4" />
-                                {t("Preview")}
+                                {t("communication.preview")}
                               </DropdownMenuItem>
                               <DropdownMenuItem>
                                 <Edit className="mr-2 h-4 w-4" />
-                                {t("Edit")}
+                                {t("communication.edit")}
                               </DropdownMenuItem>
                               <DropdownMenuItem>
                                 <Copy className="mr-2 h-4 w-4" />
-                                {t("Duplicate")}
+                                {t("communication.duplicate")}
                               </DropdownMenuItem>
                               <DropdownMenuItem className="text-red-600">
                                 <Trash2 className="mr-2 h-4 w-4" />
-                                {t("Delete")}
+                                {t("communication.delete")}
                               </DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
@@ -691,17 +690,17 @@ export default function CustomerCommunicationPage() {
                         
                         <div className="mt-4 grid grid-cols-2 gap-2">
                           <div className="text-center p-2 bg-muted/50 rounded">
-                            <p className="text-xs text-muted-foreground">{t("Open Rate")}</p>
+                            <p className="text-xs text-muted-foreground">{t("communication.openRate3")}</p>
                             <p className="text-sm font-semibold">{template.performance.avgOpenRate}%</p>
                           </div>
                           <div className="text-center p-2 bg-muted/50 rounded">
-                            <p className="text-xs text-muted-foreground">{t("Click Rate")}</p>
+                            <p className="text-xs text-muted-foreground">{t("communication.clickRate3")}</p>
                             <p className="text-sm font-semibold">{template.performance.avgClickRate}%</p>
                           </div>
                         </div>
                         
                         <div className="mt-3 flex items-center justify-between text-xs text-muted-foreground">
-                          <span>{t("Used")} {template.usageCount} {t("times")}</span>
+                          <span>{t("communication.used")} {template.usageCount} {t("communication.times")}</span>
                           {template.lastUsed && (
                             <span>{new Date(template.lastUsed).toLocaleDateString()}</span>
                           )}
@@ -718,13 +717,13 @@ export default function CustomerCommunicationPage() {
                 <div className="inline-flex p-4 rounded-full bg-muted/50 mb-4">
                   <Zap className="h-8 w-8 text-muted-foreground" />
                 </div>
-                <h3 className="text-lg font-semibold mb-2">{t("Marketing Automation")}</h3>
+                <h3 className="text-lg font-semibold mb-2">{t("communication.marketingAutomation")}</h3>
                 <p className="text-muted-foreground max-w-md mx-auto mb-4">
-                  {t("Set up automated campaigns triggered by customer actions")}
+                  {t("communication.setUpAutomatedCampaigns")}
                 </p>
                 <Button className="gap-2">
                   <Plus className="h-4 w-4" />
-                  {t("Create Automation")}
+                  {t("communication.createAutomation")}
                 </Button>
               </div>
             </TabsContent>

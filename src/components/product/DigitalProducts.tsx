@@ -1,4 +1,3 @@
-import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Save, Instagram } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
@@ -25,22 +24,20 @@ function DigitalProducts({
   setDigitalProductType,
   handleSave
 }: DigitalProductsProps) {
-  const { t } = useTranslation();
-
   // Digital product types
   const productTypes = [
-    { value: "code", label: t("Digital Code") },
-    { value: "link", label: t("Download Link") },
-    { value: "file", label: t("Digital File") },
-    { value: "license", label: t("License Key") },
-    { value: "subscription", label: t("Subscription") },
+    { value: "code", label: "Digital  Code" },
+    { value: "link", label: "Download  Link" },
+    { value: "file", label: "Digital  File" },
+    { value: "license", label: "License  Key" },
+    { value: "subscription", label: "Subscription" },
   ];
 
   return (
     <div className="mt-4 space-y-6">
       <div className="bg-gray-100 dark:bg-[#080808] rounded-lg p-6 space-y-6">
         <div className="flex items-center justify-between">
-          <h2 className="text-xl font-semibold">{t("Digital Products")}</h2>
+          <h2 className="text-xl font-semibold">{"Digital  Products"}</h2>
           
           {/* Sell Digital Products link */}
           <Button
@@ -49,19 +46,19 @@ function DigitalProducts({
             onClick={() => window.open('#', '_blank')}
           >
             <Instagram className="w-4 h-4 mr-2" />
-            {t("Sell Digital Products")}
+            {"Sell  Digital  Products"}
           </Button>
         </div>
         
         {/* Info message */}
         <p className="text-sm text-gray-600 dark:text-gray-400">
-          {t("You cannot convert a digital product to a regular product or change its type after creating it.")}
+          {""}
         </p>
         
         {/* Enable Digital Product Toggle */}
         <div className="flex items-center justify-between p-4 bg-white dark:bg-black rounded-lg">
           <label htmlFor="enable-digital" className="text-base font-medium">
-            {t("Enable Digital Product")}
+            {"Enable  Digital  Product"}
           </label>
           <Switch
             id="enable-digital"
@@ -73,7 +70,7 @@ function DigitalProducts({
         
         {/* Description */}
         <p className="text-sm text-gray-600 dark:text-gray-400">
-          {t("This option makes the product purchased digitally and sends the product code or link to the customer after purchase.")}
+          {""}
         </p>
         
         {/* Digital Product Type Selection - Only show when enabled */}
@@ -81,11 +78,11 @@ function DigitalProducts({
           <div className="space-y-4">
             <div>
               <label className="text-base font-medium mb-2 block">
-                {t("Digital Product Type")} *
+                {"Digital  Product  Type"} *
               </label>
               <Select value={digitalProductType} onValueChange={setDigitalProductType}>
                 <SelectTrigger className="w-full bg-white dark:bg-black border-gray-300 dark:border-gray-700">
-                  <SelectValue placeholder={t("Select product type")} />
+                  <SelectValue placeholder={"Select product type"} />
                 </SelectTrigger>
                 <SelectContent>
                   {productTypes.map((type) => (
@@ -99,7 +96,7 @@ function DigitalProducts({
             
             {/* Additional info based on selection */}
             <p className="text-sm text-gray-500">
-              {t("When choosing code, a new code will be sent to the customer with each purchase. When choosing link, the same link will be used for all customers.")}
+              {"When choosing code"}
             </p>
           </div>
         )}
@@ -110,7 +107,7 @@ function DigitalProducts({
           className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg flex items-center gap-2"
         >
           <Save className="w-5 h-5" />
-          {t("Save")}
+          {"Save"}
         </Button>
       </div>
     </div>
