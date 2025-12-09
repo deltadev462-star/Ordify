@@ -35,6 +35,7 @@ const EasyCatalog = lazy(() => import("./pages/dashboard/page/EasyCatalog"));
 
 // Marketing Hub - using existing components
 const MarketingPage = lazy(() => import("./pages/dashboard/marketing/MarketingPage"));
+const SmartCRMPage = lazy(() => import("./pages/dashboard/marketing/SmartCRMPage"));
 const Coupons = lazy(() => import("./pages/dashboard/page/Coupons"));
 const CrossSelling = lazy(() => import("./pages/dashboard/page/CrossSelling"));
 const Retargeting = lazy(() => import("./pages/dashboard/page/Retargeting"));
@@ -216,12 +217,16 @@ const router = createBrowserRouter([
             element: <MarketingPage />,
           },
           {
-            path: "promotions",
-            element: <MarketingPage />, // Temporary: will create Promotions component
+            path: "smart-crm",
+            element: <SmartCRMPage />, // Smart CRM for managing social media channels
           },
           {
-            path: "coupons",
-            element: <Coupons />,
+            path: "sitemap-xml",
+            element: <MarketingPage />, // Sitemap XML generator
+          },
+          {
+            path: "spy-competitors",
+            element: <Coupons />, // Spy competitors by analyzing their links
           },
           {
             path: "cross-selling",

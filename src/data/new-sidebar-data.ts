@@ -196,15 +196,15 @@ export const newSidebarData = {
       children: [
         {
           title: 'navigation.campaigns',
-          url: '/dashboard/marketing'
+          url: '/dashboard/marketing/smart-crm'
         },
         {
           title: 'navigation.promotions',
-          url: '/dashboard/marketing/promotions'
+          url: '/dashboard/marketing/sitemap-xml'
         },
         {
           title: 'navigation.coupons',
-          url: '/dashboard/marketing/coupons'
+          url: '/dashboard/marketing/spy-competitors'
         },
         {
           title: 'navigation.crossSelling',

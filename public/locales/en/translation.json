@@ -133,10 +133,10 @@
     "communication": "Communication",
     "loyaltyProgram": "Loyalty Program",
     "agentStore": "Agent Store",
-    "marketingHub": "Marketing Hub",
-    "campaigns": "Campaigns",
-    "promotions": "Promotions",
-    "coupons": "Coupons",
+    "marketingHub": "Market Center",
+    "campaigns": "Smart CRM",
+    "promotions": "Sitemap XML",
+    "coupons": "Spy Competitors",
     "crossSelling": "Cross Selling",
     "retargeting": "Retargeting",
     "integrations": "Integrations",
@@ -1678,5 +1678,118 @@
     "step6": "6. Publish your container when ready",
     "learnMore": "Learn more about GTM setup",
     "openGTM": "Open Google Tag Manager"
+  },
+  "smartCRM": {
+    "title": "Smart CRM",
+    "subtitle": "Manage all your customer relationships and social channels in one place",
+    "searchPlaceholder": "Search leads, contacts, campaigns...",
+    "kpi": {
+      "totalLeads": "Total Leads",
+      "conversionRate": "Conversion Rate",
+      "revenue": "Revenue",
+      "activeCampaigns": "Active Campaigns"
+    },
+    "overview": {
+      "totalLeads": "Total Leads",
+      "vsLastMonth": "vs last month",
+      "pipelineValue": "Pipeline Value",
+      "total": "total",
+      "conversations": "Conversations",
+      "activeNow": "active now",
+      "automations": "Automations",
+      "running": "running"
+    },
+    "navigation": {
+      "pipeline": "Pipeline",
+      "contacts": "Contacts",
+      "analytics": "Analytics",
+      "communication": "Communication",
+      "automation": "Automation",
+      "channels": "Channels"
+    },
+    "pipeline": {
+      "salesPipeline": "Sales Pipeline",
+      "newLeads": "New Leads",
+      "contacted": "Contacted",
+      "qualified": "Qualified",
+      "proposal": "Proposal",
+      "won": "Won",
+      "negotiation": "Negotiation",
+      "closed": "Closed",
+      "newLead": "New Lead",
+      "addLead": "Add Lead",
+      "addNewLead": "Add New Lead",
+      "moveTo": "Move to {{stage}}"
+    },
+    "lead": {
+      "hotLead": "Hot Lead"
+    },
+    "time": {
+      "hoursAgo": "{{count}} hours ago",
+      "hoursAgo_one": "{{count}} hour ago",
+      "hoursAgo_other": "{{count}} hours ago",
+      "dayAgo": "{{count}} day ago",
+      "dayAgo_one": "{{count}} day ago",
+      "dayAgo_other": "{{count}} days ago"
+    },
+    "tags": {
+      "premium": "Premium",
+      "urgent": "Urgent",
+      "followUp": "Follow-up"
+    },
+    "communication": {
+      "hub": "Communication Hub",
+      "facebook": "Facebook",
+      "messages": "messages",
+      "tiktok": "TikTok",
+      "whatsapp": "WhatsApp",
+      "chats": "chats",
+      "gmail": "Gmail",
+      "emails": "emails",
+      "delivered": "Delivered",
+      "opened": "Opened",
+      "replied": "Replied",
+      "failed": "Failed",
+      "broadcastEmail": "Broadcast Email",
+      "whatsappCampaign": "WhatsApp Campaign",
+      "smsBlast": "SMS Blast"
+    },
+    "channels": {
+      "sms": "SMS",
+      "whatsapp": "WhatsApp",
+      "calls": "Calls",
+      "connectedChannels": "Connected Channels",
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "twitter": "Twitter",
+      "gmail": "Gmail",
+      "addChannel": "Add Channel"
+    },
+    "automation": {
+      "workflowsTitle": "Workflows & Automation",
+      "triggers": "triggers",
+      "actions": "actions",
+      "sent": "sent",
+      "whenLeadAdded": "When lead added to pipeline",
+      "sendWelcomeEmail": "Send welcome email",
+      "assignToTeam": "Assign to team",
+      "activeWorkflows": "Active Workflows",
+      "welcomeSeries": "Welcome Series",
+      "welcomeSeriesDesc": "Automated 7-day email sequence for new leads",
+      "enrolled": "{{count}} enrolled",
+      "completion": "{{percent}}% completion",
+      "appointmentReminders": "Appointment Reminders",
+      "appointmentRemindersDesc": "SMS & WhatsApp reminders 24hrs before appointments",
+      "scheduled": "{{count}} scheduled",
+      "delivery": "{{percent}}% delivery",
+      "followupReminder": "Follow-up Reminder",
+      "abandonedCart": "Abandoned Cart Recovery",
+      "reEngagement": "Re-engagement Campaign",
+      "createWorkflow": "Create Workflow",
+      "workflowBuilder": "Workflow Builder",
+      "workflowBuilderDesc": "Create powerful automation workflows with drag-and-drop simplicity",
+      "dragComponentsHere": "Drag workflow components here to get started",
+      "startBuilding": "Start Building"
+    }
   }
 }
