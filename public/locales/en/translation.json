@@ -1791,5 +1791,92 @@
       "dragComponentsHere": "Drag workflow components here to get started",
       "startBuilding": "Start Building"
     }
+  },
+  "sitemapAgent": {
+    "title": "Sitemap Agent",
+    "subtitle": "Automatically generate and manage your XML sitemap for better search engine visibility",
+    "yourSitemapUrl": "Your Sitemap URL",
+    "yourSitemapUrlDesc": "This is your store's XML sitemap that search engines will use to discover your pages",
+    "copied": "Copied!",
+    "copyUrl": "Copy URL",
+    "customDomain": "I have a custom domain",
+    "domainPlaceholder": "yourdomain.com",
+    "stats": {
+      "total": "Total",
+      "indexed": "Indexed",
+      "issues": "Issues",
+      "updated": "Updated",
+      "urlsInSitemap": "URLs in sitemap",
+      "pagesIndexed": "Pages indexed",
+      "crawlErrors": "Crawl errors",
+      "lastGenerated": "Last generated"
+    },
+    "contentBreakdown": {
+      "title": "Sitemap Content Breakdown",
+      "products": "Products",
+      "categories": "Categories",
+      "staticPages": "Static Pages",
+      "pages": "pages"
+    },
+    "tabs": {
+      "overview": "Overview",
+      "generate": "Generate",
+      "seoTips": "SEO Tips"
+    },
+    "generate": {
+      "xmlStructure": "XML Sitemap Structure",
+      "xmlStructureDesc": "Your sitemap is automatically generated and updated when you add or modify content",
+      "viewXml": "View XML",
+      "hideXml": "Hide XML",
+      "urlPattern": "URL Structure Pattern",
+      "pattern": "Pattern",
+      "example": "Example",
+      "autoRegenerate": "Sitemap regenerates automatically every 24 hours",
+      "forceRegenerate": "Force Regenerate"
+    },
+    "seo": {
+      "title": "SEO Optimization Tips",
+      "submitToGoogle": {
+        "title": "Submit to Google Search Console",
+        "description": "Add your sitemap URL to Google Search Console for faster indexing",
+        "action": "Learn how"
+      },
+      "updateFrequency": {
+        "title": "Update Frequency",
+        "description": "Products and categories are set to weekly updates for optimal crawling",
+        "action": "Best practices"
+      },
+      "robotsConfig": {
+        "title": "Robots.txt Configuration",
+        "description": "Your robots.txt file is properly configured to reference your sitemap",
+        "action": "View robots.txt"
+      },
+      "crawlBudget": {
+        "title": "Crawl Budget Optimization",
+        "description": "Focus crawling on high-value pages with proper priority settings",
+        "action": "Optimize"
+      },
+      "status": {
+        "optimal": "Optimal",
+        "good": "Good",
+        "needsAttention": "Needs attention"
+      },
+      "quickActions": {
+        "title": "Quick Actions",
+        "submitToGoogle": "Submit to Google",
+        "testRobotsTxt": "Test robots.txt"
+      },
+      "bestPractices": {
+        "title": "Best Practices for Better Indexing",
+        "items": {
+          "sizeLimit": "Keep your sitemap under 50MB and 50,000 URLs",
+          "regularUpdates": "Update your sitemap regularly when content changes",
+          "canonicalOnly": "Include only canonical versions of your URLs",
+          "statusCodes": "Ensure all URLs in the sitemap return 200 status codes",
+          "multipleEngines": "Submit your sitemap through multiple search engines",
+          "monitorPerformance": "Monitor your sitemap performance in Search Console"
+        }
+      }
+    }
   }
 }

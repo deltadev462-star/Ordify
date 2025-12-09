@@ -1876,5 +1876,92 @@
       "dragComponentsHere": "اسحب مكونات سير العمل هنا للبدء",
       "startBuilding": "ابدأ البناء"
     }
+  },
+  "sitemapAgent": {
+    "title": "وكيل خريطة الموقع",
+    "subtitle": "إنشاء وإدارة خريطة موقع XML تلقائيًا لتحسين ظهورك في محركات البحث",
+    "yourSitemapUrl": "رابط خريطة موقعك",
+    "yourSitemapUrlDesc": "هذه خريطة موقع XML لمتجرك التي ستستخدمها محركات البحث لاكتشاف صفحاتك",
+    "copied": "تم النسخ!",
+    "copyUrl": "نسخ الرابط",
+    "customDomain": "لدي نطاق مخصص",
+    "domainPlaceholder": "yourdomain.com",
+    "stats": {
+      "total": "الإجمالي",
+      "indexed": "مُفهرس",
+      "issues": "المشاكل",
+      "updated": "محدث",
+      "urlsInSitemap": "روابط في خريطة الموقع",
+      "pagesIndexed": "صفحات مُفهرسة",
+      "crawlErrors": "أخطاء الزحف",
+      "lastGenerated": "آخر إنشاء"
+    },
+    "contentBreakdown": {
+      "title": "توزيع محتوى خريطة الموقع",
+      "products": "المنتجات",
+      "categories": "الفئات",
+      "staticPages": "الصفحات الثابتة",
+      "pages": "صفحات"
+    },
+    "tabs": {
+      "overview": "نظرة عامة",
+      "generate": "إنشاء",
+      "seoTips": "نصائح SEO"
+    },
+    "generate": {
+      "xmlStructure": "بنية خريطة موقع XML",
+      "xmlStructureDesc": "يتم إنشاء خريطة موقعك وتحديثها تلقائيًا عند إضافة أو تعديل المحتوى",
+      "viewXml": "عرض XML",
+      "hideXml": "إخفاء XML",
+      "urlPattern": "نمط بنية الروابط",
+      "pattern": "النمط",
+      "example": "مثال",
+      "autoRegenerate": "يتم إعادة إنشاء خريطة الموقع تلقائيًا كل 24 ساعة",
+      "forceRegenerate": "فرض إعادة الإنشاء"
+    },
+    "seo": {
+      "title": "نصائح تحسين محركات البحث",
+      "submitToGoogle": {
+        "title": "الإرسال إلى Google Search Console",
+        "description": "أضف رابط خريطة موقعك إلى Google Search Console لفهرسة أسرع",
+        "action": "تعلم كيف"
+      },
+      "updateFrequency": {
+        "title": "تكرار التحديث",
+        "description": "يتم تعيين المنتجات والفئات للتحديثات الأسبوعية للزحف الأمثل",
+        "action": "أفضل الممارسات"
+      },
+      "robotsConfig": {
+        "title": "تكوين ملف Robots.txt",
+        "description": "تم تكوين ملف robots.txt الخاص بك بشكل صحيح للإشارة إلى خريطة موقعك",
+        "action": "عرض robots.txt"
+      },
+      "crawlBudget": {
+        "title": "تحسين ميزانية الزحف",
+        "description": "ركز الزحف على الصفحات عالية القيمة مع إعدادات الأولوية المناسبة",
+        "action": "تحسين"
+      },
+      "status": {
+        "optimal": "مثالي",
+        "good": "جيد",
+        "needsAttention": "يحتاج انتباه"
+      },
+      "quickActions": {
+        "title": "إجراءات سريعة",
+        "submitToGoogle": "الإرسال إلى جوجل",
+        "testRobotsTxt": "اختبار robots.txt"
+      },
+      "bestPractices": {
+        "title": "أفضل الممارسات لفهرسة أفضل",
+        "items": {
+          "sizeLimit": "احتفظ بخريطة موقعك أقل من 50 ميجابايت و50,000 رابط",
+          "regularUpdates": "قم بتحديث خريطة موقعك بانتظام عند تغيير المحتوى",
+          "canonicalOnly": "قم بتضمين الإصدارات الأساسية فقط من روابطك",
+          "statusCodes": "تأكد من أن جميع الروابط في خريطة الموقع تعيد كود الحالة 200",
+          "multipleEngines": "أرسل خريطة موقعك عبر محركات بحث متعددة",
+          "monitorPerformance": "راقب أداء خريطة موقعك في Search Console"
+        }
+      }
+    }
   }
 }
