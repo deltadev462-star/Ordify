@@ -6,11 +6,13 @@ import { DashboardHeader } from "@/components/layout/Header/DashboardHeader";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { findActiveNavItem, getBreadcrumbs } from "@/data/new-sidebar-data";
 import { newSidebarData } from "@/data/new-sidebar-data";
+import { useTranslation } from "react-i18next";
 
 function DashboardContent() {
   const location = useLocation();
   const { open, setOpen, openMobile, setOpenMobile, isMobile } = useSidebar();
   const [activeNavId, setActiveNavId] = useState<string | null>(null);
+  const { i18n } = useTranslation();
 
   // Update active navigation item when route changes
   useEffect(() => {
@@ -31,44 +33,7 @@ function DashboardContent() {
   };
 
   return (
-    // <div className="relative min-h-screen  dark:bg-gray-900 grid grid-cols-1 lg:grid-cols-[1fr_auto] ">
-  
-    //   <div
-    //     className={cn(
-    //       "w-full transition-all duration-300 bg-red-300",
-
-    //     )}
-    //   >
-    //     {/* Header */}
-    //     <DashboardHeader
-    //       breadcrumbs={breadcrumbs}
-    //       onMenuClick={handleMenuClick}
-    //       showMenuButton={true}
-    //     />
-
-    //     {/* Page Content */}
-    //     <main className="flex-1 p-4 sm:p-6 lg:p-8">
-        
-    //         <Outlet />
-         
-    //     </main>
-    //   </div>
-
-
-    //   <DashboardSidebar
-    //     activeNavId={activeNavId}
-    //     side={'right'}
-    //   />
-
-
-    //   {isMobile && openMobile && (
-    //     <div
-    //       className="fixed inset-0 bg-black/50 z-40 lg:hidden"
-    //       onClick={() => setOpenMobile(false)}
-    //       aria-hidden="true"
-    //     />
-    //   )}
-    // </div>
+   
     <div className="flex flex-row w-full relative min-h-screen dark:bg-gray-900" dir="ltr">
       <div className="flex-1 order-1">
       
@@ -79,7 +44,7 @@ function DashboardContent() {
            showMenuButton={true}
         />
         {/* Page Content */}
-        <main className="flex-1 p-4 sm:p-6 lg:p-8">
+        <main dir={i18n.language === 'ar' ? 'rtl' : 'ltr'} className="flex-1 p-4 sm:p-6 lg:p-8">
           <Outlet />
         </main>
       </div>
