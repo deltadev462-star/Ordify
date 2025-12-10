@@ -38,6 +38,7 @@ const MarketingPage = lazy(() => import("./pages/dashboard/marketing/MarketingPa
 const SmartCRMPage = lazy(() => import("./pages/dashboard/marketing/SmartCRMPage"));
 const SitemapAgentPage = lazy(() => import("./pages/dashboard/marketing/SitemapAgentPage"));
 const Coupons = lazy(() => import("./pages/dashboard/page/Coupons"));
+const SpyCompetitor = lazy(() => import("./pages/dashboard/marketing/SpyCompetitor"));
 const CrossSelling = lazy(() => import("./pages/dashboard/page/CrossSelling"));
 const Retargeting = lazy(() => import("./pages/dashboard/page/Retargeting"));
 const WhatsappMarketing = lazy(() => import("./pages/dashboard/page/WhatsappMarketing"));
@@ -227,7 +228,7 @@ const router = createBrowserRouter([
           },
           {
             path: "spy-competitors",
-            element: <Coupons />, // Spy competitors by analyzing their links
+            element: <SpyCompetitor />, // Spy competitors by analyzing their links
           },
           {
             path: "cross-selling",

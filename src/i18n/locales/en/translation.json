@@ -603,6 +603,143 @@
     "personalShoppingAssistant": "Personal shopping assistant",
     "exclusiveEvents": "Exclusive events"
   },
+  "spyCompetitor": {
+    "title": "Spy on Competitors",
+    "subtitle": "Analyze competitor websites to uncover their strategies and find opportunities",
+    "seo": {
+      "title": "Competitor Analysis - Spy on Your Competition",
+      "description": "Analyze competitor websites to discover their strategies, strengths, and opportunities for your business"
+    },
+    "urlInput": {
+      "title": "Enter Competitor URL",
+      "description": "Enter your competitor's website URL to start the analysis",
+      "label": "Competitor Website URL",
+      "placeholder": "https://competitor-store.com",
+      "analyze": "Analyze",
+      "analyzing": "Analyzing..."
+    },
+    "metrics": {
+      "domainAuthority": "Domain Authority",
+      "siteSpeed": "Site Speed Score",
+      "monthlyTraffic": "Monthly Traffic",
+      "productCatalog": "Product Catalog",
+      "visitors": "visitors",
+      "products": "products",
+      "growth": "+12% growth"
+    },
+    "tabs": {
+      "strengths": "Strengths",
+      "weaknesses": "Weaknesses",
+      "recommendations": "Recommendations",
+      "detailed": "Detailed Analysis"
+    },
+    "strengths": {
+      "title": "Competitor Strengths",
+      "description": "Key areas where the competitor excels"
+    },
+    "weaknesses": {
+      "title": "Competitor Weaknesses",
+      "description": "Opportunities you can leverage"
+    },
+    "recommendations": {
+      "title": "Strategic Recommendations",
+      "description": "Action items to outperform the competition"
+    },
+    "analysis": {
+      "strengths": {
+        "seo": {
+          "title": "Strong SEO Foundation",
+          "description": "Well-optimized meta tags, clean URL structure, and fast page load times"
+        },
+        "mobile": {
+          "title": "Mobile-First Design",
+          "description": "Responsive layout with excellent mobile user experience and touch interactions"
+        },
+        "social": {
+          "title": "Social Proof Integration",
+          "description": "Customer reviews, testimonials, and social media feeds prominently displayed"
+        }
+      },
+      "weaknesses": {
+        "promo": {
+          "title": "Limited Promotional Tools",
+          "description": "No exit-intent popups, limited discount codes, and basic email capture"
+        },
+        "email": {
+          "title": "Email Marketing Gaps",
+          "description": "No abandoned cart recovery, basic welcome series, and limited segmentation"
+        },
+        "checkout": {
+          "title": "Checkout Optimization",
+          "description": "Multi-step checkout process, limited payment options, no express checkout"
+        }
+      },
+      "recommendations": {
+        "exitIntent": {
+          "title": "Implement Exit-Intent Popups",
+          "description": "Capture leaving visitors with targeted offers and email signup incentives",
+          "timeline": "1-2 weeks"
+        },
+        "seo": {
+          "title": "Enhance SEO Strategy",
+          "description": "Target competitor keywords, improve content depth, and build quality backlinks",
+          "timeline": "1-3 months"
+        },
+        "referral": {
+          "title": "Launch Referral Program",
+          "description": "Create customer advocacy with rewards for referrals and social sharing",
+          "timeline": "2-4 weeks"
+        },
+        "chat": {
+          "title": "Add Live Chat Support",
+          "description": "Implement real-time customer support to reduce cart abandonment",
+          "timeline": "1 week"
+        },
+        "bundles": {
+          "title": "Create Product Bundles",
+          "description": "Increase AOV with strategic product bundles and volume discounts",
+          "timeline": "2-3 weeks"
+        }
+      },
+      "categories": {
+        "conversion": "Conversion",
+        "seo": "SEO",
+        "marketing": "Marketing",
+        "support": "Support",
+        "pricing": "Pricing"
+      }
+    },
+    "impact": {
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low",
+      "label": "Impact"
+    },
+    "seoAnalysis": {
+      "title": "SEO Analysis",
+      "titleTags": "Title Tags",
+      "metaDescriptions": "Meta Descriptions",
+      "headingStructure": "Heading Structure",
+      "backlinks": "Total Backlinks"
+    },
+    "marketingFeatures": {
+      "title": "Marketing Features",
+      "emailCapture": "Email Capture",
+      "liveChat": "Live Chat",
+      "exitIntent": "Exit Intent Popup",
+      "affiliateProgram": "Affiliate Program",
+      "socialMedia": "Social Media Integration"
+    },
+    "status": {
+      "active": "Active",
+      "missing": "Missing"
+    },
+    "export": {
+      "prompt": "Ready to outperform the competition? Export this analysis or implement recommendations.",
+      "report": "Export Report",
+      "implement": "Implement Now"
+    }
+  },
   "common": {
     "egp": "EGP",
     "optional": "Optional"
