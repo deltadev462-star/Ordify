@@ -74,7 +74,10 @@
     "noDataYet": "لا يوجد {{name}} حتى الآن",
     "optional": "(اختياري)",
     "title": "العنوان",
-    "sendEmail": "إرسال بريد إلكتروني"
+    "sendEmail": "إرسال بريد إلكتروني",
+    "active": "نشط",
+    "inactive": "غير نشط",
+    "saveChanges": "حفظ التغييرات"
   },
   "themes": {
     "title": "تخصيص القالب",
@@ -377,7 +380,15 @@
     "categoryImage": "صورة الفئة",
     "clickToUploadImage": "انقر لرفع الصورة",
     "imageFormat": "PNG، JPG أو WebP (الحد الأقصى 2 ميجابايت)",
-    "creating": "جاري الإنشاء..."
+    "uploadImage": "رفع صورة",
+    "changeImage": "تغيير الصورة",
+    "imageHelp": "انقر أو اسحب لرفع الصورة",
+    "creating": "جاري الإنشاء...",
+    "noDescription": "لا يوجد وصف متاح",
+    "deleteTitle": "حذف الفئة",
+    "deleteDescription": "هل أنت متأكد من رغبتك في حذف الفئة \"{{name}}\"؟ لا يمكن التراجع عن هذا الإجراء.",
+    "deleteSuccess": "تم حذف الفئة بنجاح",
+    "updateSuccess": "تم تحديث الفئة بنجاح"
   },
   "orders": {
     "title": "إدارة الطلبات",

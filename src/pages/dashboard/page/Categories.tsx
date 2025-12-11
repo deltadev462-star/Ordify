@@ -161,11 +161,12 @@ function Categories() {
     navigate(`/dashboard/products?category=${categoryId}`);
   }, [navigate]);
   
-  const handleFormSubmit = useCallback(async (values: any) => {
+  const handleFormSubmit = useCallback(async (values: any, imageFile?: File | null) => {
     try {
-      await dispatch(updateCategory({ 
-        categoryId: editingCategory!.id, 
-        data: values 
+      await dispatch(updateCategory({
+        categoryId: editingCategory!.id,
+        data: values,
+        imageFile
       })).unwrap();
       
       toast({

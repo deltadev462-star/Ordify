@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useTranslation } from "react-i18next";
@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
-import { Loader2, AlertCircle } from "lucide-react";
+import { Loader2, AlertCircle, Upload, X } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -31,7 +31,7 @@ interface CategoryFormModalProps {
   isOpen: boolean;
   onClose: () => void;
   category?: Category | null;
-  onSubmit: (values: CategoryFormData) => Promise<void>;
+  onSubmit: (values: CategoryFormData, imageFile?: File | null) => Promise<void>;
 }
 
 const CategoryFormModal: React.FC<CategoryFormModalProps> = ({
@@ -42,6 +42,9 @@ const CategoryFormModal: React.FC<CategoryFormModalProps> = ({
 }) => {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === 'ar';
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [removeExistingImage, setRemoveExistingImage] = useState(false);
   
   // Get all categories for parent selection
   const allCategories = useAppSelector(categorySelectors.selectAllCategories);
@@ -53,15 +56,15 @@ const CategoryFormModal: React.FC<CategoryFormModalProps> = ({
   const validationSchema = Yup.object({
     name: Yup.string()
       .required(t('validation.required'))
-      .min(2, t('validation.minLength', { count: 2 }))
-      .max(100, t('validation.maxLength', { count: 100 })),
+      .min(2, t('validation.minLength', { min: 2 }))
+      .max(100, t('validation.maxLength', { max: 100 })),
     description: Yup.string()
-      .max(500, t('validation.maxLength', { count: 500 })),
+      .max(500, t('validation.maxLength', { max: 500 })),
     parentId: Yup.string().nullable(),
     isActive: Yup.boolean(),
     sortOrder: Yup.number()
-      .min(0, t('validation.minValue', { value: 0 }))
-      .max(999, t('validation.maxValue', { value: 999 }))
+      .min(0, t('validation.minValue', { min: 0 }))
+      .max(999, t('validation.maxValue', { max: 999 }))
   });
 
   // Formik configuration
@@ -76,7 +79,8 @@ const CategoryFormModal: React.FC<CategoryFormModalProps> = ({
     validationSchema,
     onSubmit: async (values, { setSubmitting, setErrors }) => {
       try {
-        await onSubmit(values);
+        // Pass the image file to the parent component
+        await onSubmit(values, removeExistingImage ? null : imageFile);
         handleClose();
       } catch (error: any) {
         if (error.response?.data?.errors) {
@@ -98,12 +102,60 @@ const CategoryFormModal: React.FC<CategoryFormModalProps> = ({
         isActive: category.isActive ?? true,
         sortOrder: category.sortOrder || 0,
       });
+      // Set the existing image preview
+      if (category.image) {
+        setImagePreview(category.image.path);
+      }
+    } else {
+      // Reset image when creating a new category
+      setImagePreview(null);
+      setImageFile(null);
+      setRemoveExistingImage(false);
     }
   }, [category]);
 
   const handleClose = () => {
     formik.resetForm();
+    setImageFile(null);
+    setImagePreview(null);
+    setRemoveExistingImage(false);
     onClose();
+  };
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      // Validate file type
+      const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+      if (!validTypes.includes(file.type)) {
+        formik.setFieldError('image', t('validation.invalidImageType'));
+        return;
+      }
+
+      // Validate file size (max 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        formik.setFieldError('image', t('validation.imageTooLarge', { max: '5MB' }));
+        return;
+      }
+
+      setImageFile(file);
+      setRemoveExistingImage(false);
+
+      // Create preview
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const removeImage = () => {
+    setImageFile(null);
+    setImagePreview(null);
+    if (category?.image) {
+      setRemoveExistingImage(true);
+    }
   };
 
   return (
@@ -135,6 +187,71 @@ const CategoryFormModal: React.FC<CategoryFormModalProps> = ({
             )}
           </div>
 
+          {/* Category Image */}
+          <div className="space-y-2">
+            <Label htmlFor="image">
+              {t('categories.categoryImage')}
+            </Label>
+            
+            {/* Image Preview */}
+            {imagePreview && !removeExistingImage && (
+              <div className="relative w-32 h-32 rounded-xl overflow-hidden border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <img 
+                  src={imagePreview} 
+                  alt="Category preview" 
+                  className="w-full h-full object-cover"
+                />
+                <button
+                  type="button"
+                  onClick={removeImage}
+                  className="absolute top-1 right-1 p-1 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
+            )}
+
+            {/* Upload Button */}
+            {!imagePreview || removeExistingImage ? (
+              <div className="flex items-center gap-4">
+                <label
+                  htmlFor="image"
+                  className="flex items-center gap-2 px-4 py-2 border rounded-xl cursor-pointer hover:bg-muted/50 transition-colors"
+                >
+                  <Upload className="h-4 w-4" />
+                  <span>{t('categories.uploadImage')}</span>
+                  <input
+                    id="image"
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                    onChange={handleImageChange}
+                  />
+                </label>
+              </div>
+            ) : (
+              <div className="flex items-center gap-2">
+                <label
+                  htmlFor="image-change"
+                  className="text-sm text-primary hover:underline cursor-pointer"
+                >
+                  {t('categories.changeImage')}
+                  <input
+                    id="image-change"
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                    onChange={handleImageChange}
+                  />
+                </label>
+              </div>
+            )}
+
+            <p className="text-xs text-muted-foreground">
+              {t('categories.imageHelp')}
+            </p>
+          </div>
+
           {/* Description */}
           <div className="space-y-2">
             <Label htmlFor="description">
@@ -160,8 +277,8 @@ const CategoryFormModal: React.FC<CategoryFormModalProps> = ({
               {t('categories.parentCategory')}
             </Label>
             <Select
-              value={formik.values.parentId || ''}
-              onValueChange={(value) => formik.setFieldValue('parentId', value || null)}
+              value={formik.values.parentId ?? 'none'}
+              onValueChange={(value) => formik.setFieldValue('parentId', value === 'none' ? null : value)}
             >
               <SelectTrigger 
                 id="parentId"
@@ -172,7 +289,7 @@ const CategoryFormModal: React.FC<CategoryFormModalProps> = ({
                 <SelectValue placeholder={t('categories.selectParentCategory')} />
               </SelectTrigger>
               <SelectContent className="max-h-60">
-                <SelectItem value="">
+                <SelectItem value="none">
                   {t('categories.noParentCategory')}
                 </SelectItem>
                 {availableParentCategories.map((cat) => (
