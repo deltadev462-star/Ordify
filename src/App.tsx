@@ -15,6 +15,14 @@ const Home = lazy(() => import("./pages/Home/Home"));
 // Dashboard Overview
 const Dashboard = lazy(() => import("./pages/dashboard/Dashboard"));
 
+// Analytics Pages
+const AnalyticsPage = lazy(() => import("./pages/dashboard/analytics/AnalyticsPage"));
+const SalesReportsPage = lazy(() => import("./pages/dashboard/analytics/SalesReportsPage"));
+const CustomerAnalyticsPage = lazy(() => import("./pages/dashboard/analytics/CustomerAnalyticsPage"));
+const ProductPerformancePage = lazy(() => import("./pages/dashboard/analytics/ProductPerformancePage"));
+const MarketingAnalyticsPage = lazy(() => import("./pages/dashboard/analytics/MarketingAnalyticsPage"));
+const CustomReportsPage = lazy(() => import("./pages/dashboard/analytics/CustomReportsPage"));
+
 // Orders Management - using existing components
 const AllOrders = lazy(() => import("./pages/dashboard/page/AllOrders"));
  
@@ -37,8 +45,7 @@ const EasyCatalog = lazy(() => import("./pages/dashboard/page/EasyCatalog"));
 const MarketingPage = lazy(() => import("./pages/dashboard/marketing/MarketingPage"));
 const SmartCRMPage = lazy(() => import("./pages/dashboard/marketing/SmartCRMPage"));
 const SitemapAgentPage = lazy(() => import("./pages/dashboard/marketing/SitemapAgentPage"));
-const Coupons = lazy(() => import("./pages/dashboard/page/Coupons"));
-const SpyCompetitor = lazy(() => import("./pages/dashboard/marketing/SpyCompetitor"));
+ const SpyCompetitor = lazy(() => import("./pages/dashboard/marketing/SpyCompetitor"));
 const CrossSelling = lazy(() => import("./pages/dashboard/page/CrossSelling"));
 const Retargeting = lazy(() => import("./pages/dashboard/page/Retargeting"));
 const WhatsappMarketing = lazy(() => import("./pages/dashboard/page/WhatsappMarketing"));
@@ -84,6 +91,15 @@ const CustomersPage = lazy(() => import("./pages/dashboard/customers/CustomersPa
 const CustomerSegmentsPage = lazy(() => import("./pages/dashboard/customers/CustomerSegmentsPage"));
 const CustomerCommunicationPage = lazy(() => import("./pages/dashboard/customers/CustomerCommunicationPage"));
 const LoyaltyProgramPage = lazy(() => import("./pages/dashboard/customers/LoyaltyProgramPage"));
+
+// Support page
+const SupportPage = lazy(() => import("./pages/dashboard/support/SupportPage"));
+
+// Docs page
+const DocsPage = lazy(() => import("./pages/help/docs/DocsPage"));
+
+// Tutorials page
+const TutorialsPage = lazy(() => import("./pages/help/tutorials/TutorialsPage"));
 
 // Existing main navigation pages that might exist
 
@@ -304,27 +320,27 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <Dashboard />, // Temporary: will create Analytics component
+            element: <AnalyticsPage />,
           },
           {
             path: "sales",
-            element: <Dashboard />, // Temporary: will create SalesAnalytics component
+            element: <SalesReportsPage />,
           },
           {
             path: "customers",
-            element: <Dashboard />, // Temporary: will create CustomerAnalytics component
+            element: <CustomerAnalyticsPage />,
           },
           {
             path: "products",
-            element: <Dashboard />, // Temporary: will create ProductAnalytics component
+            element: <ProductPerformancePage />,
           },
           {
             path: "marketing",
-            element: <Dashboard />, // Temporary: will create MarketingAnalytics component
+            element: <MarketingAnalyticsPage />,
           },
           {
             path: "custom",
-            element: <Dashboard />, // Temporary: will create CustomReports component
+            element: <CustomReportsPage />,
           },
         ],
       },
@@ -447,6 +463,9 @@ const router = createBrowserRouter([
         element: <AgentChatPage />,
       },
       
+      // Support Route
+      
+      
       // Legacy routes for backward compatibility
       {
         path: "shater",
@@ -463,6 +482,24 @@ const router = createBrowserRouter([
       {
         path: "history",
         element: <History />,
+      },
+    ],
+  },
+  // Help routes (outside dashboard)
+  {
+    path: "/help",
+    children: [
+      {
+        path: "support",
+        element: <SupportPage />,
+      },
+      {
+        path: "docs",
+        element: <DocsPage />,
+      },
+      {
+        path: "tutorials",
+        element: <TutorialsPage />,
       },
     ],
   },

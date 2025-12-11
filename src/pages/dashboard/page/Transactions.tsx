@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { 
-  TrendingUp, 
-  TrendingDown, 
-  Download, 
+import { useTranslation } from "react-i18next";
+import {
+  TrendingUp,
+  TrendingDown,
+  Download,
   Filter,
   ArrowUpRight,
   ArrowDownRight,
@@ -46,6 +47,7 @@ interface Transaction {
 }
 
 function Transactions() {
+  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
   const [filterType, setFilterType] = useState("all");
   const [filterStatus, setFilterStatus] = useState("all");
@@ -154,11 +156,11 @@ function Transactions() {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "completed":
-        return <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-400">{"Completed"}</Badge>;
+        return <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-400">{t("transactions.status.completed")}</Badge>;
       case "pending":
-        return <Badge className="bg-yellow-100 text-yellow-700 dark:bg-yellow-950/30 dark:text-yellow-400">{"Pending"}</Badge>;
+        return <Badge className="bg-yellow-100 text-yellow-700 dark:bg-yellow-950/30 dark:text-yellow-400">{t("transactions.status.pending")}</Badge>;
       case "failed":
-        return <Badge className="bg-red-100 text-red-700 dark:bg-red-950/30 dark:text-red-400">{"Failed"}</Badge>;
+        return <Badge className="bg-red-100 text-red-700 dark:bg-red-950/30 dark:text-red-400">{t("transactions.status.failed")}</Badge>;
       default:
         return null;
     }
@@ -168,19 +170,19 @@ function Transactions() {
     <div className="space-y-6">
       <div className="flex   m-1 flex-1 flex-col gap-6 p-6">
         <Title
-          title={"Transactions"}
-          Subtitle={"Track all your financial transactions and payment history"}
+          title={t("transactions.title")}
+          Subtitle={t("transactions.subtitle")}
           className="text-3xl"
           classNamee=""
         />
 
         {/* Summary Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Card className="glass-card border-0">
+          <Card className="glass-card border border-gray-200 dark:border-gray-700">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{"Total  Income"}</p>
+                  <p className="text-sm text-muted-foreground">{t("transactions.totalIncome")}</p>
                   <p className="text-2xl font-bold mt-1">EGP {totalIncome.toFixed(2)}</p>
                   <div className="flex items-center gap-1 mt-2">
                     <TrendingUp className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
@@ -194,11 +196,11 @@ function Transactions() {
             </CardContent>
           </Card>
 
-          <Card className="glass-card border-0">
+          <Card className="glass-card border border-gray-200 dark:border-gray-700">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{"Total  Expenses"}</p>
+                  <p className="text-sm text-muted-foreground">{t("transactions.totalExpenses")}</p>
                   <p className="text-2xl font-bold mt-1">EGP {totalExpenses.toFixed(2)}</p>
                   <div className="flex items-center gap-1 mt-2">
                     <TrendingDown className="h-4 w-4 text-red-600 dark:text-red-400" />
@@ -212,11 +214,11 @@ function Transactions() {
             </CardContent>
           </Card>
 
-          <Card className="glass-card border-0">
+          <Card className="glass-card border border-gray-200 dark:border-gray-700">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{"Net  Balance"}</p>
+                  <p className="text-sm text-muted-foreground">{t("transactions.netBalance")}</p>
                   <p className="text-2xl font-bold mt-1">EGP {netBalance.toFixed(2)}</p>
                   <div className="flex items-center gap-1 mt-2">
                     <TrendingUp className="h-4 w-4 text-primary" />
@@ -232,14 +234,14 @@ function Transactions() {
         </div>
 
         {/* Filters and Actions */}
-        <Card className="glass-card border-0">
+        <Card className="glass-card border border-gray-200 dark:border-gray-700">
           <CardHeader className="pb-4">
             <div className="flex flex-col md:flex-row gap-4 justify-between">
               <div className="flex flex-col md:flex-row gap-3">
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input
-                    placeholder={""}
+                    placeholder={t("transactions.searchPlaceholder")}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="pl-10 w-full md:w-[300px]"
@@ -248,25 +250,25 @@ function Transactions() {
                 
                 <Select value={filterType} onValueChange={setFilterType}>
                   <SelectTrigger className="w-full md:w-[150px]">
-                    <SelectValue placeholder={"Type"} />
+                    <SelectValue placeholder={t("transactions.filters.type")} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">{"All  Types"}</SelectItem>
-                    <SelectItem value="income">{"Income"}</SelectItem>
-                    <SelectItem value="expense">{"Expense"}</SelectItem>
-                    <SelectItem value="refund">{"Refund"}</SelectItem>
+                    <SelectItem value="all">{t("transactions.filters.allTypes")}</SelectItem>
+                    <SelectItem value="income">{t("transactions.types.sale")}</SelectItem>
+                    <SelectItem value="expense">{t("transactions.types.payout")}</SelectItem>
+                    <SelectItem value="refund">{t("transactions.types.refund")}</SelectItem>
                   </SelectContent>
                 </Select>
 
                 <Select value={filterStatus} onValueChange={setFilterStatus}>
                   <SelectTrigger className="w-full md:w-[150px]">
-                    <SelectValue placeholder={"Status"} />
+                    <SelectValue placeholder={t("transactions.filters.status")} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">{"All  Status"}</SelectItem>
-                    <SelectItem value="completed">{"Completed"}</SelectItem>
-                    <SelectItem value="pending">{"Pending"}</SelectItem>
-                    <SelectItem value="failed">{"Failed"}</SelectItem>
+                    <SelectItem value="all">{t("transactions.filters.allStatuses")}</SelectItem>
+                    <SelectItem value="completed">{t("transactions.status.completed")}</SelectItem>
+                    <SelectItem value="pending">{t("transactions.status.pending")}</SelectItem>
+                    <SelectItem value="failed">{t("transactions.status.failed")}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -274,15 +276,15 @@ function Transactions() {
               <div className="flex gap-2">
                 <Button variant="outline" size="sm" className=" border-gray-200 dark:border-gray-700">
                   <Calendar className="h-4 w-4 mr-2" />
-                  {"Date  Range"}
+                  {t("transactions.filters.dateRange")}
                 </Button>
                 <Button variant="outline" size="sm"  className=" border-gray-200 dark:border-gray-700">
                   <Filter className="h-4 w-4 mr-2" />
-                  {"More  Filters"}
+                  {t("common.filter")}
                 </Button>
                 <Button size="sm" className="glow-on-hover border-gray-200 dark:border-gray-700">
                   <Download className="h-4 w-4 mr-2" />
-                  {"Export"}
+                  {t("common.export")}
                 </Button>
               </div>
             </div>
@@ -294,12 +296,12 @@ function Transactions() {
               <Table>
                 <TableHeader>
                   <TableRow className="border-b border-gray-200 dark:border-gray-700">
-                    <TableHead>{"Date"}</TableHead>
-                    <TableHead>{"Description"}</TableHead>
-                    <TableHead>{"Type"}</TableHead>
-                    <TableHead>{"Amount"}</TableHead>
-                    <TableHead>{"Status"}</TableHead>
-                    <TableHead>{"Reference"}</TableHead>
+                    <TableHead>{t("transactions.table.date")}</TableHead>
+                    <TableHead>{t("transactions.table.description")}</TableHead>
+                    <TableHead>{t("transactions.filters.type")}</TableHead>
+                    <TableHead>{t("transactions.table.amount")}</TableHead>
+                    <TableHead>{t("transactions.filters.status")}</TableHead>
+                    <TableHead>{t("transactions.table.reference")}</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -356,7 +358,7 @@ function Transactions() {
                     </div>
                     
                     <p className="text-xs text-muted-foreground">
-                      {"Ref"}: {transaction.reference}
+                      {t("transactions.table.reference")}: {transaction.reference}
                     </p>
                   </CardContent>
                 </Card>
@@ -366,14 +368,14 @@ function Transactions() {
             {/* Pagination */}
             <div className="flex flex-col md:flex-row items-center justify-between gap-4 mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
               <p className="text-sm text-muted-foreground text-center md:text-left">
-                {"Showing"} 1-{filteredTransactions.length} {"Of"} {transactions.length} {"Transactions"}
+                {t("transactions.showing")} 1-{filteredTransactions.length} {t("common.of")} {transactions.length} {t("transactions.transactions")}
               </p>
               <div className="flex gap-2">
                 <Button variant="outline" size="sm" disabled>
-                  {"Previous"}
+                  {t("common.previous")}
                 </Button>
                 <Button variant="outline" size="sm">
-                  {"Next"}
+                  {t("common.next")}
                 </Button>
               </div>
             </div>

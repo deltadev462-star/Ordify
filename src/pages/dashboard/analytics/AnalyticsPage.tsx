@@ -89,7 +89,7 @@ export default function AnalyticsPage() {
         ))}
       </div>
 
-      <Card className="border-0 shadow-sm">
+      <Card className="border border-gray-200 dark:border-gray-700 shadow-sm">
         <CardHeader>
           <h3 className="text-lg font-semibold flex items-center gap-2">
             <PieChart className="h-5 w-5" />
@@ -101,7 +101,7 @@ export default function AnalyticsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
             {sections.map((s) => (
               <Link key={s.to} to={s.to} className="block">
-                <Card className="hover:shadow-md transition-shadow">
+                <Card className="border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow">
                   <CardContent className="p-5">
                     <h4 className="font-semibold">{s.title}</h4>
                     <p className="text-sm text-muted-foreground mt-1">{s.desc}</p>

@@ -254,7 +254,7 @@ function PurchaseFormSection() {
         </TabsList>
 
         <TabsContent value="fields" className="space-y-6">
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <User className="w-5 h-5 text-primary" />
@@ -405,7 +405,7 @@ function PurchaseFormSection() {
         </TabsContent>
 
         <TabsContent value="payment" className="space-y-6">
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
             <CardHeader className="bg-gradient-to-r from-green-500 to-emerald-500 text-white">
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
@@ -495,7 +495,7 @@ function PurchaseFormSection() {
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Package className="w-5 h-5 text-primary" />
@@ -527,7 +527,7 @@ function PurchaseFormSection() {
         </TabsContent>
 
         <TabsContent value="appearance" className="space-y-6">
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Settings className="w-5 h-5 text-primary" />
@@ -618,7 +618,7 @@ function PurchaseFormSection() {
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Eye className="w-5 h-5 text-primary" />
@@ -678,7 +678,7 @@ function PurchaseFormSection() {
         </TabsContent>
 
         <TabsContent value="advanced" className="space-y-6">
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Shield className="w-5 h-5 text-primary" />
@@ -783,7 +783,7 @@ function PurchaseFormSection() {
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <AlertCircle className="w-5 h-5 text-primary" />

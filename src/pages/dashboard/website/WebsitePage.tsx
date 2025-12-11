@@ -143,7 +143,7 @@ function WebsitePage() {
         </div>
 
         {/* Enhanced Website Preview Card */}
-        <Card className="border-0 shadow-xl overflow-hidden">
+        <Card className="border border-gray-200 dark:border-gray-700 shadow-xl overflow-hidden">
           <CardHeader className="  pb-3">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
               <div className="flex items-center gap-3">
@@ -275,7 +275,7 @@ function WebsitePage() {
               
               <TabsContent value="analytics" className="mt-0 p-6">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <Card className="border-0 shadow-sm">
+                  <Card className="border border-gray-200 dark:border-gray-700 shadow-sm">
                     <CardContent className="p-4">
                       <div className="flex items-center justify-between mb-2">
                         <p className="text-sm text-muted-foreground">{"Page  Views"}</p>
@@ -285,7 +285,7 @@ function WebsitePage() {
                       <p className="text-xs text-green-600 mt-1">{"5% from last week"}</p>
                     </CardContent>
                   </Card>
-                  <Card className="border-0 shadow-sm">
+                  <Card className="border border-gray-200 dark:border-gray-700 shadow-sm">
                     <CardContent className="p-4">
                       <div className="flex items-center justify-between mb-2">
                         <p className="text-sm text-muted-foreground">{"Bounce  Rate"}</p>
@@ -295,7 +295,7 @@ function WebsitePage() {
                       <p className="text-xs text-blue-600 mt-1">{"1% improvement"}</p>
                     </CardContent>
                   </Card>
-                  <Card className="border-0 shadow-sm">
+                  <Card className="border border-gray-200 dark:border-gray-700 shadow-sm">
                     <CardContent className="p-4">
                       <div className="flex items-center justify-between mb-2">
                         <p className="text-sm text-muted-foreground">{"Load  Time"}</p>
@@ -365,7 +365,7 @@ function WebsitePage() {
               <Card
                 key={item.title}
                 className={cn(
-                  "group cursor-pointer transition-all duration-300 border-0 shadow-xl hover:shadow-2xl hover:-translate-y-1",
+                  "group cursor-pointer transition-all duration-300 border border-gray-200 dark:border-gray-700 shadow-xl hover:shadow-2xl hover:-translate-y-1",
                   `bg-gradient-to-br ${gradient.lightBg} ${gradient.hoverBg}`,
                   isActive && "ring-2 ring-primary shadow-primary/25"
                 )}
@@ -515,7 +515,7 @@ function WebsitePage() {
               <Card
                 key={index}
                 className={cn(
-                  "relative overflow-hidden border-0 shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]",
+                  "relative overflow-hidden border border-gray-200 dark:border-gray-700 shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-[1.02]",
                   `bg-gradient-to-br ${stat.bgColor}`
                 )}
               >
@@ -563,7 +563,7 @@ function WebsitePage() {
         </div>
 
         {/* Quick Actions Bar */}
-        <Card className="border-0 shadow-xl bg-gradient-to-r from-primary/5 to-primary/10 backdrop-blur">
+        <Card className="border border-gray-200 dark:border-gray-700 shadow-xl bg-gradient-to-r from-primary/5 to-primary/10 backdrop-blur">
           <CardContent className="p-6">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="flex items-center gap-3">

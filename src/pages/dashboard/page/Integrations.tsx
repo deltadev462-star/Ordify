@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Plug,
   CheckCircle,
@@ -83,6 +84,7 @@ interface IntegrationCategory {
 }
 
 function Integrations() {
+  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [filterStatus, setFilterStatus] = useState("all");
@@ -201,12 +203,12 @@ function Integrations() {
   ];
 
   const categories: IntegrationCategory[] = [
-    { id: "payments", name: "Payments", icon: CreditCard, count: 12, color: "text-blue-600 dark:text-blue-400" },
-    { id: "shipping", name: "Shipping", icon: Truck, count: 8, color: "text-green-600 dark:text-green-400" },
-    { id: "marketing", name: "Marketing", icon: BarChart3, count: 15, color: "text-purple-600 dark:text-purple-400" },
-    { id: "analytics", name: "Analytics", icon: BarChart3, count: 6, color: "text-orange-600 dark:text-orange-400" },
-    { id: "crm", name: "C R M", icon: Users, count: 5, color: "text-pink-600 dark:text-pink-400" },
-    { id: "inventory", name: "Inventory", icon: Package, count: 7, color: "text-indigo-600 dark:text-indigo-400" }
+    { id: "payments", name: t("integrations.categories.payment"), icon: CreditCard, count: 12, color: "text-blue-600 dark:text-blue-400" },
+    { id: "shipping", name: t("integrations.categories.shipping"), icon: Truck, count: 8, color: "text-green-600 dark:text-green-400" },
+    { id: "marketing", name: t("integrations.categories.marketing"), icon: BarChart3, count: 15, color: "text-purple-600 dark:text-purple-400" },
+    { id: "analytics", name: t("integrations.categories.analytics"), icon: BarChart3, count: 6, color: "text-orange-600 dark:text-orange-400" },
+    { id: "crm", name: t("integrations.categories.crm"), icon: Users, count: 5, color: "text-pink-600 dark:text-pink-400" },
+    { id: "inventory", name: t("integrations.categories.inventory"), icon: Package, count: 7, color: "text-indigo-600 dark:text-indigo-400" }
   ];
 
   // Statistics
@@ -234,28 +236,28 @@ function Integrations() {
         return (
           <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-400">
             <CheckCircle className="h-3 w-3 mr-1" />
-            {"Connected"}
+            {t("integrations.status.connected")}
           </Badge>
         );
       case "disconnected":
         return (
           <Badge className="bg-gray-100 text-gray-700 dark:bg-gray-950/30 dark:text-gray-400">
             <XCircle className="h-3 w-3 mr-1" />
-            {"Disconnected"}
+            {t("integrations.status.notConnected")}
           </Badge>
         );
       case "error":
         return (
           <Badge className="bg-red-100 text-red-700 dark:bg-red-950/30 dark:text-red-400">
             <AlertCircle className="h-3 w-3 mr-1" />
-            {"Error"}
+            {t("common.error")}
           </Badge>
         );
       case "pending":
         return (
           <Badge className="bg-yellow-100 text-yellow-700 dark:bg-yellow-950/30 dark:text-yellow-400">
             <Clock className="h-3 w-3 mr-1" />
-            {"Pending"}
+            {t("common.status.pending")}
           </Badge>
         );
       default:
@@ -275,32 +277,32 @@ function Integrations() {
       <div className="flex bg-white dark:bg-black/80 rounded-2xl m-1 flex-1 flex-col gap-6 p-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <Title
-            title={"Integrations"}
-            Subtitle={"Connect your favorite tools and services to enhance your store"}
+            title={t("integrations.title")}
+            Subtitle={t("integrations.subtitle")}
             className="text-3xl"
             classNamee=""
           />
           <div className="flex gap-2 w-full sm:w-auto">
             <Button variant="outline" className="glow-on-hover flex-1 sm:flex-none">
               <Book className="h-4 w-4 mr-2" />
-              <span className="hidden sm:inline">{"A P I  Docs"}</span>
-              <span className="sm:hidden">{"Docs"}</span>
+              <span className="hidden sm:inline">{t("integrations.apiDocs")}</span>
+              <span className="sm:hidden">{t("integrations.docs")}</span>
             </Button>
             <Button className="glow-on-hover flex-1 sm:flex-none" size="lg">
               <Plus className="h-4 w-4 mr-2" />
-              <span className="hidden sm:inline">{"Request  Integration"}</span>
-              <span className="sm:hidden">{"Request"}</span>
+              <span className="hidden sm:inline">{t("integrations.requestIntegration")}</span>
+              <span className="sm:hidden">{t("integrations.request")}</span>
             </Button>
           </div>
         </div>
 
         {/* Statistics Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <Card className="glass-card border-0 hover:shadow-lg transition-all duration-300 hover:scale-105">
+          <Card className="glass-card border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 hover:scale-105">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{"Connected"}</p>
+                  <p className="text-sm text-muted-foreground">{t("integrations.status.connected")}</p>
                   <p className="text-3xl font-bold mt-1">{connectedIntegrations}/{totalIntegrations}</p>
                   <Progress value={(connectedIntegrations / totalIntegrations) * 100} className="h-2 mt-2" />
                 </div>
@@ -311,15 +313,15 @@ function Integrations() {
             </CardContent>
           </Card>
 
-          <Card className="glass-card border-0 hover:shadow-lg transition-all duration-300 hover:scale-105">
+          <Card className="glass-card border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 hover:scale-105">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{"A P I  Calls  Today"}</p>
+                  <p className="text-sm text-muted-foreground">{t("integrations.apiCallsToday")}</p>
                   <p className="text-3xl font-bold mt-1">{(totalApiCalls / 1000).toFixed(1)}K</p>
                   <div className="flex items-center gap-1 mt-2">
                     <TrendingUp className="h-3 w-3 text-emerald-600 dark:text-emerald-400" />
-                    <span className="text-xs text-emerald-600 dark:text-emerald-400">+18.2% {"Vs yesterday"}</span>
+                    <span className="text-xs text-emerald-600 dark:text-emerald-400">+18.2% {t("integrations.vsYesterday")}</span>
                   </div>
                 </div>
                 <div className="h-12 w-12 rounded-full bg-gradient-to-br from-emerald-500/20 to-emerald-400/10 flex items-center justify-center">
@@ -329,15 +331,15 @@ function Integrations() {
             </CardContent>
           </Card>
 
-          <Card className="glass-card border-0 hover:shadow-lg transition-all duration-300 hover:scale-105">
+          <Card className="glass-card border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 hover:scale-105">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{"Active  Webhooks"}</p>
+                  <p className="text-sm text-muted-foreground">{t("integrations.activeWebhooks")}</p>
                   <p className="text-3xl font-bold mt-1">24</p>
                   <div className="flex items-center gap-1 mt-2">
                     <Cloud className="h-3 w-3 text-blue-600 dark:text-blue-400" />
-                    <span className="text-xs text-blue-600 dark:text-blue-400">{"Real-time sync"}</span>
+                    <span className="text-xs text-blue-600 dark:text-blue-400">{t("integrations.realTimeSync")}</span>
                   </div>
                 </div>
                 <div className="h-12 w-12 rounded-full bg-gradient-to-br from-blue-500/20 to-blue-400/10 flex items-center justify-center">
@@ -347,15 +349,15 @@ function Integrations() {
             </CardContent>
           </Card>
 
-          <Card className="glass-card border-0 hover:shadow-lg transition-all duration-300 hover:scale-105">
+          <Card className="glass-card border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 hover:scale-105">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-muted-foreground">{"Issues"}</p>
+                  <p className="text-sm text-muted-foreground">{t("integrations.issues")}</p>
                   <p className="text-3xl font-bold mt-1">{errorIntegrations}</p>
                   <div className="flex items-center gap-1 mt-2">
                     <AlertCircle className="h-3 w-3 text-red-600 dark:text-red-400" />
-                    <span className="text-xs text-red-600 dark:text-red-400">{"Need attention"}</span>
+                    <span className="text-xs text-red-600 dark:text-red-400">{t("integrations.needAttention")}</span>
                   </div>
                 </div>
                 <div className="h-12 w-12 rounded-full bg-gradient-to-br from-red-500/20 to-red-400/10 flex items-center justify-center">
@@ -367,9 +369,9 @@ function Integrations() {
         </div>
 
         {/* Categories */}
-        <Card className="glass-card border-0">
+        <Card className="glass-card border border-gray-200 dark:border-gray-700">
           <CardHeader>
-            <CardTitle className="text-lg">{"Integration  Categories"}</CardTitle>
+            <CardTitle className="text-lg">{t("integrations.integrationCategories")}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
@@ -390,7 +392,7 @@ function Integrations() {
                       </div>
                       <div className="text-center">
                         <p className="font-medium text-sm">{category.name}</p>
-                        <p className="text-xs text-muted-foreground">{category.count} {"Apps"}</p>
+                        <p className="text-xs text-muted-foreground">{category.count} {t("integrations.apps")}</p>
                       </div>
                     </div>
                   </Button>
@@ -404,15 +406,15 @@ function Integrations() {
         <Tabs value={selectedTab} onValueChange={setSelectedTab} className="space-y-6">
           <div className="flex flex-col gap-4">
             <TabsList className="grid grid-cols-2 w-full max-w-[400px]">
-              <TabsTrigger value="available">{"Available"}</TabsTrigger>
-              <TabsTrigger value="connected">{"Connected"}</TabsTrigger>
+              <TabsTrigger value="available">{t("integrations.available")}</TabsTrigger>
+              <TabsTrigger value="connected">{t("integrations.status.connected")}</TabsTrigger>
             </TabsList>
             
             <div className="flex flex-col sm:flex-row gap-3">
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
-                  placeholder={""}
+                  placeholder={t("integrations.searchPlaceholder")}
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-10 w-full"
@@ -422,22 +424,22 @@ function Integrations() {
               <div className="flex gap-2">
                 <Select value={filterStatus} onValueChange={setFilterStatus}>
                   <SelectTrigger className="w-full sm:w-[150px]">
-                    <SelectValue placeholder={"Status"} />
+                    <SelectValue placeholder={t("common.status")} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">{"All  Status"}</SelectItem>
-                    <SelectItem value="connected">{"Connected"}</SelectItem>
-                    <SelectItem value="disconnected">{"Disconnected"}</SelectItem>
-                    <SelectItem value="error">{"Error"}</SelectItem>
-                    <SelectItem value="pending">{"Pending"}</SelectItem>
+                    <SelectItem value="all">{t("integrations.filters.allStatuses")}</SelectItem>
+                    <SelectItem value="connected">{t("integrations.status.connected")}</SelectItem>
+                    <SelectItem value="disconnected">{t("integrations.status.notConnected")}</SelectItem>
+                    <SelectItem value="error">{t("common.error")}</SelectItem>
+                    <SelectItem value="pending">{t("common.status.pending")}</SelectItem>
                   </SelectContent>
                 </Select>
 
-                <Button 
-                  variant="outline" 
-                  size="icon" 
+                <Button
+                  variant="ghost"
+                  size="icon"
                   onClick={() => setSelectedCategory("all")}
-                  className="shrink-0"
+                  className="shrink-0 hover:bg-transparent dark:hover:bg-transparent"
                 >
                   <Filter className="h-4 w-4" />
                 </Button>
@@ -464,7 +466,7 @@ function Integrations() {
                             {integration.name}
                             {integration.isPremium && (
                               <Badge variant="secondary" className="text-xs">
-                                {"Premium"}
+                                {t("integrations.premium")}
                               </Badge>
                             )}
                           </h3>
@@ -472,7 +474,7 @@ function Integrations() {
                             {getCategoryIcon(integration.category)}
                             {integration.isPopular && (
                               <Badge variant="outline" className="text-xs">
-                                {"Popular"}
+                                {t("integrations.popular")}
                               </Badge>
                             )}
                           </div>
@@ -498,7 +500,7 @@ function Integrations() {
                     {integration.status === "connected" && integration.usage && (
                       <div className="space-y-2 pt-2 border-t border-gray-200 dark:border-gray-700">
                         <div className="flex items-center justify-between text-sm">
-                          <span className="text-muted-foreground">{"A P I  Usage"}</span>
+                          <span className="text-muted-foreground">{t("integrations.apiUsage")}</span>
                           <span className="font-medium">
                             {integration.usage.requests.toLocaleString()}/{integration.usage.limit.toLocaleString()}
                           </span>
@@ -510,7 +512,7 @@ function Integrations() {
                         {integration.lastSync && (
                           <p className="text-xs text-muted-foreground flex items-center gap-1">
                             <Clock className="h-3 w-3" />
-                            {"Last sync"}: {new Date(integration.lastSync).toLocaleTimeString()}
+                            {t("integrations.lastSync")}: {new Date(integration.lastSync).toLocaleTimeString()}
                           </p>
                         )}
                       </div>
@@ -521,15 +523,15 @@ function Integrations() {
                         <>
                           <Button size="sm" variant="outline" className="flex-1">
                             <Settings className="h-4 w-4 mr-2" />
-                            {"Configure"}
+                            {t("integrations.actions.configure")}
                           </Button>
                           <Button size="sm" variant="outline" className="text-destructive">
-                            {"Disconnect"}
+                            {t("integrations.actions.disconnect")}
                           </Button>
                         </>
                       ) : (
                         <Button size="sm" className="w-full">
-                          {"Connect"}
+                          {t("integrations.connect")}
                           <ArrowRight className="h-4 w-4 ml-2" />
                         </Button>
                       )}
@@ -545,7 +547,7 @@ function Integrations() {
                               </Button>
                             </TooltipTrigger>
                             <TooltipContent>
-                              <p>{"View documentation"}</p>
+                              <p>{t("integrations.viewDocumentation")}</p>
                             </TooltipContent>
                           </Tooltip>
                         </TooltipProvider>
@@ -558,7 +560,7 @@ function Integrations() {
                               </Button>
                             </TooltipTrigger>
                             <TooltipContent>
-                              <p>{"Get support"}</p>
+                              <p>{t("integrations.getSupport")}</p>
                             </TooltipContent>
                           </Tooltip>
                         </TooltipProvider>
@@ -575,7 +577,7 @@ function Integrations() {
                                   </Badge>
                                 </TooltipTrigger>
                                 <TooltipContent>
-                                  <p>{"A P I  Key required"}</p>
+                                  <p>{t("integrations.apiKeyRequired")}</p>
                                 </TooltipContent>
                               </Tooltip>
                             </TooltipProvider>
@@ -589,7 +591,7 @@ function Integrations() {
                                   </Badge>
                                 </TooltipTrigger>
                                 <TooltipContent>
-                                  <p>{"Webhook support"}</p>
+                                  <p>{t("integrations.webhookSupport")}</p>
                                 </TooltipContent>
                               </Tooltip>
                             </TooltipProvider>
@@ -603,7 +605,7 @@ function Integrations() {
                                   </Badge>
                                 </TooltipTrigger>
                                 <TooltipContent>
-                                  <p>{"O Auth authentication"}</p>
+                                  <p>{t("integrations.oauthAuthentication")}</p>
                                 </TooltipContent>
                               </Tooltip>
                             </TooltipProvider>
@@ -653,7 +655,7 @@ function Integrations() {
                           <AlertCircle className="h-4 w-4 text-red-600 dark:text-red-400 mt-0.5 shrink-0" />
                           <div className="flex-1">
                             <p className="text-sm font-medium text-red-800 dark:text-red-300">
-                              {"Connection  Error"}
+                              {t("integrations.connectionError")}
                             </p>
                             <p className="text-xs text-red-600 dark:text-red-400 mt-1">
                               {""}
@@ -666,7 +668,7 @@ function Integrations() {
                     {integration.usage && (
                       <div className="space-y-2">
                         <div className="flex items-center justify-between text-sm">
-                          <span className="text-muted-foreground">{"A P I  Usage"}</span>
+                          <span className="text-muted-foreground">{t("integrations.apiUsage")}</span>
                           <span className="font-medium">
                             {integration.usage.requests.toLocaleString()}/{integration.usage.limit.toLocaleString()}
                           </span>
@@ -680,7 +682,7 @@ function Integrations() {
 
                     {integration.lastSync && (
                       <div className="flex items-center justify-between text-sm">
-                        <span className="text-muted-foreground">{"Last sync"}</span>
+                        <span className="text-muted-foreground">{t("integrations.lastSync")}</span>
                         <span className="flex items-center gap-1">
                           <Clock className="h-3 w-3" />
                           {new Date(integration.lastSync).toLocaleTimeString()}
@@ -691,17 +693,17 @@ function Integrations() {
                     <div className="flex gap-2 pt-2">
                       <Button size="sm" variant="outline" className="flex-1">
                         <Settings className="h-4 w-4 mr-2" />
-                        {"Settings"}
+                        {t("common.settings")}
                       </Button>
                       {integration.status === "error" ? (
                         <Button size="sm" variant="default" className="flex-1">
                           <RefreshCw className="h-4 w-4 mr-2" />
-                          {"Reconnect"}
+                          {t("integrations.reconnect")}
                         </Button>
                       ) : (
                         <Button size="sm" variant="outline" className="flex-1">
                           <RefreshCw className="h-4 w-4 mr-2" />
-                          {"Sync  Now"}
+                          {t("integrations.syncNow")}
                         </Button>
                       )}
                     </div>
@@ -713,7 +715,7 @@ function Integrations() {
         </Tabs>
 
         {/* Help Section */}
-        <Card className="glass-card border-0">
+        <Card className="glass-card border border-gray-200 dark:border-gray-700">
           <CardContent className="p-6">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               <div className="flex items-center gap-3 flex-1">
@@ -721,20 +723,20 @@ function Integrations() {
                   <Info className="h-6 w-6 text-primary" />
                 </div>
                 <div className="text-center md:text-left">
-                  <h3 className="font-medium">{"Need a custom integration?"}</h3>
-                  <p className="text-sm text-muted-foreground">{"We can help you connect any service with our  A P I"}</p>
+                  <h3 className="font-medium">{t("integrations.needCustomIntegration")}</h3>
+                  <p className="text-sm text-muted-foreground">{t("integrations.customIntegrationHelp")}</p>
                 </div>
               </div>
               <div className="flex gap-2 w-full sm:w-auto">
                 <Button variant="outline" className="flex-1 sm:flex-none">
                   <Book className="h-4 w-4 mr-2" />
-                  <span className="hidden sm:inline">{"View  A P I  Docs"}</span>
-                  <span className="sm:hidden">{"Docs"}</span>
+                  <span className="hidden sm:inline">{t("integrations.viewApiDocs")}</span>
+                  <span className="sm:hidden">{t("integrations.docs")}</span>
                 </Button>
                 <Button className="flex-1 sm:flex-none">
                   <Mail className="h-4 w-4 mr-2" />
-                  <span className="hidden sm:inline">{"Contact  Support"}</span>
-                  <span className="sm:hidden">{"Support"}</span>
+                  <span className="hidden sm:inline">{t("integrations.contactSupport")}</span>
+                  <span className="sm:hidden">{t("common.support")}</span>
                 </Button>
               </div>
             </div>

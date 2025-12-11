@@ -456,7 +456,7 @@ function Retargeting() {
 
         {/* Statistics Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-          <Card className="glass-card border-0 hover:shadow-lg transition-all duration-300 hover:scale-105">
+          <Card className="glass-card border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 hover:scale-105">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -474,7 +474,7 @@ function Retargeting() {
             </CardContent>
           </Card>
 
-          <Card className="glass-card border-0 hover:shadow-lg transition-all duration-300 hover:scale-105">
+          <Card className="glass-card border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 hover:scale-105">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -492,7 +492,7 @@ function Retargeting() {
             </CardContent>
           </Card>
 
-          <Card className="glass-card border-0 hover:shadow-lg transition-all duration-300 hover:scale-105">
+          <Card className="glass-card border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 hover:scale-105">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -510,7 +510,7 @@ function Retargeting() {
             </CardContent>
           </Card>
 
-          <Card className="glass-card border-0 hover:shadow-lg transition-all duration-300 hover:scale-105">
+          <Card className="glass-card border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 hover:scale-105">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -528,7 +528,7 @@ function Retargeting() {
             </CardContent>
           </Card>
 
-          <Card className="glass-card border-0 hover:shadow-lg transition-all duration-300 hover:scale-105">
+          <Card className="glass-card border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 hover:scale-105">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -612,7 +612,7 @@ function Retargeting() {
             </div>
 
             {/* Campaigns Table */}
-            <Card className="glass-card border-0">
+            <Card className="glass-card border border-gray-200 dark:border-gray-700">
               <CardHeader>
                 <div className="flex flex-col gap-4">
                   <CardTitle className="text-lg">{t("retargeting.retargetingCampaigns")}</CardTitle>
@@ -655,7 +655,7 @@ function Retargeting() {
                         </SelectContent>
                       </Select>
 
-                      <Button variant="outline" size="icon" className="shrink-0">
+                      <Button variant="ghost" size="icon" className="shrink-0 hover:bg-transparent dark:hover:bg-transparent">
                         <Filter className="h-4 w-4" />
                       </Button>
                     </div>
@@ -831,7 +831,7 @@ function Retargeting() {
           </TabsContent>
 
           <TabsContent value="audiences" className="space-y-6">
-            <Card className="glass-card border-0">
+            <Card className="glass-card border border-gray-200 dark:border-gray-700">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-lg">{t("retargeting.audienceSegments")}</CardTitle>

@@ -89,7 +89,7 @@ export const CategoryCard = ({
   if (variant === "luxe") {
     return (
       <Card
-        className={`group relative h-80 cursor-pointer overflow-hidden border-0 shadow-lg ${className}`}
+        className={`group relative h-80 cursor-pointer overflow-hidden border border-gray-200 dark:border-gray-700 shadow-lg ${className}`}
         onClick={handleClick}
       >
         <div className="absolute inset-0">

@@ -80,7 +80,7 @@ export const ProductCard = ({
 
   return (
     <Card
-      className={`group pt-0 relative overflow-hidden transition-all duration-300 hover:shadow-xl border border-[#d6d6d6] dark:border-[#424242] dark:bg-gray-900 dark:text-white ${
+      className={`group pt-0 relative overflow-hidden transition-all duration-300 hover:shadow-xl border border-gray-200 dark:border-gray-700 dark:bg-gray-900 dark:text-white ${
         isHovered ? "shadow-2xl " : "shadow-md"
       } ${className}`}
       onMouseEnter={() => setIsHovered(true)}
@@ -102,24 +102,24 @@ export const ProductCard = ({
         {/* Badges */}
         <div className="absolute left-2 top-2 flex flex-col gap-2 z-10">
           {discount > 0 && (
-            <Badge className="bg-gradient-to-r from-red-500 to-red-600 text-white border-0 shadow-lg">
+            <Badge className="bg-gradient-to-r from-red-500 to-red-600 text-white border border-gray-200 dark:border-gray-700 shadow-lg">
               <Zap className="h-3 w-3 mr-1" />
               {discount}% OFF
             </Badge>
           )}
           {isNew && (
-            <Badge className="bg-gradient-to-r from-green-500 to-emerald-500 text-white border-0 shadow-lg">
+            <Badge className="bg-gradient-to-r from-green-500 to-emerald-500 text-white border border-gray-200 dark:border-gray-700 shadow-lg">
               NEW
             </Badge>
           )}
           {isBestseller && (
-            <Badge className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white border-0 shadow-lg">
+            <Badge className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white border border-gray-200 dark:border-gray-700 shadow-lg">
               <Star className="h-3 w-3 mr-1 fill-current" />
               BESTSELLER
             </Badge>
           )}
           {!inStock && (
-            <Badge className="bg-gray-800 text-white border-0 shadow-lg">
+            <Badge className="bg-gray-800 text-white border border-gray-200 dark:border-gray-700 shadow-lg">
               {"Out Of Stock"}
             </Badge>
           )}
@@ -154,7 +154,7 @@ export const ProductCard = ({
             <Button
               variant="secondary"
               size="sm"
-              className="flex-1 backdrop-blur-md bg-white/70 hover:bg-white text-gray-800 shadow-lg border-0 font-medium"
+              className="flex-1 backdrop-blur-md bg-white/70 hover:bg-white text-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 font-medium"
               onClick={() => onQuickView?.(id)}
             >
               <Eye className="mr-1.5 h-4 w-4" />
@@ -163,7 +163,7 @@ export const ProductCard = ({
             {inStock && (
               <Button
                 size="sm"
-                className="flex-1 backdrop-blur-md bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white shadow-lg border-0 font-medium"
+                className="flex-1 backdrop-blur-md bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white shadow-lg border border-gray-200 dark:border-gray-700 font-medium"
                 onClick={() => onAddToCart?.(id)}
               >
                 <ShoppingCart className="mr-1.5 h-4 w-4" />

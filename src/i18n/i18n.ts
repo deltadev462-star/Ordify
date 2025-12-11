@@ -24,7 +24,7 @@ i18n
     
     // Backend options to load from public folder
     backend: {
-      loadPath: '/locales/{{lng}}/{{ns}}.json'
+      loadPath: '/locales/{{lng}}/translation.json'
     },
     
     // React options

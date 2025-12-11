@@ -69,7 +69,7 @@ export function StoreHealth({
   };
 
   return (
-    <Card className="border-0 shadow-sm overflow-hidden">
+    <Card className="border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden">
       <CardHeader className="pb-4 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20">
         <div className="flex justify-between items-start">
           <div>

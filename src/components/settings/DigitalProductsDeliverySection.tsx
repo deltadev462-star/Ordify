@@ -125,7 +125,7 @@ function DigitalProductsDeliverySection() {
         </TabsList>
 
         <TabsContent value="delivery" className="space-y-6">
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
             <CardHeader className="bg-gradient-to-r from-purple-500 to-pink-500 text-white">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
@@ -325,7 +325,7 @@ function DigitalProductsDeliverySection() {
           </Card>
 
           {/* Email Templates */}
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <div>
@@ -395,7 +395,7 @@ function DigitalProductsDeliverySection() {
         </TabsContent>
 
         <TabsContent value="security" className="space-y-6">
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
             <CardHeader className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white">
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
@@ -481,7 +481,7 @@ function DigitalProductsDeliverySection() {
         </TabsContent>
 
         <TabsContent value="storage" className="space-y-6">
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
             <CardHeader className="bg-gradient-to-r from-green-500 to-emerald-500 text-white">
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">

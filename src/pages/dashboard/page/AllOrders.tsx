@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import Title from "@/components/Title";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -96,6 +97,7 @@ interface OrderData {
 }
 
 function AllOrders() {
+  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
   const [paymentFilter, setPaymentFilter] = useState("all");
@@ -307,32 +309,32 @@ function AllOrders() {
   const getStatusBadge = (status: string) => {
     const statusConfig = {
       pending: {
-        label: "Pending",
+        label: t("orders.status.pending"),
         color: "bg-yellow-500/10 text-yellow-600 hover:bg-yellow-500/20",
         icon: <Clock className="h-3 w-3" />
       },
       processing: {
-        label: "Processing",
+        label: t("orders.status.processing"),
         color: "bg-blue-500/10 text-blue-600 hover:bg-blue-500/20",
         icon: <Package className="h-3 w-3" />
       },
       shipped: {
-        label: "Shipped",
+        label: t("orders.status.shipped"),
         color: "bg-purple-500/10 text-purple-600 hover:bg-purple-500/20",
         icon: <Truck className="h-3 w-3" />
       },
       delivered: {
-        label: "Delivered",
+        label: t("orders.status.delivered"),
         color: "bg-green-500/10 text-green-600 hover:bg-green-500/20",
         icon: <CheckCircle2 className="h-3 w-3" />
       },
       cancelled: {
-        label: "Cancelled",
+        label: t("orders.status.cancelled"),
         color: "bg-red-500/10 text-red-600 hover:bg-red-500/20",
         icon: <XCircle className="h-3 w-3" />
       },
       returned: {
-        label: "Returned",
+        label: t("orders.status.returned"),
         color: "bg-orange-500/10 text-orange-600 hover:bg-orange-500/20",
         icon: <PackageX className="h-3 w-3" />
       },
@@ -348,10 +350,10 @@ function AllOrders() {
 
   const getPaymentBadge = (status: string, method: string) => {
     const statusConfig = {
-      paid: { label: "Paid", color: "bg-green-500/10 text-green-600" },
-      pending: { label: "Pending", color: "bg-yellow-500/10 text-yellow-600" },
-      failed: { label: "Failed", color: "bg-red-500/10 text-red-600" },
-      refunded: { label: "Refunded", color: "bg-gray-500/10 text-gray-600" },
+      paid: { label: t("orders.payment.paid"), color: "bg-green-500/10 text-green-600" },
+      pending: { label: t("orders.payment.pending"), color: "bg-yellow-500/10 text-yellow-600" },
+      failed: { label: t("orders.payment.failed"), color: "bg-red-500/10 text-red-600" },
+      refunded: { label: t("orders.payment.refunded"), color: "bg-gray-500/10 text-gray-600" },
     };
     const config = statusConfig[status as keyof typeof statusConfig];
     return (
@@ -366,10 +368,10 @@ function AllOrders() {
 
   const getSourceBadge = (source: string) => {
     const sourceConfig = {
-      website: { label: "Website", color: "text-blue-600 bg-blue-50 dark:bg-blue-950/50" },
-      app: { label: "App", color: "text-purple-600 bg-purple-50 dark:bg-purple-950/50" },
-      phone: { label: "Phone", color: "text-green-600 bg-green-50 dark:bg-green-950/50" },
-      social: { label: "Social", color: "text-pink-600 bg-pink-50 dark:bg-pink-950/50" },
+      website: { label: t("orders.source.website"), color: "text-blue-600 bg-blue-50 dark:bg-blue-950/50" },
+      app: { label: t("orders.source.app"), color: "text-purple-600 bg-purple-50 dark:bg-purple-950/50" },
+      phone: { label: t("orders.source.phone"), color: "text-green-600 bg-green-50 dark:bg-green-950/50" },
+      social: { label: t("orders.source.social"), color: "text-pink-600 bg-pink-50 dark:bg-pink-950/50" },
     };
     const config = sourceConfig[source as keyof typeof sourceConfig] || { 
       label: source, 
@@ -398,8 +400,8 @@ function AllOrders() {
         {/* Header */}
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
           <Title
-            title={"All  Orders"}
-            Subtitle={"Manage And Track All Your Orders In One Place With Advanced Filtering And Real-time Updates"}
+            title={t("navigation.allOrders")}
+            Subtitle={t("orders.allOrders.subtitle")}
             className="text-3xl"
             classNamee=""
           />
@@ -411,7 +413,7 @@ function AllOrders() {
               onClick={() => window.location.reload()}
             >
               <RefreshCw className="h-4 w-4" />
-              {"Refresh"}
+              {t("common.refresh")}
             </Button>
             <Button
               variant="outline"
@@ -419,21 +421,21 @@ function AllOrders() {
               className="gap-2 border-gray-200 dark:border-gray-800"
             >
               <Download className="h-4 w-4" />
-              {"Export"}
+              {t("common.export")}
             </Button>
             <Button
               size="sm"
               className="gap-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
             >
               <Package className="h-4 w-4" />
-              {"New  Order"}
+              {t("orders.newOrder")}
             </Button>
           </div>
         </div>
 
         {/* Statistics Dashboard */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-          <Card className="border-0 shadow-sm hover:shadow-md transition-all hover:scale-[1.02] bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950/30 dark:to-blue-900/30">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-all hover:scale-[1.02] bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-950/30 dark:to-blue-900/30">
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div>
@@ -452,18 +454,18 @@ function AllOrders() {
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-sm hover:shadow-md transition-all hover:scale-[1.02] bg-gradient-to-br from-yellow-50 to-yellow-100 dark:from-yellow-950/30 dark:to-yellow-900/30">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-all hover:scale-[1.02] bg-gradient-to-br from-yellow-50 to-yellow-100 dark:from-yellow-950/30 dark:to-yellow-900/30">
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-yellow-700 dark:text-yellow-400 font-medium">
-                    {"Pending"}
+                    {t("orders.status.pending")}
                   </p>
                   <p className="text-2xl font-bold text-yellow-700 dark:text-yellow-400">
                     {stats.pending}
                   </p>
                   <p className="text-xs text-yellow-600/70 dark:text-yellow-400/70">
-                    {"Needs Processing"}
+                    {t("orders.stats.needsProcessing")}
                   </p>
                 </div>
                 <Clock className="h-8 w-8 text-yellow-500" />
@@ -471,18 +473,18 @@ function AllOrders() {
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-sm hover:shadow-md transition-all hover:scale-[1.02] bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-950/30 dark:to-purple-900/30">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-all hover:scale-[1.02] bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-950/30 dark:to-purple-900/30">
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-purple-700 dark:text-purple-400 font-medium">
-                    {"Shipped"}
+                    {t("orders.status.shipped")}
                   </p>
                   <p className="text-2xl font-bold text-purple-700 dark:text-purple-400">
                     {stats.shipped}
                   </p>
                   <p className="text-xs text-purple-600/70 dark:text-purple-400/70">
-                    {"On The Way"}
+                    {t("orders.stats.onTheWay")}
                   </p>
                 </div>
                 <Truck className="h-8 w-8 text-purple-500" />
@@ -490,18 +492,18 @@ function AllOrders() {
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-sm hover:shadow-md transition-all hover:scale-[1.02] bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950/30 dark:to-green-900/30">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-all hover:scale-[1.02] bg-gradient-to-br from-green-50 to-green-100 dark:from-green-950/30 dark:to-green-900/30">
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-green-700 dark:text-green-400 font-medium">
-                    {"Delivered"}
+                    {t("orders.status.delivered")}
                   </p>
                   <p className="text-2xl font-bold text-green-700 dark:text-green-400">
                     {stats.delivered}
                   </p>
                   <p className="text-xs text-green-600/70 dark:text-green-400/70">
-                    {"Completed Successfully"}
+                    {t("orders.stats.completedSuccessfully")}
                   </p>
                 </div>
                 <CheckCircle2 className="h-8 w-8 text-green-500" />
@@ -509,12 +511,12 @@ function AllOrders() {
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-sm hover:shadow-md transition-all hover:scale-[1.02] bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-950/30 dark:to-emerald-900/30">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-all hover:scale-[1.02] bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-950/30 dark:to-emerald-900/30">
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-emerald-700 dark:text-emerald-400 font-medium">
-                    {"Revenue"}
+                    {t("orders.stats.revenue")}
                   </p>
                   <p className="text-xl font-bold text-emerald-700 dark:text-emerald-400">
                     {stats.totalRevenue.toLocaleString()}
@@ -529,19 +531,19 @@ function AllOrders() {
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-sm hover:shadow-md transition-all hover:scale-[1.02] bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-950/30 dark:to-indigo-900/30">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-all hover:scale-[1.02] bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-950/30 dark:to-indigo-900/30">
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-indigo-700 dark:text-indigo-400 font-medium">
-                    {"Avg  Order"}
+                    {t("orders.stats.avgOrder")}
                   </p>
                   <p className="text-xl font-bold text-indigo-700 dark:text-indigo-400">
                     {stats.avgOrderValue.toLocaleString()}
                   </p>
                   <p className="text-xs text-indigo-600/70 dark:text-indigo-400/70 flex items-center gap-1">
                     <BarChart3 className="h-3 w-3" />
-                    {"E G P"}
+                    {t("currency.egp")}
                   </p>
                 </div>
                 <Receipt className="h-8 w-8 text-indigo-500" />
@@ -551,7 +553,7 @@ function AllOrders() {
         </div>
 
         {/* Filters and Search Bar */}
-        <Card className="border-0 shadow-lg">
+        <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
           <CardHeader className="pb-4">
             <div className="flex flex-col gap-4">
               {/* Tabs */}
@@ -559,19 +561,19 @@ function AllOrders() {
                 <TabsList className="grid grid-cols-4 w-full lg:w-fit bg-gray-100 dark:bg-gray-800">
                   <TabsTrigger value="all" className="gap-2">
                     <Package className="h-4 w-4" />
-                    {"All  Orders"}
+                    {t("navigation.allOrders")}
                   </TabsTrigger>
                   <TabsTrigger value="urgent" className="gap-2">
                     <AlertTriangle className="h-4 w-4" />
-                    {"Urgent"}
+                    {t("orders.tabs.urgent")}
                   </TabsTrigger>
                   <TabsTrigger value="high-priority" className="gap-2">
                     <TrendingUp className="h-4 w-4" />
-                    {"High  Priority"}
+                    {t("orders.tabs.highPriority")}
                   </TabsTrigger>
                   <TabsTrigger value="today" className="gap-2">
                     <Calendar className="h-4 w-4" />
-                    {"Today"}
+                    {t("orders.tabs.today")}
                   </TabsTrigger>
                 </TabsList>
               </Tabs>
@@ -581,7 +583,7 @@ function AllOrders() {
                 <div className="relative flex-1">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                   <Input
-                    placeholder={"Search by order number"}
+                    placeholder={t("orders.searchPlaceholder")}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="pl-10 bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-800"
@@ -591,61 +593,61 @@ function AllOrders() {
                 <div className="flex gap-2 flex-wrap lg:flex-nowrap">
                   <Select value={statusFilter} onValueChange={setStatusFilter}>
                     <SelectTrigger className="w-full lg:w-[160px] bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
-                      <SelectValue placeholder={"Order  Status"} />
+                      <SelectValue placeholder={t("orders.filters.orderStatus")} />
                     </SelectTrigger>
                     <SelectContent className="bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700">
-                      <SelectItem value="all">{"All  Status"}</SelectItem>
-                      <SelectItem value="pending">{"Pending"}</SelectItem>
-                      <SelectItem value="processing">{"Processing"}</SelectItem>
-                      <SelectItem value="shipped">{"Shipped"}</SelectItem>
-                      <SelectItem value="delivered">{"Delivered"}</SelectItem>
-                      <SelectItem value="cancelled">{"Cancelled"}</SelectItem>
-                      <SelectItem value="returned">{"Returned"}</SelectItem>
+                      <SelectItem value="all">{t("orders.filters.allStatus")}</SelectItem>
+                      <SelectItem value="pending">{t("orders.status.pending")}</SelectItem>
+                      <SelectItem value="processing">{t("orders.status.processing")}</SelectItem>
+                      <SelectItem value="shipped">{t("orders.status.shipped")}</SelectItem>
+                      <SelectItem value="delivered">{t("orders.status.delivered")}</SelectItem>
+                      <SelectItem value="cancelled">{t("orders.status.cancelled")}</SelectItem>
+                      <SelectItem value="returned">{t("orders.status.returned")}</SelectItem>
                     </SelectContent>
                   </Select>
 
                   <Select value={paymentFilter} onValueChange={setPaymentFilter}>
                     <SelectTrigger className="w-full lg:w-[160px] bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
-                      <SelectValue placeholder={"Payment  Status"} />
+                      <SelectValue placeholder={t("orders.filters.paymentStatus")} />
                     </SelectTrigger>
                     <SelectContent className="bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700">
-                      <SelectItem value="all">{"All  Payments"}</SelectItem>
-                      <SelectItem value="paid">{"Paid"}</SelectItem>
-                      <SelectItem value="pending">{"Pending"}</SelectItem>
-                      <SelectItem value="failed">{"Failed"}</SelectItem>
-                      <SelectItem value="refunded">{"Refunded"}</SelectItem>
+                      <SelectItem value="all">{t("orders.filters.allPayments")}</SelectItem>
+                      <SelectItem value="paid">{t("orders.payment.paid")}</SelectItem>
+                      <SelectItem value="pending">{t("orders.payment.pending")}</SelectItem>
+                      <SelectItem value="failed">{t("orders.payment.failed")}</SelectItem>
+                      <SelectItem value="refunded">{t("orders.payment.refunded")}</SelectItem>
                     </SelectContent>
                   </Select>
 
                   <Select value={sourceFilter} onValueChange={setSourceFilter}>
                     <SelectTrigger className="w-full lg:w-[140px] bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
-                      <SelectValue placeholder={"Source"} />
+                      <SelectValue placeholder={t("orders.filters.source")} />
                     </SelectTrigger>
                     <SelectContent className="bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700">
-                      <SelectItem value="all">{"All  Sources"}</SelectItem>
-                      <SelectItem value="website">{"Website"}</SelectItem>
-                      <SelectItem value="app">{"App"}</SelectItem>
-                      <SelectItem value="phone">{"Phone"}</SelectItem>
-                      <SelectItem value="social">{"Social"}</SelectItem>
+                      <SelectItem value="all">{t("orders.filters.allSources")}</SelectItem>
+                      <SelectItem value="website">{t("orders.source.website")}</SelectItem>
+                      <SelectItem value="app">{t("orders.source.app")}</SelectItem>
+                      <SelectItem value="phone">{t("orders.source.phone")}</SelectItem>
+                      <SelectItem value="social">{t("orders.source.social")}</SelectItem>
                     </SelectContent>
                   </Select>
 
                   <Select value={dateRange} onValueChange={setDateRange}>
                     <SelectTrigger className="w-full lg:w-[140px] bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
                       <Calendar className="h-4 w-4 mr-2" />
-                      <SelectValue placeholder={"Date range"} />
+                      <SelectValue placeholder={t("orders.filters.dateRange")} />
                     </SelectTrigger>
                     <SelectContent className="bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700">
-                      <SelectItem value="today">{"Today"}</SelectItem>
-                      <SelectItem value="week">{"This  Week"}</SelectItem>
-                      <SelectItem value="month">{"This  Month"}</SelectItem>
-                      <SelectItem value="quarter">{"This  Quarter"}</SelectItem>
-                      <SelectItem value="year">{"This  Year"}</SelectItem>
-                      <SelectItem value="all">{"All  Time"}</SelectItem>
+                      <SelectItem value="today">{t("orders.dateRange.today")}</SelectItem>
+                      <SelectItem value="week">{t("orders.dateRange.thisWeek")}</SelectItem>
+                      <SelectItem value="month">{t("orders.dateRange.thisMonth")}</SelectItem>
+                      <SelectItem value="quarter">{t("orders.dateRange.thisQuarter")}</SelectItem>
+                      <SelectItem value="year">{t("orders.dateRange.thisYear")}</SelectItem>
+                      <SelectItem value="all">{t("orders.dateRange.allTime")}</SelectItem>
                     </SelectContent>
                   </Select>
 
-                  <Button variant="outline" size="icon" className="shrink-0 border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
+                  <Button variant="ghost" size="icon" className="shrink-0 hover:bg-transparent dark:hover:bg-transparent">
                     <Filter className="h-4 w-4" />
                   </Button>
                 </div>
@@ -660,31 +662,31 @@ function AllOrders() {
                 <TableHeader className="bg-gray-50 dark:bg-gray-900/50">
                   <TableRow>
                     <TableHead className="text-right font-semibold w-[100px]">
-                      {"Order"}
+                      {t("orders.table.order")}
                     </TableHead>
                     <TableHead className="text-right font-semibold">
-                      {"Customer"}
+                      {t("orders.table.customer")}
                     </TableHead>
                     <TableHead className="text-right font-semibold">
-                      {"Products"}
+                      {t("orders.table.products")}
                     </TableHead>
                     <TableHead className="text-right font-semibold">
-                      {"Total"}
+                      {t("orders.table.total")}
                     </TableHead>
                     <TableHead className="text-right font-semibold">
-                      {"Payment"}
+                      {t("orders.table.payment")}
                     </TableHead>
                     <TableHead className="text-right font-semibold">
-                      {"Status"}
+                      {t("orders.table.status")}
                     </TableHead>
                     <TableHead className="text-right font-semibold">
-                      {"Date"}
+                      {t("orders.table.date")}
                     </TableHead>
                     <TableHead className="text-right font-semibold">
-                      {"Source"}
+                      {t("orders.table.source")}
                     </TableHead>
                     <TableHead className="text-right font-semibold w-[80px]">
-                      {"Actions"}
+                      {t("orders.table.actions")}
                     </TableHead>
                   </TableRow>
                 </TableHeader>
@@ -723,7 +725,7 @@ function AllOrders() {
                             ))}
                             {order.products.length > 2 && (
                               <Badge variant="secondary" className="text-xs">
-                                +{order.products.length - 2} {"More"}
+                                +{order.products.length - 2} {t("common.more")}
                               </Badge>
                             )}
                           </div>
@@ -733,7 +735,7 @@ function AllOrders() {
                             <p className="font-bold text-green-600 dark:text-green-400">
                               {order.totalAmount.toLocaleString()} 
                             </p>
-                            <p className="text-xs text-muted-foreground">{"E G P"}</p>
+                            <p className="text-xs text-muted-foreground">{t("currency.egp")}</p>
                           </div>
                         </TableCell>
                         <TableCell>
@@ -746,7 +748,7 @@ function AllOrders() {
                           <div className="space-y-1">
                             <p className="text-xs font-medium">{order.orderDate}</p>
                             <p className="text-xs text-muted-foreground">
-                              {"Delivery"}: {order.estimatedDelivery}
+                              {t("orders.delivery")}: {order.estimatedDelivery}
                             </p>
                           </div>
                         </TableCell>
@@ -761,34 +763,34 @@ function AllOrders() {
                               </Button>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent align="end" className="w-[200px] bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700">
-                              <DropdownMenuLabel>{"Quick  Actions"}</DropdownMenuLabel>
+                              <DropdownMenuLabel>{t("orders.actions.quickActions")}</DropdownMenuLabel>
                               <DropdownMenuSeparator />
                               <DropdownMenuItem className="gap-2 cursor-pointer">
                                 <Eye className="h-4 w-4" />
-                                {"View  Details"}
+                                {t("orders.actions.viewDetails")}
                               </DropdownMenuItem>
                               <DropdownMenuItem className="gap-2 cursor-pointer">
                                 <Edit className="h-4 w-4" />
-                                {"Edit  Order"}
+                                {t("orders.actions.editOrder")}
                               </DropdownMenuItem>
                               <DropdownMenuItem className="gap-2 cursor-pointer">
                                 <Printer className="h-4 w-4" />
-                                {"Print  Invoice"}
+                                {t("orders.actions.printInvoice")}
                               </DropdownMenuItem>
                               <DropdownMenuItem className="gap-2 cursor-pointer">
                                 <Copy className="h-4 w-4" />
-                                {"Duplicate"}
+                                {t("orders.actions.duplicate")}
                               </DropdownMenuItem>
                               <DropdownMenuSeparator />
                               {order.trackingNumber && (
                                 <DropdownMenuItem className="gap-2 cursor-pointer text-blue-600">
                                   <MapPin className="h-4 w-4" />
-                                  {"Track  Shipment"}
+                                  {t("orders.actions.trackShipment")}
                                 </DropdownMenuItem>
                               )}
                               <DropdownMenuItem className="gap-2 cursor-pointer text-red-600">
                                 <XCircle className="h-4 w-4" />
-                                {"Cancel  Order"}
+                                {t("orders.actions.cancelOrder")}
                               </DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
@@ -801,10 +803,10 @@ function AllOrders() {
                         <div className="flex flex-col items-center justify-center space-y-3">
                           <Package className="h-12 w-12 text-gray-300" />
                           <p className="text-muted-foreground font-medium">
-                            {"No orders found"}
+                            {t("orders.noOrdersFound")}
                           </p>
                           <p className="text-sm text-muted-foreground">
-                            {"Try adjusting your filters or search term"}
+                            {t("orders.tryAdjustingFilters")}
                           </p>
                         </div>
                       </TableCell>
@@ -850,7 +852,7 @@ function AllOrders() {
                       {/* Products */}
                       <div className="space-y-1 border-t pt-3">
                         <p className="text-xs font-semibold text-muted-foreground mb-2">
-                          {"Products"}
+                          {t("orders.table.products")}
                         </p>
                         {order.products.slice(0, 2).map((product) => (
                           <p key={product.id} className="text-sm">
@@ -859,7 +861,7 @@ function AllOrders() {
                         ))}
                         {order.products.length > 2 && (
                           <Badge variant="secondary" className="text-xs">
-                            +{order.products.length - 2} {"More"}
+                            +{order.products.length - 2} {t("common.more")}
                           </Badge>
                         )}
                       </div>
@@ -867,29 +869,29 @@ function AllOrders() {
                       {/* Order Info */}
                       <div className="flex flex-wrap justify-between items-center gap-3 border-t pt-3">
                         <div>
-                          <p className="text-xs text-muted-foreground">{"Total"}</p>
+                          <p className="text-xs text-muted-foreground">{t("orders.table.total")}</p>
                           <p className="font-bold text-green-600 dark:text-green-400">
-                            {order.totalAmount.toLocaleString()} {"E G P"}
+                            {order.totalAmount.toLocaleString()} {t("currency.egp")}
                           </p>
                         </div>
                         <div>
-                          <p className="text-xs text-muted-foreground">{"Payment"}</p>
+                          <p className="text-xs text-muted-foreground">{t("orders.table.payment")}</p>
                           {getPaymentBadge(order.paymentStatus, order.paymentMethod)}
                         </div>
                         <div>
-                          <p className="text-xs text-muted-foreground">{"Source"}</p>
+                          <p className="text-xs text-muted-foreground">{t("orders.table.source")}</p>
                           {getSourceBadge(order.source)}
                         </div>
                       </div>
 
                       {/* Date Info */}
                       <div className="text-xs text-muted-foreground border-t pt-3">
-                        <p>{"Order  Date"}: {order.orderDate}</p>
-                        <p>{"Estimated  Delivery"}: {order.estimatedDelivery}</p>
+                        <p>{t("orders.orderDate")}: {order.orderDate}</p>
+                        <p>{t("orders.estimatedDelivery")}: {order.estimatedDelivery}</p>
                         {order.trackingNumber && (
                           <p className="mt-1 flex items-center gap-1">
                             <MapPin className="h-3 w-3" />
-                            {"Tracking"}: {order.trackingNumber}
+                            {t("orders.tracking")}: {order.trackingNumber}
                           </p>
                         )}
                       </div>
@@ -901,11 +903,11 @@ function AllOrders() {
                       >
                         <Button size="sm" variant="outline" className="flex-1 gap-1 border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
                           <Eye className="h-4 w-4" />
-                          {"View"}
+                          {t("common.view")}
                         </Button>
                         <Button size="sm" variant="outline" className="flex-1 gap-1 border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
                           <Edit className="h-4 w-4" />
-                          {"Edit"}
+                          {t("common.edit")}
                         </Button>
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
@@ -916,21 +918,21 @@ function AllOrders() {
                           <DropdownMenuContent align="end" className="w-[200px] bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700">
                             <DropdownMenuItem className="gap-2 cursor-pointer">
                               <Printer className="h-4 w-4" />
-                              {"Print  Invoice"}
+                              {t("orders.actions.printInvoice")}
                             </DropdownMenuItem>
                             <DropdownMenuItem className="gap-2 cursor-pointer">
                               <Copy className="h-4 w-4" />
-                              {"Duplicate"}
+                              {t("orders.actions.duplicate")}
                             </DropdownMenuItem>
                             {order.trackingNumber && (
                               <DropdownMenuItem className="gap-2 cursor-pointer text-blue-600">
                                 <MapPin className="h-4 w-4" />
-                                {"Track  Shipment"}
+                                {t("orders.actions.trackShipment")}
                               </DropdownMenuItem>
                             )}
                             <DropdownMenuItem className="gap-2 cursor-pointer text-red-600">
                               <XCircle className="h-4 w-4" />
-                              {"Cancel  Order"}
+                              {t("orders.actions.cancelOrder")}
                             </DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>
@@ -942,10 +944,10 @@ function AllOrders() {
                 <div className="flex flex-col items-center justify-center py-12">
                   <Package className="h-12 w-12 text-gray-300 mb-3" />
                   <p className="text-muted-foreground font-medium">
-                    {"No orders found"}
+                    {t("orders.noOrdersFound")}
                   </p>
                   <p className="text-sm text-muted-foreground text-center mt-1">
-                    {"Try adjusting your filters or search term"}
+                    {t("orders.tryAdjustingFilters")}
                   </p>
                 </div>
               )}
@@ -955,9 +957,9 @@ function AllOrders() {
             {totalPages > 1 && (
               <div className="flex items-center justify-between px-6 py-4 border-t bg-gray-50/50 dark:bg-gray-900/50">
                 <p className="text-sm text-muted-foreground">
-                  {"Showing"} {(currentPage - 1) * itemsPerPage + 1} {"To"}{" "}
-                  {Math.min(currentPage * itemsPerPage, filteredOrders.length)} {"Of"}{" "}
-                  {filteredOrders.length} {"Results"}
+                  {t("pagination.showing")} {(currentPage - 1) * itemsPerPage + 1} {t("pagination.to")}{" "}
+                  {Math.min(currentPage * itemsPerPage, filteredOrders.length)} {t("pagination.of")}{" "}
+                  {filteredOrders.length} {t("pagination.results")}
                 </p>
                 <div className="flex items-center gap-2">
                   <Button
@@ -1015,11 +1017,11 @@ function AllOrders() {
             <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700">
               <DialogHeader>
                 <DialogTitle className="flex items-center justify-between">
-                  <span>{"Order  Details"} - {selectedOrder.orderNumber}</span>
+                  <span>{t("orders.orderDetails")} - {selectedOrder.orderNumber}</span>
                   {getStatusBadge(selectedOrder.orderStatus)}
                 </DialogTitle>
                 <DialogDescription>
-                  {"Complete order information and history"}
+                  {t("orders.completeOrderInfo")}
                 </DialogDescription>
               </DialogHeader>
 
@@ -1027,35 +1029,35 @@ function AllOrders() {
                 {/* Customer Information */}
                 <div className="space-y-2">
                   <h3 className="font-semibold text-sm text-muted-foreground">
-                    {"Customer  Information"}
+                    {t("orders.customerInformation")}
                   </h3>
                   <Card className="p-4 border-gray-200 dark:border-gray-700">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="flex items-center gap-2">
                         <User className="h-4 w-4 text-muted-foreground" />
                         <div>
-                          <p className="text-xs text-muted-foreground">{"Name"}</p>
+                          <p className="text-xs text-muted-foreground">{t("orders.customer.name")}</p>
                           <p className="font-medium">{selectedOrder.customerName}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
                         <CreditCard className="h-4 w-4 text-muted-foreground" />
                         <div>
-                          <p className="text-xs text-muted-foreground">{"Phone"}</p>
+                          <p className="text-xs text-muted-foreground">{t("orders.customer.phone")}</p>
                           <p className="font-medium">{selectedOrder.customerPhone}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
                         <MapPin className="h-4 w-4 text-muted-foreground" />
                         <div>
-                          <p className="text-xs text-muted-foreground">{"Address"}</p>
+                          <p className="text-xs text-muted-foreground">{t("orders.customer.address")}</p>
                           <p className="font-medium">{selectedOrder.customerAddress}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
                         <Package className="h-4 w-4 text-muted-foreground" />
                         <div>
-                          <p className="text-xs text-muted-foreground">{"Email"}</p>
+                          <p className="text-xs text-muted-foreground">{t("orders.customer.email")}</p>
                           <p className="font-medium">{selectedOrder.customerEmail}</p>
                         </div>
                       </div>
@@ -1066,7 +1068,7 @@ function AllOrders() {
                 {/* Order Items */}
                 <div className="space-y-2">
                   <h3 className="font-semibold text-sm text-muted-foreground">
-                    {"Order  Items"}
+                    {t("orders.orderItems")}
                   </h3>
                   <Card className="p-4 border-gray-200 dark:border-gray-700">
                     <div className="space-y-3">
@@ -1082,12 +1084,12 @@ function AllOrders() {
                             <div>
                               <p className="font-medium">{product.name}</p>
                               <p className="text-sm text-muted-foreground">
-                                {product.quantity} x {product.price.toLocaleString()} {"E G P"}
+                                {product.quantity} x {product.price.toLocaleString()} {t("currency.egp")}
                               </p>
                             </div>
                           </div>
                           <p className="font-semibold">
-                            {(product.quantity * product.price).toLocaleString()} {"E G P"}
+                            {(product.quantity * product.price).toLocaleString()} {t("currency.egp")}
                           </p>
                         </div>
                       ))}
@@ -1096,7 +1098,7 @@ function AllOrders() {
                     {/* Order Summary */}
                     <div className="mt-4 pt-4 border-t space-y-2">
                       <div className="flex justify-between text-sm">
-                        <span>{"Subtotal"}</span>
+                        <span>{t("orders.summary.subtotal")}</span>
                         <span>
                           {(
                             selectedOrder.totalAmount -
@@ -1104,27 +1106,27 @@ function AllOrders() {
                             selectedOrder.tax +
                             selectedOrder.discount
                           ).toLocaleString()}{" "}
-                          {"E G P"}
+                          {t("currency.egp")}
                         </span>
                       </div>
                       <div className="flex justify-between text-sm">
-                        <span>{"Shipping"}</span>
-                        <span>{selectedOrder.shippingCost.toLocaleString()} {"E G P"}</span>
+                        <span>{t("orders.summary.shipping")}</span>
+                        <span>{selectedOrder.shippingCost.toLocaleString()} {t("currency.egp")}</span>
                       </div>
                       <div className="flex justify-between text-sm">
-                        <span>{"Tax"}</span>
-                        <span>{selectedOrder.tax.toLocaleString()} {"E G P"}</span>
+                        <span>{t("orders.summary.tax")}</span>
+                        <span>{selectedOrder.tax.toLocaleString()} {t("currency.egp")}</span>
                       </div>
                       {selectedOrder.discount > 0 && (
                         <div className="flex justify-between text-sm text-green-600">
-                          <span>{"Discount"}</span>
-                          <span>-{selectedOrder.discount.toLocaleString()} {"E G P"}</span>
+                          <span>{t("orders.summary.discount")}</span>
+                          <span>-{selectedOrder.discount.toLocaleString()} {t("currency.egp")}</span>
                         </div>
                       )}
                       <div className="flex justify-between font-bold text-lg pt-2 border-t">
-                        <span>{"Total"}</span>
+                        <span>{t("orders.summary.total")}</span>
                         <span className="text-green-600">
-                          {selectedOrder.totalAmount.toLocaleString()} {"E G P"}
+                          {selectedOrder.totalAmount.toLocaleString()} {t("currency.egp")}
                         </span>
                       </div>
                     </div>
@@ -1134,14 +1136,14 @@ function AllOrders() {
                 {/* Order Timeline */}
                 <div className="space-y-2">
                   <h3 className="font-semibold text-sm text-muted-foreground">
-                    {"Order  Timeline"}
+                    {t("orders.orderTimeline")}
                   </h3>
                   <Card className="p-4 border-gray-200 dark:border-gray-700">
                     <div className="space-y-3">
                       <div className="flex items-center gap-3">
                         <Clock className="h-4 w-4 text-blue-500" />
                         <div>
-                          <p className="font-medium text-sm">{"Order  Placed"}</p>
+                          <p className="font-medium text-sm">{t("orders.timeline.orderPlaced")}</p>
                           <p className="text-xs text-muted-foreground">
                             {selectedOrder.orderDate}
                           </p>
@@ -1151,7 +1153,7 @@ function AllOrders() {
                         <div className="flex items-center gap-3">
                           <Package className="h-4 w-4 text-purple-500" />
                           <div>
-                            <p className="font-medium text-sm">{"Processing  Started"}</p>
+                            <p className="font-medium text-sm">{t("orders.timeline.processingStarted")}</p>
                             <p className="text-xs text-muted-foreground">
                               {selectedOrder.orderDate}
                             </p>
@@ -1162,9 +1164,9 @@ function AllOrders() {
                         <div className="flex items-center gap-3">
                           <Truck className="h-4 w-4 text-indigo-500" />
                           <div>
-                            <p className="font-medium text-sm">{"Shipped"}</p>
+                            <p className="font-medium text-sm">{t("orders.status.shipped")}</p>
                             <p className="text-xs text-muted-foreground">
-                              {"Tracking"}: {selectedOrder.trackingNumber}
+                              {t("orders.tracking")}: {selectedOrder.trackingNumber}
                             </p>
                           </div>
                         </div>
@@ -1173,7 +1175,7 @@ function AllOrders() {
                         <div className="flex items-center gap-3">
                           <CheckCircle2 className="h-4 w-4 text-green-500" />
                           <div>
-                            <p className="font-medium text-sm">{"Delivered"}</p>
+                            <p className="font-medium text-sm">{t("orders.status.delivered")}</p>
                             <p className="text-xs text-muted-foreground">
                               {selectedOrder.actualDelivery}
                             </p>
@@ -1188,21 +1190,21 @@ function AllOrders() {
                 <div className="flex flex-wrap gap-2 pt-4">
                   <Button className="gap-2">
                     <Printer className="h-4 w-4" />
-                    {"Print  Invoice"}
+                    {t("orders.actions.printInvoice")}
                   </Button>
                   <Button variant="outline" className="gap-2 border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
                     <Edit className="h-4 w-4" />
-                    {"Edit  Order"}
+                    {t("orders.actions.editOrder")}
                   </Button>
                   {selectedOrder.trackingNumber && (
                     <Button variant="outline" className="gap-2 border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
                       <MapPin className="h-4 w-4" />
-                      {"Track  Shipment"}
+                      {t("orders.actions.trackShipment")}
                     </Button>
                   )}
                   <Button variant="outline" className="gap-2 border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-colors text-red-600 hover:text-red-700">
                     <XCircle className="h-4 w-4" />
-                    {"Cancel  Order"}
+                    {t("orders.actions.cancelOrder")}
                   </Button>
                 </div>
               </div>

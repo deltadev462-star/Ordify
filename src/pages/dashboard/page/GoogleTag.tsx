@@ -224,7 +224,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
           <TabsContent value="setup">
             <div className="grid gap-6">
-              <Card className="border-0 shadow-lg">
+              <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
                 <CardHeader className="bg-gradient-to-r from-blue-500 to-blue-600 text-white">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
@@ -378,7 +378,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
           <TabsContent value="events">
             <div className="space-y-4">
-              <Card className="border-0 shadow-lg">
+              <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
                 <CardHeader>
                   <CardTitle className="text-xl flex items-center gap-2">
                     <BarChart3 className="w-5 h-5 text-primary" />
@@ -456,7 +456,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </TabsContent>
 
           <TabsContent value="custom">
-            <Card className="border-0 shadow-lg">
+            <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <div>
@@ -557,7 +557,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
           <TabsContent value="debug">
             <div className="space-y-4">
-              <Card className="border-0 shadow-lg">
+              <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
                 <CardHeader className="bg-gradient-to-r from-orange-500 to-red-500 text-white">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">

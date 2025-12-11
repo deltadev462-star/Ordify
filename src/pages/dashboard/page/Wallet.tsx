@@ -130,7 +130,7 @@ function Wallet() {
           </Card>
 
           {/* Due Amount Card */}
-          <Card className="relative overflow-hidden border-0 shadow-xl bg-gradient-to-br from-amber-500 to-orange-600 text-white">
+          <Card className="relative overflow-hidden border border-gray-200 dark:border-gray-700 shadow-xl bg-gradient-to-br from-amber-500 to-orange-600 text-white">
             <div className="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full blur-3xl transform translate-x-24 -translate-y-24"></div>
             <CardHeader className="relative pb-3">
               <CardTitle className="text-lg font-medium text-white/90 flex items-center gap-2">
@@ -152,7 +152,7 @@ function Wallet() {
         </div>
 
         {/* Info Card */}
-        <Card className="border-0 shadow-lg bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20">
+        <Card className="border border-gray-200 dark:border-gray-700 shadow-lg bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20">
           <CardContent className="p-6">
             <div className="flex items-start gap-4">
               <div className="p-3 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 text-white shadow-lg shrink-0">
@@ -280,10 +280,10 @@ function ModernPaymentCard({
       )}
       
       <Card className={cn(
-        "relative overflow-hidden border-0 shadow-xl transition-all duration-300 h-full",
+        "relative overflow-hidden shadow-xl transition-all duration-300 h-full",
         "hover:shadow-2xl hover:-translate-y-1",
         isSelected && "ring-4 ring-primary shadow-primary/25",
-        popular && "border-2 border-yellow-400"
+        popular ? "border-2 border-yellow-400" : "border border-gray-200 dark:border-gray-700"
       )}>
         {/* Badge */}
         <div className={cn(
@@ -293,7 +293,7 @@ function ModernPaymentCard({
             "px-3 py-1 shadow-lg",
             popular 
               ? "bg-gradient-to-r from-yellow-400 to-orange-400 text-black border-0"
-              : "bg-white/90 dark:bg-gray-900/90 backdrop-blur"
+              : "bg-white/90 dark:bg-gray-900/90 backdrop-blur border-0"
           )}>
             {popular && <Crown className="h-3 w-3 mr-1" />}
             {badge}

@@ -221,7 +221,7 @@ function PagesManagementSection() {
       </div>
 
       {showCreateForm && (
-        <Card className="border-0 shadow-lg">
+        <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
           <CardHeader className="bg-gradient-to-r from-blue-500 to-purple-500 text-white">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
@@ -324,7 +324,7 @@ function PagesManagementSection() {
 
         <TabsContent value="all" className="space-y-4">
           {filteredPages.length === 0 ? (
-            <Card className="border-0">
+            <Card className="border border-gray-200 dark:border-gray-700">
               <CardContent className="flex flex-col items-center justify-center py-12">
                 <FileText className="w-12 h-12 text-gray-400 dark:text-gray-600 mb-3" />
                 <p className="text-gray-600 dark:text-gray-400">
@@ -338,7 +338,7 @@ function PagesManagementSection() {
                 <Card 
                   key={page.id} 
                   className={cn(
-                    "border-0 shadow-lg transition-all hover:shadow-xl",
+                    "border border-gray-200 dark:border-gray-700 shadow-lg transition-all hover:shadow-xl",
                     page.status === 'draft' && "opacity-75"
                   )}
                 >
@@ -465,7 +465,7 @@ function PagesManagementSection() {
 
         <TabsContent value="published" className="space-y-4">
           {filteredPages.filter(p => p.status === 'published').map((page) => (
-            <Card key={page.id} className="border-0 shadow-lg">
+            <Card key={page.id} className="border border-gray-200 dark:border-gray-700 shadow-lg">
               <CardContent className="p-6">
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
@@ -505,7 +505,7 @@ function PagesManagementSection() {
 
         <TabsContent value="drafts" className="space-y-4">
           {filteredPages.filter(p => p.status === 'draft').map((page) => (
-            <Card key={page.id} className="border-0 shadow-lg opacity-75">
+            <Card key={page.id} className="border border-gray-200 dark:border-gray-700 shadow-lg opacity-75">
               <CardContent className="p-6">
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
@@ -546,7 +546,7 @@ function PagesManagementSection() {
         </TabsContent>
       </Tabs>
 
-      <Card className="border-0 shadow-lg bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20">
+      <Card className="border border-gray-200 dark:border-gray-700 shadow-lg bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20">
         <CardContent className="p-6">
           <div className="flex items-start gap-4">
             <div className="p-3 rounded-lg bg-purple-100 dark:bg-purple-900/30">

@@ -765,7 +765,7 @@ export default function LoyaltyProgramPage() {
                   className="max-w-md"
                 />
                 <div className="flex gap-2">
-                  <Button variant="outline" size="sm" className="gap-2  border-gray-200 dark:border-gray-700">
+                  <Button variant="ghost" size="sm" className="gap-2 hover:bg-transparent dark:hover:bg-transparent">
                     <Filter className="h-4 w-4" />
                     {t("loyaltyProgram.filter")}
                   </Button>

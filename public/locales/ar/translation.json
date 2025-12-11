@@ -74,44 +74,16 @@
     "noDataYet": "لا يوجد {{name}} حتى الآن",
     "optional": "(اختياري)",
     "title": "العنوان",
-    "sendEmail": "إرسال بريد إلكتروني"
+    "sendEmail": "إرسال بريد إلكتروني",
+    "units": "وحدات",
+    "change": "التغيير",
+    "of": "من",
+    "support": "الدعم",
+    "currency": "جنيه مصري"
   },
-  "themes": {
-    "title": "تخصيص القالب",
-    "subtitle": "تخصيص مظهر المتجر",
-    "settingsSaved": "تم حفظ إعدادات القالب",
-    "themeSaved": "تم حفظ القالب",
-    "splitView": "عرض مقسم",
-    "customizeOnly": "التخصيص فقط",
-    "previewOnly": "المعاينة فقط",
-    "exitFullscreen": "إلغاء وضع ملء الشاشة",
-    "livePreview": "معاينة مباشرة",
-    "quickActions": "إجراءات سريعة",
-    "previewInNewWindow": "معاينة في نافذة جديدة",
-    "viewLiveStore": "عرض المتجر المباشر",
-    "themePreview": "معاينة القالب",
-    "currentTheme": "القالب الحالي",
-    "active": "نشط",
-    "modified": "معدل",
-    "status": "الحالة",
-    "published": "منشور",
-    "activeFeatures": "الميزات النشطة",
-    "needHelp": "تحتاج مساعدة",
-    "learnCustomizeTheme": "تعلم تخصيص القالب",
-    "viewDocumentation": "عرض الوثائق",
-    "contactSupport": "اتصل بالدعم",
-    "preview": "معاينة",
-    "configure": "تكوين",
-    "settings": "الإعدادات",
-    "editTheme": "تعديل القالب",
-    "editSelectedTheme": "تعديل القالب المحدد",
-    "imageUrl": "رابط الصورة",
-    "tryLink": "رابط التجربة",
-    "saveChanges": "حفظ التغييرات",
-    "saving": "جاري الحفظ...",
-    "saved": "تم الحفظ",
-    "success": "نجح",
-    "error": "خطأ"
+  "header": {
+    "search": "بحث",
+    "searchPlaceholder": "ابحث عن أي شيء..."
   },
   "navigation": {
     "home": "الرئيسية",
@@ -185,203 +157,12 @@
     "videoTutorials": "دروس الفيديو",
     "support": "الدعم"
   },
-  "dashboard": {
-    "title": "نظرة عامة على لوحة التحكم",
-    "welcomeBack": "مرحباً بعودتك! إليك ما يحدث في متجرك اليوم.",
-    "totalSales": "إجمالي الإيرادات",
-    "totalOrders": "إجمالي الطلبات",
-    "totalCustomers": "إجمالي العملاء",
-    "revenue": "الإيرادات",
-    "subtitle": "إنشاء وإدارة الحملات الترويجية لزيادة مبيعاتك",
-    "thisWeek": "هذا الأسبوع",
-    "recentOrders": "الطلبات الأخيرة",
-    "topProducts": "أفضل المنتجات",
-    "salesChart": "مخطط المبيعات",
-    "ordersToday": "طلبات اليوم",
-    "pendingOrders": "الطلبات المعلقة",
-    "completedOrders": "الطلبات المكتملة",
-    "viewAll": "عرض الكل",
-    "conversionRate": "معدل التحويل",
-    "storeVisits": "زيارات المتجر",
-    "cartAdditions": "إضافات السلة",
-    "averageOrderValue": "متوسط قيمة الطلب",
-    "performanceMetrics": "مقاييس الأداء",
-    "keyIndicators": "المؤشرات الرئيسية لصحة متجرك",
-    "vsLastMonth": "مقارنة بالشهر الماضي",
-    "thisMonth": "هذا الشهر",
-    "last30Days": "آخر 30 يوم",
-    "needsAction": "يحتاج إلى إجراء",
-    "recentActivity": "النشاط الأخير",
-    "newOrder": "طلب جديد",
-    "paymentReceived": "تم استلام دفعة",
-    "orderCancelled": "تم إلغاء الطلب",
-    "newCustomer": "عميل جديد",
-    "paymentPending": "دفعة معلقة",
-    "storeHealth": "صحة المتجر",
-    "setupProgress": "تقدم الإعداد",
-    "completeSetup": "أكمل إعداد متجرك",
-    "followSteps": "اتبع هذه الخطوات لتحقيق أقصى استفادة من إمكانات متجرك",
-    "setupGuide": "دليل الإعداد",
-    "completeStoreSetup": "أكمل إعداد المتجر",
-    "addBusinessInfo": "أضف معلومات عملك وإعدادات الضرائب",
-    "addMoreProducts": "أضف المزيد من المنتجات",
-    "lessThan10Products": "لديك أقل من 10 منتجات. أضف المزيد لزيادة المبيعات",
-    "seoOptimization": "تحسين محركات البحث",
-    "seoConfigured": "تم تكوين تحسين محركات البحث لمتجرك بشكل صحيح",
-    "quickActions": "إجراءات سريعة",
-    "newCampaign": "حملة جديدة",
-    "viewReports": "عرض التقارير",
-    "learningResources": "دليلك لتنمية عملك",
-    "learnOrdify": "تعلم كيفية استخدام Ordify بفعالية وزيادة مبيعاتك من خلال مواردنا الشاملة ودعم المجتمع.",
-    "joinTelegram": "انضم لمجتمع تليجرام",
-    "watchTutorials": "شاهد دروس الفيديو"
-  },
-  "products": {
-    "title": "المنتجات",
-    "pageSubtitle": "الجزء الأهم في منصتنا حيث يمكنك إضافة المنتجات بطريقة تزيد من معدل الشراء والتحويل. عند إنشاء أو تعديل منتج، انظر إلى الإعدادات المتقدمة التي ستزيد من مبيعاتك",
-    "howToCreateSimple": "كيفية إنشاء منتج بسيط",
-    "howToCreateVariations": "كيفية إنشاء منتج بمتغيرات",
-    "createProduct": "إنشاء منتج",
-    "createProductSubtitle": "أضف منتج جديد إلى متجرك مع جميع التفاصيل الضرورية",
-    "essentialInformation": "المعلومات الأساسية",
-    "essentialInformationDesc": "تفاصيل المنتج الأساسية التي سيراها العملاء",
-    "addProduct": "إضافة منتج",
-    "editProduct": "تعديل المنتج",
-    "productName": "اسم المنتج *",
-    "productCategories": "فئات المنتج",
-    "metaDescription": "وصف الميتا",
-    "productDescription": "وصف المنتج",
-    "pricingInventory": "التسعير والمخزون",
-    "pricingInventoryDesc": "حدد تسعير منتجك ومستويات المخزون",
-    "salePrice": "سعر البيع (اتركه فارغًا إذا لم يكن هناك خصم)",
-    "productExpense": "تكلفة المنتج",
-    "stockManagement": "إدارة المخزون",
-    "stockQuantity": "كمية المخزون",
-    "trackStock": "تتبع المخزون",
-    "disableWhenOutOfStock": "تعطيل عند نفاد المخزون",
-    "productImages": "صور المنتج",
-    "productImagesDesc": "ارفع صورًا عالية الجودة لعرض منتجك",
-    "digitalProducts": "المنتجات الرقمية (جديد)",
-    "digitalProductsDesc": "تكوين إعدادات تسليم المنتجات الرقمية",
-    "enableDigitalProduct": "تفعيل المنتج الرقمي",
-    "digitalProductType": "نوع المنتج الرقمي",
-    "linkToExternalPlatform": "الربط مع منصة خارجية",
-    "externalPlatformDesc": "ربط منتجك مع منصات خارجية للدروب شيبنج",
-    "activateTaagerIntegration": "تفعيل التكامل مع شركة تاجر",
-    "activateAngaznyIntegration": "تفعيل التكامل مع شركة أنجزني",
-    "externalProductCode": "كود المنتج في المنصة الخارجية",
-    "externalProductLink": "ربط المنتج بمنصة خارجية",
-    "marketingFeatures": "مميزات التسويق",
-    "marketingFeaturesDesc": "زيادة التحويلات باستخدام أدوات التسويق",
-    "activateReviews": "تفعيل التقييمات؟",
-    "activateFreeShipping": "تفعيل الشحن المجاني للمنتج",
-    "displayFakeVisitorCounter": "عرض عداد الزوار الوهمي؟",
-    "minVisitors": "الحد الأدنى لعدد الزوار الذين يشاهدون الصفحة حالياً",
-    "maxVisitors": "الحد الأقصى لعدد الزوار الذين يشاهدون الصفحة حالياً",
-    "activateFakeStock": "تفعيل خاصية المخزون الوهمي",
-    "fakeStockItems": "عدد قطع المخزون الوهمي",
-    "fakeTimer": "المؤقت الوهمي",
-    "fakeTimerHours": "عدد الساعات في المؤقت الوهمي",
-    "purchaseSettings": "إعدادات الشراء",
-    "purchaseSettingsDesc": "تخصيص تجربة الشراء",
-    "skipCart": "تخطي سلة التسوق",
-    "buyNowButtonText": "النص المكتوب على زر اشتر الآن",
-    "buyNowButtonPlaceholder": "اضغط هنا للشراء",
-    "fixedBuyButton": "تفعيل زر الشراء الثابت في أسفل الصفحة",
-    "checkoutBeforeDescription": "جعل نموذج الدفع قبل وصف المنتج",
-    "advancedSettings": "الإعدادات المتقدمة",
-    "advancedSettingsDesc": "ضبط دقيق لمنتجك باستخدام خيارات متقدمة",
-    "customCurrency": "عملة مخصصة",
-    "selectCurrency": "اختر عملة",
-    "priorityInAppearance": "الأولوية في الظهور",
-    "hiddenProduct": "منتج مخفي",
-    "categories": {
-      "electronics": "الإلكترونيات",
-      "clothing": "الملابس",
-      "homeGarden": "المنزل والحديقة",
-      "healthBeauty": "الصحة والجمال",
-      "sports": "الرياضة",
-      "toysGames": "الألعاب",
-      "books": "الكتب",
-      "foodBeverages": "الأطعمة والمشروبات"
-    },
-    "currencies": {
-      "USD": "USD - الدولار الأمريكي",
-      "EUR": "EUR - اليورو",
-      "GBP": "GBP - الجنيه الإسترليني",
-      "EGP": "EGP - الجنيه المصري",
-      "SAR": "SAR - الريال السعودي",
-      "AED": "AED - الدرهم الإماراتي"
-    },
-    "price": "السعر",
-    "stock": "المخزون",
-    "category": "الفئة",
-    "description": "الوصف",
-    "images": "الصور",
-    "status": "الحالة",
-    "active": "نشط",
-    "inactive": "غير نشط",
-    "outOfStock": "نفذ المخزون",
-    "inStock": "متوفر",
-    "sku": "رمز المنتج",
-    "barcode": "الباركود",
-    "weight": "الوزن",
-    "dimensions": "الأبعاد",
-    "showingCount": "عرض {{count}} منتج",
-    "searchProducts": "البحث عن المنتجات...",
-    "filterByCategory": "التصفية حسب الفئة",
-    "filterByStatus": "التصفية حسب الحالة",
-    "bulkActions": "إجراءات جماعية",
-    "deleteSelected": "حذف المحدد",
-    "exportProducts": "تصدير المنتجات",
-    "importProducts": "استيراد المنتجات",
-    "productDetails": "تفاصيل المنتج",
-    "pricing": "التسعير",
-    "inventory": "المخزون",
-    "shipping": "الشحن",
-    "seo": "تحسين محركات البحث",
-    "comparePrice": "السعر المقارن",
-    "costPerItem": "التكلفة لكل قطعة",
-    "profit": "الربح",
-    "margin": "الهامش",
-    "trackQuantity": "تتبع الكمية",
-    "continueSellingWhenOutOfStock": "الاستمرار في البيع عند نفاذ المخزون",
-    "variants": "المتغيرات",
-    "addVariant": "إضافة متغير"
-  },
-  "categories": {
-    "title": "الفئات",
-    "subtitle": "إدارة وتنظيم فئات منتجاتك",
-    "createCategory": "إنشاء فئة",
-    "howToCreate": "كيفية إنشاء الفئات",
-    "viewProducts": "عرض المنتجات",
-    "products": "المنتجات",
-    "editCategory": "تعديل الفئة",
-    "categoryName": "اسم الفئة",
-    "description": "الوصف",
-    "descriptionPlaceholder": "أدخل وصف الفئة",
-    "activeStatus": "حالة النشاط",
-    "activeStatusDescription": "تفعيل هذه الفئة لتكون مرئية في متجرك",
-    "sortOrder": "ترتيب الفرز",
-    "sortOrderDescription": "الأرقام الأقل تظهر أولاً",
-    "createNewCategory": "إنشاء فئة جديدة",
-    "createNewCategorySubtitle": "أضف فئة جديدة لتنظيم منتجاتك",
-    "basicInformation": "المعلومات الأساسية",
-    "categoryNameRequired": "اسم الفئة مطلوب",
-    "descriptionRequired": "الوصف مطلوب",
-    "sortOrderError": "ترتيب الفرز يجب أن يكون رقماً موجباً",
-    "noParentCategory": "بدون فئة أصلية",
-    "categoryNamePlaceholder": "مثال: الإلكترونيات",
-    "parentCategory": "الفئة الأصلية",
-    "selectParentCategory": "اختر الفئة الأصلية",
-    "categoryImage": "صورة الفئة",
-    "clickToUploadImage": "انقر لرفع الصورة",
-    "imageFormat": "PNG، JPG أو WebP (الحد الأقصى 2 ميجابايت)",
-    "creating": "جاري الإنشاء..."
-  },
   "orders": {
     "title": "إدارة الطلبات",
     "subtitle": "تتبع وإدارة جميع طلبات العملاء في مكان واحد",
+    "allOrders": {
+      "subtitle": "عرض وإدارة جميع طلبات متجرك في مكان مركزي واحد"
+    },
     "totalOrders": "إجمالي الطلبات",
     "pendingOrders": "الطلبات المعلقة",
     "completedOrders": "الطلبات المكتملة",
@@ -392,7 +173,7 @@
     "statusShipped": "تم الشحن",
     "statusDelivered": "تم التسليم",
     "statusCancelled": "ملغى",
-    "tipKeyboardShortcuts": "استخدم اختصارات لوحة المفاتيح للتنقل بشكل أسرع. اضغط '/' للبحث في الطلبات، 'n' لإنشاء طلب جديد، و 'e' لتصدير البيانات.",
+    "tipKeyboardShortcuts": "استخدم اختصارات لوحة المفاتيح للتنقل بشكل أسرع. اضغط \u0027/\u0027 للبحث في الطلبات، \u0027n\u0027 لإنشاء طلب جديد، و \u0027e\u0027 لتصدير البيانات.",
     "orderNumber": "رقم الطلب",
     "customer": "العميل",
     "date": "التاريخ",
@@ -418,140 +199,23 @@
     "orderNotes": "ملاحظات الطلب",
     "internalNotes": "ملاحظات داخلية",
     "customerNotes": "ملاحظات العميل",
-    "timeline": "الجدول الزمني",
+    "timeline": {
+      "title": "النشاط الأخير للطلبات",
+      "orderReceived": "تم استلام الطلب من {{customer}}",
+      "paymentProcessed": "تم معالجة الدفعة للطلب {{orderNumber}}",
+      "orderShipped": "تم شحن الطلب {{orderNumber}} عبر {{carrier}}",
+      "hoursAgo": "{{hours}} ساعات مضت"
+    },
     "orderPlaced": "تم تقديم الطلب",
     "paymentConfirmed": "تم تأكيد الدفع",
     "orderShipped": "تم شحن الطلب",
-    "orderDelivered": "تم تسليم الطلب"
-  },
-  "customers": {
-    "title": "العملاء",
-    "subtitle": "إدارة قاعدة عملائك",
-    "totalCustomers": "إجمالي العملاء",
-    "active": "نشط",
-    "inactive": "غير نشط",
-    "blocked": "محظور",
-    "currentlyActive": "نشط حالياً",
-    "needReEngagement": "بحاجة لإعادة التواصل",
-    "risk": "خطر",
-    "viewOrders": "عرض الطلبات",
-    "addCustomer": "إضافة عميل",
-    "all": "الكل",
-    "searchPlaceholder": "البحث بالاسم",
-    "customerName": "اسم العميل",
-    "email": "البريد الإلكتروني",
-    "phone": "الهاتف",
-    "registrationDate": "تاريخ التسجيل",
-    "totalOrders": "إجمالي الطلبات",
-    "totalSpent": "إجمالي الإنفاق",
-    "lastOrder": "آخر طلب",
-    "viewCustomer": "عرض العميل",
-    "customerDetails": "تفاصيل العميل",
-    "orderHistory": "سجل الطلبات",
-    "addresses": "العناوين",
-    "notes": "الملاحظات",
-    "tags": "العلامات",
-    "customerGroups": "مجموعات العملاء",
-    "lifetimeValue": "القيمة الدائمة",
-    "averageOrderValue": "متوسط قيمة الطلب",
-    "firstOrder": "أول طلب",
-    "lastSeen": "آخر ظهور",
-    "acceptsMarketing": "يقبل التسويق",
-    "taxExempt": "معفى من الضرائب",
-    "addCustomer": "إضافة عميل",
-    "importCustomers": "استيراد العملاء",
-    "exportCustomers": "تصدير العملاء",
-    "sendEmail": "إرسال بريد إلكتروني",
-    "sendSMS": "إرسال رسالة نصية"
-  },
-  "settings": {
-    "title": "الإعدادات",
-    "general": "عام",
-    "store": "إعدادات المتجر",
-    "shipping": "الشحن",
-    "payment": "الدفع",
-    "taxes": "الضرائب",
-    "notifications": "الإشعارات",
-    "security": "الأمان",
-    "api": "واجهة برمجة التطبيقات",
-    "integrations": "التكاملات",
-    "storeName": "اسم المتجر",
-    "storeUrl": "رابط المتجر",
-    "storeEmail": "بريد المتجر الإلكتروني",
-    "timezone": "المنطقة الزمنية",
-    "currency": "العملة",
-    "dateFormat": "تنسيق التاريخ",
-    "moderators": "المشرفين",
-    "pages": "إدارة الصفحات",
-    "sidebar": "إعدادات الشريط الجانبي",
-    "publicAPI": "واجهة برمجة عامة",
-    "seo": "إعدادات تحسين محركات البحث",
-    "theme": "إعدادات القالب",
-    "domainSettings": "إعدادات النطاق",
-    "storeInfoPolicies": "معلومات وسياسات المتجر",
-    "addHeaderCode": "إضافة كود الهيدر",
-    "advancedSettings": "الإعدادات المتقدمة",
-    "pixelSettings": "إعدادات البيكسل",
-    "googleTagSettings": "إعدادات Google Tag",
-    "digitalProductsDelivery": "تسليم المنتجات الرقمية",
-    "editMainPage": "تحرير الصفحة الرئيسية",
-    "purchaseForm": "نموذج الشراء",
-    "editThankYouPage": "تحرير صفحة الشكر",
-    "socialLinks": "روابط التواصل الاجتماعي",
-    "storeLink": "رابط المتجر",
-    "loginSessions": "جلسات تسجيل الدخول",
-    "apiKey": "مفتاح API",
-    "regenerateKey": "إعادة توليد المفتاح",
-    "webhookUrl": "رابط الخطاف",
-    "testWebhook": "اختبار الخطاف",
-    "shippingZones": "مناطق الشحن",
-    "shippingRates": "أسعار الشحن",
-    "freeShipping": "شحن مجاني",
-    "flatRate": "سعر ثابت",
-    "calculateAtCheckout": "حساب عند الدفع",
-    "paymentProviders": "مزودي الدفع",
-    "cashOnDelivery": "الدفع عند الاستلام",
-    "bankTransfer": "تحويل بنكي",
-    "creditCard": "بطاقة ائتمان",
-    "digitalWallet": "محفظة رقمية",
-    "taxNumber": "الرقم الضريبي",
-    "taxRate": "معدل الضريبة",
-    "pricesIncludeTax": "الأسعار تشمل الضرائب",
-    "emailNotifications": "إشعارات البريد الإلكتروني",
-    "smsNotifications": "إشعارات الرسائل النصية",
-    "pushNotifications": "إشعارات الدفع",
-    "orderConfirmation": "تأكيد الطلب",
-    "shippingUpdate": "تحديث الشحن",
-    "promotionalEmails": "رسائل البريد الترويجية",
-    "saveChanges": "حفظ التغييرات",
-    "selectSetting": "اختر الإعداد",
-    "descriptions": {
-      "storeSettings": "تكوين معلومات متجرك الأساسية وتفضيلاتك",
-      "securitySettings": "إدارة إعدادات الأمان وضوابط الوصول",
-      "notifications": "تكوين تفضيلات الإشعارات والتنبيهات",
-      "sidebarSettings": "تخصيص مظهر وسلوك الشريط الجانبي",
-      "domainSettings": "إدارة تكوين النطاق المخصص الخاص بك",
-      "storeInfoPolicies": "تحديث سياسات المتجر والمعلومات القانونية",
-      "addHeaderCode": "إضافة كود مخصص إلى رأس متجرك",
-      "seoSettings": "تحسين متجرك لمحركات البحث",
-      "paymentGateways": "تكوين طرق الدفع ومقدمي الخدمات",
-      "shippingSettings": "إعداد مناطق الشحن والأسعار",
-      "taxSettings": "تكوين معدلات الضرائب والحسابات",
-      "integrations": "الاتصال بخدمات الطرف الثالث",
-      "advancedSettings": "خيارات التكوين المتقدمة",
-      "pixelSettings": "تكوين بكسلات التتبع",
-      "googleTagSettings": "إعداد Google Tag Manager",
-      "digitalProductsDelivery": "تكوين تسليم المنتجات الرقمية",
-      "pages": "إدارة صفحات متجرك",
-      "themeSettings": "تخصيص قالب متجرك",
-      "editMainPage": "تحرير محتوى الصفحة الرئيسية",
-      "purchaseForm": "تخصيص حقول نموذج الدفع",
-      "editThankYouPage": "تحرير محتوى صفحة الشكر",
-      "socialLinks": "إدارة روابط وسائل التواصل الاجتماعي",
-      "storeLink": "تكوين رابط متجرك",
-      "manageModerators": "إدارة الموظفين والصلاحيات",
-      "publicAPI": "تكوين وصول واجهة البرمجة العامة",
-      "loginSessions": "عرض وإدارة جلسات تسجيل الدخول"
+    "orderDelivered": "تم تسليم الطلب",
+    "stats": {
+      "today": "اليوم",
+      "week": "هذا الأسبوع",
+      "revenue": "الإيرادات",
+      "averageOrderValue": "متوسط قيمة الطلب",
+      "conversionRate": "معدل التحويل"
     }
   },
   "auth": {
@@ -851,6 +515,18 @@
     "success": "نجح",
     "error": "خطأ"
   },
+  "processing": {
+    "title": "الطلبات قيد المعالجة",
+    "subtitle": "الطلبات التي يتم معالجتها وتجهيزها للشحن حالياً"
+  },
+  "completed": {
+    "title": "الطلبات المكتملة",
+    "subtitle": "الطلبات التي تم تسليمها وإكمالها بنجاح"
+  },
+  "orderIssues": {
+    "title": "مشاكل الطلبات",
+    "subtitle": "الطلبات التي تحتوي على مشاكل تحتاج إلى انتباهك"
+  },
   "serviceGallery": {
     "title": "معرض الخدمات",
     "subtitle": "عرض خدماتك من خلال معارض مرئية",
@@ -913,22 +589,128 @@
     },
     "save": "حفظ الإعدادات"
   },
+  "transactions": {
+    "title": "المعاملات",
+    "subtitle": "عرض وإدارة جميع المعاملات المالية",
+    "recentTransactions": "المعاملات الأخيرة",
+    "searchPlaceholder": "البحث في المعاملات...",
+    "filters": {
+      "dateRange": "نطاق التاريخ",
+      "type": "النوع",
+      "status": "الحالة",
+      "allTypes": "جميع الأنواع",
+      "allStatuses": "جميع الحالات"
+    },
+    "types": {
+      "sale": "بيع",
+      "refund": "استرداد",
+      "payout": "دفع",
+      "fee": "رسوم"
+    },
+    "status": {
+      "completed": "مكتملة",
+      "pending": "معلقة",
+      "failed": "فاشلة",
+      "processing": "قيد المعالجة"
+    },
+    "table": {
+      "transactionId": "معرف المعاملة",
+      "date": "التاريخ",
+      "description": "الوصف",
+      "amount": "المبلغ",
+      "fee": "الرسوم",
+      "net": "صافي",
+      "status": "الحالة",
+      "actions": "الإجراءات"
+    }
+  },
+  "integrations": {
+    "title": "التكاملات",
+    "subtitle": "قم بربط متجرك بخدمات قوية من جهات خارجية",
+    "searchPlaceholder": "البحث في التكاملات...",
+    "filters": {
+      "category": "الفئة",
+      "allCategories": "جميع الفئات",
+      "status": "الحالة",
+      "all": "الكل"
+    },
+    "categories": {
+      "payment": "الدفع",
+      "shipping": "الشحن",
+      "marketing": "التسويق",
+      "analytics": "التحليلات",
+      "accounting": "المحاسبة",
+      "inventory": "المخزون"
+    },
+    "status": {
+      "connected": "متصل",
+      "notConnected": "غير متصل"
+    },
+    "actions": {
+      "configure": "تكوين",
+      "disconnect": "قطع الاتصال",
+      "viewDetails": "عرض التفاصيل",
+      "settings": "الإعدادات"
+    }
+  },
+  "payouts": {
+    "title": "المدفوعات",
+    "subtitle": "إدارة أرباحك وطلبات السحب",
+    "stats": {
+      "availableBalance": "الرصيد المتاح",
+      "pendingPayouts": "المدفوعات المعلقة",
+      "totalPaidOut": "إجمالي المدفوع",
+      "nextPayout": "الدفعة التالية"
+    },
+    "actions": {
+      "requestPayout": "طلب دفعة",
+      "payoutSettings": "إعدادات الدفع"
+    },
+    "recentPayouts": "المدفوعات الأخيرة",
+    "table": {
+      "payoutId": "معرف الدفعة",
+      "requestDate": "تاريخ الطلب",
+      "amount": "المبلغ",
+      "method": "الطريقة",
+      "status": "الحالة",
+      "actions": "الإجراءات"
+    }
+  },
+  "billing": {
+    "title": "الفواتير",
+    "subtitle": "إدارة اشتراكك ومعلومات الفواتير",
+    "currentPlan": {
+      "title": "الخطة الحالية",
+      "plan": "الخطة",
+      "status": "الحالة",
+      "renewal": "تاريخ التجديد",
+      "monthlyCost": "التكلفة الشهرية"
+    },
+    "actions": {
+      "changePlan": "تغيير الخطة",
+      "updatePayment": "تحديث طريقة الدفع"
+    },
+    "billingHistory": "سجل الفواتير",
+    "table": {
+      "invoiceId": "معرف الفاتورة",
+      "date": "التاريخ",
+      "description": "الوصف",
+      "amount": "المبلغ",
+      "status": "الحالة",
+      "actions": "الإجراءات"
+    }
+  },
   "segments": {
-    "title": "شرائح العملاء",
-    "createSegment": "إنشاء شريحة",
-    "all": "الكل",
+    "vipCustomers": "عملاء VIP",
+    "regularCustomers": "عملاء عاديون",
+    "newCustomers": "عملاء جدد",
+    "atRiskCustomers": "عملاء في خطر",
+    "dormantCustomers": "عملاء خامدون",
+    "all": "جميع الشرائح",
     "vip": "VIP",
     "new": "جديد",
-    "inactive": "غير نشط",
-    "searchPlaceholder": "البحث في الشرائح...",
-    "customers": "عملاء",
-    "orderValue": "قيمة الطلب",
-    "of": "من",
-    "totalCustomers": "إجمالي العملاء",
-    "avgOrderValue": "متوسط قيمة الطلب",
-    "viewSegment": "عرض الشريحة",
-    "editSegment": "تعديل الشريحة",
-    "deleteSegment": "حذف الشريحة"
+    "returning": "عائدون",
+    "atRisk": "في خطر"
   },
   "customerSegments": {
     "title": "شرائح العملاء",
@@ -1069,30 +851,10 @@
     "error": "خطأ"
   },
   "campaigns": {
-    "title": "الحملات التسويقية",
-    "createCampaign": "إنشاء حملة",
-    "active": "نشطة",
-    "draft": "مسودة",
-    "scheduled": "مجدولة",
-    "completed": "مكتملة",
-    "campaignName": "اسم الحملة",
-    "type": "النوع",
-    "status": "الحالة",
-    "startDate": "تاريخ البداية",
-    "endDate": "تاريخ النهاية",
-    "budget": "الميزانية",
-    "spent": "المصروف",
-    "conversions": "التحويلات",
-    "roi": "العائد على الاستثمار",
-    "edit": "تعديل",
-    "duplicate": "تكرار",
-    "archive": "أرشفة",
-    "viewReport": "عرض التقرير",
-    "saveChanges": "حفظ التغييرات",
-    "saving": "جاري الحفظ...",
-    "saved": "تم الحفظ",
-    "success": "نجح",
-    "error": "خطأ"
+    "blackFriday2023": "الجمعة السوداء 2023",
+    "socialMediaBlitz": "هجوم وسائل التواصل الاجتماعي",
+    "whatsappFlash": "عرض واتساب السريع",
+    "googleAds": "إعلانات جوجل الربع الرابع"
   },
   "promotions": {
     "title": "العروض الترويجية",
@@ -1393,6 +1155,7 @@
     "customerWinBack": "استعادة العملاء",
     "campaignName": "اسم الحملة",
     "audience": "الجمهور",
+    "ofTotalRevenue": "من إجمالي الإيرادات",
     "triggerEvent": "الحدث المحفز",
     "delay": "التأخير",
     "sentCount": "عدد المرسل",
@@ -1495,13 +1258,127 @@
     "salesAnalytics": "تحليلات المبيعات",
     "salesAnalyticsDesc": "اتجاهات الإيرادات وأداء المبيعات",
     "customerAnalytics": "تحليلات العملاء",
-    "customerAnalyticsDesc": "شرائح العملاء وأنماط السلوك",
+    "customerAnalyticsDesc": "فهم سلوك العملاء والتركيبة السكانية والقيمة الدائمة",
     "productPerformance": "أداء المنتجات",
-    "productPerformanceDesc": "أفضل المنتجات ورؤى المخزون",
+    "productPerformanceDesc": "تتبع مبيعات المنتجات وحالة المخزون ومقاييس الأداء",
     "marketingAnalytics": "تحليلات التسويق",
-    "marketingAnalyticsDesc": "أداء الحملات والإسناد",
+    "marketingAnalyticsDesc": "مراقبة أداء الحملات وفعالية التسويق",
     "customReports": "تقارير مخصصة",
-    "customReportsDesc": "إنشاء وتصدير تقارير مخصصة"
+    "customReportsDesc": "إنشاء وحفظ تقارير مخصصة وفقاً لاحتياجاتك",
+    "overview": "نظرة عامة",
+    "salesReports": "تقارير المبيعات",
+    "salesReportsDesc": "تحليل اتجاهات الإيرادات وطرق الدفع وأداء الفئات",
+    "revenueTrends": "اتجاهات الإيرادات",
+    "paymentMethods": "طرق الدفع",
+    "categoryPerformance": "أداء الفئات",
+    "revenueOverTime": "الإيرادات عبر الزمن",
+    "avgOrderValue": "متوسط قيمة الطلب",
+    "repeatPurchaseRate": "معدل الشراء المتكرر",
+    "dailyRevenueAndOrders": "الإيرادات والطلبات اليومية",
+    "revenue": "الإيرادات",
+    "both": "كلاهما",
+    "topCategories": "أفضل الفئات",
+    "revenueByCategory": "توزيع الإيرادات حسب الفئة",
+    "revenueByPaymentMethod": "توزيع الإيرادات حسب طريقة الدفع",
+    "demographics": "التركيبة السكانية",
+    "behavior": "السلوك",
+    "geography": "الجغرافيا",
+    "segments": "شرائح العملاء",
+    "newCustomers": "عملاء جدد",
+    "repeatCustomers": "عملاء متكررون",
+    "averageLifetimeValue": "متوسط القيمة الدائمة",
+    "customerRetention": "الاحتفاظ بالعملاء",
+    "ageDistribution": "توزيع الأعمار",
+    "genderDistribution": "توزيع الجنس",
+    "geographicDistribution": "التوزيع الجغرافي",
+    "deviceUsage": "استخدام الأجهزة",
+    "averageSessionDuration": "متوسط مدة الجلسة",
+    "bounceRate": "معدل الارتداد",
+    "pagesPerSession": "الصفحات لكل جلسة",
+    "customerGrowth": "نمو العملاء",
+    "vsLastQuarter": "مقارنة بالربع الماضي",
+    "topProducts": "أفضل المنتجات",
+    "inventory": "المخزون",
+    "categories": "الفئات",
+    "conversion": "التحويل",
+    "bestSellers": "الأكثر مبيعاً",
+    "lowStock": "تنبيه انخفاض المخزون",
+    "categoryRevenue": "الإيرادات حسب الفئة",
+    "conversionFunnel": "قمع التحويل",
+    "topSellingProducts": "المنتجات الأكثر مبيعاً",
+    "lowStockProducts": "منتجات منخفضة المخزون",
+    "conversionMetrics": "مقاييس التحويل",
+    "productViews": "مشاهدات المنتج",
+    "addedToCart": "أضيف إلى السلة",
+    "purchased": "تم الشراء",
+    "stockLevel": "مستوى المخزون",
+    "unitsSold": "الوحدات المباعة",
+    "inStock": "متوفر",
+    "lowStockAlert": "مخزون منخفض",
+    "outOfStock": "نفذ المخزون",
+    "campaigns": "الحملات",
+    "channels": "القنوات",
+    "content": "المحتوى",
+    "attribution": "الإسناد",
+    "campaignPerformance": "أداء الحملات",
+    "channelPerformance": "أداء القنوات",
+    "contentPerformance": "أداء المحتوى",
+    "audienceInsights": "رؤى الجمهور",
+    "totalSpend": "إجمالي الإنفاق",
+    "campaignROI": "عائد الاستثمار للحملة",
+    "customerAcquisition": "اكتساب العملاء",
+    "channelMetrics": "مقاييس أداء القنوات",
+    "activeCampaigns": "حملات نشطة",
+    "socialMedia": "وسائل التواصل الاجتماعي",
+    "email": "البريد الإلكتروني",
+    "search": "البحث",
+    "display": "العرض",
+    "affiliate": "الشركاء",
+    "impressions": "الظهورات",
+    "clicks": "النقرات",
+    "conversions": "التحويلات",
+    "ctr": "معدل النقر",
+    "cpc": "تكلفة النقرة",
+    "roas": "عائد الإنفاق الإعلاني",
+    "reportBuilder": "منشئ التقارير",
+    "savedReports": "التقارير المحفوظة",
+    "createNewReport": "إنشاء تقرير جديد",
+    "reportName": "اسم التقرير",
+    "reportNamePlaceholder": "أدخل اسم التقرير",
+    "availableMetrics": "المقاييس المتاحة",
+    "selectedMetrics": "المقاييس المختارة",
+    "availableDimensions": "الأبعاد المتاحة",
+    "selectedDimensions": "الأبعاد المختارة",
+    "dragToAdd": "اسحب المقاييس والأبعاد هنا",
+    "visualization": "التصور",
+    "timeRange": "النطاق الزمني",
+    "saveReport": "حفظ التقرير",
+    "generateReport": "إنشاء التقرير",
+    "exportReport": "تصدير التقرير",
+    "lastGenerated": "آخر إنشاء",
+    "viewReport": "عرض التقرير",
+    "noSavedReports": "لا توجد تقارير محفوظة بعد. أنشئ أول تقرير مخصص لك أعلاه.",
+    "loading": "جاري تحميل بيانات التحليلات...",
+    "totalProducts": "إجمالي المنتجات",
+    "totalReach": "إجمالي الوصول",
+    "engagementRate": "معدل التفاعل",
+    "totalCustomers": "إجمالي العملاء",
+    "noData": "لا توجد بيانات متاحة للفترة المحددة",
+    "error": "خطأ في تحميل بيانات التحليلات"
+  },
+  "timePeriods": {
+    "today": "اليوم",
+    "week": "الأسبوع",
+    "month": "الشهر",
+    "quarter": "الربع",
+    "year": "السنة",
+    "custom": "مخصص"
+  },
+  "paymentMethods": {
+    "cash": "نقدي",
+    "card": "بطاقة",
+    "wallet": "محفظة",
+    "bank": "تحويل بنكي"
   },
   "financialReports": {
     "title": "التقارير المالية",
@@ -1714,7 +1591,58 @@
     "chatPlaceholder": "اسأل وكلاءك المختارين أي شيء...",
     "emptyChat": "اختر الوكلاء وابدأ الدردشة للحصول على المساعدة المدعومة بالذكاء الاصطناعي",
     "selectInstructions": "انقر للاختيار • انقر مرتين لفتح الدردشة",
-    "yourStoreName": "اسم متجرك"
+    "yourStoreName": "اسم متجرك",
+    "chatResponse": "مرحباً، أنا {{agentName}}. أنا هنا للمساعدة في {{description}}."
+  },
+  "agents": {
+    "seoAgent": {
+      "name": "وكيل تحسين محركات البحث",
+      "description": "تحسين متجرك لمحركات البحث وزيادة حركة المرور العضوية"
+    },
+    "contentAgent": {
+      "name": "وكيل المحتوى",
+      "description": "إنشاء محتوى جذاب يحول الزوار إلى عملاء"
+    },
+    "supportAgent": {
+      "name": "وكيل الدعم",
+      "description": "توفير دعم العملاء على مدار الساعة مع ردود ذكية"
+    },
+    "pricingAgent": {
+      "name": "وكيل التسعير",
+      "description": "تحسين التسعير الديناميكي لتعظيم أرباحك"
+    },
+    "inventoryAgent": {
+      "name": "وكيل المخزون",
+      "description": "إدارة المخزون الذكية وتنبؤات المخزون"
+    },
+    "adsAgent": {
+      "name": "وكيل الإعلانات",
+      "description": "إنشاء وتحسين الحملات الإعلانية عبر جميع المنصات"
+    },
+    "recommendationAgent": {
+      "name": "وكيل التوصيات",
+      "description": "توصيات المنتجات المدعومة بالذكاء الاصطناعي لعملائك"
+    },
+    "logisticsAgent": {
+      "name": "وكيل اللوجستيات",
+      "description": "تحسين مسارات الشحن وأوقات التسليم"
+    },
+    "fraudAgent": {
+      "name": "وكيل مكافحة الاحتيال",
+      "description": "نظام متقدم للكشف عن الاحتيال ومنعه"
+    },
+    "sellerCoachAgent": {
+      "name": "وكيل مدرب البائعين",
+      "description": "تدريب شخصي لتحسين استراتيجيات البيع الخاصة بك"
+    },
+    "photoEnhancerAgent": {
+      "name": "وكيل تحسين الصور",
+      "description": "تحسين صور المنتجات بالتحرير المدعوم بالذكاء الاصطناعي"
+    },
+    "emailAgent": {
+      "name": "وكيل البريد الإلكتروني",
+      "description": "حملات تسويق بريد إلكتروني آلية تحقق نتائج"
+    }
   },
   "googleTag": {
     "pageTitle": "إدارة العلامات من جوجل",
@@ -1735,8 +1663,8 @@
     "enhancedEcommerce": "التجارة الإلكترونية المحسنة",
     "recommended": "موصى به",
     "measurePurchases": "قياس المشتريات وإجراءات السلة وعروض المنتجات",
-    "step1Title": "الخطوة 1: أضف هذا الكود إلى قسم <head>",
-    "step2Title": "الخطوة 2: أضف هذا الكود بعد فتح علامة <body>",
+    "step1Title": "الخطوة 1: أضف هذا الكود إلى قسم \u003chead\u003e",
+    "step2Title": "الخطوة 2: أضف هذا الكود بعد فتح علامة \u003cbody\u003e",
     "standardEvents": "الأحداث القياسية",
     "eventConfiguration": "قم بتكوين الأحداث المطلوب تتبعها تلقائيًا",
     "pageView": "عرض الصفحة",
@@ -1994,6 +1922,125 @@
       }
     }
   },
+  "cities": {
+    "cairo": "القاهرة",
+    "alexandria": "الإسكندرية",
+    "giza": "الجيزة",
+    "sharm": "شرم الشيخ",
+    "other": "مدن أخرى"
+  },
+  "products": {
+    "wirelessEarbuds": "سماعات لاسلكية احترافية",
+    "smartWatch": "ساعة ذكية فائقة",
+    "yogaMat": "سجادة يوغا فاخرة",
+    "coffeeGrinder": "مطحنة قهوة ديلوكس",
+    "runningShoes": "حذاء جري رياضي",
+    "summerDress": "فستان مجموعة الصيف"
+  },
+  "devices": {
+    "mobile": "الجوال",
+    "desktop": "سطح المكتب",
+    "tablet": "الجهاز اللوحي"
+  },
+  "inventory": {
+    "inStock": "متوفر",
+    "lowStock": "مخزون منخفض",
+    "outOfStock": "نفذ المخزون",
+    "overstocked": "مخزون زائد"
+  },
+  "sort": {
+    "byRevenue": "حسب الإيرادات",
+    "byUnits": "حسب الوحدات",
+    "byRating": "حسب التقييم",
+    "byGrowth": "حسب النمو"
+  },
+  "content": {
+    "productShowcase": "عرض المنتجات",
+    "customerStories": "قصص العملاء",
+    "promotionalOffers": "العروض الترويجية",
+    "educational": "محتوى تعليمي"
+  },
+  "interests": {
+    "technology": "التكنولوجيا",
+    "fashion": "الأزياء",
+    "fitness": "اللياقة البدنية",
+    "travel": "السفر"
+  },
+  "age": {
+    "age1824": "18-24 سنة",
+    "age2534": "25-34 سنة",
+    "age3544": "35-44 سنة",
+    "age4554": "45-54 سنة",
+    "age55plus": "55+ سنة"
+  },
+  "reports": {
+    "templates": "القوالب",
+    "createNew": "إنشاء جديد",
+    "savedReports": "التقارير المحفوظة",
+    "accessYourCustomReports": "الوصول إلى تقاريرك المخصصة",
+    "created": "تاريخ الإنشاء",
+    "lastRun": "آخر تشغيل",
+    "reportBuilder": "منشئ التقارير",
+    "customizeYourReport": "خصص تقريرك",
+    "generateReport": "إنشاء التقرير",
+    "reportName": "اسم التقرير",
+    "enterReportName": "أدخل اسم التقرير",
+    "timeRange": "النطاق الزمني",
+    "visualizationType": "نوع التصور",
+    "selectMetrics": "اختر المقاييس",
+    "selected": "محدد",
+    "groupBy": "تجميع حسب",
+    "advancedOptions": "خيارات متقدمة",
+    "autoRefresh": "تحديث تلقائي",
+    "scheduleReport": "جدولة التقرير",
+    "saveReport": "حفظ التقرير",
+    "exportData": "تصدير البيانات",
+    "clearAll": "مسح الكل",
+    "preview": "معاينة",
+    "previewYourReport": "معاينة تقريرك",
+    "reportReadyToGenerate": "التقرير جاهز للإنشاء",
+    "configureSettingsAndClick": "قم بتكوين الإعدادات وانقر على \u0027إنشاء التقرير\u0027 لعرض النتائج",
+    "monthlySalesSummary": "ملخص المبيعات الشهرية",
+    "productPerformanceMatrix": "مصفوفة أداء المنتجات",
+    "customerSegmentAnalysis": "تحليل شرائح العملاء",
+    "marketingROIDashboard": "لوحة معلومات عائد الاستثمار التسويقي"
+  },
+  "schedule": {
+    "monthly": "شهري",
+    "weekly": "أسبوعي",
+    "daily": "يومي",
+    "none": "لا شيء"
+  },
+  "metrics": {
+    "revenue": "الإيرادات",
+    "orders": "الطلبات",
+    "avgOrderValue": "متوسط قيمة الطلب",
+    "customers": "العملاء",
+    "newCustomers": "عملاء جدد",
+    "returningCustomers": "عملاء عائدون",
+    "conversionRate": "معدل التحويل",
+    "cartAbandonment": "التخلي عن السلة",
+    "unitsSold": "الوحدات المباعة",
+    "customerLTV": "القيمة الدائمة للعميل",
+    "marketingSpend": "الإنفاق التسويقي",
+    "roi": "العائد على الاستثمار"
+  },
+  "dimensions": {
+    "date": "التاريخ",
+    "category": "الفئة",
+    "product": "المنتج",
+    "customer": "العميل",
+    "location": "الموقع",
+    "channel": "القناة",
+    "device": "الجهاز",
+    "paymentMethod": "طريقة الدفع"
+  },
+  "reportTypes": {
+    "table": "جدول",
+    "lineChart": "رسم بياني خطي",
+    "barChart": "رسم بياني شريطي",
+    "pieChart": "رسم بياني دائري"
+  },
   "spyCompetitor": {
     "title": "التجسس على المنافسين",
     "subtitle": "قم بتحليل مواقع المنافسين للحصول على رؤى وتحسين استراتيجيتك",
@@ -2129,6 +2176,416 @@
       "prompt": "هل تريد تطبيق هذه الرؤى فوراً؟",
       "report": "تصدير التقرير",
       "implement": "بدء التطبيق"
+    }
+  },
+  "completedOrders": {
+    "title": "الطلبات المكتملة",
+    "subtitle": "سجل الطلبات التي تم تسليمها وإكمالها بنجاح",
+    "totalCompleted": "إجمالي المكتملة",
+    "vsLastMonth": "مقارنة بالشهر الماضي",
+    "revenueGenerated": "الإيرادات المحققة",
+    "customerRating": "تقييم العملاء",
+    "improvement": "تحسن",
+    "repeatCustomers": "العملاء المتكررون",
+    "vsLastQuarter": "مقارنة بالربع الماضي",
+    "today": "اليوم",
+    "thisWeek": "هذا الأسبوع",
+    "thisMonth": "هذا الشهر",
+    "allTime": "كل الوقت",
+    "items": "العناصر",
+    "total": "المجموع",
+    "payment": "الدفع",
+    "viewDetails": "عرض التفاصيل",
+    "downloadInvoice": "تحميل الفاتورة",
+    "requestReview": "طلب تقييم",
+    "totalRevenue": "إجمالي الإيرادات",
+    "customerSatisfaction": "رضا العملاء",
+    "customerFeedback": "آراء العملاء",
+    "positiveFeedback": "الآراء الإيجابية",
+    "fastDelivery": "التوصيل السريع",
+    "productQuality": "جودة المنتج",
+    "customerService": "خدمة العملاء",
+    "valueForMoney": "القيمة مقابل السعر",
+    "noOrdersFound": "لا توجد طلبات",
+    "revenuePerformance": "أداء الإيرادات",
+    "revenuePerformanceSubtitle": "طلباتك المكتملة تحقق إيرادات قوية مع اتجاهات نمو إيجابية",
+    "orderValue": "متوسط قيمة الطلب",
+    "bestSellingDay": "أفضل يوم للمبيعات",
+    "friday": "الجمعة",
+    "peakHour": "ساعة الذروة",
+    "exportReport": "تصدير التقرير",
+    "downloadDetailedAnalytics": "تحميل التحليلات التفصيلية",
+    "requestFeedback": "طلب الآراء",
+    "sendReviewInvitations": "إرسال دعوات التقييم",
+    "loyaltyProgram": "برنامج الولاء",
+    "rewardRepeatCustomers": "مكافأة العملاء المتكررين"
+  },
+  "processingOrders": {
+    "title": "الطلبات قيد المعالجة",
+    "subtitle": "تتبع وإدارة الطلبات التي يتم معالجتها وتجهيزها للشحن حالياً",
+    "processingNow": "قيد المعالجة الآن",
+    "vsYesterday": "مقارنة بالأمس",
+    "shippedOrders": "الطلبات المشحونة",
+    "readyForPickup": "جاهز للاستلام",
+    "vsLastWeek": "مقارنة بالأسبوع الماضي",
+    "averageProcessingTime": "متوسط وقت المعالجة",
+    "improvement": "تحسن",
+    "allPriorities": "جميع الأولويات",
+    "highPriority": "أولوية عالية",
+    "mediumPriority": "أولوية متوسطة",
+    "lowPriority": "أولوية منخفضة",
+    "items": "العناصر",
+    "total": "المجموع",
+    "payment": "الدفع",
+    "viewDetails": "عرض التفاصيل",
+    "markAsShipped": "وضع علامة تم الشحن",
+    "markAsDelivered": "وضع علامة تم التسليم",
+    "cancelOrder": "إلغاء الطلب",
+    "activeOrders": "الطلبات النشطة",
+    "processingPipeline": "خط معالجة الطلبات",
+    "orderVerification": "التحقق من الطلب",
+    "packing": "التعبئة",
+    "qualityCheck": "فحص الجودة",
+    "readyToShip": "جاهز للشحن",
+    "noOrdersFound": "لا توجد طلبات",
+    "processingPerformance": "أداء المعالجة",
+    "keepUpTheExcellentWork": "استمر في العمل الممتاز! سرعة معالجتك أعلى من المتوسط.",
+    "ordersPerHour": "طلبات في الساعة",
+    "accuracyRate": "معدل الدقة",
+    "customerSatisfaction": "رضا العملاء"
+  },
+  "support": {
+    "title": "مركز الدعم",
+    "subtitle": "نحن هنا للمساعدة. احصل على المساعدة لمتجرك وطلباتك.",
+    "searchPlaceholder": "ابحث عن المساعدة...",
+    "categories": {
+      "gettingStarted": "البدء",
+      "gettingStartedDesc": "تعلم الأساسيات وإعداد متجرك",
+      "orders": "الطلبات والشحن",
+      "ordersDesc": "إدارة الطلبات والشحن والتنفيذ",
+      "products": "المنتجات والمخزون",
+      "productsDesc": "إضافة المنتجات وإدارة المخزون",
+      "payments": "المدفوعات والفوترة",
+      "paymentsDesc": "طرق الدفع وأسئلة الفوترة",
+      "marketing": "التسويق وتحسين محركات البحث",
+      "marketingDesc": "نمّي عملك وتواصل مع العملاء",
+      "technical": "الدعم الفني",
+      "technicalDesc": "API والتكاملات والمشاكل الفنية"
+    },
+    "quickHelp": {
+      "title": "مساعدة سريعة",
+      "faq": "الأسئلة الشائعة",
+      "videoTutorials": "دروس الفيديو",
+      "documentation": "الوثائق",
+      "community": "منتدى المجتمع"
+    },
+    "contactSupport": {
+      "title": "تواصل مع الدعم",
+      "subtitle": "لم تجد ما تبحث عنه؟ نحن هنا للمساعدة.",
+      "responseTime": "متوسط وقت الاستجابة: ساعتان",
+      "availability": "متاح 24/7",
+      "contactMethods": {
+        "chat": "الدردشة المباشرة",
+        "chatDesc": "احصل على مساعدة فورية من فريق الدعم",
+        "email": "الدعم عبر البريد الإلكتروني",
+        "emailDesc": "أرسل لنا رسالة مفصلة",
+        "phone": "الدعم عبر الهاتف",
+        "phoneDesc": "تحدث مع فريق الدعم",
+        "ticket": "إرسال تذكرة",
+        "ticketDesc": "أنشئ تذكرة دعم"
+      }
+    },
+    "resources": {
+      "title": "الموارد",
+      "guides": "أدلة الإعداد",
+      "apiDocs": "وثائق API",
+      "changelog": "سجل التغييرات",
+      "systemStatus": "حالة النظام"
+    },
+    "popularArticles": {
+      "title": "المقالات الشائعة",
+      "article1": "كيفية إعداد منتجك الأول",
+      "article2": "فهم معالجة المدفوعات",
+      "article3": "إدارة مناطق وأسعار الشحن",
+      "article4": "تخصيص قالب متجرك",
+      "article5": "أفضل ممارسات تحسين محركات البحث لمتجرك",
+      "article6": "التعامل مع المرتجعات والاستردادات"
+    },
+    "status": {
+      "operational": "جميع الأنظمة تعمل",
+      "maintenance": "صيانة مجدولة",
+      "issue": "مشكلة في الخدمة"
+    },
+    "actions": {
+      "startChat": "بدء الدردشة",
+      "sendEmail": "إرسال بريد إلكتروني",
+      "callNow": "اتصل الآن",
+      "createTicket": "إنشاء تذكرة",
+      "viewAll": "عرض جميع المقالات",
+      "searchDocs": "البحث في الوثائق"
+    }
+  },
+  "docs": {
+    "title": "الوثائق",
+    "subtitle": "كل ما تحتاج معرفته عن استخدام Ordify",
+    "searchPlaceholder": "البحث في الوثائق...",
+    "categories": {
+      "gettingStarted": "البدء",
+      "gettingStartedDesc": "ابدأ رحلتك مع Ordify",
+      "products": "المنتجات والمخزون",
+      "productsDesc": "إدارة كتالوج منتجاتك",
+      "orders": "إدارة الطلبات",
+      "ordersDesc": "التعامل مع الطلبات والتنفيذ",
+      "marketing": "التسويق وتحسين محركات البحث",
+      "marketingDesc": "نمّي عملك عبر الإنترنت",
+      "payments": "المدفوعات والفوترة",
+      "paymentsDesc": "معالجة المدفوعات والفوترة",
+      "advanced": "الميزات المتقدمة",
+      "advancedDesc": "ميزات المستخدم المتقدم وواجهات البرمجة"
+    },
+    "sections": {
+      "gettingStarted": {
+        "quickStart": {
+          "title": "دليل البدء السريع",
+          "description": "شغّل متجرك في دقائق"
+        },
+        "storeSetup": {
+          "title": "إعداد المتجر",
+          "description": "قم بتكوين إعدادات وتفضيلات متجرك"
+        },
+        "firstProduct": {
+          "title": "إضافة منتجك الأول",
+          "description": "تعلم كيفية إنشاء ونشر المنتجات"
+        },
+        "dashboard": {
+          "title": "نظرة عامة على لوحة التحكم",
+          "description": "تنقل وافهم لوحة التحكم الخاصة بك"
+        }
+      },
+      "products": {
+        "productCreation": {
+          "title": "دليل إنشاء المنتجات",
+          "description": "إنشاء منتجات مع المتغيرات والخيارات"
+        },
+        "inventoryManagement": {
+          "title": "إدارة المخزون",
+          "description": "تتبع مستويات المخزون وإدارة المخزون"
+        },
+        "bulkImport": {
+          "title": "الاستيراد/التصدير بالجملة",
+          "description": "استيراد المنتجات من ملفات CSV أو Excel"
+        },
+        "categories": {
+          "title": "الفئات والمجموعات",
+          "description": "تنظيم المنتجات باستخدام الفئات"
+        }
+      },
+      "orders": {
+        "orderProcessing": {
+          "title": "معالجة الطلبات",
+          "description": "معالجة الطلبات من التقديم إلى التسليم"
+        },
+        "shippingSetup": {
+          "title": "إعداد الشحن",
+          "description": "تكوين مناطق وأسعار الشحن"
+        },
+        "returnRefunds": {
+          "title": "المرتجعات والاستردادات",
+          "description": "التعامل مع المرتجعات ومعالجة الاستردادات"
+        },
+        "orderTracking": {
+          "title": "تتبع الطلبات",
+          "description": "تفعيل تتبع الطلبات للعملاء"
+        }
+      },
+      "marketing": {
+        "seoOptimization": {
+          "title": "تحسين محركات البحث",
+          "description": "تحسين ترتيب متجرك في البحث"
+        },
+        "emailMarketing": {
+          "title": "التسويق عبر البريد الإلكتروني",
+          "description": "إنشاء وإرسال حملات التسويق"
+        },
+        "socialMedia": {
+          "title": "التكامل مع وسائل التواصل الاجتماعي",
+          "description": "الاتصال والبيع على المنصات الاجتماعية"
+        },
+        "discountCoupons": {
+          "title": "الخصومات والكوبونات",
+          "description": "إنشاء عروض ترويجية لزيادة المبيعات"
+        }
+      },
+      "payments": {
+        "paymentGateways": {
+          "title": "بوابات الدفع",
+          "description": "إعداد طرق الدفع لمتجرك"
+        },
+        "taxConfiguration": {
+          "title": "تكوين الضرائب",
+          "description": "تكوين معدلات وقواعد الضرائب"
+        },
+        "payoutSettings": {
+          "title": "إعدادات المدفوعات",
+          "description": "إدارة كيفية استلام مدفوعاتك"
+        },
+        "invoicing": {
+          "title": "الفوترة",
+          "description": "إنشاء وإدارة الفواتير"
+        }
+      },
+      "advanced": {
+        "apiIntegration": {
+          "title": "تكامل API",
+          "description": "ربط خدمات الطرف الثالث عبر API"
+        },
+        "customization": {
+          "title": "تخصيص المتجر",
+          "description": "تخصيص القوالب والتخطيطات"
+        },
+        "analytics": {
+          "title": "التحليلات المتقدمة",
+          "description": "تعمق في بيانات متجرك"
+        },
+        "automation": {
+          "title": "أتمتة سير العمل",
+          "description": "أتمتة المهام المتكررة"
+        }
+      }
+    },
+    "popularArticles": {
+      "title": "المقالات الشائعة",
+      "readTime": "{{minutes}} دقيقة للقراءة"
+    },
+    "needHelp": {
+      "title": "لا زلت تحتاج مساعدة؟",
+      "description": "فريق الدعم لدينا هنا لمساعدتك",
+      "contactSupport": "تواصل مع الدعم"
+    },
+    "lastUpdated": "آخر تحديث: {{date}}",
+    "wasHelpful": "هل كانت هذه المقالة مفيدة؟",
+    "relatedArticles": "مقالات ذات صلة",
+    "tableOfContents": "جدول المحتويات",
+    "copyLink": "نسخ الرابط",
+    "print": "طباعة",
+    "share": "مشاركة"
+  },
+  "tutorials": {
+    "title": "دروس الفيديو",
+    "subtitle": "تعلم كيفية استخدام Ordify مع أدلة الفيديو الشاملة لدينا",
+    "searchPlaceholder": "البحث في الدروس...",
+    "categories": {
+      "gettingStarted": "البدء",
+      "gettingStartedDesc": "أدلة أساسية للمبتدئين",
+      "products": "إدارة المنتجات",
+      "productsDesc": "إنشاء المنتجات والمخزون",
+      "marketing": "التسويق والمبيعات",
+      "marketingDesc": "زيادة مبيعاتك ووصولك",
+      "advanced": "الميزات المتقدمة",
+      "advancedDesc": "إتقان الوظائف المتقدمة",
+      "tips": "النصائح والحيل",
+      "tipsDesc": "نصائح احترافية للمستخدمين المتقدمين",
+      "integrations": "التكاملات",
+      "integrationsDesc": "ربط خدمات الطرف الثالث"
+    },
+    "filters": {
+      "all": "جميع الفيديوهات",
+      "beginner": "مبتدئ",
+      "intermediate": "متوسط",
+      "advanced": "متقدم",
+      "duration": "المدة",
+      "under5min": "أقل من 5 دقائق",
+      "5to10min": "5-10 دقائق",
+      "over10min": "أكثر من 10 دقائق"
+    },
+    "videoPlayer": {
+      "watchLater": "مشاهدة لاحقاً",
+      "share": "مشاركة",
+      "transcript": "النص",
+      "speed": "السرعة",
+      "quality": "الجودة",
+      "autoplay": "التشغيل التلقائي",
+      "nextVideo": "الفيديو التالي",
+      "previousVideo": "الفيديو السابق",
+      "fullscreen": "ملء الشاشة",
+      "pip": "صورة داخل صورة"
+    },
+    "playlist": {
+      "title": "قائمة تشغيل الدورة",
+      "currentVideo": "يُشغل الآن",
+      "completed": "مكتمل",
+      "totalVideos": "{{count}} فيديو",
+      "totalDuration": "المجموع: {{duration}}",
+      "progress": "{{completed}} من {{total}} مكتمل"
+    },
+    "metadata": {
+      "duration": "{{minutes}} دقيقة",
+      "difficulty": "الصعوبة",
+      "lastUpdated": "تم التحديث {{date}}",
+      "views": "{{count}} مشاهدة",
+      "instructor": "المدرب"
+    },
+    "progress": {
+      "yourProgress": "تقدمك",
+      "completed": "{{count}} فيديو مكتمل",
+      "certificates": "الشهادات",
+      "achievements": "الإنجازات",
+      "continueWatching": "متابعة المشاهدة",
+      "resumeFrom": "استئناف من {{time}}"
+    },
+    "actions": {
+      "markComplete": "وضع علامة كمكتمل",
+      "addToPlaylist": "إضافة إلى قائمة التشغيل",
+      "downloadResource": "تحميل الموارد",
+      "askQuestion": "طرح سؤال",
+      "reportIssue": "الإبلاغ عن مشكلة"
+    },
+    "relatedContent": {
+      "title": "محتوى ذو صلة",
+      "suggestedNext": "مقترح التالي",
+      "relatedDocs": "الوثائق ذات الصلة",
+      "communityDiscussion": "نقاش المجتمع"
+    },
+    "videos": {
+      "quickStart": {
+        "title": "البداية السريعة: متجرك الأول",
+        "description": "إعداد متجر Ordify الخاص بك في أقل من 10 دقائق",
+        "duration": "8:45"
+      },
+      "addProducts": {
+        "title": "إضافة المنتجات كمحترف",
+        "description": "إتقان إنشاء المنتج مع المتغيرات والأسعار",
+        "duration": "12:30"
+      },
+      "orderManagement": {
+        "title": "دورة إدارة الطلبات المتقدمة",
+        "description": "معالجة الطلبات بكفاءة من البداية إلى النهاية",
+        "duration": "15:20"
+      },
+      "seoBasics": {
+        "title": "أساسيات SEO للتجارة الإلكترونية",
+        "description": "تحسين متجرك لمحركات البحث",
+        "duration": "10:15"
+      },
+      "emailMarketing": {
+        "title": "التسويق عبر البريد الإلكتروني الذي يحول",
+        "description": "إنشاء حملات تدفع المبيعات",
+        "duration": "18:00"
+      },
+      "analytics": {
+        "title": "فهم التحليلات الخاصة بك",
+        "description": "اتخاذ قرارات مبنية على البيانات للنمو",
+        "duration": "14:30"
+      }
+    },
+    "emptyState": {
+      "noResults": "لم يتم العثور على دروس",
+      "tryDifferent": "جرب كلمات بحث مختلفة أو تصفح الفئات"
+    },
+    "featured": {
+      "title": "الدورة المميزة",
+      "badge": "الأكثر شعبية",
+      "enrollNow": "ابدأ التعلم"
     }
   }
 }

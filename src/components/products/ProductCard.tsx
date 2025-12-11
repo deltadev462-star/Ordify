@@ -62,7 +62,7 @@ export function ProductCard({
   const isOutOfStock = product.inventory.trackInventory && product.inventory.quantity === 0;
 
   return (
-    <Card className="group relative overflow-hidden border-0 shadow-sm hover:shadow-lg transition-all duration-300">
+    <Card className="group relative overflow-hidden border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-lg transition-all duration-300">
       {/* Product Image */}
       <div className="aspect-square relative overflow-hidden bg-gray-100 dark:bg-gray-800">
         {product.images.length > 0 ? (

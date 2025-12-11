@@ -272,7 +272,7 @@ function PublicAPISection() {
         </TabsList>
 
         <TabsContent value="keys" className="space-y-6">
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
             <CardHeader className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
@@ -424,7 +424,7 @@ function PublicAPISection() {
         </TabsContent>
 
         <TabsContent value="endpoints" className="space-y-6">
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Terminal className="w-5 h-5 text-primary" />
@@ -518,7 +518,7 @@ function PublicAPISection() {
         </TabsContent>
 
         <TabsContent value="webhooks" className="space-y-6">
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
             <CardHeader className="bg-gradient-to-r from-orange-500 to-red-500 text-white">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
@@ -696,7 +696,7 @@ function PublicAPISection() {
         </TabsContent>
 
         <TabsContent value="settings" className="space-y-6">
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Shield className="w-5 h-5 text-primary" />
@@ -829,7 +829,7 @@ function PublicAPISection() {
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Database className="w-5 h-5 text-primary" />
@@ -872,7 +872,7 @@ function PublicAPISection() {
         </TabsContent>
 
         <TabsContent value="analytics" className="space-y-6">
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Activity className="w-5 h-5 text-primary" />
@@ -884,7 +884,7 @@ function PublicAPISection() {
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="grid grid-cols-4 gap-4">
-                <Card>
+                <Card className="border border-gray-200 dark:border-gray-700">
                   <CardContent className="p-4">
                     <div className="flex items-center justify-between">
                       <p className="text-sm text-gray-600 dark:text-gray-400">{"Total Requests"}</p>
@@ -895,7 +895,7 @@ function PublicAPISection() {
                   </CardContent>
                 </Card>
 
-                <Card>
+                <Card className="border border-gray-200 dark:border-gray-700">
                   <CardContent className="p-4">
                     <div className="flex items-center justify-between">
                       <p className="text-sm text-gray-600 dark:text-gray-400">{"Active Keys"}</p>
@@ -906,7 +906,7 @@ function PublicAPISection() {
                   </CardContent>
                 </Card>
 
-                <Card>
+                <Card className="border border-gray-200 dark:border-gray-700">
                   <CardContent className="p-4">
                     <div className="flex items-center justify-between">
                       <p className="text-sm text-gray-600 dark:text-gray-400">{"Error Rate"}</p>
@@ -917,7 +917,7 @@ function PublicAPISection() {
                   </CardContent>
                 </Card>
 
-                <Card>
+                <Card className="border border-gray-200 dark:border-gray-700">
                   <CardContent className="p-4">
                     <div className="flex items-center justify-between">
                       <p className="text-sm text-gray-600 dark:text-gray-400">{"Avg Response"}</p>
@@ -979,7 +979,7 @@ function PublicAPISection() {
         </TabsContent>
 
         <TabsContent value="docs" className="space-y-6">
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
             <CardHeader className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white">
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
@@ -995,7 +995,7 @@ function PublicAPISection() {
             </CardHeader>
             <CardContent className="p-6 space-y-6">
               <div className="grid grid-cols-2 gap-4">
-                <Card className="cursor-pointer hover:shadow-md transition-shadow">
+                <Card className="border border-gray-200 dark:border-gray-700 cursor-pointer hover:shadow-md transition-shadow">
                   <CardContent className="p-4">
                     <div className="flex items-start gap-3">
                       <div className="p-2 bg-primary/10 rounded-lg">
@@ -1011,7 +1011,7 @@ function PublicAPISection() {
                   </CardContent>
                 </Card>
 
-                <Card className="cursor-pointer hover:shadow-md transition-shadow">
+                <Card className="border border-gray-200 dark:border-gray-700 cursor-pointer hover:shadow-md transition-shadow">
                   <CardContent className="p-4">
                     <div className="flex items-start gap-3">
                       <div className="p-2 bg-primary/10 rounded-lg">
@@ -1027,7 +1027,7 @@ function PublicAPISection() {
                   </CardContent>
                 </Card>
 
-                <Card className="cursor-pointer hover:shadow-md transition-shadow">
+                <Card className="border border-gray-200 dark:border-gray-700 cursor-pointer hover:shadow-md transition-shadow">
                   <CardContent className="p-4">
                     <div className="flex items-start gap-3">
                       <div className="p-2 bg-primary/10 rounded-lg">
@@ -1043,7 +1043,7 @@ function PublicAPISection() {
                   </CardContent>
                 </Card>
 
-                <Card className="cursor-pointer hover:shadow-md transition-shadow">
+                <Card className="border border-gray-200 dark:border-gray-700 cursor-pointer hover:shadow-md transition-shadow">
                   <CardContent className="p-4">
                     <div className="flex items-start gap-3">
                       <div className="p-2 bg-primary/10 rounded-lg">

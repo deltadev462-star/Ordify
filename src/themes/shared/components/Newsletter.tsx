@@ -76,7 +76,7 @@ export const Newsletter = ({
 
   if (variant === "luxe") {
     return (
-      <Card className={`border-0 bg-linear-to-r from-gray-900 to-gray-800 text-white ${className}`}>
+      <Card className={`border border-gray-200 dark:border-gray-700 bg-linear-to-r from-gray-900 to-gray-800 text-white ${className}`}>
         <CardContent className="p-12">
           <div className="mx-auto max-w-2xl text-center">
             <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full border-2 border-white/20 bg-white/10">
@@ -114,7 +114,7 @@ export const Newsletter = ({
 
   if (variant === "modern") {
     return (
-      <Card className={`border-0 bg-linear-to-br from-blue-600 to-purple-600 text-white ${className}`}>
+      <Card className={`border border-gray-200 dark:border-gray-700 bg-linear-to-br from-blue-600 to-purple-600 text-white ${className}`}>
         <CardContent className="p-8 md:p-12">
           <div className="grid gap-6 md:grid-cols-2 md:items-center">
             <div>

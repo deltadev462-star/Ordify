@@ -5,6 +5,7 @@ export interface Agent {
   color: string;
   description: string;
   gradient: string;
+  translationKey: string;
 }
 
 export const agentsData: Agent[] = [
@@ -14,7 +15,8 @@ export const agentsData: Agent[] = [
     icon: "🔍",
     color: "#FF6B6B",
     description: "Optimize your store for search engines and increase organic traffic",
-    gradient: "linear-gradient(135deg, #FF6B6B 0%, #FFE66D 100%)"
+    gradient: "linear-gradient(135deg, #FF6B6B 0%, #FFE66D 100%)",
+    translationKey: "seoAgent"
   },
   {
     id: "content-agent",
@@ -22,7 +24,8 @@ export const agentsData: Agent[] = [
     icon: "✍️",
     color: "#4ECDC4",
     description: "Create compelling content that converts visitors into customers",
-    gradient: "linear-gradient(135deg, #4ECDC4 0%, #95E1D3 100%)"
+    gradient: "linear-gradient(135deg, #4ECDC4 0%, #95E1D3 100%)",
+    translationKey: "contentAgent"
   },
   {
     id: "support-agent",
@@ -30,7 +33,8 @@ export const agentsData: Agent[] = [
     icon: "💬",
     color: "#A8E6CF",
     description: "Provide 24/7 customer support with intelligent responses",
-    gradient: "linear-gradient(135deg, #A8E6CF 0%, #DCEDC8 100%)"
+    gradient: "linear-gradient(135deg, #A8E6CF 0%, #DCEDC8 100%)",
+    translationKey: "supportAgent"
   },
   {
     id: "pricing-agent",
@@ -38,7 +42,8 @@ export const agentsData: Agent[] = [
     icon: "💰",
     color: "#C7CEEA",
     description: "Dynamic pricing optimization to maximize your profits",
-    gradient: "linear-gradient(135deg, #C7CEEA 0%, #FFDAB9 100%)"
+    gradient: "linear-gradient(135deg, #C7CEEA 0%, #FFDAB9 100%)",
+    translationKey: "pricingAgent"
   },
   {
     id: "inventory-agent",
@@ -46,7 +51,8 @@ export const agentsData: Agent[] = [
     icon: "📦",
     color: "#FFD93D",
     description: "Smart inventory management and stock predictions",
-    gradient: "linear-gradient(135deg, #FFD93D 0%, #F95959 100%)"
+    gradient: "linear-gradient(135deg, #FFD93D 0%, #F95959 100%)",
+    translationKey: "inventoryAgent"
   },
   {
     id: "ads-agent",
@@ -54,7 +60,8 @@ export const agentsData: Agent[] = [
     icon: "📢",
     color: "#FF6B9D",
     description: "Create and optimize ad campaigns across all platforms",
-    gradient: "linear-gradient(135deg, #FF6B9D 0%, #C44569 100%)"
+    gradient: "linear-gradient(135deg, #FF6B9D 0%, #C44569 100%)",
+    translationKey: "adsAgent"
   },
   {
     id: "recommendation-agent",
@@ -62,7 +69,8 @@ export const agentsData: Agent[] = [
     icon: "💡",
     color: "#95E1D3",
     description: "AI-powered product recommendations for your customers",
-    gradient: "linear-gradient(135deg, #95E1D3 0%, #3FC1C9 100%)"
+    gradient: "linear-gradient(135deg, #95E1D3 0%, #3FC1C9 100%)",
+    translationKey: "recommendationAgent"
   },
   {
     id: "logistics-agent",
@@ -70,7 +78,8 @@ export const agentsData: Agent[] = [
     icon: "🚚",
     color: "#F38181",
     description: "Optimize shipping routes and delivery times",
-    gradient: "linear-gradient(135deg, #F38181 0%, #FCE38A 100%)"
+    gradient: "linear-gradient(135deg, #F38181 0%, #FCE38A 100%)",
+    translationKey: "logisticsAgent"
   },
   {
     id: "fraud-agent",
@@ -78,7 +87,8 @@ export const agentsData: Agent[] = [
     icon: "🛡️",
     color: "#364F6B",
     description: "Advanced fraud detection and prevention system",
-    gradient: "linear-gradient(135deg, #364F6B 0%, #3FC1C9 100%)"
+    gradient: "linear-gradient(135deg, #364F6B 0%, #3FC1C9 100%)",
+    translationKey: "fraudAgent"
   },
   {
     id: "seller-coach-agent",
@@ -86,7 +96,8 @@ export const agentsData: Agent[] = [
     icon: "🎯",
     color: "#FC5185",
     description: "Personal coaching to improve your selling strategies",
-    gradient: "linear-gradient(135deg, #FC5185 0%, #F5F5F5 100%)"
+    gradient: "linear-gradient(135deg, #FC5185 0%, #F5F5F5 100%)",
+    translationKey: "sellerCoachAgent"
   },
   {
     id: "photo-enhancer-agent",
@@ -94,7 +105,8 @@ export const agentsData: Agent[] = [
     icon: "📸",
     color: "#AA96DA",
     description: "Enhance product photos with AI-powered editing",
-    gradient: "linear-gradient(135deg, #AA96DA 0%, #FCBAD3 100%)"
+    gradient: "linear-gradient(135deg, #AA96DA 0%, #FCBAD3 100%)",
+    translationKey: "photoEnhancerAgent"
   },
   {
     id: "email-agent",
@@ -102,7 +114,8 @@ export const agentsData: Agent[] = [
     icon: "📧",
     color: "#6C5CE7",
     description: "Automated email marketing campaigns that convert",
-    gradient: "linear-gradient(135deg, #6C5CE7 0%, #A8E6CF 100%)"
+    gradient: "linear-gradient(135deg, #6C5CE7 0%, #A8E6CF 100%)",
+    translationKey: "emailAgent"
   }
 ];
 
