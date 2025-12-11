@@ -1,11 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { agentsData } from "@/data/agents-data";
 import type { Agent } from "@/data/agents-data";
 import { Check, Send, Crown, Volume2 } from "lucide-react";
 
 const AgentStorePage: React.FC = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [selectedAgents, setSelectedAgents] = useState<string[]>([]);
   const [message, setMessage] = useState("");
   const [chatMessages, setChatMessages] = useState<{text: string; sender: 'user' | 'agent'; agentName?: string}[]>([]);
@@ -39,10 +41,14 @@ const AgentStorePage: React.FC = () => {
           const agent = agentsData.find(a => a.id === agentId);
           if (agent) {
             setTimeout(() => {
+              const agentDescription = t(`agents.${agent.translationKey}.description`).toLowerCase();
               setChatMessages(prev => [...prev, {
-                text: `Hi, I'm ${agent.name}. I'm here to help with ${agent.description.toLowerCase()}.`,
+                text: t('agentStore.chatResponse', {
+                  agentName: t(`agents.${agent.translationKey}.name`),
+                  description: agentDescription
+                }),
                 sender: 'agent',
-                agentName: agent.name
+                agentName: t(`agents.${agent.translationKey}.name`)
               }]);
             }, 500 * (index + 1));
           }
@@ -69,13 +75,13 @@ const AgentStorePage: React.FC = () => {
             <div className="flex items-center gap-4 text-white">
               <Crown className="w-10 h-10 text-yellow-300" />
               <div>
-                <h1 className="text-3xl font-bold">AI Agent Store</h1>
-                <p className="text-lg opacity-90 mt-1">Select AI agents to supercharge your e-commerce operations</p>
+                <h1 className="text-3xl font-bold">{t("agentStore.title")}</h1>
+                <p className="text-lg opacity-90 mt-1">{t("agentStore.subtitle")}</p>
               </div>
             </div>
             {selectedAgents.length > 0 && (
               <div className="bg-white/20 backdrop-blur-md rounded-full px-6 py-3 text-white font-semibold">
-                {selectedAgents.length} agent{selectedAgents.length > 1 ? 's' : ''} selected
+                {t("agentStore.agentsSelected", { count: selectedAgents.length })}
               </div>
             )}
           </div>
@@ -99,7 +105,7 @@ const AgentStorePage: React.FC = () => {
           <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden transition-all duration-300">
             <div className="bg-gradient-to-r from-purple-600 to-indigo-600 p-6">
               <h3 className="text-xl font-bold text-white mb-4">
-                Chat with Selected Agents
+                {t("agentStore.chatWithAgents")}
               </h3>
               <div className="flex flex-wrap gap-2">
                 {selectedAgents.map(agentId => {
@@ -111,7 +117,7 @@ const AgentStorePage: React.FC = () => {
                       style={{ background: agent.gradient }}
                     >
                       <span className="text-lg">{agent.icon}</span>
-                      <span>{agent.name}</span>
+                      <span>{t(`agents.${agent.translationKey}.name`)}</span>
                     </span>
                   ) : null;
                 })}
@@ -121,7 +127,7 @@ const AgentStorePage: React.FC = () => {
             <div className="h-96 overflow-y-auto bg-gray-50 dark:bg-gray-900 p-6" ref={chatContainerRef}>
               {chatMessages.length === 0 ? (
                 <div className="flex items-center justify-center h-full text-gray-500 dark:text-gray-400 text-center">
-                  <p>Select agents and start chatting to get AI-powered assistance</p>
+                  <p>{t("agentStore.emptyChat")}</p>
                 </div>
               ) : (
                 <div className="space-y-4">
@@ -155,7 +161,7 @@ const AgentStorePage: React.FC = () => {
                 <input
                   type="text"
                   className="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 dark:bg-gray-700 dark:text-white"
-                  placeholder="Ask your selected agents anything..."
+                  placeholder={t("agentStore.chatPlaceholder")}
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
@@ -166,7 +172,7 @@ const AgentStorePage: React.FC = () => {
                   disabled={!message.trim() || selectedAgents.length === 0}
                 >
                   <Send size={20} />
-                  <span className="hidden sm:inline">Send</span>
+                  <span className="hidden sm:inline">{t("agentStore.send")}</span>
                 </button>
               </div>
             </div>
@@ -184,6 +190,7 @@ const AgentCard: React.FC<{
   onToggleSelect: () => void;
   onDoubleClick: () => void;
 }> = ({ agent, isSelected, onToggleSelect, onDoubleClick }) => {
+  const { t } = useTranslation();
   const [isHovered, setIsHovered] = useState(false);
   return (
     <div
@@ -223,10 +230,10 @@ const AgentCard: React.FC<{
       {/* Agent Info */}
       <div className="text-center">
         <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
-          {agent.name}
+          {t(`agents.${agent.translationKey}.name`)}
         </h3>
         <p className="text-sm text-gray-600 dark:text-gray-400">
-          {agent.description}
+          {t(`agents.${agent.translationKey}.description`)}
         </p>
       </div>
 
@@ -234,7 +241,7 @@ const AgentCard: React.FC<{
       {isHovered && (
         <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent text-white p-4 rounded-b-xl transform transition-transform duration-200">
           <p className="text-xs text-center">
-            Click to select • Double-click to open chat
+            {t("agentStore.selectInstructions")}
           </p>
         </div>
       )}

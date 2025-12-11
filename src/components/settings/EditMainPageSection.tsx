@@ -212,7 +212,7 @@ function EditMainPageSection() {
       </div>
 
       {previewMode ? (
-        <Card className="border-0 shadow-lg">
+        <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
           <CardContent className="p-0">
             <div className="bg-gray-100 dark:bg-gray-900 min-h-[600px] p-4">
               <div className="max-w-6xl mx-auto space-y-6">
@@ -256,7 +256,7 @@ function EditMainPageSection() {
                 <Card 
                   key={section.id}
                   className={cn(
-                    "border-0 shadow-lg transition-all",
+                    "border border-gray-200 dark:border-gray-700 shadow-lg transition-all",
                     !section.enabled && "opacity-60"
                   )}
                 >
@@ -544,7 +544,7 @@ function EditMainPageSection() {
           </TabsContent>
 
           <TabsContent value="settings" className="space-y-6">
-            <Card className="border-0 shadow-lg">
+            <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
               <CardHeader>
                 <CardTitle className="text-xl flex items-center gap-2">
                   <Settings className="w-5 h-5 text-primary" />
@@ -594,7 +594,7 @@ function EditMainPageSection() {
               </CardContent>
             </Card>
 
-            <Card className="border-0 shadow-lg">
+            <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
               <CardHeader>
                 <CardTitle className="text-xl flex items-center gap-2">
                   <Palette className="w-5 h-5 text-primary" />

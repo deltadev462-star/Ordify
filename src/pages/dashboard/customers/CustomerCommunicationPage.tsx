@@ -355,7 +355,7 @@ export default function CustomerCommunicationPage() {
           </p>
         </div>
         <div className="flex gap-2">
-          <Button variant="outline" className="gap-2">
+          <Button variant="ghost" className="gap-2 hover:bg-transparent dark:hover:bg-transparent">
             <Filter className="h-4 w-4" />
             {t("communication.filter")}
           </Button>

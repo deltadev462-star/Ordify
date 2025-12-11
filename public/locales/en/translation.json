@@ -1,4 +1,4 @@
- {
+{
   "common": {
     "welcome": "Welcome",
     "dashboard": "Dashboard",
@@ -63,7 +63,7 @@
     "create": "Create",
     "update": "Update",
     "details": "Details",
-    "info": "Info",
+    "info": "Information",
     "warning": "Warning",
     "danger": "Danger",
     "primary": "Primary",
@@ -71,42 +71,19 @@
     "saving": "Saving",
     "saved": "Saved",
     "comingSoon": "Coming Soon",
-    "noDataYet": "No {{name}} yet",
-    "optional": "(Optional)",
+    "noDataYet": "No {{name}} Yet",
+    "optional": "(optional)",
     "title": "Title",
-    "sendEmail": "Send Email"
+    "sendEmail": "Send Email",
+    "units": "units",
+    "change": "Change",
+    "of": "of",
+    "support": "Support",
+    "currency": "EGP"
   },
-  "themes": {
-    "title": "Theme Customization",
-    "subtitle": "Customize Store Appearance",
-    "settingsSaved": "Theme Settings Saved",
-    "themeSaved": "Theme Saved",
-    "splitView": "Split View",
-    "customizeOnly": "Customize Only",
-    "previewOnly": "Preview Only",
-    "exitFullscreen": "Exit Fullscreen",
-    "livePreview": "Live Preview",
-    "quickActions": "Quick Actions",
-    "previewInNewWindow": "Preview In New Window",
-    "viewLiveStore": "View Live Store",
-    "themePreview": "Theme Preview",
-    "currentTheme": "Current Theme",
-    "active": "Active",
-    "modified": "Modified",
-    "status": "Status",
-    "published": "Published",
-    "activeFeatures": "Active Features",
-    "needHelp": "Need Help",
-    "learnCustomizeTheme": "Learn Customize Theme",
-    "viewDocumentation": "View Documentation",
-    "contactSupport": "Contact Support",
-    "preview": "Preview",
-    "configure": "Configure",
-    "settings": "Settings",
-    "editTheme": "Edit Theme",
-    "editSelectedTheme": "Edit Selected Theme",
-    "imageUrl": "Image URL",
-    "tryLink": "Try Link"
+  "header": {
+    "search": "Search",
+    "searchPlaceholder": "Search for anything..."
   },
   "navigation": {
     "home": "Home",
@@ -119,7 +96,7 @@
     "orderIssues": "Order Issues",
     "blockedNumbers": "Blocked Numbers",
     "blockedOTP": "Blocked OTP",
-    "products": "Products & Catalog",
+    "products": "Products \u0026 Catalog",
     "allProducts": "All Products",
     "addProduct": "Add Product",
     "categories": "Categories",
@@ -133,17 +110,17 @@
     "communication": "Communication",
     "loyaltyProgram": "Loyalty Program",
     "agentStore": "Agent Store",
-    "marketingHub": "Market Center",
+    "marketingHub": "Marketing Hub",
     "campaigns": "Smart CRM",
-    "promotions": "Sitemap XML",
-    "coupons": "Spy Competitors",
+    "promotions": "XML Sitemap",
+    "coupons": "Spy on Competitors",
     "crossSelling": "Cross Selling",
     "retargeting": "Retargeting",
     "integrations": "Integrations",
     "whatsappMarketing": "WhatsApp Marketing",
     "affiliateProgram": "Affiliate Program",
     "referralLinks": "Referral Links",
-    "analyticsReports": "Analytics & Reports",
+    "analyticsReports": "Analytics \u0026 Reports",
     "overview": "Overview",
     "salesReports": "Sales Reports",
     "customerAnalytics": "Customer Analytics",
@@ -152,18 +129,18 @@
     "customReports": "Custom Reports",
     "storeSettings": "Store Settings",
     "storeInformation": "Store Information",
-    "shippingDelivery": "Shipping & Delivery",
+    "shippingDelivery": "Shipping \u0026 Delivery",
     "paymentMethods": "Payment Methods",
     "storePolicies": "Store Policies",
-    "staffPermissions": "Staff & Permissions",
+    "staffPermissions": "Staff \u0026 Permissions",
     "taxSettings": "Tax Settings",
-    "designContent": "Design & Content",
+    "designContent": "Design \u0026 Content",
     "themes": "Themes",
     "customizeTheme": "Customize Theme",
     "pages": "Pages",
     "mediaLibrary": "Media Library",
-    "seoMetadata": "SEO & Metadata",
-    "appsIntegrations": "Apps & Integrations",
+    "seoMetadata": "SEO \u0026 Metadata",
+    "appsIntegrations": "Apps \u0026 Integrations",
     "installedApps": "Installed Apps",
     "appMarketplace": "App Marketplace",
     "apiAccess": "API Access",
@@ -180,173 +157,12 @@
     "videoTutorials": "Video Tutorials",
     "support": "Support"
   },
-  "dashboard": {
-    "title": "Dashboard Overview",
-    "welcomeBack": "Welcome back! Here's what's happening with your store today.",
-    "totalSales": "Total Revenue",
-    "totalOrders": "Total Orders",
-    "totalCustomers": "Total Customers",
-    "revenue": "Revenue",
-    "subtitle": "Create and manage promotional campaigns to boost your sales",
-    "thisWeek": "This week",
-    "recentOrders": "Recent Orders",
-    "topProducts": "Top Products",
-    "salesChart": "Sales Chart",
-    "ordersToday": "Orders Today",
-    "pendingOrders": "Pending Orders",
-    "completedOrders": "Completed Orders",
-    "viewAll": "View All",
-    "conversionRate": "Conversion Rate",
-    "storeVisits": "Store Visits",
-    "cartAdditions": "Cart Additions",
-    "averageOrderValue": "Average Order Value",
-    "performanceMetrics": "Performance Metrics",
-    "keyIndicators": "Key indicators of your store's health",
-    "vsLastMonth": "vs last month",
-    "thisMonth": "This month",
-    "last30Days": "Last 30 days",
-    "needsAction": "Needs action",
-    "recentActivity": "Recent Activity",
-    "newOrder": "New Order",
-    "paymentReceived": "Payment Received",
-    "orderCancelled": "Order Cancelled",
-    "newCustomer": "New Customer",
-    "paymentPending": "Payment Pending",
-    "storeHealth": "Store Health",
-    "setupProgress": "Setup Progress",
-    "completeSetup": "Complete Your Store Setup",
-    "followSteps": "Follow these steps to maximize your store's potential",
-    "setupGuide": "Setup Guide",
-    "completeStoreSetup": "Complete store setup",
-    "addBusinessInfo": "Add your business information and tax settings",
-    "addMoreProducts": "Add more products",
-    "lessThan10Products": "You have less than 10 products. Add more to increase sales",
-    "seoOptimization": "SEO optimization",
-    "seoConfigured": "Your store SEO is properly configured",
-    "quickActions": "Quick Actions",
-    "newCampaign": "New Campaign",
-    "viewReports": "View Reports",
-    "learningResources": "Your guide to growing your business",
-    "learnOrdify": "Learn how to use Ordify effectively and increase your sales through our comprehensive resources and community support.",
-    "joinTelegram": "Join Telegram Community",
-    "watchTutorials": "Watch Video Tutorials"
-  },
-  "products": {
-    "title": "Products",
-    "pageSubtitle": "The most important part of our platform where you can add products in a way that increases the purchase and conversion rate. When creating or editing a product, look at the advanced settings that will increase your sales",
-    "howToCreateSimple": "How to create a simple product",
-    "howToCreateVariations": "How to create a product with variations",
-    "createProduct": "Create Product",
-    "createProductSubtitle": "Add a new product to your store with all necessary details",
-    "essentialInformation": "Essential Information",
-    "essentialInformationDesc": "Basic product details that customers will see",
-    "addProduct": "Add Product",
-    "editProduct": "Edit Product",
-    "productName": "Product Name *",
-    "productCategories": "Product Categories",
-    "metaDescription": "Meta Description",
-    "productDescription": "Product Description",
-    "pricingInventory": "Pricing & Inventory",
-    "pricingInventoryDesc": "Set your product pricing and stock levels",
-    "salePrice": "Sale Price (Leave blank for no discount)",
-    "productExpense": "Product Expense",
-    "stockManagement": "Stock Management",
-    "stockQuantity": "Stock Quantity",
-    "trackStock": "Track Stock",
-    "disableWhenOutOfStock": "Disable When Out of Stock",
-    "productImages": "Product Images",
-    "productImagesDesc": "Upload high-quality images to showcase your product",
-    "digitalProducts": "Digital Products (New)",
-    "digitalProductsDesc": "Configure settings for digital product delivery",
-    "enableDigitalProduct": "Enable Digital Product",
-    "digitalProductType": "Digital Product Type",
-    "linkToExternalPlatform": "Link to External Platform",
-    "externalPlatformDesc": "Connect your product with external platforms for dropshipping",
-    "activateTaagerIntegration": "Activate the integration with Taager company",
-    "activateAngaznyIntegration": "Activate the integration with Angazny company",
-    "externalProductCode": "Product code in the external platform",
-    "externalProductLink": "Link the product to an external platform",
-    "marketingFeatures": "Marketing Features",
-    "marketingFeaturesDesc": "Boost conversions with marketing tools",
-    "activateReviews": "Activate Reviews?",
-    "activateFreeShipping": "Activate free shipping for the product",
-    "displayFakeVisitorCounter": "Display fake visitor counter?",
-    "minVisitors": "Minimum number of visitors currently viewing the page",
-    "maxVisitors": "Maximum number of visitors currently viewing the page",
-    "activateFakeStock": "Activate the fake stock feature",
-    "fakeStockItems": "Number of fake stock items",
-    "fakeTimer": "Fake Timer",
-    "fakeTimerHours": "Number of hours in the fake timer",
-    "purchaseSettings": "Purchase Settings",
-    "purchaseSettingsDesc": "Customize the buying experience",
-    "skipCart": "Skip Cart",
-    "buyNowButtonText": "Text written on the Buy Now button",
-    "buyNowButtonPlaceholder": "Click here to buy",
-    "fixedBuyButton": "Activate the Fixed Buy Button at the Bottom of the Page",
-    "checkoutBeforeDescription": "Make checkout form before product description",
-    "advancedSettings": "Advanced Settings",
-    "advancedSettingsDesc": "Fine-tune your product with advanced options",
-    "customCurrency": "Custom Currency",
-    "selectCurrency": "Select a currency",
-    "priorityInAppearance": "Priority in appearance",
-    "hiddenProduct": "Hidden Product",
-    "categories": {
-      "electronics": "Electronics",
-      "clothing": "Clothing",
-      "homeGarden": "Home & Garden",
-      "healthBeauty": "Health & Beauty",
-      "sports": "Sports",
-      "toysGames": "Toys & Games",
-      "books": "Books",
-      "foodBeverages": "Food & Beverages"
-    },
-    "currencies": {
-      "USD": "USD - US Dollar",
-      "EUR": "EUR - Euro",
-      "GBP": "GBP - British Pound",
-      "EGP": "EGP - Egyptian Pound",
-      "SAR": "SAR - Saudi Riyal",
-      "AED": "AED - UAE Dirham"
-    },
-    "price": "Price",
-    "stock": "Stock",
-    "category": "Category",
-    "description": "Description",
-    "images": "Images",
-    "status": "Status",
-    "active": "Active",
-    "inactive": "Inactive",
-    "outOfStock": "Out of Stock",
-    "inStock": "In Stock",
-    "sku": "SKU",
-    "barcode": "Barcode",
-    "weight": "Weight",
-    "dimensions": "Dimensions",
-    "showingCount": "Showing {{count}} products",
-    "searchProducts": "Search products...",
-    "filterByCategory": "Filter by category",
-    "filterByStatus": "Filter by status",
-    "bulkActions": "Bulk Actions",
-    "deleteSelected": "Delete Selected",
-    "exportProducts": "Export Products",
-    "importProducts": "Import Products",
-    "productDetails": "Product Details",
-    "pricing": "Pricing",
-    "inventory": "Inventory",
-    "shipping": "Shipping",
-    "seo": "SEO",
-    "comparePrice": "Compare Price",
-    "costPerItem": "Cost per item",
-    "profit": "Profit",
-    "margin": "Margin",
-    "trackQuantity": "Track quantity",
-    "continueSellingWhenOutOfStock": "Continue selling when out of stock",
-    "variants": "Variants",
-    "addVariant": "Add Variant"
-  },
   "orders": {
-    "title": "Orders Management",
+    "title": "Order Management",
     "subtitle": "Track and manage all customer orders in one place",
+    "allOrders": {
+      "subtitle": "View and manage all your store orders in one central location"
+    },
     "totalOrders": "Total Orders",
     "pendingOrders": "Pending Orders",
     "completedOrders": "Completed Orders",
@@ -357,7 +173,7 @@
     "statusShipped": "Shipped",
     "statusDelivered": "Delivered",
     "statusCancelled": "Cancelled",
-    "tipKeyboardShortcuts": "Use keyboard shortcuts for faster navigation. Press '/' to search orders, 'n' to create a new order, and 'e' to export data.",
+    "tipKeyboardShortcuts": "Use keyboard shortcuts for faster navigation. Press \u0027/\u0027 to search orders, \u0027n\u0027 to create new order, and \u0027e\u0027 to export data.",
     "orderNumber": "Order Number",
     "customer": "Customer",
     "date": "Date",
@@ -383,141 +199,265 @@
     "orderNotes": "Order Notes",
     "internalNotes": "Internal Notes",
     "customerNotes": "Customer Notes",
-    "timeline": "Timeline",
+    "timeline": {
+      "title": "Recent Order Activity",
+      "orderReceived": "Order received from {{customer}}",
+      "paymentProcessed": "Payment processed for order {{orderNumber}}",
+      "orderShipped": "Order {{orderNumber}} shipped via {{carrier}}",
+      "hoursAgo": "{{hours}} hours ago"
+    },
     "orderPlaced": "Order Placed",
     "paymentConfirmed": "Payment Confirmed",
     "orderShipped": "Order Shipped",
-    "orderDelivered": "Order Delivered"
-  },
-  "customers": {
-    "title": "Customers",
-    "subtitle": "Manage your customer base",
-    "totalCustomers": "Total Customers",
-    "active": "Active",
-    "inactive": "Inactive",
-    "blocked": "Blocked",
-    "currentlyActive": "Currently active",
-    "needReEngagement": "Need re-engagement",
-    "risk": "Risk",
-    "viewOrders": "View Orders",
-    "addCustomer": "Add Customer",
-    "all": "All",
-    "searchPlaceholder": "Search by name",
-    "customerName": "Customer Name",
-    "email": "Email",
-    "phone": "Phone",
-    "registrationDate": "Registration Date",
-    "totalOrders": "Total Orders",
-    "totalSpent": "Total Spent",
-    "lastOrder": "Last Order",
-    "viewCustomer": "View Customer",
-    "customerDetails": "Customer Details",
-    "orderHistory": "Order History",
-    "addresses": "Addresses",
-    "notes": "Notes",
-    "tags": "Tags",
-    "customerGroups": "Customer Groups",
-    "lifetimeValue": "Lifetime Value",
-    "averageOrderValue": "Average Order Value",
-    "firstOrder": "First Order",
-    "lastSeen": "Last Seen",
-    "acceptsMarketing": "Accepts Marketing",
-    "taxExempt": "Tax Exempt",
-    "addCustomer": "Add Customer",
-    "importCustomers": "Import Customers",
-    "exportCustomers": "Export Customers",
-    "sendEmail": "Send Email",
-    "sendSMS": "Send SMS"
-  },
-  "settings": {
-    "title": "Settings",
-    "general": "General",
-    "store": "Store Settings",
-    "shipping": "Shipping",
-    "payment": "Payment",
-    "taxes": "Taxes",
-    "notifications": "Notifications",
-    "security": "Security",
-    "api": "API",
-    "integrations": "Integrations",
-    "storeName": "Store Name",
-    "storeUrl": "Store URL",
-    "storeEmail": "Store Email",
-    "timezone": "Timezone",
-    "currency": "Currency",
-    "dateFormat": "Date Format",
-    "moderators": "Moderators",
-    "pages": "Pages Management",
-    "sidebar": "Sidebar Settings",
-    "publicAPI": "Public API",
-    "seo": "SEO Settings",
-    "theme": "Theme Settings",
-    "domainSettings": "Domain Settings",
-    "storeInfoPolicies": "Store Info & Policies",
-    "addHeaderCode": "Add Header Code",
-    "advancedSettings": "Advanced Settings",
-    "pixelSettings": "Pixel Settings",
-    "googleTagSettings": "Google Tag Settings",
-    "digitalProductsDelivery": "Digital Products Delivery",
-    "editMainPage": "Edit Main Page",
-    "purchaseForm": "Purchase Form",
-    "editThankYouPage": "Edit Thank You Page",
-    "socialLinks": "Social Links",
-    "storeLink": "Store Link",
-    "loginSessions": "Login Sessions",
-    "apiKey": "API Key",
-    "regenerateKey": "Regenerate Key",
-    "webhookUrl": "Webhook URL",
-    "testWebhook": "Test Webhook",
-    "shippingZones": "Shipping Zones",
-    "shippingRates": "Shipping Rates",
-    "freeShipping": "Free Shipping",
-    "flatRate": "Flat Rate",
-    "calculateAtCheckout": "Calculate at Checkout",
-    "paymentProviders": "Payment Providers",
-    "cashOnDelivery": "Cash on Delivery",
-    "bankTransfer": "Bank Transfer",
-    "creditCard": "Credit Card",
-    "digitalWallet": "Digital Wallet",
-    "taxNumber": "Tax Number",
-    "taxRate": "Tax Rate",
-    "pricesIncludeTax": "Prices include tax",
-    "emailNotifications": "Email Notifications",
-    "smsNotifications": "SMS Notifications",
-    "pushNotifications": "Push Notifications",
-    "orderConfirmation": "Order Confirmation",
-    "shippingUpdate": "Shipping Update",
-    "promotionalEmails": "Promotional Emails",
-    "saveChanges": "Save Changes",
-    "selectSetting": "Select Setting",
-    "descriptions": {
-      "storeSettings": "Configure your store's basic information and preferences",
-      "securitySettings": "Manage security settings and access controls",
-      "notifications": "Configure notification preferences and alerts",
-      "sidebarSettings": "Customize sidebar appearance and behavior",
-      "domainSettings": "Manage your custom domain configuration",
-      "storeInfoPolicies": "Update store policies and legal information",
-      "addHeaderCode": "Add custom code to your store's header",
-      "seoSettings": "Optimize your store for search engines",
-      "paymentGateways": "Configure payment methods and providers",
-      "shippingSettings": "Set up shipping zones and rates",
-      "taxSettings": "Configure tax rates and calculations",
-      "integrations": "Connect with third-party services",
-      "advancedSettings": "Advanced configuration options",
-      "pixelSettings": "Configure tracking pixels",
-      "googleTagSettings": "Set up Google Tag Manager",
-      "digitalProductsDelivery": "Configure digital product delivery",
-      "pages": "Manage your store pages",
-      "themeSettings": "Customize your store theme",
-      "editMainPage": "Edit your main page content",
-      "purchaseForm": "Customize checkout form fields",
-      "editThankYouPage": "Edit thank you page content",
-      "socialLinks": "Manage social media links",
-      "storeLink": "Configure your store URL",
-      "manageModerators": "Manage staff and permissions",
-      "publicAPI": "Configure public API access",
-      "loginSessions": "View and manage login sessions"
+    "orderDelivered": "Order Delivered",
+    "stats": {
+      "today": "Today",
+      "week": "This Week",
+      "revenue": "Revenue",
+      "averageOrderValue": "Average Order Value",
+      "conversionRate": "Conversion Rate"
+    },
+    "filters": {
+      "dateRange": "Date Range",
+      "today": "Today",
+      "yesterday": "Yesterday",
+      "last7Days": "Last 7 Days",
+      "last30Days": "Last 30 Days",
+      "thisMonth": "This Month",
+      "lastMonth": "Last Month",
+      "custom": "Custom",
+      "status": "Status",
+      "allStatuses": "All Statuses",
+      "paymentStatus": "Payment Status",
+      "allPayments": "All Payments",
+      "paid": "Paid",
+      "unpaid": "Unpaid",
+      "partiallyPaid": "Partially Paid",
+      "refunded": "Refunded",
+      "fulfillmentStatus": "Fulfillment Status",
+      "allFulfillments": "All Fulfillments",
+      "fulfilled": "Fulfilled",
+      "unfulfilled": "Unfulfilled",
+      "partiallyFulfilled": "Partially Fulfilled"
+    },
+    "table": {
+      "customer": "Customer",
+      "items": "Items",
+      "total": "Total",
+      "date": "Date",
+      "payment": "Payment",
+      "fulfillment": "Fulfillment",
+      "actions": "Actions"
+    },
+    "actions": {
+      "viewDetails": "View Details",
+      "editOrder": "Edit Order",
+      "printInvoice": "Print Invoice",
+      "cancelOrder": "Cancel Order",
+      "refundOrder": "Refund Order",
+      "duplicateOrder": "Duplicate Order",
+      "markAsFulfilled": "Mark as Fulfilled",
+      "resendConfirmation": "Resend Confirmation"
+    },
+    "summary": {
+      "title": "Order Summary",
+      "todayOrders": "Today\u0027s Orders",
+      "pendingFulfillment": "Pending Fulfillment",
+      "awaitingPayment": "Awaiting Payment",
+      "readyToShip": "Ready to Ship",
+      "growth": "{{percent}}% growth"
     }
+  },
+  "blockedNumbers": {
+    "title": "Blocked Numbers",
+    "description": "Manage phone numbers blocked from your store",
+    "blockedCount": "Blocked Count",
+    "phoneNumber": "Phone Number",
+    "blockReason": "Block Reason",
+    "blockDate": "Block Date",
+    "blocked": "Blocked",
+    "bulkBlockTitle": "Bulk Block Numbers",
+    "bulkBlockDescription": "Enter numbers to block (one per line)",
+    "bulkBlockNumbers": "Bulk Block Numbers",
+    "placeholder": "Enter phone numbers, one per line...",
+    "blockNumbers": "Block Numbers",
+    "cancel": "Cancel",
+    "saveChanges": "Save Changes",
+    "saving": "Saving...",
+    "saved": "Saved",
+    "success": "Success",
+    "error": "Error"
+  },
+  "blockedOTP": {
+    "title": "Blocked OTP Verifications",
+    "description": "Manage OTP verification attempts and security settings",
+    "verifyAttemptsCard": {
+      "title": "Verification Attempts",
+      "allowedAttempts": "Allowed Attempts",
+      "attemptsPerPhone": "attempts per phone number",
+      "currentLimit": "Current limit"
+    },
+    "securitySettingsCard": {
+      "title": "Security Settings",
+      "otpExpiry": "OTP Expiry Time",
+      "minutes": "minutes",
+      "cooldownPeriod": "Cooldown Period",
+      "afterMaxAttempts": "after max attempts"
+    },
+    "blockedListCard": {
+      "title": "Recently Blocked",
+      "emptyState": "No blocked verifications yet"
+    },
+    "save": "Save Settings"
+  },
+  "transactions": {
+    "title": "Transactions",
+    "subtitle": "View and manage all financial transactions",
+    "recentTransactions": "Recent Transactions",
+    "searchPlaceholder": "Search transactions...",
+    "filters": {
+      "dateRange": "Date Range",
+      "type": "Type",
+      "status": "Status",
+      "allTypes": "All Types",
+      "allStatuses": "All Statuses"
+    },
+    "types": {
+      "sale": "Sale",
+      "refund": "Refund",
+      "payout": "Payout",
+      "fee": "Fee"
+    },
+    "status": {
+      "completed": "Completed",
+      "pending": "Pending",
+      "failed": "Failed",
+      "processing": "Processing"
+    },
+    "table": {
+      "transactionId": "Transaction ID",
+      "date": "Date",
+      "description": "Description",
+      "amount": "Amount",
+      "fee": "Fee",
+      "net": "Net",
+      "status": "Status",
+      "actions": "Actions"
+    }
+  },
+  "integrations": {
+    "title": "Integrations",
+    "subtitle": "Connect your store with powerful third-party services",
+    "searchPlaceholder": "Search integrations...",
+    "filters": {
+      "category": "Category",
+      "allCategories": "All Categories",
+      "status": "Status",
+      "all": "All"
+    },
+    "categories": {
+      "payment": "Payment",
+      "shipping": "Shipping",
+      "marketing": "Marketing",
+      "analytics": "Analytics",
+      "accounting": "Accounting",
+      "inventory": "Inventory"
+    },
+    "status": {
+      "connected": "Connected",
+      "notConnected": "Not Connected"
+    },
+    "actions": {
+      "configure": "Configure",
+      "disconnect": "Disconnect",
+      "viewDetails": "View Details",
+      "settings": "Settings"
+    }
+  },
+  "payouts": {
+    "title": "Payouts",
+    "subtitle": "Manage your earnings and withdrawal requests",
+    "stats": {
+      "availableBalance": "Available Balance",
+      "pendingPayouts": "Pending Payouts",
+      "totalPaidOut": "Total Paid Out",
+      "nextPayout": "Next Payout"
+    },
+    "actions": {
+      "requestPayout": "Request Payout",
+      "payoutSettings": "Payout Settings"
+    },
+    "recentPayouts": "Recent Payouts",
+    "table": {
+      "payoutId": "Payout ID",
+      "requestDate": "Request Date",
+      "amount": "Amount",
+      "method": "Method",
+      "status": "Status",
+      "actions": "Actions"
+    }
+  },
+  "billing": {
+    "title": "Billing",
+    "subtitle": "Manage your subscription and billing information",
+    "currentPlan": {
+      "title": "Current Plan",
+      "plan": "Plan",
+      "status": "Status",
+      "renewal": "Renewal Date",
+      "monthlyCost": "Monthly Cost"
+    },
+    "actions": {
+      "changePlan": "Change Plan",
+      "updatePayment": "Update Payment Method"
+    },
+    "billingHistory": "Billing History",
+    "table": {
+      "invoiceId": "Invoice ID",
+      "date": "Date",
+      "description": "Description",
+      "amount": "Amount",
+      "status": "Status",
+      "actions": "Actions"
+    }
+  },
+  "missedOrder": {
+    "title": "Missed Orders",
+    "subtitle": "Track and recover missed order opportunities",
+    "stats": {
+      "totalMissed": "Total Missed",
+      "recoveryRate": "Recovery Rate",
+      "potentialRevenue": "Potential Revenue",
+      "recovered": "Recovered"
+    },
+    "filters": {
+      "dateRange": "Date Range",
+      "reason": "Reason",
+      "status": "Status"
+    },
+    "reasons": {
+      "outOfStock": "Out of Stock",
+      "paymentFailed": "Payment Failed",
+      "technicalIssue": "Technical Issue",
+      "customerCancelled": "Customer Cancelled"
+    },
+    "table": {
+      "orderId": "Order ID",
+      "customer": "Customer",
+      "date": "Date",
+      "reason": "Reason",
+      "value": "Value",
+      "status": "Status",
+      "actions": "Actions"
+    }
+  },
+  "processing": {
+    "title": "Processing Orders",
+    "subtitle": "Orders currently being processed and prepared for shipment"
+  },
+  "completed": {
+    "title": "Completed Orders",
+    "subtitle": "Successfully delivered and completed orders"
   },
   "auth": {
     "signIn": "Sign In",
@@ -528,7 +468,7 @@
     "forgotPassword": "Forgot Password?",
     "rememberMe": "Remember Me",
     "alreadyHaveAccount": "Already have an account?",
-    "dontHaveAccount": "Don't have an account?",
+    "dontHaveAccount": "Don\u0027t have an account?",
     "createAccount": "Create Account",
     "resetPassword": "Reset Password",
     "backToLogin": "Back to Login",
@@ -762,20 +702,6 @@
     "errorMessage": "Error Message",
     "excludeFreeShipping": "Exclude from Free Shipping"
   },
-  "missedOrder": {
-    "title": "Missed Orders",
-    "subtitle": "Track and recover missed order opportunities",
-    "missedOrdersCount": "Missed Orders Count",
-    "potentialRevenue": "Potential Revenue",
-    "recoveryRate": "Recovery Rate",
-    "reasonForMissing": "Reason for Missing",
-    "paymentFailed": "Payment Failed",
-    "outOfStock": "Out of Stock",
-    "customerCancelled": "Customer Cancelled",
-    "technicalIssue": "Technical Issue",
-    "recoverOrder": "Recover Order",
-    "sendFollowup": "Send Follow-up"
-  },
   "serviceGallery": {
     "title": "Service Gallery",
     "subtitle": "Showcase your services with visual galleries",
@@ -791,59 +717,17 @@
     "carousel": "Carousel",
     "masonry": "Masonry"
   },
-  "blockedNumbers": {
-    "title": "Blocked Numbers",
-    "description": "Manage phone numbers that are blocked from your store",
-    "blockedCount": "Blocked Count",
-    "phoneNumber": "Phone Number",
-    "blockReason": "Block Reason",
-    "blockDate": "Block Date",
-    "blocked": "Blocked",
-    "bulkBlockTitle": "Bulk Block Numbers",
-    "bulkBlockDescription": "Enter numbers to block (one per line)",
-    "bulkBlockNumbers": "Bulk Block Numbers",
-    "placeholder": "Enter phone numbers, one per line...",
-    "blockNumbers": "Block Numbers",
-    "cancel": "Cancel"
-  },
-  "blockedOTP": {
-    "title": "Blocked OTP",
-    "description": "Manage OTP verification attempts and security settings",
-    "verifyAttemptsCard": {
-      "title": "Verification Attempts",
-      "allowedAttempts": "Allowed Attempts",
-      "attemptsPerPhone": "attempts per phone number",
-      "currentLimit": "Current Limit"
-    },
-    "securitySettingsCard": {
-      "title": "Security Settings",
-      "otpExpiry": "OTP Expiry Time",
-      "minutes": "minutes",
-      "cooldownPeriod": "Cooldown Period",
-      "afterMaxAttempts": "after max attempts"
-    },
-    "blockedListCard": {
-      "title": "Recently Blocked",
-      "emptyState": "No blocked verifications yet"
-    },
-    "save": "Save Settings"
-  },
   "segments": {
-    "title": "Customer Segments",
-    "createSegment": "Create Segment",
-    "all": "All",
+    "vipCustomers": "VIP Customers",
+    "regularCustomers": "Regular Customers",
+    "newCustomers": "New Customers",
+    "atRiskCustomers": "At-Risk Customers",
+    "dormantCustomers": "Dormant Customers",
+    "all": "All Segments",
     "vip": "VIP",
     "new": "New",
-    "inactive": "Inactive",
-    "searchPlaceholder": "Search segments...",
-    "customers": "customers",
-    "orderValue": "order value",
-    "of": "of",
-    "totalCustomers": "total customers",
-    "avgOrderValue": "avg order value",
-    "viewSegment": "View Segment",
-    "editSegment": "Edit Segment",
-    "deleteSegment": "Delete Segment"
+    "returning": "Returning",
+    "atRisk": "At Risk"
   },
   "customerSegments": {
     "title": "Customer Segments",
@@ -869,9 +753,9 @@
     "avgOrder": "avg order",
     "conditions": "Conditions",
     "totalOrders": "Total Orders",
-    "tenPlusOrders": "> 10 orders",
+    "tenPlusOrders": "\u003e 10 orders",
     "totalSpent": "Total Spent",
-    "fiveThousandPlusEGP": "> EGP 5,000",
+    "fiveThousandPlusEGP": "\u003e EGP 5,000",
     "updated": "Updated",
     "newCustomers": "New Customers",
     "firstTimeBuyers": "First time buyers",
@@ -894,7 +778,7 @@
     "smsCampaigns": "SMS Campaigns",
     "pushNotifications": "Push Notifications",
     "sent": "sent",
-    "opened": "opened", 
+    "opened": "opened",
     "clicked": "clicked",
     "createCampaign": "Create Campaign",
     "viewAllCampaigns": "View all campaigns",
@@ -937,7 +821,7 @@
     },
     "contactsOverview": {
       "total": "Total",
-      "active": "Active", 
+      "active": "Active",
       "blocked": "Blocked",
       "groups": "Groups",
       "addContact": "Add Contact",
@@ -979,31 +863,16 @@
     }
   },
   "campaigns": {
-    "title": "Marketing Campaigns",
-    "createCampaign": "Create Campaign",
-    "active": "Active",
-    "draft": "Draft",
-    "scheduled": "Scheduled",
-    "completed": "Completed",
-    "campaignName": "Campaign Name",
-    "type": "Type",
-    "status": "Status",
-    "startDate": "Start Date",
-    "endDate": "End Date",
-    "budget": "Budget",
-    "spent": "Spent",
-    "conversions": "Conversions",
-    "roi": "ROI",
-    "edit": "Edit",
-    "duplicate": "Duplicate",
-    "archive": "Archive",
-    "viewReport": "View Report"
+    "blackFriday2023": "Black Friday 2023",
+    "socialMediaBlitz": "Social Media Blitz",
+    "whatsappFlash": "WhatsApp Flash Sale",
+    "googleAds": "Google Ads Q4"
   },
   "promotions": {
     "title": "Promotions",
     "createPromotion": "Create Promotion",
     "active": "Active",
-    "scheduled": "Scheduled", 
+    "scheduled": "Scheduled",
     "expired": "Expired",
     "promotionName": "Promotion Name",
     "type": "Type",
@@ -1078,7 +947,7 @@
     "table": {
       "couponCode": "Coupon Code",
       "description": "Description",
-      "typeAndValue": "Type & Value",
+      "typeAndValue": "Type \u0026 Value",
       "status": "Status",
       "usage": "Usage",
       "revenue": "Revenue",
@@ -1309,7 +1178,9 @@
     "totalReferrals": "Total Referrals",
     "totalSales": "Total Sales",
     "commissionEarned": "Commission Earned",
-    "status": "Status",
+    "status": {
+      "pending": "Pending"
+    },
     "pendingApproval": "Pending Approval",
     "approved": "Approved",
     "rejected": "Rejected"
@@ -1375,7 +1246,7 @@
     "viewDetails": "View Details"
   },
   "analytics": {
-    "title": "Analytics & Reports",
+    "title": "Analytics \u0026 Reports",
     "subtitle": "Track key metrics and gain insights into your business performance",
     "totalRevenue": "Total Revenue",
     "orders": "Orders",
@@ -1386,13 +1257,152 @@
     "salesAnalytics": "Sales Analytics",
     "salesAnalyticsDesc": "Revenue trends and sales performance",
     "customerAnalytics": "Customer Analytics",
-    "customerAnalyticsDesc": "Customer segments and behavior patterns",
+    "customerAnalyticsDesc": "Understand customer behavior, demographics, and lifetime value",
     "productPerformance": "Product Performance",
-    "productPerformanceDesc": "Top products and inventory insights",
+    "productPerformanceDesc": "Track product sales, inventory status, and performance metrics",
     "marketingAnalytics": "Marketing Analytics",
-    "marketingAnalyticsDesc": "Campaign performance and attribution",
+    "marketingAnalyticsDesc": "Monitor campaign performance and marketing effectiveness",
     "customReports": "Custom Reports",
-    "customReportsDesc": "Build and export tailored reports"
+    "customReportsDesc": "Create and save custom reports tailored to your needs",
+    "overview": "Overview",
+    "salesReports": "Sales Reports",
+    "salesReportsDesc": "Analyze revenue trends, payment methods, and category performance",
+    "revenueTrends": "Revenue Trends",
+    "paymentMethods": "Payment Methods",
+    "categoryPerformance": "Category Performance",
+    "revenueOverTime": "Revenue Over Time",
+    "avgOrderValue": "Average Order Value",
+    "repeatPurchaseRate": "Repeat Purchase Rate",
+    "dailyRevenueAndOrders": "Daily revenue and order trends",
+    "revenue": "Revenue",
+    "both": "Both",
+    "topCategories": "Top Categories",
+    "revenueByCategory": "Revenue distribution by category",
+    "revenueByPaymentMethod": "Revenue breakdown by payment method",
+    "ofTotalRevenue": "of total revenue",
+    "demographics": "Demographics",
+    "behavior": "Behavior",
+    "geography": "Geography",
+    "segments": "Customer Segments",
+    "newCustomers": "New Customers",
+    "repeatCustomers": "Repeat Customers",
+    "averageLifetimeValue": "Average Lifetime Value",
+    "customerRetention": "Customer Retention",
+    "ageDistribution": "Age Distribution",
+    "genderDistribution": "Gender Distribution",
+    "geographicDistribution": "Geographic Distribution",
+    "deviceUsage": "Device Usage",
+    "averageSessionDuration": "Avg Session Duration",
+    "bounceRate": "Bounce Rate",
+    "pagesPerSession": "Pages Per Session",
+    "customerGrowth": "Customer growth trend",
+    "vsLastQuarter": "vs last quarter",
+    "topProducts": "Top Products",
+    "inventory": "Inventory",
+    "categories": "Categories",
+    "conversion": "Conversion",
+    "bestSellers": "Best Sellers",
+    "lowStock": "Low Stock Alert",
+    "categoryRevenue": "Revenue by Category",
+    "conversionFunnel": "Conversion Funnel",
+    "topSellingProducts": "Top Selling Products",
+    "lowStockProducts": "Low Stock Products",
+    "conversionMetrics": "Conversion Metrics",
+    "productViews": "Product Views",
+    "addedToCart": "Added to Cart",
+    "purchased": "Purchased",
+    "stockLevel": "Stock Level",
+    "unitsSold": "Units Sold",
+    "inStock": "In Stock",
+    "lowStockAlert": "Low Stock",
+    "outOfStock": "Out of Stock",
+    "campaigns": "Campaigns",
+    "channels": "Channels",
+    "content": "Content",
+    "attribution": "Attribution",
+    "campaignPerformance": "Campaign Performance",
+    "channelPerformance": "Channel Performance",
+    "contentPerformance": "Content Performance",
+    "audienceInsights": "Audience Insights",
+    "totalSpend": "Total Spend",
+    "campaignROI": "Campaign ROI",
+    "customerAcquisition": "Customer Acquisition",
+    "channelMetrics": "Channel Performance Metrics",
+    "activeCampaigns": "active campaigns",
+    "socialMedia": "Social Media",
+    "email": "Email",
+    "search": "Search",
+    "display": "Display",
+    "affiliate": "Affiliate",
+    "impressions": "Impressions",
+    "clicks": "Clicks",
+    "conversions": "Conversions",
+    "ctr": "CTR",
+    "cpc": "CPC",
+    "roas": "ROAS",
+    "reportBuilder": "Report Builder",
+    "savedReports": "Saved Reports",
+    "createNewReport": "Create New Report",
+    "reportName": "Report Name",
+    "reportNamePlaceholder": "Enter report name",
+    "availableMetrics": "Available Metrics",
+    "selectedMetrics": "Selected Metrics",
+    "availableDimensions": "Available Dimensions",
+    "selectedDimensions": "Selected Dimensions",
+    "dragToAdd": "Drag metrics and dimensions here",
+    "visualization": "Visualization",
+    "timeRange": "Time Range",
+    "saveReport": "Save Report",
+    "generateReport": "Generate Report",
+    "exportReport": "Export Report",
+    "lastGenerated": "Last Generated",
+    "viewReport": "View Report",
+    "noSavedReports": "No saved reports yet. Create your first custom report above.",
+    "loading": "Loading analytics data...",
+    "totalProducts": "Total Products",
+    "totalReach": "Total Reach",
+    "engagementRate": "Engagement Rate",
+    "totalCustomers": "Total Customers",
+    "noData": "No data available for the selected period",
+    "avgProductRevenue": "Avg Product Revenue",
+    "avgRating": "Average Rating",
+    "stockAlerts": "Stock Alerts",
+    "topPerformingProducts": "Top Performing Products",
+    "bestSellingItems": "Best selling items by revenue",
+    "bestSeller": "Best Seller",
+    "performanceByCategory": "Revenue and growth by product category",
+    "inventoryStatus": "Inventory Status",
+    "viewToCart": "View to Cart",
+    "cartToOrder": "Cart to Order",
+    "returnRate": "Return Rate",
+    "crossSellRate": "Cross-sell Rate",
+    "roi": "ROI",
+    "reach": "Reach",
+    "spent": "Spent",
+    "budget": "Budget",
+    "budgetUsed": "Budget Used",
+    "performanceByChannel": "Performance metrics by marketing channel",
+    "topPerformingContent": "Engagement metrics by content type",
+    "posts": "Posts",
+    "engagement": "Engagement",
+    "shares": "Shares",
+    "performanceScore": "Performance Score",
+    "knowYourAudience": "Demographic and interest insights",
+    "topInterests": "Top Interests",
+    "topLocations": "Top Locations",
+    "returningCustomers": "Returning Customers",
+    "churnRate": "Churn Rate",
+    "customerSegments": "Customer Segments",
+    "segmentDistribution": "Distribution by customer segment",
+    "customerLTV": "Customer Lifetime Value",
+    "previousPeriod": "Previous Period",
+    "customersByLocation": "Customer distribution by location",
+    "customersByDevice": "Device usage statistics",
+    "customerBehavior": "Customer Behavior",
+    "behaviorMetrics": "Key behavioral metrics",
+    "avgSessionDuration": "Avg Session Duration",
+    "cartAbandonment": "Cart Abandonment Rate",
+    "error": "Error loading analytics data"
   },
   "financialReports": {
     "title": "Financial Reports",
@@ -1405,8 +1415,8 @@
     "salesReportDesc": "Detailed breakdown of sales",
     "expenseReport": "Expense Report",
     "expenseReportDesc": "Track all business expenses and cost analysis",
-    "profitLossStatement": "Profit & Loss Statement",
-    "profitLossDesc": "Comprehensive P&L statement with margins",
+    "profitLossStatement": "Profit \u0026 Loss Statement",
+    "profitLossDesc": "Comprehensive P\u0026L statement with margins",
     "cashFlowReport": "Cash Flow Report",
     "cashFlowDesc": "Monitor cash inflows and outflows",
     "taxReport": "Tax Report",
@@ -1448,7 +1458,7 @@
       "overview": "Overview",
       "revenue": "Revenue",
       "expenses": "Expenses",
-      "profitLoss": "P&L",
+      "profitLoss": "P\u0026L",
       "cashFlow": "Cash Flow",
       "allReports": "All Reports"
     },
@@ -1476,7 +1486,7 @@
     "revenueAnalysisDesc": "Detailed revenue reports and analytics will be displayed here",
     "expenseAnalysis": "Expense Analysis",
     "expenseAnalysisDesc": "Detailed expense reports and cost analysis will be displayed here",
-    "profitLossStatementDesc": "Comprehensive P&L statement will be displayed here",
+    "profitLossStatementDesc": "Comprehensive P\u0026L statement will be displayed here",
     "cashFlowAnalysis": "Cash Flow Analysis",
     "cashFlowAnalysisDesc": "Cash flow reports and forecasts will be displayed here"
   },
@@ -1493,6 +1503,7 @@
     "zoneName": "Zone Name",
     "zoneNamePlaceholder": "e.g., Domestic, International",
     "regions": "Regions",
+    "units": "units",
     "regionsPlaceholder": "e.g., United States, Canada (comma separated)",
     "addMethod": "Add Method",
     "method": "Method",
@@ -1567,7 +1578,7 @@
     "reviewDetailsDesc": "Enter the main review information",
     "product": "Product",
     "selectProduct": "Select a product",
-    "reviewerName": "Reviewer's Name",
+    "reviewerName": "Reviewer\u0027s Name",
     "reviewerNamePlaceholder": "John Doe",
     "reviewTitle": "Review Title",
     "reviewTitlePlaceholder": "Amazing product!",
@@ -1605,7 +1616,58 @@
     "chatPlaceholder": "Ask your selected agents anything...",
     "emptyChat": "Select agents and start chatting to get AI-powered assistance",
     "selectInstructions": "Click to select • Double-click to open chat",
-    "yourStoreName": "Your Store Name"
+    "yourStoreName": "Your Store Name",
+    "chatResponse": "Hi, I'm {{agentName}}. I'm here to help with {{description}}."
+  },
+  "agents": {
+    "seoAgent": {
+      "name": "SEO Agent",
+      "description": "Optimize your store for search engines and increase organic traffic"
+    },
+    "contentAgent": {
+      "name": "Content Agent",
+      "description": "Create compelling content that converts visitors into customers"
+    },
+    "supportAgent": {
+      "name": "Support Agent",
+      "description": "Provide 24/7 customer support with intelligent responses"
+    },
+    "pricingAgent": {
+      "name": "Pricing Agent",
+      "description": "Dynamic pricing optimization to maximize your profits"
+    },
+    "inventoryAgent": {
+      "name": "Inventory Agent",
+      "description": "Smart inventory management and stock predictions"
+    },
+    "adsAgent": {
+      "name": "Ads Agent",
+      "description": "Create and optimize ad campaigns across all platforms"
+    },
+    "recommendationAgent": {
+      "name": "Recommendation Agent",
+      "description": "AI-powered product recommendations for your customers"
+    },
+    "logisticsAgent": {
+      "name": "Logistics Agent",
+      "description": "Optimize shipping routes and delivery times"
+    },
+    "fraudAgent": {
+      "name": "Fraud Agent",
+      "description": "Advanced fraud detection and prevention system"
+    },
+    "sellerCoachAgent": {
+      "name": "Seller Coach Agent",
+      "description": "Personal coaching to improve your selling strategies"
+    },
+    "photoEnhancerAgent": {
+      "name": "Photo Enhancer Agent",
+      "description": "Enhance product photos with AI-powered editing"
+    },
+    "emailAgent": {
+      "name": "Email Agent",
+      "description": "Automated email marketing campaigns that convert"
+    }
   },
   "googleTag": {
     "pageTitle": "Google Tag Manager",
@@ -1626,8 +1688,8 @@
     "enhancedEcommerce": "Enhanced Ecommerce",
     "recommended": "Recommended",
     "measurePurchases": "Measure purchases, cart actions, and product views",
-    "step1Title": "Step 1: Add this code to the <head> section",
-    "step2Title": "Step 2: Add this code after opening <body> tag",
+    "step1Title": "Step 1: Add this code to the \u003chead\u003e section",
+    "step2Title": "Step 2: Add this code after opening \u003cbody\u003e tag",
     "standardEvents": "Standard Events",
     "eventConfiguration": "Configure which events to track automatically",
     "pageView": "Page View",
@@ -1655,7 +1717,7 @@
     "scroll": "Scroll",
     "timer": "Timer",
     "dataLayerCode": "Data Layer Code",
-    "debugTesting": "Debug & Testing",
+    "debugTesting": "Debug \u0026 Testing",
     "testImplementation": "Test your GTM implementation",
     "debugModeActive": "Debug Mode Active",
     "debugModeDescription": "GTM debug mode is enabled. Open your browser console to see tracking events.",
@@ -1766,7 +1828,7 @@
       "addChannel": "Add Channel"
     },
     "automation": {
-      "workflowsTitle": "Workflows & Automation",
+      "workflowsTitle": "Workflows \u0026 Automation",
       "triggers": "triggers",
       "actions": "actions",
       "sent": "sent",
@@ -1779,7 +1841,7 @@
       "enrolled": "{{count}} enrolled",
       "completion": "{{percent}}% completion",
       "appointmentReminders": "Appointment Reminders",
-      "appointmentRemindersDesc": "SMS & WhatsApp reminders 24hrs before appointments",
+      "appointmentRemindersDesc": "SMS \u0026 WhatsApp reminders 24hrs before appointments",
       "scheduled": "{{count}} scheduled",
       "delivery": "{{percent}}% delivery",
       "followupReminder": "Follow-up Reminder",
@@ -1796,7 +1858,7 @@
     "title": "Sitemap Agent",
     "subtitle": "Automatically generate and manage your XML sitemap for better search engine visibility",
     "yourSitemapUrl": "Your Sitemap URL",
-    "yourSitemapUrlDesc": "This is your store's XML sitemap that search engines will use to discover your pages",
+    "yourSitemapUrlDesc": "This is your store\u0027s XML sitemap that search engines will use to discover your pages",
     "copied": "Copied!",
     "copyUrl": "Copy URL",
     "customDomain": "I have a custom domain",
@@ -1879,6 +1941,139 @@
       }
     }
   },
+  "cities": {
+    "cairo": "Cairo",
+    "alexandria": "Alexandria",
+    "giza": "Giza",
+    "sharm": "Sharm El-Sheikh",
+    "other": "Other Cities"
+  },
+  "devices": {
+    "mobile": "Mobile",
+    "desktop": "Desktop",
+    "tablet": "Tablet"
+  },
+  "products": {
+    "wirelessEarbuds": "Wireless Earbuds Pro",
+    "smartWatch": "Smart Watch Ultra",
+    "yogaMat": "Premium Yoga Mat",
+    "coffeeGrinder": "Coffee Grinder Deluxe",
+    "runningShoes": "Running Shoes Sport",
+    "summerDress": "Summer Collection Dress"
+  },
+  "inventory": {
+    "inStock": "In Stock",
+    "lowStock": "Low Stock",
+    "outOfStock": "Out of Stock",
+    "overstocked": "Overstocked"
+  },
+  "sort": {
+    "byRevenue": "By Revenue",
+    "byUnits": "By Units",
+    "byRating": "By Rating",
+    "byGrowth": "By Growth"
+  },
+  "content": {
+    "productShowcase": "Product Showcase",
+    "customerStories": "Customer Stories",
+    "promotionalOffers": "Promotional Offers",
+    "educational": "Educational Content"
+  },
+  "interests": {
+    "technology": "Technology",
+    "fashion": "Fashion",
+    "fitness": "Fitness",
+    "travel": "Travel"
+  },
+  "age": {
+    "age1824": "18-24 years",
+    "age2534": "25-34 years",
+    "age3544": "35-44 years",
+    "age4554": "45-54 years",
+    "age55plus": "55+ years"
+  },
+  "reports": {
+    "templates": "Templates",
+    "createNew": "Create New",
+    "savedReports": "Saved Reports",
+    "accessYourCustomReports": "Access your custom reports",
+    "created": "Created",
+    "lastRun": "Last Run",
+    "reportBuilder": "Report Builder",
+    "customizeYourReport": "Customize your report",
+    "generateReport": "Generate Report",
+    "reportName": "Report Name",
+    "enterReportName": "Enter report name",
+    "timeRange": "Time Range",
+    "visualizationType": "Visualization Type",
+    "selectMetrics": "Select Metrics",
+    "selected": "selected",
+    "groupBy": "Group By",
+    "advancedOptions": "Advanced Options",
+    "autoRefresh": "Auto Refresh",
+    "scheduleReport": "Schedule Report",
+    "saveReport": "Save Report",
+    "exportData": "Export Data",
+    "clearAll": "Clear All",
+    "preview": "Preview",
+    "previewYourReport": "Preview your report",
+    "reportReadyToGenerate": "Report Ready to Generate",
+    "configureSettingsAndClick": "Configure settings and click \u0027Generate Report\u0027 to view results",
+    "monthlySalesSummary": "Monthly Sales Summary",
+    "productPerformanceMatrix": "Product Performance Matrix",
+    "customerSegmentAnalysis": "Customer Segment Analysis",
+    "marketingROIDashboard": "Marketing ROI Dashboard"
+  },
+  "schedule": {
+    "monthly": "Monthly",
+    "weekly": "Weekly",
+    "daily": "Daily",
+    "none": "None"
+  },
+  "timePeriods": {
+    "today": "Today",
+    "week": "Week",
+    "month": "Month",
+    "quarter": "Quarter",
+    "year": "Year",
+    "custom": "Custom"
+  },
+  "paymentMethods": {
+    "cash": "Cash",
+    "card": "Card",
+    "wallet": "Wallet",
+    "bank": "Bank Transfer"
+  },
+  "metrics": {
+    "revenue": "Revenue",
+    "orders": "Orders",
+    "avgOrderValue": "Average Order Value",
+    "customers": "Customers",
+    "newCustomers": "New Customers",
+    "returningCustomers": "Returning Customers",
+    "conversionRate": "Conversion Rate",
+    "cartAbandonment": "Cart Abandonment",
+    "unitsSold": "Units Sold",
+    "customerLTV": "Customer LTV",
+    "marketingSpend": "Marketing Spend",
+    "roi": "ROI"
+  },
+  "dimensions": {
+    "date": "Date",
+    "category": "Category",
+    "product": "Product",
+    "customer": "Customer",
+    "location": "Location",
+    "channel": "Channel",
+    "device": "Device",
+    "paymentMethod": "Payment Method"
+  },
+  "reportTypes": {
+    "table": "Table",
+    "lineChart": "Line Chart",
+    "barChart": "Bar Chart",
+    "pieChart": "Pie Chart"
+  },
   "spyCompetitor": {
     "title": "Spy on Competitors",
     "subtitle": "Analyze competitor websites to gain insights and improve your strategy",
@@ -1888,7 +2083,7 @@
     },
     "urlInput": {
       "title": "Enter Competitor URL",
-      "description": "Enter the competitor's website URL to start the analysis",
+      "description": "Enter the competitor\u0027s website URL to start the analysis",
       "label": "Competitor URL",
       "placeholder": "https://competitor.com",
       "analyze": "Analyze",
@@ -1911,7 +2106,7 @@
     },
     "strengths": {
       "title": "Competitor Strengths",
-      "description": "What they're doing well that you can learn from"
+      "description": "What they\u0027re doing well that you can learn from"
     },
     "weaknesses": {
       "title": "Competitor Weaknesses",
@@ -1958,7 +2153,7 @@
         },
         "seo": {
           "title": "Target Long-Tail Keywords",
-          "description": "Competitor ranks for 234 keywords you don't - opportunity for quick wins",
+          "description": "Competitor ranks for 234 keywords you don\u0027t - opportunity for quick wins",
           "timeline": "2-4 weeks"
         },
         "referral": {
@@ -2014,6 +2209,457 @@
       "prompt": "Want to implement these insights immediately?",
       "report": "Export Report",
       "implement": "Start Implementation"
+    }
+  },
+  "processingOrders": {
+    "title": "Processing Orders",
+    "subtitle": "Track and manage orders currently being processed and prepared for shipment",
+    "processingNow": "Processing Now",
+    "vsYesterday": "vs yesterday",
+    "shippedOrders": "Shipped Orders",
+    "readyForPickup": "Ready for Pickup",
+    "vsLastWeek": "vs last week",
+    "averageProcessingTime": "Average Processing Time",
+    "improvement": "improvement",
+    "allPriorities": "All Priorities",
+    "highPriority": "High Priority",
+    "mediumPriority": "Medium Priority",
+    "lowPriority": "Low Priority",
+    "items": "Items",
+    "total": "Total",
+    "payment": "Payment",
+    "viewDetails": "View Details",
+    "markAsShipped": "Mark as Shipped",
+    "markAsDelivered": "Mark as Delivered",
+    "cancelOrder": "Cancel Order",
+    "activeOrders": "Active Orders",
+    "processingPipeline": "Processing Pipeline",
+    "orderVerification": "Order Verification",
+    "packing": "Packing",
+    "qualityCheck": "Quality Check",
+    "readyToShip": "Ready to Ship",
+    "noOrdersFound": "No orders found",
+    "processingPerformance": "Processing Performance",
+    "keepUpTheExcellentWork": "Keep up the excellent work! Your processing speed is above average.",
+    "ordersPerHour": "Orders per Hour",
+    "accuracyRate": "Accuracy Rate",
+    "customerSatisfaction": "Customer Satisfaction"
+  },
+  "completedOrders": {
+    "title": "Completed Orders",
+    "subtitle": "Successfully delivered and completed orders history",
+    "totalCompleted": "Total Completed",
+    "vsLastMonth": "vs last month",
+    "revenueGenerated": "Revenue Generated",
+    "customerRating": "Customer Rating",
+    "improvement": "improvement",
+    "repeatCustomers": "Repeat Customers",
+    "vsLastQuarter": "vs last quarter",
+    "today": "Today",
+    "thisWeek": "This Week",
+    "thisMonth": "This Month",
+    "allTime": "All Time",
+    "items": "Items",
+    "total": "Total",
+    "payment": "Payment",
+    "viewDetails": "View Details",
+    "downloadInvoice": "Download Invoice",
+    "requestReview": "Request Review",
+    "totalRevenue": "Total Revenue",
+    "customerSatisfaction": "Customer Satisfaction",
+    "customerFeedback": "Customer Feedback",
+    "positiveFeedback": "Positive Feedback",
+    "fastDelivery": "Fast Delivery",
+    "productQuality": "Product Quality",
+    "customerService": "Customer Service",
+    "valueForMoney": "Value for Money",
+    "noOrdersFound": "No orders found",
+    "revenuePerformance": "Revenue Performance",
+    "revenuePerformanceSubtitle": "Your completed orders are generating strong revenue with positive growth trends",
+    "orderValue": "Average Order Value",
+    "bestSellingDay": "Best Selling Day",
+    "friday": "Friday",
+    "peakHour": "Peak Hour",
+    "exportReport": "Export Report",
+    "downloadDetailedAnalytics": "Download detailed analytics",
+    "requestFeedback": "Request Feedback",
+    "sendReviewInvitations": "Send review invitations",
+    "loyaltyProgram": "Loyalty Program",
+    "rewardRepeatCustomers": "Reward repeat customers"
+  },
+  "orderIssues": {
+    "title": "Order Issues",
+    "subtitle": "Orders with problems that need your attention",
+    "totalIssues": "Total Issues",
+    "paymentFailed": "Payment Failed",
+    "addressIssue": "Address Issue",
+    "stockUnavailable": "Stock Unavailable",
+    "customerComplaint": "Customer Complaint",
+    "resolvedToday": "Resolved Today",
+    "pendingResolution": "Pending Resolution",
+    "urgentIssues": "Urgent Issues",
+    "vsYesterday": "vs yesterday",
+    "filters": {
+      "allIssues": "All Issues",
+      "payment": "Payment",
+      "fulfillment": "Fulfillment",
+      "customer": "Customer",
+      "urgent": "Urgent Only"
+    },
+    "status": {
+      "open": "Open",
+      "inProgress": "In Progress",
+      "resolved": "Resolved",
+      "escalated": "Escalated"
+    },
+    "actions": {
+      "resolve": "Resolve",
+      "escalate": "Escalate",
+      "contact": "Contact Customer",
+      "refund": "Process Refund",
+      "viewDetails": "View Details"
+    },
+    "noIssuesFound": "No issues found",
+    "issueTypes": {
+      "paymentDeclined": "Payment Declined",
+      "wrongAddress": "Wrong Address",
+      "productDamaged": "Product Damaged",
+      "notAsDescribed": "Not as Described",
+      "deliveryDelayed": "Delivery Delayed"
+    }
+  },
+  "support": {
+    "title": "Support Center",
+    "subtitle": "We're here to help. Get assistance with your store and orders.",
+    "searchPlaceholder": "Search for help...",
+    "categories": {
+      "gettingStarted": "Getting Started",
+      "gettingStartedDesc": "Learn the basics and set up your store",
+      "orders": "Orders & Shipping",
+      "ordersDesc": "Manage orders, shipping, and fulfillment",
+      "products": "Products & Inventory",
+      "productsDesc": "Add products and manage inventory",
+      "payments": "Payments & Billing",
+      "paymentsDesc": "Payment methods and billing questions",
+      "marketing": "Marketing & SEO",
+      "marketingDesc": "Grow your business and reach customers",
+      "technical": "Technical Support",
+      "technicalDesc": "API, integrations, and technical issues"
+    },
+    "quickHelp": {
+      "title": "Quick Help",
+      "faq": "Frequently Asked Questions",
+      "videoTutorials": "Video Tutorials",
+      "documentation": "Documentation",
+      "community": "Community Forum"
+    },
+    "contactSupport": {
+      "title": "Contact Support",
+      "subtitle": "Can't find what you're looking for? We're here to help.",
+      "responseTime": "Average response time: 2 hours",
+      "availability": "Available 24/7",
+      "contactMethods": {
+        "chat": "Live Chat",
+        "chatDesc": "Get instant help from our support team",
+        "email": "Email Support",
+        "emailDesc": "Send us a detailed message",
+        "phone": "Phone Support",
+        "phoneDesc": "Talk to our support team",
+        "ticket": "Submit Ticket",
+        "ticketDesc": "Create a support ticket"
+      }
+    },
+    "resources": {
+      "title": "Resources",
+      "guides": "Setup Guides",
+      "apiDocs": "API Documentation",
+      "changelog": "Changelog",
+      "systemStatus": "System Status"
+    },
+    "popularArticles": {
+      "title": "Popular Articles",
+      "article1": "How to set up your first product",
+      "article2": "Understanding payment processing",
+      "article3": "Managing shipping zones and rates",
+      "article4": "Customizing your store theme",
+      "article5": "SEO best practices for your store",
+      "article6": "Handling returns and refunds"
+    },
+    "status": {
+      "operational": "All Systems Operational",
+      "maintenance": "Scheduled Maintenance",
+      "issue": "Service Issue"
+    },
+    "actions": {
+      "startChat": "Start Chat",
+      "sendEmail": "Send Email",
+      "callNow": "Call Now",
+      "createTicket": "Create Ticket",
+      "viewAll": "View All Articles",
+      "searchDocs": "Search Documentation"
+    }
+  },
+  "docs": {
+    "title": "Documentation",
+    "subtitle": "Everything you need to know about using Ordify",
+    "searchPlaceholder": "Search documentation...",
+    "categories": {
+      "gettingStarted": "Getting Started",
+      "gettingStartedDesc": "Start your journey with Ordify",
+      "products": "Products & Inventory",
+      "productsDesc": "Manage your product catalog",
+      "orders": "Order Management",
+      "ordersDesc": "Handle orders and fulfillment",
+      "marketing": "Marketing & SEO",
+      "marketingDesc": "Grow your business online",
+      "payments": "Payments & Billing",
+      "paymentsDesc": "Payment processing and billing",
+      "advanced": "Advanced Features",
+      "advancedDesc": "Power user features and APIs"
+    },
+    "sections": {
+      "gettingStarted": {
+        "quickStart": {
+          "title": "Quick Start Guide",
+          "description": "Get your store up and running in minutes"
+        },
+        "storeSetup": {
+          "title": "Store Setup",
+          "description": "Configure your store settings and preferences"
+        },
+        "firstProduct": {
+          "title": "Adding Your First Product",
+          "description": "Learn how to create and publish products"
+        },
+        "dashboard": {
+          "title": "Dashboard Overview",
+          "description": "Navigate and understand your dashboard"
+        }
+      },
+      "products": {
+        "productCreation": {
+          "title": "Product Creation Guide",
+          "description": "Create products with variants and options"
+        },
+        "inventoryManagement": {
+          "title": "Inventory Management",
+          "description": "Track stock levels and manage inventory"
+        },
+        "bulkImport": {
+          "title": "Bulk Import/Export",
+          "description": "Import products from CSV or Excel files"
+        },
+        "categories": {
+          "title": "Categories & Collections",
+          "description": "Organize products with categories"
+        }
+      },
+      "orders": {
+        "orderProcessing": {
+          "title": "Order Processing",
+          "description": "Process orders from placement to delivery"
+        },
+        "shippingSetup": {
+          "title": "Shipping Setup",
+          "description": "Configure shipping zones and rates"
+        },
+        "returnRefunds": {
+          "title": "Returns & Refunds",
+          "description": "Handle returns and process refunds"
+        },
+        "orderTracking": {
+          "title": "Order Tracking",
+          "description": "Enable order tracking for customers"
+        }
+      },
+      "marketing": {
+        "seoOptimization": {
+          "title": "SEO Optimization",
+          "description": "Improve your store's search rankings"
+        },
+        "emailMarketing": {
+          "title": "Email Marketing",
+          "description": "Create and send marketing campaigns"
+        },
+        "socialMedia": {
+          "title": "Social Media Integration",
+          "description": "Connect and sell on social platforms"
+        },
+        "discountCoupons": {
+          "title": "Discounts & Coupons",
+          "description": "Create promotions to boost sales"
+        }
+      },
+      "payments": {
+        "paymentGateways": {
+          "title": "Payment Gateways",
+          "description": "Set up payment methods for your store"
+        },
+        "taxConfiguration": {
+          "title": "Tax Configuration",
+          "description": "Configure tax rates and rules"
+        },
+        "payoutSettings": {
+          "title": "Payout Settings",
+          "description": "Manage how you receive payments"
+        },
+        "invoicing": {
+          "title": "Invoicing",
+          "description": "Generate and manage invoices"
+        }
+      },
+      "advanced": {
+        "apiIntegration": {
+          "title": "API Integration",
+          "description": "Connect third-party services via API"
+        },
+        "customization": {
+          "title": "Store Customization",
+          "description": "Customize themes and layouts"
+        },
+        "analytics": {
+          "title": "Advanced Analytics",
+          "description": "Deep dive into your store data"
+        },
+        "automation": {
+          "title": "Workflow Automation",
+          "description": "Automate repetitive tasks"
+        }
+      }
+    },
+    "popularArticles": {
+      "title": "Popular Articles",
+      "readTime": "{{minutes}} min read"
+    },
+    "needHelp": {
+      "title": "Still need help?",
+      "description": "Our support team is here to assist you",
+      "contactSupport": "Contact Support"
+    },
+    "lastUpdated": "Last updated: {{date}}",
+    "wasHelpful": "Was this article helpful?",
+    "relatedArticles": "Related Articles",
+    "tableOfContents": "Table of Contents",
+    "copyLink": "Copy Link",
+    "print": "Print",
+    "share": "Share"
+  },
+  "tutorials": {
+    "title": "Video Tutorials",
+    "subtitle": "Learn how to use Ordify with our comprehensive video guides",
+    "searchPlaceholder": "Search tutorials...",
+    "categories": {
+      "gettingStarted": "Getting Started",
+      "gettingStartedDesc": "Essential guides for beginners",
+      "products": "Product Management",
+      "productsDesc": "Product creation and inventory",
+      "marketing": "Marketing & Sales",
+      "marketingDesc": "Boost your sales and reach",
+      "advanced": "Advanced Features",
+      "advancedDesc": "Master advanced functionalities",
+      "tips": "Tips & Tricks",
+      "tipsDesc": "Pro tips for power users",
+      "integrations": "Integrations",
+      "integrationsDesc": "Connect third-party services"
+    },
+    "filters": {
+      "all": "All Videos",
+      "beginner": "Beginner",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced",
+      "duration": "Duration",
+      "under5min": "Under 5 minutes",
+      "5to10min": "5-10 minutes",
+      "over10min": "Over 10 minutes"
+    },
+    "videoPlayer": {
+      "watchLater": "Watch Later",
+      "share": "Share",
+      "transcript": "Transcript",
+      "speed": "Speed",
+      "quality": "Quality",
+      "autoplay": "Autoplay",
+      "nextVideo": "Next Video",
+      "previousVideo": "Previous Video",
+      "fullscreen": "Fullscreen",
+      "pip": "Picture in Picture"
+    },
+    "playlist": {
+      "title": "Course Playlist",
+      "currentVideo": "Now Playing",
+      "completed": "Completed",
+      "totalVideos": "{{count}} videos",
+      "totalDuration": "Total: {{duration}}",
+      "progress": "{{completed}} of {{total}} completed"
+    },
+    "metadata": {
+      "duration": "{{minutes}} min",
+      "difficulty": "Difficulty",
+      "lastUpdated": "Updated {{date}}",
+      "views": "{{count}} views",
+      "instructor": "Instructor"
+    },
+    "progress": {
+      "yourProgress": "Your Progress",
+      "completed": "{{count}} videos completed",
+      "certificates": "Certificates",
+      "achievements": "Achievements",
+      "continueWatching": "Continue Watching",
+      "resumeFrom": "Resume from {{time}}"
+    },
+    "actions": {
+      "markComplete": "Mark as Complete",
+      "addToPlaylist": "Add to Playlist",
+      "downloadResource": "Download Resources",
+      "askQuestion": "Ask a Question",
+      "reportIssue": "Report Issue"
+    },
+    "relatedContent": {
+      "title": "Related Content",
+      "suggestedNext": "Suggested Next",
+      "relatedDocs": "Related Documentation",
+      "communityDiscussion": "Community Discussion"
+    },
+    "videos": {
+      "quickStart": {
+        "title": "Quick Start: Your First Store",
+        "description": "Set up your Ordify store in under 10 minutes",
+        "duration": "8:45"
+      },
+      "addProducts": {
+        "title": "Adding Products Like a Pro",
+        "description": "Master product creation with variants and pricing",
+        "duration": "12:30"
+      },
+      "orderManagement": {
+        "title": "Order Management Masterclass",
+        "description": "Efficiently process orders from start to finish",
+        "duration": "15:20"
+      },
+      "seoBasics": {
+        "title": "SEO Basics for E-commerce",
+        "description": "Optimize your store for search engines",
+        "duration": "10:15"
+      },
+      "emailMarketing": {
+        "title": "Email Marketing that Converts",
+        "description": "Create campaigns that drive sales",
+        "duration": "18:00"
+      },
+      "analytics": {
+        "title": "Understanding Your Analytics",
+        "description": "Make data-driven decisions for growth",
+        "duration": "14:30"
+      }
+    },
+    "emptyState": {
+      "noResults": "No tutorials found",
+      "tryDifferent": "Try different search terms or browse categories"
+    },
+    "featured": {
+      "title": "Featured Course",
+      "badge": "Most Popular",
+      "enrollNow": "Start Learning"
     }
   }
 }

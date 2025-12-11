@@ -232,7 +232,7 @@ const ProfilePage = () => {
       )}
 
       {/* Profile Header Card */}
-      <Card className="mb-8 overflow-hidden border-0 shadow-lg bg-gradient-to-br from-primary/5 via-transparent to-primary/5 backdrop-blur-sm"
+      <Card className="mb-8 overflow-hidden border border-gray-200 dark:border-gray-700 shadow-lg bg-gradient-to-br from-primary/5 via-transparent to-primary/5 backdrop-blur-sm"
             style={{ animation: 'scaleIn 0.8s ease-out' }}>
         <CardHeader className="pb-4">
           <div className="flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-6">
@@ -332,7 +332,7 @@ const ProfilePage = () => {
 
         {/* Profile Tab */}
         <TabsContent value="profile" className="mt-6">
-          <Card className="border-0 shadow-md" style={{ animation: 'slideInFromLeft 0.6s ease-out' }}>
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-md" style={{ animation: 'slideInFromLeft 0.6s ease-out' }}>
             <CardHeader className="space-y-1 pb-6">
               <CardTitle className="text-2xl flex items-center gap-2">
                 <Sparkles className="h-6 w-6 text-primary" />
@@ -483,7 +483,7 @@ const ProfilePage = () => {
 
         {/* Password Tab */}
         <TabsContent value="password" className="mt-6">
-          <Card className="border-0 shadow-md" style={{ animation: 'slideInFromRight 0.6s ease-out' }}>
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-md" style={{ animation: 'slideInFromRight 0.6s ease-out' }}>
             <CardHeader className="space-y-1 pb-6">
               <CardTitle className="text-2xl flex items-center gap-2">
                 <Shield className="h-6 w-6 text-primary" />

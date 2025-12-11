@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { 
+import { useTranslation } from "react-i18next";
+import {
   Wallet,
   Download,
   Plus,
@@ -78,6 +79,7 @@ interface PaymentMethod {
 }
 
 function PayoutsPage() {
+  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
   const [filterStatus, setFilterStatus] = useState("all");
   const [filterMethod, setFilterMethod] = useState("all");
@@ -197,28 +199,28 @@ function PayoutsPage() {
         return (
           <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-400 flex items-center gap-1">
             <CheckCircle className="h-3 w-3" />
-            {"Completed"}
+            {t("payouts.status.completed")}
           </Badge>
         );
       case "processing":
         return (
           <Badge className="bg-blue-100 text-blue-700 dark:bg-blue-950/30 dark:text-blue-400 flex items-center gap-1">
             <Clock className="h-3 w-3" />
-            {"Processing"}
+            {t("payouts.status.processing")}
           </Badge>
         );
       case "failed":
         return (
           <Badge className="bg-red-100 text-red-700 dark:bg-red-950/30 dark:text-red-400 flex items-center gap-1">
             <XCircle className="h-3 w-3" />
-            {"Failed"}
+            {t("payouts.status.failed")}
           </Badge>
         );
       case "cancelled":
         return (
           <Badge variant="secondary" className="flex items-center gap-1">
             <XCircle className="h-3 w-3" />
-            {"Cancelled"}
+            {t("payouts.status.cancelled")}
           </Badge>
         );
       default:
@@ -230,31 +232,31 @@ function PayoutsPage() {
     <div className="space-y-6">
       <div className="flex bg-white dark:bg-black/80 rounded-2xl m-1 flex-1 flex-col gap-6 p-6">
         <Title
-          title={"Payouts"}
-          Subtitle={"Manage your withdrawals and track payout history"}
+          title={t("payouts.title")}
+          Subtitle={t("payouts.subtitle")}
           className="text-3xl"
           classNamee=""
         />
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
           <TabsList className="grid w-full md:w-auto md:inline-grid grid-cols-2">
-            <TabsTrigger value="overview">{"Overview"}</TabsTrigger>
-            <TabsTrigger value="history">{"Payout  History"}</TabsTrigger>
+            <TabsTrigger value="overview">{t("payouts.tabs.overview")}</TabsTrigger>
+            <TabsTrigger value="history">{t("payouts.tabs.history")}</TabsTrigger>
           </TabsList>
 
           <TabsContent value="overview" className="space-y-6">
             {/* Balance Overview */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              <Card className="glass-card border-0 hover:shadow-lg transition-all duration-300 hover:scale-105">
+              <Card className="glass-card border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 hover:scale-105">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-muted-foreground">{"Available  Balance"}</p>
+                      <p className="text-sm text-muted-foreground">{t("payouts.stats.availableBalance")}</p>
                       <p className="text-2xl font-bold mt-1">EGP {availableBalance.toFixed(2)}</p>
                       <div className="flex items-center gap-1 mt-2">
                         <TrendingUp className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
                         <span className="text-sm text-emerald-600 dark:text-emerald-400">
-                          {"Ready to withdraw"}
+                          {t("payouts.readyToWithdraw")}
                         </span>
                       </div>
                     </div>
@@ -265,14 +267,14 @@ function PayoutsPage() {
                 </CardContent>
               </Card>
 
-              <Card className="glass-card border-0 hover:shadow-lg transition-all duration-300">
+              <Card className="glass-card border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-muted-foreground">{"Pending  Payouts"}</p>
+                      <p className="text-sm text-muted-foreground">{t("payouts.stats.pendingPayouts")}</p>
                       <p className="text-2xl font-bold mt-1">EGP {pendingPayouts.toFixed(2)}</p>
                       <p className="text-xs text-muted-foreground mt-2">
-                        {payouts.filter(p => p.status === "processing").length} {"In progress"}
+                        {payouts.filter(p => p.status === "processing").length} {t("payouts.inProgress")}
                       </p>
                     </div>
                     <div className="h-12 w-12 rounded-full bg-blue-50 dark:bg-blue-950/30 flex items-center justify-center">
@@ -282,14 +284,14 @@ function PayoutsPage() {
                 </CardContent>
               </Card>
 
-              <Card className="glass-card border-0 hover:shadow-lg transition-all duration-300">
+              <Card className="glass-card border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-muted-foreground">{"Total  Paid  Out"}</p>
+                      <p className="text-sm text-muted-foreground">{t("payouts.stats.totalPaidOut")}</p>
                       <p className="text-2xl font-bold mt-1">EGP {completedPayouts.toFixed(2)}</p>
                       <p className="text-xs text-muted-foreground mt-2">
-                        {"This month"}
+                        {t("payouts.thisMonth")}
                       </p>
                     </div>
                     <div className="h-12 w-12 rounded-full bg-emerald-50 dark:bg-emerald-950/30 flex items-center justify-center">
@@ -299,14 +301,14 @@ function PayoutsPage() {
                 </CardContent>
               </Card>
 
-              <Card className="glass-card border-0 hover:shadow-lg transition-all duration-300">
+              <Card className="glass-card border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-muted-foreground">{"Total  Fees"}</p>
+                      <p className="text-sm text-muted-foreground">{t("payouts.totalFees")}</p>
                       <p className="text-2xl font-bold mt-1">EGP {totalFees.toFixed(2)}</p>
                       <p className="text-xs text-muted-foreground mt-2">
-                        {"Processing fees"}
+                        {t("payouts.processingFees")}
                       </p>
                     </div>
                     <div className="h-12 w-12 rounded-full bg-orange-50 dark:bg-orange-950/30 flex items-center justify-center">
@@ -318,17 +320,17 @@ function PayoutsPage() {
             </div>
 
             {/* Request Payout Section */}
-            <Card className="glass-card border-0">
+            <Card className="glass-card border border-gray-200 dark:border-gray-700">
               <CardHeader>
                 <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-semibold">{"Request  Payout"}</h3>
+                  <h3 className="text-lg font-semibold">{t("payouts.actions.requestPayout")}</h3>
                   <TooltipProvider>
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <Info className="h-4 w-4 text-muted-foreground cursor-help" />
                       </TooltipTrigger>
                       <TooltipContent>
-                        <p>{"Minimum payout amount is  E G P"} {minimumPayout}</p>
+                        <p>{t("payouts.minimumPayoutAmount", { amount: minimumPayout })}</p>
                       </TooltipContent>
                     </Tooltip>
                   </TooltipProvider>
@@ -338,7 +340,7 @@ function PayoutsPage() {
                 <div className="space-y-4">
                   <div className="flex items-center justify-between p-4 bg-muted/50 rounded-lg">
                     <div>
-                      <p className="text-sm text-muted-foreground">{"Payout  Progress"}</p>
+                      <p className="text-sm text-muted-foreground">{t("payouts.payoutProgress")}</p>
                       <p className="text-lg font-semibold mt-1">
                         EGP {availableBalance.toFixed(2)} / EGP {minimumPayout.toFixed(2)}
                       </p>
@@ -354,12 +356,12 @@ function PayoutsPage() {
                     disabled={!canRequestPayout}
                   >
                     <ArrowUpRight className="h-5 w-5 mr-2" />
-                    {"Request  Payout"}
+                    {t("payouts.actions.requestPayout")}
                   </Button>
                   
                   {!canRequestPayout && (
                     <p className="text-xs text-center text-muted-foreground">
-                      {"You need  E G P"} {(minimumPayout - availableBalance).toFixed(2)} {"More to request a payout"}
+                      {t("payouts.needMoreToRequest", { amount: (minimumPayout - availableBalance).toFixed(2) })}
                     </p>
                   )}
                 </div>
@@ -367,13 +369,13 @@ function PayoutsPage() {
             </Card>
 
             {/* Payment Methods */}
-            <Card className="glass-card border-0">
+            <Card className="glass-card border border-gray-200 dark:border-gray-700">
               <CardHeader>
                 <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-semibold">{"Payment  Methods"}</h3>
+                  <h3 className="text-lg font-semibold">{t("payouts.paymentMethods")}</h3>
                   <Button size="sm" variant="outline">
                     <Plus className="h-4 w-4 mr-2" />
-                    {"Add  Method"}
+                    {t("payouts.addMethod")}
                   </Button>
                 </div>
               </CardHeader>
@@ -395,38 +397,38 @@ function PayoutsPage() {
                       </div>
                       <div className="flex items-center gap-2">
                         {method.isDefault && (
-                          <Badge variant="secondary">{"Default"}</Badge>
+                          <Badge variant="secondary">{t("payouts.default")}</Badge>
                         )}
                         {method.verified ? (
                           <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-400">
-                            {"Verified"}
+                            {t("payouts.verified")}
                           </Badge>
                         ) : (
                           <Badge className="bg-yellow-100 text-yellow-700 dark:bg-yellow-950/30 dark:text-yellow-400">
-                            {"Pending"}
+                            {t("payouts.status.pending")}
                           </Badge>
                         )}
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
                             <Button variant="ghost" size="sm">
-                              {"Manage"}
+                              {t("payouts.manage")}
                             </Button>
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
-                            <DropdownMenuLabel>{"Actions"}</DropdownMenuLabel>
+                            <DropdownMenuLabel>{t("common.actions")}</DropdownMenuLabel>
                             <DropdownMenuSeparator />
                             {!method.isDefault && (
                               <DropdownMenuItem className="cursor-pointer">
-                                {"Set as  Default"}
+                                {t("payouts.setAsDefault")}
                               </DropdownMenuItem>
                             )}
                             {!method.verified && (
                               <DropdownMenuItem className="cursor-pointer">
-                                {"Verify"}
+                                {t("payouts.verify")}
                               </DropdownMenuItem>
                             )}
                             <DropdownMenuItem className="cursor-pointer text-destructive">
-                              {"Remove"}
+                              {t("common.delete")}
                             </DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>
@@ -440,14 +442,14 @@ function PayoutsPage() {
 
           <TabsContent value="history" className="space-y-6">
             {/* Filters */}
-            <Card className="glass-card border-0">
+            <Card className="glass-card border border-gray-200 dark:border-gray-700">
               <CardHeader className="pb-4">
                 <div className="flex flex-col lg:flex-row gap-4 justify-between">
                   <div className="flex flex-col md:flex-row gap-3">
                     <div className="relative">
                       <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                       <Input
-                        placeholder={""}
+                        placeholder={t("payouts.searchPlaceholder")}
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         className="pl-10 w-full md:w-[300px]"
@@ -456,26 +458,26 @@ function PayoutsPage() {
 
                     <Select value={filterStatus} onValueChange={setFilterStatus}>
                       <SelectTrigger className="w-full md:w-[150px]">
-                        <SelectValue placeholder={"Status"} />
+                        <SelectValue placeholder={t("common.status")} />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="all">{"All  Status"}</SelectItem>
-                        <SelectItem value="completed">{"Completed"}</SelectItem>
-                        <SelectItem value="processing">{"Processing"}</SelectItem>
-                        <SelectItem value="failed">{"Failed"}</SelectItem>
-                        <SelectItem value="cancelled">{"Cancelled"}</SelectItem>
+                        <SelectItem value="all">{t("payouts.filters.allStatuses")}</SelectItem>
+                        <SelectItem value="completed">{t("payouts.status.completed")}</SelectItem>
+                        <SelectItem value="processing">{t("payouts.status.processing")}</SelectItem>
+                        <SelectItem value="failed">{t("payouts.status.failed")}</SelectItem>
+                        <SelectItem value="cancelled">{t("payouts.status.cancelled")}</SelectItem>
                       </SelectContent>
                     </Select>
 
                     <Select value={filterMethod} onValueChange={setFilterMethod}>
                       <SelectTrigger className="w-full md:w-[150px]">
-                        <SelectValue placeholder={"Method"} />
+                        <SelectValue placeholder={t("payouts.table.method")} />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="all">{"All  Methods"}</SelectItem>
-                        <SelectItem value="bank_transfer">{"Bank  Transfer"}</SelectItem>
-                        <SelectItem value="vodafone_cash">{"Vodafone  Cash"}</SelectItem>
-                        <SelectItem value="instapay">{"Insta Pay"}</SelectItem>
+                        <SelectItem value="all">{t("payouts.filters.allMethods")}</SelectItem>
+                        <SelectItem value="bank_transfer">{t("payouts.methods.bankTransfer")}</SelectItem>
+                        <SelectItem value="vodafone_cash">{t("payouts.methods.vodafoneCash")}</SelectItem>
+                        <SelectItem value="instapay">{t("payouts.methods.instapay")}</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -483,11 +485,11 @@ function PayoutsPage() {
                   <div className="flex gap-2">
                     <Button variant="outline" size="sm">
                       <Calendar className="h-4 w-4 mr-2" />
-                      {"Date  Range"}
+                      {t("payouts.filters.dateRange")}
                     </Button>
                     <Button variant="outline" size="sm">
                       <Download className="h-4 w-4 mr-2" />
-                      {"Export"}
+                      {t("common.export")}
                     </Button>
                   </div>
                 </div>
@@ -499,14 +501,14 @@ function PayoutsPage() {
                   <Table>
                     <TableHeader>
                       <TableRow className="border-b border-gray-200 dark:border-gray-700">
-                        <TableHead>{"Date"}</TableHead>
-                        <TableHead>{"Reference"}</TableHead>
-                        <TableHead>{"Method"}</TableHead>
-                        <TableHead>{"Amount"}</TableHead>
-                        <TableHead>{"Fee"}</TableHead>
-                        <TableHead>{"Net  Amount"}</TableHead>
-                        <TableHead>{"Status"}</TableHead>
-                        <TableHead className="text-right">{"Actions"}</TableHead>
+                        <TableHead>{t("payouts.table.date")}</TableHead>
+                        <TableHead>{t("payouts.table.reference")}</TableHead>
+                        <TableHead>{t("payouts.table.method")}</TableHead>
+                        <TableHead>{t("payouts.table.amount")}</TableHead>
+                        <TableHead>{t("payouts.table.fee")}</TableHead>
+                        <TableHead>{t("payouts.table.netAmount")}</TableHead>
+                        <TableHead>{t("payouts.table.status")}</TableHead>
+                        <TableHead className="text-right">{t("common.actions")}</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -557,7 +559,7 @@ function PayoutsPage() {
                               {getStatusBadge(payout.status)}
                               {payout.status === "processing" && payout.estimatedArrival && (
                                 <p className="text-xs text-muted-foreground mt-1">
-                                  {"Est"}: {new Date(payout.estimatedArrival).toLocaleDateString()}
+                                  {t("payouts.estimatedArrival")}: {new Date(payout.estimatedArrival).toLocaleDateString()}
                                 </p>
                               )}
                             </div>
@@ -566,26 +568,26 @@ function PayoutsPage() {
                             <DropdownMenu>
                               <DropdownMenuTrigger asChild>
                                 <Button variant="ghost" size="sm">
-                                  {"View"}
+                                  {t("common.view")}
                                 </Button>
                               </DropdownMenuTrigger>
                               <DropdownMenuContent align="end">
-                                <DropdownMenuLabel>{"Payout  Actions"}</DropdownMenuLabel>
+                                <DropdownMenuLabel>{t("payouts.payoutActions")}</DropdownMenuLabel>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem className="cursor-pointer">
                                   <History className="h-4 w-4 mr-2" />
-                                  {"View  Details"}
+                                  {t("payouts.viewDetails")}
                                 </DropdownMenuItem>
                                 <DropdownMenuItem className="cursor-pointer">
                                   <Download className="h-4 w-4 mr-2" />
-                                  {"Download  Receipt"}
+                                  {t("payouts.downloadReceipt")}
                                 </DropdownMenuItem>
                                 {payout.status === "failed" && (
                                   <>
                                     <DropdownMenuSeparator />
                                     <DropdownMenuItem className="cursor-pointer">
                                       <ArrowUpRight className="h-4 w-4 mr-2" />
-                                      {"Retry  Payout"}
+                                      {t("payouts.retryPayout")}
                                     </DropdownMenuItem>
                                   </>
                                 )}
@@ -684,14 +686,14 @@ function PayoutsPage() {
                 {/* Pagination */}
                 <div className="flex flex-col md:flex-row items-center justify-between gap-4 mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
                   <p className="text-sm text-muted-foreground text-center md:text-left">
-                    {"Showing"} 1-{filteredPayouts.length} {"Of"} {payouts.length} {"Payouts"}
+                    {t("payouts.showing")} 1-{filteredPayouts.length} {t("common.of")} {payouts.length} {t("payouts.payouts")}
                   </p>
                   <div className="flex gap-2">
                     <Button variant="outline" size="sm" disabled>
-                      {"Previous"}
+                      {t("common.previous")}
                     </Button>
                     <Button variant="outline" size="sm">
-                      {"Next"}
+                      {t("common.next")}
                     </Button>
                   </div>
                 </div>

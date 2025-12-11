@@ -47,23 +47,16 @@ export function MetricCard({
   };
 
   return (
-    <Card className="relative overflow-hidden border-0 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-[1.02] bg-white dark:bg-gray-900">
+    <Card className="relative overflow-hidden border dark:border-gray-700 border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 hover:scale-[1.02] bg-white dark:bg-gray-900">
       {/* Background decoration */}
-      <div className={cn(
-        "absolute inset-0 opacity-5",
-        iconBgColor
-      )} />
-      
+      <div className={cn("absolute inset-0 opacity-5", iconBgColor)} />
+
       <CardContent className="relative p-6">
         <div className="flex items-start justify-between">
           <div className="space-y-3">
-            <p className="text-sm font-medium text-muted-foreground">
-              {title}
-            </p>
+            <p className="text-sm font-medium text-muted-foreground">{title}</p>
             <div className="flex items-baseline gap-2">
-              <p className="text-3xl font-bold tracking-tight">
-                {value}
-              </p>
+              <p className="text-3xl font-bold tracking-tight">{value}</p>
               {subValue && (
                 <span className="text-sm text-muted-foreground font-medium">
                   {subValue}
@@ -72,24 +65,24 @@ export function MetricCard({
             </div>
             <div className="flex items-center gap-2">
               {getChangeIcon()}
-              <span className={cn(
-                "text-sm font-medium",
-                changeType === 'increase' ? "text-green-600 dark:text-green-400" : 
-                changeType === 'decrease' ? "text-red-600 dark:text-red-400" : 
-                "text-gray-600 dark:text-gray-400"
-              )}>
-                {change > 0 ? '+' : ''}{change}%
+              <span
+                className={cn(
+                  "text-sm font-medium",
+                  changeType === "increase"
+                    ? "text-green-600 dark:text-green-400"
+                    : changeType === "decrease"
+                    ? "text-red-600 dark:text-red-400"
+                    : "text-gray-600 dark:text-gray-400"
+                )}
+              >
+                {change > 0 ? "+" : ""}
+                {change}%
               </span>
-              <span className="text-xs text-muted-foreground">
-                {period}
-              </span>
+              <span className="text-xs text-muted-foreground">{period}</span>
               {trend && getTrendIcon()}
             </div>
           </div>
-          <div className={cn(
-            "p-3 rounded-xl",
-            iconBgColor
-          )}>
+          <div className={cn("p-3 rounded-xl", iconBgColor)}>
             <Icon className={cn("h-7 w-7", iconColor)} />
           </div>
         </div>

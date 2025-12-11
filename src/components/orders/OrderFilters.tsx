@@ -138,12 +138,12 @@ export function OrderFilters({
           </DropdownMenu>
 
           <Button
-            variant="outline"
+            variant="ghost"
             size="icon"
             onClick={() => setShowFilters(!showFilters)}
             className={cn(
-              "relative border-gray-200 dark:border-gray-700",
-              activeFiltersCount > 0 && "border-blue-500"
+              "relative hover:bg-transparent dark:hover:bg-transparent",
+              activeFiltersCount > 0 && "text-blue-500"
             )}
           >
             <Filter className="h-4 w-4" />

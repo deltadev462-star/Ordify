@@ -483,7 +483,7 @@ function Promotions() {
                     </SelectContent>
                   </Select>
 
-                  <Button variant="outline" size="icon" className="shrink-0">
+                  <Button variant="ghost" size="icon" className="shrink-0 hover:bg-transparent dark:hover:bg-transparent">
                     <Filter className="h-4 w-4" />
                   </Button>
                 </div>

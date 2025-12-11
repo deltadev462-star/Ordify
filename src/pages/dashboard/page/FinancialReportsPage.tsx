@@ -212,7 +212,7 @@ function FinancialReportsPage() {
         />
 
         {/* Period Selection and Actions */}
-        <Card className="glass-card border-0">
+        <Card className="glass-card border border-gray-200 dark:border-gray-700">
           <CardHeader>
             <div className="flex flex-col md:flex-row gap-4 justify-between items-start md:items-center">
               <div className="flex gap-3">
@@ -287,7 +287,7 @@ function FinancialReportsPage() {
                 const isExpense = metric.label === t("financialReports.totalExpenses");
                 
                 return (
-                  <Card key={index} className="glass-card border-0 hover:shadow-lg transition-all duration-300 hover:scale-105">
+                  <Card key={index} className="glass-card border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 hover:scale-105">
                     <CardContent className="p-6">
                       <div className="flex items-center justify-between mb-4">
                         <p className="text-sm text-muted-foreground">{metric.label}</p>
@@ -329,7 +329,7 @@ function FinancialReportsPage() {
             </div>
 
             {/* Revenue Trend Chart */}
-            <Card className="glass-card border-0">
+            <Card className="glass-card border border-gray-200 dark:border-gray-700">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <LineChart className="h-5 w-5" />
@@ -359,7 +359,7 @@ function FinancialReportsPage() {
             {/* Quick Stats */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Top Selling Products */}
-              <Card className="glass-card border-0">
+              <Card className="glass-card border border-gray-200 dark:border-gray-700">
                 <CardHeader>
                   <CardTitle className="text-base flex items-center gap-2">
                     <Target className="h-4 w-4" />
@@ -418,7 +418,7 @@ function FinancialReportsPage() {
               </Card>
 
               {/* Expense Breakdown */}
-              <Card className="glass-card border-0">
+              <Card className="glass-card border border-gray-200 dark:border-gray-700">
                 <CardHeader>
                   <CardTitle className="text-base flex items-center gap-2">
                     <PieChart className="h-4 w-4" />
@@ -454,7 +454,7 @@ function FinancialReportsPage() {
               {reportSections.map((report) => (
                 <Card 
                   key={report.id}
-                  className={`glass-card border-0 hover:shadow-lg transition-all duration-300 ${
+                  className={`glass-card border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 ${
                     report.available ? "cursor-pointer hover:scale-105" : "opacity-60"
                   }`}
                 >
@@ -488,7 +488,7 @@ function FinancialReportsPage() {
             </div>
 
             {/* Quick Export Options */}
-            <Card className="glass-card border-0">
+            <Card className="glass-card border border-gray-200 dark:border-gray-700">
               <CardHeader>
                 <CardTitle className="text-base">{t("financialReports.quickExportOptions")}</CardTitle>
               </CardHeader>
@@ -517,7 +517,7 @@ function FinancialReportsPage() {
 
           {/* Placeholder for other tabs */}
           <TabsContent value="revenue" className="space-y-6">
-            <Card className="glass-card border-0">
+            <Card className="glass-card border border-gray-200 dark:border-gray-700">
               <CardContent className="p-12 text-center">
                 <BarChart3 className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
                 <h3 className="text-lg font-semibold mb-2">{t("financialReports.revenueAnalysis")}</h3>
@@ -529,7 +529,7 @@ function FinancialReportsPage() {
           </TabsContent>
 
           <TabsContent value="expenses" className="space-y-6">
-            <Card className="glass-card border-0">
+            <Card className="glass-card border border-gray-200 dark:border-gray-700">
               <CardContent className="p-12 text-center">
                 <Receipt className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
                 <h3 className="text-lg font-semibold mb-2">{t("financialReports.expenseAnalysis")}</h3>
@@ -541,7 +541,7 @@ function FinancialReportsPage() {
           </TabsContent>
 
           <TabsContent value="profit-loss" className="space-y-6">
-            <Card className="glass-card border-0">
+            <Card className="glass-card border border-gray-200 dark:border-gray-700">
               <CardContent className="p-12 text-center">
                 <TrendingUp className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
                 <h3 className="text-lg font-semibold mb-2">{t("financialReports.profitLossStatement")}</h3>
@@ -553,7 +553,7 @@ function FinancialReportsPage() {
           </TabsContent>
 
           <TabsContent value="cashflow" className="space-y-6">
-            <Card className="glass-card border-0">
+            <Card className="glass-card border border-gray-200 dark:border-gray-700">
               <CardContent className="p-12 text-center">
                 <Activity className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
                 <h3 className="text-lg font-semibold mb-2">{t("financialReports.cashFlowAnalysis")}</h3>

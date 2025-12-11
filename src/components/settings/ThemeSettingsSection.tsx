@@ -236,7 +236,7 @@ function ThemeSettingsSection() {
 
         <TabsContent value="colors" className="space-y-6">
           {/* Theme Presets */}
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
             <CardHeader className="bg-gradient-to-r from-purple-500 to-pink-500 text-white">
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
@@ -311,7 +311,7 @@ function ThemeSettingsSection() {
           </Card>
 
           {/* Color Customization */}
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Palette className="w-5 h-5 text-primary" />
@@ -432,7 +432,7 @@ function ThemeSettingsSection() {
         </TabsContent>
 
         <TabsContent value="typography" className="space-y-6">
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Type className="w-5 h-5 text-primary" />
@@ -529,7 +529,7 @@ function ThemeSettingsSection() {
         </TabsContent>
 
         <TabsContent value="layout" className="space-y-6">
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Layout className="w-5 h-5 text-primary" />
@@ -630,7 +630,7 @@ function ThemeSettingsSection() {
           </Card>
 
           {/* Preview Example */}
-          <Card className="border-0 shadow-lg overflow-hidden">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-lg overflow-hidden">
             <CardHeader>
               <CardTitle className="text-lg">{"Preview"}</CardTitle>
             </CardHeader>
@@ -672,7 +672,7 @@ function ThemeSettingsSection() {
         </TabsContent>
 
         <TabsContent value="advanced" className="space-y-6">
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Code2 className="w-5 h-5 text-primary" />
@@ -702,7 +702,7 @@ function ThemeSettingsSection() {
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Settings className="w-5 h-5 text-primary" />

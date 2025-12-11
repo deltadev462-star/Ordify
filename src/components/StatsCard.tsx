@@ -56,7 +56,7 @@ const StatCardItem = ({
   };
 
   return (
-    <Card className="group relative overflow-hidden border-0 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white dark:bg-gray-900">
+    <Card className="group relative overflow-hidden border border-gray-200 dark:border-gray-700 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-white dark:bg-gray-900">
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/5 to-transparent rounded-full -translate-y-8 translate-x-8 group-hover:scale-110 transition-transform duration-500" />
       
@@ -160,7 +160,7 @@ export default function StatsCard() {
 
       {/* Summary Cards */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-6">
-        <Card className="col-span-1 lg:col-span-2 border-0 shadow-lg bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-950/30 dark:to-indigo-900/30">
+        <Card className="col-span-1 lg:col-span-2 border border-gray-200 dark:border-gray-700 shadow-lg bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-950/30 dark:to-indigo-900/30">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
@@ -208,7 +208,7 @@ export default function StatsCard() {
           </CardContent>
         </Card>
 
-        <Card className="border-0 shadow-lg bg-gradient-to-br from-purple-50 to-pink-100 dark:from-purple-950/30 dark:to-pink-900/30">
+        <Card className="border border-gray-200 dark:border-gray-700 shadow-lg bg-gradient-to-br from-purple-50 to-pink-100 dark:from-purple-950/30 dark:to-pink-900/30">
           <CardContent className="p-6">
             <div className="flex items-start justify-between mb-4">
               <div className="p-3 rounded-xl bg-purple-500/10">

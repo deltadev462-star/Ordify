@@ -547,7 +547,7 @@ function WhatsappMarketing() {
 
         {/* Statistics Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <Card className="glass-card border-0 hover:shadow-lg transition-all duration-300 hover:scale-105">
+          <Card className="glass-card border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 hover:scale-105">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -567,7 +567,7 @@ function WhatsappMarketing() {
             </CardContent>
           </Card>
 
-          <Card className="glass-card border-0 hover:shadow-lg transition-all duration-300 hover:scale-105">
+          <Card className="glass-card border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 hover:scale-105">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -587,7 +587,7 @@ function WhatsappMarketing() {
             </CardContent>
           </Card>
 
-          <Card className="glass-card border-0 hover:shadow-lg transition-all duration-300 hover:scale-105">
+          <Card className="glass-card border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 hover:scale-105">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -602,7 +602,7 @@ function WhatsappMarketing() {
             </CardContent>
           </Card>
 
-          <Card className="glass-card border-0 hover:shadow-lg transition-all duration-300 hover:scale-105">
+          <Card className="glass-card border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 hover:scale-105">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -624,7 +624,7 @@ function WhatsappMarketing() {
         </div>
 
         {/* WhatsApp Business Account */}
-        <Card className="glass-card border-0">
+        <Card className="glass-card border border-gray-200 dark:border-gray-700">
           <CardHeader>
             <CardTitle className="text-lg flex items-center gap-2">
               <MessageSquare className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
@@ -642,7 +642,7 @@ function WhatsappMarketing() {
                   <h3 className="font-medium text-lg">Your Store Name</h3>
                   <p className="text-sm text-muted-foreground">+20 123 456 7890</p>
                   <div className="flex items-center justify-center sm:justify-start gap-2 mt-1 flex-wrap">
-                    <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-400">
+                    <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-950/30 dark:text-emerald-400 border-0">
                       <CheckCircle className="h-3 w-3 mr-1" />
                       {t("common.status")} Business
                     </Badge>
@@ -744,7 +744,7 @@ function WhatsappMarketing() {
             </div>
 
             {/* Campaigns Table */}
-            <Card className="glass-card border-0">
+            <Card className="glass-card border border-gray-200 dark:border-gray-700">
               <CardHeader>
                 <div className="flex flex-col gap-4">
                   <CardTitle className="text-lg">{t("campaigns.title")}</CardTitle>
@@ -787,7 +787,7 @@ function WhatsappMarketing() {
                         </SelectContent>
                       </Select>
 
-                      <Button variant="outline" size="icon" className="shrink-0">
+                      <Button variant="ghost" size="icon" className="shrink-0 hover:bg-transparent dark:hover:bg-transparent">
                         <Filter className="h-4 w-4" />
                       </Button>
                     </div>
@@ -1018,7 +1018,7 @@ function WhatsappMarketing() {
 
           <TabsContent value="contacts" className="space-y-6">
             <Card className="glass-card border-0">
-              <CardHeader>
+              <CardHeader className="border-b border-gray-200 dark:border-gray-700">
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                   <CardTitle className="text-lg">{t("whatsappMarketing.contacts")}</CardTitle>
                   <div className="flex gap-2 w-full sm:w-auto">
@@ -1090,7 +1090,7 @@ function WhatsappMarketing() {
           </TabsContent>
 
           <TabsContent value="automation" className="space-y-6">
-            <Card className="glass-card border-0">
+            <Card className="glass-card border border-gray-200 dark:border-gray-700">
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-lg flex items-center gap-2">

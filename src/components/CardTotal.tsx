@@ -105,7 +105,7 @@ export default function CardTotal({
   };
 
   return (
-    <Card className={`group relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] bg-gradient-to-br ${config.bg} ${className}`}>
+    <Card className={`group relative overflow-hidden border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] bg-gradient-to-br ${config.bg} ${className}`}>
       {/* Decorative elements */}
       <div className="absolute top-0 right-0 w-32 h-32 bg-white/20 dark:bg-white/5 rounded-full blur-3xl transform translate-x-16 -translate-y-16 group-hover:scale-150 transition-transform duration-700" />
       <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 dark:bg-white/5 rounded-full blur-2xl transform -translate-x-12 translate-y-12 group-hover:scale-150 transition-transform duration-700" />

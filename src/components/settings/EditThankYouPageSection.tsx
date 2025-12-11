@@ -260,7 +260,7 @@ function EditThankYouPageSection() {
         </TabsList>
 
         <TabsContent value="general" className="space-y-6">
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Heart className="w-5 h-5 text-primary" />
@@ -476,7 +476,7 @@ function EditThankYouPageSection() {
         </TabsContent>
 
         <TabsContent value="content" className="space-y-6">
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
             <CardHeader className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white">
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
@@ -690,7 +690,7 @@ function EditThankYouPageSection() {
         </TabsContent>
 
         <TabsContent value="email" className="space-y-6">
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Mail className="w-5 h-5 text-primary" />
@@ -808,7 +808,7 @@ function EditThankYouPageSection() {
         </TabsContent>
 
         <TabsContent value="style" className="space-y-6">
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Palette className="w-5 h-5 text-primary" />
@@ -933,7 +933,7 @@ function EditThankYouPageSection() {
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Eye className="w-5 h-5 text-primary" />
@@ -978,7 +978,7 @@ function EditThankYouPageSection() {
         </TabsContent>
 
         <TabsContent value="advanced" className="space-y-6">
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Code className="w-5 h-5 text-primary" />
@@ -1008,7 +1008,7 @@ function EditThankYouPageSection() {
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Download className="w-5 h-5 text-primary" />
@@ -1051,7 +1051,7 @@ function EditThankYouPageSection() {
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-lg">
+          <Card className="border border-gray-200 dark:border-gray-700 shadow-lg">
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-primary" />

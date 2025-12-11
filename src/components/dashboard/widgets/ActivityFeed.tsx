@@ -62,7 +62,7 @@ export function ActivityFeed({ activities, onViewAll }: ActivityFeedProps) {
   };
 
   return (
-    <Card className="border-0 shadow-sm">
+    <Card className="border border-gray-200 dark:border-gray-700 shadow-sm">
       <CardHeader className="pb-4">
         <div className="flex justify-between items-center">
           <div>

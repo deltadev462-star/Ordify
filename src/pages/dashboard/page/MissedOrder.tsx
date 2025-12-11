@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import Title from "@/components/Title";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -66,6 +67,7 @@ interface MissedOrderData {
 }
 
 function MissedOrder() {
+  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
   const [dateRange, setDateRange] = useState("week");
@@ -159,10 +161,10 @@ function MissedOrder() {
 
   const getStatusBadge = (status: string) => {
     const statusConfig = {
-      pending: { label: "في الانتظار", color: "bg-yellow-500/10 text-yellow-600 hover:bg-yellow-500/20" },
-      contacted: { label: "تم التواصل", color: "bg-blue-500/10 text-blue-600 hover:bg-blue-500/20" },
-      recovered: { label: "تم الاسترداد", color: "bg-green-500/10 text-green-600 hover:bg-green-500/20" },
-      lost: { label: "مفقود", color: "bg-red-500/10 text-red-600 hover:bg-red-500/20" },
+      pending: { label: t("missedOrder.status.pending"), color: "bg-yellow-500/10 text-yellow-600 hover:bg-yellow-500/20" },
+      contacted: { label: t("missedOrder.status.contacted"), color: "bg-blue-500/10 text-blue-600 hover:bg-blue-500/20" },
+      recovered: { label: t("missedOrder.status.recovered"), color: "bg-green-500/10 text-green-600 hover:bg-green-500/20" },
+      lost: { label: t("missedOrder.status.lost"), color: "bg-red-500/10 text-red-600 hover:bg-red-500/20" },
     };
     const config = statusConfig[status as keyof typeof statusConfig];
     return (
@@ -188,10 +190,8 @@ function MissedOrder() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <Title
-            title={"Missed  Orders"}
-            Subtitle={
-              "Track and recover abandoned carts from customers who didn't complete their purchase"
-            }
+            title={t("missedOrder.title")}
+            Subtitle={t("missedOrder.subtitle")}
             className="text-3xl"
             classNamee=""
           />
@@ -202,7 +202,7 @@ function MissedOrder() {
               className="gap-2 border-gray-200 dark:border-gray-800"
             >
               <RefreshCw className="h-4 w-4" />
-              {"Refresh"}
+              {t("common.refresh")}
             </Button>
             <Button
               variant="outline"
@@ -210,14 +210,14 @@ function MissedOrder() {
               className="gap-2 border-gray-200 dark:border-gray-800"
             >
               <Download className="h-4 w-4" />
-              {"Export"}
+              {t("common.export")}
             </Button>
             <Button
               size="sm"
               className="gap-2 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800"
             >
               <MessageSquare className="h-4 w-4" />
-              {"Bulk  Message"}
+              {t("missedOrder.bulkMessage")}
             </Button>
           </div>
         </div>
@@ -229,7 +229,7 @@ function MissedOrder() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-muted-foreground">
-                    {"Total  Orders"}
+                    {t("missedOrder.stats.totalOrders")}
                   </p>
                   <p className="text-2xl font-bold">{stats.total}</p>
                 </div>
@@ -243,7 +243,7 @@ function MissedOrder() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-yellow-700 dark:text-yellow-400">
-                    {"Pending"}
+                    {t("common.status.pending")}
                   </p>
                   <p className="text-2xl font-bold text-yellow-700 dark:text-yellow-400">
                     {stats.pending}
@@ -259,7 +259,7 @@ function MissedOrder() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-blue-700 dark:text-blue-400">
-                    {"Contacted"}
+                    {t("missedOrder.status.contacted")}
                   </p>
                   <p className="text-2xl font-bold text-blue-700 dark:text-blue-400">
                     {stats.contacted}
@@ -275,7 +275,7 @@ function MissedOrder() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-green-700 dark:text-green-400">
-                    {"Recovered"}
+                    {t("missedOrder.status.recovered")}
                   </p>
                   <p className="text-2xl font-bold text-green-700 dark:text-green-400">
                     {stats.recovered}
@@ -291,10 +291,10 @@ function MissedOrder() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-purple-700 dark:text-purple-400">
-                    {"Total  Value"}
+                    {t("missedOrder.stats.totalValue")}
                   </p>
                   <p className="text-2xl font-bold text-purple-700 dark:text-purple-400">
-                    {stats.totalValue.toLocaleString()} {"E G P"}
+                    {stats.totalValue.toLocaleString()} EGP
                   </p>
                 </div>
                 <TrendingUp className="h-8 w-8 text-purple-500" />
@@ -307,7 +307,7 @@ function MissedOrder() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-indigo-700 dark:text-indigo-400">
-                    {"Recovery  Rate"}
+                    {t("missedOrder.stats.recoveryRate")}
                   </p>
                   <p className="text-2xl font-bold text-indigo-700 dark:text-indigo-400">
                     {stats.recoveryRate}%
@@ -328,7 +328,7 @@ function MissedOrder() {
                 <div className="relative flex-1 sm:min-w-[300px]">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                   <Input
-                    placeholder={"Search by name"}
+                    placeholder={t("missedOrder.searchPlaceholder")}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="pl-10 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-800"
@@ -338,27 +338,27 @@ function MissedOrder() {
                 <Select value={statusFilter} onValueChange={setStatusFilter}>
                   <SelectTrigger className="w-full sm:w-[180px] bg-white dark:bg-gray-800">
                     <Filter className="h-4 w-4 mr-2" />
-                    <SelectValue placeholder={"Filter by status"} />
+                    <SelectValue placeholder={t("missedOrder.filterByStatus")} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">{"All  Status"}</SelectItem>
-                    <SelectItem value="pending">{"Pending"}</SelectItem>
-                    <SelectItem value="contacted">{"Contacted"}</SelectItem>
-                    <SelectItem value="recovered">{"Recovered"}</SelectItem>
-                    <SelectItem value="lost">{"Lost"}</SelectItem>
+                    <SelectItem value="all">{t("missedOrder.filters.allStatus")}</SelectItem>
+                    <SelectItem value="pending">{t("missedOrder.status.pending")}</SelectItem>
+                    <SelectItem value="contacted">{t("missedOrder.status.contacted")}</SelectItem>
+                    <SelectItem value="recovered">{t("missedOrder.status.recovered")}</SelectItem>
+                    <SelectItem value="lost">{t("missedOrder.status.lost")}</SelectItem>
                   </SelectContent>
                 </Select>
 
                 <Select value={dateRange} onValueChange={setDateRange}>
                   <SelectTrigger className="w-full sm:w-[180px] bg-white dark:bg-gray-800">
                     <Calendar className="h-4 w-4 mr-2" />
-                    <SelectValue placeholder={"Date range"} />
+                    <SelectValue placeholder={t("common.dateRange")} />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="today">{"Today"}</SelectItem>
-                    <SelectItem value="week">{"This  Week"}</SelectItem>
-                    <SelectItem value="month">{"This  Month"}</SelectItem>
-                    <SelectItem value="year">{"This  Year"}</SelectItem>
+                    <SelectItem value="today">{t("missedOrder.filters.today")}</SelectItem>
+                    <SelectItem value="week">{t("missedOrder.filters.thisWeek")}</SelectItem>
+                    <SelectItem value="month">{t("missedOrder.filters.thisMonth")}</SelectItem>
+                    <SelectItem value="year">{t("missedOrder.filters.thisYear")}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -366,11 +366,11 @@ function MissedOrder() {
               {/* Tabs */}
               <Tabs defaultValue="all" className="w-full lg:w-auto">
                 <TabsList className="grid grid-cols-4 w-full lg:w-auto bg-gray-100 dark:bg-gray-800">
-                  <TabsTrigger value="all">{"All"}</TabsTrigger>
-                  <TabsTrigger value="urgent">{"Urgent"}</TabsTrigger>
-                  <TabsTrigger value="recent">{"Recent"}</TabsTrigger>
+                  <TabsTrigger value="all">{t("common.all")}</TabsTrigger>
+                  <TabsTrigger value="urgent">{t("missedOrder.tabs.urgent")}</TabsTrigger>
+                  <TabsTrigger value="recent">{t("missedOrder.tabs.recent")}</TabsTrigger>
                   <TabsTrigger value="high-value">
-                    {"High  Value"}
+                    {t("missedOrder.tabs.highValue")}
                   </TabsTrigger>
                 </TabsList>
               </Tabs>
@@ -385,31 +385,31 @@ function MissedOrder() {
                   <TableHeader className="bg-gray-50 dark:bg-gray-800/50">
                     <TableRow>
                       <TableHead className="text-right font-semibold">
-                        {"Order  I D"}
+                        {t("missedOrder.table.orderId")}
                       </TableHead>
                       <TableHead className="text-right font-semibold">
-                        {"Customer"}
+                        {t("missedOrder.table.customer")}
                       </TableHead>
                       <TableHead className="text-right font-semibold">
-                        {"Products"}
+                        {t("missedOrder.table.products")}
                       </TableHead>
                       <TableHead className="text-right font-semibold">
-                        {"Cart  Value"}
+                        {t("missedOrder.table.cartValue")}
                       </TableHead>
                       <TableHead className="text-right font-semibold">
-                        {"Abandoned  Time"}
+                        {t("missedOrder.table.abandonedTime")}
                       </TableHead>
                       <TableHead className="text-right font-semibold">
-                        {"Source"}
+                        {t("missedOrder.table.source")}
                       </TableHead>
                       <TableHead className="text-right font-semibold">
-                        {"Status"}
+                        {t("missedOrder.table.status")}
                       </TableHead>
                       <TableHead className="text-right font-semibold">
-                        {"Recovery"}
+                        {t("missedOrder.table.recovery")}
                       </TableHead>
                       <TableHead className="text-right font-semibold">
-                        {"Actions"}
+                        {t("common.actions")}
                       </TableHead>
                     </TableRow>
                   </TableHeader>
@@ -461,14 +461,14 @@ function MissedOrder() {
                                 ))}
                               {order.products.length > 2 && (
                                 <p className="text-xs text-muted-foreground">
-                                  +{order.products.length - 2} {"More"}
+                                  +{order.products.length - 2} {t("missedOrder.more")}
                                 </p>
                               )}
                             </div>
                           </TableCell>
                           <TableCell>
                             <span className="font-semibold text-green-600 dark:text-green-400">
-                              {order.cartValue.toLocaleString()} {"E G P"}
+                              {order.cartValue.toLocaleString()} EGP
                             </span>
                           </TableCell>
                           <TableCell>
@@ -495,7 +495,7 @@ function MissedOrder() {
                                 {order.recoveryAttempts}
                               </span>
                               <span className="text-xs text-muted-foreground">
-                                {"Attempts"}
+                                {t("missedOrder.attempts")}
                               </span>
                             </div>
                           </TableCell>
@@ -515,31 +515,31 @@ function MissedOrder() {
                                 className="w-[200px]"
                               >
                                 <DropdownMenuLabel>
-                                  {"Quick  Actions"}
+                                  {t("missedOrder.actions.quickActions")}
                                 </DropdownMenuLabel>
                                 <DropdownMenuItem className="gap-2 cursor-pointer">
                                   <Eye className="h-4 w-4" />
-                                  {"View  Details"}
+                                  {t("missedOrder.actions.viewDetails")}
                                 </DropdownMenuItem>
                                 <DropdownMenuItem className="gap-2 cursor-pointer text-green-600">
                                   <Phone className="h-4 w-4" />
-                                  {"Call  Customer"}
+                                  {t("missedOrder.actions.callCustomer")}
                                 </DropdownMenuItem>
                                 <DropdownMenuItem className="gap-2 cursor-pointer text-blue-600">
                                   <MessageSquare className="h-4 w-4" />
-                                  {"Send  Whats App"}
+                                  {t("missedOrder.actions.sendWhatsApp")}
                                 </DropdownMenuItem>
                                 <DropdownMenuItem className="gap-2 cursor-pointer text-purple-600">
                                   <Mail className="h-4 w-4" />
-                                  {"Send  Email"}
+                                  {t("missedOrder.actions.sendEmail")}
                                 </DropdownMenuItem>
                                 <DropdownMenuItem className="gap-2 cursor-pointer text-orange-600">
                                   <ShoppingCart className="h-4 w-4" />
-                                  {"Create  Order"}
+                                  {t("missedOrder.actions.createOrder")}
                                 </DropdownMenuItem>
                                 <DropdownMenuItem className="gap-2 cursor-pointer text-red-600">
                                   <XCircle className="h-4 w-4" />
-                                  {"Mark as  Lost"}
+                                  {t("missedOrder.actions.markAsLost")}
                                 </DropdownMenuItem>
                               </DropdownMenuContent>
                             </DropdownMenu>
@@ -552,7 +552,7 @@ function MissedOrder() {
                           <div className="flex flex-col items-center justify-center space-y-3">
                             <ShoppingCart className="h-12 w-12 text-gray-300" />
                             <p className="text-muted-foreground">
-                              {"No missed orders found"}
+                              {t("missedOrder.noOrdersFound")}
                             </p>
                           </div>
                         </TableCell>
@@ -601,7 +601,7 @@ function MissedOrder() {
                         {/* Products */}
                         <div className="border-t border-gray-200 dark:border-gray-800 pt-3">
                           <p className="text-xs font-semibold text-muted-foreground mb-1">
-                            {"Products"}
+                            {t("missedOrder.table.products")}
                           </p>
                           {order.products.slice(0, 2).map((product, idx) => (
                             <p key={idx} className="text-sm">
@@ -610,7 +610,7 @@ function MissedOrder() {
                           ))}
                           {order.products.length > 2 && (
                             <p className="text-sm text-muted-foreground">
-                              +{order.products.length - 2} {"More"}
+                              +{order.products.length - 2} {t("missedOrder.more")}
                             </p>
                           )}
                         </div>
@@ -619,15 +619,15 @@ function MissedOrder() {
                         <div className="flex flex-wrap justify-between items-center gap-2 border-t border-gray-200 dark:border-gray-800 pt-3">
                           <div>
                             <p className="text-xs text-muted-foreground">
-                              {"Cart  Value"}
+                              {t("missedOrder.table.cartValue")}
                             </p>
                             <span className="font-semibold text-green-600 dark:text-green-400">
-                              {order.cartValue.toLocaleString()} {"E G P"}
+                              {order.cartValue.toLocaleString()} EGP
                             </span>
                           </div>
                           <div>
                             <p className="text-xs text-muted-foreground">
-                              {"Source"}
+                              {t("missedOrder.table.source")}
                             </p>
                             <span
                               className={`font-medium text-sm ${getSourceIcon(
@@ -639,10 +639,10 @@ function MissedOrder() {
                           </div>
                           <div>
                             <p className="text-xs text-muted-foreground">
-                              {"Recovery"}
+                              {t("missedOrder.table.recovery")}
                             </p>
                             <span className="text-sm">
-                              {order.recoveryAttempts} {"Attempts"}
+                              {order.recoveryAttempts} {t("missedOrder.attempts")}
                             </span>
                           </div>
                         </div>
@@ -661,7 +661,7 @@ function MissedOrder() {
                             className="flex-1 gap-1 border-gray-200 dark:border-gray-800"
                           >
                             <Phone className="h-4 w-4" />
-                            {"Call"}
+                            {t("missedOrder.actions.call")}
                           </Button>
                           <Button
                             size="sm"
@@ -669,7 +669,7 @@ function MissedOrder() {
                             className="flex-1 gap-1 border-gray-200 dark:border-gray-800"
                           >
                             <MessageSquare className="h-4 w-4" />
-                            {"Whats App"}
+                            {t("missedOrder.actions.whatsApp")}
                           </Button>
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
@@ -687,19 +687,19 @@ function MissedOrder() {
                             >
                               <DropdownMenuItem className="gap-2 cursor-pointer">
                                 <Eye className="h-4 w-4" />
-                                {"View  Details"}
+                                {t("missedOrder.actions.viewDetails")}
                               </DropdownMenuItem>
                               <DropdownMenuItem className="gap-2 cursor-pointer text-purple-600">
                                 <Mail className="h-4 w-4" />
-                                {"Send  Email"}
+                                {t("missedOrder.actions.sendEmail")}
                               </DropdownMenuItem>
                               <DropdownMenuItem className="gap-2 cursor-pointer text-orange-600">
                                 <ShoppingCart className="h-4 w-4" />
-                                {"Create  Order"}
+                                {t("missedOrder.actions.createOrder")}
                               </DropdownMenuItem>
                               <DropdownMenuItem className="gap-2 cursor-pointer text-red-600">
                                 <XCircle className="h-4 w-4" />
-                                {"Mark as  Lost"}
+                                {t("missedOrder.actions.markAsLost")}
                               </DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
@@ -711,7 +711,7 @@ function MissedOrder() {
                   <div className="flex flex-col items-center justify-center py-8">
                     <ShoppingCart className="h-12 w-12 text-gray-300 mb-3" />
                     <p className="text-muted-foreground">
-                      {"No missed orders found"}
+                      {t("missedOrder.noOrdersFound")}
                     </p>
                   </div>
                 )}
@@ -722,10 +722,11 @@ function MissedOrder() {
             {totalPages > 1 && (
               <div className="flex items-center justify-between px-6 py-4 border-t border-gray-200 dark:border-gray-800">
                 <p className="text-sm text-muted-foreground">
-                  {"Showing"} {(currentPage - 1) * itemsPerPage + 1}{" "}
-                  {"To"}{" "}
-                  {Math.min(currentPage * itemsPerPage, filteredOrders.length)}{" "}
-                  {"Of"} {filteredOrders.length} {"Results"}
+                  {t("missedOrder.pagination.showing", {
+                    from: (currentPage - 1) * itemsPerPage + 1,
+                    to: Math.min(currentPage * itemsPerPage, filteredOrders.length),
+                    total: filteredOrders.length
+                  })}
                 </p>
                 <div className="flex items-center gap-2">
                   <Button

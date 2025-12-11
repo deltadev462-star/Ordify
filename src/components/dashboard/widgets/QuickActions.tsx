@@ -59,7 +59,7 @@ const defaultActions: QuickAction[] = [
 
 export function QuickActions({ actions = defaultActions, className }: QuickActionsProps) {
   return (
-    <Card className={cn("border-0 shadow-sm", className)}>
+    <Card className={cn("border border-gray-200 dark:border-gray-700 shadow-sm", className)}>
       <CardHeader className="pb-4">
         <div>
           <h3 className="text-lg font-semibold">{"Quick  Actions"}</h3>

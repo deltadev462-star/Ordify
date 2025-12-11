@@ -72,7 +72,7 @@ function MarketingServices() {
             {/* Action Cards */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* For Business Owners */}
-              <Card className="group relative overflow-hidden border-0 bg-gradient-to-br from-emerald-500/10 to-teal-500/5 dark:from-emerald-500/20 dark:to-teal-500/10 hover:shadow-xl hover:shadow-emerald-500/10 transition-all duration-500 hover:-translate-y-1">
+              <Card className="group relative overflow-hidden border border-gray-200 dark:border-gray-700 bg-gradient-to-br from-emerald-500/10 to-teal-500/5 dark:from-emerald-500/20 dark:to-teal-500/10 hover:shadow-xl hover:shadow-emerald-500/10 transition-all duration-500 hover:-translate-y-1">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700" />
                 <CardHeader className="relative pb-2">
                   <div className="flex items-center gap-3 mb-3">
@@ -113,7 +113,7 @@ function MarketingServices() {
               </Card>
 
               {/* For Marketers */}
-              <Card className="group relative overflow-hidden border-0 bg-gradient-to-br from-violet-500/10 to-purple-500/5 dark:from-violet-500/20 dark:to-purple-500/10 hover:shadow-xl hover:shadow-violet-500/10 transition-all duration-500 hover:-translate-y-1">
+              <Card className="group relative overflow-hidden border border-gray-200 dark:border-gray-700 bg-gradient-to-br from-violet-500/10 to-purple-500/5 dark:from-violet-500/20 dark:to-purple-500/10 hover:shadow-xl hover:shadow-violet-500/10 transition-all duration-500 hover:-translate-y-1">
                 <div className="absolute top-0 left-0 w-32 h-32 bg-violet-500/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700" />
                 <CardHeader className="relative pb-2">
                   <div className="flex items-center gap-3 mb-3">

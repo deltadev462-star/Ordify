@@ -142,12 +142,12 @@ export function ProductFilters({
           </Select>
 
           <Button
-            variant="outline"
+            variant="ghost"
             size="icon"
             onClick={() => setShowFilters(!showFilters)}
             className={cn(
-              "relative",
-              activeFiltersCount > 0 && "border-blue-500"
+              "relative hover:bg-transparent dark:hover:bg-transparent",
+              activeFiltersCount > 0 && "text-blue-500"
             )}
           >
             <Filter className="h-4 w-4" />

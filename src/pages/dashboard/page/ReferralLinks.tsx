@@ -650,7 +650,7 @@ function ReferralLinks() {
 
         {/* Statistics Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <Card className="glass-card border-0 hover:shadow-lg transition-all duration-300 hover:scale-105">
+          <Card className="glass-card border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 hover:scale-105">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -668,7 +668,7 @@ function ReferralLinks() {
             </CardContent>
           </Card>
 
-          <Card className="glass-card border-0 hover:shadow-lg transition-all duration-300 hover:scale-105">
+          <Card className="glass-card border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 hover:scale-105">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -686,7 +686,7 @@ function ReferralLinks() {
             </CardContent>
           </Card>
 
-          <Card className="glass-card border-0 hover:shadow-lg transition-all duration-300 hover:scale-105">
+          <Card className="glass-card border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 hover:scale-105">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -704,7 +704,7 @@ function ReferralLinks() {
             </CardContent>
           </Card>
 
-          <Card className="glass-card border-0 hover:shadow-lg transition-all duration-300 hover:scale-105">
+          <Card className="glass-card border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 hover:scale-105">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -793,7 +793,7 @@ function ReferralLinks() {
             </div>
 
             {/* Top Performing Links */}
-            <Card className="glass-card border-0">
+            <Card className="glass-card border border-gray-200 dark:border-gray-700">
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
                   <Award className="h-5 w-5 text-yellow-600 dark:text-yellow-400" />
@@ -849,7 +849,7 @@ function ReferralLinks() {
 
           <TabsContent value="links" className="space-y-6">
             {/* Links Table */}
-            <Card className="glass-card border-0">
+            <Card className="glass-card border border-gray-200 dark:border-gray-700">
               <CardHeader>
                 <div className="flex flex-col gap-4">
                   <CardTitle className="text-lg">{"Referral  Link  Management"}</CardTitle>
@@ -892,7 +892,7 @@ function ReferralLinks() {
                         </SelectContent>
                       </Select>
 
-                      <Button variant="outline" size="icon" className="shrink-0">
+                      <Button variant="ghost" size="icon" className="shrink-0 hover:bg-transparent dark:hover:bg-transparent">
                         <Filter className="h-4 w-4" />
                       </Button>
                     </div>
@@ -1159,7 +1159,7 @@ function ReferralLinks() {
 
           <TabsContent value="commissions" className="space-y-6">
             {/* Commission Settings */}
-            <Card className="glass-card border-0">
+            <Card className="glass-card border border-gray-200 dark:border-gray-700">
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
                   <Settings className="h-5 w-5" />
@@ -1201,7 +1201,7 @@ function ReferralLinks() {
             </Card>
 
             {/* Recent Commissions */}
-            <Card className="glass-card border-0">
+            <Card className="glass-card border border-gray-200 dark:border-gray-700">
               <CardHeader>
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                   <CardTitle className="text-lg">{"Recent  Commissions"}</CardTitle>

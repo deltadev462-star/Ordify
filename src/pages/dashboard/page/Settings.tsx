@@ -216,10 +216,10 @@ function Settings() {
 
   return (
     <div>
-      <div className="flex bg-white dark:bg-black/80 rounded-2xl m-1 flex-1 flex-col gap-4 md:gap-6 p-4 md:p-6 pt-0">
+      <div className="flex  rounded-2xl m-1 flex-1 flex-col gap-4 md:gap-6 p-4 md:p-6 pt-0">
         <Title
-          title={t('settings.title')}
-          Subtitle={t('settings.general')}
+          title={t("settings.title")}
+          Subtitle={t("settings.general")}
           className="text-2xl md:text-3xl"
           classNamee=""
         />
@@ -230,12 +230,17 @@ function Settings() {
             <SelectTrigger className="w-full bg-gray-50 dark:bg-gray-900/50 border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800/50 transition-colors">
               <div className="flex items-center gap-2">
                 {(() => {
-                  const activeItem = menu.find(m => m.key === active);
+                  const activeItem = menu.find((m) => m.key === active);
                   const Icon = activeItem?.icon || SettingsIcon;
                   return (
                     <>
                       <Icon className="w-5 h-5 text-primary" />
-                      <SelectValue placeholder={t('settings.selectSetting', 'Select Setting')} />
+                      <SelectValue
+                        placeholder={t(
+                          "settings.selectSetting",
+                          "Select Setting"
+                        )}
+                      />
                     </>
                   );
                 })()}
@@ -265,9 +270,9 @@ function Settings() {
         <div className="flex flex-col md:flex-row gap-4 md:gap-6 items-start">
           {/* Sidebar Navigation - Hidden on mobile */}
           <div className="hidden md:block w-full md:w-80 shrink-0">
-            <Card className="border-0 bg-gray-50/50 dark:bg-gray-900/30 backdrop-blur-sm shadow-lg">
+            <Card className="border dark:border-gray-700 border-gray-200  shadow-lg">
               <CardContent className="p-2">
-                <div className="space-y-1 max-h-[calc(100vh-250px)] overflow-y-auto pr-1 scrollbar-thin">
+                <div className="space-y-1 max-h-[calc(100vh-0px)] overflow-y-auto pr-1 scrollbar-thin">
                   {menu.map((item, i) => {
                     const Icon = item.icon;
                     const isActive = active === item.key;
@@ -284,19 +289,35 @@ function Settings() {
                           }
                         `}
                       >
-                        <Icon className={`w-5 h-5 ${isActive ? "text-primary dark:text-white" : "text-gray-500 dark:text-gray-400"}`} />
-                        <span className="text-sm font-medium flex-1 text-right">{t(item.titleKey)}</span>
+                        <Icon
+                          className={`w-5 h-5 ${
+                            isActive
+                              ? "text-primary dark:text-white"
+                              : "text-gray-500 dark:text-gray-400"
+                          }`}
+                        />
+                        <span className="text-sm font-medium flex-1 text-right">
+                          {t(item.titleKey)}
+                        </span>
                         {item.badge && (
-                          <span className={`text-xs px-2 py-0.5 rounded-full font-medium
-                            ${isActive
-                              ? "bg-primary/20 text-primary dark:bg-white/20 dark:text-white"
-                              : "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
+                          <span
+                            className={`text-xs px-2 py-0.5 rounded-full font-medium
+                            ${
+                              isActive
+                                ? "bg-primary/20 text-primary dark:bg-white/20 dark:text-white"
+                                : "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
                             }`}
                           >
                             {item.badge}
                           </span>
                         )}
-                        <ChevronRight className={`w-4 h-4 transition-transform ${isActive ? "text-primary rotate-90 dark:text-white" : "text-gray-400 dark:text-gray-500"}`} />
+                        <ChevronRight
+                          className={`w-4 h-4 transition-transform ${
+                            isActive
+                              ? "text-primary rotate-90 dark:text-white"
+                              : "text-gray-400 dark:text-gray-500"
+                          }`}
+                        />
                       </button>
                     );
                   })}
@@ -307,27 +328,33 @@ function Settings() {
 
           {/* Main Content */}
           <div className="flex-1 w-full">
-            <Card className="border-0 bg-gray-50/50 dark:bg-gray-900/30 backdrop-blur-sm shadow-lg">
+            <Card className="border dark:border-gray-700 border-gray-200 backdrop-blur-sm shadow-lg">
               <CardHeader className="border-b border-gray-200 dark:border-gray-700 p-4 md:p-6">
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
                   <div className="flex-1">
                     <CardTitle className="text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-100 flex items-center gap-3">
                       {(() => {
-                        const activeItem = menu.find(m => m.key === active);
+                        const activeItem = menu.find((m) => m.key === active);
                         const Icon = activeItem?.icon || SettingsIcon;
-                        return <Icon className="w-6 h-6 text-primary dark:text-primary" />;
+                        return (
+                          <Icon className="w-6 h-6 text-primary dark:text-primary" />
+                        );
                       })()}
-                      {t(menu.find(m => m.key === active)?.titleKey || active)}
+                      {t(
+                        menu.find((m) => m.key === active)?.titleKey || active
+                      )}
                     </CardTitle>
                     <CardDescription className="mt-1 text-gray-600 dark:text-gray-400">
                       {(() => {
-                        const activeItem = menu.find(item => item.key === active);
+                        const activeItem = menu.find(
+                          (item) => item.key === active
+                        );
                         const descriptionKey = `settings.descriptions.${activeItem?.key}`;
-                        return t(descriptionKey, '');
+                        return t(descriptionKey, "");
                       })()}
                     </CardDescription>
                   </div>
-                  
+
                   {shouldShowSaveButton() && (
                     <Button
                       onClick={handleSave}
@@ -341,17 +368,17 @@ function Settings() {
                       {isSaving ? (
                         <>
                           <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2" />
-                          {t('common.saving', 'Saving')}
+                          {t("common.saving", "Saving")}
                         </>
                       ) : saveSuccess ? (
                         <>
                           <CheckCircle2 className="w-4 h-4 mr-2" />
-                          {t('common.saved', 'Saved')}
+                          {t("common.saved", "Saved")}
                         </>
                       ) : (
                         <>
                           <Save className="w-4 h-4 mr-2" />
-                          {t('settings.saveChanges', 'Save Changes')}
+                          {t("settings.saveChanges", "Save Changes")}
                         </>
                       )}
                     </Button>
