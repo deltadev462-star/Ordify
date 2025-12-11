@@ -32,10 +32,8 @@ const validateCreateCategory = [
     .optional()
     .isMongoId()
     .withMessage('Invalid parent category ID'),
-  body('image')
-    .optional()
-    .isURL()
-    .withMessage('Image must be a valid URL'),
+  // Image validation is now handled by multer middleware
+  // No need to validate image in body as it comes from file upload
   body('isActive')
     .optional()
     .isBoolean()
@@ -63,10 +61,8 @@ const validateUpdateCategory = [
     .optional()
     .isMongoId()
     .withMessage('Invalid parent category ID'),
-  body('image')
-    .optional()
-    .isURL()
-    .withMessage('Image must be a valid URL'),
+  // Image validation is now handled by multer middleware
+  // No need to validate image in body as it comes from file upload
   body('isActive')
     .optional()
     .isBoolean()

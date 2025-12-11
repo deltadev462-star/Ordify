@@ -1,0 +1,26 @@
+const multer = require('multer');
+
+const allowedExtensions = {
+    image: ['image/jpeg', 'image/png', 'image/gif'],
+    file: ['application/pdf', 'application/msword'],
+    video: ['video/mp4']
+};
+
+function fileUpload({ customValidation = allowedExtensions.image } = {}) {
+    const storage = multer.diskStorage({});
+    
+    function fileFilter(req, file, cb) {
+        if (customValidation.includes(file.mimetype)) {
+            return cb(null, true);
+        }
+        return cb(new Error('Invalid file format'), false);
+    }
+    
+    const upload = multer({ fileFilter, storage });
+    return upload;
+}
+
+module.exports = {
+    fileUpload,
+    allowedExtensions
+};
