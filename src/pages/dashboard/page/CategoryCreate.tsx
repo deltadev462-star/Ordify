@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { ArrowRight, Upload, ChevronLeft, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -16,6 +17,7 @@ import {
 
 function CategoryCreate() {
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
 
   // Form state
   const [formData, setFormData] = useState({
@@ -33,10 +35,10 @@ function CategoryCreate() {
 
   // Mock parent categories - you'll replace this with actual API data
   const parentCategories = [
-    { id: "none", name: "No  Parent  Category" },
-    { id: "1", name: "Electronics" },
-    { id: "2", name: "Clothing" },
-    { id: "3", name: "Home & Garden" },
+    { id: "none", name: t('categories.noParentCategory') },
+    { id: "1", name: t('products.categories.electronics') },
+    { id: "2", name: t('products.categories.clothing') },
+    { id: "3", name: t('products.categories.homeGarden') },
   ];
 
   const handleInputChange = (
@@ -73,16 +75,16 @@ function CategoryCreate() {
     const newErrors: Record<string, string> = {};
     
     if (!formData.name.trim()) {
-      newErrors.name = "Category name is required";
+      newErrors.name = t('categories.categoryNameRequired');
     }
     
     if (!formData.description.trim()) {
-      newErrors.description = "Description is required";
+      newErrors.description = t('categories.descriptionRequired');
     }
     
     const sortOrderNum = parseInt(formData.sortOrder, 10);
     if (isNaN(sortOrderNum) || sortOrderNum < 0) {
-      newErrors.sortOrder = "Sort order must be a positive number";
+      newErrors.sortOrder = t('categories.sortOrderError');
     }
     
     setErrors(newErrors);
@@ -132,14 +134,14 @@ function CategoryCreate() {
             onClick={() => navigate(-1)}
             className="rounded-xl hover:bg-primary/10"
           >
-            <ChevronLeft className="h-5 w-5" />
+            <ChevronLeft className={i18n.language === 'ar' ? "h-5 w-5 rotate-180" : "h-5 w-5"} />
           </Button>
           <div>
             <h1 className="text-2xl font-bold text-foreground">
-              {"Create  New  Category"}
+              {t('categories.createNewCategory')}
             </h1>
             <p className="text-sm text-muted-foreground">
-              {"Add a new category to organize your products"}
+              {t('categories.createNewCategorySubtitle')}
             </p>
           </div>
         </div>
@@ -151,20 +153,20 @@ function CategoryCreate() {
           {/* Basic Information Card */}
           <div className=" rounded-2xl p-6 shadow-sm border border-border">
             <h2 className="text-lg font-semibold mb-6 text-card-foreground">
-              {"Basic  Information"}
+              {t('categories.basicInformation')}
             </h2>
             
             <div className="space-y-6">
               {/* Category Name */}
               <div className="space-y-2">
                 <Label htmlFor="name" className="text-sm font-medium">
-                  {"Category  Name"} <span className="text-destructive">*</span>
+                  {t('categories.categoryName')} <span className="text-destructive">*</span>
                 </Label>
                 <Input
                   id="name"
                   name="name"
                   type="text"
-                  placeholder={""}
+                  placeholder={t('categories.categoryNamePlaceholder')}
                   value={formData.name}
                   onChange={handleInputChange}
                   className={`rounded-xl h-12 ${errors.name ? 'border-destructive' : ''}`}
@@ -177,12 +179,12 @@ function CategoryCreate() {
               {/* Description */}
               <div className="space-y-2">
                 <Label htmlFor="description" className="text-sm font-medium">
-                  {"Description"} <span className="text-destructive">*</span>
+                  {t('common.description')} <span className="text-destructive">*</span>
                 </Label>
                 <Textarea
                   id="description"
                   name="description"
-                  placeholder={""}
+                  placeholder={t('categories.descriptionPlaceholder')}
                   value={formData.description}
                   onChange={handleInputChange}
                   rows={4}
@@ -196,14 +198,14 @@ function CategoryCreate() {
               {/* Parent Category */}
               <div className="space-y-2">
                 <Label htmlFor="parentId" className="text-sm font-medium">
-                  {"Parent  Category"}
+                  {t('categories.parentCategory')}
                 </Label>
                 <Select
                   value={formData.parentId}
                   onValueChange={(value) => setFormData(prev => ({ ...prev, parentId: value }))}
                 >
                   <SelectTrigger className="rounded-xl h-12">
-                    <SelectValue placeholder={"Select parent category"} />
+                    <SelectValue placeholder={t('categories.selectParentCategory')} />
                   </SelectTrigger>
                   <SelectContent>
                     {parentCategories.map((category) => (
@@ -220,7 +222,7 @@ function CategoryCreate() {
           {/* Image Upload Card */}
           <div className=" rounded-2xl p-6 shadow-sm border border-border">
             <h2 className="text-lg font-semibold mb-6 text-card-foreground">
-              {"Category  Image"}
+              {t('categories.categoryImage')}
             </h2>
             
             <div className="space-y-4">
@@ -232,10 +234,10 @@ function CategoryCreate() {
                   <div className="flex flex-col items-center justify-center pt-5 pb-6">
                     <Upload className="w-12 h-12 mb-4 text-muted-foreground" />
                     <p className="mb-2 text-sm font-medium text-muted-foreground">
-                      {"Click to upload image"}
+                      {t('categories.clickToUploadImage')}
                     </p>
                     <p className="text-xs text-muted-foreground">
-                      PNG, JPG or WebP (MAX. 2MB)
+                      {t('categories.imageFormat')}
                     </p>
                   </div>
                   <input
@@ -269,7 +271,7 @@ function CategoryCreate() {
           {/* Settings Card */}
           <div className=" rounded-2xl p-6 shadow-sm border border-border">
             <h2 className="text-lg font-semibold mb-6 text-card-foreground">
-              {"Settings"}
+              {t('common.settings')}
             </h2>
             
             <div className="space-y-6">
@@ -277,10 +279,10 @@ function CategoryCreate() {
               <div className="flex items-center justify-between">
                 <div className="space-y-0.5">
                   <Label htmlFor="isActive" className="text-sm font-medium">
-                    {"Active  Status"}
+                    {t('categories.activeStatus')}
                   </Label>
                   <p className="text-sm text-muted-foreground">
-                    {"Enable this category to be visible in your store"}
+                    {t('categories.activeStatusDescription')}
                   </p>
                 </div>
                 <Switch
@@ -296,7 +298,7 @@ function CategoryCreate() {
               {/* Sort Order */}
               <div className="space-y-2">
                 <Label htmlFor="sortOrder" className="text-sm font-medium">
-                  {"Sort  Order"}
+                  {t('categories.sortOrder')}
                 </Label>
                 <Input
                   id="sortOrder"
@@ -312,7 +314,7 @@ function CategoryCreate() {
                   <p className="text-sm text-destructive">{errors.sortOrder}</p>
                 )}
                 <p className="text-sm text-muted-foreground">
-                  {"Lower numbers appear first"}
+                  {t('categories.sortOrderDescription')}
                 </p>
               </div>
             </div>
@@ -327,7 +329,7 @@ function CategoryCreate() {
               className="rounded-xl"
               disabled={loading}
             >
-              {"Cancel"}
+              {t('common.cancel')}
             </Button>
             <Button
               type="submit"
@@ -337,11 +339,11 @@ function CategoryCreate() {
               {loading ? (
                 <div className="flex items-center gap-2">
                   <div className="h-4 w-4 animate-spin rounded-full border-2 border-primary-foreground border-t-transparent" />
-                  {""}
+                  {t('categories.creating')}
                 </div>
               ) : (
                 <>
-                  {"Create  Category"} <ArrowRight className="mr-2 h-4 w-4" />
+                  {t('categories.createCategory')} <ArrowRight className={i18n.language === 'ar' ? "ml-2 h-4 w-4 rotate-180" : "mr-2 h-4 w-4"} />
                 </>
               )}
             </Button>
