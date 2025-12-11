@@ -1,9 +1,14 @@
+export interface CategoryImage {
+  path: string;
+  public_id: string;
+}
+
 export interface Category {
   id: string;
   name: string;
   slug: string;
   description?: string | null;
-  image?: string | null;
+  image?: CategoryImage | null;
   storeId: string;
   parentId?: string | null;
   isActive: boolean;
@@ -26,7 +31,7 @@ export interface CategoryFormData {
   name: string;
   description?: string;
   parentId?: string | null;
-  image?: string;
+  image?: CategoryImage;
   isActive?: boolean;
   sortOrder?: number;
 }
