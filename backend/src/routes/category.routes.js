@@ -3,6 +3,10 @@ const router = express.Router();
 const categoryController = require('../controllers/category.controller');
 const { protect, verifyStoreAccess, checkPermission } = require('../middleware/auth');
 const { validateCreateCategory, validateUpdateCategory } = require('../validators/category.validator');
+const { fileUpload } = require('../utils/multer');
+
+// Create upload middleware for single image
+const upload = fileUpload();
 
 // Public routes (for customers)
 router.get('/public/:storeSlug', categoryController.getPublicCategories);
@@ -12,9 +16,9 @@ router.use(protect);
 
 // Store-specific category routes
 router.get('/:storeId/categories', verifyStoreAccess, categoryController.getStoreCategories);
-router.post('/:storeId/categories', verifyStoreAccess, checkPermission('categories.create'), validateCreateCategory, categoryController.createCategory);
+router.post('/:storeId/categories', verifyStoreAccess, checkPermission('categories.create'), upload.single('image'), validateCreateCategory, categoryController.createCategory);
 router.get('/:storeId/categories/:categoryId', verifyStoreAccess, categoryController.getCategory);
-router.put('/:storeId/categories/:categoryId', verifyStoreAccess, checkPermission('categories.update'), validateUpdateCategory, categoryController.updateCategory);
+router.put('/:storeId/categories/:categoryId', verifyStoreAccess, checkPermission('categories.update'), upload.single('image'), validateUpdateCategory, categoryController.updateCategory);
 router.delete('/:storeId/categories/:categoryId', verifyStoreAccess, checkPermission('categories.delete'), categoryController.deleteCategory);
 
 // Category hierarchy

@@ -32,24 +32,8 @@ const validateCreateCategory = [
     .optional()
     .isMongoId()
     .withMessage('Invalid parent category ID'),
-  body('image')
-    .optional()
-    .isObject()
-    .withMessage('Image must be an object'),
-  body('image.path')
-    .optional({ checkFalsy: false })
-    .if(body('image').exists())
-    .notEmpty()
-    .withMessage('Image path is required when image is provided')
-    .isString()
-    .withMessage('Image path must be a string'),
-  body('image.public_id')
-    .optional({ checkFalsy: false })
-    .if(body('image').exists())
-    .notEmpty()
-    .withMessage('Image public_id is required when image is provided')
-    .isString()
-    .withMessage('Image public_id must be a string'),
+  // Image validation is now handled by multer middleware
+  // No need to validate image in body as it comes from file upload
   body('isActive')
     .optional()
     .isBoolean()
@@ -77,24 +61,8 @@ const validateUpdateCategory = [
     .optional()
     .isMongoId()
     .withMessage('Invalid parent category ID'),
-  body('image')
-    .optional()
-    .isObject()
-    .withMessage('Image must be an object'),
-  body('image.path')
-    .optional({ checkFalsy: false })
-    .if(body('image').exists())
-    .notEmpty()
-    .withMessage('Image path is required when image is provided')
-    .isString()
-    .withMessage('Image path must be a string'),
-  body('image.public_id')
-    .optional({ checkFalsy: false })
-    .if(body('image').exists())
-    .notEmpty()
-    .withMessage('Image public_id is required when image is provided')
-    .isString()
-    .withMessage('Image public_id must be a string'),
+  // Image validation is now handled by multer middleware
+  // No need to validate image in body as it comes from file upload
   body('isActive')
     .optional()
     .isBoolean()
