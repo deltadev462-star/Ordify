@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import authReducer from "./slices/auth/authSlice"
 import categoryReducer from "./slices/category/categorySlice"
+import productReducer from "./slices/product/productSlice"
 
 export const makeStore = () => {
 
@@ -8,6 +9,7 @@ export const makeStore = () => {
     reducer: {
       auth:authReducer,
       categories:categoryReducer,
+      products:productReducer,
     },
   devTools: import.meta.env.DEV, // Disable in production
   })

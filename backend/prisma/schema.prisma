@@ -183,7 +183,8 @@ model Product {
   weightUnit    String    @default("kg")
   
   // Media
-  images        String[]
+  mainImage     Json      // { path: string (required), public_id: string (required) }
+  subImages     Json[]    // Array of { path: string (required), public_id: string (required) }
   thumbnail     String?
   
   // SEO

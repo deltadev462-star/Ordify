@@ -20,4 +20,18 @@ export const API_ENDPOINTS = {
     reorderCategories: (storeId: string) => `${API_BASE_URL}/categories/${storeId}/categories/bulk/reorder`,
     bulkDeleteCategories: (storeId: string) => `${API_BASE_URL}/categories/${storeId}/categories/bulk/delete`,
     getPublicCategories: (storeSlug: string) => `${API_BASE_URL}/categories/public/${storeSlug}`,
+    
+    // Product endpoints
+    getStoreProducts: (storeId: string) => `${API_BASE_URL}/products/${storeId}/products`,
+    createProduct: (storeId: string) => `${API_BASE_URL}/products/${storeId}/products`,
+    getProduct: (storeId: string, productId: string) => `${API_BASE_URL}/products/${storeId}/products/${productId}`,
+    updateProduct: (storeId: string, productId: string) => `${API_BASE_URL}/products/${storeId}/products/${productId}`,
+    deleteProduct: (storeId: string, productId: string) => `${API_BASE_URL}/products/${storeId}/products/${productId}`,
+    updateProductImages: (storeId: string, productId: string) => `${API_BASE_URL}/products/${storeId}/products/${productId}/images`,
+    updateProductStatus: (storeId: string, productId: string) => `${API_BASE_URL}/products/${storeId}/products/${productId}/status`,
+    bulkUpdateProducts: (storeId: string) => `${API_BASE_URL}/products/${storeId}/products/bulk/update`,
+    bulkDeleteProducts: (storeId: string) => `${API_BASE_URL}/products/${storeId}/products/bulk/delete`,
+    duplicateProduct: (storeId: string, productId: string) => `${API_BASE_URL}/products/${storeId}/products/${productId}/duplicate`,
+    getPublicProducts: (storeSlug: string) => `${API_BASE_URL}/products/public/${storeSlug}`,
+    getPublicProduct: (storeSlug: string, productSlug: string) => `${API_BASE_URL}/products/public/${storeSlug}/${productSlug}`,
 } as const;

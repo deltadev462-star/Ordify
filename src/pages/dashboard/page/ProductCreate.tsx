@@ -9,6 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { FloatingLabelInput, FloatingLabelTextarea } from "@/components/ui/floating-label-input";
 import { RichTextEditor } from "@/components/ui/rich-text-editor";
 import { MultiSelect } from "@/components/ui/multi-select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import {
   Package,
   DollarSign,
@@ -20,7 +21,10 @@ import {
   Globe,
   Zap,
   Truck,
-  Star
+  Star,
+  Barcode,
+  Weight,
+  Tag
 } from "lucide-react";
 
 // Import image upload components
@@ -83,22 +87,40 @@ function ProductCreate() {
   
   // Form state - Essential Information
   const [productName, setProductName] = useState("");
-  const [productLink, setProductLink] = useState("");
-  const [metaDescription, setMetaDescription] = useState("");
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [productSlug, setProductSlug] = useState("");
+  const [shortDescription, setShortDescription] = useState("");
   const [productDescription, setProductDescription] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
   
-  // Pricing & Inventory
+  // SEO
+  const [metaTitle, setMetaTitle] = useState("");
+  const [metaDescription, setMetaDescription] = useState("");
+  const [metaKeywords, setMetaKeywords] = useState<string[]>([]);
+  
+  // Pricing
   const [price, setPrice] = useState("");
-  const [salePrice, setSalePrice] = useState("");
-  const [productExpense, setProductExpense] = useState("");
-  const [stockQuantity, setStockQuantity] = useState("");
-  const [trackStock, setTrackStock] = useState(false);
-  const [disableWhenOutOfStock, setDisableWhenOutOfStock] = useState(false);
+  const [comparePrice, setComparePrice] = useState("");
+  const [costPrice, setCostPrice] = useState("");
   
-  // Images
-  const [mainImage, setMainImage] = useState<string | null>(null);
-  const [otherImages, setOtherImages] = useState<string[]>([]);
+  // Inventory
+  const [sku, setSku] = useState("");
+  const [barcode, setBarcode] = useState("");
+  const [trackQuantity, setTrackQuantity] = useState(true);
+  const [quantity, setQuantity] = useState("0");
+  const [lowStockAlert, setLowStockAlert] = useState("10");
+  
+  // Product Details
+  const [weight, setWeight] = useState("");
+  const [weightUnit, setWeightUnit] = useState("kg");
+  
+  // Images - Updated to match schema
+  const [mainImage, setMainImage] = useState<{ path: string; public_id: string } | null>(null);
+  const [subImages, setSubImages] = useState<{ path: string; public_id: string }[]>([]);
+  
+  // Status
+  const [productStatus, setProductStatus] = useState<"DRAFT" | "PUBLISHED" | "ARCHIVED">("DRAFT");
+  const [isActive, setIsActive] = useState(true);
+  const [isFeatured, setIsFeatured] = useState(false);
 
   // Digital Products
   const [enableDigitalProduct, setEnableDigitalProduct] = useState(false);
@@ -128,8 +150,8 @@ function ProductCreate() {
   const [selectedCurrency, setSelectedCurrency] = useState("");
   const [priority, setPriority] = useState("");
 
-  // Auto-generate product link from product name
-  const generateProductLink = (name: string) => {
+  // Auto-generate product slug from product name
+  const generateProductSlug = (name: string) => {
     return name
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
@@ -139,28 +161,68 @@ function ProductCreate() {
   const handleProductNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.value;
     setProductName(name);
-    setProductLink(generateProductLink(name));
+    setProductSlug(generateProductSlug(name));
   };
 
   const handleSave = () => {
     // Handle save logic here
     console.log({
-      productName,
-      productLink,
+      // Essential Information
+      name: productName,
+      slug: productSlug,
+      shortDescription,
+      description: productDescription,
+      categoryId: selectedCategory,
+      
+      // SEO
+      metaTitle,
       metaDescription,
-      price,
-      salePrice,
-      productExpense,
-      priority,
-      selectedCategories,
-      productDescription,
-      stockQuantity,
-      trackStock,
-      disableWhenOutOfStock,
+      metaKeywords,
+      
+      // Pricing
+      price: parseFloat(price),
+      comparePrice: comparePrice ? parseFloat(comparePrice) : undefined,
+      costPrice: costPrice ? parseFloat(costPrice) : undefined,
+      
+      // Inventory
+      sku,
+      barcode,
+      trackQuantity,
+      quantity: parseInt(quantity),
+      lowStockAlert: parseInt(lowStockAlert),
+      
+      // Product Details
+      weight: weight ? parseFloat(weight) : undefined,
+      weightUnit,
+      
+      // Images
       mainImage,
-      otherImages,
-      // Other fields...
+      subImages,
+      
+      // Status
+      status: productStatus,
+      isActive,
+      isFeatured,
+      
+      // Other fields from advanced settings...
     });
+  };
+
+  // Temporary adapter functions for ProductImages component
+  const handleMainImageChange = (imageString: string | null) => {
+    if (imageString) {
+      // For now, we'll use a placeholder public_id
+      setMainImage({ path: imageString, public_id: `main_${Date.now()}` });
+    } else {
+      setMainImage(null);
+    }
+  };
+
+  const handleSubImagesChange = (imageStrings: string[]) => {
+    setSubImages(imageStrings.map((path, index) => ({
+      path,
+      public_id: `sub_${Date.now()}_${index}`
+    })));
   };
 
   const categoryOptions = [
@@ -213,58 +275,67 @@ function ProductCreate() {
             </CardHeader>
             <CardContent className="grid gap-6">
               <div className="grid gap-6 md:grid-cols-2">
-                <FloatingLabelInput
-                  label={t('products.productName')}
-                  value={productName}
-                  onChange={handleProductNameChange}
-                  placeholder={""}
-                  required
-                />
-            
-              </div>
+               <FloatingLabelInput
+                 label={t('products.productName')}
+                 value={productName}
+                 onChange={handleProductNameChange}
+                 placeholder={""}
+                 required
+               />
+               <FloatingLabelInput
+                 label={t('products.productSlug')}
+                 value={productSlug}
+                 onChange={(e) => setProductSlug(e.target.value)}
+                 placeholder={""}
+               />
+             </div>
 
-              <div className="grid gap-6 md:grid-cols-2">
+             <div className="grid gap-6 md:grid-cols-2">
+               <FloatingLabelTextarea
+                 label={t('products.shortDescription')}
+                 value={shortDescription}
+                 onChange={(e) => setShortDescription(e.target.value)}
+                 placeholder={""}
+                 rows={2}
+                 className="resize-none"
+               />
                
-                <MultiSelect
-                  label={t('products.productCategories')}
-                  options={categoryOptions}
-                  value={selectedCategories}
-                  onChange={setSelectedCategories}
-                  placeholder={""}
-                />
-              </div>
+               <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                 <SelectTrigger>
+                   <SelectValue placeholder={t('products.selectCategory')} />
+                 </SelectTrigger>
+                 <SelectContent>
+                   {categoryOptions.map(option => (
+                     <SelectItem key={option.value} value={option.value}>
+                       {option.label}
+                     </SelectItem>
+                   ))}
+                 </SelectContent>
+               </Select>
+             </div>
 
-              <FloatingLabelTextarea
-                label={t('products.metaDescription')}
-                value={metaDescription}
-                onChange={(e) => setMetaDescription(e.target.value)}
-                placeholder={""}
-                rows={3}
-                className="resize-none"
-              />
-
-              <div>
-                <Label className="text-base font-medium mb-2 block">
-                  {t('products.productDescription')}
-                </Label>
-                <RichTextEditor
-                  value={productDescription}
-                  onChange={setProductDescription}
-                  placeholder={""}
-                />
-              </div>
+             <div>
+               <Label className="text-base font-medium mb-2 block">
+                 {t('products.productDescription')}
+               </Label>
+               <RichTextEditor
+                 value={productDescription}
+                 onChange={setProductDescription}
+                 placeholder={""}
+               />
+             </div>
             </CardContent>
           </Card>
 
-          {/* Pricing & Inventory */}
+          {/* Pricing */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <DollarSign className="h-5 w-5 text-primary" />
-                {t('products.pricingInventory')}
+                {t('products.pricing')}
               </CardTitle>
               <CardDescription>
-                {t('products.pricingInventoryDesc')}
+                {t('products.pricingDesc')}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -279,60 +350,120 @@ function ProductCreate() {
                   required
                 />
                 <FloatingLabelInput
-                  label={t('products.salePrice')}
-                  value={salePrice}
-                  onChange={(e) => setSalePrice(e.target.value)}
+                  label={t('products.comparePrice')}
+                  value={comparePrice}
+                  onChange={(e) => setComparePrice(e.target.value)}
                   placeholder={"00"}
                   type="number"
                   step="0.01"
                 />
                 <FloatingLabelInput
-                  label={t('products.productExpense')}
-                  value={productExpense}
-                  onChange={(e) => setProductExpense(e.target.value)}
+                  label={t('products.costPrice')}
+                  value={costPrice}
+                  onChange={(e) => setCostPrice(e.target.value)}
                   placeholder={"00"}
                   type="number"
                   step="0.01"
                 />
               </div>
+            </CardContent>
+          </Card>
 
-              <Separator />
+          {/* Inventory */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Package className="h-5 w-5 text-primary" />
+                {t('products.inventory')}
+              </CardTitle>
+              <CardDescription>
+                {t('products.inventoryDesc')}
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="grid gap-6 md:grid-cols-2">
+                <FloatingLabelInput
+                  label={t('products.sku')}
+                  value={sku}
+                  onChange={(e) => setSku(e.target.value)}
+                  placeholder={""}
+                  icon={Tag}
+                />
+                <FloatingLabelInput
+                  label={t('products.barcode')}
+                  value={barcode}
+                  onChange={(e) => setBarcode(e.target.value)}
+                  placeholder={""}
+                  icon={Barcode}
+                />
+              </div>
 
               <div className="space-y-4">
-                <h4 className="text-sm font-medium">{t('products.stockManagement')}</h4>
-                <div className="grid gap-6 md:grid-cols-2">
-                  <FloatingLabelInput
-                    label={t('products.stockQuantity')}
-                    value={stockQuantity}
-                    onChange={(e) => setStockQuantity(e.target.value)}
-                    placeholder={"0"}
-                    type="number"
-                    disabled={!trackStock}
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="track-quantity" className="text-sm cursor-pointer">
+                    {t('products.trackQuantity')}
+                  </Label>
+                  <Switch
+                    id="track-quantity"
+                    checked={trackQuantity}
+                    onCheckedChange={setTrackQuantity}
                   />
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <Label htmlFor="track-stock" className="text-sm cursor-pointer">
-                        {t('products.trackStock')}
-                      </Label>
-                      <Switch
-                        id="track-stock"
-                        checked={trackStock}
-                        onCheckedChange={setTrackStock}
-                      />
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <Label htmlFor="disable-out-of-stock" className="text-sm cursor-pointer">
-                        {t('products.disableWhenOutOfStock')}
-                      </Label>
-                      <Switch
-                        id="disable-out-of-stock"
-                        checked={disableWhenOutOfStock}
-                        onCheckedChange={setDisableWhenOutOfStock}
-                        disabled={!trackStock}
-                      />
-                    </div>
-                  </div>
                 </div>
+                
+                {trackQuantity && (
+                  <div className="grid gap-6 md:grid-cols-2">
+                    <FloatingLabelInput
+                      label={t('products.quantity')}
+                      value={quantity}
+                      onChange={(e) => setQuantity(e.target.value)}
+                      placeholder={"0"}
+                      type="number"
+                    />
+                    <FloatingLabelInput
+                      label={t('products.lowStockAlert')}
+                      value={lowStockAlert}
+                      onChange={(e) => setLowStockAlert(e.target.value)}
+                      placeholder={"10"}
+                      type="number"
+                    />
+                  </div>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Product Details */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Weight className="h-5 w-5 text-primary" />
+                {t('products.productDetails')}
+              </CardTitle>
+              <CardDescription>
+                {t('products.productDetailsDesc')}
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="grid gap-6 md:grid-cols-2">
+                <FloatingLabelInput
+                  label={t('products.weight')}
+                  value={weight}
+                  onChange={(e) => setWeight(e.target.value)}
+                  placeholder={""}
+                  type="number"
+                  step="0.01"
+                />
+                <Select value={weightUnit} onValueChange={setWeightUnit}>
+                  <SelectTrigger>
+                    <SelectValue placeholder={t('products.selectWeightUnit')} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="kg">{t('products.kilograms')}</SelectItem>
+                    <SelectItem value="g">{t('products.grams')}</SelectItem>
+                    <SelectItem value="lb">{t('products.pounds')}</SelectItem>
+                    <SelectItem value="oz">{t('products.ounces')}</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
             </CardContent>
           </Card>
@@ -350,290 +481,101 @@ function ProductCreate() {
             </CardHeader>
             <CardContent>
               <ProductImages
-                mainImage={mainImage}
-                setMainImage={setMainImage}
-                otherImages={otherImages}
-                setOtherImages={setOtherImages}
+                mainImage={mainImage?.path || null}
+                setMainImage={handleMainImageChange}
+                otherImages={subImages.map(img => img.path)}
+                setOtherImages={handleSubImagesChange}
                 handleSave={() => {}}
               />
             </CardContent>
           </Card>
 
-          {/* Advanced Options - Collapsible Sections */}
-          <div className="space-y-4">
-            {/* Digital Product Settings */}
-            <CollapsibleSection
-              title={t('products.digitalProducts')}
-              description={t('products.digitalProductsDesc')}
-              icon={<Zap className="h-5 w-5" />}
-            >
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="digital-product" className="text-sm cursor-pointer">
-                    {t('products.enableDigitalProduct')}
+          {/* Product Status */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Settings className="h-5 w-5 text-primary" />
+                {t('products.productStatus')}
+              </CardTitle>
+              <CardDescription>
+                {t('products.productStatusDesc')}
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="grid gap-6 md:grid-cols-2">
+                <div>
+                  <Label className="text-base font-medium mb-2 block">
+                    {t('products.status')}
                   </Label>
-                  <Switch
-                    id="digital-product"
-                    checked={enableDigitalProduct}
-                    onCheckedChange={setEnableDigitalProduct}
-                  />
+                  <Select value={productStatus} onValueChange={(value: any) => setProductStatus(value)}>
+                    <SelectTrigger>
+                      <SelectValue placeholder={t('products.selectStatus')} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="DRAFT">{t('products.draft')}</SelectItem>
+                      <SelectItem value="PUBLISHED">{t('products.published')}</SelectItem>
+                      <SelectItem value="ARCHIVED">{t('products.archived')}</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
-                {enableDigitalProduct && (
-                  <FloatingLabelInput
-                    label={t('products.digitalProductType')}
-                    value={digitalProductType}
-                    onChange={(e) => setDigitalProductType(e.target.value)}
-                    placeholder={""}
-                  />
-                )}
-              </div>
-            </CollapsibleSection>
-
-            {/* External Platform Integration */}
-            <CollapsibleSection
-              title={t('products.linkToExternalPlatform')}
-              description={t('products.externalPlatformDesc')}
-              icon={<Globe className="h-5 w-5" />}
-            >
-              <div className="space-y-4">
-                <div className="grid gap-4 md:grid-cols-2">
-                  <div className="flex items-center justify-between">
-                    <Label htmlFor="taager" className="text-sm cursor-pointer">
-                      {t('products.activateTaagerIntegration')}
-                    </Label>
-                    <Switch
-                      id="taager"
-                      checked={taagerIntegration}
-                      onCheckedChange={setTaagerIntegration}
-                    />
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <Label htmlFor="angazny" className="text-sm cursor-pointer">
-                      {t('products.activateAngaznyIntegration')}
-                    </Label>
-                    <Switch
-                      id="angazny"
-                      checked={angaznyIntegration}
-                      onCheckedChange={setAngaznyIntegration}
-                    />
-                  </div>
-                </div>
-                {(taagerIntegration || angaznyIntegration) && (
-                  <div className="grid gap-4 md:grid-cols-2">
-                    <FloatingLabelInput
-                      label={t('products.externalProductCode')}
-                      value={externalPlatformCode}
-                      onChange={(e) => setExternalPlatformCode(e.target.value)}
-                      placeholder={""}
-                    />
-                    <FloatingLabelInput
-                      label={t('products.externalProductLink')}
-                      value={externalPlatformLink}
-                      onChange={(e) => setExternalPlatformLink(e.target.value)}
-                      placeholder={""}
-                      icon={Globe}
-                    />
-                  </div>
-                )}
-              </div>
-            </CollapsibleSection>
-
-            {/* Marketing Features */}
-            <CollapsibleSection
-              title={t('products.marketingFeatures')}
-              description={t('products.marketingFeaturesDesc')}
-              icon={<Star className="h-5 w-5" />}
-            >
-              <div className="space-y-6">
-                <div className="grid gap-4 md:grid-cols-2">
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <Label htmlFor="reviews" className="text-sm cursor-pointer">
-                        {t('products.activateReviews')}
-                      </Label>
-                      <Switch
-                        id="reviews"
-                        checked={activateReviews}
-                        onCheckedChange={setActivateReviews}
-                      />
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <Label htmlFor="free-shipping" className="text-sm cursor-pointer">
-                        {t('products.activateFreeShipping')}
-                      </Label>
-                      <Switch
-                        id="free-shipping"
-                        checked={activateFreeShipping}
-                        onCheckedChange={setActivateFreeShipping}
-                      />
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <Label htmlFor="fake-visitors" className="text-sm cursor-pointer">
-                        {t('products.displayFakeVisitorCounter')}
-                      </Label>
-                      <Switch
-                        id="fake-visitors"
-                        checked={displayFakeVisitor}
-                        onCheckedChange={setDisplayFakeVisitor}
-                      />
-                    </div>
-                    {displayFakeVisitor && (
-                      <div className="grid grid-cols-2 gap-4">
-                        <FloatingLabelInput
-                          label={t('products.minVisitors')}
-                          value={minVisitors}
-                          onChange={(e) => setMinVisitors(e.target.value)}
-                          placeholder="20"
-                          type="number"
-                        />
-                        <FloatingLabelInput
-                          label={t('products.maxVisitors')}
-                          value={maxVisitors}
-                          onChange={(e) => setMaxVisitors(e.target.value)}
-                          placeholder="70"
-                          type="number"
-                        />
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                <Separator />
-
+                
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <Label htmlFor="fake-stock" className="text-sm cursor-pointer">
-                      {t('products.activateFakeStock')}
+                    <Label htmlFor="is-active" className="text-sm cursor-pointer">
+                      {t('products.isActive')}
                     </Label>
                     <Switch
-                      id="fake-stock"
-                      checked={activateFakeStock}
-                      onCheckedChange={setActivateFakeStock}
+                      id="is-active"
+                      checked={isActive}
+                      onCheckedChange={setIsActive}
                     />
                   </div>
-                  {activateFakeStock && (
-                    <FloatingLabelInput
-                      label={t('products.fakeStockItems')}
-                      value={fakeStockItems}
-                      onChange={(e) => setFakeStockItems(e.target.value)}
-                      placeholder="5"
-                      type="number"
-                    />
-                  )}
-                  
                   <div className="flex items-center justify-between">
-                    <Label htmlFor="timer" className="text-sm cursor-pointer">
-                      {t('products.fakeTimer')}
+                    <Label htmlFor="is-featured" className="text-sm cursor-pointer">
+                      {t('products.isFeatured')}
                     </Label>
                     <Switch
-                      id="timer"
-                      checked={fakeTimer}
-                      onCheckedChange={setFakeTimer}
+                      id="is-featured"
+                      checked={isFeatured}
+                      onCheckedChange={setIsFeatured}
                     />
                   </div>
-                  {fakeTimer && (
-                    <FloatingLabelInput
-                      label={t('products.fakeTimerHours')}
-                      value={fakeTimerHours}
-                      onChange={(e) => setFakeTimerHours(e.target.value)}
-                      placeholder="1"
-                      type="number"
-                    />
-                  )}
                 </div>
               </div>
-            </CollapsibleSection>
+            </CardContent>
+          </Card>
 
-            {/* Purchase Settings */}
-            <CollapsibleSection
-              title={t('products.purchaseSettings')}
-              description={t('products.purchaseSettingsDesc')}
-              icon={<Truck className="h-5 w-5" />}
-            >
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="skip-cart" className="text-sm cursor-pointer">
-                    {t('products.skipCart')}
-                  </Label>
-                  <Switch
-                    id="skip-cart"
-                    checked={skipCart}
-                    onCheckedChange={setSkipCart}
-                  />
-                </div>
-                {skipCart && (
-                  <FloatingLabelInput
-                    label={t('products.buyNowButtonText')}
-                    value={buyNowButtonText}
-                    onChange={(e) => setBuyNowButtonText(e.target.value)}
-                    placeholder={t('products.buyNowButtonPlaceholder')}
-                  />
-                )}
-                
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="fixed-buy" className="text-sm cursor-pointer">
-                    {t('products.fixedBuyButton')}
-                  </Label>
-                  <Switch
-                    id="fixed-buy"
-                    checked={fixedBuyButton}
-                    onCheckedChange={setFixedBuyButton}
-                  />
-                </div>
-                
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="checkout-first" className="text-sm cursor-pointer">
-                    {t('products.checkoutBeforeDescription')}
-                  </Label>
-                  <Switch
-                    id="checkout-first"
-                    checked={checkoutBeforeDescription}
-                    onCheckedChange={setCheckoutBeforeDescription}
-                  />
-                </div>
-              </div>
-            </CollapsibleSection>
+          {/* SEO Settings */}
+          <CollapsibleSection
+            title={t('products.seoSettings')}
+            description={t('products.seoSettingsDesc')}
+            icon={<Globe className="h-5 w-5" />}
+          >
+            <div className="space-y-4">
+              <FloatingLabelInput
+                label={t('products.metaTitle')}
+                value={metaTitle}
+                onChange={(e) => setMetaTitle(e.target.value)}
+                placeholder={""}
+              />
+              <FloatingLabelTextarea
+                label={t('products.metaDescription')}
+                value={metaDescription}
+                onChange={(e) => setMetaDescription(e.target.value)}
+                placeholder={""}
+                rows={3}
+                className="resize-none"
+              />
+              <MultiSelect
+                label={t('products.metaKeywords')}
+                options={[]}
+                value={metaKeywords}
+                onChange={setMetaKeywords}
+                placeholder={t('products.enterKeywords')}
+              />
+            </div>
+          </CollapsibleSection>
 
-            {/* Additional Settings */}
-            <CollapsibleSection
-              title={t('products.advancedSettings')}
-              description={t('products.advancedSettingsDesc')}
-              icon={<Settings className="h-5 w-5" />}
-            >
-              <div className="space-y-4">
-                <div className="grid gap-6 md:grid-cols-2">
-                  <MultiSelect
-                    label={t('products.customCurrency')}
-                    options={currencyOptions}
-                    value={selectedCurrency ? [selectedCurrency] : []}
-                    onChange={(values) => setSelectedCurrency(values[0] || "")}
-                    placeholder={t('products.selectCurrency')}
-                  />
-                  <FloatingLabelInput
-                    label={t('products.priorityInAppearance')}
-                    value={priority}
-                    onChange={(e) => setPriority(e.target.value)}
-                    placeholder="0"
-                    type="number"
-                  />
-                </div>
-                
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="hidden" className="text-sm cursor-pointer">
-                    {t('products.hiddenProduct')}
-                  </Label>
-                  <Switch
-                    id="hidden"
-                    checked={hiddenProduct}
-                    onCheckedChange={setHiddenProduct}
-                  />
-                </div>
-              </div>
-            </CollapsibleSection>
-          </div>
 
           {/* Action Buttons */}
           <Card className="border-none bg-muted/50">

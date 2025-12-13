@@ -1,6 +1,7 @@
 const expressAsyncHandler = require('express-async-handler');
 const slugify = require('slugify');
 const { PrismaClient } = require('@prisma/client');
+const cloudinary = require('../utils/cloudinary');
 const prisma = new PrismaClient();
 
 // @desc    Get store products
@@ -85,41 +86,146 @@ const createProduct = expressAsyncHandler(async (req, res) => {
   const { storeId } = req.params;
   const productData = req.body;
 
-  // Generate slug
-  let slug = slugify(productData.name, { lower: true, strict: true });
+  try {
+    // Generate slug
+    let slug = slugify(productData.name, { lower: true, strict: true });
 
-  // Check if slug exists in this store
-  const slugExists = await prisma.product.findUnique({
-    where: {
-      storeId_slug: {
-        storeId,
-        slug
+    // Check if slug exists in this store
+    const slugExists = await prisma.product.findUnique({
+      where: {
+        storeId_slug: {
+          storeId,
+          slug
+        }
       }
+    });
+
+    if (slugExists) {
+      slug = `${slug}-${Date.now()}`;
     }
-  });
 
-  if (slugExists) {
-    slug = `${slug}-${Date.now()}`;
-  }
+    // Handle image uploads
+    let mainImageData = null;
+    let subImagesData = [];
 
-  // Create product
-  const product = await prisma.product.create({
-    data: {
-      ...productData,
+    // Upload main image to Cloudinary
+    if (req.files && req.files.mainImage && req.files.mainImage[0]) {
+      const mainImageFile = req.files.mainImage[0];
+      
+      try {
+        // Convert buffer to base64 for Cloudinary upload
+        const fileStr = `data:${mainImageFile.mimetype};base64,${mainImageFile.buffer.toString('base64')}`;
+        
+        const result = await cloudinary.uploader.upload(fileStr, {
+          folder: `ordify/stores/${storeId}/products`,
+          resource_type: 'image'
+        });
+        
+        mainImageData = {
+          path: result.secure_url,
+          public_id: result.public_id
+        };
+      } catch (uploadError) {
+        res.status(500);
+        throw new Error(`Failed to upload main image: ${uploadError.message}`);
+      }
+    } else if (productData.mainImage) {
+      // Use mainImage from request body if provided (for URL inputs)
+      mainImageData = productData.mainImage;
+    }
+
+    // Upload sub images to Cloudinary
+    if (req.files && req.files.subImages && req.files.subImages.length > 0) {
+      try {
+        const uploadPromises = req.files.subImages.map(async (file) => {
+          // Convert buffer to base64 for Cloudinary upload
+          const fileStr = `data:${file.mimetype};base64,${file.buffer.toString('base64')}`;
+          
+          const result = await cloudinary.uploader.upload(fileStr, {
+            folder: `ordify/stores/${storeId}/products`,
+            resource_type: 'image'
+          });
+          
+          return {
+            path: result.secure_url,
+            public_id: result.public_id
+          };
+        });
+        
+        subImagesData = await Promise.all(uploadPromises);
+      } catch (uploadError) {
+        // Clean up main image if sub images upload fails
+        if (mainImageData && mainImageData.public_id) {
+          await cloudinary.uploader.destroy(mainImageData.public_id);
+        }
+        res.status(500);
+        throw new Error(`Failed to upload sub images: ${uploadError.message}`);
+      }
+    } else if (productData.subImages) {
+      // Use subImages from request body if provided
+      subImagesData = productData.subImages;
+    }
+
+    // At this point, validators have already sanitized the values
+    // Prepare product data
+    const createData = {
+      name: productData.name,
+      description: productData.description || null,
+      shortDescription: productData.shortDescription || null,
+      price: productData.price, // Already validated and converted by validator
+      ...(productData.comparePrice !== undefined && { comparePrice: productData.comparePrice }),
+      ...(productData.costPrice !== undefined && { costPrice: productData.costPrice }),
+      sku: productData.sku || null,
+      barcode: productData.barcode || null,
+      ...(productData.trackQuantity !== undefined && { trackQuantity: productData.trackQuantity }),
+      ...(productData.quantity !== undefined && { quantity: productData.quantity }),
+      ...(productData.lowStockAlert !== undefined && { lowStockAlert: productData.lowStockAlert }),
+      ...(productData.weight !== undefined && { weight: productData.weight }),
+      ...(productData.weightUnit && { weightUnit: productData.weightUnit }),
+      // Connect category if provided
+      ...(productData.categoryId && { category: { connect: { id: productData.categoryId } } }),
+      ...(productData.status && { status: productData.status }),
+      ...(productData.isActive !== undefined && { isActive: productData.isActive }),
+      ...(productData.isFeatured !== undefined && { isFeatured: productData.isFeatured }),
+      metaTitle: productData.metaTitle || null,
+      metaDescription: productData.metaDescription || null,
+      metaKeywords: Array.isArray(productData.metaKeywords) ? productData.metaKeywords : [],
       slug,
-      storeId,
-      images: productData.images || [],
-      metaKeywords: productData.metaKeywords || []
-    },
-    include: {
-      category: true
-    }
-  });
+      // Connect required store relation (avoid "Argument `store` is missing" error)
+      store: { connect: { id: storeId } },
+      // Only include mainImage if it's provided
+      ...(mainImageData && { mainImage: mainImageData }),
+      // Only include subImages if there are any
+      ...(subImagesData.length > 0 && { subImages: subImagesData }),
+      // Set thumbnail to main image URL if available
+      ...(mainImageData && { thumbnail: mainImageData.path })
+    };
 
-  res.status(201).json({
-    success: true,
-    data: product
-  });
+    // Remove the old images field if it exists
+    delete createData.images;
+
+    // Create product
+    const product = await prisma.product.create({
+      data: createData,
+      include: {
+        category: true
+      }
+    });
+
+    res.status(201).json({
+      success: true,
+      data: product
+    });
+  } catch (error) {
+    // Clean up uploaded images on error
+    if (error.mainImagePublicId) {
+      await cloudinary.uploader.destroy(error.mainImagePublicId);
+    }
+    if (error.subImagePublicIds) {
+      await Promise.all(error.subImagePublicIds.map(id => cloudinary.uploader.destroy(id)));
+    }
+    throw error;
+  }
 });
 
 // @desc    Get single product
