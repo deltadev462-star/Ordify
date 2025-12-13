@@ -30,12 +30,17 @@ const validateCreateCategory = [
     .withMessage('Description must not exceed 500 characters'),
   body('parentId')
     .optional()
-    .isMongoId()
+    .custom((value) => {
+      // Allow null or empty for no parent
+      if (value === null || value === '' || value === undefined) {
+        return true;
+      }
+      // Otherwise, check if it's a valid MongoDB ID
+      return /^[0-9a-fA-F]{24}$/.test(value);
+    })
     .withMessage('Invalid parent category ID'),
-  body('image')
-    .optional()
-    .isURL()
-    .withMessage('Image must be a valid URL'),
+  // Image validation is now handled by multer middleware
+  // No need to validate image in body as it comes from file upload
   body('isActive')
     .optional()
     .isBoolean()
@@ -61,12 +66,17 @@ const validateUpdateCategory = [
     .withMessage('Description must not exceed 500 characters'),
   body('parentId')
     .optional()
-    .isMongoId()
+    .custom((value) => {
+      // Allow null or empty for no parent
+      if (value === null || value === '' || value === undefined) {
+        return true;
+      }
+      // Otherwise, check if it's a valid MongoDB ID
+      return /^[0-9a-fA-F]{24}$/.test(value);
+    })
     .withMessage('Invalid parent category ID'),
-  body('image')
-    .optional()
-    .isURL()
-    .withMessage('Image must be a valid URL'),
+  // Image validation is now handled by multer middleware
+  // No need to validate image in body as it comes from file upload
   body('isActive')
     .optional()
     .isBoolean()

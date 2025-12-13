@@ -41,12 +41,35 @@ export const fetchCategories = createAsyncThunk(
 
 export const createCategory = createAsyncThunk(
   'categories/createCategory',
-  async (categoryData: CategoryFormData, { getState, rejectWithValue }) => {
+  async ({ categoryData, imageFile }: { categoryData: CategoryFormData; imageFile?: File | null }, { getState, rejectWithValue }) => {
     try {
       const state = getState() as RootState;
       const storeId = getStoreId(state);
       
-      const response = await axios.post(API_ENDPOINTS.createCategory(storeId), categoryData);
+      const formData = new FormData();
+      
+      // Append text fields
+      formData.append('name', categoryData.name);
+      if (categoryData.description) {
+        formData.append('description', categoryData.description);
+      }
+      if (categoryData.parentId) {
+        formData.append('parentId', categoryData.parentId);
+      }
+      formData.append('isActive', String(categoryData.isActive ?? true));
+      formData.append('sortOrder', String(categoryData.sortOrder ?? 0));
+      
+      // Append image if provided
+      if (imageFile) {
+        formData.append('image', imageFile);
+      }
+      
+      const response = await axios.post(API_ENDPOINTS.createCategory(storeId), formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      
       const { success, data } = response.data;
       
       if (success) {
@@ -89,12 +112,41 @@ export const fetchCategory = createAsyncThunk(
 
 export const updateCategory = createAsyncThunk(
   'categories/updateCategory',
-  async ({ categoryId, data }: { categoryId: string; data: CategoryFormData }, { getState, rejectWithValue }) => {
+  async ({ categoryId, data, imageFile }: { categoryId: string; data: CategoryFormData; imageFile?: File | null }, { getState, rejectWithValue }) => {
     try {
       const state = getState() as RootState;
       const storeId = getStoreId(state);
       
-      const response = await axios.put(API_ENDPOINTS.updateCategory(storeId, categoryId), data);
+      const formData = new FormData();
+      
+      // Append text fields
+      formData.append('name', data.name);
+      if (data.description) {
+        formData.append('description', data.description);
+      }
+      if (data.parentId) {
+        formData.append('parentId', data.parentId);
+      }
+      formData.append('isActive', String(data.isActive ?? true));
+      formData.append('sortOrder', String(data.sortOrder ?? 0));
+      
+      // Handle image: either new file or explicit removal (null)
+      if (imageFile !== undefined) {
+        if (imageFile === null) {
+          // Explicitly removing the image
+          formData.append('removeImage', 'true');
+        } else {
+          // Adding new image
+          formData.append('image', imageFile);
+        }
+      }
+      
+      const response = await axios.put(API_ENDPOINTS.updateCategory(storeId, categoryId), formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      
       const { success, data: categoryData } = response.data;
       
       if (success) {

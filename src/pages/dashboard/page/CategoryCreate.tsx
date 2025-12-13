@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowRight, Upload, ChevronLeft, X } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { useFormik } from "formik";
+import { ArrowRight, Upload, ChevronLeft, X, Eye } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -13,48 +16,111 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { createCategory, fetchCategories } from "@/store/slices/category/actions";
+import type { CategoryFormData } from "@/types/category.types";
 
 function CategoryCreate() {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const { t, i18n } = useTranslation();
+  const { toast } = useToast();
 
-  // Form state
-  const [formData, setFormData] = useState({
-    name: "",
-    description: "",
-    parentId: "none",
-    image: null as File | null,
-    isActive: true,
-    sortOrder: "0",
-  });
-
+  const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [showImagePreview, setShowImagePreview] = useState(false);
 
-  // Mock parent categories - you'll replace this with actual API data
-  const parentCategories = [
-    { id: "none", name: "No  Parent  Category" },
-    { id: "1", name: "Electronics" },
-    { id: "2", name: "Clothing" },
-    { id: "3", name: "Home & Garden" },
-  ];
+  // Get parent categories from Redux store
+  const { categories } = useAppSelector((state) => state.categories);
+  const { createLoading } = useAppSelector((state) => state.categories);
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-    // Clear error when user starts typing
-    if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: "" }));
+  // Fetch categories on mount
+  useEffect(() => {
+    dispatch(fetchCategories(false)); // false for includeInactive parameter
+  }, [dispatch]);
+
+  // Validation function
+  const validate = (values: CategoryFormData) => {
+    const errors: Partial<Record<keyof CategoryFormData, string>> = {};
+    
+    if (!values.name.trim()) {
+      errors.name = t("categories.categoryNameRequired");
     }
+    
+    if (!values.description || !values.description.trim()) {
+      errors.description = t("categories.descriptionRequired");
+    }
+    
+    if (values.sortOrder !== undefined && values.sortOrder < 0) {
+      errors.sortOrder = t("categories.sortOrderError");
+    }
+    
+    return errors;
   };
+
+  // Formik setup
+  const formik = useFormik<CategoryFormData>({
+    initialValues: {
+      name: "",
+      description: "",
+      parentId: null,
+      isActive: true,
+      sortOrder: 0,
+    },
+    validate,
+    onSubmit: async (values) => {
+      try {
+        await dispatch(createCategory({
+          categoryData: values,
+          imageFile: imageFile,
+        })).unwrap();
+        
+        toast({
+          title: t("common.success"),
+          description: t("messages.createSuccess"),
+        });
+        navigate("/dashboard/products/categories");
+      } catch (error: any) {
+        toast({
+          title: t("common.error"),
+          description: error || t("messages.error"),
+          variant: "destructive",
+        });
+      }
+    },
+  });
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setFormData(prev => ({ ...prev, image: file }));
-      
+      // Validate file type
+      const validTypes = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
+      if (!validTypes.includes(file.type)) {
+        toast({
+          title: t("common.error"),
+          description: t("validation.invalidFormat"),
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Validate file size (2MB max)
+      if (file.size > 2 * 1024 * 1024) {
+        toast({
+          title: t("common.error"),
+          description: t("messages.uploadError"),
+          variant: "destructive",
+        });
+        return;
+      }
+
+      setImageFile(file);
+
       // Create preview
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -65,60 +131,8 @@ function CategoryCreate() {
   };
 
   const removeImage = () => {
-    setFormData(prev => ({ ...prev, image: null }));
+    setImageFile(null);
     setImagePreview(null);
-  };
-
-  const validateForm = () => {
-    const newErrors: Record<string, string> = {};
-    
-    if (!formData.name.trim()) {
-      newErrors.name = "Category name is required";
-    }
-    
-    if (!formData.description.trim()) {
-      newErrors.description = "Description is required";
-    }
-    
-    const sortOrderNum = parseInt(formData.sortOrder, 10);
-    if (isNaN(sortOrderNum) || sortOrderNum < 0) {
-      newErrors.sortOrder = "Sort order must be a positive number";
-    }
-    
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!validateForm()) {
-      return;
-    }
-    
-    setLoading(true);
-    
-    // Simulate API call - replace with actual API call
-    try {
-      // const formDataToSend = new FormData();
-      // formDataToSend.append('name', formData.name);
-      // formDataToSend.append('description', formData.description);
-      // formDataToSend.append('parentId', formData.parentId);
-      // formDataToSend.append('isActive', String(formData.isActive));
-      // formDataToSend.append('sortOrder', formData.sortOrder);
-      // if (formData.image) {
-      //   formDataToSend.append('image', formData.image);
-      // }
-      
-      await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate delay
-      
-      // Navigate back to categories list
-      navigate('/dashboard/products/categories');
-    } catch (error) {
-      console.error('Error creating category:', error);
-    } finally {
-      setLoading(false);
-    }
   };
 
   return (
@@ -132,14 +146,14 @@ function CategoryCreate() {
             onClick={() => navigate(-1)}
             className="rounded-xl hover:bg-primary/10"
           >
-            <ChevronLeft className="h-5 w-5" />
+            <ChevronLeft className={i18n.language === "ar" ? "h-5 w-5 rotate-180" : "h-5 w-5"} />
           </Button>
           <div>
             <h1 className="text-2xl font-bold text-foreground">
-              {"Create  New  Category"}
+              {t("categories.createNewCategory")}
             </h1>
             <p className="text-sm text-muted-foreground">
-              {"Add a new category to organize your products"}
+              {t("categories.createNewCategorySubtitle")}
             </p>
           </div>
         </div>
@@ -147,70 +161,83 @@ function CategoryCreate() {
 
       {/* Form Content */}
       <div className="space-y-8">
-        <form onSubmit={handleSubmit} className="space-y-8">
+        <form onSubmit={formik.handleSubmit} className="space-y-8">
           {/* Basic Information Card */}
-          <div className=" rounded-2xl p-6 shadow-sm border border-border">
+          <div className="rounded-2xl p-6 shadow-sm border border-border">
             <h2 className="text-lg font-semibold mb-6 text-card-foreground">
-              {"Basic  Information"}
+              {t("categories.basicInformation")}
             </h2>
-            
+
             <div className="space-y-6">
               {/* Category Name */}
               <div className="space-y-2">
                 <Label htmlFor="name" className="text-sm font-medium">
-                  {"Category  Name"} <span className="text-destructive">*</span>
+                  {t("categories.categoryName")} <span className="text-destructive">*</span>
                 </Label>
                 <Input
                   id="name"
                   name="name"
                   type="text"
-                  placeholder={""}
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  className={`rounded-xl h-12 ${errors.name ? 'border-destructive' : ''}`}
+                  placeholder={t("categories.categoryNamePlaceholder")}
+                  value={formik.values.name}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  className={`rounded-xl h-12 ${
+                    formik.touched.name && formik.errors.name ? "border-destructive" : ""
+                  }`}
                 />
-                {errors.name && (
-                  <p className="text-sm text-destructive">{errors.name}</p>
+                {formik.touched.name && formik.errors.name && (
+                  <p className="text-sm text-destructive">{formik.errors.name}</p>
                 )}
               </div>
 
               {/* Description */}
               <div className="space-y-2">
                 <Label htmlFor="description" className="text-sm font-medium">
-                  {"Description"} <span className="text-destructive">*</span>
+                  {t("common.description")} <span className="text-destructive">*</span>
                 </Label>
                 <Textarea
                   id="description"
                   name="description"
-                  placeholder={""}
-                  value={formData.description}
-                  onChange={handleInputChange}
+                  placeholder={t("categories.descriptionPlaceholder")}
+                  value={formik.values.description}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                   rows={4}
-                  className={`rounded-xl resize-none ${errors.description ? 'border-destructive' : ''}`}
+                  className={`rounded-xl resize-none ${
+                    formik.touched.description && formik.errors.description
+                      ? "border-destructive"
+                      : ""
+                  }`}
                 />
-                {errors.description && (
-                  <p className="text-sm text-destructive">{errors.description}</p>
+                {formik.touched.description && formik.errors.description && (
+                  <p className="text-sm text-destructive">{formik.errors.description}</p>
                 )}
               </div>
 
               {/* Parent Category */}
               <div className="space-y-2">
                 <Label htmlFor="parentId" className="text-sm font-medium">
-                  {"Parent  Category"}
+                  {t("categories.parentCategory")}
                 </Label>
                 <Select
-                  value={formData.parentId}
-                  onValueChange={(value) => setFormData(prev => ({ ...prev, parentId: value }))}
+                  value={formik.values.parentId || "none"}
+                  onValueChange={(value) =>
+                    formik.setFieldValue("parentId", value === "none" ? null : value)
+                  }
                 >
                   <SelectTrigger className="rounded-xl h-12">
-                    <SelectValue placeholder={"Select parent category"} />
+                    <SelectValue placeholder={t("categories.selectParentCategory")} />
                   </SelectTrigger>
                   <SelectContent>
-                    {parentCategories.map((category) => (
-                      <SelectItem key={category.id} value={category.id}>
-                        {category.name}
-                      </SelectItem>
-                    ))}
+                    <SelectItem value="none">{t("categories.noParentCategory")}</SelectItem>
+                    {categories
+                      .filter((cat) => cat.parentId === null) // Only show root categories as parent options
+                      .map((category) => (
+                        <SelectItem key={category.id} value={category.id}>
+                          {category.name}
+                        </SelectItem>
+                      ))}
                   </SelectContent>
                 </Select>
               </div>
@@ -218,11 +245,11 @@ function CategoryCreate() {
           </div>
 
           {/* Image Upload Card */}
-          <div className=" rounded-2xl p-6 shadow-sm border border-border">
+          <div className="rounded-2xl p-6 shadow-sm border border-border">
             <h2 className="text-lg font-semibold mb-6 text-card-foreground">
-              {"Category  Image"}
+              {t("categories.categoryImage")}
             </h2>
-            
+
             <div className="space-y-4">
               {!imagePreview ? (
                 <label
@@ -232,10 +259,10 @@ function CategoryCreate() {
                   <div className="flex flex-col items-center justify-center pt-5 pb-6">
                     <Upload className="w-12 h-12 mb-4 text-muted-foreground" />
                     <p className="mb-2 text-sm font-medium text-muted-foreground">
-                      {"Click to upload image"}
+                      {t("categories.clickToUploadImage")}
                     </p>
                     <p className="text-xs text-muted-foreground">
-                      PNG, JPG or WebP (MAX. 2MB)
+                      {t("categories.imageFormat")}
                     </p>
                   </div>
                   <input
@@ -252,43 +279,57 @@ function CategoryCreate() {
                   <img
                     src={imagePreview}
                     alt="Category preview"
-                    className="w-full h-64 object-cover rounded-xl"
+                    className="w-full h-64 object-cover rounded-xl cursor-pointer"
+                    onClick={() => setShowImagePreview(true)}
                   />
-                  <button
-                    type="button"
-                    onClick={removeImage}
-                    className="absolute top-2 left-2 p-2 bg-background/90 backdrop-blur rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"
-                  >
-                    <X className="h-4 w-4" />
-                  </button>
+                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl flex items-center justify-center gap-2">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setShowImagePreview(true);
+                      }}
+                      className="p-2 bg-background/90 backdrop-blur rounded-xl hover:bg-background"
+                    >
+                      <Eye className="h-4 w-4" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        removeImage();
+                      }}
+                      className="p-2 bg-background/90 backdrop-blur rounded-xl hover:bg-background"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  </div>
                 </div>
               )}
             </div>
           </div>
 
           {/* Settings Card */}
-          <div className=" rounded-2xl p-6 shadow-sm border border-border">
+          <div className="rounded-2xl p-6 shadow-sm border border-border">
             <h2 className="text-lg font-semibold mb-6 text-card-foreground">
-              {"Settings"}
+              {t("common.settings")}
             </h2>
-            
+
             <div className="space-y-6">
               {/* Status */}
               <div className="flex items-center justify-between">
                 <div className="space-y-0.5">
                   <Label htmlFor="isActive" className="text-sm font-medium">
-                    {"Active  Status"}
+                    {t("categories.activeStatus")}
                   </Label>
                   <p className="text-sm text-muted-foreground">
-                    {"Enable this category to be visible in your store"}
+                    {t("categories.activeStatusDescription")}
                   </p>
                 </div>
                 <Switch
                   id="isActive"
-                  checked={formData.isActive}
-                  onCheckedChange={(checked) =>
-                    setFormData(prev => ({ ...prev, isActive: checked }))
-                  }
+                  checked={formik.values.isActive}
+                  onCheckedChange={(checked) => formik.setFieldValue("isActive", checked)}
                   className="data-[state=checked]:bg-green-500 dark:data-[state=checked]:bg-green-600 data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700"
                 />
               </div>
@@ -296,7 +337,7 @@ function CategoryCreate() {
               {/* Sort Order */}
               <div className="space-y-2">
                 <Label htmlFor="sortOrder" className="text-sm font-medium">
-                  {"Sort  Order"}
+                  {t("categories.sortOrder")}
                 </Label>
                 <Input
                   id="sortOrder"
@@ -304,15 +345,20 @@ function CategoryCreate() {
                   type="number"
                   min="0"
                   placeholder="0"
-                  value={formData.sortOrder}
-                  onChange={handleInputChange}
-                  className={`rounded-xl h-12 w-32 ${errors.sortOrder ? 'border-destructive' : ''}`}
+                  value={formik.values.sortOrder}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  className={`rounded-xl h-12 w-32 ${
+                    formik.touched.sortOrder && formik.errors.sortOrder
+                      ? "border-destructive"
+                      : ""
+                  }`}
                 />
-                {errors.sortOrder && (
-                  <p className="text-sm text-destructive">{errors.sortOrder}</p>
+                {formik.touched.sortOrder && formik.errors.sortOrder && (
+                  <p className="text-sm text-destructive">{formik.errors.sortOrder}</p>
                 )}
                 <p className="text-sm text-muted-foreground">
-                  {"Lower numbers appear first"}
+                  {t("categories.sortOrderDescription")}
                 </p>
               </div>
             </div>
@@ -325,29 +371,46 @@ function CategoryCreate() {
               variant="outline"
               onClick={() => navigate(-1)}
               className="rounded-xl"
-              disabled={loading}
+              disabled={createLoading}
             >
-              {"Cancel"}
+              {t("common.cancel")}
             </Button>
             <Button
               type="submit"
-              disabled={loading}
+              disabled={createLoading}
               className="rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground min-w-[150px]"
             >
-              {loading ? (
+              {createLoading ? (
                 <div className="flex items-center gap-2">
                   <div className="h-4 w-4 animate-spin rounded-full border-2 border-primary-foreground border-t-transparent" />
-                  {""}
+                  {t("categories.creating")}
                 </div>
               ) : (
                 <>
-                  {"Create  Category"} <ArrowRight className="mr-2 h-4 w-4" />
+                  {t("categories.createCategory")}{" "}
+                  <ArrowRight
+                    className={i18n.language === "ar" ? "ml-2 h-4 w-4 rotate-180" : "mr-2 h-4 w-4"}
+                  />
                 </>
               )}
             </Button>
           </div>
         </form>
       </div>
+
+      {/* Image Preview Dialog */}
+      <Dialog open={showImagePreview} onOpenChange={setShowImagePreview}>
+        <DialogContent className="max-w-4xl">
+          <DialogTitle>{t("categories.categoryImage")}</DialogTitle>
+          <div className="mt-4">
+            <img
+              src={imagePreview || ""}
+              alt="Category preview"
+              className="w-full h-auto rounded-lg"
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

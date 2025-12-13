@@ -1,6 +1,7 @@
 const expressAsyncHandler = require('express-async-handler');
 const slugify = require('slugify');
 const { PrismaClient } = require('@prisma/client');
+const cloudinary = require('../utils/cloudinary');
 const prisma = new PrismaClient();
 
 // @desc    Get store categories
@@ -65,7 +66,15 @@ const getStoreCategories = expressAsyncHandler(async (req, res) => {
 // @access  Private (Store Owner/Staff with permission)
 const createCategory = expressAsyncHandler(async (req, res) => {
   const { storeId } = req.params;
-  const { name, description, parentId, image, isActive, sortOrder } = req.body;
+  let { name, description, parentId, isActive, sortOrder } = req.body;
+
+  // Convert string values to proper types (FormData sends everything as strings)
+  if (isActive !== undefined) {
+    isActive = isActive === 'true' || isActive === true;
+  }
+  if (sortOrder !== undefined) {
+    sortOrder = parseInt(sortOrder, 10) || 0;
+  }
 
   // Generate slug
   let slug = slugify(name, { lower: true, strict: true });
@@ -99,13 +108,35 @@ const createCategory = expressAsyncHandler(async (req, res) => {
     }
   }
 
+  // Handle image upload to Cloudinary
+  let imageData = null;
+  if (req.file) {
+    try {
+      const result = await cloudinary.uploader.upload(req.file.path, {
+        folder: `ordify/stores/${storeId}/categories`,
+        resource_type: 'image',
+        transformation: [
+          { width: 400, height: 400, crop: 'fill' }
+        ]
+      });
+      
+      imageData = {
+        path: result.secure_url,
+        public_id: result.public_id
+      };
+    } catch (error) {
+      res.status(500);
+      throw new Error('Error uploading image to Cloudinary');
+    }
+  }
+
   // Create category
   const category = await prisma.category.create({
     data: {
       name,
       slug,
       description,
-      image,
+      image: imageData,
       storeId,
       parentId,
       isActive: isActive !== undefined ? isActive : true,
@@ -182,7 +213,7 @@ const getCategory = expressAsyncHandler(async (req, res) => {
 // @access  Private (Store Owner/Staff with permission)
 const updateCategory = expressAsyncHandler(async (req, res) => {
   const { storeId, categoryId } = req.params;
-  const updateData = req.body;
+  const updateData = { ...req.body };
 
   // Remove fields that shouldn't be updated directly
   delete updateData.id;
@@ -190,6 +221,27 @@ const updateCategory = expressAsyncHandler(async (req, res) => {
   delete updateData.slug;
   delete updateData.createdAt;
   delete updateData.updatedAt;
+  delete updateData.image; // Remove image from body as it comes from file upload
+  delete updateData.removeExistingImage; // Remove this flag as it's handled separately
+
+  // Convert string values to proper types (FormData sends everything as strings)
+  if (updateData.isActive !== undefined) {
+    updateData.isActive = updateData.isActive === 'true' || updateData.isActive === true;
+  }
+  if (updateData.sortOrder !== undefined) {
+    updateData.sortOrder = parseInt(updateData.sortOrder, 10);
+  }
+
+  // Get existing category to check for old image
+  const existingCategory = await prisma.category.findUnique({
+    where: { id: categoryId },
+    select: { image: true }
+  });
+
+  if (!existingCategory) {
+    res.status(404);
+    throw new Error('Category not found');
+  }
 
   // If changing parent, validate it
   if (updateData.parentId) {
@@ -231,6 +283,46 @@ const updateCategory = expressAsyncHandler(async (req, res) => {
     }
   }
 
+  // Handle image removal if requested
+  if (req.body.removeExistingImage === 'true' && existingCategory.image) {
+    try {
+      if (existingCategory.image.public_id) {
+        await cloudinary.uploader.destroy(existingCategory.image.public_id);
+      }
+      updateData.image = null;
+    } catch (error) {
+      console.error('Error deleting image from Cloudinary:', error);
+      // Continue even if deletion fails
+    }
+  }
+  
+  // Handle image upload to Cloudinary if new image provided
+  else if (req.file) {
+    try {
+      // Delete old image from Cloudinary if exists
+      if (existingCategory.image && existingCategory.image.public_id) {
+        await cloudinary.uploader.destroy(existingCategory.image.public_id);
+      }
+
+      // Upload new image
+      const result = await cloudinary.uploader.upload(req.file.path, {
+        folder: `ordify/stores/${storeId}/categories`,
+        resource_type: 'image',
+        transformation: [
+          { width: 400, height: 400, crop: 'fill' }
+        ]
+      });
+      
+      updateData.image = {
+        path: result.secure_url,
+        public_id: result.public_id
+      };
+    } catch (error) {
+      res.status(500);
+      throw new Error('Error uploading image to Cloudinary');
+    }
+  }
+
   const category = await prisma.category.update({
     where: { id: categoryId },
     data: updateData,
@@ -257,6 +349,17 @@ const updateCategory = expressAsyncHandler(async (req, res) => {
 const deleteCategory = expressAsyncHandler(async (req, res) => {
   const { categoryId } = req.params;
 
+  // Get category to check for image
+  const category = await prisma.category.findUnique({
+    where: { id: categoryId },
+    select: { image: true }
+  });
+
+  if (!category) {
+    res.status(404);
+    throw new Error('Category not found');
+  }
+
   // Check if category has products
   const productsCount = await prisma.product.count({
     where: { categoryId }
@@ -275,6 +378,16 @@ const deleteCategory = expressAsyncHandler(async (req, res) => {
   if (childrenCount > 0) {
     res.status(400);
     throw new Error('Cannot delete category with subcategories. Please delete or reassign subcategories first.');
+  }
+
+  // Delete image from Cloudinary if exists
+  if (category.image && category.image.public_id) {
+    try {
+      await cloudinary.uploader.destroy(category.image.public_id);
+    } catch (error) {
+      console.error('Error deleting image from Cloudinary:', error);
+      // Continue with deletion even if image deletion fails
+    }
   }
 
   await prisma.category.delete({

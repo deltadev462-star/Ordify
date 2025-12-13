@@ -33,7 +33,6 @@ function DashboardContent() {
   };
 
   return (
-   
     <div className="flex flex-row w-full relative min-h-screen dark:bg-gray-900" dir="ltr">
       <div className="flex-1 order-1">
       

@@ -136,7 +136,7 @@ model Category {
   name          String
   slug          String
   description   String?
-  image         String?
+  image         Json?     // { path: string (required), public_id: string (required) }
   
   parentId      String?   @db.ObjectId
   parent        Category? @relation("SubCategories", fields: [parentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
