@@ -134,7 +134,7 @@ export const updateCategory = createAsyncThunk(
       if (imageFile !== undefined) {
         if (imageFile === null) {
           // Explicitly removing the image
-          formData.append('removeImage', 'true');
+          formData.append('removeExistingImage', 'true');
         } else {
           // Adding new image
           formData.append('image', imageFile);

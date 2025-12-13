@@ -223,6 +223,7 @@ const updateCategory = expressAsyncHandler(async (req, res) => {
   delete updateData.updatedAt;
   delete updateData.image; // Remove image from body as it comes from file upload
   delete updateData.removeExistingImage; // Remove this flag as it's handled separately
+  delete updateData.removeImage; // Also remove old field name for backwards compatibility
 
   // Convert string values to proper types (FormData sends everything as strings)
   if (updateData.isActive !== undefined) {

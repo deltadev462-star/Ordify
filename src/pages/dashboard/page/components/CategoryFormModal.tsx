@@ -80,7 +80,18 @@ const CategoryFormModal: React.FC<CategoryFormModalProps> = ({
     onSubmit: async (values, { setSubmitting, setErrors }) => {
       try {
         // Pass the image file to the parent component
-        await onSubmit(values, removeExistingImage ? null : imageFile);
+        // undefined = no changes to image
+        // null = explicitly remove image
+        // File = new image
+        let imageParam: File | null | undefined = undefined;
+        if (removeExistingImage) {
+          imageParam = null; // Explicitly remove
+        } else if (imageFile) {
+          imageParam = imageFile; // New image
+        }
+        // Otherwise undefined = no changes
+        
+        await onSubmit(values, imageParam);
         handleClose();
       } catch (error: any) {
         if (error.response?.data?.errors) {
