@@ -8,6 +8,7 @@ import RegisterPage from "./pages/signup/RegisterPage";
 import NotFound from "./pages/NotFound";
 import ProfilePage from "./pages/profile/ProfilePage";
 import DashboardLayout from "./layouts/DashboardLayout";
+import ProductEdit from "./pages/dashboard/products/ProductEdit";
 
 // Lazy load pages
 const Home = lazy(() => import("./pages/Home/Home"));
@@ -25,8 +26,11 @@ const BlockedNumber = lazy(() => import("./pages/dashboard/page/BlockedNumber"))
 const BlockedVerification = lazy(() => import("./pages/dashboard/page/BlockedVerification"));
 
 // Products & Catalog - using existing components
-const Products = lazy(() => import("./pages/dashboard/page/Products"));
+const Products = lazy(() => import("./pages/dashboard/products/Products"));
 const ProductCreate = lazy(() => import("./pages/dashboard/page/ProductCreate"));
+const ProductDetail = lazy(() => import("./pages/dashboard/products/ProductDetail"));
+
+
 const Categories = lazy(() => import("./pages/dashboard/page/Categories"));
 const CategoryCreate = lazy(() => import("./pages/dashboard/page/CategoryCreate"));
 const Reviews = lazy(() => import("./pages/dashboard/page/Reviews"));
@@ -159,6 +163,14 @@ const router = createBrowserRouter([
           {
             path: "new",
             element: <ProductCreate />,
+          },
+          {
+            path: ":productId",
+            element: <ProductDetail />,
+          },
+          {
+            path: ":productId/edit",
+            element: <ProductEdit />,
           },
           {
             path: "categories",

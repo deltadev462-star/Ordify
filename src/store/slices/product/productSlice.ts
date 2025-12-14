@@ -1,4 +1,4 @@
-import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createSelector, type PayloadAction } from '@reduxjs/toolkit';
 import type { ProductState, Product, ProductFilters } from '@/types/product.types';
 import {
   fetchProductsHandler,
@@ -108,10 +108,14 @@ const productSlice = createSlice({
   }
 });
 
-// Selectors
+// Base selectors
+const selectProductState = (state: { products: ProductState }) => state.products;
+const selectProducts = (state: { products: ProductState }) => state.products.products;
+
+// Memoized selectors
 export const productSelectors = {
   // Get all products
-  selectAllProducts: (state: { products: ProductState }) => state.products.products,
+  selectAllProducts: selectProducts,
   
   // Get selected product
   selectSelectedProduct: (state: { products: ProductState }) => state.products.selectedProduct,
@@ -125,42 +129,54 @@ export const productSelectors = {
     state.products.products.filter(prod => prod.categoryId === categoryId),
   
   // Get active products only
-  selectActiveProducts: (state: { products: ProductState }) =>
-    state.products.products.filter(prod => prod.isActive),
+  selectActiveProducts: createSelector(
+    [selectProducts],
+    (products) => products.filter(prod => prod.isActive)
+  ),
   
   // Get published products only
-  selectPublishedProducts: (state: { products: ProductState }) =>
-    state.products.products.filter(prod => prod.status === 'PUBLISHED' && prod.isActive),
+  selectPublishedProducts: createSelector(
+    [selectProducts],
+    (products) => products.filter(prod => prod.status === 'PUBLISHED' && prod.isActive)
+  ),
   
   // Get featured products
-  selectFeaturedProducts: (state: { products: ProductState }) =>
-    state.products.products.filter(prod => prod.isFeatured && prod.isActive && prod.status === 'PUBLISHED'),
+  selectFeaturedProducts: createSelector(
+    [selectProducts],
+    (products) => products.filter(prod => prod.isFeatured && prod.isActive && prod.status === 'PUBLISHED')
+  ),
   
   // Get products in stock
-  selectInStockProducts: (state: { products: ProductState }) =>
-    state.products.products.filter(prod => {
+  selectInStockProducts: createSelector(
+    [selectProducts],
+    (products) => products.filter(prod => {
       if (!prod.trackQuantity) return true;
       return prod.quantity > 0;
-    }),
+    })
+  ),
   
   // Get low stock products
-  selectLowStockProducts: (state: { products: ProductState }) =>
-    state.products.products.filter(prod => {
+  selectLowStockProducts: createSelector(
+    [selectProducts],
+    (products) => products.filter(prod => {
       if (!prod.trackQuantity) return false;
       return prod.quantity <= prod.lowStockAlert && prod.quantity > 0;
-    }),
+    })
+  ),
   
   // Get out of stock products
-  selectOutOfStockProducts: (state: { products: ProductState }) =>
-    state.products.products.filter(prod => {
+  selectOutOfStockProducts: createSelector(
+    [selectProducts],
+    (products) => products.filter(prod => {
       if (!prod.trackQuantity) return false;
       return prod.quantity === 0;
-    }),
+    })
+  ),
   
-  // Get product counts by status
-  selectProductCountsByStatus: (state: { products: ProductState }) => {
-    const products = state.products.products;
-    return {
+  // Get product counts by status - MEMOIZED
+  selectProductCountsByStatus: createSelector(
+    [selectProducts],
+    (products) => ({
       total: products.length,
       draft: products.filter(p => p.status === 'DRAFT').length,
       published: products.filter(p => p.status === 'PUBLISHED').length,
@@ -170,16 +186,19 @@ export const productSelectors = {
       inStock: products.filter(p => !p.trackQuantity || p.quantity > 0).length,
       lowStock: products.filter(p => p.trackQuantity && p.quantity <= p.lowStockAlert && p.quantity > 0).length,
       outOfStock: products.filter(p => p.trackQuantity && p.quantity === 0).length
-    };
-  },
+    })
+  ),
   
-  // Get pagination info
-  selectProductPagination: (state: { products: ProductState }) => ({
-    currentPage: state.products.currentPage,
-    totalPages: state.products.totalPages,
-    totalProducts: state.products.totalProducts,
-    productsPerPage: state.products.filters.limit || 20
-  }),
+  // Get pagination info - MEMOIZED
+  selectProductPagination: createSelector(
+    [selectProductState],
+    (productState) => ({
+      currentPage: productState.currentPage,
+      totalPages: productState.totalPages,
+      totalProducts: productState.totalProducts,
+      productsPerPage: productState.filters.limit || 20
+    })
+  ),
   
   // Get loading states
   selectProductLoading: (state: { products: ProductState }) => state.products.loading,
@@ -200,37 +219,40 @@ export const productSelectors = {
   // Get filters
   selectProductFilters: (state: { products: ProductState }) => state.products.filters,
   
-  // Get sorted products
-  selectSortedProducts: (state: { products: ProductState }) => {
-    const products = [...state.products.products];
-    const { sortBy, sortOrder } = state.products.filters;
-    
-    return products.sort((a, b) => {
-      let comparison = 0;
+  // Get sorted products - MEMOIZED
+  selectSortedProducts: createSelector(
+    [selectProducts, (state: { products: ProductState }) => state.products.filters],
+    (products, filters) => {
+      const sortedProducts = [...products];
+      const { sortBy, sortOrder } = filters;
       
-      switch (sortBy) {
-        case 'name':
-          comparison = a.name.localeCompare(b.name);
-          break;
-        case 'price':
-          comparison = a.price - b.price;
-          break;
-        case 'createdAt':
-          comparison = new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
-          break;
-        case 'soldCount':
-          comparison = a.soldCount - b.soldCount;
-          break;
-        case 'viewCount':
-          comparison = a.viewCount - b.viewCount;
-          break;
-        default:
-          comparison = 0;
-      }
-      
-      return sortOrder === 'desc' ? -comparison : comparison;
-    });
-  },
+      return sortedProducts.sort((a, b) => {
+        let comparison = 0;
+        
+        switch (sortBy) {
+          case 'name':
+            comparison = a.name.localeCompare(b.name);
+            break;
+          case 'price':
+            comparison = a.price - b.price;
+            break;
+          case 'createdAt':
+            comparison = new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+            break;
+          case 'soldCount':
+            comparison = a.soldCount - b.soldCount;
+            break;
+          case 'viewCount':
+            comparison = a.viewCount - b.viewCount;
+            break;
+          default:
+            comparison = 0;
+        }
+        
+        return sortOrder === 'desc' ? -comparison : comparison;
+      });
+    }
+  ),
   
   // Advanced product search
   selectSearchedProducts: (searchTerm: string) => (state: { products: ProductState }) => {

@@ -1,188 +1,171 @@
+import type { Product } from "@/types/product.types";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { 
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Edit, MoreVertical, Trash, Eye, Copy, Package } from "lucide-react";
+import { Edit, Trash2, Eye, Package } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
-
-export interface Product {
-  id: string;
-  name: string;
-  description?: string;
-  price: number;
-  comparePrice?: number;
-  currency: string;
-  images: string[];
-  category: string;
-  inventory: {
-    quantity: number;
-    trackInventory: boolean;
-  };
-  status: 'active' | 'draft' | 'archived';
-  createdAt: string;
-  updatedAt: string;
-}
 
 interface ProductCardProps {
   product: Product;
-  onView?: (product: Product) => void;
   onEdit?: (product: Product) => void;
   onDelete?: (product: Product) => void;
-  onDuplicate?: (product: Product) => void;
+  onView?: (product: Product) => void;
 }
 
-export function ProductCard({ 
-  product, 
-  onView, 
-  onEdit, 
-  onDelete,
-  onDuplicate 
-}: ProductCardProps) {
-  const getStatusColor = (status: Product['status']) => {
-    const colors = {
-      active: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400',
-      draft: 'bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-400',
-      archived: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400',
-    };
-    return colors[status] || 'bg-gray-100 text-gray-800';
+export function ProductCard({ product, onEdit, onDelete, onView }: ProductCardProps) {
+  const navigate = useNavigate();
+  
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "PUBLISHED":
+        return "bg-success text-success-foreground";
+      case "DRAFT":
+        return "bg-secondary text-secondary-foreground";
+      case "ARCHIVED":
+        return "bg-muted text-muted-foreground";
+      default:
+        return "bg-secondary text-secondary-foreground";
+    }
   };
 
-  const discount = product.comparePrice 
-    ? Math.round(((product.comparePrice - product.price) / product.comparePrice) * 100)
-    : 0;
+  const getStockStatus = () => {
+    if (!product.trackQuantity) return { text: "In Stock", color: "text-success" };
+    if (product.quantity === 0) return { text: "Out of Stock", color: "text-destructive" };
+    if (product.quantity <= product.lowStockAlert) return { text: "Low Stock", color: "text-amber-600" };
+    return { text: "In Stock", color: "text-success" };
+  };
 
-  const isLowStock = product.inventory.trackInventory && product.inventory.quantity < 10;
-  const isOutOfStock = product.inventory.trackInventory && product.inventory.quantity === 0;
+  const stockStatus = getStockStatus();
 
   return (
-    <Card className="group relative overflow-hidden border-0 shadow-sm hover:shadow-lg transition-all duration-300">
-      {/* Product Image */}
-      <div className="aspect-square relative overflow-hidden bg-gray-100 dark:bg-gray-800">
-        {product.images.length > 0 ? (
-          <img
-            src={product.images[0]}
-            alt={product.name}
-            className="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
-            onError={(e) => {
-              e.currentTarget.src = 'https://via.placeholder.com/300x300?text=No+Image';
-            }}
-          />
-        ) : (
-          <div className="h-full w-full flex items-center justify-center">
-            <Package className="h-16 w-16 text-gray-400" />
-          </div>
-        )}
-        
-        {/* Status Badge */}
-        <Badge 
-          className={cn(
-            "absolute top-2 left-2",
-            getStatusColor(product.status)
-          )}
-        >
+    <Card className="group relative overflow-hidden border-border bg-card hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+      {/* Status Badge */}
+      <div className="absolute top-3 right-3 z-10">
+        <Badge className={cn("text-xs font-medium", getStatusColor(product.status))}>
           {product.status}
         </Badge>
+      </div>
 
-        {/* Discount Badge */}
-        {discount > 0 && (
-          <Badge className="absolute top-2 right-2 bg-red-500 text-white">
-            -{discount}%
+      {/* Featured Badge */}
+      {product.isFeatured && (
+        <div className="absolute top-3 left-3 z-10">
+          <Badge className="bg-primary text-primary-foreground">
+            Featured
           </Badge>
-        )}
+        </div>
+      )}
 
-        {/* Stock Alert */}
-        {isOutOfStock && (
-          <Badge className="absolute bottom-2 left-2 bg-red-600 text-white">
-            {"Out of  Stock"}
-          </Badge>
-        )}
-        {isLowStock && !isOutOfStock && (
-          <Badge className="absolute bottom-2 left-2 bg-yellow-600 text-white">
-            {"Low  Stock"} ({product.inventory.quantity})
-          </Badge>
+      {/* Product Image */}
+      <div className="relative h-48 overflow-hidden bg-muted">
+        {product.mainImage?.path ? (
+          <img
+            src={product.mainImage.path}
+            alt={product.name}
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center">
+            <Package size={48} className="text-muted-foreground opacity-50" />
+          </div>
         )}
       </div>
 
       <CardContent className="p-4">
-        <div className="space-y-2">
-          {/* Category */}
-          <p className="text-xs text-muted-foreground">{product.category}</p>
-          
-          {/* Product Name */}
-          <h3 className="font-semibold text-sm line-clamp-2">
-            {product.name}
-          </h3>
+        {/* Product Name */}
+        <h3 className="font-semibold text-foreground truncate mb-2">
+          {product.name}
+        </h3>
 
-          {/* Price */}
-          <div className="flex items-baseline gap-2">
-            <span className="text-lg font-bold">
-              {product.currency} {product.price.toLocaleString()}
-            </span>
-            {product.comparePrice && (
+        {/* Short Description */}
+        {product.shortDescription && (
+          <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
+            {product.shortDescription}
+          </p>
+        )}
+
+        {/* Price Section */}
+        <div className="flex items-center gap-2 mb-3">
+          <span className="text-xl font-bold text-foreground">
+            ${product.price.toFixed(2)}
+          </span>
+          {product.comparePrice && product.comparePrice > product.price && (
+            <>
               <span className="text-sm text-muted-foreground line-through">
-                {product.currency} {product.comparePrice.toLocaleString()}
+                ${product.comparePrice.toFixed(2)}
+              </span>
+              <Badge variant="secondary" className="text-xs">
+                {Math.round(((product.comparePrice - product.price) / product.comparePrice) * 100)}% OFF
+              </Badge>
+            </>
+          )}
+        </div>
+
+        {/* Stock & SKU Info */}
+        <div className="flex items-center justify-between text-sm">
+          <div className="flex items-center gap-2">
+            <span className={cn("font-medium", stockStatus.color)}>
+              {stockStatus.text}
+            </span>
+            {product.trackQuantity && (
+              <span className="text-muted-foreground">
+                ({product.quantity} units)
               </span>
             )}
           </div>
-
-          {/* Stock Info */}
-          {product.inventory.trackInventory && (
-            <p className="text-xs text-muted-foreground">
-              {"Stock"}: {product.inventory.quantity} {"Units"}
-            </p>
+          {product.sku && (
+            <span className="text-xs text-muted-foreground">
+              SKU: {product.sku}
+            </span>
           )}
+        </div>
+
+        {/* Analytics */}
+        <div className="flex items-center gap-4 mt-3 text-xs text-muted-foreground">
+          <span className="flex items-center gap-1">
+            <Eye size={12} />
+            {product.viewCount} views
+          </span>
+          <span className="flex items-center gap-1">
+            <Package size={12} />
+            {product.soldCount} sold
+          </span>
         </div>
       </CardContent>
 
-      <CardFooter className="p-4 pt-0 flex items-center justify-between">
+      <CardFooter className="p-4 pt-0 flex gap-2">
         <Button
-          variant="default"
+          variant="outline"
           size="sm"
-          onClick={() => onView?.(product)}
           className="flex-1"
+          onClick={() => {
+            if (onView) {
+              onView(product);
+            } else {
+              navigate(`/dashboard/products/${product.id}`);
+            }
+          }}
         >
-          <Eye className="h-4 w-4 mr-1" />
-          {"View"}
+          <Eye size={16} className="mr-1" />
+          View
         </Button>
-        
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon" className="ml-2">
-              <MoreVertical className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>{"Actions"}</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={() => onView?.(product)}>
-              <Eye className="mr-2 h-4 w-4" />
-              {"View  Details"}
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => onEdit?.(product)}>
-              <Edit className="mr-2 h-4 w-4" />
-              {"Edit  Product"}
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => onDuplicate?.(product)}>
-              <Copy className="mr-2 h-4 w-4" />
-              {"Duplicate"}
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem 
-              onClick={() => onDelete?.(product)}
-              className="text-red-600 dark:text-red-400"
-            >
-              <Trash className="mr-2 h-4 w-4" />
-              {"Delete"}
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <Button
+          variant="outline"
+          size="sm"
+          className="flex-1"
+          onClick={() => onEdit ? onEdit(product) : navigate(`/dashboard/product/edit/${product.id}`)}
+        >
+          <Edit size={16} className="mr-1" />
+          Edit
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          className="text-destructive hover:bg-destructive hover:text-destructive-foreground"
+          onClick={() => onDelete?.(product)}
+        >
+          <Trash2 size={16} />
+        </Button>
       </CardFooter>
     </Card>
   );

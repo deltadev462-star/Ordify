@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import {
   Select,
   SelectContent,
@@ -8,248 +10,262 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Badge } from "@/components/ui/badge";
-import { Filter, X, Download, Plus, Grid, List } from "lucide-react";
-import { cn } from "@/lib/utils";
-
-export interface ProductFilters {
-  status?: string;
-  category?: string;
-  stockStatus?: string;
-  priceRange?: {
-    min: number;
-    max: number;
-  };
-}
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { Slider } from "@/components/ui/slider";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
+import type { ProductFilters } from "@/types/product.types";
+import { Filter, X, Search } from "lucide-react";
 
 interface ProductFiltersProps {
   filters: ProductFilters;
-  onFiltersChange: (filters: ProductFilters) => void;
-  onExport?: () => void;
-  onCreateProduct?: () => void;
-  viewMode: 'grid' | 'list';
-  onViewModeChange: (mode: 'grid' | 'list') => void;
+  onFiltersChange: (filters: Partial<ProductFilters>) => void;
+  productCounts?: {
+    total: number;
+    draft: number;
+    published: number;
+    archived: number;
+    active: number;
+    featured: number;
+    inStock: number;
+    lowStock: number;
+    outOfStock: number;
+  };
 }
 
-export function ProductFilters({
-  filters,
-  onFiltersChange,
-  onExport,
-  onCreateProduct,
-  viewMode,
-  onViewModeChange,
-}: ProductFiltersProps) {
-  const [showFilters, setShowFilters] = useState(false);
+export function ProductFilters({ filters, onFiltersChange, productCounts }: ProductFiltersProps) {
+  const { t } = useTranslation();
+  const [localFilters, setLocalFilters] = useState<Partial<ProductFilters>>(filters);
+  const [priceRange, setPriceRange] = useState<[number, number]>([
+    filters.minPrice || 0,
+    filters.maxPrice || 1000
+  ]);
 
-  const statusOptions = [
-    { value: 'all', label: "All  Status" },
-    { value: 'active', label: "Active" },
-    { value: 'draft', label: "Draft" },
-    { value: 'archived', label: "Archived" },
-  ];
-
-  const categoryOptions = [
-    { value: 'all', label: "All  Categories" },
-    { value: 'electronics', label: "Electronics" },
-    { value: 'clothing', label: "Clothing" },
-    { value: 'food', label: "Food &  Beverages" },
-    { value: 'home', label: "Home &  Garden" },
-    { value: 'beauty', label: "Beauty &  Health" },
-    { value: 'sports', label: "Sports &  Outdoors" },
-    { value: 'toys', label: "Toys &  Games" },
-  ];
-
-  const stockOptions = [
-    { value: 'all', label: "All  Stock  Levels" },
-    { value: 'in-stock', label: "In  Stock" },
-    { value: 'low-stock', label: "Low  Stock" },
-    { value: 'out-of-stock', label: "Out of  Stock" },
-  ];
-
-  const activeFiltersCount = Object.values(filters).filter(
-    (value) => value && value !== 'all'
-  ).length;
-
-  const clearFilters = () => {
-    onFiltersChange({});
+  const handleFilterChange = (key: keyof ProductFilters, value: any) => {
+    const newFilters = { ...localFilters, [key]: value };
+    setLocalFilters(newFilters);
   };
 
+  const applyFilters = () => {
+    onFiltersChange({
+      ...localFilters,
+      minPrice: priceRange[0],
+      maxPrice: priceRange[1]
+    });
+  };
+
+  const resetFilters = () => {
+    const defaultFilters: Partial<ProductFilters> = {
+      search: '',
+      status: 'all',
+      isActive: 'all',
+      isFeatured: 'all',
+      minPrice: 0,
+      maxPrice: 1000,
+      sortBy: 'createdAt',
+      sortOrder: 'desc'
+    };
+    setLocalFilters(defaultFilters);
+    setPriceRange([0, 1000]);
+    onFiltersChange(defaultFilters);
+  };
+
+  const activeFiltersCount = Object.entries(filters).filter(([key, value]) => {
+    if (key === 'page' || key === 'limit' || key === 'sortBy' || key === 'sortOrder') return false;
+    if (value === 'all' || value === '' || value === null || value === undefined) return false;
+    if (key === 'minPrice' && value === 0) return false;
+    if (key === 'maxPrice' && value === 1000) return false;
+    return true;
+  }).length;
+
   return (
-    <div className="space-y-4">
-      <div className="flex flex-col sm:flex-row justify-between gap-4">
-        <div className="flex flex-wrap items-center gap-2">
-          <Select
-            value={filters.status || 'all'}
-            onValueChange={(value) =>
-              onFiltersChange({
-                ...filters,
-                status: value === 'all' ? undefined : value,
-              })
-            }
-          >
-            <SelectTrigger className="w-[140px]">
-              <SelectValue placeholder={"Status"} />
-            </SelectTrigger>
-            <SelectContent>
-              {statusOptions.map((option) => (
-                <SelectItem key={option.value} value={option.value}>
-                  {option.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+    <div className="flex flex-col sm:flex-row gap-4 mb-6">
+      {/* Search Input */}
+      <div className="flex-1 relative">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        <Input
+          placeholder={t('products.searchPlaceholder', 'Search products...')}
+          value={localFilters.search || ''}
+          onChange={(e) => {
+            handleFilterChange('search', e.target.value);
+            // Apply search immediately
+            onFiltersChange({ search: e.target.value });
+          }}
+          className="pl-9 bg-card"
+        />
+      </div>
 
-          <Select
-            value={filters.category || 'all'}
-            onValueChange={(value) =>
-              onFiltersChange({
-                ...filters,
-                category: value === 'all' ? undefined : value,
-              })
-            }
-          >
-            <SelectTrigger className="w-[160px]">
-              <SelectValue placeholder={"Category"} />
-            </SelectTrigger>
-            <SelectContent>
-              {categoryOptions.map((option) => (
-                <SelectItem key={option.value} value={option.value}>
-                  {option.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+      {/* Sort Select */}
+      <Select
+        value={`${filters.sortBy}-${filters.sortOrder}`}
+        onValueChange={(value) => {
+          const [sortBy, sortOrder] = value.split('-');
+          onFiltersChange({ sortBy: sortBy as any, sortOrder: sortOrder as any });
+        }}
+      >
+        <SelectTrigger className="w-[200px] bg-card">
+          <SelectValue placeholder={t('products.sortBy', 'Sort by')} />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="createdAt-desc">{t('products.newest', 'Newest First')}</SelectItem>
+          <SelectItem value="createdAt-asc">{t('products.oldest', 'Oldest First')}</SelectItem>
+          <SelectItem value="name-asc">{t('products.nameAZ', 'Name (A-Z)')}</SelectItem>
+          <SelectItem value="name-desc">{t('products.nameZA', 'Name (Z-A)')}</SelectItem>
+          <SelectItem value="price-asc">{t('products.priceLowHigh', 'Price (Low to High)')}</SelectItem>
+          <SelectItem value="price-desc">{t('products.priceHighLow', 'Price (High to Low)')}</SelectItem>
+          <SelectItem value="soldCount-desc">{t('products.bestSelling', 'Best Selling')}</SelectItem>
+          <SelectItem value="viewCount-desc">{t('products.mostViewed', 'Most Viewed')}</SelectItem>
+        </SelectContent>
+      </Select>
 
-          <Select
-            value={filters.stockStatus || 'all'}
-            onValueChange={(value) =>
-              onFiltersChange({
-                ...filters,
-                stockStatus: value === 'all' ? undefined : value,
-              })
-            }
-          >
-            <SelectTrigger className="w-[160px]">
-              <SelectValue placeholder={"Stock"} />
-            </SelectTrigger>
-            <SelectContent>
-              {stockOptions.map((option) => (
-                <SelectItem key={option.value} value={option.value}>
-                  {option.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={() => setShowFilters(!showFilters)}
-            className={cn(
-              "relative",
-              activeFiltersCount > 0 && "border-blue-500"
-            )}
-          >
-            <Filter className="h-4 w-4" />
+      {/* Filters Sheet */}
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button variant="outline" className="relative">
+            <Filter className="h-4 w-4 mr-2" />
+            {t('products.filters', 'Filters')}
             {activeFiltersCount > 0 && (
-              <Badge
-                variant="default"
-                className="absolute -top-2 -right-2 h-5 w-5 p-0 flex items-center justify-center"
-              >
+              <Badge className="ml-2 h-5 px-1.5 text-xs">
                 {activeFiltersCount}
               </Badge>
             )}
           </Button>
+        </SheetTrigger>
+        <SheetContent className="w-[400px] sm:w-[540px]">
+          <SheetHeader>
+            <SheetTitle>{t('products.filterProducts', 'Filter Products')}</SheetTitle>
+            <SheetDescription>
+              {t('products.filterDescription', 'Refine your product search with these filters')}
+            </SheetDescription>
+          </SheetHeader>
 
-          {activeFiltersCount > 0 && (
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={clearFilters}
-              className="gap-1"
-            >
-              <X className="h-3 w-3" />
-              {"Clear filters"}
-            </Button>
-          )}
-        </div>
+          <div className="mt-6 space-y-6">
+            {/* Status Filter */}
+            <div>
+              <Label className="mb-2 block">{t('products.status', 'Status')}</Label>
+              <Select
+                value={localFilters.status || 'all'}
+                onValueChange={(value) => handleFilterChange('status', value as any)}
+              >
+                <SelectTrigger className="bg-card">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">
+                    {t('products.allStatuses', 'All Statuses')}
+                    {productCounts && ` (${productCounts.total})`}
+                  </SelectItem>
+                  <SelectItem value="DRAFT">
+                    {t('products.draft', 'Draft')}
+                    {productCounts && ` (${productCounts.draft})`}
+                  </SelectItem>
+                  <SelectItem value="PUBLISHED">
+                    {t('products.published', 'Published')}
+                    {productCounts && ` (${productCounts.published})`}
+                  </SelectItem>
+                  <SelectItem value="ARCHIVED">
+                    {t('products.archived', 'Archived')}
+                    {productCounts && ` (${productCounts.archived})`}
+                  </SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
 
-        <div className="flex items-center gap-2">
-          {/* View Mode Toggle */}
-          <div className="flex items-center border rounded-md">
-            <Button
-              variant={viewMode === 'grid' ? 'default' : 'ghost'}
-              size="icon"
-              onClick={() => onViewModeChange('grid')}
-              className="rounded-none rounded-l-md"
-            >
-              <Grid className="h-4 w-4" />
-            </Button>
-            <Button
-              variant={viewMode === 'list' ? 'default' : 'ghost'}
-              size="icon"
-              onClick={() => onViewModeChange('list')}
-              className="rounded-none rounded-r-md"
-            >
-              <List className="h-4 w-4" />
-            </Button>
-          </div>
+            {/* Active Filter */}
+            <div>
+              <Label className="mb-2 block">{t('products.visibility', 'Visibility')}</Label>
+              <Select
+                value={String(localFilters.isActive) || 'all'}
+                onValueChange={(value) => handleFilterChange('isActive', value === 'all' ? 'all' : value === 'true')}
+              >
+                <SelectTrigger className="bg-card">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">{t('products.allProducts', 'All Products')}</SelectItem>
+                  <SelectItem value="true">
+                    {t('products.activeOnly', 'Active Only')}
+                    {productCounts && ` (${productCounts.active})`}
+                  </SelectItem>
+                  <SelectItem value="false">{t('products.inactiveOnly', 'Inactive Only')}</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
 
-          {onExport && (
-            <Button variant="outline" onClick={onExport} className="gap-2">
-              <Download className="h-4 w-4" />
-              <span className="hidden sm:inline">{"Export"}</span>
-            </Button>
-          )}
-          {onCreateProduct && (
-            <Button onClick={onCreateProduct} className="gap-2">
-              <Plus className="h-4 w-4" />
-              <span className="hidden sm:inline">{"Add  Product"}</span>
-            </Button>
-          )}
-        </div>
-      </div>
-
-      {showFilters && (
-        <div className="p-4 border rounded-lg bg-gray-50 dark:bg-gray-900 space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <label className="text-sm font-medium">{"Min  Price"}</label>
-              <Input
-                type="number"
-                placeholder={"Minimum price"}
-                value={filters.priceRange?.min || ''}
-                onChange={(e) =>
-                  onFiltersChange({
-                    ...filters,
-                    priceRange: {
-                      min: e.target.value ? Number(e.target.value) : 0,
-                      max: filters.priceRange?.max || 999999,
-                    },
-                  })
-                }
+            {/* Featured Filter */}
+            <div className="flex items-center justify-between">
+              <Label htmlFor="featured">{t('products.featuredOnly', 'Featured Only')}</Label>
+              <Switch
+                id="featured"
+                checked={localFilters.isFeatured === true}
+                onCheckedChange={(checked) => handleFilterChange('isFeatured', checked ? true : 'all')}
               />
             </div>
-            <div className="space-y-2">
-              <label className="text-sm font-medium">{"Max  Price"}</label>
-              <Input
-                type="number"
-                placeholder={"Maximum price"}
-                value={filters.priceRange?.max || ''}
-                onChange={(e) =>
-                  onFiltersChange({
-                    ...filters,
-                    priceRange: {
-                      min: filters.priceRange?.min || 0,
-                      max: e.target.value ? Number(e.target.value) : 999999,
-                    },
-                  })
-                }
+
+            {/* Stock Filter */}
+            <div>
+              <Label className="mb-2 block">{t('products.stockStatus', 'Stock Status')}</Label>
+              <Select
+                value={localFilters.inStock === true ? 'inStock' : localFilters.inStock === false ? 'outOfStock' : 'all'}
+                onValueChange={(value) => {
+                  handleFilterChange('inStock', value === 'all' ? undefined : value === 'inStock');
+                }}
+              >
+                <SelectTrigger className="bg-card">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">{t('products.allStock', 'All Stock Levels')}</SelectItem>
+                  <SelectItem value="inStock">
+                    {t('products.inStock', 'In Stock')}
+                    {productCounts && ` (${productCounts.inStock})`}
+                  </SelectItem>
+                  <SelectItem value="lowStock">
+                    {t('products.lowStock', 'Low Stock')}
+                    {productCounts && ` (${productCounts.lowStock})`}
+                  </SelectItem>
+                  <SelectItem value="outOfStock">
+                    {t('products.outOfStock', 'Out of Stock')}
+                    {productCounts && ` (${productCounts.outOfStock})`}
+                  </SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Price Range */}
+            <div>
+              <Label className="mb-2 block">
+                {t('products.priceRange', 'Price Range')}: ${priceRange[0]} - ${priceRange[1]}
+              </Label>
+              <Slider
+                value={priceRange}
+                onValueChange={setPriceRange as any}
+                max={1000}
+                step={10}
+                className="mt-3"
               />
             </div>
+
+            {/* Filter Actions */}
+            <div className="flex gap-3 pt-4">
+              <Button onClick={applyFilters} className="flex-1">
+                {t('products.applyFilters', 'Apply Filters')}
+              </Button>
+              <Button variant="outline" onClick={resetFilters}>
+                <X className="h-4 w-4 mr-2" />
+                {t('products.reset', 'Reset')}
+              </Button>
+            </div>
           </div>
-        </div>
-      )}
+        </SheetContent>
+      </Sheet>
     </div>
   );
 }

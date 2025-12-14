@@ -29,13 +29,38 @@ export const fetchProducts = createAsyncThunk(
       const state = getState() as RootState;
       const storeId = getStoreId(state);
       
-      const response = await axios.get(API_ENDPOINTS.getStoreProducts(storeId), {
-        params: filters
+      // Clean up filters before sending to backend
+      const cleanedFilters: any = {};
+      
+      Object.entries(filters).forEach(([key, value]) => {
+        // Skip "all" values and undefined/null values
+        if (value !== 'all' && value !== undefined && value !== null) {
+          // For boolean values that are strings, convert them
+          if (key === 'isActive' || key === 'isFeatured' || key === 'inStock') {
+            if (typeof value === 'string') {
+              cleanedFilters[key] = value === 'true';
+            } else {
+              cleanedFilters[key] = value;
+            }
+          } else {
+            cleanedFilters[key] = value;
+          }
+        }
       });
       
-      const { success, data } = response.data;
+      const response = await axios.get(API_ENDPOINTS.getStoreProducts(storeId), {
+        params: cleanedFilters
+      });
+      
+      const { success, data, pagination } = response.data;
       if (success) {
-        return data as ProductsResponse;
+        // Transform backend response to match frontend expectations
+        return {
+          products: data,
+          total: pagination.total,
+          page: pagination.page,
+          totalPages: pagination.pages
+        } as ProductsResponse;
       }
       
       return rejectWithValue('Failed to fetch products');
