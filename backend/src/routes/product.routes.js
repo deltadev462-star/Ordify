@@ -34,7 +34,10 @@ router.post('/:storeId/products', verifyStoreAccess, checkPermission('products.c
     { name: "subImages", maxCount: 10 },
   ]), validateCreateProduct, productController.createProduct);
 router.get('/:storeId/products/:productId', verifyStoreAccess, productController.getProduct);
-router.put('/:storeId/products/:productId', verifyStoreAccess, checkPermission('products.update'), validateUpdateProduct, productController.updateProduct);
+router.put('/:storeId/products/:productId', verifyStoreAccess, checkPermission('products.update'),fileUpload({}).fields([
+    { name: "mainImage", maxCount: 1 },
+    { name: "subImages", maxCount: 10 },
+  ]), validateUpdateProduct, productController.updateProduct);
 router.delete('/:storeId/products/:productId', verifyStoreAccess, checkPermission('products.delete'), productController.deleteProduct);
 
 // Product status management

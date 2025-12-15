@@ -159,6 +159,7 @@ function ProductEdit() {
   };
 
   const handleSubmit = async () => {
+    console.log({errors} )
     if (!validateForm() || !productId) return;
     
     try {

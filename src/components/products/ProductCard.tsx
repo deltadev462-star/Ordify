@@ -153,7 +153,7 @@ export function ProductCard({ product, onEdit, onDelete, onView }: ProductCardPr
           variant="outline"
           size="sm"
           className="flex-1"
-          onClick={() => onEdit ? onEdit(product) : navigate(`/dashboard/product/edit/${product.id}`)}
+          onClick={() => onEdit ? onEdit(product) : navigate(`/dashboard/products/${product.id}/edit`)}
         >
           <Edit size={16} className="mr-1" />
           Edit
