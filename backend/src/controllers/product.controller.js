@@ -278,34 +278,236 @@ const getProduct = expressAsyncHandler(async (req, res) => {
 // @route   PUT /api/v1/products/:storeId/products/:productId
 // @access  Private (Store Owner/Staff with permission)
 const updateProduct = expressAsyncHandler(async (req, res) => {
-  const { productId } = req.params;
+  const { productId, storeId } = req.params;
   const updateData = req.body;
 
-  // Remove fields that shouldn't be updated directly
-  delete updateData.id;
-  delete updateData.storeId;
-  delete updateData.slug;
-  delete updateData.viewCount;
-  delete updateData.soldCount;
-  delete updateData.createdAt;
-  delete updateData.updatedAt;
+  try {
+    // Get existing product to check old images
+    const existingProduct = await prisma.product.findUnique({
+      where: { id: productId }
+    });
 
-  const product = await prisma.product.update({
-    where: { id: productId },
-    data: {
-      ...updateData,
-      images: updateData.images || [],
-      metaKeywords: updateData.metaKeywords || []
-    },
-    include: {
-      category: true
+    if (!existingProduct) {
+      res.status(404);
+      throw new Error('Product not found');
     }
-  });
 
-  res.json({
-    success: true,
-    data: product
-  });
+    // Remove fields that shouldn't be updated directly
+    delete updateData.id;
+    delete updateData.storeId;
+    delete updateData.slug;
+    delete updateData.viewCount;
+    delete updateData.soldCount;
+    delete updateData.createdAt;
+    delete updateData.updatedAt;
+    
+    // Parse numeric values that might come as strings from FormData
+    if (updateData.price !== undefined) {
+      updateData.price = parseFloat(updateData.price);
+    }
+    if (updateData.comparePrice !== undefined && updateData.comparePrice !== null && updateData.comparePrice !== '') {
+      updateData.comparePrice = parseFloat(updateData.comparePrice);
+    } else if (updateData.comparePrice === '' || updateData.comparePrice === null) {
+      updateData.comparePrice = null;
+    }
+    if (updateData.costPrice !== undefined && updateData.costPrice !== null && updateData.costPrice !== '') {
+      updateData.costPrice = parseFloat(updateData.costPrice);
+    } else if (updateData.costPrice === '' || updateData.costPrice === null) {
+      updateData.costPrice = null;
+    }
+    if (updateData.quantity !== undefined) {
+      updateData.quantity = parseInt(updateData.quantity);
+    }
+    if (updateData.lowStockAlert !== undefined) {
+      updateData.lowStockAlert = parseInt(updateData.lowStockAlert);
+    }
+    if (updateData.weight !== undefined && updateData.weight !== null && updateData.weight !== '') {
+      updateData.weight = parseFloat(updateData.weight);
+    } else if (updateData.weight === '' || updateData.weight === null) {
+      updateData.weight = null;
+    }
+    
+    // Parse metaKeywords if it's a string
+    if (updateData.metaKeywords && typeof updateData.metaKeywords === 'string') {
+      try {
+        updateData.metaKeywords = JSON.parse(updateData.metaKeywords);
+      } catch (e) {
+        updateData.metaKeywords = [];
+      }
+    }
+
+    // Handle image uploads and removals
+    let mainImageData = existingProduct.mainImage;
+    let subImagesData = existingProduct.subImages || [];
+    let imagesToDelete = [];
+
+    // Handle removed images from Cloudinary
+    if (updateData.removedImages) {
+      try {
+        const removedImageIds = JSON.parse(updateData.removedImages);
+        
+        // Find images to delete
+        for (const publicId of removedImageIds) {
+          // Check if it's the main image
+          if (mainImageData && mainImageData.public_id === publicId) {
+            imagesToDelete.push(publicId);
+            mainImageData = null;
+          } else {
+            // Check in sub images
+            const subImageIndex = subImagesData.findIndex(img => img.public_id === publicId);
+            if (subImageIndex !== -1) {
+              imagesToDelete.push(publicId);
+              subImagesData.splice(subImageIndex, 1);
+            }
+          }
+        }
+      } catch (e) {
+        console.error('Error parsing removed images:', e);
+      }
+    }
+    
+    // Clean up updateData - remove fields that shouldn't be in the Prisma update
+    delete updateData.removedImages;
+
+    // Handle new main image upload
+    if (req.files && req.files.mainImage && req.files.mainImage[0]) {
+      const mainImageFile = req.files.mainImage[0];
+      
+      try {
+        // Delete old main image from Cloudinary if it exists
+        if (mainImageData && mainImageData.public_id) {
+          imagesToDelete.push(mainImageData.public_id);
+        }
+
+        // Upload new main image
+        const fileStr = `data:${mainImageFile.mimetype};base64,${mainImageFile.buffer.toString('base64')}`;
+        
+        const result = await cloudinary.uploader.upload(fileStr, {
+          folder: `ordify/stores/${storeId}/products`,
+          resource_type: 'image'
+        });
+        
+        mainImageData = {
+          path: result.secure_url,
+          public_id: result.public_id
+        };
+      } catch (uploadError) {
+        res.status(500);
+        throw new Error(`Failed to upload main image: ${uploadError.message}`);
+      }
+    }
+
+    // Handle sub images upload
+    if (req.files && req.files.subImages && req.files.subImages.length > 0) {
+      try {
+        const uploadPromises = req.files.subImages.map(async (file) => {
+          const fileStr = `data:${file.mimetype};base64,${file.buffer.toString('base64')}`;
+          
+          const result = await cloudinary.uploader.upload(fileStr, {
+            folder: `ordify/stores/${storeId}/products`,
+            resource_type: 'image'
+          });
+          
+          return {
+            path: result.secure_url,
+            public_id: result.public_id
+          };
+        });
+        
+        const newSubImages = await Promise.all(uploadPromises);
+        subImagesData = [...subImagesData, ...newSubImages];
+      } catch (uploadError) {
+        res.status(500);
+        throw new Error(`Failed to upload sub images: ${uploadError.message}`);
+      }
+    }
+
+    // Handle main image index (which image should be main)
+    if (updateData.mainImageIndex !== undefined) {
+      const mainIndex = parseInt(updateData.mainImageIndex);
+      const allImages = [...(mainImageData ? [mainImageData] : []), ...subImagesData];
+      
+      if (mainIndex >= 0 && mainIndex < allImages.length) {
+        // Rearrange images so the selected index becomes the main image
+        mainImageData = allImages[mainIndex];
+        subImagesData = allImages.filter((_, idx) => idx !== mainIndex);
+      }
+    }
+
+    // Delete removed images from Cloudinary
+    if (imagesToDelete.length > 0) {
+      try {
+        await Promise.all(
+          imagesToDelete.map(publicId =>
+            cloudinary.uploader.destroy(publicId).catch(err =>
+              console.error(`Failed to delete image ${publicId}:`, err)
+            )
+          )
+        );
+      } catch (deleteError) {
+        console.error('Error deleting images from Cloudinary:', deleteError);
+      }
+    }
+
+    // Extract categoryId before creating prismaUpdateData
+    const categoryId = updateData.categoryId;
+    delete updateData.categoryId;
+    delete updateData.mainImageIndex;
+    
+    // Prepare update data object with only valid Prisma fields
+    const prismaUpdateData = {
+      name: updateData.name,
+      description: updateData.description || null,
+      shortDescription: updateData.shortDescription || null,
+      price: updateData.price,
+      comparePrice: updateData.comparePrice,
+      costPrice: updateData.costPrice,
+      sku: updateData.sku || null,
+      barcode: updateData.barcode || null,
+      trackQuantity: updateData.trackQuantity,
+      quantity: updateData.quantity,
+      lowStockAlert: updateData.lowStockAlert,
+      weight: updateData.weight,
+      weightUnit: updateData.weightUnit,
+      status: updateData.status,
+      isActive: updateData.isActive,
+      isFeatured: updateData.isFeatured,
+      metaTitle: updateData.metaTitle || null,
+      metaDescription: updateData.metaDescription || null,
+      metaKeywords: updateData.metaKeywords || [],
+      mainImage: mainImageData,
+      subImages: subImagesData,
+      thumbnail: mainImageData ? mainImageData.path : null
+    };
+    
+    // Handle category relation update
+    if (categoryId) {
+      prismaUpdateData.category = {
+        connect: { id: categoryId }
+      };
+    } else if (categoryId === null) {
+      prismaUpdateData.category = {
+        disconnect: true
+      };
+    }
+
+    // Update product in database
+    const product = await prisma.product.update({
+      where: { id: productId },
+      data: prismaUpdateData,
+      include: {
+        category: true
+      }
+    });
+
+    res.json({
+      success: true,
+      data: product
+    });
+  } catch (error) {
+    console.error('Update product error:', error);
+    throw error;
+  }
 });
 
 // @desc    Delete product

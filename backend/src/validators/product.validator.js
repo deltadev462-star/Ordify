@@ -131,8 +131,23 @@ const validateCreateProduct = [
     .withMessage('Meta description must not exceed 320 characters'),
   body('metaKeywords')
     .optional()
+    .customSanitizer(value => {
+      if (Array.isArray(value)) return value;
+      if (typeof value === 'string') {
+        try {
+          const parsed = JSON.parse(value);
+          if (Array.isArray(parsed)) return parsed;
+        } catch (e) {
+          // treat as comma-separated string
+          return value.split(',').map(v => v.trim()).filter(Boolean);
+        }
+      }
+      return [];
+    })
     .isArray()
-    .withMessage('Meta keywords must be an array'),
+    .withMessage('Meta keywords must be an array')
+    .custom(arr => arr.every(k => typeof k === 'string'))
+    .withMessage('Meta keywords must be an array of strings'),
   body('images')
     .optional()
     .isArray()
@@ -248,8 +263,23 @@ const validateUpdateProduct = [
     .withMessage('Meta description must not exceed 320 characters'),
   body('metaKeywords')
     .optional()
+    .customSanitizer(value => {
+      if (Array.isArray(value)) return value;
+      if (typeof value === 'string') {
+        try {
+          const parsed = JSON.parse(value);
+          if (Array.isArray(parsed)) return parsed;
+        } catch (e) {
+          // treat as comma-separated string
+          return value.split(',').map(v => v.trim()).filter(Boolean);
+        }
+      }
+      return [];
+    })
     .isArray()
-    .withMessage('Meta keywords must be an array'),
+    .withMessage('Meta keywords must be an array')
+    .custom(arr => arr.every(k => typeof k === 'string'))
+    .withMessage('Meta keywords must be an array of strings'),
   body('images')
     .optional()
     .isArray()

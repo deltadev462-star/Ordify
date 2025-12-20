@@ -178,12 +178,10 @@ export const updateProduct = createAsyncThunk(
       
       // Handle images
       if (images) {
-        if (images.mainImage !== undefined) {
-          if (images.mainImage === null || images.removeMainImage) {
-            formData.append('removeMainImage', 'true');
-          } else {
-            formData.append('mainImage', images.mainImage);
-          }
+        if (images.removeMainImage) {
+          formData.append('removeMainImage', 'true');
+        } else if (images.mainImage) {
+          formData.append('mainImage', images.mainImage);
         }
         
         if (images.subImages) {
@@ -193,7 +191,7 @@ export const updateProduct = createAsyncThunk(
         }
         
         if (images.removeSubImageIds && images.removeSubImageIds.length > 0) {
-          formData.append('removeSubImageIds', JSON.stringify(images.removeSubImageIds));
+          formData.append('removedImages', JSON.stringify(images.removeSubImageIds));
         }
       }
       
