@@ -14,11 +14,6 @@ const productImageTypes = [
   'image/webp'
 ];
 
-const upload = fileUpload({
-  customValidation: productImageTypes,
-  destination: 'uploads/products/',
-  fileSize: parseInt(process.env.MAX_FILE_SIZE) || 5 * 1024 * 1024 // 5MB
-});
 
 // Public routes (for customers)
 router.get('/public/:storeSlug', productController.getPublicProducts);

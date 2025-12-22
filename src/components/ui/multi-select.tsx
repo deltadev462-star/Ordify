@@ -101,7 +101,7 @@ export const MultiSelect: React.FC<MultiSelectProps> = ({
       </div>
 
       {isOpen && (
-        <div className="absolute z-10 w-full mt-1 bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-lg shadow-lg max-h-60 overflow-auto">
+        <div className="absolute z-50 w-full mt-1 bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-lg shadow-lg max-h-60 overflow-auto">
           {options.map(option => (
             <div
               key={option.value}

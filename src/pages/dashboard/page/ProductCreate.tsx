@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useSEO } from "@/hooks/useSEO";
+import { useNavigate } from "react-router-dom";
+import { useFormik } from "formik";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
@@ -10,6 +12,13 @@ import { FloatingLabelInput, FloatingLabelTextarea } from "@/components/ui/float
 import { RichTextEditor } from "@/components/ui/rich-text-editor";
 import { MultiSelect } from "@/components/ui/multi-select";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { createProduct } from "@/store/slices/product/actions";
+import { fetchCategories } from "@/store/slices/category/actions";
+import { categorySelectors } from "@/store/slices/category/categorySlice";
+import { productCreateSchema } from "@/validators/product.schema";
+import { ProductStatus } from "@/types/product.types";
+import { toast } from "@/hooks/use-toast";
 import {
   Package,
   DollarSign,
@@ -28,7 +37,7 @@ import {
 } from "lucide-react";
 
 // Import image upload components
-import ProductImages from "@/components/product/ProductImages";
+import ProductImagesWithFiles from "@/components/product/ProductImagesWithFiles";
 
 interface CollapsibleSectionProps {
   title: string;
@@ -84,71 +93,28 @@ const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
 
 function ProductCreate() {
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const categories = useAppSelector(categorySelectors.selectActiveCategories);
+  const categoriesLoading = useAppSelector(state => state.categories.loading);
+  const categoriesError = useAppSelector(state => state.categories.error);
+  const createLoading = useAppSelector(state => state.products.createLoading);
   
-  // Form state - Essential Information
-  const [productName, setProductName] = useState("");
-  const [productSlug, setProductSlug] = useState("");
-  const [shortDescription, setShortDescription] = useState("");
-  const [productDescription, setProductDescription] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState<string>("");
-  
-  // SEO
-  const [metaTitle, setMetaTitle] = useState("");
-  const [metaDescription, setMetaDescription] = useState("");
-  const [metaKeywords, setMetaKeywords] = useState<string[]>([]);
-  
-  // Pricing
-  const [price, setPrice] = useState("");
-  const [comparePrice, setComparePrice] = useState("");
-  const [costPrice, setCostPrice] = useState("");
-  
-  // Inventory
-  const [sku, setSku] = useState("");
-  const [barcode, setBarcode] = useState("");
-  const [trackQuantity, setTrackQuantity] = useState(true);
-  const [quantity, setQuantity] = useState("0");
-  const [lowStockAlert, setLowStockAlert] = useState("10");
-  
-  // Product Details
-  const [weight, setWeight] = useState("");
-  const [weightUnit, setWeightUnit] = useState("kg");
-  
-  // Images - Updated to match schema
-  const [mainImage, setMainImage] = useState<{ path: string; public_id: string } | null>(null);
-  const [subImages, setSubImages] = useState<{ path: string; public_id: string }[]>([]);
-  
-  // Status
-  const [productStatus, setProductStatus] = useState<"DRAFT" | "PUBLISHED" | "ARCHIVED">("DRAFT");
-  const [isActive, setIsActive] = useState(true);
-  const [isFeatured, setIsFeatured] = useState(false);
+  // Images - File objects for upload
+  const [mainImageFile, setMainImageFile] = useState<File | null>(null);
+  const [subImageFiles, setSubImageFiles] = useState<File[]>([]);
 
-  // Digital Products
-  const [enableDigitalProduct, setEnableDigitalProduct] = useState(false);
-  const [digitalProductType, setDigitalProductType] = useState("");
-  
-  // External Platform Integration
-  const [taagerIntegration, setTaagerIntegration] = useState(false);
-  const [angaznyIntegration, setAngaznyIntegration] = useState(false);
-  const [externalPlatformCode, setExternalPlatformCode] = useState("");
-  const [externalPlatformLink, setExternalPlatformLink] = useState("");
-  
-  // Advanced Settings
-  const [skipCart, setSkipCart] = useState(false);
-  const [buyNowButtonText, setBuyNowButtonText] = useState("");
-  const [fixedBuyButton, setFixedBuyButton] = useState(false);
-  const [checkoutBeforeDescription, setCheckoutBeforeDescription] = useState(false);
-  const [activateReviews, setActivateReviews] = useState(false);
-  const [displayFakeVisitor, setDisplayFakeVisitor] = useState(false);
-  const [minVisitors, setMinVisitors] = useState("20");
-  const [maxVisitors, setMaxVisitors] = useState("70");
-  const [activateFakeStock, setActivateFakeStock] = useState(false);
-  const [fakeStockItems, setFakeStockItems] = useState("5");
-  const [fakeTimer, setFakeTimer] = useState(false);
-  const [fakeTimerHours, setFakeTimerHours] = useState("1");
-  const [hiddenProduct, setHiddenProduct] = useState(false);
-  const [activateFreeShipping, setActivateFreeShipping] = useState(false);
-  const [selectedCurrency, setSelectedCurrency] = useState("");
-  const [priority, setPriority] = useState("");
+  // Fetch categories on component mount
+  useEffect(() => {
+    dispatch(fetchCategories(false));
+  }, [dispatch]);
+
+  // Debug categories
+  useEffect(() => {
+    console.log('Categories:', categories);
+    console.log('Categories Loading:', categoriesLoading);
+    console.log('Categories Error:', categoriesError);
+  }, [categories, categoriesLoading, categoriesError]);
 
   // Auto-generate product slug from product name
   const generateProductSlug = (name: string) => {
@@ -158,83 +124,88 @@ function ProductCreate() {
       .replace(/^-+|-+$/g, '');
   };
 
-  const handleProductNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const name = e.target.value;
-    setProductName(name);
-    setProductSlug(generateProductSlug(name));
-  };
-
-  const handleSave = () => {
-    // Handle save logic here
-    console.log({
+  // Initialize Formik
+  const formik = useFormik({
+    initialValues: {
       // Essential Information
-      name: productName,
-      slug: productSlug,
-      shortDescription,
-      description: productDescription,
-      categoryId: selectedCategory,
-      
-      // SEO
-      metaTitle,
-      metaDescription,
-      metaKeywords,
+      name: "",
+      slug: "",
+      shortDescription: "",
+      description: "",
+      categoryId: "",
       
       // Pricing
-      price: parseFloat(price),
-      comparePrice: comparePrice ? parseFloat(comparePrice) : undefined,
-      costPrice: costPrice ? parseFloat(costPrice) : undefined,
+      price: 0,
+      comparePrice: null,
+      costPrice: null,
       
       // Inventory
-      sku,
-      barcode,
-      trackQuantity,
-      quantity: parseInt(quantity),
-      lowStockAlert: parseInt(lowStockAlert),
+      sku: "",
+      barcode: "",
+      trackQuantity: true,
+      quantity: 0,
+      lowStockAlert: 10,
       
       // Product Details
-      weight: weight ? parseFloat(weight) : undefined,
-      weightUnit,
+      weight: null,
+      weightUnit: "kg",
       
-      // Images
-      mainImage,
-      subImages,
+      // SEO
+      metaTitle: "",
+      metaDescription: "",
+      metaKeywords: [] as string[],
       
       // Status
-      status: productStatus,
-      isActive,
-      isFeatured,
-      
-      // Other fields from advanced settings...
-    });
-  };
+      status: ProductStatus.DRAFT,
+      isActive: true,
+      isFeatured: false,
+    },
+    validationSchema: productCreateSchema,
+    onSubmit: async (values) => {
+      try {
+        // Prepare image data
+        const images = {
+          mainImage: mainImageFile,
+          subImages: subImageFiles.length > 0 ? subImageFiles : null,
+        };
 
-  // Temporary adapter functions for ProductImages component
-  const handleMainImageChange = (imageString: string | null) => {
-    if (imageString) {
-      // For now, we'll use a placeholder public_id
-      setMainImage({ path: imageString, public_id: `main_${Date.now()}` });
-    } else {
-      setMainImage(null);
+        const result = await dispatch(createProduct({
+          productData: values,
+          images: images.mainImage || images.subImages ? images : undefined,
+        })).unwrap();
+
+        toast({
+          title: t('common.success'),
+          description: t('products.productCreatedSuccessfully'),
+        });
+
+        // Navigate to product edit page or products list
+        navigate(`/dashboard/products/edit/${result.id}`);
+      } catch (error: any) {
+        toast({
+          title: t('common.error'),
+          description: error || t('products.failedToCreateProduct'),
+          variant: "destructive",
+        });
+      }
+    },
+  });
+
+  // Handle name change and auto-generate slug
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const name = e.target.value;
+    formik.setFieldValue('name', name);
+    if (!formik.values.slug || formik.values.slug === generateProductSlug(formik.values.name)) {
+      formik.setFieldValue('slug', generateProductSlug(name));
     }
   };
 
-  const handleSubImagesChange = (imageStrings: string[]) => {
-    setSubImages(imageStrings.map((path, index) => ({
-      path,
-      public_id: `sub_${Date.now()}_${index}`
-    })));
-  };
 
-  const categoryOptions = [
-    { value: "electronics", label: t('products.categories.electronics') },
-    { value: "clothing", label: t('products.categories.clothing') },
-    { value: "home", label: t('products.categories.homeGarden') },
-    { value: "beauty", label: t('products.categories.healthBeauty') },
-    { value: "sports", label: t('products.categories.sports') },
-    { value: "toys", label: t('products.categories.toysGames') },
-    { value: "books", label: t('products.categories.books') },
-    { value: "food", label: t('products.categories.foodBeverages') },
-  ];
+  // Transform categories for select options
+  const categoryOptions = categories.map(category => ({
+    value: category.id,
+    label: category.name,
+  }));
 
   const currencyOptions = [
     { value: "USD", label: t('products.currencies.USD') },
@@ -247,7 +218,7 @@ function ProductCreate() {
 
   useSEO({
     title: t('products.createProduct') + " - Ordify Dashboard",
-    description: "Create a new product in your Ordify store with comprehensive details and settings",
+    description: t('products.createProductSeoDescription'),
   });
 
   return (
@@ -277,41 +248,72 @@ function ProductCreate() {
               <div className="grid gap-6 md:grid-cols-2">
                <FloatingLabelInput
                  label={t('products.productName')}
-                 value={productName}
-                 onChange={handleProductNameChange}
+                 value={formik.values.name}
+                 onChange={handleNameChange}
+                 onBlur={formik.handleBlur}
+                 name="name"
                  placeholder={""}
                  required
+                 error={formik.touched.name && formik.errors.name ? formik.errors.name : undefined}
                />
                <FloatingLabelInput
                  label={t('products.productSlug')}
-                 value={productSlug}
-                 onChange={(e) => setProductSlug(e.target.value)}
+                 value={formik.values.slug}
+                 onChange={formik.handleChange}
+                 onBlur={formik.handleBlur}
+                 name="slug"
                  placeholder={""}
+                 error={formik.touched.slug && formik.errors.slug ? formik.errors.slug : undefined}
                />
              </div>
 
              <div className="grid gap-6 md:grid-cols-2">
                <FloatingLabelTextarea
                  label={t('products.shortDescription')}
-                 value={shortDescription}
-                 onChange={(e) => setShortDescription(e.target.value)}
+                 value={formik.values.shortDescription}
+                 onChange={formik.handleChange}
+                 onBlur={formik.handleBlur}
+                 name="shortDescription"
                  placeholder={""}
                  rows={2}
                  className="resize-none"
+                 error={formik.touched.shortDescription && formik.errors.shortDescription ? formik.errors.shortDescription : undefined}
                />
                
-               <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                 <SelectTrigger>
-                   <SelectValue placeholder={t('products.selectCategory')} />
+               <Select
+                 value={formik.values.categoryId}
+                 onValueChange={(value) => formik.setFieldValue('categoryId', value)}
+                 disabled={categoriesLoading}
+               >
+                 <SelectTrigger className={formik.touched.categoryId && formik.errors.categoryId ? "border-destructive" : ""}>
+                   <SelectValue placeholder={
+                     categoriesLoading ? t('common.loading') :
+                     categoriesError ? t('common.error') :
+                     categoryOptions.length === 0 ? t('products.noCategories') :
+                     t('products.selectCategory')
+                   } />
                  </SelectTrigger>
                  <SelectContent>
-                   {categoryOptions.map(option => (
-                     <SelectItem key={option.value} value={option.value}>
-                       {option.label}
-                     </SelectItem>
-                   ))}
+                   {categoriesError ? (
+                     <div className="px-2 py-1.5 text-sm text-muted-foreground">
+                       {categoriesError}
+                     </div>
+                   ) : categoryOptions.length === 0 ? (
+                     <div className="px-2 py-1.5 text-sm text-muted-foreground">
+                       {t('products.noCategories')}
+                     </div>
+                   ) : (
+                     categoryOptions.map(option => (
+                       <SelectItem key={option.value} value={option.value}>
+                         {option.label}
+                       </SelectItem>
+                     ))
+                   )}
                  </SelectContent>
                </Select>
+               {formik.touched.categoryId && formik.errors.categoryId && (
+                 <p className="text-sm text-destructive mt-1">{formik.errors.categoryId}</p>
+               )}
              </div>
 
              <div>
@@ -319,8 +321,8 @@ function ProductCreate() {
                  {t('products.productDescription')}
                </Label>
                <RichTextEditor
-                 value={productDescription}
-                 onChange={setProductDescription}
+                 value={formik.values.description}
+                 onChange={(value) => formik.setFieldValue('description', value)}
                  placeholder={""}
                />
              </div>
@@ -342,28 +344,37 @@ function ProductCreate() {
               <div className="grid gap-6 md:grid-cols-3">
                 <FloatingLabelInput
                   label={t('products.price')}
-                  value={price}
-                  onChange={(e) => setPrice(e.target.value)}
+                  value={formik.values.price || ''}
+                  onChange={(e) => formik.setFieldValue('price', parseFloat(e.target.value) || 0)}
+                  onBlur={formik.handleBlur}
+                  name="price"
                   placeholder={"00"}
                   type="number"
                   step="0.01"
                   required
+                  error={formik.touched.price && formik.errors.price ? formik.errors.price : undefined}
                 />
                 <FloatingLabelInput
                   label={t('products.comparePrice')}
-                  value={comparePrice}
-                  onChange={(e) => setComparePrice(e.target.value)}
+                  value={formik.values.comparePrice || ''}
+                  onChange={(e) => formik.setFieldValue('comparePrice', e.target.value ? parseFloat(e.target.value) : null)}
+                  onBlur={formik.handleBlur}
+                  name="comparePrice"
                   placeholder={"00"}
                   type="number"
                   step="0.01"
+                  error={formik.touched.comparePrice && formik.errors.comparePrice ? formik.errors.comparePrice : undefined}
                 />
                 <FloatingLabelInput
                   label={t('products.costPrice')}
-                  value={costPrice}
-                  onChange={(e) => setCostPrice(e.target.value)}
+                  value={formik.values.costPrice || ''}
+                  onChange={(e) => formik.setFieldValue('costPrice', e.target.value ? parseFloat(e.target.value) : null)}
+                  onBlur={formik.handleBlur}
+                  name="costPrice"
                   placeholder={"00"}
                   type="number"
                   step="0.01"
+                  error={formik.touched.costPrice && formik.errors.costPrice ? formik.errors.costPrice : undefined}
                 />
               </div>
             </CardContent>
@@ -384,17 +395,23 @@ function ProductCreate() {
               <div className="grid gap-6 md:grid-cols-2">
                 <FloatingLabelInput
                   label={t('products.sku')}
-                  value={sku}
-                  onChange={(e) => setSku(e.target.value)}
+                  value={formik.values.sku}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  name="sku"
                   placeholder={""}
                   icon={Tag}
+                  error={formik.touched.sku && formik.errors.sku ? formik.errors.sku : undefined}
                 />
                 <FloatingLabelInput
                   label={t('products.barcode')}
-                  value={barcode}
-                  onChange={(e) => setBarcode(e.target.value)}
+                  value={formik.values.barcode}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  name="barcode"
                   placeholder={""}
                   icon={Barcode}
+                  error={formik.touched.barcode && formik.errors.barcode ? formik.errors.barcode : undefined}
                 />
               </div>
 
@@ -405,24 +422,28 @@ function ProductCreate() {
                   </Label>
                   <Switch
                     id="track-quantity"
-                    checked={trackQuantity}
-                    onCheckedChange={setTrackQuantity}
+                    checked={formik.values.trackQuantity}
+                    onCheckedChange={(checked) => formik.setFieldValue('trackQuantity', checked)}
                   />
                 </div>
                 
-                {trackQuantity && (
+                {formik.values.trackQuantity && (
                   <div className="grid gap-6 md:grid-cols-2">
                     <FloatingLabelInput
                       label={t('products.quantity')}
-                      value={quantity}
-                      onChange={(e) => setQuantity(e.target.value)}
+                      value={formik.values.quantity.toString()}
+                      onChange={(e) => formik.setFieldValue('quantity', parseInt(e.target.value) || 0)}
+                      onBlur={formik.handleBlur}
+                      name="quantity"
                       placeholder={"0"}
                       type="number"
                     />
                     <FloatingLabelInput
                       label={t('products.lowStockAlert')}
-                      value={lowStockAlert}
-                      onChange={(e) => setLowStockAlert(e.target.value)}
+                      value={formik.values.lowStockAlert.toString()}
+                      onChange={(e) => formik.setFieldValue('lowStockAlert', parseInt(e.target.value) || 0)}
+                      onBlur={formik.handleBlur}
+                      name="lowStockAlert"
                       placeholder={"10"}
                       type="number"
                     />
@@ -447,13 +468,15 @@ function ProductCreate() {
               <div className="grid gap-6 md:grid-cols-2">
                 <FloatingLabelInput
                   label={t('products.weight')}
-                  value={weight}
-                  onChange={(e) => setWeight(e.target.value)}
+                  value={formik.values.weight || ''}
+                  onChange={(e) => formik.setFieldValue('weight', e.target.value ? parseFloat(e.target.value) : null)}
+                  onBlur={formik.handleBlur}
+                  name="weight"
                   placeholder={""}
                   type="number"
                   step="0.01"
                 />
-                <Select value={weightUnit} onValueChange={setWeightUnit}>
+                <Select value={formik.values.weightUnit} onValueChange={(value) => formik.setFieldValue('weightUnit', value)}>
                   <SelectTrigger>
                     <SelectValue placeholder={t('products.selectWeightUnit')} />
                   </SelectTrigger>
@@ -480,12 +503,11 @@ function ProductCreate() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <ProductImages
-                mainImage={mainImage?.path || null}
-                setMainImage={handleMainImageChange}
-                otherImages={subImages.map(img => img.path)}
-                setOtherImages={handleSubImagesChange}
-                handleSave={() => {}}
+              <ProductImagesWithFiles
+                mainImageFile={mainImageFile}
+                setMainImageFile={setMainImageFile}
+                subImageFiles={subImageFiles}
+                setSubImageFiles={setSubImageFiles}
               />
             </CardContent>
           </Card>
@@ -507,7 +529,7 @@ function ProductCreate() {
                   <Label className="text-base font-medium mb-2 block">
                     {t('products.status')}
                   </Label>
-                  <Select value={productStatus} onValueChange={(value: any) => setProductStatus(value)}>
+                  <Select value={formik.values.status} onValueChange={(value: ProductStatus) => formik.setFieldValue('status', value)}>
                     <SelectTrigger>
                       <SelectValue placeholder={t('products.selectStatus')} />
                     </SelectTrigger>
@@ -526,8 +548,8 @@ function ProductCreate() {
                     </Label>
                     <Switch
                       id="is-active"
-                      checked={isActive}
-                      onCheckedChange={setIsActive}
+                      checked={formik.values.isActive}
+                      onCheckedChange={(checked) => formik.setFieldValue('isActive', checked)}
                     />
                   </div>
                   <div className="flex items-center justify-between">
@@ -536,8 +558,8 @@ function ProductCreate() {
                     </Label>
                     <Switch
                       id="is-featured"
-                      checked={isFeatured}
-                      onCheckedChange={setIsFeatured}
+                      checked={formik.values.isFeatured}
+                      onCheckedChange={(checked) => formik.setFieldValue('isFeatured', checked)}
                     />
                   </div>
                 </div>
@@ -554,14 +576,18 @@ function ProductCreate() {
             <div className="space-y-4">
               <FloatingLabelInput
                 label={t('products.metaTitle')}
-                value={metaTitle}
-                onChange={(e) => setMetaTitle(e.target.value)}
+                value={formik.values.metaTitle}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                name="metaTitle"
                 placeholder={""}
               />
               <FloatingLabelTextarea
                 label={t('products.metaDescription')}
-                value={metaDescription}
-                onChange={(e) => setMetaDescription(e.target.value)}
+                value={formik.values.metaDescription}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                name="metaDescription"
                 placeholder={""}
                 rows={3}
                 className="resize-none"
@@ -569,8 +595,8 @@ function ProductCreate() {
               <MultiSelect
                 label={t('products.metaKeywords')}
                 options={[]}
-                value={metaKeywords}
-                onChange={setMetaKeywords}
+                value={formik.values.metaKeywords}
+                onChange={(keywords) => formik.setFieldValue('metaKeywords', keywords)}
                 placeholder={t('products.enterKeywords')}
               />
             </div>
@@ -580,16 +606,22 @@ function ProductCreate() {
           {/* Action Buttons */}
           <Card className="border-none bg-muted/50">
             <CardContent className="flex justify-end gap-4 pt-6">
-              <Button variant="outline" size="lg">
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={() => navigate('/dashboard/products')}
+                disabled={createLoading}
+              >
                 {t('common.cancel')}
               </Button>
               <Button
                 size="lg"
-                onClick={handleSave}
+                onClick={() => formik.handleSubmit()}
+                disabled={createLoading}
                 className="min-w-[150px]"
               >
                 <Save className="h-4 w-4 mr-2" />
-                {t('common.save')}
+                {createLoading ? t('common.saving') : t('common.save')}
               </Button>
             </CardContent>
           </Card>
